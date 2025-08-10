@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Projects - MasVisio Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #fafafa; 
+            line-height: 1.6; 
+            color: #333;
+        }
+        
+        /* Header Styles */
+        .header { 
+            background: white; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+        }
+        .navbar { 
+            padding: 0.5rem 0; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .container { 
+            padding: 0 2rem; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: #2c5282; 
+            text-decoration: none; 
+            letter-spacing: -0.5px; 
+            margin-bottom: 0.5rem;
+        }
+        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
+        
+        /* Navigation */
+        .nav-menu { 
+            display: flex; 
+            justify-content: center; 
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-list { 
+            list-style: none; 
+            display: flex; 
+            margin: 0; 
+            padding: 0;
+            gap: 0;
+        }
+        .nav-item { position: relative; margin: 0; }
+        .nav-link { 
+            display: block; 
+            color: #4a5568; 
+            font-weight: 500; 
+            padding: 1rem 1.5rem; 
+            text-decoration: none;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            border-right: 1px solid #e2e8f0;
+        }
+        .nav-link:hover, .nav-link.active { background: #f7fafc; color: #2c5282; }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: absolute;
+            right: 4rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .lang-btn:hover {
+            background: #2c5282;
+            color: white;
+            border-color: #2c5282;
+        }
+        
+        .lang-btn.active {
+            background: #2c5282;
+            color: white;
+            border-color: #2c5282;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding-top: 140px;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 3rem 0;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+            margin-bottom: 3rem;
+        }
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .breadcrumb a {
+            color: #2c5282;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 1rem;
+        }
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            line-height: 1.7;
+        }
+        
+        /* Research Categories Filter */
+        .research-filter {
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-label {
+            font-weight: 600;
+            color: #333;
+            margin-right: 1rem;
+        }
+        .filter-tag {
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .filter-tag:hover, .filter-tag.active {
+            background: #2c5282;
+            color: white;
+            border-color: #2c5282;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            padding-bottom: 4rem;
+        }
+        
+        /* Project Card */
+        .project-card {
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        /* Project Visual */
+        .project-visual {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover .project-visual img {
+            transform: scale(1.05);
+        }
+        
+        .project-visual .placeholder-icon {
+            font-size: 4rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Project Content */
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-type {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .project-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Project Meta Info */
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #f1f5f9;
+        }
+        
+        .project-researchers {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .researcher-name {
+            font-size: 0.85rem;
+            color: #2c5282;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .researcher-name:hover {
+            text-decoration: underline;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .project-tag {
+            background: #f8fafc;
+            color: #4a5568;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .project-status {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-completed {
+            background: #cce7ff;
+            color: #0056b3;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        /* Footer */
+        .footer { 
+            background: #2d3748; 
+            color: #a0aec0; 
+            padding: 2rem 0; 
+            text-align: center; 
+            margin-top: 5rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="../ko/index.html" class="logo">
+                    <i class="fas fa-eye"></i>
+                    MasVisio Research
+                </a>
+                <div class="language-toggle">
+                    <a href="#" class="lang-btn active" onclick="switchLanguage('ko')">KO</a>
+                    <a href="#" class="lang-btn" onclick="switchLanguage('en')">EN</a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../ko/index.html" class="nav-link">홈</a></li>
+                        <li class="nav-item"><a href="overview.html" class="nav-link active">연구</a></li>
+                        <li class="nav-item"><a href="../publications/index.html" class="nav-link">논문</a></li>
+                        <li class="nav-item"><a href="../team/index.html" class="nav-link">연구진</a></li>
+                        <li class="nav-item"><a href="../partnership/index.html" class="nav-link">파트너십</a></li>
+                        <li class="nav-item"><a href="../contact/index.html" class="nav-link">연락처</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../ko/index.html">홈</a> > 연구 프로젝트
+            </div>
+            <h1 class="page-title">연구 프로젝트</h1>
+            <p class="page-subtitle">
+                시각재활 분야에서 도전적이고 혁신적 연구를 통해 더 나은 시각과 삶의 질을 제공합니다. 
+                첨단 기술과 임상 경험을 바탕으로 한 다양한 연구 프로젝트를 진행하고 있습니다.
+            </p>
+        </div>
+
+        <!-- Research Filter -->
+        <div class="research-filter">
+            <span class="filter-label">분야별 필터:</span>
+            <a href="#" class="filter-tag active">전체</a>
+            <a href="#" class="filter-tag">근시제어</a>
+            <a href="#" class="filter-tag">안질환 예측</a>
+            <a href="#" class="filter-tag">공막 3D 프로파일러</a>
+            <a href="#" class="filter-tag">실시간 자동안굴절계</a>
+            <a href="#" class="filter-tag">시재활중재</a>
+        </div>
+
+        <!-- Projects Grid -->
+        <section class="projects-grid">
+            <!-- Project 1: 근시제어 -->
+            <article class="project-card" onclick="window.location.href='projects/myopia-control.html'">
+                <div class="project-visual">
+                    <i class="fas fa-eye-dropper placeholder-icon"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-type">Pan-retinal Full Correction & Myopia Control</div>
+                    <h3 class="project-title">전체망막 완전교정과 진형성 근시 제어</h3>
+                    <p class="project-description">
+                        주변부 망막의 초평면 위치와 안구 성장의 관계를 분석하여 근시 진행을 억제하는 
+                        광학적 개입 방법을 연구합니다. 사광선의 FS' 초점선 위치 조절을 통한 근시 억제 메커니즘을 규명합니다.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">#myopia-control</span>
+                        <span class="project-tag">#peripheral-refraction</span>
+                        <span class="project-tag">#optical-intervention</span>
+                    </div>
+                    <div class="project-meta">
+                        <div class="project-researchers">
+                            <span class="researcher-name">서재명 교수</span>
+                            <span style="color: #ccc;">·</span>
+                            <span class="researcher-name">허민영 책임연구원</span>
+                            <span style="color: #999; font-size: 0.8rem;">+2 more</span>
+                        </div>
+                        <span class="project-status status-active">Active</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 2: 안질환 예측 -->
+            <article class="project-card" onclick="window.location.href='projects/visual-cognition.html'">
+                <div class="project-visual">
+                    <img src="../assets/images/research/integrated-biometrics.png" alt="Integrated Biometrics System" />
+                </div>
+                <div class="project-content">
+                    <div class="project-type">Biomakers in Ocular Matrices</div>
+                    <h3 class="project-title">통합 바이오메트릭스 기반 안질환 예측</h3>
+                    <p class="project-description">
+                        동공 동역학과 대비감도를 통합한 47개 바이오마커로 당뇨망막병증, 녹내장, 경도인지장애, 심리성향을 동시 평가합니다. 
+                        3분 검사로 90% 이상 정확도를 목표로 하는 세계 최초의 비침습적 통합 스크리닝 플랫폼입니다.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">#biometrics</span>
+                        <span class="project-tag">#pupil-dynamics</span>
+                        <span class="project-tag">#AI-screening</span>
+                        <span class="project-tag">#multi-disease</span>
+                    </div>
+                    <div class="project-meta">
+                        <div class="project-researchers">
+                            <span class="researcher-name">서재명 교수</span>
+                            <span style="color: #ccc;">·</span>
+                            <span class="researcher-name">유상혁 학생</span>
+                            <span style="color: #999; font-size: 0.8rem;">+4 more</span>
+                        </div>
+                        <span class="project-status status-active">Active</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 3: 공막 3D 프로파일러 -->
+            <article class="project-card" onclick="window.location.href='projects/scleral-scanner.html'">
+                <div class="project-visual">
+                    <i class="fas fa-scanner placeholder-icon"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-type">Scleral 3D Profiler</div>
+                    <h3 class="project-title">공막렌즈 처방을 위한 공막 스캐너</h3>
+                    <p class="project-description">
+                        공막 하드 콘택트렌즈 처방에 필요한 공막 전용 프로파일 측정 장비를 개발합니다. 
+                        Placido ring 기반 공막 프로파일을 3D로 구현하여 정확한 공막렌즈 피팅을 가능하게 합니다.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">#scleral-lens</span>
+                        <span class="project-tag">#topography</span>
+                        <span class="project-tag">#3d-modeling</span>
+                    </div>
+                    <div class="project-meta">
+                        <div class="project-researchers">
+                            <span class="researcher-name">서재명 교수</span>
+                            <span style="color: #ccc;">·</span>
+                            <span class="researcher-name">유명학 학생</span>
+                            <span style="color: #999; font-size: 0.8rem;">+1 more</span>
+                        </div>
+                        <span class="project-status status-active">Active</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 4: 실시간 자동안굴절계 -->
+            <article class="project-card" onclick="window.location.href='projects/auto-refractometer.html'">
+                <div class="project-visual">
+                    <i class="fas fa-microscope placeholder-icon"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-type">A Real-time Autonomous Refractometer by Supervised Learning</div>
+                    <h3 class="project-title">검영법 기반 실시간 자동안굴절계</h3>
+                    <p class="project-description">
+                        디옵터별 반사광선의 두께, 밝기, 속도를 지도학습으로 분석하여 확률적 굴절이상량을 반환합니다. 
+                        검사자의 숙련도와 무관하게 5초 내 실시간 측정을 목표로 하는 실시간 자동안굴절계입니다.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">#retinoscopy</span>
+                        <span class="project-tag">#machine-learning</span>
+                        <span class="project-tag">#automation</span>
+                    </div>
+                    <div class="project-meta">
+                        <div class="project-researchers">
+                            <span class="researcher-name">서재명 교수 </span>
+                            <span style="color: #ccc;">·</span>
+                            <span class="researcher-name">여현주 연구원</span>
+                            <span style="color: #999; font-size: 0.8rem;">+1 more</span>
+                        </div>
+                        <span class="project-status status-active">Active</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 5: 시각재활 -->
+            <article class="project-card" onclick="window.location.href='projects/vision-rehabilitation.html'">
+                <div class="project-visual">
+                    <i class="fas fa-hands-helping placeholder-icon"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-type">Rehabilitation</div>
+                    <h3 class="project-title">안질환에 의한 시각장애와 시각재활</h3>
+                    <p class="project-description">
+                        국내 저시력 재활 실태를 개선하고 서양의 다학제 클리닉 모델을 도입합니다. 
+                        광학·전자 보조기기 처방, 적응 기술 훈련, 심리사회적 지원을 통해 종합적인 재활 서비스를 제공합니다.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">#low-vision</span>
+                        <span class="project-tag">#rehabilitation</span>
+                        <span class="project-tag">#assistive-devices</span>
+                    </div>
+                    <div class="project-meta">
+                        <div class="project-researchers">
+                            <span class="researcher-name">Dr. Yoon, S.M.</span>
+                            <span style="color: #ccc;">·</span>
+                            <span class="researcher-name">Dr. Han, J.W.</span>
+                            <span style="color: #999; font-size: 0.8rem;">+3 more</span>
+                        </div>
+                        <span class="project-status status-active">Active</span>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
+            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">
+                마산대학교 안경광학과 | 시각재활 연구실 | 
+                <a href="jaemyoungseo@masan.ac.kr" style="color: #38a169;">research@masvisio.kr</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            if (lang === 'en') {
+                alert('영어 버전은 준비 중입니다.');
+            }
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-tag').forEach(tag => {
+            tag.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all tags
+                document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tag
+                this.classList.add('active');
+                
+                // Filter projects based on tag text
+                const filterText = this.textContent.toLowerCase();
+                const projectCards = document.querySelectorAll('.project-card');
+                
+                projectCards.forEach(card => {
+                    if (filterText === '전체') {
+                        card.style.display = 'block';
+                    } else {
+                        const projectTags = card.querySelectorAll('.project-tag');
+                        let hasMatchingTag = false;
+                        
+                        projectTags.forEach(tag => {
+                            if (tag.textContent.toLowerCase().includes(filterText) || 
+                                card.querySelector('.project-type').textContent.toLowerCase().includes(filterText)) {
+                                hasMatchingTag = true;
+                            }
+                        });
+                        
+                        card.style.display = hasMatchingTag ? 'block' : 'none';
+                    }
+                });
+            });
+        });
+
+        // 스크롤 시 헤더 그림자 효과
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>

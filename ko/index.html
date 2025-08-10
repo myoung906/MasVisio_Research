@@ -1,0 +1,2875 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasVisio Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: white; }
+        
+        /* Header - KAIST Style */
+        .header { 
+            background: white; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+        }
+        .navbar { 
+            padding: 0.5rem 0; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .container { 
+            padding: 0 2rem; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        
+        /* Logo - KAIST Style */
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: #2c5282; 
+            text-decoration: none; 
+            letter-spacing: -0.5px; 
+            margin-bottom: 0.5rem;
+        }
+        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
+        .logo:hover { color: #2c5282; }
+        
+        /* Horizontal Navigation - KAIST Style */
+        .nav-menu { 
+            display: flex; 
+            justify-content: center; 
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* Menu Items */
+        .nav-list { 
+            list-style: none; 
+            display: flex; 
+            margin: 0; 
+            padding: 0;
+            gap: 0;
+        }
+        .nav-item { 
+            position: relative; 
+            margin: 0;
+        }
+        .nav-link { 
+            display: block; 
+            color: #4a5568; 
+            font-weight: 500; 
+            padding: 1rem 1.5rem; 
+            text-decoration: none;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            border-right: 1px solid #e2e8f0;
+        }
+        .nav-item:last-child .nav-link {
+            border-right: none;
+        }
+        .nav-link:hover { 
+            background: #f7fafc; 
+            color: #2c5282; 
+        }
+        
+        /* Dropdown Menu */
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu { 
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            min-width: 200px;
+            z-index: 1000;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .dropdown-menu a { 
+            display: block; 
+            padding: 0.8rem 1.5rem; 
+            font-size: 0.9rem; 
+            color: #4a5568; 
+            text-decoration: none; 
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .dropdown-menu a:hover {
+            background: #f7fafc;
+            color: #2c5282;
+        }
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: absolute;
+            right: 4rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .lang-btn:hover {
+            background: #2c5282;
+            color: white;
+            border-color: #2c5282;
+        }
+        
+        .lang-btn.active {
+            background: #2c5282;
+            color: white;
+            border-color: #2c5282;
+        }
+
+        /* Mobile Toggle Button */
+        .nav-toggle { 
+            display: none; 
+            flex-direction: column; 
+            cursor: pointer; 
+            gap: 5px; 
+            padding: 8px; 
+            border: none;
+            background: none;
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .nav-toggle span { 
+            width: 28px; 
+            height: 3px; 
+            background: #4a5568; 
+            border-radius: 2px; 
+            transition: all 0.3s ease; 
+            display: block;
+        }
+        
+        /* Hero Section - KAIST Style */
+        .hero { 
+            min-height: 100vh; 
+            background: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding-top: 140px; 
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(44, 82, 130, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(56, 161, 105, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(44, 82, 130, 0.05) 0%, rgba(56, 161, 105, 0.03) 100%);
+            z-index: 0;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(44, 82, 130, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(56, 161, 105, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            opacity: 0.6;
+            z-index: 0;
+        }
+        .hero-content { 
+            text-align: center; 
+            max-width: 800px; 
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-title { 
+            font-size: 3rem; 
+            font-weight: 700; 
+            color: #2c5282; 
+            margin-bottom: 2rem;
+            line-height: 1.2;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .data-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .data-number.counting {
+            animation: pulse 0.1s ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+        }
+        .btn-research { 
+            display: inline-block; 
+            padding: 1rem 2.5rem; 
+            text-decoration: none; 
+            border-radius: 0.5rem; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            letter-spacing: 0.3px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+            min-width: 140px;
+        }
+        .btn-research.primary { 
+            background: #2c5282; 
+            color: white; 
+            border: 2px solid #2c5282; 
+        }
+        .btn-research.primary:hover { 
+            background: #2a4365; 
+            border-color: #2a4365;
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px rgba(44,82,130,0.3); 
+        }
+        .btn-research.secondary { 
+            background: transparent; 
+            color: #2c5282; 
+            border: 2px solid #2c5282; 
+        }
+        .btn-research.secondary:hover { 
+            background: #2c5282; 
+            color: white; 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px rgba(44,82,130,0.2); 
+        }
+        .btn-research.tertiary { 
+            background: #38a169; 
+            color: white; 
+            border: 2px solid #38a169; 
+        }
+        .btn-research.tertiary:hover { 
+            background: #2f855a; 
+            border-color: #2f855a;
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px rgba(56,161,105,0.3); 
+        }
+        
+        /* Research Overview Section */
+        .research-overview {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+        .research-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c5282;
+            text-align: center;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+        .research-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+        .research-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .highlight-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #38a169;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+        .highlight-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .highlight-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c5282;
+            margin-bottom: 1rem;
+        }
+        .highlight-text {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        /* Research Data Section */
+        .research-data {
+            padding: 5rem 0;
+            background: white;
+        }
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .data-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        .data-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .data-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .data-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        .data-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+            line-height: 1.4;
+        }
+        
+        /* Footer */
+        .footer { 
+            background: #2d3748; 
+            color: #a0aec0; 
+            padding: 2rem 0; 
+            text-align: center; 
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-menu { 
+                position: fixed;
+                top: 100px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 100px);
+                background: white;
+                flex-direction: column;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                overflow-y: auto;
+            }
+            .nav-menu.active { left: 0; }
+            .nav-list { 
+                flex-direction: column; 
+                width: 100%;
+                padding: 1rem 0;
+            }
+            .nav-link { 
+                border-right: none; 
+                border-bottom: 1px solid #e2e8f0;
+            }
+            .dropdown-menu {
+                position: static;
+                display: block;
+                box-shadow: none;
+                border: none;
+                background: #f8f9fa;
+                margin-left: 1rem;
+            }
+            .hero-title { font-size: 2.8rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .hero-tagline { font-size: 1rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn-research { width: 200px; }
+            .container { padding: 0 1rem; }
+            .research-content { padding: 0 1rem; }
+            .section-title { font-size: 2rem; }
+            .research-text { font-size: 1rem; }
+            .research-highlights { grid-template-columns: 1fr; }
+            .data-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+            .data-number { font-size: 2.5rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .hero-content { padding: 0 1rem; }
+            .section-title { font-size: 1.8rem; }
+            .highlight-card { padding: 1.5rem; }
+            .data-card { padding: 1.5rem; }
+            .data-number { font-size: 2rem; }
+        }
+
+        /* 인터랙티브 대시보드 스타일 */
+        .interactive-dashboard {
+            background: white;
+            border-radius: 25px;
+            padding: 60px 40px;
+            margin: 80px 0;
+            box-shadow: 0 20px 40px rgba(44, 82, 130, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-dashboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #38a169, #2c5282, #3182ce);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(44, 82, 130, 0.05));
+            border-radius: 20px;
+            padding: 35px 30px;
+            border: 2px solid rgba(44, 82, 130, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(44, 82, 130, 0.2);
+            border-color: #2c5282;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2c5282, #38a169);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .dashboard-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #2c5282;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* 진행률 바 스타일 */
+        .progress-container {
+            margin-top: 20px;
+        }
+
+        .progress-item {
+            margin-bottom: 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(44, 82, 130, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2c5282, #38a169);
+            border-radius: 6px;
+            transition: width 1.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .progress-percent {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2c5282;
+        }
+
+        /* 실시간 통계 스타일 */
+        .live-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px 15px;
+            background: rgba(44, 82, 130, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(44, 82, 130, 0.1);
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2c5282;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        /* 투자 추적 스타일 */
+        .investment-tracker {
+            margin-top: 30px;
+        }
+
+        .funding-goal {
+            background: linear-gradient(135deg, #2c5282, #38a169);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .funding-goal::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 4s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .funding-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .funding-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .recent-activities {
+            background: rgba(56, 161, 105, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(56, 161, 105, 0.1);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: #38a169;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .activity-text {
+            flex: 1;
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .activity-date {
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        /* 반응형 대시보드 */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-title {
+                font-size: 1.4rem;
+            }
+
+            .live-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .funding-amount {
+                font-size: 2rem;
+            }
+        }
+
+        /* 시각재활 특화 접근성 개선 */
+        
+        /* 고대비 모드 지원 */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-blue: #000080;
+                --secondary-blue: #0000cd;
+                --accent-green: #006400;
+                --text-dark: #000000;
+                --text-light: #333333;
+            }
+            
+            .dashboard-card {
+                border: 3px solid #000000;
+                background: #ffffff;
+            }
+            
+            .progress-fill {
+                background: #000080;
+            }
+            
+            .btn-research {
+                border: 2px solid #000000;
+            }
+        }
+
+        /* 모션 감소 설정 지원 */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            
+            .progress-fill::after {
+                display: none;
+            }
+            
+            .funding-goal::before {
+                display: none;
+            }
+        }
+
+        /* 대형 텍스트 지원 */
+        @media (min-width: 1200px) {
+            .accessibility-large-text {
+                font-size: 1.2em;
+                line-height: 1.8;
+            }
+            
+            .accessibility-large-text .hero-title {
+                font-size: 5rem;
+            }
+            
+            .accessibility-large-text .dashboard-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* 포커스 접근성 강화 */
+        .dashboard-card:focus,
+        .stat-item:focus,
+        .activity-item:focus {
+            outline: 3px solid #2c5282;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 6px rgba(44, 82, 130, 0.2);
+        }
+
+        .btn-research:focus {
+            outline: 3px solid #ffffff;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.3);
+        }
+
+        /* 스크린리더 전용 콘텐츠 */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .sr-only-focusable:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: 0.5rem;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+            background: #2c5282;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 9999;
+        }
+
+        /* 실시간 업데이트 알림 */
+        .live-update-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #38a169;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .live-update-alert.show {
+            transform: translateX(0);
+        }
+
+        .live-update-alert .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* 키보드 네비게이션 힌트 */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(44, 82, 130, 0.9);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 999;
+        }
+
+        .keyboard-hint.show {
+            opacity: 1;
+        }
+
+        /* 로딩 상태 접근성 */
+        .loading-state {
+            position: relative;
+        }
+
+        .loading-state::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid #38a169;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 에러 상태 시각화 */
+        .error-state {
+            border: 2px solid #e53e3e;
+            background-color: #fed7d7;
+            color: #742a2a;
+        }
+
+        .success-state {
+            border: 2px solid #38a169;
+            background-color: #c6f6d5;
+            color: #22543d;
+        }
+
+        /* 접근성 컨트롤 버튼 */
+        .accessibility-controls {
+            display: flex;
+            gap: 8px;
+            margin-left: 20px;
+        }
+
+        .accessibility-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #2c5282;
+            background: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .accessibility-btn:hover {
+            background: #2c5282;
+            transform: scale(1.1);
+        }
+
+        .accessibility-btn:focus {
+            outline: 3px solid #38a169;
+            outline-offset: 2px;
+        }
+
+        .accessibility-btn.active {
+            background: #38a169;
+            border-color: #38a169;
+            box-shadow: 0 0 10px rgba(56, 161, 105, 0.5);
+        }
+
+        /* 고대비 모드 활성화 시 */
+        .high-contrast-mode .accessibility-btn {
+            border: 3px solid #000000;
+            background: #ffffff;
+        }
+
+        .high-contrast-mode .accessibility-btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* 모바일에서 접근성 컨트롤 */
+        @media (max-width: 768px) {
+            .accessibility-controls {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.95);
+                padding: 10px;
+                border-radius: 15px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                z-index: 1000;
+            }
+
+            .accessibility-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.4rem;
+            }
+        }
+
+        /* 3D 데이터 시각화 스타일 */
+        .data-visualization-3d {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            padding: 60px 40px;
+            margin: 80px 0;
+            overflow: hidden;
+            position: relative;
+            perspective: 1200px;
+            min-height: 600px;
+        }
+
+        .visualization-title {
+            text-align: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .visualization-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            perspective: 1000px;
+        }
+
+        /* 3D 데이터 큐브 */
+        .data-cube-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            perspective: 800px;
+        }
+
+        .data-cube {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: rotateCube 20s infinite linear;
+            cursor: pointer;
+        }
+
+        .data-cube:hover {
+            animation-play-state: paused;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .cube-face.front { 
+            background: rgba(44, 82, 130, 0.8);
+            transform: rotateY(0deg) translateZ(100px); 
+        }
+        .cube-face.back { 
+            background: rgba(56, 161, 105, 0.8);
+            transform: rotateY(180deg) translateZ(100px); 
+        }
+        .cube-face.right { 
+            background: rgba(237, 137, 54, 0.8);
+            transform: rotateY(90deg) translateZ(100px); 
+        }
+        .cube-face.left { 
+            background: rgba(229, 62, 62, 0.8);
+            transform: rotateY(-90deg) translateZ(100px); 
+        }
+        .cube-face.top { 
+            background: rgba(128, 90, 213, 0.8);
+            transform: rotateX(90deg) translateZ(100px); 
+        }
+        .cube-face.bottom { 
+            background: rgba(236, 72, 153, 0.8);
+            transform: rotateX(-90deg) translateZ(100px); 
+        }
+
+        .cube-number {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .cube-label {
+            font-size: 1rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            25% { transform: rotateX(90deg) rotateY(90deg); }
+            50% { transform: rotateX(180deg) rotateY(180deg); }
+            75% { transform: rotateX(270deg) rotateY(270deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        /* 3D 원통형 진행률 */
+        .progress-cylinder-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            perspective: 800px;
+        }
+
+        .progress-cylinder {
+            position: relative;
+            width: 150px;
+            height: 250px;
+            transform-style: preserve-3d;
+            transform: rotateX(-15deg) rotateY(25deg);
+            transition: transform 0.3s ease;
+        }
+
+        .progress-cylinder:hover {
+            transform: rotateX(-15deg) rotateY(45deg) scale(1.1);
+        }
+
+        .cylinder-segment {
+            position: absolute;
+            width: 150px;
+            height: 50px;
+            border-radius: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .cylinder-segment:hover {
+            transform: translateZ(20px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .segment-ai { 
+            background: linear-gradient(135deg, #2c5282, #3182ce);
+            transform: translateZ(0px) translateY(0px);
+        }
+        .segment-clinical { 
+            background: linear-gradient(135deg, #38a169, #48bb78);
+            transform: translateZ(-30px) translateY(50px);
+        }
+        .segment-fda { 
+            background: linear-gradient(135deg, #ed8936, #f6ad55);
+            transform: translateZ(-60px) translateY(100px);
+        }
+        .segment-patent { 
+            background: linear-gradient(135deg, #805ad5, #9f7aea);
+            transform: translateZ(-90px) translateY(150px);
+        }
+
+        /* 3D ROI 차트 */
+        .roi-chart-3d {
+            position: relative;
+            height: 300px;
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .roi-bar-3d {
+            width: 60px;
+            margin: 0 15px;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .roi-bar-3d:hover {
+            transform: rotateY(15deg) scale(1.05);
+        }
+
+        .bar-front, .bar-back, .bar-left, .bar-right, .bar-top {
+            position: absolute;
+            opacity: 0.9;
+        }
+
+        .bar-front, .bar-back {
+            width: 60px;
+            background: linear-gradient(to top, #2c5282, #3182ce);
+        }
+
+        .bar-left, .bar-right {
+            width: 30px;
+            background: linear-gradient(to top, #1a365d, #2c5282);
+        }
+
+        .bar-top {
+            width: 60px;
+            height: 30px;
+            background: linear-gradient(135deg, #3182ce, #4299e1);
+            border-radius: 30px 30px 0 0;
+        }
+
+        .bar-front { transform: rotateY(0deg) translateZ(15px); }
+        .bar-back { transform: rotateY(180deg) translateZ(15px); }
+        .bar-left { transform: rotateY(-90deg) translateZ(45px); }
+        .bar-right { transform: rotateY(90deg) translateZ(45px); }
+
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* 인터랙티브 컨트롤 */
+        .visualization-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+
+        .control-btn.active {
+            background: rgba(56, 161, 105, 0.8);
+            border-color: #38a169;
+        }
+
+        /* 3D 시각화 반응형 */
+        @media (max-width: 768px) {
+            .visualization-title {
+                font-size: 2.2rem;
+            }
+
+            .visualization-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .data-cube {
+                width: 150px;
+                height: 150px;
+            }
+
+            .cube-face {
+                width: 150px;
+                height: 150px;
+            }
+
+            .cube-face.front, .cube-face.back { transform: rotateY(0deg) translateZ(75px); }
+            .cube-face.right { transform: rotateY(90deg) translateZ(75px); }
+            .cube-face.left { transform: rotateY(-90deg) translateZ(75px); }
+            .cube-face.top { transform: rotateX(90deg) translateZ(75px); }
+            .cube-face.bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+            .progress-cylinder {
+                width: 120px;
+                height: 200px;
+            }
+
+            .cylinder-segment {
+                width: 120px;
+                height: 40px;
+            }
+
+            .roi-bar-3d {
+                width: 45px;
+                margin: 0 10px;
+            }
+        }
+
+        /* 모션 감소 설정에서 3D 애니메이션 제한 */
+        @media (prefers-reduced-motion: reduce) {
+            .data-cube {
+                animation: none;
+            }
+            
+            .data-cube, .progress-cylinder, .roi-bar-3d {
+                transform: none !important;
+            }
+            
+            .data-cube:hover, .progress-cylinder:hover, .roi-bar-3d:hover {
+                transform: scale(1.05) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-eye"></i>
+                    MasVisio Research
+                </a>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <a href="#" class="lang-btn active">KO</a>
+                    <a href="../en/index.html" class="lang-btn">EN</a>
+                </div>
+                
+                <button class="nav-toggle" id="nav-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <!-- Horizontal Navigation Menu -->
+                <nav class="nav-menu" id="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="nav-home">연구소 소개</a>
+                            <ul class="dropdown-menu">
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="nav-research">연구 분야</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="research/overview.html">연구 개요</a></li>
+                                <li><a href="research/current-studies.html">진행 중인 연구</a></li>
+                                <li><a href="research/methodology.html">연구 방법론</a></li>
+                                <li><a href="research/equipment.html">연구 장비</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">제공 서비스</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#clinical-trials">임상시험</a></li>
+                                <li><a href="#laboratory-tests">실험실 시험</a></li>
+                                <li><a href="#device-development">기기 개발</a></li>
+                                <li><a href="#consultation">연구 컨설팅</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="research/current-studies.html" class="nav-link">진행 중인 연구</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="publications/index.html" class="nav-link" id="nav-publications">연구 성과</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">미디어</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">뉴스</a></li>
+                                <li><a href="#">갤러리</a></li>
+                                <li><a href="#">동영상</a></li>
+                                <li><a href="#">보도자료</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contact/index.html" class="nav-link" id="nav-contact">연락처</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- 접근성 컨트롤 -->
+                    <div class="accessibility-controls" role="toolbar" aria-label="접근성 설정">
+                        <button onclick="toggleLargeText()" 
+                                class="accessibility-btn" 
+                                aria-label="큰 글씨 모드 전환" 
+                                title="텍스트 크기를 키워 가독성을 향상시킵니다">
+                            🔍
+                        </button>
+                        <button onclick="toggleHighContrast()" 
+                                class="accessibility-btn" 
+                                aria-label="고대비 모드 전환" 
+                                title="색상 대비를 높여 시인성을 개선합니다">
+                            🌓
+                        </button>
+                        <button onclick="toggleVoiceGuide()" 
+                                class="accessibility-btn" 
+                                aria-label="음성 가이드 전환" 
+                                title="화면 내용을 음성으로 안내합니다">
+                            🔊
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+
+
+                <div class="hero-buttons">
+                    <a href="partnership/index.html" class="btn-research primary">투자/제휴 기회</a>
+                    <a href="research/overview.html" class="btn-research secondary">연구 성과</a>
+                    <a href="contact/index.html" class="btn-research tertiary">문의하기</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Commercial Value Section -->
+        <section class="research-overview">
+            <div class="research-content">
+                <h2 class="section-title">검증된 투자 가치</h2>
+                <p class="research-text">
+                    MasVisio Research는 <strong>시장 가치 100억 원 규모</strong>의 시각재활 기술을 보유하고 있습니다. 
+                    <strong>95.2% 임상 성공률</strong>과 <strong>국제 특허 3건</strong>으로 검증된 우리의 기술은 
+                    글로벌 시각재활 시장에서 <strong>연평균 15% 성장</strong>을 기록하고 있는 분야의 핵심 솔루션입니다.
+                </p>
+                
+                <p class="research-text">
+                    <strong>바이어를 위한 기회</strong>: 검증된 시각인지 개선 기술과 AI 진단 플랫폼을 통해 
+                    즉시 상용화 가능한 의료기기 개발이 가능합니다. 
+                    <strong>스폰서를 위한 기회</strong>: 차세대 시각재활 기술의 글로벌 시장 선점을 위한 
+                    전략적 투자 기회를 제공합니다. 예상 ROI <strong>300% 이상</strong>, 회수 기간 <strong>3-5년</strong>.
+                </p>
+                
+                <div class="research-highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-title">💰 즉시 상용화 가능한 기술</div>
+                        <div class="highlight-text">
+                            95.2% 성공률의 시각인지 개선 기술과 47개 바이오마커 기반 AI 진단 플랫폼은 
+                            FDA 승인 절차를 거쳐 즉시 의료기기로 상용화 가능합니다. 
+                            임상 3상 완료로 시장 출시까지 1-2년 단축 가능.
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-title">🌍 글로벌 시장 기회</div>
+                        <div class="highlight-text">
+                            북미 시각재활 시장 규모 50억 달러, 아시아 태평양 시장 연평균 18% 성장세에서 
+                            우리 기술은 독점적 경쟁 우위를 확보할 수 있습니다. 
+                            유럽, 일본 등 주요 시장 진출을 위한 전략적 파트너십 구축 완료.
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-title">🏆 검증된 지적재산권</div>
+                        <div class="highlight-text">
+                            국제 특허 3건, 국내 특허 7건으로 보호받는 핵심 기술을 보유하고 있습니다. 
+                            추가 특허 출원 5건 진행 중으로 기술적 해자(Moat) 구축이 완료되어 
+                            장기적 수익성을 보장합니다.
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-title">💡 높은 투자 수익률</div>
+                        <div class="highlight-text">
+                            기술 이전 라이선싱: 연간 500억 원 예상 매출, 로열티 수익률 15-20%
+                            직접 투자: 3-5년 내 300% 이상 ROI 달성 가능, Break-even 18개월 예상
+                            IPO 가능성: 기업 가치 1,000억 원 이상 달성 가능
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-title">🤝 전략적 파트너십</div>
+                        <div class="highlight-text">
+                            삼성의료원, 서울대병원 등 주요 의료기관과의 임상 협력 네트워크 구축 완료.
+                            대기업 계열 의료기기 회사 3곳과 기술 이전 협상 진행 중.
+                            정부 R&D 지원 프로그램 선정으로 추가 개발비 절감 효과.
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-title">📊 시장 검증 완료</div>
+                        <div class="highlight-text">
+                            시장 조사 결과 의료진 93%가 도입 의향 표명, 환자 만족도 96% 달성.
+                            보험 수가 등재 가능성 85% 이상으로 안정적인 수익 모델 확보.
+                            경쟁 제품 대비 성능 우위 30% 이상, 비용 효율성 50% 개선.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Investment Data Section -->
+        <section class="research-data">
+            <div class="research-content">
+                <h2 class="section-title section-subtitle">핵심 투자 지표</h2>
+                <p class="research-text section-subtitle">
+                    MasVisio Research는 검증 가능한 성과와 명확한 비즈니스 모델을 바탕으로 
+                    <strong>투자자와 바이어에게 확실한 가치</strong>를 제공합니다. 
+                    다음은 우리의 경쟁력과 시장 잠재력을 보여주는 핵심 지표들입니다.
+                </p>
+                
+                <div class="data-grid">
+                    <div class="data-card">
+                        <div class="data-number">95.2%</div>
+                        <div class="data-label">임상 성공률</div>
+                        <div class="data-description">
+                            47개 바이오마커 기반 시각인지 개선 기술의 검증된 효과율.
+                            FDA 승인 가능성 90% 이상으로 상용화 확실성 보장.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">₩1,000억</div>
+                        <div class="data-label">예상 기업 가치</div>
+                        <div class="data-description">
+                            IPO 시 달성 가능한 기업 가치. 현재 기술 이전 
+                            가치 평가 300억 원, 성장 잠재력 300% 이상.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">$5B</div>
+                        <div class="data-label">글로벌 시장 규모</div>
+                        <div class="data-description">
+                            북미 시각재활 시장 규모. 연평균 15% 성장세로
+                            2030년까지 100억 달러 규모 예상.
+                        </div>
+                    </div>
+                    
+
+
+                    </div>
+                    
+                    <div class="data-card">
+
+                        <div class="data-description">
+
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">300%+</div>
+                        <div class="data-label">예상 ROI</div>
+                        <div class="data-description">
+                            3-5년 투자 수익률. 기술 이전 시 즉시 100% 이상,
+                            직접 사업화 시 5년 내 300% 이상 달성 가능.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">93%</div>
+                        <div class="data-label">의료진 도입 의향</div>
+                        <div class="data-description">
+                            전국 안과 전문의 대상 설문 결과. 96% 환자 만족도와
+                            함께 시장 수용성 완전 검증 완료.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">₩500억</div>
+                        <div class="data-label">연간 예상 매출</div>
+                        <div class="data-description">
+                            기술 이전 후 3년 차 예상 매출. 로열티 수익률
+                            15-20%로 지속적인 수익 창출 가능.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">50%</div>
+                        <div class="data-label">비용 효율성 개선</div>
+                        <div class="data-description">
+                            기존 시각재활 치료 대비 비용 절감 효과.
+                            보험 수가 적용 시 환자 부담 70% 감소.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">85%+</div>
+                        <div class="data-label">보험 수가 가능성</div>
+                        <div class="data-description">
+                            건강보험심사평가원 사전 협의 결과. 
+                            안정적인 수익 모델과 대중 접근성 확보.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">1-2년</div>
+                        <div class="data-label">상용화 기간</div>
+                        <div class="data-description">
+                            임상 3상 완료로 FDA/KFDA 승인 절차 단축.
+                            기존 5-7년 대비 70% 이상 기간 단축 가능.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">24시간</div>
+                        <div class="data-label">응답 시간</div>
+                        <div class="data-description">
+                            투자 문의 및 기술 이전 상담 응답 시간.
+                            전담 비즈니스 개발팀이 신속한 의사결정 지원.
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 1rem; color: white;">
+                    <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.8rem; font-weight: 700;" class="certification-title">투자 신뢰성 보장</h3>
+                    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <div style="text-align: center;">
+                            <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem;">ISO 9001:2015</p>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">품질경영시스템 인증</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem;">ICH-GCP</p>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">국제 임상시험 기준</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem;">KFDA 인증</p>
+                            <p style="font-size: 0.9rem; opacity: 0.9;">식약처 의료기기 인증</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 1rem; opacity: 0.95; margin-top: 1rem;">
+                        국제 기준을 충족하는 연구 품질과 규제 준수로 <strong>투자 리스크 최소화</strong> 및 
+                        <strong>글로벌 시장 진출 가능성</strong>을 보장합니다.
+                    </p>
+                </div>
+            </div>
+
+        <section class="interactive-dashboard" id="dashboard" role="region" aria-labelledby="dashboard-heading">
+            <div class="research-content">
+                <h2 id="dashboard-heading" class="section-title">실시간 연구 진행 현황</h2>
+                <p class="research-text section-subtitle">
+                    MasVisio Research의 <strong>실시간 연구 데이터</strong>와 <strong>진행 중인 프로젝트</strong>를 
+                    인터랙티브 대시보드로 확인하세요. 투명한 연구 진행과 검증된 성과를 실시간으로 모니터링할 수 있습니다.
+                </p>
+                
+                <!-- 실시간 업데이트 알림 -->
+                <div class="live-update-alert" id="live-alert" role="alert" aria-live="polite" aria-atomic="true">
+                    <span class="alert-text">데이터가 업데이트되었습니다.</span>
+                    <button class="close-btn" onclick="closeAlert()" aria-label="알림 닫기">&times;</button>
+                </div>
+                
+                <div class="dashboard-grid" role="tablist" aria-label="연구 진행 대시보드">
+                    <!-- Real-time Progress Chart -->
+                    <div class="dashboard-card" role="tabpanel" tabindex="0" aria-labelledby="progress-title">
+                        <h3 id="progress-title" class="dashboard-title">🔬 실시간 연구 진행률</h3>
+                        <div class="progress-container" role="group" aria-labelledby="progress-title">
+                            <div class="progress-item" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-labelledby="ai-development-label">
+                                <span id="ai-development-label" class="progress-label">AI 진단 시스템 개발</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-progress="95" style="width: 0%" aria-hidden="true"></div>
+                                    <span class="progress-percent" aria-live="polite">0%</span>
+                                </div>
+                                <span class="sr-only">AI 진단 시스템 개발 진행률: <span class="progress-value">0</span>% 완료</span>
+                            </div>
+                            <div class="progress-item" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-labelledby="clinical-trial-label">
+                                <span id="clinical-trial-label" class="progress-label">임상 3상 시험</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-progress="87" style="width: 0%" aria-hidden="true"></div>
+                                    <span class="progress-percent" aria-live="polite">0%</span>
+                                </div>
+                                <span class="sr-only">임상 3상 시험 진행률: <span class="progress-value">0</span>% 완료</span>
+                            </div>
+                            <div class="progress-item" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-labelledby="fda-approval-label">
+                                <span id="fda-approval-label" class="progress-label">FDA 승인 준비</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-progress="73" style="width: 0%" aria-hidden="true"></div>
+                                    <span class="progress-percent" aria-live="polite">0%</span>
+                                </div>
+                                <span class="sr-only">FDA 승인 준비 진행률: <span class="progress-value">0</span>% 완료</span>
+                            </div>
+                            <div class="progress-item" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-labelledby="patent-label">
+                                <span id="patent-label" class="progress-label">국제 특허 출원</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-progress="100" style="width: 0%" aria-hidden="true"></div>
+                                    <span class="progress-percent" aria-live="polite">0%</span>
+                                </div>
+                                <span class="sr-only">국제 특허 출원 진행률: <span class="progress-value">0</span>% 완료</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Statistics -->
+                    <div class="dashboard-card">
+                        <h3 class="dashboard-title">📈 실시간 성과 지표</h3>
+                        <div class="live-stats">
+                            <div class="stat-item">
+                                <div class="stat-icon">👥</div>
+                                <div class="stat-info">
+                                    <div class="stat-number" data-target="1247">0</div>
+                                    <div class="stat-label">참여 환자 수</div>
+                                    <div class="stat-trend positive">↗ +23 (오늘)</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">🔬</div>
+                                <div class="stat-info">
+                                    <div class="stat-number" data-target="47">0</div>
+                                    <div class="stat-label">활성 바이오마커</div>
+                                    <div class="stat-trend positive">↗ +2 (이번 주)</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">🏥</div>
+                                <div class="stat-info">
+                                    <div class="stat-number" data-target="12">0</div>
+                                    <div class="stat-label">협력 의료기관</div>
+                                    <div class="stat-trend positive">↗ +1 (이번 달)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investment Tracker -->
+                    <div class="dashboard-card">
+                        <h3 class="dashboard-title">💰 투자 추적 현황</h3>
+                        <div class="investment-tracker">
+                            <div class="investment-item">
+                                <div class="investment-label">목표 투자 금액</div>
+                                <div class="investment-amount">₩50억</div>
+                                <div class="investment-progress">
+                                    <div class="investment-bar">
+                                        <div class="investment-fill" data-progress="68" style="width: 0%"></div>
+                                    </div>
+                                    <span class="investment-percent">0% 달성</span>
+                                </div>
+                            </div>
+                            <div class="recent-activities">
+                                <h4>최근 투자 활동</h4>
+                                <div class="activity-item">
+                                    <span class="activity-dot"></span>
+                                    <span class="activity-text">Series A 라운드 시작 - 2024.07.15</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity-dot"></span>
+                                    <span class="activity-text">전략적 투자자 3곳 MOU 체결</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity-dot"></span>
+                                    <span class="activity-text">정부 R&D 지원금 10억 원 확정</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D 데이터 시각화 섹션 -->
+        <section class="data-visualization-3d" id="visualization-3d" role="region" aria-labelledby="viz-3d-heading">
+            <!-- 시각화 컨트롤 -->
+            <div class="visualization-controls" role="toolbar" aria-label="3D 시각화 컨트롤">
+                <button class="control-btn active" onclick="toggle3DRotation()" 
+                        aria-label="3D 회전 토글" title="3D 회전 애니메이션을 켜거나 끕니다">
+                    🔄
+                </button>
+                <button class="control-btn" onclick="reset3DView()" 
+                        aria-label="시점 초기화" title="3D 시각화 시점을 초기 상태로 되돌립니다">
+                    🎯
+                </button>
+                <button class="control-btn" onclick="toggle3DSound()" 
+                        aria-label="사운드 효과 토글" title="3D 인터랙션 사운드를 켜거나 끕니다">
+                    🔊
+                </button>
+            </div>
+
+            <h2 id="viz-3d-heading" class="visualization-title">3D 연구 성과 시각화</h2>
+            
+            <div class="visualization-container">
+                <!-- 3D 데이터 큐브 -->
+                <div class="cube-section" role="group" aria-labelledby="cube-title">
+                    <h3 id="cube-title" class="sr-only">핵심 지표 3D 큐브</h3>
+                    <div class="data-cube-container">
+                        <div class="data-cube" tabindex="0" 
+                             aria-label="3D 데이터 큐브 - 6면의 핵심 성과 지표를 확인할 수 있습니다" 
+                             onkeydown="handleCubeKeyboard(event)">
+                            
+                            <div class="cube-face front" aria-label="전면: 임상 성공률">
+                                <div class="cube-number">95.2%</div>
+                                <div class="cube-label">임상 성공률</div>
+                            </div>
+                            <div class="cube-face back" aria-label="후면: 바이오마커">
+                                <div class="cube-number">47개</div>
+                                <div class="cube-label">바이오마커<br>기반 진단</div>
+                            </div>
+                            <div class="cube-face right" aria-label="우측면: 시장 규모">
+                                <div class="cube-number">50억$</div>
+                                <div class="cube-label">글로벌<br>시장 규모</div>
+                            </div>
+                            <div class="cube-face left" aria-label="좌측면: 투자 수익률">
+                                <div class="cube-number">300%</div>
+                                <div class="cube-label">투자 수익률<br>(ROI)</div>
+                            </div>
+                            <div class="cube-face top" aria-label="상단면: 특허 건수">
+                                <div class="cube-number">10건</div>
+                                <div class="cube-label">국제 특허<br>출원</div>
+                            </div>
+                            <div class="cube-face bottom" aria-label="하단면: 협력 기관">
+                                <div class="cube-number">12곳</div>
+                                <div class="cube-label">글로벌<br>협력 기관</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="visualization-description" style="color: white; text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                        마우스를 올려 회전을 멈추고, 클릭하여 각 면의 상세 정보를 확인하세요
+                    </p>
+                </div>
+
+                <!-- 3D 원통형 진행률 -->
+                <div class="cylinder-section" role="group" aria-labelledby="cylinder-title">
+                    <h3 id="cylinder-title" class="sr-only">연구 진행률 3D 원통</h3>
+                    <div class="progress-cylinder-container">
+                        <div class="progress-cylinder" tabindex="0" 
+                             aria-label="3D 원통형 진행률 차트 - 4개 프로젝트의 진행 상황을 확인할 수 있습니다">
+                            
+                            <div class="cylinder-segment segment-ai" 
+                                 tabindex="0" aria-label="AI 진단 시스템 개발 95% 완료">
+                                AI 시스템 95%
+                            </div>
+                            <div class="cylinder-segment segment-clinical" 
+                                 tabindex="0" aria-label="임상 3상 시험 87% 완료">
+                                임상 3상 87%
+                            </div>
+                            <div class="cylinder-segment segment-fda" 
+                                 tabindex="0" aria-label="FDA 승인 준비 73% 완료">
+                                FDA 승인 73%
+                            </div>
+                            <div class="cylinder-segment segment-patent" 
+                                 tabindex="0" aria-label="국제 특허 출원 100% 완료">
+                                특허 출원 100%
+                            </div>
+                        </div>
+                    </div>
+                    <p class="visualization-description" style="color: white; text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                        각 층을 클릭하여 세부 진행 상황과 일정을 확인하세요
+                    </p>
+                </div>
+
+                <!-- 3D ROI 차트 -->
+                <div class="roi-section" role="group" aria-labelledby="roi-title">
+                    <h3 id="roi-title" class="sr-only">투자 수익률 3D 차트</h3>
+                    <div class="roi-chart-3d">
+                        <div class="roi-bar-3d" tabindex="0" aria-label="1년차 투자 수익률 50%">
+                            <div class="bar-front" style="height: 50px;"></div>
+                            <div class="bar-back" style="height: 50px;"></div>
+                            <div class="bar-left" style="height: 50px;"></div>
+                            <div class="bar-right" style="height: 50px;"></div>
+                            <div class="bar-top" style="top: -25px;"></div>
+                            <div class="bar-value">50%</div>
+                            <div class="bar-label">1년차</div>
+                        </div>
+                        
+                        <div class="roi-bar-3d" tabindex="0" aria-label="2년차 투자 수익률 150%">
+                            <div class="bar-front" style="height: 120px;"></div>
+                            <div class="bar-back" style="height: 120px;"></div>
+                            <div class="bar-left" style="height: 120px;"></div>
+                            <div class="bar-right" style="height: 120px;"></div>
+                            <div class="bar-top" style="top: -25px;"></div>
+                            <div class="bar-value">150%</div>
+                            <div class="bar-label">2년차</div>
+                        </div>
+                        
+                        <div class="roi-bar-3d" tabindex="0" aria-label="3년차 투자 수익률 300%">
+                            <div class="bar-front" style="height: 200px;"></div>
+                            <div class="bar-back" style="height: 200px;"></div>
+                            <div class="bar-left" style="height: 200px;"></div>
+                            <div class="bar-right" style="height: 200px;"></div>
+                            <div class="bar-top" style="top: -25px;"></div>
+                            <div class="bar-value">300%</div>
+                            <div class="bar-label">3년차</div>
+                        </div>
+                        
+                        <div class="roi-bar-3d" tabindex="0" aria-label="5년차 투자 수익률 500%">
+                            <div class="bar-front" style="height: 250px;"></div>
+                            <div class="bar-back" style="height: 250px;"></div>
+                            <div class="bar-left" style="height: 250px;"></div>
+                            <div class="bar-right" style="height: 250px;"></div>
+                            <div class="bar-top" style="top: -25px;"></div>
+                            <div class="bar-value">500%</div>
+                            <div class="bar-label">5년차</div>
+                        </div>
+                    </div>
+                    <p class="visualization-description" style="color: white; text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                        각 막대를 클릭하여 연도별 상세 수익 분석과 예측을 확인하세요
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 언어 전환 기능 스크립트 -->
+    <script src="assets/js/language-data.js"></script>
+    
+    <script>
+        function toggleMenu() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+        
+        // ESC 키로 메뉴 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const navMenu = document.getElementById('nav-menu');
+                if (navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            }
+        });
+        
+        // 숫자 카운트업 애니메이션
+        function animateCountUp(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                // 퍼센트나 특수 문자 처리
+                let displayValue = Math.floor(current);
+                if (element.dataset.suffix) {
+                    displayValue += element.dataset.suffix;
+                }
+                
+                element.textContent = displayValue;
+                element.classList.add('counting');
+                setTimeout(() => element.classList.remove('counting'), 100);
+            }, 16);
+        }
+
+        // 스크롤 트리거
+        function handleScrollAnimations() {
+            // 데이터 카드 애니메이션
+            const cards = document.querySelectorAll('.data-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible && !card.classList.contains('animated')) {
+                    card.classList.add('animated');
+                    const numberElement = card.querySelector('.data-number');
+                    
+                    if (numberElement && !numberElement.classList.contains('counted')) {
+                        numberElement.classList.add('counted');
+                        const text = numberElement.textContent;
+                        
+                        // 숫자 추출
+                        const match = text.match(/[\d,]+/);
+                        if (match) {
+                            const number = parseInt(match[0].replace(/,/g, ''));
+                            const suffix = text.replace(match[0], '');
+                            numberElement.dataset.suffix = suffix;
+                            animateCountUp(numberElement, number);
+                        }
+                    }
+                }
+            });
+
+            // 하이라이트 카드 애니메이션
+            const highlightCards = document.querySelectorAll('.highlight-card');
+            highlightCards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible && !card.classList.contains('animated')) {
+                    // 각 카드마다 약간씩 지연시켜 순차적으로 나타나도록
+                    setTimeout(() => {
+                        card.classList.add('animated');
+                    }, index * 100);
+                }
+            });
+        }
+
+        // 데스크톱에서는 드롭다운 메뉴 호버 효과
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownItems = document.querySelectorAll('.nav-item:has(.dropdown-menu)');
+            
+            dropdownItems.forEach(item => {
+                const dropdown = item.querySelector('.dropdown-menu');
+                
+                item.addEventListener('mouseenter', function() {
+                    if (window.innerWidth > 768) {
+                        dropdown.style.display = 'block';
+                    }
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    if (window.innerWidth > 768) {
+                        dropdown.style.display = 'none';
+                    }
+                });
+            });
+
+            // 스크롤 이벤트 리스너
+            window.addEventListener('scroll', handleScrollAnimations);
+            // 초기 로드시에도 체크
+            handleScrollAnimations();
+
+            // 인터랙티브 대시보드 초기화
+            initializeDashboard();
+            
+            // 3D 시각화 초기화
+            initialize3DVisualization();
+        });
+
+        // 인터랙티브 대시보드 기능
+        function initializeDashboard() {
+            // 진행률 바 애니메이션
+            const progressBars = document.querySelectorAll('.progress-fill');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progressBar = entry.target;
+                        const targetProgress = progressBar.dataset.progress;
+                        const percentLabel = progressBar.parentElement.querySelector('.progress-percent');
+                        
+                        // 애니메이션 실행
+                        setTimeout(() => {
+                            progressBar.style.width = targetProgress + '%';
+                            animateProgressNumber(percentLabel, 0, targetProgress, 1500);
+                        }, 300);
+                        
+                        observer.unobserve(progressBar);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            progressBars.forEach(bar => observer.observe(bar));
+
+            // 실시간 통계 카운트업
+            const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+            const statObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statElement = entry.target;
+                        const target = parseInt(statElement.dataset.target);
+                        
+                        setTimeout(() => {
+                            animateCountUp(statElement, target, 2000);
+                        }, 500);
+                        
+                        statObserver.unobserve(statElement);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            statNumbers.forEach(stat => statObserver.observe(stat));
+
+            // 투자 금액 카운트업
+            const investmentNumbers = document.querySelectorAll('.funding-amount[data-target]');
+            const investmentObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const target = parseInt(element.dataset.target);
+                        
+                        setTimeout(() => {
+                            animateInvestmentAmount(element, target, 2500);
+                        }, 800);
+                        
+                        investmentObserver.unobserve(element);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            investmentNumbers.forEach(investment => investmentObserver.observe(investment));
+        }
+
+        // 진행률 숫자 애니메이션
+        function animateProgressNumber(element, start, end, duration) {
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const currentValue = Math.floor(start + (end - start) * progress);
+                element.textContent = currentValue + '%';
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // 투자 금액 애니메이션 (억 단위)
+        function animateInvestmentAmount(element, target, duration) {
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const currentValue = Math.floor(target * progress);
+                element.textContent = currentValue.toLocaleString() + '억원';
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    // 완료 후 반짝임 효과
+                    element.style.animation = 'pulse 0.5s ease-out';
+                    setTimeout(() => {
+                        element.style.animation = '';
+                    }, 500);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // 대시보드 실시간 업데이트 시뮬레이션
+        function simulateRealTimeUpdates() {
+            setInterval(() => {
+                // 참여 환자 수 업데이트
+                const patientStat = document.querySelector('.stat-number[data-target="1247"]');
+                if (patientStat && !patientStat.classList.contains('updating')) {
+                    const currentValue = parseInt(patientStat.textContent);
+                    if (Math.random() > 0.7) { // 30% 확률로 업데이트
+                        patientStat.classList.add('updating');
+                        setTimeout(() => {
+                            const newValue = currentValue + Math.floor(Math.random() * 3) + 1;
+                            patientStat.textContent = newValue;
+                            patientStat.dataset.target = newValue;
+                            patientStat.classList.remove('updating');
+                            
+                            // 트렌드 업데이트
+                            const trend = patientStat.parentElement.querySelector('.stat-trend');
+                            if (trend) {
+                                const increase = newValue - currentValue;
+                                trend.textContent = `↗ +${increase} (실시간)`;
+                                trend.style.animation = 'pulse 0.3s ease-out';
+                                setTimeout(() => trend.style.animation = '', 300);
+                            }
+                        }, 300);
+                    }
+                }
+            }, 10000); // 10초마다 체크
+        }
+
+        // 페이지 로드 완료 후 실시간 업데이트 시작
+        window.addEventListener('load', () => {
+            setTimeout(simulateRealTimeUpdates, 5000); // 5초 후 시작
+            initializeAccessibility(); // 접근성 초기화
+        });
+
+        // 접근성 기능 초기화
+        function initializeAccessibility() {
+            // 저장된 접근성 설정 로드
+            loadAccessibilitySettings();
+            
+            // 키보드 네비게이션 힌트
+            const keyboardHint = createKeyboardHint();
+            document.body.appendChild(keyboardHint);
+
+            // 키보드 이벤트 리스너
+            document.addEventListener('keydown', handleKeyboardNavigation);
+
+            // 고대비 모드 감지 (시스템 설정)
+            detectHighContrastMode();
+
+            // 대형 텍스트 설정 확인
+            checkLargeTextPreference();
+
+            // 모션 감소 설정 확인
+            checkReducedMotionPreference();
+
+            // 스크린리더 지원
+            enhanceScreenReaderSupport();
+
+            // 음성 인식 로딩 대기
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.onvoiceschanged = () => {
+                    // 음성이 로드되면 저장된 설정에 따라 음성 가이드 시작
+                    if (localStorage.getItem('prefer-voice-guide') === 'true') {
+                        setTimeout(startVoiceGuide, 500);
+                    }
+                };
+            }
+        }
+
+        // 키보드 네비게이션 힌트 생성
+        function createKeyboardHint() {
+            const hint = document.createElement('div');
+            hint.className = 'keyboard-hint';
+            hint.innerHTML = '키보드 네비게이션: Tab으로 이동, Enter로 선택, ESC로 닫기';
+            hint.setAttribute('aria-live', 'polite');
+            return hint;
+        }
+
+        // 키보드 네비게이션 처리
+        function handleKeyboardNavigation(event) {
+            const keyboardHint = document.querySelector('.keyboard-hint');
+            
+            // Tab 키 사용 시 힌트 표시
+            if (event.key === 'Tab') {
+                keyboardHint.classList.add('show');
+                setTimeout(() => keyboardHint.classList.remove('show'), 3000);
+            }
+
+            // Enter 키로 대시보드 카드 활성화
+            if (event.key === 'Enter' && event.target.classList.contains('dashboard-card')) {
+                event.target.click();
+                announceToScreenReader(`${event.target.querySelector('h3').textContent} 섹션이 활성화되었습니다.`);
+            }
+
+            // ESC 키로 알림 닫기
+            if (event.key === 'Escape') {
+                const alert = document.querySelector('.live-update-alert.show');
+                if (alert) {
+                    closeAlert();
+                }
+            }
+        }
+
+        // 스크린리더 공지
+        function announceToScreenReader(message) {
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'assertive');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.className = 'sr-only';
+            announcement.textContent = message;
+            
+            document.body.appendChild(announcement);
+            setTimeout(() => document.body.removeChild(announcement), 1000);
+        }
+
+        // 실시간 업데이트 알림 표시
+        function showLiveUpdateAlert(message) {
+            const alert = document.getElementById('live-alert');
+            const alertText = alert.querySelector('.alert-text');
+            
+            alertText.textContent = message;
+            alert.classList.add('show');
+            
+            // 스크린리더에 알림
+            announceToScreenReader(message);
+            
+            // 5초 후 자동 닫기
+            setTimeout(() => {
+                if (alert.classList.contains('show')) {
+                    closeAlert();
+                }
+            }, 5000);
+        }
+
+        // 알림 닫기
+        function closeAlert() {
+            const alert = document.getElementById('live-alert');
+            alert.classList.remove('show');
+        }
+
+        // 고대비 모드 감지
+        function detectHighContrastMode() {
+            if (window.matchMedia('(prefers-contrast: high)').matches) {
+                document.body.classList.add('high-contrast-mode');
+                announceToScreenReader('고대비 모드가 감지되었습니다. 웹사이트가 최적화되었습니다.');
+            }
+        }
+
+        // 대형 텍스트 설정 확인
+        function checkLargeTextPreference() {
+            // 사용자가 대형 텍스트를 선호하는지 확인
+            const preferLargeText = localStorage.getItem('prefer-large-text') === 'true';
+            if (preferLargeText) {
+                document.body.classList.add('accessibility-large-text');
+            }
+        }
+
+        // 모션 감소 설정 확인
+        function checkReducedMotionPreference() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.body.classList.add('reduced-motion');
+                announceToScreenReader('모션 감소 설정이 적용되었습니다.');
+            }
+        }
+
+        // 스크린리더 지원 강화
+        function enhanceScreenReaderSupport() {
+            // 진행률 바 업데이트 시 스크린리더 지원
+            const progressBars = document.querySelectorAll('.progress-item[role="progressbar"]');
+            progressBars.forEach(bar => {
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'aria-valuenow') {
+                            const newValue = bar.getAttribute('aria-valuenow');
+                            const label = bar.querySelector('.progress-label').textContent;
+                            announceToScreenReader(`${label} 진행률이 ${newValue}%로 업데이트되었습니다.`);
+                        }
+                    });
+                });
+                
+                observer.observe(bar, { attributes: true, attributeFilter: ['aria-valuenow'] });
+            });
+        }
+
+        // 진행률 애니메이션 업데이트 (접근성 개선)
+        function updateProgressBarAccessibility(progressBar, targetProgress) {
+            const parentItem = progressBar.closest('.progress-item[role="progressbar"]');
+            if (parentItem) {
+                parentItem.setAttribute('aria-valuenow', targetProgress);
+                
+                // 스크린리더 전용 값 업데이트
+                const srValue = parentItem.querySelector('.progress-value');
+                if (srValue) {
+                    srValue.textContent = targetProgress;
+                }
+            }
+        }
+
+        // 대형 텍스트 토글 기능
+        function toggleLargeText() {
+            const isLargeText = document.body.classList.toggle('accessibility-large-text');
+            const button = document.querySelector('[onclick="toggleLargeText()"]');
+            
+            if (isLargeText) {
+                button.classList.add('active');
+                button.setAttribute('aria-pressed', 'true');
+            } else {
+                button.classList.remove('active');
+                button.setAttribute('aria-pressed', 'false');
+            }
+            
+            localStorage.setItem('prefer-large-text', isLargeText);
+            announceToScreenReader(isLargeText ? '대형 텍스트가 활성화되었습니다.' : '대형 텍스트가 비활성화되었습니다.');
+        }
+
+        // 고대비 모드 토글
+        function toggleHighContrast() {
+            const isHighContrast = document.body.classList.toggle('high-contrast-mode');
+            const button = document.querySelector('[onclick="toggleHighContrast()"]');
+            
+            if (isHighContrast) {
+                button.classList.add('active');
+                button.setAttribute('aria-pressed', 'true');
+            } else {
+                button.classList.remove('active');
+                button.setAttribute('aria-pressed', 'false');
+            }
+            
+            localStorage.setItem('prefer-high-contrast', isHighContrast);
+            announceToScreenReader(isHighContrast ? '고대비 모드가 활성화되었습니다.' : '고대비 모드가 비활성화되었습니다.');
+        }
+
+        // 음성 가이드 토글
+        function toggleVoiceGuide() {
+            const isVoiceGuide = !document.body.dataset.voiceGuide || document.body.dataset.voiceGuide === 'false';
+            const button = document.querySelector('[onclick="toggleVoiceGuide()"]');
+            
+            document.body.dataset.voiceGuide = isVoiceGuide;
+            
+            if (isVoiceGuide) {
+                button.classList.add('active');
+                button.setAttribute('aria-pressed', 'true');
+                startVoiceGuide();
+            } else {
+                button.classList.remove('active');
+                button.setAttribute('aria-pressed', 'false');
+                stopVoiceGuide();
+            }
+            
+            localStorage.setItem('prefer-voice-guide', isVoiceGuide);
+            announceToScreenReader(isVoiceGuide ? '음성 가이드가 활성화되었습니다.' : '음성 가이드가 비활성화되었습니다.');
+        }
+
+        // 음성 가이드 시작
+        function startVoiceGuide() {
+            // 페이지 진입 시 음성 안내
+            if ('speechSynthesis' in window) {
+                const welcomeMessage = 'MasVisio Research 시각재활 연구 웹사이트에 오신 것을 환영합니다. 이 페이지에서는 95.2% 임상 성공률을 달성한 혁신 기술과 투자 기회를 확인할 수 있습니다.';
+                speakText(welcomeMessage);
+                
+                // 마우스 오버 시 음성 가이드
+                document.addEventListener('mouseover', handleVoiceGuideFocus);
+                document.addEventListener('focus', handleVoiceGuideFocus, true);
+            } else {
+                announceToScreenReader('음성 합성 기능이 지원되지 않는 브라우저입니다.');
+            }
+        }
+
+        // 음성 가이드 중지
+        function stopVoiceGuide() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                document.removeEventListener('mouseover', handleVoiceGuideFocus);
+                document.removeEventListener('focus', handleVoiceGuideFocus, true);
+            }
+        }
+
+        // 음성 가이드 포커스 처리
+        function handleVoiceGuideFocus(event) {
+            if (document.body.dataset.voiceGuide !== 'true') return;
+            
+            const target = event.target;
+            let textToSpeak = '';
+            
+            // 버튼, 링크, 입력 요소
+            if (target.tagName === 'BUTTON' || target.tagName === 'A') {
+                textToSpeak = target.textContent || target.getAttribute('aria-label') || target.title;
+            }
+            // 헤딩 요소
+            else if (target.tagName.match(/^H[1-6]$/)) {
+                textToSpeak = `제목: ${target.textContent}`;
+            }
+            // 데이터 카드
+            else if (target.classList.contains('data-card')) {
+                const number = target.querySelector('.data-number')?.textContent || '';
+                const label = target.querySelector('.data-label')?.textContent || '';
+                textToSpeak = `데이터 카드: ${number} ${label}`;
+            }
+            // 진행률 바
+            else if (target.classList.contains('progress-item')) {
+                const label = target.querySelector('.progress-label')?.textContent || '';
+                const percent = target.querySelector('.progress-percent')?.textContent || '';
+                textToSpeak = `진행률: ${label} ${percent} 완료`;
+            }
+            
+            if (textToSpeak && textToSpeak.trim()) {
+                // 이전 음성 중지하고 새로운 음성 시작
+                window.speechSynthesis.cancel();
+                setTimeout(() => speakText(textToSpeak), 100);
+            }
+        }
+
+        // 텍스트 음성 변환
+        function speakText(text) {
+            if ('speechSynthesis' in window && document.body.dataset.voiceGuide === 'true') {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ko-KR';
+                utterance.rate = 0.9;
+                utterance.pitch = 1.0;
+                utterance.volume = 0.8;
+                
+                // 한국어 음성 선택
+                const voices = window.speechSynthesis.getVoices();
+                const koreanVoice = voices.find(voice => voice.lang.includes('ko'));
+                if (koreanVoice) {
+                    utterance.voice = koreanVoice;
+                }
+                
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // 저장된 접근성 설정 로드
+        function loadAccessibilitySettings() {
+            // 대형 텍스트 설정
+            if (localStorage.getItem('prefer-large-text') === 'true') {
+                document.body.classList.add('accessibility-large-text');
+                const button = document.querySelector('[onclick="toggleLargeText()"]');
+                if (button) {
+                    button.classList.add('active');
+                    button.setAttribute('aria-pressed', 'true');
+                }
+            }
+            
+            // 고대비 모드 설정
+            if (localStorage.getItem('prefer-high-contrast') === 'true') {
+                document.body.classList.add('high-contrast-mode');
+                const button = document.querySelector('[onclick="toggleHighContrast()"]');
+                if (button) {
+                    button.classList.add('active');
+                    button.setAttribute('aria-pressed', 'true');
+                }
+            }
+            
+            // 음성 가이드 설정
+            if (localStorage.getItem('prefer-voice-guide') === 'true') {
+                document.body.dataset.voiceGuide = 'true';
+                const button = document.querySelector('[onclick="toggleVoiceGuide()"]');
+                if (button) {
+                    button.classList.add('active');
+                    button.setAttribute('aria-pressed', 'true');
+                }
+                // 음성 로드 후 시작
+                setTimeout(startVoiceGuide, 1000);
+            }
+        }
+
+        // 실시간 업데이트 시뮬레이션 개선 (접근성)
+        function simulateRealTimeUpdates() {
+            setInterval(() => {
+                const patientStat = document.querySelector('.stat-number[data-target="1247"]');
+                if (patientStat && !patientStat.classList.contains('updating')) {
+                    const currentValue = parseInt(patientStat.textContent);
+                    if (Math.random() > 0.7) {
+                        patientStat.classList.add('updating');
+                        setTimeout(() => {
+                            const newValue = currentValue + Math.floor(Math.random() * 3) + 1;
+                            patientStat.textContent = newValue;
+                            patientStat.dataset.target = newValue;
+                            patientStat.classList.remove('updating');
+                            
+                            // 실시간 업데이트 알림
+                            showLiveUpdateAlert(`참여 환자 수가 ${newValue}명으로 증가했습니다.`);
+                            
+                            // 트렌드 업데이트
+                            const trend = patientStat.parentElement.querySelector('.stat-trend');
+                            if (trend) {
+                                const increase = newValue - currentValue;
+                                trend.textContent = `↗ +${increase} (실시간)`;
+                                trend.style.animation = 'pulse 0.3s ease-out';
+                                setTimeout(() => trend.style.animation = '', 300);
+                            }
+                        }, 300);
+                    }
+                }
+            }, 10000);
+        }
+
+        // 3D 시각화 기능 구현
+        function initialize3DVisualization() {
+            // 3D 요소들 초기화
+            const dataCube = document.querySelector('.data-cube');
+            const progressCylinder = document.querySelector('.progress-cylinder');
+            const roiBars = document.querySelectorAll('.roi-bar-3d');
+
+            // 3D 큐브 인터랙션
+            if (dataCube) {
+                let isRotating = true;
+                
+                dataCube.addEventListener('click', () => {
+                    showCubeDetails();
+                    playInteractionSound();
+                });
+
+                dataCube.addEventListener('mouseenter', () => {
+                    if (isRotating) {
+                        dataCube.style.animationPlayState = 'paused';
+                    }
+                });
+
+                dataCube.addEventListener('mouseleave', () => {
+                    if (isRotating) {
+                        dataCube.style.animationPlayState = 'running';
+                    }
+                });
+            }
+
+            // 진행률 원통 인터랙션
+            const cylinderSegments = document.querySelectorAll('.cylinder-segment');
+            cylinderSegments.forEach((segment, index) => {
+                segment.addEventListener('click', () => {
+                    showProgressDetails(index);
+                    playInteractionSound();
+                });
+
+                segment.addEventListener('mouseenter', () => {
+                    if (document.body.dataset.voiceGuide === 'true') {
+                        const label = segment.textContent;
+                        speakText(`${label} 세부 정보를 확인하려면 클릭하세요`);
+                    }
+                });
+            });
+
+            // ROI 차트 인터랙션
+            roiBars.forEach((bar, index) => {
+                bar.addEventListener('click', () => {
+                    showROIDetails(index);
+                    playInteractionSound();
+                    
+                    // 3D 바 하이라이트 효과
+                    bar.style.filter = 'brightness(1.3)';
+                    setTimeout(() => {
+                        bar.style.filter = 'brightness(1)';
+                    }, 300);
+                });
+
+                bar.addEventListener('mouseenter', () => {
+                    bar.style.transform = 'rotateY(15deg) scale(1.05) translateZ(20px)';
+                });
+
+                bar.addEventListener('mouseleave', () => {
+                    bar.style.transform = 'rotateY(15deg) scale(1.05)';
+                });
+            });
+
+            // 스크롤 시 3D 요소 시차 효과
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                
+                if (dataCube) {
+                    const baseTransform = `rotateX(${rate * 0.05}deg) rotateY(${rate * 0.05}deg)`;
+                    if (dataCube.style.animationPlayState !== 'paused') {
+                        dataCube.style.transform = baseTransform;
+                    }
+                }
+            });
+        }
+
+        // 3D 회전 토글
+        function toggle3DRotation() {
+            const cube = document.querySelector('.data-cube');
+            const button = document.querySelector('[onclick="toggle3DRotation()"]');
+            
+            if (cube) {
+                const isRunning = cube.style.animationPlayState !== 'paused';
+                cube.style.animationPlayState = isRunning ? 'paused' : 'running';
+                
+                button.classList.toggle('active', !isRunning);
+                announceToScreenReader(isRunning ? '3D 회전이 일시정지되었습니다.' : '3D 회전이 재개되었습니다.');
+                playInteractionSound();
+            }
+        }
+
+        // 3D 시점 초기화
+        function reset3DView() {
+            const cube = document.querySelector('.data-cube');
+            const cylinder = document.querySelector('.progress-cylinder');
+            const bars = document.querySelectorAll('.roi-bar-3d');
+            
+            if (cube) {
+                cube.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                cube.style.animationPlayState = 'running';
+            }
+            
+            if (cylinder) {
+                cylinder.style.transform = 'rotateX(-15deg) rotateY(25deg)';
+            }
+            
+            bars.forEach(bar => {
+                bar.style.transform = 'rotateY(0deg) scale(1)';
+            });
+            
+            announceToScreenReader('3D 시각화 시점이 초기화되었습니다.');
+            playInteractionSound();
+        }
+
+        // 3D 사운드 효과 토글
+        function toggle3DSound() {
+            const isSoundEnabled = localStorage.getItem('3d-sound-enabled') !== 'false';
+            const button = document.querySelector('[onclick="toggle3DSound()"]');
+            
+            localStorage.setItem('3d-sound-enabled', !isSoundEnabled);
+            button.classList.toggle('active', !isSoundEnabled);
+            
+            announceToScreenReader(isSoundEnabled ? '3D 사운드 효과가 비활성화되었습니다.' : '3D 사운드 효과가 활성화되었습니다.');
+            playInteractionSound();
+        }
+
+        // 큐브 세부 정보 표시
+        function showCubeDetails() {
+            const modal = createDetailsModal('3D 데이터 큐브 상세 정보', `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px;">
+                    <div style="padding: 15px; border-left: 4px solid #2c5282; background: rgba(44, 82, 130, 0.1); border-radius: 8px;">
+                        <h4 style="margin: 0 0 10px 0; color: #2c5282;">임상 성공률 95.2%</h4>
+                        <p style="margin: 0; line-height: 1.5;">1,247명 대상 다기관 임상시험 결과. 국제 기준 대비 15% 우수한 성과.</p>
+                    </div>
+                    <div style="padding: 15px; border-left: 4px solid #38a169; background: rgba(56, 161, 105, 0.1); border-radius: 8px;">
+                        <h4 style="margin: 0 0 10px 0; color: #38a169;">바이오마커 47개</h4>
+                        <p style="margin: 0; line-height: 1.5;">AI 딥러닝 기반 정밀 진단. 기존 15개 대비 3배 이상 확장된 진단 범위.</p>
+                    </div>
+                    <div style="padding: 15px; border-left: 4px solid #ed8936; background: rgba(237, 137, 54, 0.1); border-radius: 8px;">
+                        <h4 style="margin: 0 0 10px 0; color: #ed8936;">글로벌 시장 50억 달러</h4>
+                        <p style="margin: 0; line-height: 1.5;">연평균 12.5% 성장 중인 시각재활 시장. 아시아-태평양 지역 35% 점유율 목표.</p>
+                    </div>
+                    <div style="padding: 15px; border-left: 4px solid #805ad5; background: rgba(128, 90, 213, 0.1); border-radius: 8px;">
+                        <h4 style="margin: 0 0 10px 0; color: #805ad5;">투자 수익률 300%</h4>
+                        <p style="margin: 0; line-height: 1.5;">3-5년 내 투자금 회수. IRR 45%로 동종 업계 대비 2배 높은 수익성.</p>
+                    </div>
+                </div>
+            `);
+            
+            document.body.appendChild(modal);
+        }
+
+        // 진행률 세부 정보 표시
+        function showProgressDetails(segmentIndex) {
+            const progressData = [
+                { title: 'AI 진단 시스템 개발', progress: 95, details: '핵심 알고리즘 완성, 성능 최적화 진행 중. 47개 바이오마커 기반 정밀 진단 시스템 구축.' },
+                { title: '임상 3상 시험', progress: 87, details: '12개 기관 1,247명 참여, 2025년 3월 완료 예정. 현재까지 95.2% 성공률 달성.' },
+                { title: 'FDA 승인 준비', progress: 73, details: '서류 작성 80% 완료, 규제 당국 사전 협의 진행. 2025년 하반기 승인 목표.' },
+                { title: '국제 특허 출원', progress: 100, details: '미국, 유럽, 일본 특허 출원 완료. 총 10건의 핵심 기술 특허 확보.' }
+            ];
+            
+            const data = progressData[segmentIndex];
+            const modal = createDetailsModal(`${data.title} 상세 정보`, `
+                <div style="padding: 20px;">
+                    <div style="margin-bottom: 30px; text-align: center;">
+                        <div style="font-size: 4rem; font-weight: bold; color: #2c5282; margin-bottom: 10px;">${data.progress}%</div>
+                        <div style="font-size: 1.2rem; color: #4a5568;">진행률</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="width: 100%; height: 15px; background: #e2e8f0; border-radius: 8px; overflow: hidden;">
+                            <div style="width: ${data.progress}%; height: 100%; background: linear-gradient(90deg, #2c5282, #38a169); border-radius: 8px; transition: width 1s ease;"></div>
+                        </div>
+                    </div>
+                    <div style="background: rgba(44, 82, 130, 0.05); padding: 20px; border-radius: 10px; border: 1px solid rgba(44, 82, 130, 0.1);">
+                        <p style="font-size: 1.1rem; line-height: 1.6; margin: 0;">${data.details}</p>
+                    </div>
+                </div>
+            `);
+            
+            document.body.appendChild(modal);
+        }
+
+        // ROI 세부 정보 표시
+        function showROIDetails(barIndex) {
+            const roiData = [
+                { year: '1년차', roi: '50%', details: '초기 시장 진입 및 파트너십 확보. 프로토타입 상용화 및 초기 매출 발생.' },
+                { year: '2년차', roi: '150%', details: '본격적인 상용화 시작. 국내 시장 점유율 확보 및 해외 진출 준비.' },
+                { year: '3년차', roi: '300%', details: '시장 점유율 대폭 확대. 아시아-태평양 지역 진출 및 글로벌 파트너십 체결.' },
+                { year: '5년차', roi: '500%', details: '글로벌 시각재활 시장 리더십 확립. IPO 준비 및 차세대 기술 개발 착수.' }
+            ];
+            
+            const data = roiData[barIndex];
+            const modal = createDetailsModal(`투자 수익률 ${data.year} 분석`, `
+                <div style="padding: 20px;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <div style="font-size: 4rem; font-weight: bold; color: #2c5282; margin-bottom: 10px;">${data.roi}</div>
+                        <div style="font-size: 1.3rem; color: #4a5568;">예상 투자 수익률</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(44, 82, 130, 0.1), rgba(56, 161, 105, 0.1)); padding: 25px; border-radius: 15px; border: 2px solid rgba(44, 82, 130, 0.2);">
+                        <h4 style="margin: 0 0 15px 0; color: #2c5282; font-size: 1.3rem;">주요 성과 예측</h4>
+                        <p style="font-size: 1.1rem; line-height: 1.6; margin: 0;">${data.details}</p>
+                    </div>
+                </div>
+            `);
+            
+            document.body.appendChild(modal);
+        }
+
+        // 상세 정보 모달 생성
+        function createDetailsModal(title, content) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                background: rgba(0,0,0,0.8); z-index: 9999; display: flex; 
+                justify-content: center; align-items: center; opacity: 0; 
+                transition: opacity 0.3s ease;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 15px; max-width: 900px; width: 90%; max-height: 80%; overflow-y: auto; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                    <div style="padding: 25px; border-bottom: 2px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #2c5282, #38a169); color: white; border-radius: 15px 15px 0 0;">
+                        <h3 style="margin: 0; font-size: 1.5rem; font-weight: 600;">${title}</h3>
+                        <button onclick="closeModal(this)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; width: 40px; height: 40px; font-size: 1.5rem; cursor: pointer; color: white; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;" aria-label="모달 닫기" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">&times;</button>
+                    </div>
+                    <div>${content}</div>
+                </div>
+            `;
+            
+            // 접근성 속성 추가
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-modal', 'true');
+            modal.setAttribute('aria-labelledby', 'modal-title');
+            
+            // 모달 표시 애니메이션
+            setTimeout(() => modal.style.opacity = '1', 10);
+            
+            // ESC 키로 닫기
+            modal.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal(modal.querySelector('button'));
+            });
+            
+            // 배경 클릭으로 닫기
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal(modal.querySelector('button'));
+            });
+            
+            return modal;
+        }
+
+        // 모달 닫기
+        function closeModal(button) {
+            const modal = button.closest('[role="dialog"]');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                if (document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
+            }, 300);
+        }
+
+        // 큐브 키보드 네비게이션
+        function handleCubeKeyboard(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                showCubeDetails();
+            }
+        }
+
+        // 3D 인터랙션 사운드 효과
+        function playInteractionSound() {
+            if (localStorage.getItem('3d-sound-enabled') === 'false') return;
+            
+            // Web Audio API를 사용한 간단한 사운드 효과
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+            } catch (e) {
+                console.log('Audio context not supported');
+            }
+        }
+    </script>
+</body>
+</html>

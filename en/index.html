@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasVisio Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: white; }
+        
+        /* Header - KAIST Style */
+        .header { 
+            background: white; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+        }
+        .navbar { 
+            padding: 0.5rem 0; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .container { 
+            padding: 0 2rem; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        
+        /* Logo - KAIST Style */
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: #2c5282; 
+            text-decoration: none; 
+            letter-spacing: -0.5px; 
+            margin-bottom: 0.5rem;
+        }
+        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
+        .logo:hover { color: #2c5282; }
+        
+        /* Horizontal Navigation - KAIST Style */
+        .nav-menu { 
+            display: flex; 
+            justify-content: center; 
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* Menu Items */
+        .nav-list { 
+            list-style: none; 
+            display: flex; 
+            margin: 0; 
+            padding: 0;
+            gap: 0;
+        }
+        .nav-item { 
+            position: relative; 
+            margin: 0;
+        }
+        .nav-link { 
+            display: block; 
+            color: #4a5568; 
+            font-weight: 500; 
+            padding: 1rem 1.5rem; 
+            text-decoration: none;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            border-right: 1px solid #e2e8f0;
+        }
+        .nav-item:last-child .nav-link {
+            border-right: none;
+        }
+        .nav-link:hover { 
+            background: #f7fafc; 
+            color: #2c5282; 
+        }
+        
+        /* Dropdown Menu */
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu { 
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            min-width: 200px;
+            z-index: 1000;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .dropdown-menu a { 
+            display: block; 
+            padding: 0.8rem 1.5rem; 
+            font-size: 0.9rem; 
+            color: #4a5568; 
+            text-decoration: none; 
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .dropdown-menu a:hover {
+            background: #f7fafc;
+            color: #2c5282;
+        }
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: absolute;
+            right: 4rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .lang-btn:hover {
+            background: #2c5282;
+            color: white;
+            border-color: #2c5282;
+        }
+        
+        .lang-btn.active {
+            background: #2c5282;
+            color: white;
+            border-color: #2c5282;
+        }
+
+        /* Mobile Toggle Button */
+        .nav-toggle { 
+            display: none; 
+            flex-direction: column; 
+            cursor: pointer; 
+            gap: 5px; 
+            padding: 8px; 
+            border: none;
+            background: none;
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .nav-toggle span { 
+            width: 28px; 
+            height: 3px; 
+            background: #4a5568; 
+            border-radius: 2px; 
+            transition: all 0.3s ease; 
+            display: block;
+        }
+        
+        /* Hero Section - KAIST Style */
+        .hero { 
+            min-height: 100vh; 
+            background: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding-top: 140px; 
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../assets/images/research/lab-photo.jpg') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        .hero-content { 
+            text-align: center; 
+            max-width: 800px; 
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-title { 
+            font-size: 3rem; 
+            font-weight: 700; 
+            color: #2c5282; 
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-research { 
+            display: inline-block; 
+            padding: 1rem 2.5rem; 
+            text-decoration: none; 
+            border-radius: 0.5rem; 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            letter-spacing: 0.3px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+            min-width: 140px;
+        }
+        .btn-research.primary { 
+            background: #2c5282; 
+            color: white; 
+            border: 2px solid #2c5282; 
+        }
+        .btn-research.primary:hover { 
+            background: #2a4365; 
+            border-color: #2a4365;
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px rgba(44,82,130,0.3); 
+        }
+        .btn-research.secondary { 
+            background: transparent; 
+            color: #2c5282; 
+            border: 2px solid #2c5282; 
+        }
+        .btn-research.secondary:hover { 
+            background: #2c5282; 
+            color: white; 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px rgba(44,82,130,0.2); 
+        }
+        
+        /* Research Overview Section */
+        .research-overview {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+        .research-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c5282;
+            text-align: center;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+        .research-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+        .research-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .highlight-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #38a169;
+        }
+        .highlight-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c5282;
+            margin-bottom: 1rem;
+        }
+        .highlight-text {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        /* Research Data Section */
+        .research-data {
+            padding: 5rem 0;
+            background: white;
+        }
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .data-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        .data-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .data-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        .data-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+            line-height: 1.4;
+        }
+        
+        /* Footer */
+        .footer { 
+            background: #2d3748; 
+            color: #a0aec0; 
+            padding: 2rem 0; 
+            text-align: center; 
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            .nav-menu { 
+                position: fixed;
+                top: 100px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 100px);
+                background: white;
+                flex-direction: column;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                overflow-y: auto;
+            }
+            .nav-menu.active { left: 0; }
+            .nav-list { 
+                flex-direction: column; 
+                width: 100%;
+                padding: 1rem 0;
+            }
+            .nav-link { 
+                border-right: none; 
+                border-bottom: 1px solid #e2e8f0;
+            }
+            .dropdown-menu {
+                position: static;
+                display: block;
+                box-shadow: none;
+                border: none;
+                background: #f8f9fa;
+                margin-left: 1rem;
+            }
+            .hero-title { font-size: 2.8rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .hero-tagline { font-size: 1rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn-research { width: 200px; }
+            .container { padding: 0 1rem; }
+            .research-content { padding: 0 1rem; }
+            .section-title { font-size: 2rem; }
+            .research-text { font-size: 1rem; }
+            .research-highlights { grid-template-columns: 1fr; }
+            .data-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+            .data-number { font-size: 2.5rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .hero-content { padding: 0 1rem; }
+            .section-title { font-size: 1.8rem; }
+            .highlight-card { padding: 1.5rem; }
+            .data-card { padding: 1.5rem; }
+            .data-number { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-eye"></i>
+                    MasVisio Research
+                </a>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <a href="#" class="lang-btn active" onclick="switchLanguage('ko')">KO</a>
+                    <a href="#" class="lang-btn" onclick="switchLanguage('en')">EN</a>
+                </div>
+                
+                <button class="nav-toggle" id="nav-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <!-- Horizontal Navigation Menu -->
+                <nav class="nav-menu" id="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="nav-home">연구소 소개</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#mission">미션</a></li>
+                                <li><a href="team/index.html">연구진</a></li>
+                                <li><a href="#institute">연구소 현황</a></li>
+                                <li><a href="#cooperations">협력기관</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="nav-research">연구 분야</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="research/overview.html">연구 개요</a></li>
+                                <li><a href="research/current-studies.html">진행 중인 연구</a></li>
+                                <li><a href="research/methodology.html">연구 방법론</a></li>
+                                <li><a href="research/equipment.html">연구 장비</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">제공 서비스</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#clinical-trials">임상시험</a></li>
+                                <li><a href="#laboratory-tests">실험실 시험</a></li>
+                                <li><a href="#device-development">기기 개발</a></li>
+                                <li><a href="#consultation">연구 컨설팅</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="research/current-studies.html" class="nav-link">진행 중인 연구</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="publications/index.html" class="nav-link" id="nav-publications">연구 성과</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">미디어</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">뉴스</a></li>
+                                <li><a href="#">갤러리</a></li>
+                                <li><a href="#">동영상</a></li>
+                                <li><a href="#">보도자료</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contact/index.html" class="nav-link" id="nav-contact">연락처</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1 class="hero-title">MasVisio 시각재활 연구소</h1>
+                <p class="hero-subtitle">
+                    시각재활 분야의 혁신적인 <strong>임상시험</strong>, <strong>실험실 연구</strong>, 
+                    <strong>의료기기 개발</strong> 서비스를 제공하는 독립 연구기관입니다. 
+                    <strong>시각재활 산업</strong>과 <strong>의료기기 분야</strong> 기업들을 위한 
+                    공정하고 고품질의 국제 수준 연구를 수행합니다.
+                </p>
+                <div class="hero-buttons">
+                    <a href="research/overview.html" class="btn-research primary">연구 프로젝트</a>
+                    <a href="contact/index.html" class="btn-research secondary">연락처</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Research Overview Section -->
+        <section class="research-overview">
+            <div class="research-content">
+                <h2 class="section-title">Mission</h2>
+                <p class="research-text">
+                    Our mission is very clear - <strong>provide best and independent research at the highest standard in vision rehabilitation</strong>. 
+                    As an independent institute, our studies are conducted impartially and unprejudiced. This leads to higher credibility 
+                    of the results, which is crucial for our customers and the advancement of vision rehabilitation technology.
+                </p>
+                
+                <p class="research-text">
+                    MasVisio Research was founded with the vision of bridging the gap between cutting-edge vision rehabilitation research 
+                    and clinical applications. We specialize in <strong>neural rehabilitation technologies</strong>, 
+                    <strong>advanced visual prosthetics</strong>, and <strong>personalized rehabilitation protocols</strong>. 
+                    Our interdisciplinary approach combines neuroscience, bioengineering, optical technology, and rehabilitation medicine 
+                    to develop innovative solutions for individuals with visual impairments and low vision conditions.
+                </p>
+                
+                <div class="research-highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-title">🔬 Clinical Trials & Clinical Tests</div>
+                        <div class="highlight-text">
+                            Biomedical research studies on human participants designed to answer specific questions about 
+                            vision rehabilitation therapies, neural stimulation protocols, and assistive device efficacy. 
+                            All studies are conducted following ICH-GCP guidelines and ethical committee approvals.
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-title">⚙️ Laboratory Tests & Studies</div>
+                        <div class="highlight-text">
+                            Comprehensive testing of visual prosthetic devices, neural interface materials, and rehabilitation 
+                            equipment performance under various conditions. Our modern laboratories in Seoul provide 
+                            precise measurements and quality assessment for device development.
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-title">🎯 Device Development</div>
+                        <div class="highlight-text">
+                            Enhancement and advancement of medical devices for vision rehabilitation, including neural 
+                            stimulation systems, adaptive visual aids, and AI-powered assistive technologies. 
+                            Focus on practical implementation and clinical applicability.
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-title">📊 Materials Testing</div>
+                        <div class="highlight-text">
+                            Measurement of characteristics and behavior of biocompatible materials, neural interface 
+                            components, and optical materials under physiological conditions. 
+                            Ensuring safety and longevity of implantable devices.
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-title">📈 Market Research</div>
+                        <div class="highlight-text">
+                            Gathering and evaluation of data regarding patients' preferences for rehabilitation 
+                            technologies and services. Understanding market needs for vision rehabilitation solutions 
+                            and assistive device adoption patterns.
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-card">
+                        <div class="highlight-title">👥 International Expertise</div>
+                        <div class="highlight-text">
+                            Our research group consists of international experts with extensive specialist knowledge 
+                            in vision rehabilitation, neural engineering, and clinical research. 
+                            Regular collaboration with global research institutions ensures cutting-edge methodologies.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Quick Facts Section -->
+        <section class="research-data">
+            <div class="research-content">
+                <h2 class="section-title section-subtitle">Quick facts about MasVisio</h2>
+                <p class="research-text section-subtitle">
+                    Our research institute has established itself as a leading center for vision rehabilitation research 
+                    with quantifiable results and international recognition. Here are the key performance indicators 
+                    that demonstrate our commitment to excellence and innovation.
+                </p>
+                
+                <div class="data-grid">
+                    <div class="data-card">
+                        <div class="data-number">
+                            <i class="fas fa-microscope" style="font-size: 2rem; margin-bottom: 1rem; color: rgba(255,255,255,0.9);"></i>
+                        </div>
+                        <div class="data-label">Neural Interface Testing</div>
+                        <div class="data-description">
+                            We conduct comprehensive testing of neural interface devices and 
+                            brain-computer interface systems for vision restoration applications.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">
+                            <i class="fas fa-user-md" style="font-size: 2rem; margin-bottom: 1rem; color: rgba(255,255,255,0.9);"></i>
+                        </div>
+                        <div class="data-label">Clinical Trials</div>
+                        <div class="data-description">
+                            We conduct clinical trials in the fields of vision rehabilitation, 
+                            neural stimulation, visual prosthetics and assistive technologies.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">
+                            <i class="fas fa-graduation-cap" style="font-size: 2rem; margin-bottom: 1rem; color: rgba(255,255,255,0.9);"></i>
+                        </div>
+                        <div class="data-label">Experience and Expertise</div>
+                        <div class="data-description">
+                            Regular training and constant exchange with international experts 
+                            guarantee the highest level of research quality and methodology.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">
+                            <i class="fas fa-certificate" style="font-size: 2rem; margin-bottom: 1rem; color: rgba(255,255,255,0.9);"></i>
+                        </div>
+                        <div class="data-label">Certified Staff</div>
+                        <div class="data-description">
+                            All team members are certified according to ICH & GCP guidelines 
+                            ensuring compliance with international research standards.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">
+                            <i class="fas fa-book-open" style="font-size: 2rem; margin-bottom: 1rem; color: rgba(255,255,255,0.9);"></i>
+                        </div>
+                        <div class="data-label">Education and Research</div>
+                        <div class="data-description">
+                            We conduct regular seminars and supervise high-quality research theses 
+                            in vision rehabilitation and neural engineering fields.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">
+                            <i class="fas fa-database" style="font-size: 2rem; margin-bottom: 1rem; color: rgba(255,255,255,0.9);"></i>
+                        </div>
+                        <div class="data-label">Patient Database</div>
+                        <div class="data-description">
+                            We maintain a large and diverse subject database through strong 
+                            cooperation with vision rehabilitation centers in Seoul.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">
+                            <i class="fas fa-rocket" style="font-size: 2rem; margin-bottom: 1rem; color: rgba(255,255,255,0.9);"></i>
+                        </div>
+                        <div class="data-label">Fast Realization</div>
+                        <div class="data-description">
+                            We are able to realize your research ideas and device development 
+                            projects in short time with efficient project management.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">
+                            <i class="fas fa-comments" style="font-size: 2rem; margin-bottom: 1rem; color: rgba(255,255,255,0.9);"></i>
+                        </div>
+                        <div class="data-label">Short Communication</div>
+                        <div class="data-description">
+                            Contact our experienced team directly - we respond within 24 hours 
+                            and handle your requests quickly to your satisfaction.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">
+                            <i class="fas fa-globe" style="font-size: 2rem; margin-bottom: 1rem; color: rgba(255,255,255,0.9);"></i>
+                        </div>
+                        <div class="data-label">Internationality</div>
+                        <div class="data-description">
+                            We have customers and research cooperations all over the globe, 
+                            particularly in vision rehabilitation and neural interface research.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">10+</div>
+                        <div class="data-label">Years of Experience</div>
+                        <div class="data-description">
+                            Benefit from our years of experience in vision rehabilitation research 
+                            and our international academic associations.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">
+                            <i class="fas fa-network-wired" style="font-size: 2rem; margin-bottom: 1rem; color: rgba(255,255,255,0.9);"></i>
+                        </div>
+                        <div class="data-label">Interdisciplinary</div>
+                        <div class="data-description">
+                            Take advantage of our extensive networking through proximity to 
+                            universities and the medical device industry in Seoul.
+                        </div>
+                    </div>
+                    
+                    <div class="data-card">
+                        <div class="data-number">
+                            <i class="fas fa-cog" style="font-size: 2rem; margin-bottom: 1rem; color: rgba(255,255,255,0.9);"></i>
+                        </div>
+                        <div class="data-label">High-Tech</div>
+                        <div class="data-description">
+                            We work with precise and latest technology to provide optimal 
+                            and reproducible results in vision rehabilitation research.
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: #f8fafc; border-radius: 1rem; border-left: 4px solid #38a169;">
+                    <h3 style="color: #2c5282; margin-bottom: 1rem; font-size: 1.5rem;" class="certification-title">We are certified!</h3>
+                    <p style="color: #4a5568; font-size: 1.2rem; font-weight: 600;" class="certification-standard">ISO 9001:2015</p>
+                    <p style="color: #4a5568; margin-top: 0.5rem;" class="certification-description">Quality Management System for Research Excellence</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 언어 전환 기능 스크립트 -->
+    <script src="../assets/js/language-data.js"></script>
+    
+    <script>
+        function toggleMenu() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+        
+        // ESC 키로 메뉴 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const navMenu = document.getElementById('nav-menu');
+                if (navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            }
+        });
+        
+        // 데스크톱에서는 드롭다운 메뉴 호버 효과
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownItems = document.querySelectorAll('.nav-item:has(.dropdown-menu)');
+            
+            dropdownItems.forEach(item => {
+                const dropdown = item.querySelector('.dropdown-menu');
+                
+                item.addEventListener('mouseenter', function() {
+                    if (window.innerWidth > 768) {
+                        dropdown.style.display = 'block';
+                    }
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    if (window.innerWidth > 768) {
+                        dropdown.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

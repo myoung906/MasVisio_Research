@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Studies - MasVisio Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: white; line-height: 1.6; }
+        
+        /* Header Styles */
+        .header { 
+            background: white; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+        }
+        .navbar { 
+            padding: 0.5rem 0; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .container { 
+            padding: 0 2rem; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: #2c5282; 
+            text-decoration: none; 
+            letter-spacing: -0.5px; 
+            margin-bottom: 0.5rem;
+        }
+        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
+        
+        /* Navigation */
+        .nav-menu { 
+            display: flex; 
+            justify-content: center; 
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-list { 
+            list-style: none; 
+            display: flex; 
+            margin: 0; 
+            padding: 0;
+            gap: 0;
+        }
+        .nav-item { position: relative; margin: 0; }
+        .nav-link { 
+            display: block; 
+            color: #4a5568; 
+            font-weight: 500; 
+            padding: 1rem 1.5rem; 
+            text-decoration: none;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            border-right: 1px solid #e2e8f0;
+        }
+        .nav-link:hover { background: #f7fafc; color: #2c5282; }
+        
+        /* Main Content */
+        .main-content {
+            padding-top: 140px;
+            min-height: 100vh;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Studies Section */
+        .studies-section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-content {
+            padding: 0 2rem;
+        }
+        
+        .studies-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .studies-intro h2 {
+            font-size: 2.5rem;
+            color: #2c5282;
+            margin-bottom: 1rem;
+        }
+        .studies-intro p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Study Cards */
+        .studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .study-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #38a169;
+        }
+        
+        .study-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .study-header {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .study-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .study-status {
+            display: inline-block;
+            background: #38a169;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .study-content {
+            padding: 2rem;
+        }
+        
+        .study-description {
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .study-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .detail-item {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 3px solid #38a169;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #2c5282;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .detail-value {
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+        
+        .study-objectives {
+            margin-top: 1.5rem;
+        }
+        
+        .study-objectives h4 {
+            color: #2c5282;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .objectives-list li {
+            color: #4a5568;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .objectives-list li:before {
+            content: "→";
+            color: #38a169;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Footer */
+        .footer { 
+            background: #2d3748; 
+            color: #a0aec0; 
+            padding: 2rem 0; 
+            text-align: center; 
+            margin-top: 5rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .page-title { font-size: 2.5rem; }
+            .page-subtitle { font-size: 1.1rem; }
+            .studies-grid { 
+                grid-template-columns: 1fr; 
+                gap: 2rem;
+            }
+            .study-details { 
+                grid-template-columns: 1fr; 
+                gap: 1rem;
+            }
+            .section-content { padding: 0 1rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title { font-size: 2rem; }
+            .study-header, .study-content { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-eye"></i>
+                    MasVisio Research
+                </a>
+                
+                <nav class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">About us</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Research</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">What we offer</a></li>
+                        <li class="nav-item"><a href="current-studies.html" class="nav-link">Current Studies</a></li>
+                        <li class="nav-item"><a href="../publications/index.html" class="nav-link">Publications</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Media</a></li>
+                        <li class="nav-item"><a href="../contact/index.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">Current Studies</h1>
+                <p class="page-subtitle">
+                    Explore our ongoing research projects in vision rehabilitation, neural interfaces, 
+                    and assistive technology development. Each study is designed to advance the field 
+                    and improve outcomes for individuals with visual impairments.
+                </p>
+            </div>
+        </section>
+
+        <!-- Studies Section -->
+        <section class="studies-section">
+            <div class="section-content">
+                <div class="studies-intro">
+                    <h2>Active Research Projects</h2>
+                    <p>
+                        Our current research portfolio encompasses cutting-edge studies in neural rehabilitation, 
+                        assistive device development, and clinical validation of new therapeutic approaches. 
+                        All studies are conducted following international ethical guidelines and GCP standards.
+                    </p>
+                </div>
+
+                <div class="studies-grid">
+                    <!-- Study 1 -->
+                    <div class="study-card">
+                        <div class="study-header">
+                            <h3 class="study-title">Advanced Neural Stimulation for Vision Restoration</h3>
+                            <span class="study-status">Recruiting</span>
+                        </div>
+                        <div class="study-content">
+                            <p class="study-description">
+                                This clinical trial investigates the efficacy of targeted neural stimulation protocols 
+                                for restoring visual function in patients with retinal degenerative diseases. 
+                                The study combines state-of-the-art neural interface technology with personalized 
+                                stimulation patterns based on individual cortical mapping.
+                            </p>
+                            
+                            <div class="study-details">
+                                <div class="detail-item">
+                                    <div class="detail-label">Study Type</div>
+                                    <div class="detail-value">Phase II Clinical Trial</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Duration</div>
+                                    <div class="detail-value">24 months</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Participants</div>
+                                    <div class="detail-value">40 patients</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">IRB Approval</div>
+                                    <div class="detail-value">2024-003-KR</div>
+                                </div>
+                            </div>
+                            
+                            <div class="study-objectives">
+                                <h4>Primary Objectives:</h4>
+                                <ul class="objectives-list">
+                                    <li>Evaluate safety and efficacy of neural stimulation protocols</li>
+                                    <li>Measure visual acuity improvements in treated patients</li>
+                                    <li>Assess long-term stability of neural interface implants</li>
+                                    <li>Develop personalized stimulation optimization algorithms</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Study 2 -->
+                    <div class="study-card">
+                        <div class="study-header">
+                            <h3 class="study-title">AI-Powered Adaptive Visual Prosthetics</h3>
+                            <span class="study-status">In Progress</span>
+                        </div>
+                        <div class="study-content">
+                            <p class="study-description">
+                                Development and testing of intelligent visual prosthetic devices that adapt to 
+                                user behavior and environmental conditions in real-time. This study integrates 
+                                machine learning algorithms with advanced sensor arrays to create more intuitive 
+                                and effective assistive visual devices.
+                            </p>
+                            
+                            <div class="study-details">
+                                <div class="detail-item">
+                                    <div class="detail-label">Study Type</div>
+                                    <div class="detail-value">Device Development & Testing</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Duration</div>
+                                    <div class="detail-value">18 months</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Participants</div>
+                                    <div class="detail-value">25 volunteers</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Funding</div>
+                                    <div class="detail-value">NRF Grant 2024</div>
+                                </div>
+                            </div>
+                            
+                            <div class="study-objectives">
+                                <h4>Key Goals:</h4>
+                                <ul class="objectives-list">
+                                    <li>Develop adaptive AI algorithms for real-time visual processing</li>
+                                    <li>Test device performance in various environmental conditions</li>
+                                    <li>Evaluate user satisfaction and learning curves</li>
+                                    <li>Optimize battery life and device portability</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Study 3 -->
+                    <div class="study-card">
+                        <div class="study-header">
+                            <h3 class="study-title">VR-Based Rehabilitation Training Protocols</h3>
+                            <span class="study-status">Data Analysis</span>
+                        </div>
+                        <div class="study-content">
+                            <p class="study-description">
+                                Investigation of virtual reality-based training programs for enhancing 
+                                residual vision and improving functional outcomes in low vision patients. 
+                                The study examines the effectiveness of immersive VR environments in 
+                                promoting neural plasticity and visual skill development.
+                            </p>
+                            
+                            <div class="study-details">
+                                <div class="detail-item">
+                                    <div class="detail-label">Study Type</div>
+                                    <div class="detail-value">Intervention Study</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Duration</div>
+                                    <div class="detail-value">12 months</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Participants</div>
+                                    <div class="detail-value">60 patients</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Completion</div>
+                                    <div class="detail-value">85% complete</div>
+                                </div>
+                            </div>
+                            
+                            <div class="study-objectives">
+                                <h4>Research Focus:</h4>
+                                <ul class="objectives-list">
+                                    <li>Design effective VR training environments for vision rehabilitation</li>
+                                    <li>Measure improvements in visual processing speed and accuracy</li>
+                                    <li>Assess patient engagement and training compliance</li>
+                                    <li>Develop standardized VR rehabilitation protocols</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Study 4 -->
+                    <div class="study-card">
+                        <div class="study-header">
+                            <h3 class="study-title">Biocompatible Neural Interface Materials</h3>
+                            <span class="study-status">Laboratory Phase</span>
+                        </div>
+                        <div class="study-content">
+                            <p class="study-description">
+                                Comprehensive testing of novel biocompatible materials for long-term neural 
+                                interface applications. This study focuses on material properties, inflammatory 
+                                responses, and long-term stability of neural electrode arrays for 
+                                visual prosthetic applications.
+                            </p>
+                            
+                            <div class="study-details">
+                                <div class="detail-item">
+                                    <div class="detail-label">Study Type</div>
+                                    <div class="detail-value">Materials Testing</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Duration</div>
+                                    <div class="detail-value">30 months</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Testing Phase</div>
+                                    <div class="detail-value">In vitro & In vivo</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Collaboration</div>
+                                    <div class="detail-value">International Partners</div>
+                                </div>
+                            </div>
+                            
+                            <div class="study-objectives">
+                                <h4>Testing Parameters:</h4>
+                                <ul class="objectives-list">
+                                    <li>Biocompatibility assessment and inflammatory response</li>
+                                    <li>Electrical conductivity and signal quality over time</li>
+                                    <li>Mechanical stability and device longevity</li>
+                                    <li>Manufacturing scalability and cost optimization</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

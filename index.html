@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasVisio Research - Language Selection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .language-selector {
+            text-align: center;
+            max-width: 600px;
+            padding: 3rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: white;
+        }
+        
+        .logo i {
+            color: #38a169;
+            font-size: 3rem;
+        }
+        
+        .welcome-text {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .language-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .language-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .language-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-color: rgba(255,255,255,0.4);
+        }
+        
+        .language-flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .language-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .language-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .auto-redirect {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .auto-redirect a {
+            color: #38a169;
+            text-decoration: underline;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .language-selector {
+                margin: 1rem;
+                padding: 2rem;
+            }
+            
+            .language-options {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .logo i {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <div class="logo">
+            <i class="fas fa-eye"></i>
+            MasVisio Research
+        </div>
+        
+        <h1 class="welcome-text">언어를 선택해주세요 / Select Language</h1>
+        <p class="subtitle">
+            시각재활 연구의 혁신적 성과를 확인하세요<br>
+            Discover innovative achievements in vision rehabilitation research
+        </p>
+        
+        <div class="language-options">
+            <a href="ko/index.html" class="language-card">
+                <div class="language-flag">🇰🇷</div>
+                <div class="language-name">한국어</div>
+                <div class="language-desc">Korean</div>
+            </a>
+            
+            <a href="en/index.html" class="language-card">
+                <div class="language-flag">🇺🇸</div>
+                <div class="language-name">English</div>
+                <div class="language-desc">영어</div>
+            </a>
+        </div>
+        
+        <div class="auto-redirect">
+            <p>5초 후 자동으로 한국어 페이지로 이동합니다<br>
+            Automatically redirecting to Korean page in <span id="countdown">5</span> seconds</p>
+            <p><a href="#" onclick="clearTimeout(redirectTimer)">자동 이동 취소 / Cancel Auto-redirect</a></p>
+        </div>
+    </div>
+    
+    <script>
+        // 브라우저 언어 감지
+        const browserLang = navigator.language || navigator.userLanguage;
+        const isKorean = browserLang.startsWith('ko');
+        
+        // 5초 후 자동 리다이렉트 (한국어 우선)
+        let countdown = 5;
+        const countdownElement = document.getElementById('countdown');
+        
+        const redirectTimer = setTimeout(() => {
+            if (isKorean) {
+                window.location.href = 'ko/index.html';
+            } else {
+                window.location.href = 'ko/index.html'; // 기본값은 한국어
+            }
+        }, 5000);
+        
+        // 카운트다운 업데이트
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+            }
+        }, 1000);
+        
+        // 언어 카드 클릭 시 자동 리다이렉트 취소
+        document.querySelectorAll('.language-card').forEach(card => {
+            card.addEventListener('click', () => {
+                clearTimeout(redirectTimer);
+                clearInterval(countdownInterval);
+            });
+        });
+    </script>
+</body>
+</html>
