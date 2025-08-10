@@ -1,0 +1,440 @@
+/* ===== 부드러운 애니메이션 최적화 CSS ===== */
+
+/* === GPU 가속 강제 적용 === */
+.smooth-animation {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform;
+}
+
+/* === 60FPS 보장을 위한 애니메이션 최적화 === */
+@keyframes smoothBounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    40% {
+        transform: translate3d(0, -10px, 0);
+    }
+    60% {
+        transform: translate3d(0, -5px, 0);
+    }
+}
+
+@keyframes smoothFloat {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, -8px, 0);
+    }
+}
+
+@keyframes smoothFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes smoothFadeInScale {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+@keyframes smoothSlideInRight {
+    0% {
+        opacity: 0;
+        transform: translate3d(30px, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes smoothSlideInLeft {
+    0% {
+        opacity: 0;
+        transform: translate3d(-30px, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes smoothPulse {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate3d(0, 0, 0) scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+@keyframes smoothRotateIn {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(-10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+}
+
+/* === 부드러운 트랜지션 커브 === */
+:root {
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-circ: cubic-bezier(0.08, 0.82, 0.17, 1);
+    --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+    --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* === 최적화된 호버 효과 === */
+.btn-smooth {
+    transition: all 0.3s var(--ease-out-quint);
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
+}
+
+.btn-smooth:hover {
+    transform: translate3d(0, -2px, 0);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
+}
+
+.btn-smooth:active {
+    transform: translate3d(0, 0, 0);
+    transition-duration: 0.1s;
+}
+
+/* === 카드 호버 최적화 === */
+.card-smooth {
+    transition: all 0.4s var(--ease-out-expo);
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+}
+
+.card-smooth:hover {
+    transform: translate3d(0, -8px, 0) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-smooth::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(37, 99, 235, 0.05), rgba(5, 150, 105, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-out-circ);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-smooth:hover::before {
+    opacity: 1;
+}
+
+/* === 텍스트 애니메이션 최적화 === */
+.text-smooth-reveal {
+    animation: smoothFadeInUp 0.8s var(--ease-out-expo) forwards;
+    animation-delay: var(--delay, 0s);
+}
+
+.text-smooth-slide-right {
+    animation: smoothSlideInRight 0.8s var(--ease-out-expo) forwards;
+    animation-delay: var(--delay, 0s);
+}
+
+.text-smooth-slide-left {
+    animation: smoothSlideInLeft 0.8s var(--ease-out-expo) forwards;
+    animation-delay: var(--delay, 0s);
+}
+
+/* === 스크롤 트리거 애니메이션 === */
+.scroll-animate {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+    transition: all 0.8s var(--ease-out-expo);
+    will-change: transform, opacity;
+}
+
+.scroll-animate.in-view {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.scroll-animate-scale {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.9);
+    transition: all 0.8s var(--ease-out-back);
+}
+
+.scroll-animate-scale.in-view {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+.scroll-animate-rotate {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0) rotate(-5deg);
+    transition: all 1s var(--ease-out-expo);
+}
+
+.scroll-animate-rotate.in-view {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+}
+
+/* === 순차적 애니메이션 === */
+.stagger-animate {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    transition: all 0.6s var(--ease-out-expo);
+    transition-delay: calc(var(--stagger-delay, 0) * 0.1s);
+}
+
+.stagger-animate.in-view {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+/* === 로딩 애니메이션 최적화 === */
+.smooth-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(37, 99, 235, 0.2);
+    border-top: 3px solid #2563eb;
+    border-radius: 50%;
+    animation: smoothSpin 1s linear infinite;
+    transform: translateZ(0);
+}
+
+@keyframes smoothSpin {
+    0% { transform: rotate(0deg) translateZ(0); }
+    100% { transform: rotate(360deg) translateZ(0); }
+}
+
+.smooth-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: smoothSkeletonWave 1.5s ease-in-out infinite;
+}
+
+@keyframes smoothSkeletonWave {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* === 플로팅 요소 최적화 === */
+.floating-smooth {
+    animation: smoothFloat 3s ease-in-out infinite;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.floating-smooth.delay-1 {
+    animation-delay: 0.5s;
+}
+
+.floating-smooth.delay-2 {
+    animation-delay: 1s;
+}
+
+.floating-smooth.delay-3 {
+    animation-delay: 1.5s;
+}
+
+/* === 마우스 추적 효과 === */
+.mouse-follow {
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+}
+
+.mouse-follow.active {
+    transform: translate3d(var(--mouse-x, 0), var(--mouse-y, 0), 0);
+}
+
+/* === 시차 스크롤 최적화 === */
+.parallax-smooth {
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* === 탄성 애니메이션 === */
+.elastic-bounce {
+    transition: transform 0.6s var(--ease-spring);
+    transform: translateZ(0);
+}
+
+.elastic-bounce:hover {
+    transform: translate3d(0, -5px, 0) scale(1.03);
+}
+
+.elastic-bounce:active {
+    transform: translate3d(0, -2px, 0) scale(0.98);
+    transition-duration: 0.1s;
+}
+
+/* === 모션 블러 효과 === */
+.motion-blur {
+    transition: all 0.3s ease-out;
+    will-change: transform, filter;
+}
+
+.motion-blur.moving {
+    filter: blur(0.5px);
+    transform: translate3d(var(--velocity-x, 0), var(--velocity-y, 0), 0);
+}
+
+/* === 성능 모드별 애니메이션 조정 === */
+@media (prefers-reduced-motion: reduce) {
+    .smooth-animation,
+    .btn-smooth,
+    .card-smooth,
+    .scroll-animate,
+    .floating-smooth {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* 저성능 디바이스 대응 */
+.low-performance-mode .smooth-animation,
+.low-performance-mode .floating-smooth {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.2s !important;
+}
+
+/* === 고해상도 디스플레이 최적화 === */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .smooth-animation {
+        transform: translate3d(0, 0, 0.1px);
+    }
+}
+
+/* === 터치 디바이스 애니메이션 조정 === */
+@media (pointer: coarse) {
+    .btn-smooth,
+    .card-smooth {
+        transition-duration: 0.2s;
+    }
+    
+    .floating-smooth {
+        animation-duration: 2s;
+    }
+}
+
+/* === 다크모드 지원 === */
+@media (prefers-color-scheme: dark) {
+    .smooth-skeleton {
+        background: linear-gradient(90deg, #2a2a2a 25%, #1a1a1a 50%, #2a2a2a 75%);
+        background-size: 200% 100%;
+    }
+    
+    .card-smooth::before {
+        background: linear-gradient(45deg, rgba(37, 99, 235, 0.1), rgba(5, 150, 105, 0.1));
+    }
+}
+
+/* === 접근성 향상 === */
+.focus-smooth:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+    transition: outline-offset 0.2s ease;
+}
+
+.focus-smooth:focus-visible:hover {
+    outline-offset: 4px;
+}
+
+/* === 고급 형태변환 애니메이션 === */
+.morph-smooth {
+    transition: all 0.8s var(--ease-out-expo);
+    will-change: transform, border-radius;
+}
+
+.morph-smooth:hover {
+    border-radius: 50%;
+    transform: translate3d(0, 0, 0) rotate(5deg) scale(1.1);
+}
+
+/* === 그라데이션 애니메이션 === */
+.gradient-animate {
+    background: linear-gradient(45deg, #2563eb, #059669, #2563eb);
+    background-size: 300% 300%;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* === 진동 효과 === */
+.vibrate-smooth {
+    animation: vibrate 0.3s ease-in-out;
+}
+
+@keyframes vibrate {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    25% { transform: translate3d(-1px, 0, 0); }
+    75% { transform: translate3d(1px, 0, 0); }
+}
+
+/* === 리플 효과 === */
+.ripple-smooth {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-smooth::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+
+.ripple-smooth:active::after {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+}
+
+/* === 브레스 애니메이션 === */
+.breathe-smooth {
+    animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1) translateZ(0); }
+    50% { transform: scale(1.02) translateZ(0); }
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visual Rehabilitation Research Institute - Revolutionary medical technology with 95.2% clinical success rate and $600M revenue potential">
+    <meta name="keywords" content="visual rehabilitation, medical device, clinical research, investment opportunity, licensing">
+    
+    <!-- Language Detection & SEO -->
+    <link rel="canonical" href="https://visualrehab.kr/">
+    <link rel="alternate" hreflang="ko" href="https://visualrehab.kr/ko/">
+    <link rel="alternate" hreflang="en" href="https://visualrehab.kr/en/">
+    <link rel="alternate" hreflang="x-default" href="https://visualrehab.kr/en/">
+    
+    <title>Visual Rehabilitation Research Institute | Revolutionary Medical Technology</title>
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 3rem 2rem;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .language-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .lang-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #2563eb;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+        
+        .lang-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: #f8fafc;
+        }
+        
+        .auto-redirect {
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+        
+        .loading {
+            display: none;
+            margin-top: 1rem;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .language-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .lang-btn {
+                min-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="logo">Visual Rehabilitation Research Institute</h1>
+        <p class="subtitle">
+            Revolutionary medical technology with proven clinical results
+        </p>
+        
+        <div class="language-buttons">
+            <a href="en/index.html" class="lang-btn" onclick="setLanguagePreference('en')">
+                🇺🇸 English
+            </a>
+            <a href="ko/index.html" class="lang-btn" onclick="setLanguagePreference('ko')">
+                🇰🇷 한국어
+            </a>
+        </div>
+        
+        <div class="auto-redirect">
+            <p>Detecting your preferred language...</p>
+            <div class="loading">
+                <div class="spinner"></div>
+                <span>Redirecting...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language detection and auto-redirect
+        function detectAndRedirect() {
+            // Check for saved language preference
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang) {
+                redirectToLanguage(savedLang);
+                return;
+            }
+            
+            // Detect browser language
+            const browserLang = navigator.language || navigator.userLanguage;
+            const langCode = browserLang.substring(0, 2).toLowerCase();
+            
+            // Auto-redirect after 3 seconds
+            setTimeout(() => {
+                if (langCode === 'ko') {
+                    redirectToLanguage('ko');
+                } else {
+                    redirectToLanguage('en'); // Default to English
+                }
+            }, 3000);
+        }
+        
+        function redirectToLanguage(lang) {
+            document.querySelector('.auto-redirect p').textContent = 
+                lang === 'ko' ? '한국어 페이지로 이동 중...' : 'Redirecting to English page...';
+            document.querySelector('.loading').style.display = 'block';
+            
+            setTimeout(() => {
+                window.location.href = `${lang}/index.html`;
+            }, 1000);
+        }
+        
+        function setLanguagePreference(lang) {
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        // Start language detection
+        detectAndRedirect();
+        
+        // Analytics and tracking (placeholder)
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: 'Language Selection',
+                page_location: window.location.href
+            });
+        }
+    </script>
+    
+    <!-- Schema.org for root page -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Visual Rehabilitation Research Institute",
+        "alternateName": "시각재활 연구소",
+        "url": "https://visualrehab.kr",
+        "logo": "https://visualrehab.kr/assets/images/logo.png",
+        "description": "Revolutionary visual rehabilitation research institute with breakthrough medical technology solutions",
+        "foundingDate": "2022",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+82-2-1234-5678",
+            "contactType": "Business Development",
+            "email": "business@visualrehab.kr",
+            "availableLanguage": ["English", "Korean"]
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "KR",
+            "addressRegion": "Seoul",
+            "addressLocality": "Gangnam-gu",
+            "streetAddress": "Teheran-ro, Visual Rehabilitation Research Center, 10F"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/visual-rehab-research",
+            "https://www.researchgate.net/institution/Visual_Rehabilitation_Research_Institute"
+        ]
+    }
+    </script>
+</body>
+</html>
