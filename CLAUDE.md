@@ -412,3 +412,184 @@ claude mcp list
 - KAIST Brain Lab 웹사이트 접속 성공
 - 스크린샷 촬영 완료
 - 모든 브라우저 자동화 기능 정상 작동
+
+---
+
+## 🚀 웹페이지 개발 완료 후 GitHub Pages 배포 워크플로우
+
+### 📁 파일 생성 디렉토리 규칙
+
+#### 작업 디렉토리 구조
+```
+/Users/workspace/mvr_webpage/          # 프로젝트 루트 (Git 저장소)
+├── .git/                              # Git 설정
+├── .gitignore                         # Git 무시 파일
+├── package.json                       # 프로젝트 설정 (필요시)
+├── CLAUDE.md                          # 개발 가이드
+└── README.md                          # 프로젝트 설명
+
+/Applications/XAMPP/xamppfiles/htdocs/mvr/  # 실제 웹파일 개발 위치
+├── index.html                         # 메인 언어 선택 페이지
+├── ko/                               # 한국어 버전
+│   ├── index.html
+│   ├── assets/
+│   └── ...
+├── en/                               # 영어 버전
+│   ├── index.html
+│   ├── assets/
+│   └── ...
+└── project_plan.md                   # 프로젝트 계획서
+```
+
+#### ⚠️ 중요한 파일 생성 규칙
+1. **MCP 설정, agents, 프로젝트 가이드**: `/Users/workspace/mvr_webpage`에서 작업
+2. **모든 웹사이트 파일 생성**: `/Applications/XAMPP/xamppfiles/htdocs/mvr`에서만 생성
+3. **Git 저장소**: `/Users/workspace/mvr_webpage`가 GitHub와 연결됨
+
+### 🔄 GitHub 저장소 동기화 프로세스
+
+#### 단계 1: 웹사이트 파일 복사 (매번 배포 전 필수)
+```bash
+# /Users/workspace/mvr_webpage로 이동
+cd /Users/workspace/mvr_webpage
+
+# XAMPP 개발 파일들을 Git 저장소로 복사
+cp -r /Applications/XAMPP/xamppfiles/htdocs/mvr/* .
+
+# 복사 완료 확인
+ls -la
+```
+
+#### 단계 2: Git 상태 확인
+```bash
+# 변경된 파일 확인
+git status --short
+
+# 최근 커밋과 비교
+git diff --stat HEAD~1
+```
+
+#### 단계 3: 커밋 및 푸시
+```bash
+# 모든 변경사항 스테이징
+git add .
+
+# 의미있는 커밋 메시지와 함께 커밋
+git commit -m "웹사이트 업데이트: [작업 내용 요약]"
+
+# GitHub에 푸시
+git push origin master
+```
+
+### 🔐 GitHub 인증 설정
+
+#### Personal Access Token 활용 (권장)
+```bash
+# Git 설정에 토큰 포함된 URL 사용
+git remote set-url origin https://[TOKEN]@github.com/myoung906/MasVisio_Research.git
+```
+
+#### 현재 설정된 인증 방법
+- **저장소**: https://github.com/myoung906/MasVisio_Research
+- **인증**: Personal Access Token 활용
+- **브랜치**: master (메인 브랜치)
+
+### 🌐 GitHub Pages 배포 확인
+
+#### 단계 1: GitHub Pages 활성화 확인
+1. GitHub 저장소 → Settings → Pages
+2. Source: Deploy from a branch
+3. Branch: master / (root)
+4. 저장 후 배포 URL 확인
+
+#### 단계 2: 배포 완료 확인
+```bash
+# 웹사이트 접속 테스트
+curl -I https://myoung906.github.io/MasVisio_Research/
+```
+
+#### 단계 3: 캐시 문제 해결
+- GitHub Pages는 캐시 갱신에 5-10분 소요될 수 있음
+- 강제 새로고침: Ctrl+F5 (Windows) / Cmd+Shift+R (Mac)
+- 브라우저 캐시 클리어 권장
+
+### 📋 체크리스트 (매번 배포 시 확인)
+
+#### 배포 전 체크리스트
+- [ ] `/Applications/XAMPP/xamppfiles/htdocs/mvr`에서 웹사이트 완성
+- [ ] 로컬 테스트 완료 (XAMPP 서버에서 확인)
+- [ ] 파일 크기 제한 확인 (각 파일 18KB 이내)
+- [ ] 이미지 최적화 완료
+- [ ] 다국어 지원 테스트 완료
+
+#### 배포 과정 체크리스트
+- [ ] Git 저장소로 파일 복사 완료
+- [ ] `git status`로 변경사항 확인
+- [ ] 의미있는 커밋 메시지 작성
+- [ ] GitHub 푸시 성공
+- [ ] GitHub Pages 배포 상태 확인
+
+#### 배포 후 체크리스트
+- [ ] 메인 페이지 접속 확인
+- [ ] 언어 선택 기능 테스트
+- [ ] 한국어/영어 페이지 정상 작동
+- [ ] 모바일 반응형 확인
+- [ ] 모든 링크 작동 확인
+
+### 🛠️ 문제 해결 가이드
+
+#### 일반적인 문제와 해결책
+
+**1. GitHub Pages에서 404 오류**
+```bash
+# 파일 경로 확인
+ls -la /Users/workspace/mvr_webpage/
+# index.html이 루트에 있는지 확인
+```
+
+**2. 서브페이지 접근 불가**
+```bash
+# ko/, en/ 디렉토리가 복사되었는지 확인
+ls -la /Users/workspace/mvr_webpage/ko/
+ls -la /Users/workspace/mvr_webpage/en/
+```
+
+**3. 캐시 문제로 이전 버전 표시**
+- 5-10분 대기 후 재확인
+- 다른 브라우저/시크릿 모드에서 테스트
+- GitHub Pages 빌드 로그 확인
+
+**4. Git 푸시 실패**
+```bash
+# 인증 토큰 확인
+git remote -v
+# 토큰이 유효한지 확인하고 필요시 재설정
+```
+
+### 🎯 성공 지표
+
+#### 배포 성공 확인 방법
+1. **웹사이트 접속**: https://myoung906.github.io/MasVisio_Research/
+2. **언어 선택 테스트**: 한국어/영어 버튼 클릭
+3. **자동 리다이렉트 확인**: 5초 카운트다운 작동
+4. **모든 페이지 탐색**: 메뉴, 링크, 버튼 테스트
+5. **모바일 호환성**: 다양한 디바이스에서 확인
+
+#### 최종 배포 완료 상태 (참고용)
+- ✅ 언어 선택 페이지 정상 작동
+- ✅ 한국어 버전 완전 기능
+- ✅ 영어 버전 완전 기능  
+- ✅ Phase 4 AI 기능 통합
+- ✅ 투자 정보 및 연구 데이터 표시
+- ✅ 모바일 반응형 디자인
+- ✅ GitHub Pages 자동 배포
+
+### 📝 향후 업데이트 절차
+
+1. **개발 환경에서 작업**: `/Applications/XAMPP/xamppfiles/htdocs/mvr`
+2. **로컬 테스트**: XAMPP 서버에서 확인
+3. **Git 저장소 동기화**: 위의 동기화 프로세스 따름
+4. **GitHub Pages 자동 배포**: 푸시 후 5-10분 대기
+5. **배포 확인**: 체크리스트 따라 검증
+
+이 가이드를 따르면 향후 모든 웹페이지 업데이트가 체계적이고 안정적으로 진행됩니다.
