@@ -418,7 +418,7 @@
                     
                     <div class="pub-list">
                         <!-- 2022 Publications -->
-                        <div class="pub-entry">
+                        <div class="pub-entry" data-field="policy-research">
                             <div class="pub-year">2022</div>
                             
                             <!-- 2022년 연구논문 5편 -->
@@ -467,7 +467,7 @@
                         </div>
                         
                         <!-- 2021 Publications -->
-                        <div class="pub-entry">
+                        <div class="pub-entry" data-field="policy-research">
                             <div class="pub-year">2021</div>
                             
                             <div class="pub-item">
@@ -493,7 +493,7 @@
                         </div>
                         
                         <!-- 2020 Publications -->
-                        <div class="pub-entry">
+                        <div class="pub-entry" data-field="policy-research">
                             <div class="pub-year">2020</div>
                             
                             <div class="pub-item">
@@ -540,7 +540,7 @@
                         </div>
                         
                         <!-- 2019 Publications -->
-                        <div class="pub-entry">
+                        <div class="pub-entry" data-field="policy-research">
                             <div class="pub-year">2019</div>
                             
                             <div class="pub-item">
@@ -587,7 +587,7 @@
                         </div>
                         
                         <!-- 2018 Publications -->
-                        <div class="pub-entry">
+                        <div class="pub-entry" data-field="clinical-experiments">
                             <div class="pub-year">2018</div>
                             
                             <div class="pub-item">
@@ -655,7 +655,7 @@
                         </div>
                         
                         <!-- 2017 Publications -->
-                        <div class="pub-entry">
+                        <div class="pub-entry" data-field="policy-research">
                             <div class="pub-year">2017</div>
                             
                             <div class="pub-item">
@@ -681,7 +681,7 @@
                         </div>
                         
                         <!-- 2016 Publications -->
-                        <div class="pub-entry">
+                        <div class="pub-entry" data-field="clinical-experiments">
                             <div class="pub-year">2016</div>
                             
                             <div class="pub-item">
@@ -732,6 +732,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const filterBtns = document.querySelectorAll('.filter-btn');
             const pubEntries = document.querySelectorAll('.pub-entry');
+            const pubItems = document.querySelectorAll('.pub-item');
             const entryCount = document.querySelector('.entry-count');
             
             // 각 논문에 data-field 속성 추가
@@ -741,19 +742,16 @@
                 '시제품 개발': 'device-development'
             };
             
-            // 논문 항목들에 데이터 속성 설정
-            pubEntries.forEach(entry => {
-                const items = entry.querySelectorAll('.pub-item');
-                items.forEach(item => {
-                    const fieldElement = item.querySelector('.pub-details span');
-                    if (fieldElement) {
-                        const fieldText = fieldElement.textContent.replace('연구 분야: ', '');
-                        const fieldKey = fieldMapping[fieldText];
-                        if (fieldKey) {
-                            entry.setAttribute('data-field', fieldKey);
-                        }
+            // 개별 논문에 데이터 속성 설정
+            pubItems.forEach(item => {
+                const fieldElement = item.querySelector('.pub-details span');
+                if (fieldElement) {
+                    const fieldText = fieldElement.textContent.replace('연구 분야: ', '');
+                    const fieldKey = fieldMapping[fieldText];
+                    if (fieldKey) {
+                        item.setAttribute('data-field', fieldKey);
                     }
-                });
+                }
             });
             
             // 필터 버튼 클릭 이벤트
@@ -770,24 +768,27 @@
                     
                     if (filterText === '전체') {
                         // 모든 논문 표시
+                        pubItems.forEach(item => {
+                            item.style.display = 'block';
+                            visibleCount++;
+                        });
                         pubEntries.forEach(entry => {
-                            entry.style.display = 'block';
-                            const items = entry.querySelectorAll('.pub-item');
-                            visibleCount += items.length;
+                            const visibleItems = entry.querySelectorAll('.pub-item:not([style*="none"])');
+                            entry.style.display = visibleItems.length > 0 ? 'block' : 'none';
                         });
                     } else {
                         // 특정 분야만 표시
                         const targetField = fieldMapping[filterText];
+                        pubItems.forEach(item => {
+                            const hasTargetField = item.getAttribute('data-field') === targetField;
+                            item.style.display = hasTargetField ? 'block' : 'none';
+                            if (hasTargetField) visibleCount++;
+                        });
+                        
+                        // 빈 연도 그룹 숨기기
                         pubEntries.forEach(entry => {
-                            const hasTargetField = entry.getAttribute('data-field') === targetField;
-                            
-                            if (hasTargetField) {
-                                entry.style.display = 'block';
-                                const items = entry.querySelectorAll('.pub-item');
-                                visibleCount += items.length;
-                            } else {
-                                entry.style.display = 'none';
-                            }
+                            const visibleItems = entry.querySelectorAll('.pub-item:not([style*="none"])');
+                            entry.style.display = visibleItems.length > 0 ? 'block' : 'none';
                         });
                     }
                     
