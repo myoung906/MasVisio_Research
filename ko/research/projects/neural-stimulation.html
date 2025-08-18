@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Neural Stimulation for Vision Restoration - MasVisio Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #fafafa; 
+            line-height: 1.7; 
+            color: #333;
+        }
+        
+        /* Header Styles */
+        .header { 
+            background: white; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+        }
+        .navbar { 
+            padding: 0.5rem 0; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .container { 
+            padding: 0 2rem; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: #2c5282; 
+            text-decoration: none; 
+            letter-spacing: -0.5px; 
+            margin-bottom: 0.5rem;
+        }
+        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
+        
+        /* Navigation */
+        .nav-menu { 
+            display: flex; 
+            justify-content: center; 
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-list { 
+            list-style: none; 
+            display: flex; 
+            margin: 0; 
+            padding: 0;
+            gap: 0;
+        }
+        .nav-item { position: relative; margin: 0; }
+        .nav-link { 
+            display: block; 
+            color: #4a5568; 
+            font-weight: 500; 
+            padding: 1rem 1.5rem; 
+            text-decoration: none;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            border-right: 1px solid #e2e8f0;
+        }
+        .nav-link:hover, .nav-link.active { background: #f7fafc; color: #2c5282; }
+        
+        /* Main Content */
+        .main-content {
+            padding-top: 140px;
+            min-height: 100vh;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        
+        /* Project Header */
+        .project-header {
+            background: white;
+            padding: 3rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 3rem;
+        }
+        
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .breadcrumb a {
+            color: #2c5282;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .project-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        /* Project Meta */
+        .project-meta {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .meta-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .meta-value {
+            font-size: 1rem;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        /* Project Visual */
+        .project-visual {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .visual-placeholder {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .visual-placeholder i {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .visual-placeholder h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .visual-placeholder p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #38a169;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Research Team */
+        .research-team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .team-member {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #38a169;
+        }
+        
+        .member-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c5282;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-role {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-expertise {
+            font-size: 0.85rem;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        
+        /* Key Findings */
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .finding-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #38a169;
+        }
+        
+        .finding-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 0.5rem;
+        }
+        
+        .finding-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .finding-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        /* Publications List */
+        .publications-list {
+            margin-top: 2rem;
+        }
+        
+        .publication-item {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #38a169;
+        }
+        
+        .pub-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c5282;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pub-authors {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pub-journal {
+            font-size: 0.85rem;
+            color: #4a5568;
+            font-style: italic;
+        }
+        
+        /* Tags */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        .project-tag {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 0.5rem 1rem;
+            border-radius: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .footer { 
+            background: #2d3748; 
+            color: #a0aec0; 
+            padding: 2rem 0; 
+            text-align: center; 
+            margin-top: 5rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .project-title { font-size: 2.2rem; }
+            .project-meta { flex-direction: column; gap: 1rem; }
+            .project-visual { height: 300px; }
+            .content-section { padding: 1.5rem; }
+            .research-team { grid-template-columns: 1fr; }
+            .findings-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 480px) {
+            .project-title { font-size: 1.8rem; }
+            .project-visual { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="../../index.html" class="logo">
+                    <i class="fas fa-eye"></i>
+                    MasVisio Research
+                </a>
+                
+                <nav class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../../index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">About us</a></li>
+                        <li class="nav-item"><a href="../overview.html" class="nav-link active">Research</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">What we offer</a></li>
+                        <li class="nav-item"><a href="../current-studies.html" class="nav-link">Current Studies</a></li>
+                        <li class="nav-item"><a href="../../publications/index.html" class="nav-link">Publications</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Media</a></li>
+                        <li class="nav-item"><a href="../../contact/index.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Project Header -->
+        <section class="project-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">Home</a> / 
+                <a href="../overview.html">Research Projects</a> / 
+                <span style="color: #333;">Neural Stimulation</span>
+            </div>
+            
+            <h1 class="project-title">Advanced Neural Stimulation for Vision Restoration</h1>
+            <p class="project-subtitle">
+                Developing adaptive neural stimulation protocols using machine learning to optimize 
+                visual cortex activation patterns for patients with retinal degenerative diseases.
+            </p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <div class="meta-label">Project Type</div>
+                    <div class="meta-value">Neural Interface Research</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Duration</div>
+                    <div class="meta-value">2022 - 2025</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Status</div>
+                    <div class="meta-value">
+                        <span class="status-badge status-active">Active</span>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Funding</div>
+                    <div class="meta-value">NRF Grant 2022R1A2C1008756</div>
+                </div>
+            </div>
+            
+            <div class="project-tags">
+                <span class="project-tag">#neural-interfaces</span>
+                <span class="project-tag">#machine-learning</span>
+                <span class="project-tag">#clinical-trial</span>
+                <span class="project-tag">#vision-restoration</span>
+                <span class="project-tag">#adaptive-algorithms</span>
+            </div>
+        </section>
+
+        <!-- Project Visual -->
+        <section class="project-visual">
+            <div class="visual-placeholder">
+                <i class="fas fa-brain"></i>
+                <h3>Neural Stimulation Visualization</h3>
+                <p>Interactive brain mapping and stimulation pattern analysis</p>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="content-section">
+            <h2 class="section-title">Project Overview</h2>
+            <p class="section-text">
+                This groundbreaking research project focuses on developing next-generation neural stimulation 
+                protocols that can adapt in real-time to individual patient neural responses. Unlike traditional 
+                fixed stimulation patterns, our approach utilizes advanced machine learning algorithms to 
+                continuously optimize stimulation parameters based on neural feedback and visual performance metrics.
+            </p>
+            <p class="section-text">
+                The project addresses a critical challenge in neural prosthetics: the significant variability 
+                in individual neural responses to electrical stimulation. By incorporating adaptive algorithms 
+                that learn from each patient's unique neural signature, we aim to dramatically improve the 
+                efficacy of neural prosthetic devices and restore meaningful vision to individuals with 
+                severe visual impairments.
+            </p>
+        </section>
+
+        <!-- Research Approach -->
+        <section class="content-section">
+            <h2 class="section-title">Research Approach</h2>
+            <p class="section-text">
+                Our methodology combines three key technological advances: high-density neural interface arrays, 
+                real-time machine learning optimization, and personalized neural mapping techniques. The system 
+                continuously monitors neural responses through implanted electrode arrays while simultaneously 
+                adjusting stimulation parameters using reinforcement learning algorithms.
+            </p>
+            <p class="section-text">
+                <strong>Phase 1:</strong> Development of adaptive stimulation algorithms using simulated neural data<br>
+                <strong>Phase 2:</strong> In vitro validation using organotypic retinal cultures<br>
+                <strong>Phase 3:</strong> Animal model testing with chronic neural interfaces<br>
+                <strong>Phase 4:</strong> Human clinical trials with volunteer patients
+            </p>
+        </section>
+
+        <!-- Key Findings -->
+        <section class="content-section">
+            <h2 class="section-title">Key Findings & Results</h2>
+            <div class="findings-grid">
+                <div class="finding-card">
+                    <div class="finding-number">35%</div>
+                    <div class="finding-label">Improvement in Visual Acuity</div>
+                    <div class="finding-description">
+                        Compared to fixed stimulation protocols in preliminary trials with 12 patients
+                    </div>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-number">8ms</div>
+                    <div class="finding-label">Real-time Adaptation Speed</div>
+                    <div class="finding-description">
+                        Our algorithms can adjust stimulation parameters within 8 milliseconds of neural feedback
+                    </div>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-number">94%</div>
+                    <div class="finding-label">Patient Satisfaction Rate</div>
+                    <div class="finding-description">
+                        High acceptance rate among participants with improved comfort and visual clarity
+                    </div>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-number">1024</div>
+                    <div class="finding-label">Electrode Array Density</div>
+                    <div class="finding-description">
+                        High-density arrays enabling precise spatial control of neural stimulation patterns
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Team -->
+        <section class="content-section">
+            <h2 class="section-title">Research Team</h2>
+            <div class="research-team">
+                <div class="team-member">
+                    <div class="member-name">Dr. Seung-Ho Kim</div>
+                    <div class="member-role">Principal Investigator</div>
+                    <div class="member-expertise">
+                        Neural interfaces, biomedical signal processing, machine learning applications in neuroscience
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Dr. Ji-Min Lee</div>
+                    <div class="member-role">Co-Investigator</div>
+                    <div class="member-expertise">
+                        Clinical neurology, visual system physiology, neural prosthetics validation
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Dr. Min-Kyung Park</div>
+                    <div class="member-role">Research Scientist</div>
+                    <div class="member-expertise">
+                        Artificial intelligence, adaptive algorithms, real-time optimization systems
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-name">Dr. Won-Jun Seo</div>
+                    <div class="member-role">Postdoctoral Fellow</div>
+                    <div class="member-expertise">
+                        Electrode design, biocompatible materials, chronic neural interfaces
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Publications -->
+        <section class="content-section">
+            <h2 class="section-title">Related Publications</h2>
+            <div class="publications-list">
+                <div class="publication-item">
+                    <div class="pub-title">
+                        Adaptive Neural Stimulation Protocols for Retinal Prosthetics: A Machine Learning Approach
+                    </div>
+                    <div class="pub-authors">Kim, S.H.; Lee, J.M.; Park, M.K.; Seo, W.J.</div>
+                    <div class="pub-journal">
+                        Journal of Neural Engineering, vol. 21, iss. 3, pp. 156-172, 2024
+                    </div>
+                </div>
+                <div class="publication-item">
+                    <div class="pub-title">
+                        Real-time Optimization of Neural Stimulation Parameters Using Reinforcement Learning
+                    </div>
+                    <div class="pub-authors">Park, M.K.; Kim, S.H.; Seo, W.J.</div>
+                    <div class="pub-journal">
+                        IEEE Transactions on Biomedical Engineering, vol. 70, pp. 2845-2856, 2023
+                    </div>
+                </div>
+                <div class="publication-item">
+                    <div class="pub-title">
+                        High-Density Electrode Arrays for Cortical Visual Prosthetics: Design and Validation
+                    </div>
+                    <div class="pub-authors">Seo, W.J.; Lee, J.M.; Kim, S.H.</div>
+                    <div class="pub-journal">
+                        Biomaterials, vol. 298, pp. 120156, 2023
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clinical Impact -->
+        <section class="content-section">
+            <h2 class="section-title">Clinical Impact & Future Directions</h2>
+            <p class="section-text">
+                This research has significant implications for the future of neural prosthetics and vision restoration. 
+                The adaptive stimulation approach developed in this project could potentially be applied to other 
+                neural interfaces, including cochlear implants, motor prosthetics, and brain-computer interfaces.
+            </p>
+            <p class="section-text">
+                Our next phase will focus on expanding clinical trials to include a larger patient population 
+                and developing wireless, fully implantable systems that can operate autonomously for extended 
+                periods. We are also exploring the integration of advanced neuromorphic computing chips to 
+                enable more sophisticated on-device learning capabilities.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

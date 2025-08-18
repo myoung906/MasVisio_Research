@@ -1,225 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Visual Rehabilitation Research Institute - Revolutionary medical technology with 95.2% clinical success rate and $600M revenue potential">
-    <meta name="keywords" content="visual rehabilitation, medical device, clinical research, investment opportunity, licensing">
-    
-    <!-- Language Detection & SEO -->
-    <link rel="canonical" href="https://visualrehab.kr/">
-    <link rel="alternate" hreflang="ko" href="https://visualrehab.kr/ko/">
-    <link rel="alternate" hreflang="en" href="https://visualrehab.kr/en/">
-    <link rel="alternate" hreflang="x-default" href="https://visualrehab.kr/en/">
-    
-    <title>Visual Rehabilitation Research Institute | Revolutionary Medical Technology</title>
+    <title>MasVisio Research - Language Selection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #1e40af, #2563eb);
+            justify-content: center;
             color: white;
         }
         
-        .container {
+        .language-selector {
             text-align: center;
             max-width: 600px;
-            padding: 3rem 2rem;
+            padding: 3rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
         .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: white;
         }
         
-        .subtitle {
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
+        .logo i {
+            color: #38a169;
+            font-size: 3rem;
+        }
+        
+        .welcome-text {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
             opacity: 0.9;
         }
         
-        .language-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        .subtitle {
+            font-size: 1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            line-height: 1.6;
         }
         
-        .lang-btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: white;
-            color: #2563eb;
+        .language-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .language-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            padding: 2rem;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
+            color: white;
             transition: all 0.3s ease;
-            min-width: 120px;
+            border: 2px solid rgba(255,255,255,0.2);
         }
         
-        .lang-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            background: #f8fafc;
+        .language-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-color: rgba(255,255,255,0.4);
+        }
+        
+        .language-flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .language-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .language-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
         
         .auto-redirect {
-            margin-top: 2rem;
-            font-size: 0.875rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
             opacity: 0.7;
         }
         
-        .loading {
-            display: none;
-            margin-top: 1rem;
+        .auto-redirect a {
+            color: #38a169;
+            text-decoration: underline;
         }
         
-        .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 2rem 1rem;
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .language-selector {
+                margin: 1rem;
+                padding: 2rem;
+            }
+            
+            .language-options {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
             
             .logo {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
             
-            .language-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .lang-btn {
-                min-width: 200px;
+            .logo i {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="logo">Visual Rehabilitation Research Institute</h1>
+    <div class="language-selector">
+        <div class="logo">
+            <i class="fas fa-eye"></i>
+            MasVisio Research
+        </div>
+        
+        <h1 class="welcome-text">언어를 선택해주세요 / Select Language</h1>
         <p class="subtitle">
-            Revolutionary medical technology with proven clinical results
+            시각재활 연구의 혁신적 성과를 확인하세요<br>
+            Discover innovative achievements in vision rehabilitation research
         </p>
         
-        <div class="language-buttons">
-            <a href="en/index.html" class="lang-btn" onclick="setLanguagePreference('en')">
-                🇺🇸 English
+        <div class="language-options">
+            <a href="ko/index.html" class="language-card">
+                <div class="language-flag">🇰🇷</div>
+                <div class="language-name">한국어</div>
+                <div class="language-desc">Korean</div>
             </a>
-            <a href="ko/index.html" class="lang-btn" onclick="setLanguagePreference('ko')">
-                🇰🇷 한국어
+            
+            <a href="en/index.html" class="language-card">
+                <div class="language-flag">🇺🇸</div>
+                <div class="language-name">English</div>
+                <div class="language-desc">영어</div>
             </a>
         </div>
         
         <div class="auto-redirect">
-            <p>Detecting your preferred language...</p>
-            <div class="loading">
-                <div class="spinner"></div>
-                <span>Redirecting...</span>
-            </div>
+            <p>5초 후 자동으로 한국어 페이지로 이동합니다<br>
+            Automatically redirecting to Korean page in <span id="countdown">5</span> seconds</p>
+            <p><a href="#" onclick="clearTimeout(redirectTimer)">자동 이동 취소 / Cancel Auto-redirect</a></p>
         </div>
     </div>
-
-    <script>
-        // Language detection and auto-redirect
-        function detectAndRedirect() {
-            // Check for saved language preference
-            const savedLang = localStorage.getItem('preferredLanguage');
-            if (savedLang) {
-                redirectToLanguage(savedLang);
-                return;
-            }
-            
-            // Detect browser language
-            const browserLang = navigator.language || navigator.userLanguage;
-            const langCode = browserLang.substring(0, 2).toLowerCase();
-            
-            // Auto-redirect after 3 seconds
-            setTimeout(() => {
-                if (langCode === 'ko') {
-                    redirectToLanguage('ko');
-                } else {
-                    redirectToLanguage('en'); // Default to English
-                }
-            }, 3000);
-        }
-        
-        function redirectToLanguage(lang) {
-            document.querySelector('.auto-redirect p').textContent = 
-                lang === 'ko' ? '한국어 페이지로 이동 중...' : 'Redirecting to English page...';
-            document.querySelector('.loading').style.display = 'block';
-            
-            setTimeout(() => {
-                window.location.href = `${lang}/index.html`;
-            }, 1000);
-        }
-        
-        function setLanguagePreference(lang) {
-            localStorage.setItem('preferredLanguage', lang);
-        }
-        
-        // Start language detection
-        detectAndRedirect();
-        
-        // Analytics and tracking (placeholder)
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'page_view', {
-                page_title: 'Language Selection',
-                page_location: window.location.href
-            });
-        }
-    </script>
     
-    <!-- Schema.org for root page -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Visual Rehabilitation Research Institute",
-        "alternateName": "시각재활 연구소",
-        "url": "https://visualrehab.kr",
-        "logo": "https://visualrehab.kr/assets/images/logo.png",
-        "description": "Revolutionary visual rehabilitation research institute with breakthrough medical technology solutions",
-        "foundingDate": "2022",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+82-2-1234-5678",
-            "contactType": "Business Development",
-            "email": "business@visualrehab.kr",
-            "availableLanguage": ["English", "Korean"]
-        },
-        "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "KR",
-            "addressRegion": "Seoul",
-            "addressLocality": "Gangnam-gu",
-            "streetAddress": "Teheran-ro, Visual Rehabilitation Research Center, 10F"
-        },
-        "sameAs": [
-            "https://www.linkedin.com/company/visual-rehab-research",
-            "https://www.researchgate.net/institution/Visual_Rehabilitation_Research_Institute"
-        ]
-    }
+    <script>
+        // 브라우저 언어 감지
+        const browserLang = navigator.language || navigator.userLanguage;
+        const isKorean = browserLang.startsWith('ko');
+        
+        // 5초 후 자동 리다이렉트 (한국어 우선)
+        let countdown = 5;
+        const countdownElement = document.getElementById('countdown');
+        
+        const redirectTimer = setTimeout(() => {
+            if (isKorean) {
+                window.location.href = 'ko/index.html';
+            } else {
+                window.location.href = 'ko/index.html'; // 기본값은 한국어
+            }
+        }, 5000);
+        
+        // 카운트다운 업데이트
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+            }
+        }, 1000);
+        
+        // 언어 카드 클릭 시 자동 리다이렉트 취소
+        document.querySelectorAll('.language-card').forEach(card => {
+            card.addEventListener('click', () => {
+                clearTimeout(redirectTimer);
+                clearInterval(countdownInterval);
+            });
+        });
     </script>
 </body>
 </html>

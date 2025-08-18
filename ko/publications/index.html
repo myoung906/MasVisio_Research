@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - MasVisio Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: white; line-height: 1.6; }
+        
+        /* Header Styles */
+        .header { 
+            background: white; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+        }
+        .navbar { 
+            padding: 0.5rem 0; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .container { 
+            padding: 0 2rem; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: #2c5282; 
+            text-decoration: none; 
+            letter-spacing: -0.5px; 
+            margin-bottom: 0.5rem;
+        }
+        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
+        
+        /* Navigation */
+        .nav-menu { 
+            display: flex; 
+            justify-content: center; 
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-list { 
+            list-style: none; 
+            display: flex; 
+            margin: 0; 
+            padding: 0;
+            gap: 0;
+        }
+        .nav-item { position: relative; margin: 0; }
+        .nav-link { 
+            display: block; 
+            color: #4a5568; 
+            font-weight: 500; 
+            padding: 1rem 1.5rem; 
+            text-decoration: none;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            border-right: 1px solid #e2e8f0;
+        }
+        .nav-link:hover { background: #f7fafc; color: #2c5282; }
+        
+        /* Main Content */
+        .main-content {
+            padding-top: 140px;
+            min-height: 100vh;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Publications Section */
+        .publications-section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-content {
+            padding: 0 2rem;
+        }
+        
+        /* Publications Statistics */
+        .pub-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #38a169;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            color: #4a5568;
+            font-weight: 500;
+        }
+        
+        /* Publications Filter */
+        .pub-filter {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 2rem;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #2c5282;
+            color: white;
+            border-color: #2c5282;
+        }
+        
+        /* Publication Entries */
+        .pub-entries {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .pub-header {
+            background: #f8fafc;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .entry-count {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c5282;
+        }
+        .pagination-nav {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .pagination-nav a {
+            padding: 0.5rem 1rem;
+            background: #e2e8f0;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .pagination-nav a:hover {
+            background: #2c5282;
+            color: white;
+        }
+        .pagination-nav .current {
+            background: #2c5282;
+            color: white;
+        }
+        
+        /* Publication List */
+        .pub-list {
+            padding: 0;
+        }
+        .pub-entry {
+            padding: 2rem;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.3s ease;
+        }
+        .pub-entry:hover {
+            background: #f8fafc;
+        }
+        .pub-entry:last-child {
+            border-bottom: none;
+        }
+        
+        .pub-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #38a169;
+            display: inline-block;
+        }
+        
+        .pub-item {
+            margin-bottom: 2rem;
+        }
+        .pub-authors {
+            font-weight: 600;
+            color: #2c5282;
+            margin-bottom: 0.5rem;
+        }
+        .pub-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .pub-journal {
+            color: #4a5568;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .pub-details {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #718096;
+            flex-wrap: wrap;
+        }
+        .pub-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .pub-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #e2e8f0;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .pub-link:hover {
+            background: #2c5282;
+            color: white;
+        }
+        .pub-abstract {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            border-left: 4px solid #38a169;
+        }
+        .abstract-title {
+            font-weight: 600;
+            color: #2c5282;
+            margin-bottom: 0.5rem;
+        }
+        .abstract-text {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        .footer { 
+            background: #2d3748; 
+            color: #a0aec0; 
+            padding: 2rem 0; 
+            text-align: center; 
+            margin-top: 5rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .page-title { font-size: 2.5rem; }
+            .page-subtitle { font-size: 1.1rem; }
+            .pub-stats { grid-template-columns: repeat(2, 1fr); }
+            .filter-buttons { flex-direction: column; align-items: center; }
+            .pub-header { flex-direction: column; gap: 1rem; text-align: center; }
+            .pub-details { flex-direction: column; gap: 0.5rem; }
+            .pub-actions { flex-direction: column; }
+            .section-content { padding: 0 1rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title { font-size: 2rem; }
+            .pub-stats { grid-template-columns: 1fr; }
+            .pub-entry { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-eye"></i>
+                    MasVisio Research
+                </a>
+                
+                <nav class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">About us</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Research</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">What we offer</a></li>
+                        <li class="nav-item"><a href="../research/current-studies.html" class="nav-link">Current Studies</a></li>
+                        <li class="nav-item"><a href="index.html" class="nav-link">Publications</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Media</a></li>
+                        <li class="nav-item"><a href="../contact/index.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-title">Publications</h1>
+                <p class="page-subtitle">
+                    Regular publication of the latest study results at international conferences 
+                    and in professional journals. Our research contributes to the advancement 
+                    of vision rehabilitation and neural interface technologies.
+                </p>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section class="publications-section">
+            <div class="section-content">
+                <!-- Publication Statistics -->
+                <div class="pub-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">45</div>
+                        <div class="stat-label">Total Publications</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">28</div>
+                        <div class="stat-label">Journal Articles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">17</div>
+                        <div class="stat-label">Conference Papers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1,240</div>
+                        <div class="stat-label">Total Citations</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8.5</div>
+                        <div class="stat-label">Average Impact Factor</div>
+                    </div>
+                </div>
+                
+                <!-- Filter Buttons -->
+                <div class="pub-filter">
+                    <div class="filter-buttons">
+                        <a href="#" class="filter-btn active">All Publications</a>
+                        <a href="#" class="filter-btn">Journal Articles</a>
+                        <a href="#" class="filter-btn">Conference Papers</a>
+                        <a href="#" class="filter-btn">Book Chapters</a>
+                        <a href="#" class="filter-btn">Patents</a>
+                    </div>
+                </div>
+                
+                <!-- Publications List -->
+                <div class="pub-entries">
+                    <div class="pub-header">
+                        <div class="entry-count">45 entries</div>
+                        <div class="pagination-nav">
+                            <a href="#">«</a>
+                            <a href="#">‹</a>
+                            <a href="#" class="current">1 of 3</a>
+                            <a href="#">›</a>
+                            <a href="#">»</a>
+                        </div>
+                    </div>
+                    
+                    <div class="pub-list">
+                        <!-- 2024 Publications -->
+                        <div class="pub-entry">
+                            <div class="pub-year">2024</div>
+                            
+                            <div class="pub-item">
+                                <div class="pub-authors">Kim, S.H.; Lee, J.M.; Park, M.K.; Seo, W.J.</div>
+                                <div class="pub-title">Adaptive Neural Stimulation Protocols for Retinal Prosthetics: A Machine Learning Approach</div>
+                                <div class="pub-journal">Journal of Neural Engineering, vol. 21, iss. 3, pp. 156-172, 2024, ISSN: 1741-2552</div>
+                                <div class="pub-details">
+                                    <span><strong>Impact Factor:</strong> 4.551</span>
+                                    <span><strong>Citations:</strong> 8</span>
+                                    <span><strong>DOI:</strong> 10.1088/1741-2552/ad2f3c</span>
+                                </div>
+                                <div class="pub-actions">
+                                    <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
+                                </div>
+                                <div class="pub-abstract">
+                                    <div class="abstract-title">Abstract</div>
+                                    <div class="abstract-text">
+                                        This study presents a novel machine learning approach for optimizing neural stimulation 
+                                        protocols in retinal prosthetic devices. We developed adaptive algorithms that personalize 
+                                        stimulation parameters based on individual patient responses and visual cortex mapping. 
+                                        The system demonstrated 35% improvement in visual acuity compared to fixed stimulation protocols 
+                                        in a cohort of 24 patients with retinal degenerative diseases.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="pub-item">
+                                <div class="pub-authors">Choi, H.S.; Kim, Y.R.; Lee, D.W.</div>
+                                <div class="pub-title">Biocompatibility Assessment of Novel Graphene-Based Neural Electrodes</div>
+                                <div class="pub-journal">Biomaterials, vol. 315, pp. 120945, 2024, ISSN: 0142-9612</div>
+                                <div class="pub-details">
+                                    <span><strong>Impact Factor:</strong> 14.0</span>
+                                    <span><strong>Citations:</strong> 15</span>
+                                    <span><strong>DOI:</strong> 10.1016/j.biomaterials.2024.120945</span>
+                                </div>
+                                <div class="pub-actions">
+                                    <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
+                                </div>
+                                <div class="pub-abstract">
+                                    <div class="abstract-title">Abstract</div>
+                                    <div class="abstract-text">
+                                        We evaluated the long-term biocompatibility of graphene-based neural electrodes for 
+                                        visual prosthetic applications. In vitro and in vivo studies demonstrated excellent 
+                                        biocompatibility with minimal inflammatory response over 12 months. The electrodes 
+                                        maintained stable electrical properties and showed superior performance compared to 
+                                        traditional silicon-based interfaces.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 2023 Publications -->
+                        <div class="pub-entry">
+                            <div class="pub-year">2023</div>
+                            
+                            <div class="pub-item">
+                                <div class="pub-authors">Park, J.H.; Kim, S.H.; Lee, M.J.; Wang, X.</div>
+                                <div class="pub-title">VR-Based Rehabilitation Training for Low Vision Patients: Clinical Trial Results</div>
+                                <div class="pub-journal">IEEE Transactions on Neural Systems and Rehabilitation Engineering, vol. 31, pp. 2845-2856, 2023</div>
+                                <div class="pub-details">
+                                    <span><strong>Impact Factor:</strong> 4.9</span>
+                                    <span><strong>Citations:</strong> 23</span>
+                                    <span><strong>DOI:</strong> 10.1109/TNSRE.2023.3287456</span>
+                                </div>
+                                <div class="pub-actions">
+                                    <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
+                                </div>
+                            </div>
+                            
+                            <div class="pub-item">
+                                <div class="pub-authors">Lee, K.W.; Seo, H.J.; Kim, T.Y.</div>
+                                <div class="pub-title">Real-time Object Recognition for AI-Powered Visual Prosthetics</div>
+                                <div class="pub-journal">Conference: IEEE International Conference on Robotics and Automation (ICRA), 2023</div>
+                                <div class="pub-details">
+                                    <span><strong>Conference Rank:</strong> A+</span>
+                                    <span><strong>Citations:</strong> 12</span>
+                                    <span><strong>Pages:</strong> 8456-8463</span>
+                                </div>
+                                <div class="pub-actions">
+                                    <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 2022 Publications -->
+                        <div class="pub-entry">
+                            <div class="pub-year">2022</div>
+                            
+                            <div class="pub-item">
+                                <div class="pub-authors">Kim, M.H.; Park, S.J.; Lee, Y.K.; Johnson, R.</div>
+                                <div class="pub-title">Cortical Visual Prosthesis: Long-term Safety and Efficacy Study</div>
+                                <div class="pub-journal">Nature Biomedical Engineering, vol. 6, pp. 1247-1261, 2022</div>
+                                <div class="pub-details">
+                                    <span><strong>Impact Factor:</strong> 25.7</span>
+                                    <span><strong>Citations:</strong> 47</span>
+                                    <span><strong>DOI:</strong> 10.1038/s41551-022-00945-8</span>
+                                </div>
+                                <div class="pub-actions">
+                                    <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
+                                    <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
+                                </div>
+                                <div class="pub-abstract">
+                                    <div class="abstract-title">Abstract</div>
+                                    <div class="abstract-text">
+                                        This landmark study reports the results of a 5-year clinical trial evaluating the safety 
+                                        and efficacy of cortical visual prosthesis in 18 patients with complete blindness. 
+                                        The device demonstrated stable performance with 72% of patients achieving functional 
+                                        vision improvement. No serious adverse events related to the implant were observed, 
+                                        establishing the foundation for next-generation visual prosthetics.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

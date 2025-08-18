@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시각인지 연구 - 통합 바이오메트릭스 기반 질환 예측 알고리즘</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #fafafa; 
+            line-height: 1.6; 
+            color: #333;
+        }
+        
+        /* Header Styles */
+        .header { 
+            background: white; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+        }
+        .navbar { 
+            padding: 0.5rem 0; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .container { 
+            padding: 0 2rem; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: #2c5282; 
+            text-decoration: none; 
+            letter-spacing: -0.5px; 
+            margin-bottom: 0.5rem;
+        }
+        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
+        
+        /* Navigation */
+        .nav-menu { 
+            display: flex; 
+            justify-content: center; 
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-list { 
+            list-style: none; 
+            display: flex; 
+            margin: 0; 
+            padding: 0;
+            gap: 0;
+        }
+        .nav-item { position: relative; margin: 0; }
+        .nav-link { 
+            display: block; 
+            color: #4a5568; 
+            font-weight: 500; 
+            padding: 1rem 1.5rem; 
+            text-decoration: none;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            border-right: 1px solid #e2e8f0;
+        }
+        .nav-link:hover, .nav-link.active { background: #f7fafc; color: #2c5282; }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: absolute;
+            right: 4rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .lang-btn:hover {
+            background: #2c5282;
+            color: white;
+            border-color: #2c5282;
+        }
+        
+        .lang-btn.active {
+            background: #2c5282;
+            color: white;
+            border-color: #2c5282;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding-top: 140px;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 3rem 0;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+            margin-bottom: 3rem;
+            margin-left: -2rem;
+            margin-right: -2rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .breadcrumb a {
+            color: #2c5282;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .page-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.7;
+            max-width: 800px;
+        }
+        
+        /* Research Content Sections */
+        .research-section {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .section-content {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+        
+        /* Research Images */
+        .research-images {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .research-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .research-image img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .research-image img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .image-caption {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* Research Stats */
+        .research-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #2c5282;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        /* Methodology List */
+        .methodology-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .methodology-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #f1f5f9;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .methodology-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #2c5282;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .methodology-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Results Highlights */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .result-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        
+        .result-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .result-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="../ko/index.html" class="logo">
+                    <i class="fas fa-eye"></i>
+                    MasVisio Research
+                </a>
+                <div class="language-toggle">
+                    <a href="#" class="lang-btn active" onclick="switchLanguage('ko')">KO</a>
+                    <a href="#" class="lang-btn" onclick="switchLanguage('en')">EN</a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../../index.html" class="nav-link">홈</a></li>
+                        <li class="nav-item"><a href="../overview.html" class="nav-link active">연구</a></li>
+                        <li class="nav-item"><a href="../../publications/index.html" class="nav-link">논문</a></li>
+                        <li class="nav-item"><a href="../../team/index.html" class="nav-link">연구진</a></li>
+                        <li class="nav-item"><a href="../../partnership/index.html" class="nav-link">파트너십</a></li>
+                        <li class="nav-item"><a href="../../contact/index.html" class="nav-link">연락처</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="../../index.html">홈</a> > 
+                <a href="../overview.html">연구</a> > 
+                시각인지 연구
+            </div>
+            <h1 class="page-title">통합 바이오메트릭스 기반 질환 예측 알고리즘</h1>
+            <p class="page-subtitle">
+                동공 동역학과 대비감도를 통합한 47개 바이오마커 기반으로 신경·대사·심리 상태를 동시 평가하는 혁신적 플랫폼
+            </p>
+        </div>
+
+        <!-- 연구 목표 섹션 -->
+        <section class="research-section">
+            <h2 class="section-title">
+                <i class="fas fa-bullseye" style="color: #38a169; margin-right: 0.5rem;"></i>
+                연구 목표
+            </h2>
+            <div class="section-content">
+                <p>
+                    자율신경계 기능, 망막 대비감도(CSF), 인지·심리 상태를 반영하는 동공 반응 지표와 대비감도를 결합해, 
+                    <strong>당뇨망막병증·녹내장·경도인지장애(MCI)·심리 성향(성적 선호·스트레스 반응)</strong>까지 
+                    포괄하는 단일 스크리닝 알고리즘을 개발하는 것입니다.
+                </p>
+                <div class="research-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">47</div>
+                        <div class="stat-label">추출 바이오마커</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">주요 질환 카테고리</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">90%+</div>
+                        <div class="stat-label">평균 진단 정확도</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3분</div>
+                        <div class="stat-label">검사 소요 시간</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 연구 방법론 섹션 -->
+        <section class="research-section">
+            <h2 class="section-title">
+                <i class="fas fa-microscope" style="color: #38a169; margin-right: 0.5rem;"></i>
+                연구 방법론
+            </h2>
+            <div class="section-content">
+                <div class="methodology-list">
+                    <li><strong>피험자:</strong> 20–30대 성인 36명(남 21명, 여 15명)</li>
+                    <li><strong>측정 장비:</strong> Basler acA 1300‑60 gm NIR 산업용 카메라(±1 μm, ±15 ms), 25 mm 고정 초점 렌즈, 적외선 LED 조명</li>
+                    <li><strong>촬영 환경:</strong> 60 ± 20 Lux 환경에서 66 fps 고속 촬영</li>
+                    <li><strong>자극 유형:</strong> 기준선(Blank), 기하학 도형 4종, 남성 얼굴 2종, 여성 얼굴 2종(총 9종)</li>
+                    <li><strong>측정 프로토콜:</strong> 각 자극 20초 반복, 총 3분 측정</li>
+                    <li><strong>바이오마커 분류:</strong> 시간 역학 12개, 복잡성 10개, 주파수 영역 8개, 형태학 7개, 통계 분포 6개, 적응 반응 4개</li>
+                    <li><strong>대비감도(CSF):</strong> qCSF(active learning)로 저·중·고 주파수별 최소 대비 검출 곡선 추정</li>
+                    <li><strong>라이프스타일 보정:</strong> 흡연(11명 vs 비흡연 25명), 카페인 섭취 수준(고·중·저) 정보 활용</li>
+                </div>
+                
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #2c5282; font-size: 1.3rem;">
+                    시간적 복잡성 분석 기법
+                </h3>
+                <ul style="margin-left: 2rem; color: #4a5568;">
+                    <li><strong>Sample Entropy:</strong> SampEn=–ln(A/B), m=2, r=0.15×SD</li>
+                    <li><strong>DFA α:</strong> 장기 기억 특성 분석</li>
+                    <li><strong>프랙탈 차원:</strong> 동공 운동의 복잡성 정량화</li>
+                    <li><strong>순열 엔트로피:</strong> 패턴 복잡도 측정</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 실험 환경 및 장비 섹션 -->
+        <section class="research-section">
+            <h2 class="section-title">
+                <i class="fas fa-microscope" style="color: #38a169; margin-right: 0.5rem;"></i>
+                실험 환경 및 장비
+            </h2>
+            <div class="section-content">
+                <div class="research-images">
+                    <div class="research-image" style="max-width: 600px; margin: 0 auto;">
+                        <img src="../../assets/images/research/visual-cognition-research.png" alt="Visual Cognition Research Lab" />
+                        <div class="image-caption">
+                            시각인지 연구 실험실<br>
+                            Basler acA 1300‑60 gm NIR 카메라 및 동공 측정 시설 구축 현황
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; font-size: 1rem; line-height: 1.7; color: #4a5568;">
+                    고정밀 산업용 NIR 카메라와 적외선 LED 조명을 활용한 66fps 고속 촬영 환경에서 
+                    동공 반응의 미세한 변화까지 정확하게 포착합니다. 통제된 조명 환경(60±20 Lux)에서 
+                    다양한 시각 자극에 대한 동공의 시간적, 공간적 반응 패턴을 실시간으로 분석합니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- 주요 연구 결과 섹션 -->
+        <section class="research-section">
+            <h2 class="section-title">
+                <i class="fas fa-chart-line" style="color: #38a169; margin-right: 0.5rem;"></i>
+                주요 연구 결과
+            </h2>
+            <div class="section-content">
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-title">당뇨망막병증 자율신경병증</div>
+                        <div class="result-value">0.92</div>
+                        <div class="result-description">AUC 진단 성능</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-title">녹내장 초기 손상</div>
+                        <div class="result-value">0.88</div>
+                        <div class="result-description">AUC 진단 성능</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-title">경도인지장애(MCI)</div>
+                        <div class="result-value">0.90</div>
+                        <div class="result-description">AUC 진단 성능</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-title">심리 성향 분류</div>
+                        <div class="result-value">0.85</div>
+                        <div class="result-description">성적 선호·스트레스 반응</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #2c5282; font-size: 1.3rem;">
+                    질환별 위험도 분석
+                </h3>
+                <div class="research-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">60.9%</div>
+                        <div class="stat-label">당뇨망막병증<br>(95%CI: 58.2–63.6%)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">34.3%</div>
+                        <div class="stat-label">파킨슨병<br>(95%CI: 31.7–36.9%)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">33.0%</div>
+                        <div class="stat-label">다발성경화증<br>(95%CI: 30.5–35.5%)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">30%↑</div>
+                        <div class="stat-label">민감도·특이도<br>평균 향상</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 개인차 및 성별 보정 섹션 -->
+        <section class="research-section">
+            <h2 class="section-title">
+                <i class="fas fa-users" style="color: #38a169; margin-right: 0.5rem;"></i>
+                개인차 및 성별 보정
+            </h2>
+            <div class="section-content">
+                <div class="methodology-list">
+                    <li><strong>성별 차이:</strong> 여성 SampEn 1.18 ± 0.21 vs 남성 1.09 ± 0.19 (d=0.45, p=0.032)</li>
+                    <li><strong>CSF 패턴:</strong> 중·고주파 대역 손실이 여성에서 더 두드러짐</li>
+                    <li><strong>흡연 영향:</strong> 흡연자 즉시 반응 비율 39.6% vs 비흡연 42.7% (OR=0.88, p=0.004)</li>
+                    <li><strong>카페인 효과:</strong> 고섭취군 최대 팽창 7% 증가 (p=0.006)</li>
+                    <li><strong>자극별 특성:</strong> 기하학 도형 자극에서 최고 복잡성(SampEn=1.23 ± 0.18) vs 기준선 0.97 ± 0.15</li>
+                    <li><strong>얼굴 자극 반응:</strong> 시간적 복잡성 증가 + 중주파 CSF 유지, 인지·사회정서 평가에 유용</li>
+                </div>
+            </div>
+        </section>
+
+        <!-- 질환별 위험도 분석 결과 섹션 -->
+        <section class="research-section">
+            <h2 class="section-title">
+                <i class="fas fa-chart-bar" style="color: #38a169; margin-right: 0.5rem;"></i>
+                질환별 위험도 분석 결과
+            </h2>
+            <div class="section-content">
+                <p style="margin-bottom: 2rem; font-size: 1rem; line-height: 1.7; color: #4a5568;">
+                    47개 바이오마커를 통합한 알고리즘으로 다양한 신경질환의 위험도를 정량적으로 평가한 결과입니다. 
+                    각 질환별로 특징적인 동공 반응 패턴과 대비감도 변화를 기반으로 위험도 점수를 산출하였습니다.
+                </p>
+                <div class="research-images">
+                    <div class="research-image" style="max-width: 800px; margin: 0 auto;">
+                        <img src="../../assets/images/research/disease-risk-analysis.png" alt="Disease Risk Score Distribution Analysis" />
+                        <div class="image-caption">
+                            질환별 위험도 점수 분포 분석<br>
+                            동공 바이오마커 기반 10개 신경질환 위험도 평가 결과 (Violin Plot)
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 0.5rem; border-left: 4px solid #2c5282;">
+                    <h4 style="color: #2c5282; margin-bottom: 1rem; font-size: 1.2rem;">주요 발견사항</h4>
+                    <ul style="color: #4a5568; line-height: 1.7;">
+                        <li><strong>당뇨망막병증:</strong> 가장 높은 위험도 분포 (60.9%, CI: 58.2-63.6%)</li>
+                        <li><strong>자율신경병증/녹내장:</strong> 중등도 위험도로 조기 발견 가능</li>
+                        <li><strong>파킨슨병/다발성경화증:</strong> 특징적 바이오마커 패턴 확인</li>
+                        <li><strong>알츠하이머/우울증/ADHD:</strong> 심리신경학적 지표 반영</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 결론 및 의의 섹션 -->
+        <section class="research-section">
+            <h2 class="section-title">
+                <i class="fas fa-lightbulb" style="color: #38a169; margin-right: 0.5rem;"></i>
+                결론 및 의의
+            </h2>
+            <div class="section-content">
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">
+                    <strong>동공 동역학과 대비감도를 통합한 47개 바이오마커 기반 알고리즘</strong>은 한 번의 비침습적 검사로 
+                    신경·대사·심리 상태를 동시 평가하는 혁신적 플랫폼입니다.
+                </p>
+                
+                <h3 style="margin-bottom: 1rem; color: #2c5282; font-size: 1.3rem;">임상 적용 가능성</h3>
+                <div class="methodology-list">
+                    <li><strong>임상 진단:</strong> 조기 질환 스크리닝 및 위험도 평가</li>
+                    <li><strong>원격 헬스케어:</strong> 재택 모니터링 시스템 구축</li>
+                    <li><strong>AR/VR 인터페이스:</strong> 적응형 사용자 경험 최적화</li>
+                    <li><strong>AI 예측 모델:</strong> 개인 맞춤형 건강 관리 시스템</li>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; border-radius: 0.5rem; margin: 2rem 0; text-align: center;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.4rem;">혁신적 성과</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.6;">
+                        3분 검사로 4개 질환 카테고리를 90% 이상 정확도로 예측하는<br>
+                        세계 최초의 통합 바이오메트릭스 플랫폼 개발
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: #2d3748; color: #a0aec0; padding: 2rem 0; text-align: center; margin-top: 5rem;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <p style="margin-bottom: 1rem;">&copy; 2025 MasVisio Research. All rights reserved.</p>
+            <p style="font-size: 0.9rem; opacity: 0.8;">
+                KAIST 바이오및뇌공학과 | 시각재활 연구실 | 
+                <a href="mailto:research@masvisio.kr" style="color: #38a169;">research@masvisio.kr</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function switchLanguage(lang) {
+            // 언어 전환 버튼 상태 업데이트
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // 언어별 콘텐츠 전환 (추후 구현)
+            if (lang === 'en') {
+                alert('영어 버전은 준비 중입니다.');
+            }
+        }
+
+        // 스크롤 시 헤더 그림자 효과
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+    
+    <!-- 이미지 로딩 디버깅 스크립트 -->
+    <script>
+        // 페이지 로드 후 이미지 상태 확인
+        window.onload = function() {
+            console.log('=== 이미지 로딩 상태 체크 ===');
+            
+            const images = document.querySelectorAll('.research-image img');
+            console.log('총 이미지 개수:', images.length);
+            
+            images.forEach(function(img, index) {
+                console.log(`\n이미지 ${index + 1}:`);
+                console.log('- 경로:', img.src);
+                console.log('- alt 텍스트:', img.alt);
+                console.log('- 자연 크기:', img.naturalWidth + 'x' + img.naturalHeight);
+                console.log('- 완전히 로딩됨:', img.complete);
+                
+                if (img.complete && img.naturalWidth === 0) {
+                    console.error('❌ 이미지 로딩 실패 - 파일을 찾을 수 없습니다');
+                } else if (img.complete && img.naturalWidth > 0) {
+                    console.log('✅ 이미지 로딩 성공');
+                }
+            });
+        };
+    </script>
+</body>
+</html>
