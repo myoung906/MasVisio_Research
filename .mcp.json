@@ -1,0 +1,90 @@
+{
+  "mcpServers": {
+    "latest-science-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/Users/workspace/mvr_webpage/mcp_server/node_modules/@futurelab-studio/latest-science-mcp/dist/server.js"
+      ],
+      "env": {}
+    },
+    "filesystem": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Applications/XAMPP/xamppfiles/htdocs/mvr"
+      ]
+    },
+    "git": {
+      "type": "stdio",
+      "command": "python3",
+      "args": [
+        "-m",
+        "mcp_server_git",
+        "--repository",
+        "/Users/workspace/mvr_webpage"
+      ]
+    },
+    "googleSearch": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "g-search-mcp"
+      ]
+    },
+    "text-editor": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "mcp-server-text-editor"
+      ]
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    },
+    "fetch": {
+      "type": "stdio",
+      "command": "python3",
+      "args": [
+        "-m",
+        "mcp_server_fetch"
+      ]
+    },
+    "memory": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/Users/workspace/mvr_webpage/node_modules/@modelcontextprotocol/server-memory/dist/index.js"
+      ],
+      "env": {
+        "MEMORY_FILE_PATH": "/Users/workspace/mvr_webpage/memory.json"
+      }
+    },
+    "terminal": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@dillip285/mcp-terminal"
+      ]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp",
+        "--browser",
+        "chromium"
+      ]
+    }
+  }
+}
