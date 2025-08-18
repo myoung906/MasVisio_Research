@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@modelcontextprotocol/server-memory": "^2025.4.25",
+    "playwright": "^1.20.0"
+  }
+}

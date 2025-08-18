@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="시각재활 연구팀 연락처 - 파트너십 및 협력 문의">
+    <meta name="keywords" content="시각재활, 연구팀, 연락처, 파트너십, 협력문의">
+    <title>연락처 | 시각재활 연구결과</title>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1 class="logo">시각재활 연구소</h1>
+                    <span class="tagline">Visual Rehabilitation Research</span>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="research-overview.html" class="nav-link">연구개요</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="experimental-results.html" class="nav-link">실험결과</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="technical-specs.html" class="nav-link">기술사양</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="commercial-value.html" class="nav-link">상업적가치</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partnership.html" class="nav-link">파트너십</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link active">연락처</a>
+                    </li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="contact-hero-content">
+                <h1 class="page-title">연락처</h1>
+                <p class="page-subtitle">
+                    시각재활 분야의 혁신적 기회에 대해 함께 논의해보세요. 
+                    언제든지 연락을 기다리고 있겠습니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h2 class="form-title">파트너십 문의</h2>
+                    <p class="form-description">
+                        아래 양식을 작성해 주시면 24시간 내에 답변해드리겠습니다.
+                    </p>
+                    
+                    <form action="contact_handler.php" method="POST" class="inquiry-form">
+                        <div class="form-group">
+                            <label for="name">성명 *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">회사/기관명 *</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="position">직책</label>
+                            <input type="text" id="position" name="position">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">이메일 *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">연락처</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="inquiry_type">문의 유형 *</label>
+                            <select id="inquiry_type" name="inquiry_type" required>
+                                <option value="">선택해주세요</option>
+                                <option value="buyer">바이어 - 라이선싱 문의</option>
+                                <option value="sponsor">스폰서 - 투자 문의</option>
+                                <option value="collaboration">공동 연구 협력</option>
+                                <option value="media">미디어 및 언론</option>
+                                <option value="other">기타</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">제목 *</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">메시지 *</label>
+                            <textarea id="message" name="message" rows="6" required 
+                                placeholder="구체적인 문의 내용을 작성해주세요. 관심 분야, 예상 투자 규모, 협력 방식 등을 포함해 주시면 더 정확한 답변을 드릴 수 있습니다."></textarea>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="privacy_agreement" required>
+                                <span class="checkmark"></span>
+                                개인정보 수집 및 이용에 동의합니다. *
+                            </label>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="marketing_agreement">
+                                <span class="checkmark"></span>
+                                연구 성과 및 이벤트 관련 이메일 수신에 동의합니다.
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-large">
+                            문의 보내기
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h3 class="info-title">연구팀 정보</h3>
+                    
+                    <div class="info-card">
+                        <h4 class="info-subtitle">주 연구책임자</h4>
+                        <p><strong>김연구 박사</strong></p>
+                        <p>시각재활 전문의</p>
+                        <p>📧 research@visualrehab.kr</p>
+                        <p>📞 +82-2-1234-5678</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4 class="info-subtitle">사업개발팀</h4>
+                        <p><strong>이사업 이사</strong></p>
+                        <p>사업개발 및 파트너십</p>
+                        <p>📧 business@visualrehab.kr</p>
+                        <p>📞 +82-2-1234-5679</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4 class="info-subtitle">연구소 위치</h4>
+                        <p>서울특별시 강남구 테헤란로</p>
+                        <p>시각재활연구센터 빌딩 10층</p>
+                        <p>🚇 강남역 2번 출구 도보 5분</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4 class="info-subtitle">운영 시간</h4>
+                        <p>평일: 09:00 - 18:00</p>
+                        <p>점심: 12:00 - 13:00</p>
+                        <p>주말 및 공휴일 휴무</p>
+                        <p class="note">긴급 문의는 이메일로 연락주세요</p>
+                    </div>
+                    
+                    <div class="response-time">
+                        <h4 class="info-subtitle">응답 시간</h4>
+                        <div class="response-item">
+                            <span class="response-type">🚀 일반 문의</span>
+                            <span class="response-duration">24시간 이내</span>
+                        </div>
+                        <div class="response-item">
+                            <span class="response-type">💼 사업 문의</span>
+                            <span class="response-duration">12시간 이내</span>
+                        </div>
+                        <div class="response-item">
+                            <span class="response-type">📊 투자 문의</span>
+                            <span class="response-duration">즉시 전화 연락</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">자주 묻는 질문</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-question">라이선싱 최소 계약 기간은 얼마인가요?</h3>
+                    <p class="faq-answer">
+                        일반적으로 3-5년의 초기 계약 기간을 제안하며, 
+                        상호 합의하에 연장 가능합니다. 프로젝트 규모에 따라 조정 가능합니다.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">투자 최소 금액이 있나요?</h3>
+                    <p class="faq-answer">
+                        최소 투자 금액은 5억원부터 시작하며, 
+                        투자 규모에 따라 지분율과 의사결정 참여도가 결정됩니다.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">기술 이전 과정은 어떻게 되나요?</h3>
+                    <p class="faq-answer">
+                        기술 이전은 6-12개월 과정으로, 초기 평가, 계약 협상, 
+                        기술 문서 이전, 교육 및 지원 단계로 진행됩니다.
+                    </p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">해외 기업도 파트너십이 가능한가요?</h3>
+                    <p class="faq-answer">
+                        네, 글로벌 파트너십을 환영합니다. 
+                        각국의 의료기기 규정에 맞는 맞춤형 솔루션을 제공합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">시각재활 연구소</h3>
+                    <p class="footer-description">
+                        혁신적인 시각재활 기술 개발을 통해 
+                        더 나은 미래를 만들어갑니다.
+                    </p>
+                    <div class="footer-contact">
+                        <p>📧 research@visualrehab.kr</p>
+                        <p>📞 +82-2-1234-5678</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">빠른 링크</h4>
+                    <ul class="footer-links">
+                        <li><a href="research-overview.html">연구 개요</a></li>
+                        <li><a href="experimental-results.html">실험 결과</a></li>
+                        <li><a href="technical-specs.html">기술 사양</a></li>
+                        <li><a href="commercial-value.html">상업적 가치</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">파트너십</h4>
+                    <ul class="footer-links">
+                        <li><a href="partnership.html">협력 기회</a></li>
+                        <li><a href="contact.html">연락처</a></li>
+                        <li><a href="#privacy">개인정보처리방침</a></li>
+                        <li><a href="#terms">이용약관</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2025 시각재활 연구소. All rights reserved.
+                </p>
+                <p class="disclaimer">
+                    본 연구결과는 임상시험 데이터를 기반으로 하며, 
+                    상업적 적용 시 추가 검증이 필요할 수 있습니다.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
