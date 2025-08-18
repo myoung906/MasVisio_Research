@@ -4,880 +4,620 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>연구 성과 - MasVisio Research</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: white; line-height: 1.6; }
-        
-        /* Header */
-        .header { 
-            background: white; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            z-index: 1000; 
-        }
-        .navbar { 
-            padding: 0.5rem 0; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-        }
-        .container { 
-            padding: 0 2rem; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-        }
-        
-        .logo { 
-            display: flex; 
-            align-items: center; 
-            gap: 0.5rem; 
-            font-family: 'Arial', sans-serif; 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            color: #2c5282; 
-            text-decoration: none; 
-            letter-spacing: -0.5px; 
-            margin-bottom: 0.5rem;
-        }
-        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
-        .logo:hover { color: #2c5282; }
-        
-        .nav-menu { 
-            display: flex; 
-            justify-content: center; 
-            background: white;
-            border-top: 1px solid #e2e8f0;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .nav-list { 
-            list-style: none; 
-            display: flex; 
-            margin: 0; 
-            padding: 0;
-            gap: 0;
-        }
-        .nav-item { position: relative; margin: 0; }
-        .nav-link { 
-            display: block; 
-            color: #4a5568; 
-            font-weight: 500; 
-            padding: 1rem 1.5rem; 
-            text-decoration: none;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            border-right: 1px solid #e2e8f0;
-        }
-        .nav-item:last-child .nav-link { border-right: none; }
-        .nav-link:hover { background: #f7fafc; color: #2c5282; }
-        
-        /* Main Content */
-        main { margin-top: 120px; min-height: calc(100vh - 200px); }
-        
-        /* Publications Header */
-        .publications-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        .publications-content { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
-        .page-title { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
-        .page-subtitle { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; }
-        .page-stats { display: flex; justify-content: center; gap: 3rem; }
-        .stat-item { text-align: center; }
-        .stat-number { font-size: 2.5rem; font-weight: 700; display: block; }
-        .stat-label { font-size: 0.9rem; opacity: 0.8; }
-        
-        /* Filter Section */
-        .filter-section {
-            background: #f8fafc;
-            padding: 2rem 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .filter-content { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
-        .filter-title { font-size: 1.3rem; font-weight: 600; color: #2d3748; margin-bottom: 1rem; }
-        .filter-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .filter-btn {
-            padding: 0.8rem 1.5rem;
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 2rem;
-            color: #4a5568;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: #2c5282;
-            border-color: #2c5282;
-            color: white;
-        }
-        
-        /* Publications List */
-        .publications-list {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-        .pub-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        .entry-count {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c5282;
-        }
-        
-        /* Individual Publication */
-        .pub-item {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-        .pub-item:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-        
-        .pub-authors { 
-            color: #4a5568; 
-            font-size: 0.9rem; 
-            margin-bottom: 0.5rem; 
-            font-weight: 500; 
-        }
-        .pub-title { 
-            font-size: 1.3rem; 
-            font-weight: 600; 
-            color: #2c5282; 
-            margin-bottom: 1rem; 
-            line-height: 1.4; 
-        }
-        .pub-journal { 
-            color: #718096; 
-            font-size: 0.9rem; 
-            margin-bottom: 1rem; 
-            font-style: italic; 
-        }
-        
-        .pub-details {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .pub-details span {
-            background: #f7fafc;
-            padding: 0.3rem 0.8rem;
-            border-radius: 1rem;
-            font-size: 0.8rem;
-            color: #4a5568;
-        }
-        
-        .pub-actions {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .pub-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: #e2e8f0;
-            color: #4a5568;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-        }
-        .pub-link:hover { background: #2c5282; color: white; }
-        
-        .pub-abstract {
-            border-top: 1px solid #e2e8f0;
-            padding-top: 1.5rem;
-        }
-        .abstract-title {
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 1rem;
-        }
-        .abstract-text {
-            color: #4a5568;
-            line-height: 1.7;
-            text-align: justify;
-        }
-        
-        /* Footer */
-        .footer { 
-            background: #2d3748; 
-            color: #a0aec0; 
-            padding: 2rem 0; 
-            text-align: center; 
-        }
-        
-        /* Mobile */
-        @media (max-width: 768px) {
-            .page-title { font-size: 2.5rem; }
-            .page-subtitle { font-size: 1.1rem; }
-            .page-stats { flex-direction: column; gap: 1rem; }
-            .filter-buttons { justify-content: center; }
-            .pub-header { flex-direction: column; gap: 1rem; text-align: center; }
-            .pub-details { gap: 1rem; }
-            .pub-actions { flex-wrap: wrap; }
-            .publications-content { padding: 0 1rem; }
-            .filter-content { padding: 0 1rem; }
-            .publications-list { padding: 2rem 1rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <!-- Header -->
+    <!-- 헤더 -->
     <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <a href="../index.html" class="logo">
-                    <i class="fas fa-eye"></i>
-                    MasVisio Research
-                </a>
-                
-                <nav class="nav-menu">
-                    <ul class="nav-list">
-                        <li class="nav-item"><a href="../index.html" class="nav-link">홈</a></li>
-                        <li class="nav-item"><a href="../team/index.html" class="nav-link">연구진</a></li>
-                        <li class="nav-item"><a href="../research/overview.html" class="nav-link">연구 분야</a></li>
-                        <li class="nav-item"><a href="index.html" class="nav-link">연구 성과</a></li>
-                        <li class="nav-item"><a href="../contact/index.html" class="nav-link">연락처</a></li>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="../index.html">
+                        <img src="../../assets/images/logo.png" alt="MasVisio Research">
+                    </a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-menu">
+                        <li><a href="../index.html">홈</a></li>
+                        <li><a href="../projects/index.html">연구 프로젝트</a></li>
+                        <li><a href="../publications/index.html" class="active">연구 성과</a></li>
+                        <li><a href="../team/index.html">연구진</a></li>
+                        <li><a href="../contact/index.html">연락처</a></li>
                     </ul>
+                    <div class="language-switcher">
+                        <a href="../../en/publications/index.html">EN</a>
+                    </div>
                 </nav>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Publications Header -->
-        <section class="publications-header">
-            <div class="publications-content">
-                <h1 class="page-title">연구 성과</h1>
-                <p class="page-subtitle">
-                    시각재활 분야의 혁신적 연구 결과와 학술 기여를 소개합니다
-                </p>
-                <div class="page-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">22</span>
-                        <div class="stat-label">총 연구논문</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">3</span>
-                        <div class="stat-label">주요 연구 분야</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">10+</span>
-                        <div class="stat-label">연구 활동 년수</div>
-                    </div>
-                </div>
+    <!-- 메인 컨텐츠 -->
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h1>연구 성과</h1>
+                <p>검안학 분야의 혁신적인 연구 결과와 학술 발표를 소개합니다</p>
             </div>
-        </section>
-        
-        <!-- Filter Section -->
-        <section class="filter-section">
-            <div class="filter-content">
-                <h2 class="filter-title">연구 분야별 분류</h2>
+
+            <!-- 연구 성과 필터 -->
+            <div class="publications-filter">
+                <h2>연구 분야별 분류</h2>
                 <div class="filter-buttons">
-                    <a href="#" class="filter-btn active">전체</a>
-                    <a href="#" class="filter-btn">검안학 정책 연구</a>
-                    <a href="#" class="filter-btn">대비감도 및 안구운동 임상실험</a>
-                    <a href="#" class="filter-btn">시제품 개발</a>
+                    <button class="filter-btn active" onclick="filterPublications('all')">
+                        전체 <span class="count" id="count-all">22</span>
+                    </button>
+                    <button class="filter-btn" onclick="filterPublications('정책')">
+                        정책 연구 <span class="count" id="count-policy">9</span>
+                    </button>
+                    <button class="filter-btn" onclick="filterPublications('임상')">
+                        임상 연구 <span class="count" id="count-clinical">11</span>
+                    </button>
+                    <button class="filter-btn" onclick="filterPublications('시제품')">
+                        시제품 개발 <span class="count" id="count-device">2</span>
+                    </button>
                 </div>
             </div>
-        </section>
-        
-        <!-- Publications List -->
-        <section class="publications-list">
-            <div class="pub-header">
-                <div class="entry-count">22개 논문</div>
-            </div>
-            
-            <div class="pub-entries">
-                <!-- 검안학 정책 연구 논문들 (9편) -->
-                
-                <!-- 1. 해외 시교정 보정용구 전자상거래 현황과 한국의 정책적 방향성 고찰 -->
-                <div class="pub-item" data-field="policy-research">
-                    <div class="pub-authors">김현선, 서재명</div>
-                    <div class="pub-title">해외 시교정 보정용구 전자상거래 현황과 한국의 정책적 방향성 고찰 (1) - 유럽연합과 영국을 중심으로 -</div>
-                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2022, 제 27 권 제 3 호, pp. 201-208</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 검안학 정책 연구</span>
-                        <span><strong>출판 연도:</strong> 2022</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 유럽연합과 영국의 시교정 보정용구(안경, 콘택트렌즈) 온라인 판매 현황을 체계적으로 분석하고, 한국의 정책적 방향성을 제시하는 것을 목적으로 했습니다. 한국에서 제공되는 시기능과 시재활 전문 서비스는 인구 및 경제 규모가 유사한 유럽 5개국에 비해 매우 열악한 것으로 나타났습니다. 시교정 보정용구 전자상거래에 대한 유럽 선진국 사례는 실용성과 편리성을 위해 구매 결정 과정을 최소화한 데이터만으로는 시력 교정용 안경 제조에 충분하지 않다는 법률적 사례가 다수 있음을 제시했습니다.
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 2. 경남 차상위계층의 시각적 삶의 실태 연구 -->
-                <div class="pub-item" data-field="policy-research">
-                    <div class="pub-authors">김정숙, 배현주, 서재명</div>
-                    <div class="pub-title">경남 차상위계층의 시각적 삶의 실태 연구</div>
-                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2022, 제 27 권 제 4 호, pp. 335-340</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 검안학 정책 연구</span>
-                        <span><strong>출판 연도:</strong> 2022</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 65세 이상 차상위계층의 시생활 실태와 시각적 삶의 질을 파악하여 지역사회 정책 개발에 활용하는 기초 연구를 목적으로 했습니다. 가입도(노안 교정 렌즈 도수)가 증가할수록 원거리 활동과 근거리 활동 모두에서 유의미한 음의 상관관계를 보였으며, 구면등가굴절력의 원시도가 증가할수록 원거리와 근거리 모두에서 시각적 삶의 질이 저하되었습니다. 근용 안경의 필요성과 중요성이 강조되어 지역사회 안전망을 위한 정책 개발에 기여하기를 희망합니다.
+            <!-- 연구 논문 목록 -->
+            <div class="publications-content">
+                <div class="publications-grid">
+                    
+                    <!-- 2022년 논문들 -->
+                    <div class="year-group" data-year="2022">
+                        <h3 class="year-title">2022년</h3>
+                        
+                        <div class="pub-item" data-field="정책" data-year="2022">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">경남 차상위계층의 시각적 삶의 실태 연구</h4>
+                                    <div class="pub-authors">김정숙, 배현주, 서재명</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2022, 제 27 권 제 4 호, pp. 335-340</div>
+                                    <div class="pub-doi">
+                                        <a href="http://dx.doi.org/10.14479/jkoos.2022.27.4.335" target="_blank">DOI: 10.14479/jkoos.2022.27.4.335</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 65세 이상 차상위계층의 시생활 실태와 시각적 삶의 질을 파악하여 지역사회 정책 개발에 활용하는 기초 연구. 가입도(노안 교정 렌즈 도수)가 증가할수록 원거리 활동과 근거리 활동 모두에서 유의미한 음의 상관관계를 보였으며, 구면등가굴절력의 원시도가 증가할수록 시각적 삶의 질이 저하되었다.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 3. 시력보정용안경의 온라인 판매를 위한 계획서의 문제점들에 대한 연구 -->
-                <div class="pub-item" data-field="policy-research">
-                    <div class="pub-authors">심현석, 서재명, 김상현</div>
-                    <div class="pub-title">시력보정용안경의 온라인 판매를 위한 계획서의 문제점들에 대한 연구</div>
-                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2021, 제 26 권 제 3 호, pp. 214-222</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 검안학 정책 연구</span>
-                        <span><strong>출판 연도:</strong> 2021</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 온라인을 통해 시력 보정용 안경을 판매하려는 계획서의 문제점들을 분석했습니다. 업체에서 제출한 계획서는 현실과 맞지 않고, 현행 법률을 위반하며, 해외 사례에서도 안경 품질, 안경테 문제, 조제된 안경의 광학적 문제 등 다양한 문제점들이 확인되었습니다. 더 나은 안보건 서비스를 제공하기 위해서는 검안사 업무 범위 확대나 건강보험 지원 등의 정책 방안을 고민해야 한다고 제안합니다.
+                        <div class="pub-item" data-field="정책" data-year="2022">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">해외 시교정 보정용구 전자상거래 현황과 한국의 정책적 방향성 고찰 (1) - 유럽연합과 영국을 중심으로</h4>
+                                    <div class="pub-authors">김현선, 서재명</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2022, 제 27 권 제 3 호, pp. 201-208</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2022.27.3.201" target="_blank">DOI: 10.14479/jkoos.2022.27.3.201</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 시교정 보정용구와 안구 굴절검사의 온라인 서비스에 대한 유럽 선진국 사례를 분석하여 한국의 정책적 방향성을 모색. 한국의 시기능 및 시재활 전문 서비스가 유럽 5개국 대비 매우 열악함을 확인하고, 시교정 보정용구 전자상거래의 한계를 제시했다.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 4. 해외 시교정 보정용구 전자상거래 현황과 한국의 정책적 방향성 고찰 (2) -->
-                <div class="pub-item" data-field="policy-research">
-                    <div class="pub-authors">김현선, 서재명</div>
-                    <div class="pub-title">해외 시교정 보정용구 전자상거래 현황과 한국의 정책적 방향성 고찰 (2) - 미국과 캐나다를 중심으로 -</div>
-                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2022, 제 27 권 제 4 호, pp. 271-278</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 검안학 정책 연구</span>
-                        <span><strong>출판 연도:</strong> 2022</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 미국과 캐나다의 시교정 보정용구 전자상거래 현황을 분석하고 한국의 정책 방향성을 제시했습니다. 미국과 캐나다는 검안사 제도가 잘 정착되어 있으며, 온라인 안경 판매에 대한 체계적인 규제 방안을 마련하고 있습니다. 한국도 검안사 제도 도입과 더불어 온라인 안경 판매에 대한 합리적 규제 방안을 모색해야 한다고 제안했습니다.
+                    <!-- 2021년 논문들 -->
+                    <div class="year-group" data-year="2021">
+                        <h3 class="year-title">2021년</h3>
+                        
+                        <div class="pub-item" data-field="정책" data-year="2021">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">시력보정용안경의 온라인 판매를 위한 계획서의 문제점들에 대한 연구</h4>
+                                    <div class="pub-authors">심현석, 서재명, 김상현</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2021, 제 26 권 제 3 호, pp. 214-222</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2021.26.3.213" target="_blank">DOI: 10.14479/jkoos.2021.26.3.213</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 온라인 시력 보정용 안경 판매 계획서의 문제점을 분석. 업체 계획서가 현실과 맞지 않고 현행 법률을 위반하며, 해외 사례에서도 안경 품질, 조제 문제 등 다양한 문제점이 확인됨을 지적했다. 더 나은 안보건 서비스 제공을 위한 정책 개선 방안을 제시했다.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 5. 안경사 직무범위에서 굴절검사의 의미와 전문성 논의 -->
-                <div class="pub-item" data-field="policy-research">
-                    <div class="pub-authors">서재명</div>
-                    <div class="pub-title">안경사 직무범위에서 굴절검사의 의미와 전문성 논의</div>
-                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2018, 제 23 권 제 3 호, pp. 195-201</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 검안학 정책 연구</span>
-                        <span><strong>출판 연도:</strong> 2018</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 안경사의 직무범위에서 굴절검사의 의미와 전문성에 대해 논의했습니다. 굴절검사는 단순한 시력측정이 아닌 전문적인 검안 행위로서, 안경사의 핵심 직무 영역임을 강조했습니다. 체계적인 교육과정과 자격 관리를 통해 안경사의 전문성을 더욱 강화해야 한다고 제안했습니다.
+                    <!-- 2020년 논문들 -->
+                    <div class="year-group" data-year="2020">
+                        <h3 class="year-title">2020년</h3>
+                        
+                        <div class="pub-item" data-field="정책" data-year="2020">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">우수한 안경사 교육과 양성을 위한 정책 제안</h4>
+                                    <div class="pub-authors">김상현, 심현석, 서재명</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">대한시과학회지 (Korean J. Vis. Sci.), 2020, Vol. 22, No. 1, pp. 63-73</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.17337/JMBI.2020.22.1.63" target="_blank">DOI: 10.17337/JMBI.2020.22.1.63</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 미국, 영국, 독일의 검안사 교육과정과 국내 안경광학과 교육과정을 비교 분석하여 정책 방향을 제시. 교육 기간 통일화, 표준화된 교육과정, 현장 실습 강화 등을 통한 우수한 안경사 배출 방안을 제안했다.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 6. 안경업계의 발전방안에 관한 연구 -->
-                <div class="pub-item" data-field="policy-research">
-                    <div class="pub-authors">서재명, 김상현</div>
-                    <div class="pub-title">안경업계의 발전방안에 관한 연구</div>
-                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2017, 제 22 권 제 4 호, pp. 321-328</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 검안학 정책 연구</span>
-                        <span><strong>출판 연도:</strong> 2017</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 한국 안경업계의 현황을 분석하고 발전 방안을 제시했습니다. 안경업계가 직면한 도전과제들을 파악하고, 전문성 강화, 서비스 품질 향상, 정책적 지원 등을 통한 발전 전략을 제안했습니다. 특히 디지털 기술 활용과 고객 중심 서비스 개선의 중요성을 강조했습니다.
+                        <div class="pub-item" data-field="정책" data-year="2020">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">과학기술 발달에 따른 한국 안경계 미래에 관한 고찰 II: 4차 산업혁명 시대의 안경광학과 교과목의 발전 방향에 대한 예비 연구</h4>
+                                    <div class="pub-authors">Jae-Myoung Seo, Dae-Jong Kim, Hyeong-Su Kim, Ki-Seok Lee, Ki-Hun Ye</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2020, 제 25 권 제 2 호, pp. 103-111</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2020.25.2.103" target="_blank">DOI: 10.14479/jkoos.2020.25.2.103</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 4차 산업혁명 시대에 요구되는 안경광학과 교과목 개발 방향을 탐색. 전국 안경사 152명을 대상으로 조사한 결과, 굴절검사와 시기능 이상 교과목이 가장 중요한 교과목으로 인식되었으며, 이러한 분야의 전문성 강화 필요성을 제시했다.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 7. 저시력자의 시기능 향상을 위한 정책연구 -->
-                <div class="pub-item" data-field="policy-research">
-                    <div class="pub-authors">서재명, 배현주</div>
-                    <div class="pub-title">저시력자의 시기능 향상을 위한 정책연구</div>
-                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2019, 제 24 권 제 2 호, pp. 145-152</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 검안학 정책 연구</span>
-                        <span><strong>출판 연도:</strong> 2019</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 저시력자의 시기능 향상을 위한 정책 방안을 제시했습니다. 저시력자들이 겪는 어려움을 분석하고, 시각재활 서비스의 현황과 한계를 파악했습니다. 체계적인 시각재활 프로그램 개발과 전문 인력 양성, 보조기기 지원 확대 등을 통한 정책 개선 방안을 제안했습니다.
+                    <!-- 2019년 논문들 -->
+                    <div class="year-group" data-year="2019">
+                        <h3 class="year-title">2019년</h3>
+                        
+                        <div class="pub-item" data-field="정책" data-year="2019">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">독일의 마이스터와 검안사 교육시스템에 관한 연구 I</h4>
+                                    <div class="pub-authors">서재명, 김현선, Wolfgang Sickenberger, 김상현</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J. Korean Oph. Opt. Soc.), 24(3):205-214, 2019</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2019.24.3.205" target="_blank">DOI: 10.14479/jkoos.2019.24.3.205</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 독일의 검안 관련 교육시스템 분석. 독일은 다양한 교육과정을 통해 검안 전문가를 양성하며, 유럽연합 출범으로 공통된 검안사 교육과정 도입을 추진하고 있다. 안경사(AO)와 안경원 마이스터(AM) 대상 계속교육을 통한 전문가 양성 시스템의 우수성을 확인했다.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 8. 시각장애인 보조공학기기 지원정책 개선방안 -->
-                <div class="pub-item" data-field="policy-research">
-                    <div class="pub-authors">서재명, 김정숙</div>
-                    <div class="pub-title">시각장애인 보조공학기기 지원정책 개선방안</div>
-                    <div class="pub-journal">재활복지 (Rehab Welfare), 2020, 제 24 권 제 1 호, pp. 89-104</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 검안학 정책 연구</span>
-                        <span><strong>출판 연도:</strong> 2020</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 시각장애인 보조공학기기 지원정책의 현황을 분석하고 개선방안을 제시했습니다. 현재 지원체계의 한계점을 파악하고, 사용자 중심의 맞춤형 지원 방안을 제안했습니다. 또한 신기술 기반 보조기기의 도입과 전문 상담 서비스 확대의 필요성을 강조했습니다.
+                        <div class="pub-item" data-field="임상" data-year="2019">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">습윤제가 흡착된 콘택트렌즈가 대비감도함수에 영향을 주는 효과</h4>
+                                    <div class="pub-authors">윤경희, 이재철, 서재명</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2019, 제 24 권 제 2 호, pp. 109-115</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2019.24.2.109" target="_blank">DOI: 10.14479/jkoos.2019.24.2.109</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 습윤제(PVP K90 0.3%) 처리 하이드로겔 콘택트렌즈의 대비감도 개선 효과를 분석. 공간주파수 3 cpd에서 습윤 처리된 렌즈가 착용 12시간 후 통계적으로 유의미한 대비감도 개선을 보였으며, 전반적으로 안경렌즈와 비슷하거나 더 개선되는 경향을 확인했다.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 9. 한국의 시력검사 및 안경조제 서비스 품질 향상 방안 -->
-                <div class="pub-item" data-field="policy-research">
-                    <div class="pub-authors">서재명, 심현석, 김현선</div>
-                    <div class="pub-title">한국의 시력검사 및 안경조제 서비스 품질 향상 방안</div>
-                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2023, 제 28 권 제 1 호, pp. 45-53</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 검안학 정책 연구</span>
-                        <span><strong>출판 연도:</strong> 2023</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 한국의 시력검사 및 안경조제 서비스의 품질 향상 방안을 제시했습니다. 현재 서비스 제공 현황을 분석하고 국제 기준과 비교 평가했습니다. 표준화된 검사 프로토콜 도입, 전문 인력의 지속적 교육, 품질 관리 시스템 구축 등을 통한 서비스 품질 개선 방안을 제안했습니다.
+                    <!-- 2018년 논문들 -->
+                    <div class="year-group" data-year="2018">
+                        <h3 class="year-title">2018년</h3>
+                        
+                        <div class="pub-item" data-field="임상" data-year="2018">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">안구의 버전스 기능이 눈과 손 협응에 미치는 영향</h4>
+                                    <div class="pub-authors">Jung-Ha Hwang, Jae-Myoung Seo</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">대한시과학회지, 2018, Vol. 20, No. 3, pp. 289-295</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.17337/JMBI.2018.20.3.289" target="_blank">DOI: 10.17337/JMBI.2018.20.3.289</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 버전스 기능이 눈과 손 협응 능력에 미치는 영향을 분석. 근거리 내사위군에서는 조절성폭주비(AC/A)와, 외사위군에서는 원거리 폭주여력과 유의미한 상관관계를 보였다. 개인의 시각 작업 형태에 적합한 재활 훈련 설계의 중요성을 제시했다.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 대비감도 및 안구운동 임상실험 논문들 (10편) -->
-                
-                <!-- 10. 독서 시 안구운동 패턴과 읽기 속도의 상관관계 연구 -->
-                <div class="pub-item" data-field="clinical-experiments">
-                    <div class="pub-authors">서재명, 이민정, 박수현</div>
-                    <div class="pub-title">독서 시 안구운동 패턴과 읽기 속도의 상관관계 연구</div>
-                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2021, 제 26 권 제 1 호, pp. 23-31</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 대비감도 및 안구운동 임상실험</span>
-                        <span><strong>출판 연도:</strong> 2021</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 독서 중 안구운동 패턴과 읽기 속도 간의 상관관계를 분석했습니다. 아이트래킹 기술을 활용하여 다양한 연령대의 피험자들의 독서 시 안구운동을 측정하고, 단어 인식 시간, 시선 고정 빈도, 회귀적 안구운동 등이 읽기 효율성에 미치는 영향을 정량적으로 분석했습니다.
+                        <div class="pub-item" data-field="임상" data-year="2018">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">입체시각의 시간적 특징</h4>
+                                    <div class="pub-authors">서재명</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">대한시과학회지, 2018, Vol. 20, No. 3, pp. 297-303</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.17337/JMBI.2018.20.3.297" target="_blank">DOI: 10.17337/JMBI.2018.20.3.297</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 수평 안위 방향에 따른 입체시 인식의 시간적 특성을 분석. 내사위군에서 외안근의 긴장을 이완시킨 후 원치감 반응 시간이 78.3±96.1 ms 감소했으며, 신경상 긴장까지 이완시켰을 때 107.2±80.3 ms 감소하여 프리즘 교정만으로도 입체시각 개선이 가능함을 확인했다.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 11. 저대비 환경에서의 시각적 대비감도 측정 및 평가 -->
-                <div class="pub-item" data-field="clinical-experiments">
-                    <div class="pub-authors">배현주, 서재명, 김지영</div>
-                    <div class="pub-title">저대비 환경에서의 시각적 대비감도 측정 및 평가</div>
-                    <div class="pub-journal">Vision Research International, 2020, Vol. 45, No. 3, pp. 112-125</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 대비감도 및 안구운동 임상실험</span>
-                        <span><strong>출판 연도:</strong> 2020</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 저대비 환경에서 시각적 대비감도를 정확하게 측정하고 평가하는 방법을 개발했습니다. 다양한 공간주파수에서의 대비감도 변화를 측정하고, 연령별, 굴절이상별 차이를 분석했습니다. 특히 망막 질환 환자들의 대비감도 저하 패턴을 정량화하여 조기 진단에 활용할 수 있는 기준을 제시했습니다.
+                        <div class="pub-item" data-field="임상" data-year="2018">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">독일식과 영미식 주시시차에 대한 방법론적 분석</h4>
+                                    <div class="pub-authors">Jae-Myoung Seo, Jeong Ho Yoon, Sang-Bok Han</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2018, 제 23 권 제 4 호, pp. 395-400</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2018.23.4.395" target="_blank">DOI: 10.14479/jkoos.2018.23.4.395</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 독일식 양안시 검사법(MKH)과 영미식 검사법의 주시시차 측정 비교. 독일식 검사법에 의한 주시시차는 15.7±12.4', 영미식은 65.4±52.8'로 분명한 차이를 보였으며, 조도 변화가 30세 이하 연령대의 안위에 영향을 주는 경향을 확인했다.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 12. 디지털 기기 사용이 안구운동 기능에 미치는 영향 -->
-                <div class="pub-item" data-field="clinical-experiments">
-                    <div class="pub-authors">이민정, 서재명, 최영훈</div>
-                    <div class="pub-title">디지털 기기 사용이 안구운동 기능에 미치는 영향</div>
-                    <div class="pub-journal">Digital Eye Strain Research, 2022, Vol. 12, No. 4, pp. 178-189</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 대비감도 및 안구운동 임상실험</span>
-                        <span><strong>출판 연도:</strong> 2022</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 장시간 디지털 기기 사용이 안구운동 기능에 미치는 영향을 체계적으로 분석했습니다. 스마트폰, 태블릿, 컴퓨터 사용 전후의 안구운동 변화를 측정하고, 눈 깜빡임 빈도, 조절 기능, 폭주 능력의 변화를 정량화했습니다. 디지털 아이 스트레인 예방을 위한 실용적 가이드라인을 제시했습니다.
+                    <!-- 2017년 논문들 -->
+                    <div class="year-group" data-year="2017">
+                        <h3 class="year-title">2017년</h3>
+                        
+                        <div class="pub-item" data-field="정책" data-year="2017">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">한국 안경사 양성기관의 교육과정에 관한 연구</h4>
+                                    <div class="pub-authors">박미정, 서재명</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">대한시과학회지 (Korean J. Vis. Sci.), 2017, 제 19 권 제 4 호, pp. 487-494</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.17337/JMBI.2017.19.4.487" target="_blank">DOI: 10.17337/JMBI.2017.19.4.487</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 전국 안경광학과 교육과정과 현장실습 실태를 분석. 교과목 중요도 지수는 시광학이론 4.1, 시광학응용/실무 7.1로 1:1.7 비율을 보였으며, 대부분 대학에서 평균 270시간의 임상실습이 이루어지고 있음을 확인했다. 현장 중심 교육 확대의 필요성을 제시했다.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 13. 노화에 따른 대비감도 변화 및 시각재활 적용 -->
-                <div class="pub-item" data-field="clinical-experiments">
-                    <div class="pub-authors">김정숙, 서재명, 박수현</div>
-                    <div class="pub-title">노화에 따른 대비감도 변화 및 시각재활 적용</div>
-                    <div class="pub-journal">Aging and Vision, 2019, Vol. 28, No. 2, pp. 67-78</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 대비감도 및 안구운동 임상실험</span>
-                        <span><strong>출판 연도:</strong> 2019</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 정상 노화 과정에서 발생하는 대비감도 변화를 분석하고 시각재활에 적용했습니다. 40-80세 연령대별 대비감도 측정을 통해 연령별 기준값을 설정하고, 대비감도 저하가 일상생활에 미치는 영향을 평가했습니다. 개인별 맞춤형 시각재활 프로그램 개발에 기여하는 과학적 근거를 제시했습니다.
+                        <div class="pub-item" data-field="임상" data-year="2017">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">저시력 환자용 광학적 시보조기구의 계산배율과 처방배율에 관한 연구</h4>
+                                    <div class="pub-authors">서재명, Daniela Quedenfeld</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">대한시과학회지, 2017, Vol. 19, No. 4, pp. 503-508</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.17337/JMBI.2017.19.4.503" target="_blank">DOI: 10.17337/JMBI.2017.19.4.503</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 저시력 환자용 광학 보조기구의 계산배율과 실제 처방배율을 비교 분석. 실제 처방 배율이 계산 배율보다 1.17배 높았으나 통계적 의미는 없었으며, 상호 상관관계는 높게 나타났다(r=0.92). 제조사 배율을 참고하여 작업 환경에 적합하게 조정 처방하는 것이 바람직함을 제시했다.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 14. 사시환자의 안구운동 재활치료 효과 연구 -->
-                <div class="pub-item" data-field="clinical-experiments">
-                    <div class="pub-authors">최영훈, 서재명, 이민정</div>
-                    <div class="pub-title">사시환자의 안구운동 재활치료 효과 연구</div>
-                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2021, 제 26 권 제 2 호, pp. 89-97</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 대비감도 및 안구운동 임상실험</span>
-                        <span><strong>출판 연도:</strong> 2021</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 사시환자를 대상으로 체계적인 안구운동 재활치료의 효과를 평가했습니다. 다양한 유형의 사시환자들에게 맞춤형 안구운동 훈련 프로그램을 적용하고, 치료 전후의 안구운동 기능 변화를 정량적으로 측정했습니다. 특히 양안시 기능 개선과 삶의 질 향상에 미치는 효과를 입증했습니다.
+                    <!-- 2016년 논문들 -->
+                    <div class="year-group" data-year="2016">
+                        <h3 class="year-title">2016년</h3>
+                        
+                        <div class="pub-item" data-field="임상" data-year="2016">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">칼라필터 렌즈에 따른 대비감도의 변화</h4>
+                                    <div class="pub-authors">서재명</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2016, 제 21 권 제 1 호, pp. 47-51</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2016.21.1.47" target="_blank">DOI: 10.14479/jkoos.2016.21.1.47</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 황색, 오렌지색, 녹색 칼라 필터렌즈의 대비감도 변화를 분석. 순간 노출(33 ms)에서 2 cpd 황색 필터가 가장 높은 대비감도를 보였고, 233 ms에서는 8 cpd에서 필터 미삽입 시 가장 예민했으나 황색, 오렌지색 간 차이는 통계적 의미가 없었다. 필터렌즈 처방 시 cut off 파장 고려의 중요성을 강조했다.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 15. 근시진행과 안구운동 패턴의 상관성 분석 -->
-                <div class="pub-item" data-field="clinical-experiments">
-                    <div class="pub-authors">박수현, 서재명, 김지영</div>
-                    <div class="pub-title">근시진행과 안구운동 패턴의 상관성 분석</div>
-                    <div class="pub-journal">Myopia Research International, 2020, Vol. 15, No. 6, pp. 234-246</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 대비감도 및 안구운동 임상실험</span>
-                        <span><strong>출판 연도:</strong> 2020</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 근시 진행과 안구운동 패턴 간의 상관성을 분석했습니다. 근시가 진행되는 청소년과 성인을 대상으로 장기간 추적 관찰하여 굴절이상 변화와 안구운동 특성을 분석했습니다. 근업 시 안구운동 패턴이 근시 진행에 미치는 영향을 규명하고, 근시 예방을 위한 안구운동 가이드라인을 제시했습니다.
+                    <!-- 2015년 논문들 -->
+                    <div class="year-group" data-year="2015">
+                        <h3 class="year-title">2015년</h3>
+                        
+                        <div class="pub-item" data-field="정책" data-year="2015">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">과학기술 발달에 따른 한국 안경계 미래에 관한 고찰 I: 안경 산업의 예측과 정책 제안</h4>
+                                    <div class="pub-authors">심현석, 김상현, 서재명</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">대한시과학회지 (Korean J. Vis. Sci.), 2015, 제 17 권 제 4 호, pp. 377-384</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.17337/JMBI.2015.17.4.377" target="_blank">DOI: 10.17337/JMBI.2015.17.4.377</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 과학기술 발달에 따른 안경업계 미래를 예측하고 대응책을 제시. 안경 산업의 생산성은 증가하지만 고용 인력은 감소하고 있으며, 전자동 안경 조제 장비 개발과 안굴절력계의 일반인 사용 가능성을 확인했다. 안경사가 굴절검사를 넘어 시기능 영역으로 확장해야 함을 제안했다.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 16. LED 조명이 대비감도에 미치는 영향 연구 -->
-                <div class="pub-item" data-field="clinical-experiments">
-                    <div class="pub-authors">김지영, 서재명, 배현주</div>
-                    <div class="pub-title">LED 조명이 대비감도에 미치는 영향 연구</div>
-                    <div class="pub-journal">Lighting and Vision Science, 2022, Vol. 18, No. 3, pp. 156-167</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 대비감도 및 안구운동 임상실험</span>
-                        <span><strong>출판 연도:</strong> 2022</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 다양한 LED 조명 환경에서 대비감도 변화를 측정하고 분석했습니다. 색온도, 조도, 플리커 등 LED 조명의 특성이 시각적 대비감도에 미치는 영향을 체계적으로 평가했습니다. 최적의 시각 환경 조성을 위한 LED 조명 설계 가이드라인을 제시하고, 시각피로 감소 방안을 제안했습니다.
+                        <div class="pub-item" data-field="정책" data-year="2015">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">안경사제도의 변화 필요성에 대하여</h4>
+                                    <div class="pub-authors">서재명, 김재도, 김흥수, 심현석, 김상현</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2015, 제 20 권 제 4 호, pp. 527-536</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2015.20.4.527" target="_blank">DOI: 10.14479/jkoos.2015.20.4.527</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 한국 안경사 제도의 문제점과 개선 방안을 분석. 시력 보정용구 착용자가 증가하고 굴절검사의 67%가 안경원에서 이루어지고 있지만, 현행 법률이 안경사의 업무 특성을 적절히 반영하지 못하고 있음을 지적했다. 안경사들의 능력과 교육 제도가 충분히 준비되어 있으므로 현실에 맞는 법 개정이 필요함을 주장했다.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 17. 스포츠 시각훈련이 안구운동 능력에 미치는 효과 -->
-                <div class="pub-item" data-field="clinical-experiments">
-                    <div class="pub-authors">서재명, 최영훈, 이민정</div>
-                    <div class="pub-title">스포츠 시각훈련이 안구운동 능력에 미치는 효과</div>
-                    <div class="pub-journal">Sports Vision Research, 2021, Vol. 9, No. 4, pp. 201-213</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 대비감도 및 안구운동 임상실험</span>
-                        <span><strong>출판 연도:</strong> 2021</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 체계적인 스포츠 시각훈련이 안구운동 능력 향상에 미치는 효과를 검증했습니다. 다양한 스포츠 종목의 운동선수들을 대상으로 추적시, 전정안구반사, 동적 시력 등을 측정하여 훈련 효과를 정량화했습니다. 종목별 특성화된 시각훈련 프로그램을 개발하고 운동 성능 향상에 기여하는 과학적 근거를 제시했습니다.
+                    <!-- 2014년 논문들 -->
+                    <div class="year-group" data-year="2014">
+                        <h3 class="year-title">2014년</h3>
+                        
+                        <div class="pub-item" data-field="시제품" data-year="2014">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">동측성 반맹시 환자의 재활치료용 시분할 장치 개발에 관한 연구</h4>
+                                    <div class="pub-authors">서재명, 박근호, 허민영, 정주현</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2014, 제 19 권 제 3 호, pp. 407-412</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2014.19.3.407" target="_blank">DOI: 10.14479/jkoos.2014.19.3.407</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 동측성 반맹시 환자의 재활치료용 시분할 장치 개발. 장치 사용 후 공간의 이등분할 실험에서 방향각이 +18.14°에서 +8.91°로 개선되었으며, 4x4 시표에서 9%P, 6x6 시표에서 15%P의 문자 인식 정답률 증가를 보였다. 복시로 인해 시야 확보가 어려운 환자에게 재활 치료로서 효과적임을 확인했다.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 18. 백내장 수술 후 대비감도 회복 패턴 연구 -->
-                <div class="pub-item" data-field="clinical-experiments">
-                    <div class="pub-authors">배현주, 서재명, 김정숙</div>
-                    <div class="pub-title">백내장 수술 후 대비감도 회복 패턴 연구</div>
-                    <div class="pub-journal">Cataract and Refractive Surgery, 2023, Vol. 35, No. 2, pp. 89-98</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 대비감도 및 안구운동 임상실험</span>
-                        <span><strong>출판 연도:</strong> 2023</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 백내장 수술 후 대비감도 회복 과정을 체계적으로 추적 관찰했습니다. 수술 전후 1년간 정기적으로 대비감도를 측정하여 회복 패턴을 분석하고, 인공수정체 종류별 차이를 비교했습니다. 최적의 시각 회복을 위한 수술 후 관리 프로토콜을 제시하고, 환자 만족도 향상에 기여하는 연구 결과를 도출했습니다.
+                        <div class="pub-item" data-field="시제품" data-year="2014">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">아이트래커를 이용한 모니터 글자 색상에 따른 가독성에 대한 연구</h4>
+                                    <div class="pub-authors">김하림, 김수현, 신동민, 정희영, 김용길, 김태홍, 서재명, 정주현</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2014, 제 19 권 제 2 호, pp. 279-284</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2014.19.2.279" target="_blank">DOI: 10.14479/jkoos.2014.19.2.279</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 아이트래커를 이용한 모니터 글자 색상별 가독성 연구. Black, Blue, Red, Yellow 순으로 가독성이 감소하는 경향을 보였으며, Black 글자 색상이 평균 가독 시간, 독서 오류, 평균 고정 시간 모든 측면에서 가장 우수한 가독성을 제공함을 확인했다.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 19. VR/AR 환경에서의 안구운동 특성 분석 -->
-                <div class="pub-item" data-field="clinical-experiments">
-                    <div class="pub-authors">이민정, 서재명, 박수현</div>
-                    <div class="pub-title">VR/AR 환경에서의 안구운동 특성 분석</div>
-                    <div class="pub-journal">Virtual Reality and Vision, 2023, Vol. 7, No. 1, pp. 34-47</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 대비감도 및 안구운동 임상실험</span>
-                        <span><strong>출판 연도:</strong> 2023</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 가상현실(VR)과 증강현실(AR) 환경에서 사용자의 안구운동 특성을 분석했습니다. 3D 가상 환경에서 발생하는 특수한 안구운동 패턴을 규명하고, 멀미나 시각피로를 유발하는 요인들을 분석했습니다. VR/AR 기술의 시각적 안전성 확보와 사용자 경험 개선을 위한 가이드라인을 제시했습니다.
+                        <div class="pub-item" data-field="임상" data-year="2014">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">중심외주시 훈련 후 망막 외망상층에서의 신경 재조직화</h4>
+                                    <div class="pub-authors">저자 정보 미명시</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2014, 제 19 권 제 2 호, pp. 247-252</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2014.19.2.247" target="_blank">DOI: 10.14479/jkoos.2014.19.2.247</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 중심외주시 훈련 후 망막 외망상층의 신경 재조직화를 분석. 21일간의 훈련 후 광지각도 검사(p<0.047)와 다국소망막전위도 검사(p<0.028) 모두에서 유의한 기능 개선을 보였다. 시각 말초신경계는 재생 불가능하지만 단기간 훈련으로도 신경 재조직화가 발생함을 확인했다.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- 시제품 개발 논문들 (3편) -->
-                
-                <!-- 20. 스마트 시각재활 보조기기 개발 및 효과성 검증 -->
-                <div class="pub-item" data-field="device-development">
-                    <div class="pub-authors">서재명, 김상현, 이민정, 박수현</div>
-                    <div class="pub-title">스마트 시각재활 보조기기 개발 및 효과성 검증</div>
-                    <div class="pub-journal">한국의료기기학회지 (J Korean Medical Device), 2023, 제 8 권 제 2 호, pp. 145-156</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 시제품 개발</span>
-                        <span><strong>출판 연도:</strong> 2023</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 AI와 IoT 기술을 활용한 스마트 시각재활 보조기기를 개발하고 임상 효과를 검증했습니다. 실시간 시각 정보 처리, 음성 피드백, 진동 알림 등의 기능을 통합한 웨어러블 디바이스를 설계했습니다. 저시력자 50명을 대상으로 한 임상 시험에서 일상생활 수행능력이 평균 65% 향상되었으며, 사용자 만족도 4.7/5.0을 달성했습니다.
+                        <div class="pub-item" data-field="임상" data-year="2014">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">중심외주시 훈련 후 주변시야에서의 대비감도 변화</h4>
+                                    <div class="pub-authors">서재명, 이기영, 임용무</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2014, 제 19 권 제 1 호, pp. 99-104</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2014.19.1.99" target="_blank">DOI: 10.14479/jkoos.2014.19.1.99</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 중심외주시 훈련 후 주변시야의 대비감도 변화를 분석. 21일간 훈련 후 0.7 cpd 및 3.0 cpd 모두에서 임계점과 대비감이 유의하게 증가했다(p<0.05). 선명하고 작은 글씨체로 짧은 시간 동안 자주 반복 훈련하는 것이 효과적임을 제시했다.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 21. 대비감도 측정용 디지털 검사 시스템 개발 -->
-                <div class="pub-item" data-field="device-development">
-                    <div class="pub-authors">배현주, 서재명, 최영훈, 김지영</div>
-                    <div class="pub-title">대비감도 측정용 디지털 검사 시스템 개발</div>
-                    <div class="pub-journal">Biomedical Engineering Research, 2022, Vol. 43, No. 4, pp. 201-212</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 시제품 개발</span>
-                        <span><strong>출판 연도:</strong> 2022</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 정밀한 대비감도 측정을 위한 디지털 검사 시스템을 개발했습니다. 고해상도 OLED 디스플레이와 정밀 광도계를 활용하여 0.1%에서 100%까지의 대비를 정확하게 제어할 수 있는 시스템을 구축했습니다. 기존 아날로그 방식 대비 측정 정확도가 95% 향상되었으며, 검사 시간도 50% 단축되었습니다. 의료기기 인증을 획득하여 상용화 기반을 마련했습니다.
+                    <!-- 2013년 논문들 -->
+                    <div class="year-group" data-year="2013">
+                        <h3 class="year-title">2013년</h3>
+                        
+                        <div class="pub-item" data-field="임상" data-year="2013">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">중심외주시 훈련용 주변부 망막의 생리적 가중에 관한 연구</h4>
+                                    <div class="pub-authors">서재명, 이기영</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J Korean Oph Opt Soc.), 2013, 제 18 권 제 4 호, pp. 489-493</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.14479/jkoos.2013.18.4.489" target="_blank">DOI: 10.14479/jkoos.2013.18.4.489</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 황반변성 저시력 환자의 중심외주시 훈련을 위한 망막 주변부 특성을 조사. 30명을 대상으로 중심와에서 20° 이측 망막 주변부의 생리적 가중을 측정한 결과, 주변시가 중심시보다 더 빨리 임계점에 도달했다. 저주파 대역 대상으로 짧은 시간 동안 자주 훈련하는 것이 효과적임을 확인했다.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- 22. 안구운동 훈련용 VR 시스템 프로토타입 개발 -->
-                <div class="pub-item" data-field="device-development">
-                    <div class="pub-authors">이민정, 서재명, 박수현, 김상현</div>
-                    <div class="pub-title">안구운동 훈련용 VR 시스템 프로토타입 개발</div>
-                    <div class="pub-journal">Virtual Reality in Medicine, 2023, Vol. 15, No. 3, pp. 89-101</div>
-                    <div class="pub-details">
-                        <span><strong>연구 분야:</strong> 시제품 개발</span>
-                        <span><strong>출판 연도:</strong> 2023</span>
-                    </div>
-                    <div class="pub-actions">
-                        <a href="#" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>
-                        <a href="#" class="pub-link"><i class="fas fa-external-link-alt"></i> DOI</a>
-                        <a href="#" class="pub-link"><i class="fas fa-quote-left"></i> BibTeX</a>
-                    </div>
-                    <div class="pub-abstract">
-                        <div class="abstract-title">연구 내용</div>
-                        <div class="abstract-text">
-                            본 연구는 시각재활을 위한 안구운동 훈련용 VR 시스템 프로토타입을 개발했습니다. 아이트래킹 기술과 3D 게임화 요소를 결합하여 사용자 맞춤형 훈련 프로그램을 제공합니다. 추적시, 폭주/개산, 조절 기능 등 다양한 안구운동을 체계적으로 훈련할 수 있는 10가지 모듈을 개발했습니다. 파일럿 테스트 결과 기존 전통적 훈련법 대비 효과가 40% 향상되었으며, 환자 참여도도 크게 증가했습니다.
+                    <!-- 2009년 논문들 -->
+                    <div class="year-group" data-year="2009">
+                        <h3 class="year-title">2009년</h3>
+                        
+                        <div class="pub-item" data-field="임상" data-year="2009">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">대비감도를 사용한 캐나다 내 저시력 환자와 정상인의 시기능 분석</h4>
+                                    <div class="pub-authors">서재명</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국안광학회지 (J. Korean Oph. Opt. Soc.), 2009, 제 14 권 제 3 호, pp. 83-88</div>
+                                    <div class="pub-doi">
+                                        <span>DOI 정보 없음</span>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 저시력 환자와 정상인의 대비감도를 비교 분석. 20명씩의 저시력 환자군과 정상 대조군을 대상으로 두 공간주파수(0.7 c/d, 3.0 c/d)로 측정한 결과, 저시력 환자의 대비감도가 전반적으로 낮았으나 물체 크기와 노출 시간에 따른 차이는 없었다. 저역대 공간주파수 사용의 효율성을 확인했다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pub-item" data-field="임상" data-year="2009">
+                            <div class="pub-content">
+                                <div class="pub-header">
+                                    <h4 class="pub-title">저시력 환자의 삶의 질과 일상에 영향을 주는 병인에 관한 연구</h4>
+                                    <div class="pub-authors">서재명</div>
+                                </div>
+                                <div class="pub-details">
+                                    <div class="pub-journal">한국산학기술학회논문지, 2009, 제 10 권 제 11 호, pp. 3412-3417</div>
+                                    <div class="pub-doi">
+                                        <a href="https://doi.org/10.5762/kais.2009.10.11.3412" target="_blank">DOI: 10.5762/kais.2009.10.11.3412</a>
+                                    </div>
+                                </div>
+                                <div class="pub-abstract">
+                                    <p><strong>연구 내용:</strong> 저시력 환자와 정상인의 삶의 질을 비교하고 영향 요인을 분석. 저시력 환자의 주관적 삶의 만족도가 정상 대조군 대비 모든 항목에서 낮았으며(평균 차이 36.07±14.82), 나이가 근거리 활동성(r=-0.584), 원거리 활동성(r=-0.678) 등과 높은 상관관계를 보였다. 특히 안구진탕이 일상생활에 큰 어려움을 주는 것으로 확인했다.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-        </section>
-        
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <p>&copy; 2025 MasVisio Research. 모든 권리 보유.</p>
+
+            <!-- 학술대회 발표 섹션 (향후 추가 예정) -->
+            <div class="conference-presentations" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ddd;">
+                <h2>학술대회 발표</h2>
+                <p class="coming-soon">학술대회 발표 자료는 추후 업데이트 예정입니다.</p>
             </div>
-        </footer>
+
+        </div>
     </main>
 
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="logo">
+                        <img src="../../assets/images/logo.png" alt="MasVisio Research">
+                    </div>
+                    <p>검안학 분야의 혁신적 연구를 통해 더 나은 세상을 만들어갑니다.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>연구 분야</h3>
+                        <ul>
+                            <li><a href="../projects/index.html">검안학 정책 연구</a></li>
+                            <li><a href="../projects/index.html">임상 실험 연구</a></li>
+                            <li><a href="../projects/index.html">시제품 개발</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>정보</h3>
+                        <ul>
+                            <li><a href="../team/index.html">연구진</a></li>
+                            <li><a href="../publications/index.html">연구 성과</a></li>
+                            <li><a href="../contact/index.html">연락처</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
+        // 연구 분야별 필터링 기능
+        function filterPublications(field) {
             const pubItems = document.querySelectorAll('.pub-item');
-            const entryCount = document.querySelector('.entry-count');
-
-            // 초기 카운트 설정
-            updateCount('all');
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // 버튼 활성화 상태 업데이트
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // 필터링
-                    const filterText = this.textContent.trim();
-                    let filterField = 'all';
-                    
-                    if (filterText === '검안학 정책 연구') {
-                        filterField = 'policy-research';
-                    } else if (filterText === '대비감도 및 안구운동 임상실험') {
-                        filterField = 'clinical-experiments';
-                    } else if (filterText === '시제품 개발') {
-                        filterField = 'device-development';
-                    }
-                    
-                    filterPublications(filterField);
-                    updateCount(filterField);
-                });
-            });
-
-            function filterPublications(field) {
-                pubItems.forEach(item => {
-                    if (field === 'all' || item.dataset.field === field) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            }
-
-            function updateCount(field) {
-                let count = 0;
-                let label = '';
-                
-                if (field === 'all') {
-                    count = pubItems.length;
-                    label = '논문';
-                } else if (field === 'policy-research') {
-                    count = document.querySelectorAll('[data-field="policy-research"]').length;
-                    label = '정책 연구';
-                } else if (field === 'clinical-experiments') {
-                    count = document.querySelectorAll('[data-field="clinical-experiments"]').length;
-                    label = '임상실험';
-                } else if (field === 'device-development') {
-                    count = document.querySelectorAll('[data-field="device-development"]').length;
-                    label = '시제품 개발';
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const yearGroups = document.querySelectorAll('.year-group');
+            
+            // 버튼 상태 업데이트
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // 논문 필터링
+            pubItems.forEach(item => {
+                if (field === 'all' || item.dataset.field === field) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
                 }
-                
-                entryCount.textContent = `${count}개 ${label}`;
-            }
+            });
+            
+            // 연도 그룹 표시/숨김 처리
+            yearGroups.forEach(group => {
+                if (field === 'all') {
+                    // 전체 보기일 때는 모든 연도 그룹 표시
+                    group.style.display = 'block';
+                } else {
+                    // 특정 카테고리일 때는 해당 논문이 있는 연도만 표시
+                    const hasVisibleItems = Array.from(group.querySelectorAll('.pub-item')).some(item => {
+                        return item.dataset.field === field;
+                    });
+                    group.style.display = hasVisibleItems ? 'block' : 'none';
+                }
+            });
+        }
+
+        // 연도별 내림차순 정렬 (전체 보기일 때)
+        function sortByYear() {
+            const publicationsGrid = document.querySelector('.publications-grid');
+            const yearGroups = Array.from(document.querySelectorAll('.year-group'));
+            
+            // 연도별로 정렬
+            yearGroups.sort((a, b) => {
+                const yearA = parseInt(a.dataset.year);
+                const yearB = parseInt(b.dataset.year);
+                return yearB - yearA; // 내림차순
+            });
+            
+            // 다시 DOM에 추가
+            yearGroups.forEach(group => {
+                publicationsGrid.appendChild(group);
+            });
+        }
+
+        // 페이지 로드 시 연도별 정렬 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            sortByYear();
         });
     </script>
 </body>
