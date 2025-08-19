@@ -1687,6 +1687,13 @@
                         <a href="contact.html" class="nav-link">연락처</a>
                     </li>
                 </ul>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
+                    <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+                </div>
+                
                 <div class="mobile-menu-toggle">
                     <span></span>
                     <span></span>
@@ -3328,6 +3335,21 @@
             
             initSPANavigation();
         });
+
+        // 언어 전환 함수
+        function switchLanguage(lang) {
+            // 언어 버튼 상태 업데이트
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // 영어 버전으로 리다이렉트
+            if (lang === 'en') {
+                window.location.href = '../en/index.html';
+            }
+            // 한국어는 현재 페이지 유지
+        }
     </script>
 </body>
 </html>
