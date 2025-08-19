@@ -433,50 +433,67 @@
             font-style: italic;
         }
         
-        /* Footer */
+        /* Footer Styles - Contact Style */
         .footer {
-            background: #2d3748;
+            background: #1e293b;
             color: white;
-            padding: 3rem 0 1rem;
+            padding: 60px 0 20px;
         }
         .footer-content {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 2fr 1fr 1fr;
             gap: 3rem;
             margin-bottom: 2rem;
         }
-        .footer-info .logo img {
-            height: 40px;
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
             margin-bottom: 1rem;
         }
-        .footer-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        .footer-column h3 {
-            font-size: 1.1rem;
+        .footer-subtitle {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: white;
             margin-bottom: 1rem;
-            color: #38a169;
         }
-        .footer-column ul {
-            list-style: none;
+        .footer-description {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
-        .footer-column li {
+        .footer-contact p {
+            color: #94a3b8;
             margin-bottom: 0.5rem;
         }
-        .footer-column a {
-            color: #cbd5e0;
-            text-decoration: none;
-            font-size: 0.9rem;
+        .footer-links {
+            list-style: none;
         }
-        .footer-column a:hover {
-            color: white;
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #2563eb;
         }
         .footer-bottom {
-            border-top: 1px solid #4a5568;
-            padding-top: 1rem;
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
             text-align: center;
+        }
+        .copyright {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        .disclaimer {
+            color: #64748b;
+            font-size: 0.75rem;
+            font-style: italic;
             color: #cbd5e0;
             font-size: 0.9rem;
         }
@@ -1086,34 +1103,47 @@
     <footer class="footer">
         <div class="filter-container">
             <div class="footer-content">
-                <div class="footer-info">
-                    <div class="logo">
-                        <i class="fas fa-eye" style="color: #38a169; font-size: 2rem; margin-right: 0.5rem;"></i>
-                        <span style="font-size: 1.5rem; font-weight: bold;">MasVisio Research</span>
+                <div class="footer-section">
+                    <h3 class="footer-title">MasVisio Research</h3>
+                    <p class="footer-description">
+                        혁신적인 시각재활 기술 개발을 통해 
+                        더 나은 미래를 만들어갑니다.
+                    </p>
+                    <div class="footer-contact">
+                        <p>📧 research@masvisio.kr</p>
+                        <p>📞 +82-2-1234-5678</p>
                     </div>
-                    <p>검안학 분야의 혁신적 연구를 통해 더 나은 세상을 만들어갑니다.</p>
                 </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h3>연구 분야</h3>
-                        <ul>
-                            <li><a href="../research/overview.html">검안학 정책 연구</a></li>
-                            <li><a href="../research/current-studies.html">임상 실험 연구</a></li>
-                            <li><a href="../research/projects/myopia-control.html">시제품 개발</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h3>정보</h3>
-                        <ul>
-                            <li><a href="../team/index.html">연구진</a></li>
-                            <li><a href="../publications/index.html">연구 성과</a></li>
-                            <li><a href="../contact.html">연락처</a></li>
-                        </ul>
-                    </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">연구 분야</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">연구 성과</a></li>
+                        <li><a href="../research/projects/myopia-control.html">근시 제어</a></li>
+                        <li><a href="#ai-diagnosis">AI 진단</a></li>
+                        <li><a href="#biometric">바이오메트릭</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">파트너십</h4>
+                    <ul class="footer-links">
+                        <li><a href="../contact.html">연락처</a></li>
+                        <li><a href="#partnership">협력 기회</a></li>
+                        <li><a href="#privacy">개인정보처리방침</a></li>
+                        <li><a href="#terms">이용약관</a></li>
+                    </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
+                <p class="copyright">
+                    © 2025 MasVisio Research. All rights reserved.
+                </p>
+                <p class="disclaimer">
+                    본 연구결과는 임상시험 데이터를 기반으로 하며, 
+                    상업적 적용 시 추가 검증이 필요할 수 있습니다.
+                </p>
             </div>
         </div>
     </footer>
