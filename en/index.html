@@ -111,6 +111,32 @@
             border-radius: 2px;
         }
         
+        /* Language Toggle Styles */
+        .language-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 2rem;
+        }
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #374151;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover {
+            background: #f3f4f6;
+        }
+        .lang-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+        
         /* Hero Section - KAIST Style */
         .hero { 
             min-height: 100vh; 
@@ -418,7 +444,12 @@
                     <span></span>
                     <span></span>
                 </div>
-
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn" onclick="switchLanguage('ko')">한국어</button>
+                    <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -428,16 +459,16 @@
         <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="hero-content">
-                <h1 class="hero-title">MasVisio 시각재활 연구소</h1>
+                <h1 class="hero-title">MasVisio Visual Rehabilitation Institute</h1>
                 <p class="hero-subtitle">
-                    시각재활 분야의 혁신적인 <strong>임상시험</strong>, <strong>실험실 연구</strong>, 
-                    <strong>의료기기 개발</strong> 서비스를 제공하는 독립 연구기관입니다. 
-                    <strong>시각재활 산업</strong>과 <strong>의료기기 분야</strong> 기업들을 위한 
-                    공정하고 고품질의 국제 수준 연구를 수행합니다.
+                    An independent research institute providing innovative <strong>clinical trials</strong>, <strong>laboratory research</strong>, 
+                    and <strong>medical device development</strong> services in the field of visual rehabilitation. 
+                    We conduct fair and high-quality international standard research for <strong>visual rehabilitation industry</strong> 
+                    and <strong>medical device sector</strong> companies.
                 </p>
                 <div class="hero-buttons">
-                    <a href="research/overview.html" class="btn-research primary">연구 프로젝트</a>
-                    <a href="contact/index.html" class="btn-research secondary">연락처</a>
+                    <a href="research/overview.html" class="btn-research primary">Research Projects</a>
+                    <a href="contact/index.html" class="btn-research secondary">Contact</a>
                 </div>
             </div>
         </section>
@@ -713,5 +744,22 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+        function switchLanguage(lang) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Redirect to appropriate language page
+            if (lang === 'ko') {
+                window.location.href = '../ko/index.html';
+            }
+            // If 'en', stay on current page
+        }
+    </script>
 </body>
 </html>
