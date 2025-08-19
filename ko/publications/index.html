@@ -4,65 +4,562 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>연구 성과 - MasVisio Research</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../../assets/images/favicon.ico" type="image/x-icon">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: white; }
+        
+        /* Header - KAIST Style */
+        .header { 
+            background: white; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+        }
+        .navbar { 
+            padding: 0.5rem 0; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .container { 
+            padding: 0 2rem; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        
+        /* Logo - KAIST Style */
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: #2c5282; 
+            text-decoration: none; 
+            letter-spacing: -0.5px; 
+            margin-bottom: 0.5rem;
+        }
+        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
+        .logo:hover { color: #2c5282; }
+        
+        /* Horizontal Navigation - KAIST Style */
+        .nav-menu { 
+            display: flex; 
+            justify-content: center; 
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* Menu Items */
+        .nav-list { 
+            list-style: none; 
+            display: flex; 
+            margin: 0; 
+            padding: 0;
+            gap: 0;
+        }
+        .nav-item { 
+            position: relative; 
+            margin: 0;
+        }
+        .nav-link { 
+            display: block; 
+            color: #4a5568; 
+            font-weight: 500; 
+            padding: 1rem 1.5rem; 
+            text-decoration: none;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            border-right: 1px solid #e2e8f0;
+        }
+        .nav-item:last-child .nav-link {
+            border-right: none;
+        }
+        .nav-link:hover { 
+            background: #f7fafc; 
+            color: #2c5282; 
+        }
+        .nav-link.active {
+            background: #2c5282;
+            color: white;
+        }
+        
+        /* Main Content */
+        .main { 
+            margin-top: 120px; 
+            min-height: calc(100vh - 120px);
+        }
+        
+        /* Hero Section for Publications */
+        .publications-hero {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .publications-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(44, 82, 130, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(56, 161, 105, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+        .publications-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(44, 82, 130, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(56, 161, 105, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            opacity: 0.6;
+            z-index: 0;
+        }
+        .hero-content { 
+            text-align: center; 
+            max-width: 800px; 
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-title { 
+            font-size: 3rem; 
+            font-weight: 700; 
+            color: #2c5282; 
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c5282;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #4a5568;
+            margin-top: 0.5rem;
+        }
+        
+        /* Dropdown Menu */
+        .dropdown-menu { 
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0;
+            min-width: 200px;
+            z-index: 1000;
+        }
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .dropdown-menu a:hover {
+            background: #f7fafc;
+            color: #2c5282;
+        }
+        
+        /* Publications Filter Section */
+        .publications-filter {
+            background: white;
+            padding: 3rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .filter-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        .filter-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c5282;
+            margin-bottom: 2rem;
+        }
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            color: #4a5568;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 140px;
+        }
+        .filter-btn:hover {
+            border-color: #2c5282;
+            color: #2c5282;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44,82,130,0.15);
+        }
+        .filter-btn.active {
+            background: #2c5282;
+            border-color: #2c5282;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44,82,130,0.3);
+        }
+        .filter-btn .count {
+            background: rgba(255,255,255,0.2);
+            color: inherit;
+            padding: 0.2rem 0.6rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .filter-btn.active .count {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* Publications Content */
+        .publications-content {
+            background: #f8fafc;
+            padding: 4rem 0;
+            min-height: 50vh;
+        }
+        .publications-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Year Groups */
+        .year-group {
+            margin-bottom: 3rem;
+        }
+        .year-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #38a169;
+            display: inline-block;
+        }
+        
+        /* Publication Items */
+        .pub-item {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #e2e8f0;
+        }
+        .pub-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-left-color: #38a169;
+        }
+        .pub-item[data-field="정책"] {
+            border-left-color: #3182ce;
+        }
+        .pub-item[data-field="임상"] {
+            border-left-color: #38a169;
+        }
+        .pub-item[data-field="시제품"] {
+            border-left-color: #ed8936;
+        }
+        .pub-header {
+            margin-bottom: 1rem;
+        }
+        .pub-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .pub-authors {
+            font-size: 1rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+        .pub-details {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f7fafc;
+            border-radius: 0.5rem;
+        }
+        .pub-journal {
+            font-size: 0.95rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+        .pub-doi a {
+            color: #3182ce;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .pub-doi a:hover {
+            text-decoration: underline;
+        }
+        .pub-abstract {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        .pub-abstract strong {
+            color: #2d3748;
+        }
+        
+        /* Conference Section */
+        .conference-presentations {
+            background: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .conference-presentations h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c5282;
+            margin-bottom: 1rem;
+        }
+        .coming-soon {
+            font-size: 1.1rem;
+            color: #4a5568;
+            font-style: italic;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        .footer-info .logo img {
+            height: 40px;
+            margin-bottom: 1rem;
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .footer-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #38a169;
+        }
+        .footer-column ul {
+            list-style: none;
+        }
+        .footer-column li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-column a {
+            color: #cbd5e0;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .footer-column a:hover {
+            color: white;
+        }
+        .footer-bottom {
+            border-top: 1px solid #4a5568;
+            padding-top: 1rem;
+            text-align: center;
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .filter-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            .pub-item {
+                padding: 1.5rem;
+            }
+            .pub-title {
+                font-size: 1.1rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+            .nav-list {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                display: none;
+            }
+            .nav-item {
+                border-bottom: 1px solid #e2e8f0;
+            }
+            .nav-link {
+                border-right: none;
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- 헤더 -->
+    <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <a href="../index.html">
-                        <img src="../../assets/images/logo.png" alt="MasVisio Research">
-                    </a>
-                </div>
-                <nav class="nav">
-                    <ul class="nav-menu">
-                        <li><a href="../index.html">홈</a></li>
-                        <li><a href="../projects/index.html">연구 프로젝트</a></li>
-                        <li><a href="../publications/index.html" class="active">연구 성과</a></li>
-                        <li><a href="../team/index.html">연구진</a></li>
-                        <li><a href="../contact/index.html">연락처</a></li>
+        <div class="navbar">
+            <div class="container">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-eye"></i>
+                    MasVisio Research
+                </a>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../index.html" class="nav-link">홈</a></li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">연구 프로젝트</a>
+                            <div class="dropdown-menu">
+                                <a href="../research/overview.html">연구 개요</a>
+                                <a href="../research/current-studies.html">현재 연구</a>
+                                <a href="../research/projects/myopia-control.html">근시 제어 연구</a>
+                                <a href="../research/projects/neural-stimulation.html">신경 자극 기술</a>
+                                <a href="../research/projects/visual-cognition.html">시각-인지 연구</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="../publications/index.html" class="nav-link active">연구 성과</a></li>
+                        <li class="nav-item"><a href="../team/index.html" class="nav-link">연구진</a></li>
+                        <li class="nav-item"><a href="../contact.html" class="nav-link">연락처</a></li>
+                        <li class="nav-item"><a href="../partnership/index.html" class="nav-link">파트너십</a></li>
+                        <li class="nav-item"><a href="../../en/publications/index.html" class="nav-link" style="color: #38a169;">EN</a></li>
                     </ul>
-                    <div class="language-switcher">
-                        <a href="../../en/publications/index.html">EN</a>
-                    </div>
-                </nav>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- 메인 컨텐츠 -->
-    <main class="main">
-        <div class="container">
-            <div class="page-header">
-                <h1>연구 성과</h1>
-                <p>검안학 분야의 혁신적인 연구 결과와 학술 발표를 소개합니다</p>
-            </div>
-
-            <!-- 연구 성과 필터 -->
-            <div class="publications-filter">
-                <h2>연구 분야별 분류</h2>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" onclick="filterPublications('all')">
-                        전체 <span class="count" id="count-all">22</span>
-                    </button>
-                    <button class="filter-btn" onclick="filterPublications('정책')">
-                        정책 연구 <span class="count" id="count-policy">9</span>
-                    </button>
-                    <button class="filter-btn" onclick="filterPublications('임상')">
-                        임상 연구 <span class="count" id="count-clinical">11</span>
-                    </button>
-                    <button class="filter-btn" onclick="filterPublications('시제품')">
-                        시제품 개발 <span class="count" id="count-device">2</span>
-                    </button>
+    <!-- Hero Section -->
+    <section class="publications-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">연구 성과</h1>
+            <p class="hero-subtitle">
+                검안학 분야의 혁신적인 연구 결과와 학술 발표를 소개합니다<br>
+                정책 연구부터 임상 연구, 시제품 개발까지 다양한 성과를 확인하세요
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="total-papers">22</span>
+                    <div class="stat-label">총 연구 논문</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">13</span>
+                    <div class="stat-label">연구 기간 (년)</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <div class="stat-label">연구 분야</div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- 연구 논문 목록 -->
-            <div class="publications-content">
-                <div class="publications-grid">
+    <!-- Publications Filter Section -->
+    <section class="publications-filter">
+        <div class="filter-container">
+            <h2 class="filter-title">연구 분야별 분류</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterPublications('all')">
+                    전체 <span class="count" id="count-all">22</span>
+                </button>
+                <button class="filter-btn" onclick="filterPublications('정책')">
+                    정책 연구 <span class="count" id="count-policy">9</span>
+                </button>
+                <button class="filter-btn" onclick="filterPublications('임상')">
+                    임상 연구 <span class="count" id="count-clinical">11</span>
+                </button>
+                <button class="filter-btn" onclick="filterPublications('시제품')">
+                    시제품 개발 <span class="count" id="count-device">2</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Content -->
+    <section class="publications-content">
+        <div class="publications-grid">
                     
                     <!-- 2022년 논문들 -->
                     <div class="year-group" data-year="2022">
@@ -515,25 +1012,25 @@
                         </div>
                     </div>
 
-                </div>
-            </div>
-
-            <!-- 학술대회 발표 섹션 (향후 추가 예정) -->
-            <div class="conference-presentations" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ddd;">
-                <h2>학술대회 발표</h2>
-                <p class="coming-soon">학술대회 발표 자료는 추후 업데이트 예정입니다.</p>
-            </div>
-
         </div>
-    </main>
+    </section>
 
-    <!-- 푸터 -->
+    <!-- Conference Presentations Section -->
+    <section class="conference-presentations">
+        <div class="filter-container">
+            <h2>학술대회 발표</h2>
+            <p class="coming-soon">학술대회 발표 자료는 추후 업데이트 예정입니다.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
+        <div class="filter-container">
             <div class="footer-content">
                 <div class="footer-info">
                     <div class="logo">
-                        <img src="../../assets/images/logo.png" alt="MasVisio Research">
+                        <i class="fas fa-eye" style="color: #38a169; font-size: 2rem; margin-right: 0.5rem;"></i>
+                        <span style="font-size: 1.5rem; font-weight: bold;">MasVisio Research</span>
                     </div>
                     <p>검안학 분야의 혁신적 연구를 통해 더 나은 세상을 만들어갑니다.</p>
                 </div>
@@ -541,9 +1038,9 @@
                     <div class="footer-column">
                         <h3>연구 분야</h3>
                         <ul>
-                            <li><a href="../projects/index.html">검안학 정책 연구</a></li>
-                            <li><a href="../projects/index.html">임상 실험 연구</a></li>
-                            <li><a href="../projects/index.html">시제품 개발</a></li>
+                            <li><a href="../research/overview.html">검안학 정책 연구</a></li>
+                            <li><a href="../research/current-studies.html">임상 실험 연구</a></li>
+                            <li><a href="../research/projects/myopia-control.html">시제품 개발</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
@@ -551,7 +1048,7 @@
                         <ul>
                             <li><a href="../team/index.html">연구진</a></li>
                             <li><a href="../publications/index.html">연구 성과</a></li>
-                            <li><a href="../contact/index.html">연락처</a></li>
+                            <li><a href="../contact.html">연락처</a></li>
                         </ul>
                     </div>
                 </div>
