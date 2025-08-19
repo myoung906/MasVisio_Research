@@ -350,6 +350,69 @@
             color: #666;
             font-style: italic;
         }
+        
+        /* Footer Styles - Contact Style */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .footer-subtitle {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .footer-description {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .footer-contact p {
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #2563eb;
+        }
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            text-align: center;
+        }
+        .copyright {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        .disclaimer {
+            color: #64748b;
+            font-size: 0.75rem;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -573,16 +636,51 @@
     </main>
 
     <!-- Footer -->
-    <footer style="background: #2d3748; color: #a0aec0; padding: 2rem 0; text-align: center; margin-top: 5rem;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
-            <p style="margin-bottom: 1rem;">&copy; 2025 MasVisio Research. All rights reserved.</p>
-            <p style="font-size: 0.9rem; opacity: 0.8;">
-                마산대학교 안경광학과 | MasVisio Research | 
-                <a href="mailto:research@masvisio.kr" style="color: #38a169;">research@masvisio.kr</a>
-            </p>
-            <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.7;">
-                연구지원: NRF Grant 2022M3A9E4082445
-            </p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">MasVisio Research</h3>
+                    <p class="footer-description">
+                        혁신적인 시각재활 기술 개발을 통해 
+                        더 나은 미래를 만들어갑니다.
+                    </p>
+                    <div class="footer-contact">
+                        <p>📧 research@masvisio.kr</p>
+                        <p>📞 +82-2-1234-5678</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">연구 분야</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../../publications/index.html">연구 성과</a></li>
+                        <li><a href="myopia-control.html">근시 제어</a></li>
+                        <li><a href="#ai-diagnosis">AI 진단</a></li>
+                        <li><a href="#biometric">바이오메트릭</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">파트너십</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../../contact.html">연락처</a></li>
+                        <li><a href="#partnership">협력 기회</a></li>
+                        <li><a href="#privacy">개인정보처리방침</a></li>
+                        <li><a href="#terms">이용약관</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2025 MasVisio Research. All rights reserved.
+                </p>
+                <p class="disclaimer">
+                    본 연구결과는 임상시험 데이터를 기반으로 하며, 
+                    상업적 적용 시 추가 검증이 필요할 수 있습니다.
+                </p>
+            </div>
         </div>
     </footer>
 
