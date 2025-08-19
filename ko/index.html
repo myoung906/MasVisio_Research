@@ -35,6 +35,12 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
 
         .nav-brand {
             display: flex;
@@ -136,40 +142,29 @@
         
         /* Language Toggle */
         .language-toggle {
-            position: absolute;
-            right: 4rem;
-            top: 50%;
-            transform: translateY(-50%);
             display: flex;
             gap: 0.5rem;
-            align-items: center;
+            margin-left: 2rem;
         }
         
         .lang-btn {
             padding: 0.5rem 1rem;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 1.5rem;
-            color: #4a5568;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #374151;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
-        
         .lang-btn:hover {
-            background: #2c5282;
-            color: white;
-            border-color: #2c5282;
+            background: #f3f4f6;
         }
-        
         .lang-btn.active {
-            background: #2c5282;
+            background: #2563eb;
             color: white;
-            border-color: #2c5282;
+            border-color: #2563eb;
         }
 
         /* Mobile Toggle Button */
@@ -1664,34 +1659,33 @@
                     <h1 class="logo">MasVisio Research</h1>
                     <span class="tagline">Visual Rehabilitation & Autonomous Imaging Engineering</span>
                 </div>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active" data-target="home">홈</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-target="research-overview">연구분야</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-target="team-intro">연구원소개</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-target="services">제공서비스</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="publications/index.html" class="nav-link">연구성과</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" data-target="media">미디어</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="contact.html" class="nav-link">연락처</a>
-                    </li>
-                </ul>
-                
-                <!-- Language Toggle -->
-                <div class="language-toggle">
-                    <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
-                    <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+                <div class="nav-right">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active" data-target="home">홈</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-target="research-overview">연구분야</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-target="team-intro">연구원소개</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-target="services">제공서비스</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="publications/index.html" class="nav-link">연구성과</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contact.html" class="nav-link">문의</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Language Toggle -->
+                    <div class="language-toggle">
+                        <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
+                        <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+                    </div>
                 </div>
                 
                 <div class="mobile-menu-toggle">
