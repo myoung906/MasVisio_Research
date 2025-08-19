@@ -17,67 +17,105 @@
         }
         
         /* Header Styles */
-        .header { 
-            background: white; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            z-index: 1000; 
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
-        .navbar { 
-            padding: 0.5rem 0; 
-            max-width: 1200px; 
-            margin: 0 auto; 
+
+        .navbar {
+            padding: 1rem 0;
         }
-        .container { 
-            padding: 0 2rem; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .logo { 
-            display: flex; 
-            align-items: center; 
-            gap: 0.5rem; 
-            font-family: 'Arial', sans-serif; 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            color: #2c5282; 
-            text-decoration: none; 
-            letter-spacing: -0.5px; 
-            margin-bottom: 0.5rem;
+
+        .nav-brand {
+            display: flex;
+            flex-direction: column;
         }
-        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
-        
-        /* Navigation */
-        .nav-menu { 
-            display: flex; 
-            justify-content: center; 
-            background: white;
-            border-top: 1px solid #e2e8f0;
-            padding: 0;
-            margin: 0;
-        }
-        .nav-list { 
-            list-style: none; 
-            display: flex; 
-            margin: 0; 
-            padding: 0;
-            gap: 0;
-        }
-        .nav-item { position: relative; margin: 0; }
-        .nav-link { 
-            display: block; 
-            color: #4a5568; 
-            font-weight: 500; 
-            padding: 1rem 1.5rem; 
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0;
             text-decoration: none;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            border-right: 1px solid #e2e8f0;
         }
-        .nav-link:hover, .nav-link.active { background: #f7fafc; color: #2c5282; }
+
+        .tagline {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 700;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #2563eb;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #374151;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
         
         /* Language Toggle */
         .language-toggle {
@@ -318,23 +356,43 @@
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                <a href="../ko/index.html" class="logo">
-                    <i class="fas fa-eye"></i>
-                    MasVisio Research
-                </a>
-                <div class="language-toggle">
-                    <a href="#" class="lang-btn active" onclick="switchLanguage('ko')">KO</a>
-                    <a href="#" class="lang-btn" onclick="switchLanguage('en')">EN</a>
+                <div class="nav-brand">
+                    <h1 class="logo">MasVisio Research</h1>
+                    <span class="tagline">Visual Rehabilitation & Autonomous Imaging Engineering</span>
                 </div>
-                <div class="nav-menu">
-                    <ul class="nav-list">
-                        <li class="nav-item"><a href="../../index.html" class="nav-link">홈</a></li>
-                        <li class="nav-item"><a href="../overview.html" class="nav-link active">연구</a></li>
-                        <li class="nav-item"><a href="../../publications/index.html" class="nav-link">논문</a></li>
-                        <li class="nav-item"><a href="../../team/index.html" class="nav-link">연구진</a></li>
-                        <li class="nav-item"><a href="../../partnership/index.html" class="nav-link">파트너십</a></li>
-                        <li class="nav-item"><a href="../../contact/index.html" class="nav-link">연락처</a></li>
-                    </ul>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../research-overview.html" class="nav-link">Research Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../current-studies.html" class="nav-link">Current Studies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="visual-cognition.html" class="nav-link active">Visual Cognition</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../experimental-results.html" class="nav-link">Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../technical-specs.html" class="nav-link">Tech Specs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../commercial-value.html" class="nav-link">Commercial Value</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../partnership.html" class="nav-link">Partnership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
         </nav>

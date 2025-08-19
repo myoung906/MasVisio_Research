@@ -11,176 +11,104 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: white; }
         
-        /* Header - KAIST Style */
-        .header { 
-            background: white; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            z-index: 1000; 
-        }
-        .navbar { 
-            padding: 0.5rem 0; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-        }
-        .container { 
-            padding: 0 2rem; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-        }
-        
-        /* Logo - KAIST Style */
-        .logo { 
-            display: flex; 
-            align-items: center; 
-            gap: 0.5rem; 
-            font-family: 'Arial', sans-serif; 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            color: #2c5282; 
-            text-decoration: none; 
-            letter-spacing: -0.5px; 
-            margin-bottom: 0.5rem;
-        }
-        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
-        .logo:hover { color: #2c5282; }
-        
-        /* Horizontal Navigation - KAIST Style */
-        .nav-menu { 
-            display: flex; 
-            justify-content: center; 
-            background: white;
-            border-top: 1px solid #e2e8f0;
-            padding: 0;
-            margin: 0;
-        }
-        
-        /* Menu Items */
-        .nav-list { 
-            list-style: none; 
-            display: flex; 
-            margin: 0; 
-            padding: 0;
-            gap: 0;
-        }
-        .nav-item { 
-            position: relative; 
-            margin: 0;
-        }
-        .nav-link { 
-            display: block; 
-            color: #4a5568; 
-            font-weight: 500; 
-            padding: 1rem 1.5rem; 
-            text-decoration: none;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            border-right: 1px solid #e2e8f0;
-        }
-        .nav-item:last-child .nav-link {
-            border-right: none;
-        }
-        .nav-link:hover { 
-            background: #f7fafc; 
-            color: #2c5282; 
-        }
-        
-        /* Dropdown Menu */
-        .nav-item:hover .dropdown-menu {
-            display: block;
-        }
-        .dropdown-menu { 
-            display: none;
-            position: absolute;
-            top: 100%;
+        /* Header Styles - Contact Style */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
             left: 0;
-            background: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 1px solid #e2e8f0;
-            min-width: 200px;
+            right: 0;
             z-index: 1000;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .dropdown-menu a { 
-            display: block; 
-            padding: 0.8rem 1.5rem; 
-            font-size: 0.9rem; 
-            color: #4a5568; 
-            text-decoration: none; 
-            border-bottom: 1px solid #f1f5f9;
-        }
-        .dropdown-menu a:hover {
-            background: #f7fafc;
-            color: #2c5282;
-        }
-        .dropdown-menu li:last-child a {
-            border-bottom: none;
-        }
-        
-        /* Language Toggle */
-        .language-toggle {
-            position: absolute;
-            right: 4rem;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-        
-        .lang-btn {
-            padding: 0.5rem 1rem;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 1.5rem;
-            color: #4a5568;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .lang-btn:hover {
-            background: #2c5282;
-            color: white;
-            border-color: #2c5282;
-        }
-        
-        .lang-btn.active {
-            background: #2c5282;
-            color: white;
-            border-color: #2c5282;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
-        /* Mobile Toggle Button */
-        .nav-toggle { 
-            display: none; 
-            flex-direction: column; 
-            cursor: pointer; 
-            gap: 5px; 
-            padding: 8px; 
-            border: none;
-            background: none;
-            position: absolute;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
+        .navbar {
+            padding: 1rem 0;
         }
-        .nav-toggle span { 
-            width: 28px; 
-            height: 3px; 
-            background: #4a5568; 
-            border-radius: 2px; 
-            transition: all 0.3s ease; 
-            display: block;
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0;
+            text-decoration: none;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 700;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #2563eb;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #374151;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
         }
         
         /* Hero Section - KAIST Style */
@@ -361,45 +289,24 @@
             text-align: center; 
         }
         
-        /* Mobile */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-toggle { display: flex; }
-            .nav-menu { 
-                position: fixed;
-                top: 100px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 100px);
-                background: white;
-                flex-direction: column;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                transition: left 0.3s ease;
-                overflow-y: auto;
+            .container {
+                padding: 0 15px;
             }
-            .nav-menu.active { left: 0; }
-            .nav-list { 
-                flex-direction: column; 
-                width: 100%;
-                padding: 1rem 0;
+            
+            .nav-menu {
+                display: none;
             }
-            .nav-link { 
-                border-right: none; 
-                border-bottom: 1px solid #e2e8f0;
+            
+            .mobile-menu-toggle {
+                display: flex;
             }
-            .dropdown-menu {
-                position: static;
-                display: block;
-                box-shadow: none;
-                border: none;
-                background: #f8f9fa;
-                margin-left: 1rem;
-            }
+            
             .hero-title { font-size: 2.8rem; }
             .hero-subtitle { font-size: 1.1rem; }
-            .hero-tagline { font-size: 1rem; }
             .hero-buttons { flex-direction: column; align-items: center; }
             .btn-research { width: 200px; }
-            .container { padding: 0 1rem; }
             .research-content { padding: 0 1rem; }
             .section-title { font-size: 2rem; }
             .research-text { font-size: 1rem; }
@@ -424,73 +331,39 @@
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-eye"></i>
-                    MasVisio Research
-                </a>
-                
-                <!-- Language Toggle -->
-                <div class="language-toggle">
-                    <a href="#" class="lang-btn active" onclick="switchLanguage('ko')">KO</a>
-                    <a href="#" class="lang-btn" onclick="switchLanguage('en')">EN</a>
+                <div class="nav-brand">
+                    <h1 class="logo">MasVisio Research</h1>
+                    <span class="tagline">Visual Rehabilitation & Autonomous Imaging Engineering</span>
                 </div>
-                
-                <button class="nav-toggle" id="nav-toggle" onclick="toggleMenu()">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="research-overview.html" class="nav-link">Research Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="experimental-results.html" class="nav-link">Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="technical-specs.html" class="nav-link">Tech Specs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="commercial-value.html" class="nav-link">Commercial Value</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partnership.html" class="nav-link">Partnership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="mobile-menu-toggle">
                     <span></span>
                     <span></span>
                     <span></span>
-                </button>
-                
-                <!-- Horizontal Navigation Menu -->
-                <nav class="nav-menu" id="nav-menu">
-                    <ul class="nav-list">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" id="nav-home">연구소 소개</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#mission">미션</a></li>
-                                <li><a href="team/index.html">연구진</a></li>
-                                <li><a href="#institute">연구소 현황</a></li>
-                                <li><a href="#cooperations">협력기관</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" id="nav-research">연구 분야</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="research/overview.html">연구 개요</a></li>
-                                <li><a href="research/current-studies.html">진행 중인 연구</a></li>
-                                <li><a href="research/methodology.html">연구 방법론</a></li>
-                                <li><a href="research/equipment.html">연구 장비</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">제공 서비스</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#clinical-trials">임상시험</a></li>
-                                <li><a href="#laboratory-tests">실험실 시험</a></li>
-                                <li><a href="#device-development">기기 개발</a></li>
-                                <li><a href="#consultation">연구 컨설팅</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="research/current-studies.html" class="nav-link">진행 중인 연구</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="publications/index.html" class="nav-link" id="nav-publications">연구 성과</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">미디어</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">뉴스</a></li>
-                                <li><a href="#">갤러리</a></li>
-                                <li><a href="#">동영상</a></li>
-                                <li><a href="#">보도자료</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="contact/index.html" class="nav-link" id="nav-contact">연락처</a>
-                        </li>
-                    </ul>
-                </nav>
+                </div>
+
             </div>
         </nav>
     </header>
@@ -742,48 +615,6 @@
         </div>
     </footer>
 
-    <!-- 언어 전환 기능 스크립트 -->
-    <script src="../assets/js/language-data.js"></script>
-    
-    <script>
-        function toggleMenu() {
-            const navToggle = document.getElementById('nav-toggle');
-            const navMenu = document.getElementById('nav-menu');
-            
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        }
-        
-        // ESC 키로 메뉴 닫기
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const navMenu = document.getElementById('nav-menu');
-                if (navMenu.classList.contains('active')) {
-                    toggleMenu();
-                }
-            }
-        });
-        
-        // 데스크톱에서는 드롭다운 메뉴 호버 효과
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownItems = document.querySelectorAll('.nav-item:has(.dropdown-menu)');
-            
-            dropdownItems.forEach(item => {
-                const dropdown = item.querySelector('.dropdown-menu');
-                
-                item.addEventListener('mouseenter', function() {
-                    if (window.innerWidth > 768) {
-                        dropdown.style.display = 'block';
-                    }
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    if (window.innerWidth > 768) {
-                        dropdown.style.display = 'none';
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
