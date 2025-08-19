@@ -254,6 +254,40 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(44,82,130,0.3);
         }
+        
+        /* 카테고리별 색상 */
+        .filter-btn[data-category="정책"]:hover {
+            border-color: #3182ce;
+            color: #3182ce;
+            box-shadow: 0 4px 12px rgba(49,130,206,0.15);
+        }
+        .filter-btn[data-category="정책"].active {
+            background: #3182ce;
+            border-color: #3182ce;
+            box-shadow: 0 6px 20px rgba(49,130,206,0.3);
+        }
+        
+        .filter-btn[data-category="임상"]:hover {
+            border-color: #38a169;
+            color: #38a169;
+            box-shadow: 0 4px 12px rgba(56,161,105,0.15);
+        }
+        .filter-btn[data-category="임상"].active {
+            background: #38a169;
+            border-color: #38a169;
+            box-shadow: 0 6px 20px rgba(56,161,105,0.3);
+        }
+        
+        .filter-btn[data-category="시제품"]:hover {
+            border-color: #ed8936;
+            color: #ed8936;
+            box-shadow: 0 4px 12px rgba(237,137,54,0.15);
+        }
+        .filter-btn[data-category="시제품"].active {
+            background: #ed8936;
+            border-color: #ed8936;
+            box-shadow: 0 6px 20px rgba(237,137,54,0.3);
+        }
         .filter-btn .count {
             background: rgba(255,255,255,0.2);
             color: inherit;
@@ -544,13 +578,13 @@
                 <button class="filter-btn active" onclick="filterPublications('all')">
                     전체 <span class="count" id="count-all">22</span>
                 </button>
-                <button class="filter-btn" onclick="filterPublications('정책')">
+                <button class="filter-btn" data-category="정책" onclick="filterPublications('정책')">
                     정책 연구 <span class="count" id="count-policy">9</span>
                 </button>
-                <button class="filter-btn" onclick="filterPublications('임상')">
+                <button class="filter-btn" data-category="임상" onclick="filterPublications('임상')">
                     임상 연구 <span class="count" id="count-clinical">11</span>
                 </button>
-                <button class="filter-btn" onclick="filterPublications('시제품')">
+                <button class="filter-btn" data-category="시제품" onclick="filterPublications('시제품')">
                     시제품 개발 <span class="count" id="count-device">2</span>
                 </button>
             </div>

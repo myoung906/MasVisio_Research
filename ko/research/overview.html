@@ -242,6 +242,24 @@
             color: rgba(255,255,255,0.8);
         }
         
+        .biometrics-icon {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .scleral-scanner-icon {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
         /* Project Content */
         .project-content {
             padding: 1.5rem;
@@ -442,7 +460,11 @@
             <!-- Project 2: 안질환 예측 -->
             <article class="project-card" onclick="window.location.href='projects/visual-cognition.html'">
                 <div class="project-visual">
-                    <img src="../assets/images/research/integrated-biometrics.png" alt="Integrated Biometrics System" />
+                    <div class="biometrics-icon">
+                        <i class="fas fa-eye" style="font-size: 3rem; color: #38a169;"></i>
+                        <i class="fas fa-chart-line" style="font-size: 1.5rem; color: #3182ce; position: absolute; top: 60%; right: 20%;"></i>
+                        <i class="fas fa-brain" style="font-size: 1.2rem; color: #ed8936; position: absolute; bottom: 20%; left: 20%;"></i>
+                    </div>
                 </div>
                 <div class="project-content">
                     <div class="project-type">Biomakers in Ocular Matrices</div>
@@ -472,7 +494,11 @@
             <!-- Project 3: 공막 3D 프로파일러 -->
             <article class="project-card" onclick="window.location.href='projects/scleral-scanner.html'">
                 <div class="project-visual">
-                    <i class="fas fa-scanner placeholder-icon"></i>
+                    <div class="scleral-scanner-icon">
+                        <i class="fas fa-cube" style="font-size: 3rem; color: #2c5282;"></i>
+                        <i class="fas fa-eye" style="font-size: 1.8rem; color: #38a169; position: absolute; top: 50%; right: 25%; transform: translateY(-50%);"></i>
+                        <i class="fas fa-glasses" style="font-size: 1.2rem; color: #ed8936; position: absolute; bottom: 25%; left: 25%;"></i>
+                    </div>
                 </div>
                 <div class="project-content">
                     <div class="project-type">Scleral 3D Profiler</div>
@@ -563,7 +589,7 @@
         <div class="container">
             <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
             <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">
-                마산대학교 안경광학과 | 시각재활 연구실 | 
+                마산대학교 안경광학과 | MasVisio Research | 
                 <a href="jaemyoungseo@masan.ac.kr" style="color: #38a169;">research@masvisio.kr</a>
             </p>
         </div>

@@ -270,13 +270,74 @@
             opacity: 0;
             animation: fadeInUp 1s ease-out 1s forwards;
         }
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        /* 팀 소개 섹션 */
+        .team-introduction {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             opacity: 0;
             animation: fadeInUp 1s ease-out 1.5s forwards;
+        }
+        
+        .team-intro-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .team-intro-text h3 {
+            color: #2c5282;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .team-intro-text p {
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .team-stats {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .team-stat {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .team-stat .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c5282;
+        }
+        
+        .team-stat .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .team-intro-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .team-placeholder {
+            background: #f8fafc;
+            border: 2px dashed #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            text-align: center;
+            width: 100%;
+            max-width: 280px;
         }
         .btn-research { 
             display: inline-block; 
@@ -467,8 +528,14 @@
             .hero-title { font-size: 2.8rem; }
             .hero-subtitle { font-size: 1.1rem; }
             .hero-tagline { font-size: 1rem; }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .btn-research { width: 200px; }
+            .team-intro-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .team-stats {
+                justify-content: center;
+            }
             .container { padding: 0 1rem; }
             .research-content { padding: 0 1rem; }
             .section-title { font-size: 2rem; }
@@ -1403,9 +1470,7 @@
                                 <li><a href="#consultation">연구 컨설팅</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="research/current-studies.html" class="nav-link">진행 중인 연구</a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="publications/index.html" class="nav-link" id="nav-publications">연구 성과</a>
                         </li>
@@ -1456,10 +1521,38 @@
             <div class="hero-content">
 
 
-                <div class="hero-buttons">
-                    <a href="partnership/index.html" class="btn-research primary">투자/제휴 기회</a>
-                    <a href="research/overview.html" class="btn-research secondary">연구 성과</a>
-                    <a href="contact/index.html" class="btn-research tertiary">문의하기</a>
+                <!-- 팀 소개 섹션 -->
+                <div class="team-introduction">
+                    <div class="team-intro-content">
+                        <div class="team-intro-text">
+                            <h3>MasVisio Research 팀</h3>
+                            <p>
+                                시각재활 분야의 세계적 전문가들이 모인 MasVisio Research는 
+                                <strong>혁신적인 기술 개발</strong>과 <strong>임상 연구</strong>를 통해 
+                                시각장애인의 삶의 질 향상을 위해 노력하고 있습니다.
+                            </p>
+                            <div class="team-stats">
+                                <div class="team-stat">
+                                    <span class="stat-number">15+</span>
+                                    <span class="stat-label">연구진</span>
+                                </div>
+                                <div class="team-stat">
+                                    <span class="stat-number">50+</span>
+                                    <span class="stat-label">논문 발표</span>
+                                </div>
+                                <div class="team-stat">
+                                    <span class="stat-number">8</span>
+                                    <span class="stat-label">특허 출원</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-intro-image">
+                            <div class="team-placeholder">
+                                <i class="fas fa-users" style="font-size: 4rem; color: #2c5282; opacity: 0.8;"></i>
+                                <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">연구팀 이미지</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2811,6 +2904,41 @@
                 console.log('Audio context not supported');
             }
         }
+
+        // SPA 네비게이션 기능
+        function initSPANavigation() {
+            // 네비게이션 링크에 이벤트 리스너 추가
+            document.querySelectorAll('.nav-link[id]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 모든 네비게이션 링크에서 active 클래스 제거
+                    document.querySelectorAll('.nav-link').forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    
+                    // 클릭된 링크에 active 클래스 추가
+                    this.classList.add('active');
+                    
+                    // 해당 섹션으로 스크롤
+                    const targetId = this.id.replace('nav-', '');
+                    const targetSection = document.getElementById(targetId + '-section') || 
+                                         document.querySelector(`[data-section="${targetId}"]`);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // 페이지 로드 시 SPA 네비게이션 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            initSPANavigation();
+        });
     </script>
 </body>
 </html>
