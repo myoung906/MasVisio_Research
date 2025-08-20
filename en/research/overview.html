@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,104 +17,133 @@
         }
         
         /* Header Styles */
-        .header { 
-            background: white; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            z-index: 1000; 
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
-        .navbar { 
-            padding: 0.5rem 0; 
-            max-width: 1200px; 
-            margin: 0 auto; 
+
+        .navbar {
+            padding: 1rem 0;
         }
-        .container { 
-            padding: 0 2rem; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-        }
-        .logo { 
-            display: flex; 
-            align-items: center; 
-            gap: 0.5rem; 
-            font-family: 'Arial', sans-serif; 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            color: #2c5282; 
-            text-decoration: none; 
-            letter-spacing: -0.5px; 
-            margin-bottom: 0.5rem;
-        }
-        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
-        
-        /* Navigation */
-        .nav-menu { 
-            display: flex; 
-            justify-content: center; 
-            background: white;
-            border-top: 1px solid #e2e8f0;
-            padding: 0;
-            margin: 0;
-        }
-        .nav-list { 
-            list-style: none; 
-            display: flex; 
-            margin: 0; 
-            padding: 0;
-            gap: 0;
-        }
-        .nav-item { position: relative; margin: 0; }
-        .nav-link { 
-            display: block; 
-            color: #4a5568; 
-            font-weight: 500; 
-            padding: 1rem 1.5rem; 
-            text-decoration: none;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            border-right: 1px solid #e2e8f0;
-        }
-        .nav-link:hover, .nav-link.active { background: #f7fafc; color: #2c5282; }
-        
-        /* Language Toggle */
-        .language-toggle {
-            position: absolute;
-            right: 4rem;
-            top: 50%;
-            transform: translateY(-50%);
+
+        .navbar .container {
             display: flex;
-            gap: 0.5rem;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-right {
+            display: flex;
             align-items: center;
         }
+
+        .nav-brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 700;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #2563eb;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #374151;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
         
+        /* Language Toggle Styles */
+        .language-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 2rem;
+        }
         .lang-btn {
             padding: 0.5rem 1rem;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 1.5rem;
-            color: #4a5568;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #374151;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
-        
         .lang-btn:hover {
-            background: #2c5282;
-            color: white;
-            border-color: #2c5282;
+            background: #f3f4f6;
         }
-        
         .lang-btn.active {
-            background: #2c5282;
+            background: #2563eb;
             color: white;
-            border-color: #2c5282;
+            border-color: #2563eb;
         }
         
         /* Main Content */
@@ -338,17 +367,83 @@
             color: #856404;
         }
         
-        /* Footer */
-        .footer { 
-            background: #2d3748; 
-            color: #a0aec0; 
-            padding: 2rem 0; 
-            text-align: center; 
-            margin-top: 5rem;
+        /* Footer Styles - Contact Style */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .footer-subtitle {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .footer-description {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .footer-contact p {
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #2563eb;
+        }
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            text-align: center;
+        }
+        .copyright {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        .disclaimer {
+            color: #64748b;
+            font-size: 0.75rem;
+            font-style: italic;
         }
         
-        /* Mobile Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
             .main-content {
                 padding-left: 1rem;
                 padding-right: 1rem;
@@ -363,23 +458,40 @@
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                <a href="../ko/index.html" class="logo">
-                    <i class="fas fa-eye"></i>
-                    MasVisio Research
-                </a>
-                <div class="language-toggle">
-                    <a href="#" class="lang-btn active" onclick="switchLanguage('ko')">KO</a>
-                    <a href="#" class="lang-btn" onclick="switchLanguage('en')">EN</a>
+                <div class="nav-brand">
+                    <h1 class="logo">MasVisio Research</h1>
+                    <span class="tagline">Visual Rehabilitation & Autonomous Imaging Engineering</span>
                 </div>
-                <div class="nav-menu">
-                    <ul class="nav-list">
-                        <li class="nav-item"><a href="../ko/index.html" class="nav-link">홈</a></li>
-                        <li class="nav-item"><a href="overview.html" class="nav-link active">연구</a></li>
-                        <li class="nav-item"><a href="../publications/index.html" class="nav-link">논문</a></li>
-                        <li class="nav-item"><a href="../team/index.html" class="nav-link">연구진</a></li>
-                        <li class="nav-item"><a href="../partnership/index.html" class="nav-link">파트너십</a></li>
-                        <li class="nav-item"><a href="../contact/index.html" class="nav-link">연락처</a></li>
+                <div class="nav-right">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="../index.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="overview.html" class="nav-link active">Research Areas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../team/index.html" class="nav-link">Researchers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../partnership/index.html" class="nav-link">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../publications/index.html" class="nav-link">Publications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../contact.html" class="nav-link">Contact</a>
+                        </li>
                     </ul>
+                    <div class="language-toggle">
+                        <button class="lang-btn" onclick="switchLanguage('ko')">한국어</button>
+                        <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+                    </div>
+                </div>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
         </nav>
@@ -388,39 +500,40 @@
     <main class="main-content">
         <div class="page-header">
             <div class="breadcrumb">
-                <a href="../ko/index.html">홈</a> > 연구 프로젝트
+                <a href="../index.html">Home</a> > Research Projects
             </div>
-            <h1 class="page-title">연구 프로젝트</h1>
+            <h1 class="page-title">Research Projects</h1>
             <p class="page-subtitle">
-                시각재활 분야에서 도전적이고 혁신적 연구를 통해 더 나은 시각과 삶의 질을 제공합니다. 
-                첨단 기술과 임상 경험을 바탕으로 한 다양한 연구 프로젝트를 진행하고 있습니다.
+                We provide better vision and quality of life through challenging and innovative research in the field of visual rehabilitation. 
+                We are conducting various research projects based on advanced technology and clinical experience.
             </p>
         </div>
 
         <!-- Research Filter -->
         <div class="research-filter">
-            <span class="filter-label">분야별 필터:</span>
-            <a href="#" class="filter-tag active">전체</a>
-            <a href="#" class="filter-tag">근시제어</a>
-            <a href="#" class="filter-tag">안질환 예측</a>
-            <a href="#" class="filter-tag">공막 3D 프로파일러</a>
-            <a href="#" class="filter-tag">실시간 자동안굴절계</a>
-            <a href="#" class="filter-tag">시재활중재</a>
+            <span class="filter-label">Filter by Area:</span>
+            <a href="#" class="filter-tag active">All</a>
+            <a href="#" class="filter-tag">Myopia Control</a>
+            <a href="#" class="filter-tag">Disease Prediction</a>
+            <a href="#" class="filter-tag">Scleral 3D Profiler</a>
+            <a href="#" class="filter-tag">Auto Refractometer</a>
+            <a href="#" class="filter-tag">Vision Rehabilitation</a>
         </div>
 
         <!-- Projects Grid -->
         <section class="projects-grid">
-            <!-- Project 1: 근시제어 -->
+            <!-- Project 1: Myopia Control -->
             <article class="project-card" onclick="window.location.href='projects/myopia-control.html'">
                 <div class="project-visual">
                     <i class="fas fa-eye-dropper placeholder-icon"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-type">Pan-retinal Full Correction & Myopia Control</div>
-                    <h3 class="project-title">전체망막 완전교정과 진형성 근시 제어</h3>
+                    <h3 class="project-title">Pan-retinal Full Correction and Progressive Myopia Control</h3>
                     <p class="project-description">
-                        주변부 망막의 초평면 위치와 안구 성장의 관계를 분석하여 근시 진행을 억제하는 
-                        광학적 개입 방법을 연구합니다. 사광선의 FS' 초점선 위치 조절을 통한 근시 억제 메커니즘을 규명합니다.
+                        We study optical intervention methods to suppress myopia progression by analyzing the relationship between 
+                        peripheral retinal focal plane position and eye growth. We investigate myopia suppression mechanisms through 
+                        controlling FS' focal line position of oblique rays.
                     </p>
                     <div class="project-tags">
                         <span class="project-tag">#myopia-control</span>
@@ -429,9 +542,9 @@
                     </div>
                     <div class="project-meta">
                         <div class="project-researchers">
-                            <span class="researcher-name">서재명 교수</span>
+                            <span class="researcher-name">Prof. Seo, J.M.</span>
                             <span style="color: #ccc;">·</span>
-                            <span class="researcher-name">허민영 책임연구원</span>
+                            <span class="researcher-name">Dr. Heo, M.Y.</span>
                             <span style="color: #999; font-size: 0.8rem;">+2 more</span>
                         </div>
                         <span class="project-status status-active">Active</span>
@@ -439,17 +552,18 @@
                 </div>
             </article>
 
-            <!-- Project 2: 안질환 예측 -->
+            <!-- Project 2: Disease Prediction -->
             <article class="project-card" onclick="window.location.href='projects/visual-cognition.html'">
                 <div class="project-visual">
                     <img src="../assets/images/research/integrated-biometrics.png" alt="Integrated Biometrics System" />
                 </div>
                 <div class="project-content">
-                    <div class="project-type">Biomakers in Ocular Matrices</div>
-                    <h3 class="project-title">통합 바이오메트릭스 기반 안질환 예측</h3>
+                    <div class="project-type">Biomarkers in Ocular Matrices</div>
+                    <h3 class="project-title">Integrated Biometrics-based Ocular Disease Prediction</h3>
                     <p class="project-description">
-                        동공 동역학과 대비감도를 통합한 47개 바이오마커로 당뇨망막병증, 녹내장, 경도인지장애, 심리성향을 동시 평가합니다. 
-                        3분 검사로 90% 이상 정확도를 목표로 하는 세계 최초의 비침습적 통합 스크리닝 플랫폼입니다.
+                        We simultaneously evaluate diabetic retinopathy, glaucoma, mild cognitive impairment, and psychological traits 
+                        using 47 biomarkers that integrate pupil dynamics and contrast sensitivity. This is the world's first 
+                        non-invasive integrated screening platform targeting over 90% accuracy with a 3-minute examination.
                     </p>
                     <div class="project-tags">
                         <span class="project-tag">#biometrics</span>
@@ -459,9 +573,9 @@
                     </div>
                     <div class="project-meta">
                         <div class="project-researchers">
-                            <span class="researcher-name">서재명 교수</span>
+                            <span class="researcher-name">Prof. Seo, J.M.</span>
                             <span style="color: #ccc;">·</span>
-                            <span class="researcher-name">유상혁 학생</span>
+                            <span class="researcher-name">S. Yoo</span>
                             <span style="color: #999; font-size: 0.8rem;">+4 more</span>
                         </div>
                         <span class="project-status status-active">Active</span>
@@ -469,17 +583,17 @@
                 </div>
             </article>
 
-            <!-- Project 3: 공막 3D 프로파일러 -->
+            <!-- Project 3: Scleral 3D Profiler -->
             <article class="project-card" onclick="window.location.href='projects/scleral-scanner.html'">
                 <div class="project-visual">
                     <i class="fas fa-scanner placeholder-icon"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-type">Scleral 3D Profiler</div>
-                    <h3 class="project-title">공막렌즈 처방을 위한 공막 스캐너</h3>
+                    <h3 class="project-title">Scleral Scanner for Scleral Lens Prescription</h3>
                     <p class="project-description">
-                        공막 하드 콘택트렌즈 처방에 필요한 공막 전용 프로파일 측정 장비를 개발합니다. 
-                        Placido ring 기반 공막 프로파일을 3D로 구현하여 정확한 공막렌즈 피팅을 가능하게 합니다.
+                        We develop scleral-specific profile measurement equipment required for scleral hard contact lens prescription. 
+                        Placido ring-based scleral profiles are implemented in 3D to enable accurate scleral lens fitting.
                     </p>
                     <div class="project-tags">
                         <span class="project-tag">#scleral-lens</span>
@@ -488,9 +602,9 @@
                     </div>
                     <div class="project-meta">
                         <div class="project-researchers">
-                            <span class="researcher-name">서재명 교수</span>
+                            <span class="researcher-name">Prof. Seo, J.M.</span>
                             <span style="color: #ccc;">·</span>
-                            <span class="researcher-name">유명학 학생</span>
+                            <span class="researcher-name">M. Yoo</span>
                             <span style="color: #999; font-size: 0.8rem;">+1 more</span>
                         </div>
                         <span class="project-status status-active">Active</span>
@@ -498,17 +612,18 @@
                 </div>
             </article>
 
-            <!-- Project 4: 실시간 자동안굴절계 -->
+            <!-- Project 4: Auto Refractometer -->
             <article class="project-card" onclick="window.location.href='projects/auto-refractometer.html'">
                 <div class="project-visual">
                     <i class="fas fa-microscope placeholder-icon"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-type">A Real-time Autonomous Refractometer by Supervised Learning</div>
-                    <h3 class="project-title">검영법 기반 실시간 자동안굴절계</h3>
+                    <h3 class="project-title">Retinoscopy-based Real-time Auto Refractometer</h3>
                     <p class="project-description">
-                        디옵터별 반사광선의 두께, 밝기, 속도를 지도학습으로 분석하여 확률적 굴절이상량을 반환합니다. 
-                        검사자의 숙련도와 무관하게 5초 내 실시간 측정을 목표로 하는 실시간 자동안굴절계입니다.
+                        We analyze the thickness, brightness, and speed of reflected rays by diopter using supervised learning to 
+                        return probabilistic refractive error amounts. This is a real-time auto refractometer that targets 
+                        real-time measurement within 5 seconds regardless of examiner skill level.
                     </p>
                     <div class="project-tags">
                         <span class="project-tag">#retinoscopy</span>
@@ -517,9 +632,9 @@
                     </div>
                     <div class="project-meta">
                         <div class="project-researchers">
-                            <span class="researcher-name">서재명 교수 </span>
+                            <span class="researcher-name">Prof. Seo, J.M.</span>
                             <span style="color: #ccc;">·</span>
-                            <span class="researcher-name">여현주 연구원</span>
+                            <span class="researcher-name">Dr. Yeo, H.J.</span>
                             <span style="color: #999; font-size: 0.8rem;">+1 more</span>
                         </div>
                         <span class="project-status status-active">Active</span>
@@ -527,17 +642,18 @@
                 </div>
             </article>
 
-            <!-- Project 5: 시각재활 -->
+            <!-- Project 5: Vision Rehabilitation -->
             <article class="project-card" onclick="window.location.href='projects/vision-rehabilitation.html'">
                 <div class="project-visual">
                     <i class="fas fa-hands-helping placeholder-icon"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-type">Rehabilitation</div>
-                    <h3 class="project-title">안질환에 의한 시각장애와 시각재활</h3>
+                    <h3 class="project-title">Visual Impairment and Vision Rehabilitation from Eye Diseases</h3>
                     <p class="project-description">
-                        국내 저시력 재활 실태를 개선하고 서양의 다학제 클리닉 모델을 도입합니다. 
-                        광학·전자 보조기기 처방, 적응 기술 훈련, 심리사회적 지원을 통해 종합적인 재활 서비스를 제공합니다.
+                        We improve the domestic low vision rehabilitation situation and introduce Western multidisciplinary clinic models. 
+                        We provide comprehensive rehabilitation services through optical and electronic assistive device prescription, 
+                        adaptive skill training, and psychosocial support.
                     </p>
                     <div class="project-tags">
                         <span class="project-tag">#low-vision</span>
@@ -561,24 +677,67 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
-            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">
-                마산대학교 안경광학과 | 시각재활 연구실 | 
-                <a href="jaemyoungseo@masan.ac.kr" style="color: #38a169;">research@masvisio.kr</a>
-            </p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">MasVisio Research</h3>
+                    <p class="footer-description">
+                        Developing innovative visual rehabilitation technologies 
+                        to create a better future.
+                    </p>
+                    <div class="footer-contact">
+                        <p>📧 research@masvisio.kr</p>
+                        <p>📞 +82-2-1234-5678</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Research Areas</h4>
+                    <ul class="footer-links">
+                        <li><a href="../publications/index.html">Research Results</a></li>
+                        <li><a href="projects/myopia-control.html">Myopia Control</a></li>
+                        <li><a href="#ai-diagnosis">AI Diagnosis</a></li>
+                        <li><a href="#biometric">Biometrics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Partnership</h4>
+                    <ul class="footer-links">
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="#partnership">Collaboration Opportunities</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2025 MasVisio Research. All rights reserved.
+                </p>
+                <p class="disclaimer">
+                    Research results are based on clinical trial data and 
+                    may require additional validation for commercial applications.
+                </p>
+            </div>
         </div>
     </footer>
 
     <script>
         function switchLanguage(lang) {
+            // Remove active class from all buttons
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
+            
+            // Add active class to clicked button
             event.target.classList.add('active');
-
-            if (lang === 'en') {
-                alert('영어 버전은 준비 중입니다.');
+            
+            // Redirect to appropriate language page
+            if (lang === 'ko') {
+                window.location.href = '../../ko/research/overview.html';
             }
+            // If 'en', stay on current page
         }
 
         // Filter functionality
@@ -597,7 +756,7 @@
                 const projectCards = document.querySelectorAll('.project-card');
                 
                 projectCards.forEach(card => {
-                    if (filterText === '전체') {
+                    if (filterText === 'all') {
                         card.style.display = 'block';
                     } else {
                         const projectTags = card.querySelectorAll('.project-tag');

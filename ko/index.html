@@ -11,93 +11,129 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: white; }
         
-        /* Header - KAIST Style */
-        .header { 
-            background: white; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            z-index: 1000; 
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
-        .navbar { 
-            padding: 0.5rem 0; 
-            max-width: 1200px; 
-            margin: 0 auto; 
+
+        .navbar {
+            padding: 1rem 0;
         }
-        .container { 
-            padding: 0 2rem; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-        }
-        
-        /* Logo - KAIST Style */
-        .logo { 
-            display: flex; 
-            align-items: center; 
-            gap: 0.5rem; 
-            font-family: 'Arial', sans-serif; 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            color: #2c5282; 
-            text-decoration: none; 
-            letter-spacing: -0.5px; 
-            margin-bottom: 0.5rem;
-        }
-        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
-        .logo:hover { color: #2c5282; }
-        
-        /* Horizontal Navigation - KAIST Style */
-        .nav-menu { 
-            display: flex; 
-            justify-content: center; 
-            background: white;
-            border-top: 1px solid #e2e8f0;
-            padding: 0;
-            margin: 0;
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        /* Menu Items */
-        .nav-list { 
-            list-style: none; 
-            display: flex; 
-            margin: 0; 
-            padding: 0;
+        .nav-right {
+            display: flex;
+            align-items: center;
             gap: 0;
         }
-        .nav-item { 
-            position: relative; 
-            margin: 0;
+
+        .nav-brand {
+            display: flex;
+            flex-direction: column;
         }
-        .nav-link { 
-            display: block; 
-            color: #4a5568; 
-            font-weight: 500; 
-            padding: 1rem 1.5rem; 
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
             text-decoration: none;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            border-right: 1px solid #e2e8f0;
+            color: #374151;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+            position: relative;
         }
-        .nav-item:last-child .nav-link {
-            border-right: none;
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #2563eb;
         }
-        .nav-link:hover { 
-            background: #f7fafc; 
-            color: #2c5282; 
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
         }
-        
-        /* Dropdown Menu */
-        .nav-item:hover .dropdown-menu {
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1001;
+        }
+
+        .mobile-menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: #374151;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
             display: block;
         }
-        .dropdown-menu { 
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-6px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-6px, -6px);
+        }
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border: 1px solid #e2e8f0;
             min-width: 200px;
@@ -124,40 +160,29 @@
         
         /* Language Toggle */
         .language-toggle {
-            position: absolute;
-            right: 4rem;
-            top: 50%;
-            transform: translateY(-50%);
             display: flex;
             gap: 0.5rem;
-            align-items: center;
+            margin-left: 2rem;
         }
         
         .lang-btn {
             padding: 0.5rem 1rem;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 1.5rem;
-            color: #4a5568;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #374151;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
-        
         .lang-btn:hover {
-            background: #2c5282;
-            color: white;
-            border-color: #2c5282;
+            background: #f3f4f6;
         }
-        
         .lang-btn.active {
-            background: #2c5282;
+            background: #2563eb;
             color: white;
-            border-color: #2c5282;
+            border-color: #2563eb;
         }
 
         /* Mobile Toggle Button */
@@ -183,38 +208,19 @@
             display: block;
         }
         
-        /* Hero Section - KAIST Style */
-        .hero { 
-            min-height: 100vh; 
-            background: white; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            padding-top: 140px; 
-            position: relative;
+        /* Hero Section - Contact Style */
+        .hero {
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            color: white;
+            text-align: center;
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(44, 82, 130, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(56, 161, 105, 0.08) 0%, transparent 50%),
-                linear-gradient(135deg, rgba(44, 82, 130, 0.05) 0%, rgba(56, 161, 105, 0.03) 100%);
-            z-index: 0;
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(44, 82, 130, 0.03) 1px, transparent 1px),
                 radial-gradient(circle at 75% 75%, rgba(56, 161, 105, 0.03) 1px, transparent 1px);
             background-size: 50px 50px, 30px 30px;
             opacity: 0.6;
@@ -227,11 +233,11 @@
             position: relative;
             z-index: 1;
         }
-        .hero-title { 
-            font-size: 3rem; 
-            font-weight: 700; 
-            color: #2c5282; 
-            margin-bottom: 2rem;
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
             line-height: 1.2;
             opacity: 0;
             animation: fadeInUp 1s ease-out 0.5s forwards;
@@ -260,23 +266,80 @@
             100% { transform: scale(1); }
         }
         .hero-subtitle {
-            font-size: 1.2rem;
-            color: #4a5568;
-            margin-bottom: 3rem;
+            font-size: 1.125rem;
+            color: #bfdbfe;
+            max-width: 600px;
+            margin: 0 auto;
             line-height: 1.6;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 1s forwards;
         }
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        /* 팀 소개 섹션 */
+        .team-introduction {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             opacity: 0;
             animation: fadeInUp 1s ease-out 1.5s forwards;
+        }
+        
+        .team-intro-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .team-intro-text h3 {
+            color: #2c5282;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .team-intro-text p {
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .team-stats {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .team-stat {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .team-stat .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c5282;
+        }
+        
+        .team-stat .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .team-intro-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .team-placeholder {
+            background: #f8fafc;
+            border: 2px dashed #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            text-align: center;
+            width: 100%;
+            max-width: 280px;
         }
         .btn-research { 
             display: inline-block; 
@@ -324,6 +387,210 @@
             box-shadow: 0 10px 25px rgba(56,161,105,0.3); 
         }
         
+        /* Main Content Sections - Contact Style */
+        .main-content-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-alt {
+            background: #f8fafc;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e7eb;
+        }
+
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: #64748b;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .research-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .highlight-item {
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .highlight-item h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-item p {
+            color: #64748b;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Research Info Styles */
+        .research-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .info-subtitle {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card p {
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-size: 0.875rem;
+        }
+
+        .investment-highlight {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #bae6fd;
+        }
+
+        .investment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e0f2fe;
+        }
+
+        .investment-item:last-child {
+            border-bottom: none;
+        }
+
+        .investment-type {
+            font-weight: 500;
+            color: #0f172a;
+        }
+
+        .investment-value {
+            font-weight: 600;
+            color: #2563eb;
+            font-size: 0.875rem;
+        }
+
+        /* Footer Styles - Contact Style */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-subtitle {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .footer-contact p {
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #2563eb;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        .copyright {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer {
+            color: #64748b;
+            font-size: 0.75rem;
+            font-style: italic;
+        }
+
         /* Research Overview Section */
         .research-overview {
             padding: 5rem 0;
@@ -395,7 +662,7 @@
             text-align: center;
             padding: 2rem;
             border-radius: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e40af, #2563eb);
             color: white;
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
             opacity: 0;
@@ -431,44 +698,78 @@
             text-align: center; 
         }
         
+        /* Mobile Menu Dropdown */
+        .mobile-nav-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #e5e7eb;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-nav-menu.active {
+            max-height: 400px;
+            padding: 1rem 0;
+        }
+
+        .mobile-nav-menu .nav-item {
+            display: block;
+            margin: 0;
+        }
+
+        .mobile-nav-menu .nav-link {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid #f3f4f6;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .mobile-nav-menu .nav-link:hover {
+            background: #f9fafb;
+            color: #1e40af;
+        }
+
+        .mobile-nav-menu .language-toggle {
+            margin: 1rem 1.5rem 0;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
         /* Mobile */
         @media (max-width: 768px) {
-            .nav-toggle { display: flex; }
-            .nav-menu { 
-                position: fixed;
-                top: 100px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 100px);
-                background: white;
-                flex-direction: column;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-                transition: left 0.3s ease;
-                overflow-y: auto;
+            .container {
+                padding: 0 15px;
             }
-            .nav-menu.active { left: 0; }
-            .nav-list { 
-                flex-direction: column; 
-                width: 100%;
-                padding: 1rem 0;
+            
+            .nav-menu {
+                display: none;
             }
-            .nav-link { 
-                border-right: none; 
-                border-bottom: 1px solid #e2e8f0;
+            
+            .mobile-menu-toggle {
+                display: flex;
             }
-            .dropdown-menu {
-                position: static;
-                display: block;
-                box-shadow: none;
-                border: none;
-                background: #f8f9fa;
-                margin-left: 1rem;
+
+            .language-toggle {
+                display: none;
             }
             .hero-title { font-size: 2.8rem; }
             .hero-subtitle { font-size: 1.1rem; }
             .hero-tagline { font-size: 1rem; }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .btn-research { width: 200px; }
+            .team-intro-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .team-stats {
+                justify-content: center;
+            }
             .container { padding: 0 1rem; }
             .research-content { padding: 0 1rem; }
             .section-title { font-size: 2rem; }
@@ -479,13 +780,63 @@
         }
         
         @media (max-width: 480px) {
-            .hero-title { font-size: 2.2rem; }
-            .hero-subtitle { font-size: 1rem; }
+            .hero-title { 
+                font-size: 2.2rem; 
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            .hero-subtitle { 
+                font-size: 1rem; 
+                line-height: 1.5;
+                margin-bottom: 1rem;
+            }
             .hero-content { padding: 0 1rem; }
-            .section-title { font-size: 1.8rem; }
-            .highlight-card { padding: 1.5rem; }
-            .data-card { padding: 1.5rem; }
-            .data-number { font-size: 2rem; }
+            .section-title { 
+                font-size: 1.8rem; 
+                line-height: 1.3;
+                margin-bottom: 1.5rem;
+            }
+            .highlight-card { 
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .data-card { 
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .data-number { 
+                font-size: 2rem;
+                line-height: 1.1;
+            }
+            
+            /* 텍스트 오버플로우 방지 */
+            .card-title {
+                font-size: 1.3rem;
+                line-height: 1.4;
+                margin-bottom: 0.75rem;
+            }
+            
+            .card-description {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: 1rem;
+            }
+            
+            /* 네비게이션 브랜드 모바일 최적화 */
+            .logo {
+                font-size: 1.2rem;
+                line-height: 1.2;
+            }
+            
+            .tagline {
+                font-size: 0.8rem;
+                line-height: 1.3;
+            }
+            
+            /* 컨테이너 패딩 조정 */
+            .container {
+                padding: 0 0.75rem;
+            }
         }
 
         /* 인터랙티브 대시보드 스타일 */
@@ -757,6 +1108,33 @@
             .funding-amount {
                 font-size: 2rem;
             }
+            
+            .coming-soon-section { 
+                padding: 2rem 1rem; 
+            }
+            
+            .coming-soon-message h3 { 
+                font-size: 1.5rem; 
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .content-card {
+                padding: 2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
         }
 
         /* 시각재활 특화 접근성 개선 */
@@ -834,6 +1212,40 @@
             outline: 3px solid #ffffff;
             outline-offset: 2px;
             box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Coming Soon Styles */
+        .coming-soon-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .coming-soon-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .coming-soon-message h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+        
+        .coming-soon-message p {
+            font-size: 1.125rem;
+            color: #64748b;
+            line-height: 1.7;
+        }
+        
+        .coming-soon-message i {
+            display: block;
+            margin: 0 auto 1.5rem;
         }
 
         /* 스크린리더 전용 콘텐츠 */
@@ -1019,7 +1431,7 @@
 
         /* 3D 데이터 시각화 스타일 */
         .data-visualization-3d {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e40af, #2563eb);
             border-radius: 25px;
             padding: 60px 40px;
             margin: 80px 0;
@@ -1359,92 +1771,71 @@
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-eye"></i>
-                    MasVisio Research
-                </a>
-                
-                <!-- Language Toggle -->
-                <div class="language-toggle">
-                    <a href="#" class="lang-btn active">KO</a>
-                    <a href="../en/index.html" class="lang-btn">EN</a>
+                <div class="nav-brand">
+                    <h1 class="logo">MasVisio Research</h1>
+                    <span class="tagline">Visual Rehabilitation & Autonomous Imaging Engineering</span>
                 </div>
-                
-                <button class="nav-toggle" id="nav-toggle" onclick="toggleMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <!-- Horizontal Navigation Menu -->
-                <nav class="nav-menu" id="nav-menu">
-                    <ul class="nav-list">
+                <div class="nav-right">
+                    <ul class="nav-menu">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" id="nav-home">연구소 소개</a>
-                            <ul class="dropdown-menu">
-
-                            </ul>
+                            <a href="#" class="nav-link active" data-target="home">홈</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" id="nav-research">연구 분야</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="research/overview.html">연구 개요</a></li>
-                                <li><a href="research/current-studies.html">진행 중인 연구</a></li>
-                                <li><a href="research/methodology.html">연구 방법론</a></li>
-                                <li><a href="research/equipment.html">연구 장비</a></li>
-                            </ul>
+                            <a href="#" class="nav-link" data-target="research-overview">연구분야</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">제공 서비스</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#clinical-trials">임상시험</a></li>
-                                <li><a href="#laboratory-tests">실험실 시험</a></li>
-                                <li><a href="#device-development">기기 개발</a></li>
-                                <li><a href="#consultation">연구 컨설팅</a></li>
-                            </ul>
+                            <a href="#" class="nav-link" data-target="team-intro">연구원소개</a>
                         </li>
                         <li class="nav-item">
-                            <a href="research/current-studies.html" class="nav-link">진행 중인 연구</a>
+                            <a href="#" class="nav-link" data-target="services">제공서비스</a>
                         </li>
                         <li class="nav-item">
-                            <a href="publications/index.html" class="nav-link" id="nav-publications">연구 성과</a>
+                            <a href="publications/index.html" class="nav-link">연구성과</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">미디어</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">뉴스</a></li>
-                                <li><a href="#">갤러리</a></li>
-                                <li><a href="#">동영상</a></li>
-                                <li><a href="#">보도자료</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="contact/index.html" class="nav-link" id="nav-contact">연락처</a>
+                            <a href="contact.html" class="nav-link">문의</a>
                         </li>
                     </ul>
                     
-                    <!-- 접근성 컨트롤 -->
-                    <div class="accessibility-controls" role="toolbar" aria-label="접근성 설정">
-                        <button onclick="toggleLargeText()" 
-                                class="accessibility-btn" 
-                                aria-label="큰 글씨 모드 전환" 
-                                title="텍스트 크기를 키워 가독성을 향상시킵니다">
-                            🔍
-                        </button>
-                        <button onclick="toggleHighContrast()" 
-                                class="accessibility-btn" 
-                                aria-label="고대비 모드 전환" 
-                                title="색상 대비를 높여 시인성을 개선합니다">
-                            🌓
-                        </button>
-                        <button onclick="toggleVoiceGuide()" 
-                                class="accessibility-btn" 
-                                aria-label="음성 가이드 전환" 
-                                title="화면 내용을 음성으로 안내합니다">
-                            🔊
-                        </button>
+                    <!-- Language Toggle -->
+                    <div class="language-toggle">
+                        <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
+                        <button class="lang-btn" onclick="switchLanguage('en')">English</button>
                     </div>
-                </nav>
+                </div>
+                
+                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-nav-menu" id="mobile-nav-menu">
+                <ul>
+                    <li class="nav-item">
+                        <a href="#research-overview" class="nav-link">연구 개요</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#team" class="nav-link">연구팀</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#data" class="nav-link">연구 성과</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#publications" class="nav-link">논문 발표</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">문의</a>
+                    </li>
+                </ul>
+                
+                <!-- Mobile Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
+                    <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -1454,12 +1845,118 @@
         <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="hero-content">
+                <h1 class="hero-title">MasVisio Research</h1>
+                <p class="hero-subtitle">
+                    시각재활 분야의 혁신적 기술 개발과 상업화를 통해 
+                    더 나은 미래를 만들어갑니다.
+                </p>
+            </div>
+        </section>
 
+        <!-- Main Content Section -->
+        <section class="main-content-section" id="research-overview">
+            <div class="container">
+                <div class="content-grid">
+                    <!-- Research Overview Card -->
+                    <div class="content-card">
+                        <h2 class="card-title">연구 분야</h2>
+                        <p class="card-description">
+                            MasVisio Research는 시각재활 기술의 최전선에서 
+                            혁신적인 솔루션을 개발합니다.
+                        </p>
+                        
+                        <div class="research-highlights">
+                            <div class="highlight-item">
+                                <h4>4D 근시 제어 기술</h4>
+                                <p>공간, 시간, 스펙트럼, 개인 차원을 통합한 차세대 근시 억제 플랫폼</p>
+                            </div>
+                            
+                            <div class="highlight-item">
+                                <h4>AI 기반 시각 진단</h4>
+                                <p>딥러닝을 활용한 정밀 시각 진단 및 개인맞춤형 치료 시스템</p>
+                            </div>
+                            
+                            <div class="highlight-item">
+                                <h4>바이오메트릭 측정</h4>
+                                <p>첨단 광학 기술을 이용한 비침습적 안구 생체지표 측정</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Research Stats Card -->
+                    <div class="research-info">
+                        <h3 class="info-title">연구 현황</h3>
+                        
+                        <div class="info-card">
+                            <h4 class="info-subtitle">진행 중인 프로젝트</h4>
+                            <p><strong>3건</strong></p>
+                            <p>근시 제어, AI 진단, 바이오메트릭</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h4 class="info-subtitle">특허 현황</h4>
+                            <p><strong>7건 등록</strong></p>
+                            <p>국내외 핵심 기술 특허 보유</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h4 class="info-subtitle">임상 시험</h4>
+                            <p><strong>2상 완료</strong></p>
+                            <p>FDA 승인을 위한 3상 진행 중</p>
+                        </div>
+                        
+                        <div class="investment-highlight">
+                            <h4 class="info-subtitle">투자 기회</h4>
+                            <div class="investment-item">
+                                <span class="investment-type">🚀 시장 가치</span>
+                                <span class="investment-value">100억원+</span>
+                            </div>
+                            <div class="investment-item">
+                                <span class="investment-type">💰 예상 ROI</span>
+                                <span class="investment-value">300%+</span>
+                            </div>
+                            <div class="investment-item">
+                                <span class="investment-type">⏱️ 회수 기간</span>
+                                <span class="investment-value">3-5년</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <div class="hero-buttons">
-                    <a href="partnership/index.html" class="btn-research primary">투자/제휴 기회</a>
-                    <a href="research/overview.html" class="btn-research secondary">연구 성과</a>
-                    <a href="contact/index.html" class="btn-research tertiary">문의하기</a>
+        <!-- Coming Soon Sections (기존 "업데이트 예정" 섹션들) -->
+        <div style="display: none;">
+                    <div class="team-intro-content">
+                        <div class="team-intro-text">
+                            <h3>MasVisio Research 팀</h3>
+                            <p>
+                                시각재활 분야의 세계적 전문가들이 모인 MasVisio Research는 
+                                <strong>혁신적인 기술 개발</strong>과 <strong>임상 연구</strong>를 통해 
+                                시각장애인의 삶의 질 향상을 위해 노력하고 있습니다.
+                            </p>
+                            <div class="team-stats">
+                                <div class="team-stat">
+                                    <span class="stat-number">15+</span>
+                                    <span class="stat-label">연구진</span>
+                                </div>
+                                <div class="team-stat">
+                                    <span class="stat-number">50+</span>
+                                    <span class="stat-label">논문 발표</span>
+                                </div>
+                                <div class="team-stat">
+                                    <span class="stat-number">8</span>
+                                    <span class="stat-label">특허 출원</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-intro-image">
+                            <div class="team-placeholder">
+                                <i class="fas fa-users" style="font-size: 4rem; color: #2c5282; opacity: 0.8;"></i>
+                                <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">연구팀 이미지</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1631,7 +2128,7 @@
                     </div>
                 </div>
                 
-                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 1rem; color: white;">
+                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #1e40af, #2563eb); border-radius: 1rem; color: white;">
                     <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.8rem; font-weight: 700;" class="certification-title">투자 신뢰성 보장</h3>
                     <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
                         <div style="text-align: center;">
@@ -1896,12 +2393,96 @@
                 </div>
             </div>
         </section>
+
+        <!-- 연구원소개 섹션 (업데이트 예정) -->
+        <section class="coming-soon-section" id="team-intro" style="display: none;">
+            <div class="container">
+                <div class="coming-soon-content">
+                    <h2 class="section-title">연구원소개</h2>
+                    <div class="coming-soon-message">
+                        <i class="fas fa-users" style="font-size: 3rem; color: #1e40af; margin-bottom: 1rem;"></i>
+                        <h3>업데이트 예정</h3>
+                        <p>연구진 소개 페이지는 현재 준비 중입니다.<br>곧 업데이트될 예정이니 조금만 기다려주세요.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 제공서비스 섹션 (업데이트 예정) -->
+        <section class="coming-soon-section" id="services" style="display: none;">
+            <div class="container">
+                <div class="coming-soon-content">
+                    <h2 class="section-title">제공서비스</h2>
+                    <div class="coming-soon-message">
+                        <i class="fas fa-cogs" style="font-size: 3rem; color: #1e40af; margin-bottom: 1rem;"></i>
+                        <h3>업데이트 예정</h3>
+                        <p>제공 서비스 페이지는 현재 준비 중입니다.<br>곧 업데이트될 예정이니 조금만 기다려주세요.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 미디어 섹션 (업데이트 예정) -->
+        <section class="coming-soon-section" id="media" style="display: none;">
+            <div class="container">
+                <div class="coming-soon-content">
+                    <h2 class="section-title">미디어</h2>
+                    <div class="coming-soon-message">
+                        <i class="fas fa-photo-video" style="font-size: 3rem; color: #1e40af; margin-bottom: 1rem;"></i>
+                        <h3>업데이트 예정</h3>
+                        <p>미디어 페이지는 현재 준비 중입니다.<br>곧 업데이트될 예정이니 조금만 기다려주세요.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">MasVisio Research</h3>
+                    <p class="footer-description">
+                        혁신적인 시각재활 기술 개발을 통해 
+                        더 나은 미래를 만들어갑니다.
+                    </p>
+                    <div class="footer-contact">
+                        <p>📧 research@masvisio.kr</p>
+                        <p>📞 +82-2-1234-5678</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">연구 분야</h4>
+                    <ul class="footer-links">
+                        <li><a href="publications/index.html">연구 성과</a></li>
+                        <li><a href="research/projects/myopia-control.html">근시 제어</a></li>
+                        <li><a href="#ai-diagnosis">AI 진단</a></li>
+                        <li><a href="#biometric">바이오메트릭</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">파트너십</h4>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">연락처</a></li>
+                        <li><a href="#partnership">협력 기회</a></li>
+                        <li><a href="#privacy">개인정보처리방침</a></li>
+                        <li><a href="#terms">이용약관</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2025 MasVisio Research. All rights reserved.
+                </p>
+                <p class="disclaimer">
+                    본 연구결과는 임상시험 데이터를 기반으로 하며, 
+                    상업적 적용 시 추가 검증이 필요할 수 있습니다.
+                </p>
+            </div>
         </div>
     </footer>
 
@@ -1909,22 +2490,43 @@
     <script src="assets/js/language-data.js"></script>
     
     <script>
-        function toggleMenu() {
-            const navToggle = document.getElementById('nav-toggle');
-            const navMenu = document.getElementById('nav-menu');
+        function toggleMobileMenu() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-nav-menu');
             
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // 배경 스크롤 방지
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
         }
         
         // ESC 키로 메뉴 닫기
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                const navMenu = document.getElementById('nav-menu');
-                if (navMenu.classList.contains('active')) {
-                    toggleMenu();
+                const mobileMenu = document.getElementById('mobile-nav-menu');
+                const mobileToggle = document.querySelector('.mobile-menu-toggle');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 }
             }
+        });
+        
+        // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+        document.querySelectorAll('.mobile-nav-menu .nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobile-nav-menu');
+                const mobileToggle = document.querySelector('.mobile-menu-toggle');
+                mobileMenu.classList.remove('active');
+                mobileToggle.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
         });
         
         // 숫자 카운트업 애니메이션
@@ -2810,6 +3412,101 @@
             } catch (e) {
                 console.log('Audio context not supported');
             }
+        }
+
+        // SPA 네비게이션 기능
+        function initSPANavigation() {
+            // 네비게이션 링크에 이벤트 리스너 추가
+            document.querySelectorAll('.nav-link[id]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 모든 네비게이션 링크에서 active 클래스 제거
+                    document.querySelectorAll('.nav-link').forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    
+                    // 클릭된 링크에 active 클래스 추가
+                    this.classList.add('active');
+                    
+                    // 해당 섹션으로 스크롤
+                    const targetId = this.id.replace('nav-', '');
+                    const targetSection = document.getElementById(targetId + '-section') || 
+                                         document.querySelector(`[data-section="${targetId}"]`);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // 네비게이션 탭 기능
+        function showSection(sectionId) {
+            // 모든 섹션 숨기기
+            const sections = document.querySelectorAll('.hero-section, .research-overview, .coming-soon-section');
+            sections.forEach(section => {
+                if (section.id) {
+                    section.style.display = 'none';
+                }
+            });
+            
+            // 모든 네비게이션 링크 비활성화
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // 선택된 섹션 표시
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+            
+            // 선택된 링크 활성화
+            const activeLink = document.querySelector(`[data-target="${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // 스크롤을 맨 위로
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 페이지 로드 시 SPA 네비게이션 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            // 네비게이션 이벤트 리스너 추가
+            const navLinks = document.querySelectorAll('.nav-link[data-target]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('data-target');
+                    showSection(target);
+                });
+            });
+            
+            // 기본적으로 홈 섹션 표시
+            showSection('home');
+            
+            initSPANavigation();
+        });
+
+        // 언어 전환 함수
+        function switchLanguage(lang) {
+            // 언어 버튼 상태 업데이트
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // 영어 버전으로 리다이렉트
+            if (lang === 'en') {
+                window.location.href = '../en/index.html';
+            }
+            // 한국어는 현재 페이지 유지
         }
     </script>
 </body>

@@ -3,14 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="시각재활 연구팀 연락처 - 파트너십 및 협력 문의">
-    <meta name="keywords" content="시각재활, 연구팀, 연락처, 파트너십, 협력문의">
-    <title>연락처 | 시각재활 연구결과</title>
+    <meta name="description" content="MasVisio Research 연구팀 연락처 - 파트너십 및 협력 문의">
+    <meta name="keywords" content="MasVisio Research, 시각재활, 연구팀, 연락처, 파트너십, 협력문의">
+    <title>연락처 | MasVisio Research</title>
     
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Language Toggle Styles */
+        .language-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 2rem;
+        }
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #374151;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover {
+            background: #f3f4f6;
+        }
+        .lang-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+    </style>
 </head>
 <body>
     <!-- Header Section -->
@@ -18,36 +46,39 @@
         <nav class="navbar">
             <div class="container">
                 <div class="nav-brand">
-                    <h1 class="logo">시각재활 연구소</h1>
-                    <span class="tagline">Visual Rehabilitation Research</span>
+                    <h1 class="logo">MasVisio Research</h1>
+                    <span class="tagline">Visual Rehabilitation & Autonomous Imaging Engineering</span>
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
                         <a href="index.html" class="nav-link">홈</a>
                     </li>
                     <li class="nav-item">
-                        <a href="research-overview.html" class="nav-link">연구개요</a>
+                        <a href="research/overview.html" class="nav-link">연구분야</a>
                     </li>
                     <li class="nav-item">
-                        <a href="experimental-results.html" class="nav-link">실험결과</a>
+                        <a href="team/index.html" class="nav-link">연구원소개</a>
                     </li>
                     <li class="nav-item">
-                        <a href="technical-specs.html" class="nav-link">기술사양</a>
+                        <a href="partnership/index.html" class="nav-link">제공서비스</a>
                     </li>
                     <li class="nav-item">
-                        <a href="commercial-value.html" class="nav-link">상업적가치</a>
+                        <a href="publications/index.html" class="nav-link">연구성과</a>
                     </li>
                     <li class="nav-item">
-                        <a href="partnership.html" class="nav-link">파트너십</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="contact.html" class="nav-link active">연락처</a>
+                        <a href="contact.html" class="nav-link active">문의</a>
                     </li>
                 </ul>
                 <div class="mobile-menu-toggle">
                     <span></span>
                     <span></span>
                     <span></span>
+                </div>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
+                    <button class="lang-btn" onclick="switchLanguage('en')">English</button>
                 </div>
             </div>
         </nav>
@@ -250,7 +281,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 class="footer-title">시각재활 연구소</h3>
+                    <h3 class="footer-title">MasVisio Research</h3>
                     <p class="footer-description">
                         혁신적인 시각재활 기술 개발을 통해 
                         더 나은 미래를 만들어갑니다.
@@ -284,7 +315,7 @@
             
             <div class="footer-bottom">
                 <p class="copyright">
-                    © 2025 시각재활 연구소. All rights reserved.
+                    © 2025 MasVisio Research. All rights reserved.
                 </p>
                 <p class="disclaimer">
                     본 연구결과는 임상시험 데이터를 기반으로 하며, 
@@ -295,5 +326,22 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+        function switchLanguage(lang) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Redirect to appropriate language page
+            if (lang === 'en') {
+                window.location.href = '../en/contact/index.html';
+            }
+            // If 'ko', stay on current page
+        }
+    </script>
 </body>
 </html>

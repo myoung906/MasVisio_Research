@@ -17,104 +17,130 @@
         }
         
         /* Header Styles */
-        .header { 
-            background: white; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            z-index: 1000; 
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
-        .navbar { 
-            padding: 0.5rem 0; 
-            max-width: 1200px; 
-            margin: 0 auto; 
+
+        .navbar {
+            padding: 1rem 0;
         }
-        .container { 
-            padding: 0 2rem; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .logo { 
-            display: flex; 
-            align-items: center; 
-            gap: 0.5rem; 
-            font-family: 'Arial', sans-serif; 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            color: #2c5282; 
-            text-decoration: none; 
-            letter-spacing: -0.5px; 
-            margin-bottom: 0.5rem;
+
+        .nav-brand {
+            display: flex;
+            flex-direction: column;
         }
-        .logo i { color: #38a169; font-size: 2rem; margin-right: 0.5rem; }
-        
-        /* Navigation */
-        .nav-menu { 
-            display: flex; 
-            justify-content: center; 
-            background: white;
-            border-top: 1px solid #e2e8f0;
-            padding: 0;
-            margin: 0;
-        }
-        .nav-list { 
-            list-style: none; 
-            display: flex; 
-            margin: 0; 
-            padding: 0;
-            gap: 0;
-        }
-        .nav-item { position: relative; margin: 0; }
-        .nav-link { 
-            display: block; 
-            color: #4a5568; 
-            font-weight: 500; 
-            padding: 1rem 1.5rem; 
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0;
             text-decoration: none;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            border-right: 1px solid #e2e8f0;
         }
-        .nav-link:hover, .nav-link.active { background: #f7fafc; color: #2c5282; }
-        
-        /* Language Toggle */
-        .language-toggle {
+
+        .tagline {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #2563eb;
+        }
+
+        .nav-link::after {
+            content: '';
             position: absolute;
-            right: 4rem;
-            top: 50%;
-            transform: translateY(-50%);
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #374151;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        /* Language Toggle Styles */
+        .language-toggle {
             display: flex;
             gap: 0.5rem;
-            align-items: center;
+            margin-left: 2rem;
         }
-        
         .lang-btn {
             padding: 0.5rem 1rem;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 1.5rem;
-            color: #4a5568;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #374151;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
-        
         .lang-btn:hover {
-            background: #2c5282;
-            color: white;
-            border-color: #2c5282;
+            background: #f3f4f6;
         }
-        
         .lang-btn.active {
-            background: #2c5282;
+            background: #2563eb;
             color: white;
-            border-color: #2c5282;
+            border-color: #2563eb;
         }
         
         /* Main Content */
@@ -242,6 +268,24 @@
             color: rgba(255,255,255,0.8);
         }
         
+        .biometrics-icon {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .scleral-scanner-icon {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
         /* Project Content */
         .project-content {
             padding: 1.5rem;
@@ -363,23 +407,40 @@
     <header class="header">
         <nav class="navbar">
             <div class="container">
-                <a href="../index.html" class="logo">
-                    <i class="fas fa-eye"></i>
-                    MasVisio Research
-                </a>
-                <div class="language-toggle">
-                    <a href="#" class="lang-btn active" onclick="switchLanguage('ko')">KO</a>
-                    <a href="#" class="lang-btn" onclick="switchLanguage('en')">EN</a>
+                <div class="nav-brand">
+                    <h1 class="logo">MasVisio Research</h1>
+                    <span class="tagline">Visual Rehabilitation & Autonomous Imaging Engineering</span>
                 </div>
-                <div class="nav-menu">
-                    <ul class="nav-list">
-                        <li class="nav-item"><a href="../index.html" class="nav-link">홈</a></li>
-                        <li class="nav-item"><a href="overview.html" class="nav-link active">연구</a></li>
-                        <li class="nav-item"><a href="../publications/index.html" class="nav-link">논문</a></li>
-                        <li class="nav-item"><a href="../team/index.html" class="nav-link">연구진</a></li>
-                        <li class="nav-item"><a href="../partnership/index.html" class="nav-link">파트너십</a></li>
-                        <li class="nav-item"><a href="../contact/index.html" class="nav-link">연락처</a></li>
-                    </ul>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="overview.html" class="nav-link active">연구분야</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../team/index.html" class="nav-link">연구원소개</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../partnership/index.html" class="nav-link">제공서비스</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../publications/index.html" class="nav-link">연구성과</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../contact.html" class="nav-link">문의</a>
+                    </li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
+                    <button class="lang-btn" onclick="switchLanguage('en')">English</button>
                 </div>
             </div>
         </nav>
@@ -442,7 +503,11 @@
             <!-- Project 2: 안질환 예측 -->
             <article class="project-card" onclick="window.location.href='projects/visual-cognition.html'">
                 <div class="project-visual">
-                    <img src="../assets/images/research/integrated-biometrics.png" alt="Integrated Biometrics System" />
+                    <div class="biometrics-icon">
+                        <i class="fas fa-eye" style="font-size: 3rem; color: #38a169;"></i>
+                        <i class="fas fa-chart-line" style="font-size: 1.5rem; color: #3182ce; position: absolute; top: 60%; right: 20%;"></i>
+                        <i class="fas fa-brain" style="font-size: 1.2rem; color: #ed8936; position: absolute; bottom: 20%; left: 20%;"></i>
+                    </div>
                 </div>
                 <div class="project-content">
                     <div class="project-type">Biomakers in Ocular Matrices</div>
@@ -472,7 +537,11 @@
             <!-- Project 3: 공막 3D 프로파일러 -->
             <article class="project-card" onclick="window.location.href='projects/scleral-scanner.html'">
                 <div class="project-visual">
-                    <i class="fas fa-scanner placeholder-icon"></i>
+                    <div class="scleral-scanner-icon">
+                        <i class="fas fa-cube" style="font-size: 3rem; color: #2c5282;"></i>
+                        <i class="fas fa-eye" style="font-size: 1.8rem; color: #38a169; position: absolute; top: 50%; right: 25%; transform: translateY(-50%);"></i>
+                        <i class="fas fa-glasses" style="font-size: 1.2rem; color: #ed8936; position: absolute; bottom: 25%; left: 25%;"></i>
+                    </div>
                 </div>
                 <div class="project-content">
                     <div class="project-type">Scleral 3D Profiler</div>
@@ -563,7 +632,7 @@
         <div class="container">
             <p>&copy; 2025 MasVisio Research. All rights reserved.</p>
             <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">
-                마산대학교 안경광학과 | 시각재활 연구실 | 
+                마산대학교 안경광학과 | MasVisio Research | 
                 <a href="jaemyoungseo@masan.ac.kr" style="color: #38a169;">research@masvisio.kr</a>
             </p>
         </div>
@@ -571,14 +640,19 @@
 
     <script>
         function switchLanguage(lang) {
+            // Remove active class from all buttons
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
+            
+            // Add active class to clicked button
             event.target.classList.add('active');
-
+            
+            // Redirect to appropriate language page
             if (lang === 'en') {
-                alert('영어 버전은 준비 중입니다.');
+                window.location.href = '../../en/research/overview.html';
             }
+            // If 'ko', stay on current page
         }
 
         // Filter functionality
