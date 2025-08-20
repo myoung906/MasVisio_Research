@@ -144,12 +144,89 @@
         }
         
         .main-content {
-            padding-top: 140px;
-            min-height: 100vh;
+            margin-top: 120px;
+            min-height: calc(100vh - 120px);
+        }
+        
+        /* Hero Section */
+        .partnership-hero {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            padding: 6rem 0 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .partnership-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(44, 82, 130, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(56, 161, 105, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+        .partnership-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(44, 82, 130, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(56, 161, 105, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            opacity: 0.6;
+            z-index: 0;
+        }
+        .hero-content { 
+            text-align: center; 
+            max-width: 800px; 
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-title { 
+            font-size: 3rem; 
+            font-weight: 700; 
+            color: white; 
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 0.5rem;
+        }
+        
+        .partnership-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
+            padding: 4rem 2rem;
             text-align: center;
         }
         
@@ -229,15 +306,42 @@
         </nav>
     </header>
 
+    <!-- Hero Section -->
+    <section class="partnership-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">제공 서비스</h1>
+            <p class="hero-subtitle">
+                혁신적인 시각재활 기술을 통해 더 나은 세상을 만들어갑니다<br>
+                함께 성장할 파트너와 투자자를 기다리고 있습니다
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <div class="stat-label">핵심 서비스</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <div class="stat-label">협력 기관</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <div class="stat-label">고객 만족도</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <main class="main-content">
-        <div class="coming-soon">
-            <h1><i class="fas fa-handshake" style="color: #38a169; margin-right: 1rem;"></i>파트너십</h1>
-            <p>파트너십 페이지는 현재 준비 중입니다.</p>
-            <p>투자 및 협력 문의는 연락처 페이지를 통해 해주세요.</p>
-            <a href="../index.html" class="back-link">
-                <i class="fas fa-home" style="margin-right: 0.5rem;"></i>
-                홈으로 돌아가기
-            </a>
+        <div class="partnership-content">
+            <div class="coming-soon">
+                <h2><i class="fas fa-handshake" style="color: #2563eb; margin-right: 1rem;"></i>서비스 상세 정보</h2>
+                <p>제공 서비스 상세 페이지는 현재 준비 중입니다.</p>
+                <p>투자 및 협력 문의는 연락처 페이지를 통해 해주세요.</p>
+                <a href="../index.html" class="back-link">
+                    <i class="fas fa-home" style="margin-right: 0.5rem;"></i>
+                    홈으로 돌아가기
+                </a>
+            </div>
         </div>
     </main>
     
