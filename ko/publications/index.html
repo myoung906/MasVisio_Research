@@ -115,8 +115,7 @@
         
         /* Language Toggle Styles */
         .language-toggle {
-            display: flex;
-            gap: 0.5rem;
+            position: relative;
             margin-left: 2rem;
         }
         .lang-btn {
@@ -129,6 +128,9 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         .lang-btn:hover {
             background: #f3f4f6;
@@ -137,6 +139,53 @@
             background: #2563eb;
             color: white;
             border-color: #2563eb;
+        }
+        .lang-flag {
+            width: 20px;
+            height: 15px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+        .flag-kr {
+            background: linear-gradient(to bottom, #cd2e3a 33%, white 33%, white 66%, #0047a0 66%);
+        }
+        .flag-uk {
+            background: linear-gradient(45deg, #012169 25%, transparent 25%), 
+                        linear-gradient(-45deg, #012169 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #012169 75%), 
+                        linear-gradient(-45deg, transparent 75%, #012169 75%),
+                        linear-gradient(to bottom, #C8102E 40%, white 40%, white 60%, #C8102E 60%);
+            background-size: 8px 8px, 8px 8px, 8px 8px, 8px 8px, 100% 100%;
+        }
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0;
+            min-width: 150px;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+        .language-toggle:hover .language-dropdown {
+            display: block;
+        }
+        .language-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: background 0.3s ease;
+        }
+        .language-dropdown a:hover {
+            background: #f7fafc;
+            color: #2c5282;
         }
         
         /* Main Content */
@@ -612,8 +661,16 @@
                 
                 <!-- Language Toggle -->
                 <div class="language-toggle">
-                    <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
-                    <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+                    <button class="lang-btn active">
+                        <span class="lang-flag flag-kr"></span>
+                        한국어
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="../../en/publications/index.html">
+                            <span class="lang-flag flag-uk"></span>
+                            English
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>

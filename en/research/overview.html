@@ -103,6 +103,47 @@
             width: 100%;
         }
 
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.375rem;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-menu a:hover {
+            background-color: #f3f4f6;
+            color: #2563eb;
+        }
+        .dropdown-menu a.active {
+            background-color: #eff6ff;
+            color: #2563eb;
+        }
+
         /* Mobile Menu Toggle */
         .mobile-menu-toggle {
             display: none;
@@ -468,19 +509,19 @@
                             <a href="../index.html" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="overview.html" class="nav-link active">Research Areas</a>
+                            <a href="../team/index.html" class="nav-link">Members</a>
                         </li>
                         <li class="nav-item">
-                            <a href="../team/index.html" class="nav-link">Researchers</a>
+                            <a href="overview.html" class="nav-link active">Challenges</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="../publications/index.html" class="nav-link">Research Results</a>
+                            <div class="dropdown-menu">
+                                <a href="../partnership/index.html">Services</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a href="../partnership/index.html" class="nav-link">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../publications/index.html" class="nav-link">Publications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../contact.html" class="nav-link">Contact</a>
+                            <a href="../contact.html" class="nav-link">Partners</a>
                         </li>
                     </ul>
                     <div class="language-toggle">
