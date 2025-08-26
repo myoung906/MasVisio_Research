@@ -2,9 +2,10 @@
   "mcpServers": {
     "latest-science-mcp": {
       "type": "stdio",
-      "command": "node",
+      "command": "npx",
       "args": [
-        "/Users/workspace/mvr_webpage/mcp_server/node_modules/@futurelab-studio/latest-science-mcp/dist/server.js"
+        "-y",
+        "@futurelab-studio/latest-science-mcp"
       ],
       "env": {}
     },
@@ -24,7 +25,7 @@
         "-m",
         "mcp_server_git",
         "--repository",
-        "/Users/workspace/mvr_webpage"
+        "."
       ]
     },
     "googleSearch": {
@@ -60,12 +61,13 @@
     },
     "memory": {
       "type": "stdio",
-      "command": "node",
+      "command": "npx",
       "args": [
-        "/Users/workspace/mvr_webpage/node_modules/@modelcontextprotocol/server-memory/dist/index.js"
+        "-y",
+        "@modelcontextprotocol/server-memory"
       ],
       "env": {
-        "MEMORY_FILE_PATH": "/Users/workspace/mvr_webpage/memory.json"
+        "MEMORY_FILE_PATH": "./memory.json"
       }
     },
     "terminal": {
