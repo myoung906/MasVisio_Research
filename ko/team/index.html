@@ -29,7 +29,7 @@
         }
 
         .navbar {
-            padding: 1rem 0;
+            padding: 0.5rem 0;
         }
 
         .navbar .container {
@@ -428,6 +428,48 @@
         .mobile-nav-menu .nav-link.active {
             background: #f8f9fa;
             color: #2563eb;
+        }
+        
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .team-hero {
+                padding: 3rem 0 2rem 0;
+                min-height: 50vh;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            
+            .hero-stats {
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 0.9rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .mobile-nav-menu {
+                display: block;
+            }
         }
     </style>
 </head>
