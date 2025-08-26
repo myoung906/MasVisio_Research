@@ -61,7 +61,7 @@
         }
 
         .nav-menu {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             list-style: none;
             gap: 2rem;
         }
@@ -100,6 +100,47 @@
             width: 100%;
         }
 
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            
+            min-width: 160px;
+            
+            
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-menu a:hover {
+            
+            color: #2563eb;
+        }
+        .dropdown-menu a.active {
+            background-color: #eff6ff;
+            color: #2563eb;
+        }
+
         /* Mobile Menu Toggle */
         .mobile-menu-toggle {
             display: none;
@@ -119,38 +160,179 @@
         
         /* Language Toggle Styles */
         .language-toggle {
-            display: flex;
-            gap: 0.5rem;
+            position: relative;
             margin-left: 2rem;
         }
-        .lang-btn {
+        .lang-current {
+            display: flex; align-items: center;
+            align-items: center;
+            gap: 0.5rem;
             padding: 0.5rem 1rem;
             border: 1px solid #d1d5db;
-            background: white;
+            
             color: #374151;
-            border-radius: 0.375rem;
+            
             font-size: 0.875rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .lang-btn:hover {
+        .lang-current:hover {
             background: #f3f4f6;
         }
-        .lang-btn.active {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 140px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+        .language-toggle:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lang-option {
+            display: flex; align-items: center;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .lang-option:hover {
+            
+            color: #2563eb;
+        }
+        .flag {
+            width: 20px;
+            height: 15px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+        .flag-kr {
+            background: linear-gradient(to bottom, 
+                white 0%, white 25%, 
+                #cd2e3a 25%, #cd2e3a 50%, 
+                white 50%, white 75%, 
+                #cd2e3a 75%, #cd2e3a 100%);
+            position: relative;
+        }
+        .flag-kr::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 30%;
+            height: 60%;
+            background: #003478;
+            border-radius: 50%;
+        }
+        .flag-uk {
+            background: linear-gradient(45deg, #012169 25%, transparent 25%), 
+                        linear-gradient(-45deg, #012169 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #012169 75%), 
+                        linear-gradient(-45deg, transparent 75%, #012169 75%),
+                        linear-gradient(to bottom, #C8102E 40%, white 40%, white 60%, #C8102E 60%);
+            background-size: 6px 6px, 6px 6px, 6px 6px, 6px 6px, 100% 100%;
+            background-position: 0 0, 3px 0, 3px -3px, 0px 3px, 0 0;
         }
         
         .main-content {
-            padding-top: 140px;
-            min-height: 100vh;
+            margin-top: 120px;
+            min-height: calc(100vh - 120px);
+        }
+        
+        /* Hero Section */
+        .partnership-hero {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            padding: 6rem 0 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .partnership-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(44, 82, 130, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(56, 161, 105, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+        .partnership-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(44, 82, 130, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(56, 161, 105, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            opacity: 0.6;
+            z-index: 0;
+        }
+        .hero-content { 
+             
+            max-width: 800px; 
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-title { 
+            font-size: 3rem; 
+            font-weight: 700; 
+            color: white; 
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .hero-stats {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .stat-item {
+            
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 0.5rem;
+        }
+        
+        .partnership-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-            text-align: center;
+            padding: 4rem 2rem;
+            
         }
         
         .coming-soon {
@@ -175,7 +357,7 @@
             background: #2c5282;
             color: white;
             text-decoration: none;
-            border-radius: 0.375rem;
+            
             font-weight: 500;
             transition: background 0.3s ease;
         }
@@ -199,22 +381,22 @@
                         <a href="../index.html" class="nav-link">홈</a>
                     </li>
                     <li class="nav-item">
-                        <a href="../research/overview.html" class="nav-link">연구분야</a>
+                        <a href="../team/index.html" class="nav-link">구성원</a>
                     </li>
                     <li class="nav-item">
-                        <a href="../team/index.html" class="nav-link">연구원소개</a>
+                        <a href="../research/overview.html" class="nav-link">도전과제</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="../partnership/index.html" class="nav-link active">제공서비스</a>
-                    </li>
-                    <li class="nav-item">
+                    <li class="nav-item dropdown">
                         <a href="../publications/index.html" class="nav-link">연구성과</a>
+                        <div class="dropdown-menu">
+                            <a href="../partnership/index.html" class="active">제공서비스</a>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="../contact.html" class="nav-link">문의</a>
+                        <a href="../contact.html" class="nav-link">파트너</a>
                     </li>
                 </ul>
-                <div class="mobile-menu-toggle">
+                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -222,22 +404,55 @@
                 
                 <!-- Language Toggle -->
                 <div class="language-toggle">
-                    <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
-                    <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+                    <div class="lang-current">
+                        🇰🇷
+                    </div>
+                    <div class="lang-dropdown">
+                        <div class="lang-option" onclick="switchLanguage('en')">
+                            🇬🇧
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
+    <!-- Hero Section -->
+    <section class="partnership-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">제공 서비스</h1>
+            <p class="hero-subtitle">
+                혁신적인 시각재활 기술을 통해 더 나은 세상을 만들어갑니다<br>
+                함께 성장할 파트너와 투자자를 기다리고 있습니다
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <div class="stat-label">핵심 서비스</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <div class="stat-label">협력 기관</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <div class="stat-label">고객 만족도</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <main class="main-content">
-        <div class="coming-soon">
-            <h1><i class="fas fa-handshake" style="color: #38a169; margin-right: 1rem;"></i>파트너십</h1>
-            <p>파트너십 페이지는 현재 준비 중입니다.</p>
-            <p>투자 및 협력 문의는 연락처 페이지를 통해 해주세요.</p>
-            <a href="../index.html" class="back-link">
-                <i class="fas fa-home" style="margin-right: 0.5rem;"></i>
-                홈으로 돌아가기
-            </a>
+        <div class="partnership-content">
+            <div class="coming-soon">
+                <h2><i class="fas fa-handshake" style="color: #2563eb; margin-right: 1rem;"></i>서비스 상세 정보</h2>
+                <p>제공 서비스 상세 페이지는 현재 준비 중입니다.</p>
+                <p>투자 및 협력 문의는 연락처 페이지를 통해 해주세요.</p>
+                <a href="../index.html" class="back-link">
+                    <i class="fas fa-home" style="margin-right: 0.5rem;"></i>
+                    홈으로 돌아가기
+                </a>
+            </div>
         </div>
     </main>
     

@@ -40,11 +40,6 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-        
-        .nav-right {
-            display: flex;
-            align-items: center;
-        }
 
         .nav-brand {
             display: flex;
@@ -105,6 +100,55 @@
             width: 100%;
         }
 
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            min-width: fit-content; width: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .dropdown-menu a:hover {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            color: white;
+            border-left-color: #1e40af;
+            transform: scale(1.02);
+        }
+        .dropdown-menu a.active {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            color: white;
+            text-align: center;
+        }
+
         /* Mobile Menu Toggle */
         .mobile-menu-toggle {
             display: none;
@@ -123,17 +167,70 @@
         }
         
         /* Language Toggle Styles */
-        .language-toggle {
-            display: flex;
-            gap: 0.5rem;
-            margin-left: 2rem;
-        }
+.language-toggle {
+position: relative;
+margin-left: 2rem;
+}
+
+.lang-current {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+padding: 0.5rem 1rem;
+border: 1px solid #d1d5db;
+border-radius: 0.375rem;
+color: #374151;
+background: white;
+font-size: 0.875rem;
+font-weight: 500;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+.lang-current:hover {
+background: #f3f4f6;
+}
+
+.lang-dropdown {
+position: absolute;
+top: 100%;
+right: 0;
+background: white;
+min-width: 140px;
+border-radius: 0.375rem;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+padding: 0.5rem 0;
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+z-index: 1000;
+margin-top: 0.5rem;
+}
+.language-toggle:hover .lang-dropdown {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+.lang-option {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+padding: 0.75rem 1rem;
+color: #374151;
+font-weight: 500;
+transition: background-color 0.3s ease;
+cursor: pointer;
+text-decoration: none;
+}
+.lang-option:hover {
+
+color: #2563eb;
+}
         .lang-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #d1d5db;
-            background: white;
+            
+            
+            
             color: #374151;
-            border-radius: 0.375rem;
+            
             font-size: 0.875rem;
             font-weight: 500;
             cursor: pointer;
@@ -143,7 +240,7 @@
             background: #f3f4f6;
         }
         .lang-btn.active {
-            background: #2563eb;
+            
             color: white;
             border-color: #2563eb;
         }
@@ -161,45 +258,81 @@
         
         /* Page Header */
         .page-header {
-            padding: 3rem 0;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-            background: white;
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            padding: 6rem 0 4rem 0;
+            position: relative;
+            overflow: hidden;
             margin-bottom: 3rem;
             margin-left: -2rem;
             margin-right: -2rem;
             padding-left: 2rem;
             padding-right: 2rem;
         }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(44, 82, 130, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(56, 161, 105, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+        .page-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(44, 82, 130, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(56, 161, 105, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            opacity: 0.6;
+            z-index: 0;
+        }
+        .page-header-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
         .breadcrumb {
             font-size: 0.9rem;
-            color: #666;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 1rem;
         }
         .breadcrumb a {
-            color: #2c5282;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
         }
         .breadcrumb a:hover {
+            color: white;
             text-decoration: underline;
         }
         .page-title {
-            font-size: 2.2rem;
+            font-size: 3rem;
             font-weight: 700;
-            color: #2c5282;
+            color: white;
             margin-bottom: 1rem;
-            line-height: 1.3;
+            line-height: 1.2;
         }
         .page-subtitle {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.7;
-            max-width: 800px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         /* Research Content Sections */
         .research-section {
-            background: white;
+            
             border-radius: 0.5rem;
             padding: 2.5rem;
             margin-bottom: 2rem;
@@ -224,7 +357,7 @@
         
         /* Research Images */
         .research-images {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             gap: 2rem;
             margin: 2rem 0;
             flex-wrap: wrap;
@@ -233,7 +366,7 @@
         .research-image {
             flex: 1;
             min-width: 300px;
-            text-align: center;
+            
         }
         
         .research-image img {
@@ -270,7 +403,7 @@
             padding: 1.5rem;
             border-radius: 0.5rem;
             border-left: 4px solid #2c5282;
-            text-align: center;
+            
         }
         
         .stat-number {
@@ -325,7 +458,7 @@
             color: white;
             padding: 2rem;
             border-radius: 0.5rem;
-            text-align: center;
+            
         }
         
         .result-title {
@@ -354,33 +487,37 @@
                     <h1 class="logo">MasVisio Research</h1>
                     <span class="tagline">Visual Rehabilitation & Autonomous Imaging Engineering</span>
                 </div>
-                <div class="nav-right">
-                    <ul class="nav-menu">
-                        <li class="nav-item">
-                            <a href="../../index.html" class="nav-link">홈</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../overview.html" class="nav-link active">연구분야</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../team/index.html" class="nav-link">연구원소개</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../partnership/index.html" class="nav-link">제공서비스</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../publications/index.html" class="nav-link">연구성과</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../../contact.html" class="nav-link">문의</a>
-                        </li>
-                    </ul>
-                    <div class="language-toggle">
-                        <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
-                        <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../../index.html" class="nav-link">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../team/index.html" class="nav-link">구성원</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../overview.html" class="nav-link active">도전과제</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="../../publications/index.html" class="nav-link">연구성과</a>
+                        <div class="dropdown-menu">
+                            <a href="../../partnership/index.html">제공서비스</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../contact.html" class="nav-link">파트너</a>
+                    </li>
+                </ul>
+                <div class="language-toggle">
+                    <div class="lang-current">
+                        <span style="font-size: 1.2em;">🇰🇷</span> KR
+                    </div>
+                    <div class="lang-dropdown">
+                        <div class="lang-option" onclick="switchLanguage('en')">
+                            <span style="font-size: 1.2em;">🇬🇧</span> EN
+                        </div>
                     </div>
                 </div>
-                <div class="mobile-menu-toggle">
+                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -391,15 +528,17 @@
 
     <main class="main-content">
         <div class="page-header">
-            <div class="breadcrumb">
-                <a href="../../index.html">홈</a> > 
-                <a href="../overview.html">연구</a> > 
-                시각인지 연구
+            <div class="page-header-content">
+                <div class="breadcrumb">
+                    <a href="../../index.html">홈</a> > 
+                    <a href="../overview.html">연구</a> > 
+                    시각인지 연구
+                </div>
+                <h1 class="page-title">통합 바이오메트릭스 기반 질환 예측 알고리즘</h1>
+                <p class="page-subtitle">
+                    동공 동역학과 대비감도를 통합한 47개 바이오마커 기반으로 신경·대사·심리 상태를 동시 평가하는 혁신적 플랫폼
+                </p>
             </div>
-            <h1 class="page-title">통합 바이오메트릭스 기반 질환 예측 알고리즘</h1>
-            <p class="page-subtitle">
-                동공 동역학과 대비감도를 통합한 47개 바이오마커 기반으로 신경·대사·심리 상태를 동시 평가하는 혁신적 플랫폼
-            </p>
         </div>
 
         <!-- 연구 목표 섹션 -->
@@ -613,7 +752,7 @@
                     <li><strong>AI 예측 모델:</strong> 개인 맞춤형 건강 관리 시스템</li>
                 </div>
                 
-                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; border-radius: 0.5rem; margin: 2rem 0; text-align: center;">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; border-radius: 0.5rem; margin: 2rem 0; ">
                     <h3 style="margin-bottom: 1rem; font-size: 1.4rem;">혁신적 성과</h3>
                     <p style="font-size: 1.1rem; line-height: 1.6;">
                         3분 검사로 4개 질환 카테고리를 90% 이상 정확도로 예측하는<br>
@@ -625,7 +764,7 @@
     </main>
 
     <!-- Footer -->
-    <footer style="background: #2d3748; color: #a0aec0; padding: 2rem 0; text-align: center; margin-top: 5rem;">
+    <footer style="background: #2d3748; color: #a0aec0; padding: 2rem 0;  margin-top: 5rem;">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
             <p style="margin-bottom: 1rem;">&copy; 2025 MasVisio Research. All rights reserved.</p>
             <p style="font-size: 0.9rem; opacity: 0.8;">

@@ -42,7 +42,7 @@
         }
         
         .nav-right {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             align-items: center;
         }
 
@@ -94,13 +94,54 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #2563eb;
+            
             transition: width 0.3s ease;
         }
 
         .nav-link:hover::after,
         .nav-link.active::after {
             width: 100%;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            
+            min-width: 160px;
+            
+            
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-menu a:hover {
+            
+            color: #2563eb;
+        }
+        .dropdown-menu a.active {
+            background-color: #eff6ff;
+            color: #2563eb;
         }
 
         /* Mobile Menu Toggle */
@@ -122,28 +163,55 @@
         
         /* Language Toggle Styles */
         .language-toggle {
-            display: flex;
-            gap: 0.5rem;
+            position: relative;
             margin-left: 2rem;
         }
-        .lang-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #d1d5db;
-            background: white;
-            color: #374151;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
+
+        .lang-current {
+            
+            color: white;
+            
+            
             font-weight: 500;
             cursor: pointer;
+            display: flex; align-items: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             transition: all 0.3s ease;
+            z-index: 1000;
+            min-width: 120px;
         }
-        .lang-btn:hover {
-            background: #f3f4f6;
+
+        .language-toggle:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
-        .lang-btn.active {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
+
+        .lang-option {
+            display: block;
+            
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .lang-option:hover {
+            background: #f8f9fa;
+            color: #2563eb;
         }
         
         /* Main Content */
@@ -158,41 +226,97 @@
         
         /* Page Header */
         .page-header {
-            padding: 3rem 0;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-            background: white;
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            padding: 6rem 0 4rem 0;
+            position: relative;
+            overflow: hidden;
             margin-bottom: 3rem;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(44, 82, 130, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(56, 161, 105, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+        .page-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(44, 82, 130, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(56, 161, 105, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            opacity: 0.6;
+            z-index: 0;
+        }
+        .page-header-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
         }
         .breadcrumb {
             font-size: 0.9rem;
-            color: #666;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 1rem;
         }
         .breadcrumb a {
-            color: #2c5282;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
         }
         .breadcrumb a:hover {
             text-decoration: underline;
         }
         .page-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
-            color: #2c5282;
+            color: white;
             margin-bottom: 1rem;
+            line-height: 1.2;
         }
         .page-subtitle {
-            font-size: 1.1rem;
-            color: #666;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
             max-width: 800px;
-            line-height: 1.7;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 0.5rem;
         }
         
         /* Research Categories Filter */
         .research-filter {
             margin-bottom: 3rem;
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             gap: 1rem;
             flex-wrap: wrap;
             align-items: center;
@@ -203,8 +327,8 @@
             margin-right: 1rem;
         }
         .filter-tag {
-            padding: 0.5rem 1rem;
-            background: white;
+            
+            
             border: 1px solid #e2e8f0;
             border-radius: 1.5rem;
             color: #666;
@@ -229,7 +353,7 @@
         
         /* Project Card */
         .project-card {
-            background: white;
+            
             border-radius: 0.5rem;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
@@ -250,7 +374,7 @@
             overflow: hidden;
             position: relative;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             align-items: center;
             justify-content: center;
         }
@@ -302,7 +426,7 @@
         
         /* Project Meta Info */
         .project-meta {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             justify-content: space-between;
             align-items: center;
             padding-top: 1rem;
@@ -310,7 +434,7 @@
         }
         
         .project-researchers {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             gap: 0.5rem;
             align-items: center;
         }
@@ -327,7 +451,7 @@
         }
         
         .project-tags {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             flex-wrap: wrap;
             gap: 0.5rem;
             margin-top: 1rem;
@@ -417,7 +541,7 @@
         .footer-bottom {
             border-top: 1px solid #334155;
             padding-top: 2rem;
-            text-align: center;
+            
         }
         .copyright {
             color: #94a3b8;
@@ -441,7 +565,7 @@
             }
             
             .mobile-menu-toggle {
-                display: flex;
+                display: flex; flex-direction: column; align-items: center;
             }
             
             .main-content {
@@ -468,24 +592,26 @@
                             <a href="../index.html" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="overview.html" class="nav-link active">Research Areas</a>
+                            <a href="../team/index.html" class="nav-link">Members</a>
                         </li>
                         <li class="nav-item">
-                            <a href="../team/index.html" class="nav-link">Researchers</a>
+                            <a href="overview.html" class="nav-link active">Challenges</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="../publications/index.html" class="nav-link">Research Results</a>
+                            <div class="dropdown-menu">
+                                <a href="../partnership/index.html">Services</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a href="../partnership/index.html" class="nav-link">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../publications/index.html" class="nav-link">Publications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../contact.html" class="nav-link">Contact</a>
+                            <a href="../contact.html" class="nav-link">Partners</a>
                         </li>
                     </ul>
                     <div class="language-toggle">
-                        <button class="lang-btn" onclick="switchLanguage('ko')">한국어</button>
-                        <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+                        <div class="lang-current">🇬🇧</div>
+                        <div class="lang-dropdown">
+                            <a href="../../ko/research/overview.html" class="lang-option">🇰🇷</a>
+                        </div>
                     </div>
                 </div>
                 <div class="mobile-menu-toggle">
@@ -499,14 +625,30 @@
 
     <main class="main-content">
         <div class="page-header">
-            <div class="breadcrumb">
-                <a href="../index.html">Home</a> > Research Projects
+            <div class="page-header-content">
+                <div class="breadcrumb">
+                    <a href="../index.html">Home</a> > Research Projects
+                </div>
+                <h1 class="page-title">Research Projects</h1>
+                <p class="page-subtitle">
+                    We provide better vision and quality of life through challenging and innovative research in the field of visual rehabilitation. 
+                    We are conducting various research projects based on advanced technology and clinical experience.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <div class="stat-label">Research Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">8</span>
+                        <div class="stat-label">Research Period (Years)</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <div class="stat-label">Technology Areas</div>
+                    </div>
+                </div>
             </div>
-            <h1 class="page-title">Research Projects</h1>
-            <p class="page-subtitle">
-                We provide better vision and quality of life through challenging and innovative research in the field of visual rehabilitation. 
-                We are conducting various research projects based on advanced technology and clinical experience.
-            </p>
         </div>
 
         <!-- Research Filter -->

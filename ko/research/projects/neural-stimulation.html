@@ -33,7 +33,7 @@
         }
 
         .navbar .container {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             justify-content: space-between;
             align-items: center;
             max-width: 1200px;
@@ -42,12 +42,12 @@
         }
         
         .nav-right {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             align-items: center;
         }
 
         .nav-brand {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             flex-direction: column;
         }
 
@@ -66,7 +66,7 @@
         }
 
         .nav-menu {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             list-style: none;
             gap: 2rem;
         }
@@ -105,6 +105,55 @@
             width: 100%;
         }
 
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            min-width: fit-content; width: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .dropdown-menu a:hover {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            color: white;
+            border-left-color: #1e40af;
+            transform: scale(1.02);
+        }
+        .dropdown-menu a.active {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            color: white;
+            text-align: center;
+        }
+
         /* Mobile Menu Toggle */
         .mobile-menu-toggle {
             display: none;
@@ -123,17 +172,71 @@
         }
         
         /* Language Toggle Styles */
-        .language-toggle {
-            display: flex;
-            gap: 0.5rem;
-            margin-left: 2rem;
-        }
+.language-toggle {
+position: relative;
+margin-left: 2rem;
+}
+
+.lang-current {
+display: flex; align-items: center;
+align-items: center;
+gap: 0.5rem;
+
+
+
+color: #374151;
+
+font-size: 0.875rem;
+font-weight: 500;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+.lang-current:hover {
+background: #f3f4f6;
+}
+
+.lang-dropdown {
+position: absolute;
+top: 100%;
+right: 0;
+
+min-width: 140px;
+
+
+padding: 0.5rem 0;
+opacity: 0;
+visibility: hidden;
+transform: translateY(-10px);
+transition: all 0.3s ease;
+z-index: 1000;
+margin-top: 0.5rem;
+}
+.language-toggle:hover .lang-dropdown {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+.lang-option {
+display: flex; align-items: center;
+align-items: center;
+gap: 0.5rem;
+padding: 0.75rem 1rem;
+color: #374151;
+font-weight: 500;
+transition: background-color 0.3s ease;
+cursor: pointer;
+text-decoration: none;
+}
+.lang-option:hover {
+
+color: #2563eb;
+}
         .lang-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #d1d5db;
-            background: white;
+            
+            
+            
             color: #374151;
-            border-radius: 0.375rem;
+            
             font-size: 0.875rem;
             font-weight: 500;
             cursor: pointer;
@@ -143,7 +246,7 @@
             background: #f3f4f6;
         }
         .lang-btn.active {
-            background: #2563eb;
+            
             color: white;
             border-color: #2563eb;
         }
@@ -160,7 +263,7 @@
         
         /* Project Header */
         .project-header {
-            background: white;
+            
             padding: 3rem 0;
             border-bottom: 1px solid #e2e8f0;
             margin-bottom: 3rem;
@@ -196,14 +299,14 @@
         
         /* Project Meta */
         .project-meta {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             gap: 3rem;
             flex-wrap: wrap;
             margin-bottom: 2rem;
         }
         
         .meta-item {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             flex-direction: column;
             gap: 0.5rem;
         }
@@ -224,7 +327,7 @@
         
         .status-badge {
             display: inline-block;
-            padding: 0.5rem 1rem;
+            
             border-radius: 2rem;
             font-size: 0.8rem;
             font-weight: 600;
@@ -243,7 +346,7 @@
             height: 400px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 1rem;
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             align-items: center;
             justify-content: center;
             margin-bottom: 3rem;
@@ -252,7 +355,7 @@
         }
         
         .visual-placeholder {
-            text-align: center;
+            
             color: rgba(255,255,255,0.9);
         }
         
@@ -274,7 +377,7 @@
         
         /* Content Sections */
         .content-section {
-            background: white;
+            
             padding: 2.5rem;
             border-radius: 1rem;
             margin-bottom: 2rem;
@@ -401,7 +504,7 @@
         
         /* Tags */
         .project-tags {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             flex-wrap: wrap;
             gap: 0.5rem;
             margin-top: 2rem;
@@ -410,7 +513,7 @@
         .project-tag {
             background: #e2e8f0;
             color: #4a5568;
-            padding: 0.5rem 1rem;
+            
             border-radius: 1.5rem;
             font-size: 0.9rem;
             font-weight: 500;
@@ -421,7 +524,7 @@
             background: #2d3748; 
             color: #a0aec0; 
             padding: 2rem 0; 
-            text-align: center; 
+             
             margin-top: 5rem;
         }
         
@@ -460,27 +563,33 @@
                             <a href="../../index.html" class="nav-link">홈</a>
                         </li>
                         <li class="nav-item">
-                            <a href="../overview.html" class="nav-link active">연구분야</a>
+                            <a href="../../team/index.html" class="nav-link">구성원</a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../team/index.html" class="nav-link">연구원소개</a>
+                            <a href="../overview.html" class="nav-link active">도전과제</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="../../partnership/index.html" class="nav-link">제공서비스</a>
-                        </li>
-                        <li class="nav-item">
+                        <li class="nav-item dropdown">
                             <a href="../../publications/index.html" class="nav-link">연구성과</a>
+                            <div class="dropdown-menu">
+                                <a href="../../partnership/index.html">제공서비스</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a href="../../contact.html" class="nav-link">문의</a>
+                            <a href="../../contact.html" class="nav-link">파트너</a>
                         </li>
                     </ul>
                     <div class="language-toggle">
-                        <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
-                        <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+                        <div class="lang-current">
+                            <span style="font-size: 1.2em;">🇰🇷</span> KR
+                        </div>
+                        <div class="lang-dropdown">
+                            <div class="lang-option" onclick="switchLanguage('en')">
+                                <span style="font-size: 1.2em;">🇬🇧</span> EN
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="mobile-menu-toggle">
+                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                     <span></span>
                     <span></span>
                     <span></span>

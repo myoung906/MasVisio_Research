@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MasVisio Research</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>MasVisio Research - Mobile Menu Fixed v2.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: white; }
+        body { font-family: 'Inter', sans-serif;  }
         
         /* Header Styles */
         .header {
@@ -34,12 +37,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-        }
-        
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 0;
         }
 
         .nav-brand {
@@ -100,21 +97,144 @@
             width: 100%;
         }
 
-        /* Mobile Menu Toggle */
+        /* Language Toggle Styles */
+        .language-toggle {
+            position: relative;
+            margin-left: 2rem;
+        }
+        .lang-current {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #374151;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+        }
+        .lang-current:hover {
+            color: #2563eb;
+        }
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            background: white;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            min-width: 120px;
+        }
+        .language-toggle:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 0.25rem;
+            white-space: nowrap;
+        }
+        .lang-option:hover {
+            color: #2563eb;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            min-width: fit-content; width: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            white-space: nowrap;
+        }
+        .dropdown-menu a:hover {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            color: white;
+            border-left-color: #1e40af;
+            transform: scale(1.02);
+        }
+        .dropdown-menu a.active {
+            color: #1e40af;
+            border-left-color: #1e40af;
+        }
+
+        /* Mobile Menu Toggle - Cache Buster v2.0 */
         .mobile-menu-toggle {
-            display: none;
+            display: none !important;
             flex-direction: column;
             cursor: pointer;
             padding: 4px;
+            position: relative;
+            z-index: 1000;
+            background: rgba(255,255,255,0.9);
+            border-radius: 4px;
         }
 
         .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: #374151;
-            margin: 3px 0;
+            width: 25px !important;
+            height: 3px !important;
+            background: #000000 !important; /* 검은색으로 더 선명하게 */
+            margin: 3px 0 !important;
             transition: 0.3s;
             border-radius: 2px;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-6px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-6px, -6px);
         }
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border: 1px solid #e2e8f0;
@@ -142,29 +262,59 @@
         
         /* Language Toggle */
         .language-toggle {
-            display: flex;
-            gap: 0.5rem;
+            position: relative;
             margin-left: 2rem;
         }
         
-        .lang-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #d1d5db;
-            background: white;
+        .lang-current {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             color: #374151;
-            border-radius: 0.375rem;
             font-size: 0.875rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
+            padding: 0.5rem;
         }
-        .lang-btn:hover {
-            background: #f3f4f6;
+        .lang-current:hover {
+            color: #2563eb;
         }
-        .lang-btn.active {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
+        
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            min-width: 140px;
+            border-radius: 0.375rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+        .language-toggle:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: #374151;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .lang-option:hover {
+            
+            color: #2563eb;
         }
 
         /* Mobile Toggle Button */
@@ -190,27 +340,43 @@
             display: block;
         }
         
-        /* Hero Section - Contact Style */
+        /* Hero Section */
         .hero {
-            padding: 120px 0 60px;
             background: linear-gradient(135deg, #1e40af, #2563eb);
-            color: white;
-            text-align: center;
+            padding: 6rem 0 4rem 0;
+            position: relative;
+            overflow: hidden;
         }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(44, 82, 130, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(56, 161, 105, 0.08) 0%, transparent 50%);
+            z-index: 0;
         }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(44, 82, 130, 0.03) 1px, transparent 1px),
                 radial-gradient(circle at 75% 75%, rgba(56, 161, 105, 0.03) 1px, transparent 1px);
             background-size: 50px 50px, 30px 30px;
             opacity: 0.6;
             z-index: 0;
         }
         .hero-content { 
-            text-align: center; 
+            text-align: center;
             max-width: 800px; 
+            margin: 0 auto;
             padding: 0 2rem;
             position: relative;
             z-index: 1;
@@ -248,17 +414,17 @@
             100% { transform: scale(1); }
         }
         .hero-subtitle {
-            font-size: 1.125rem;
-            color: #bfdbfe;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 2rem auto;
             line-height: 1.6;
         }
         /* 팀 소개 섹션 */
         .team-introduction {
             margin-top: 3rem;
             padding: 2rem;
-            background: white;
+            
             border-radius: 1rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             opacity: 0;
@@ -286,13 +452,13 @@
         }
         
         .team-stats {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             gap: 2rem;
         }
         
         .team-stat {
-            text-align: center;
-            display: flex;
+            
+            display: flex; flex-direction: column; align-items: center;
             flex-direction: column;
         }
         
@@ -309,7 +475,7 @@
         }
         
         .team-intro-image {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             justify-content: center;
             align-items: center;
         }
@@ -319,7 +485,7 @@
             border: 2px dashed #e2e8f0;
             border-radius: 0.5rem;
             padding: 2rem;
-            text-align: center;
+            
             width: 100%;
             max-width: 280px;
         }
@@ -372,7 +538,7 @@
         /* Main Content Sections - Contact Style */
         .main-content-section {
             padding: 80px 0;
-            background: white;
+            
         }
 
         .section-alt {
@@ -386,7 +552,7 @@
         }
 
         .content-card {
-            background: white;
+            
             border-radius: 12px;
             padding: 3rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -407,7 +573,7 @@
         }
 
         .research-highlights {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             flex-direction: column;
             gap: 1.5rem;
         }
@@ -435,7 +601,7 @@
 
         /* Research Info Styles */
         .research-info {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             flex-direction: column;
             gap: 2rem;
         }
@@ -448,7 +614,7 @@
         }
 
         .info-card {
-            background: white;
+            
             border-radius: 8px;
             padding: 1.5rem;
             border: 1px solid #e5e7eb;
@@ -476,7 +642,7 @@
         }
 
         .investment-item {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             justify-content: space-between;
             align-items: center;
             padding: 0.5rem 0;
@@ -558,7 +724,7 @@
         .footer-bottom {
             border-top: 1px solid #334155;
             padding-top: 2rem;
-            text-align: center;
+            
         }
 
         .copyright {
@@ -587,7 +753,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             color: #2c5282;
-            text-align: center;
+            
             margin-bottom: 3rem;
             line-height: 1.2;
         }
@@ -605,7 +771,7 @@
             margin: 3rem 0;
         }
         .highlight-card {
-            background: white;
+            
             padding: 2rem;
             border-radius: 1rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
@@ -632,7 +798,7 @@
         /* Research Data Section */
         .research-data {
             padding: 5rem 0;
-            background: white;
+            
         }
         .data-grid {
             display: grid;
@@ -641,7 +807,7 @@
             margin: 3rem 0;
         }
         .data-card {
-            text-align: center;
+            
             padding: 2rem;
             border-radius: 1rem;
             background: linear-gradient(135deg, #1e40af, #2563eb);
@@ -677,28 +843,98 @@
             background: #2d3748; 
             color: #a0aec0; 
             padding: 2rem 0; 
-            text-align: center; 
+             
         }
         
+        /* Mobile Menu Dropdown */
+        .mobile-nav-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #e5e7eb;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-nav-menu.active {
+            max-height: 400px;
+            padding: 1rem 0;
+        }
+
+        .mobile-nav-menu .nav-item {
+            display: block;
+            margin: 0;
+        }
+
+        .mobile-nav-menu .nav-link {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid #f3f4f6;
+            color: #374151;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .mobile-nav-menu .nav-link:hover {
+            background: #f9fafb;
+            color: #1e40af;
+        }
+
+        .mobile-nav-menu .language-toggle {
+            margin: 1rem 1.5rem 0;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
         /* Mobile */
         @media (max-width: 768px) {
             .container {
                 padding: 0 15px;
             }
             
+            /* 데스크톱 메뉴 숨기기 */
             .nav-menu {
                 display: none;
             }
             
+            /* 모바일 메뉴 토글 버튼 보이기 - FORCE SHOW */
             .mobile-menu-toggle {
-                display: flex;
+                display: flex !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                position: relative !important;
+                z-index: 9999 !important;
+                background: rgba(255,255,255,0.9) !important;
+                border: 2px solid #ff0000 !important; /* 빨간 테두리로 디버깅 */
+                padding: 8px !important;
+                border-radius: 6px !important;
+            }
+            
+            /* 모바일 메뉴 보이기 */
+            .mobile-nav-menu {
+                display: block;
+            }
+            
+            /* 모바일 메뉴 활성화 상태 */
+            .mobile-nav-menu.active {
+                max-height: 500px;
+                padding: 1rem 0;
+            }
+
+            .language-toggle {
+                display: none;
             }
             .hero-title { font-size: 2.8rem; }
             .hero-subtitle { font-size: 1.1rem; }
             .hero-tagline { font-size: 1rem; }
             .team-intro-content {
                 grid-template-columns: 1fr;
-                text-align: center;
+                
             }
             
             .team-stats {
@@ -714,18 +950,68 @@
         }
         
         @media (max-width: 480px) {
-            .hero-title { font-size: 2.2rem; }
-            .hero-subtitle { font-size: 1rem; }
+            .hero-title { 
+                font-size: 2.2rem; 
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            .hero-subtitle { 
+                font-size: 1rem; 
+                line-height: 1.5;
+                margin-bottom: 1rem;
+            }
             .hero-content { padding: 0 1rem; }
-            .section-title { font-size: 1.8rem; }
-            .highlight-card { padding: 1.5rem; }
-            .data-card { padding: 1.5rem; }
-            .data-number { font-size: 2rem; }
+            .section-title { 
+                font-size: 1.8rem; 
+                line-height: 1.3;
+                margin-bottom: 1.5rem;
+            }
+            .highlight-card { 
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .data-card { 
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .data-number { 
+                font-size: 2rem;
+                line-height: 1.1;
+            }
+            
+            /* 텍스트 오버플로우 방지 */
+            .card-title {
+                font-size: 1.3rem;
+                line-height: 1.4;
+                margin-bottom: 0.75rem;
+            }
+            
+            .card-description {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: 1rem;
+            }
+            
+            /* 네비게이션 브랜드 모바일 최적화 */
+            .logo {
+                font-size: 1.2rem;
+                line-height: 1.2;
+            }
+            
+            .tagline {
+                font-size: 0.8rem;
+                line-height: 1.3;
+            }
+            
+            /* 컨테이너 패딩 조정 */
+            .container {
+                padding: 0 0.75rem;
+            }
         }
 
         /* 인터랙티브 대시보드 스타일 */
         .interactive-dashboard {
-            background: white;
+            
             border-radius: 25px;
             padding: 60px 40px;
             margin: 80px 0;
@@ -788,7 +1074,7 @@
             font-weight: 600;
             color: #2c5282;
             margin-bottom: 25px;
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             align-items: center;
             gap: 10px;
         }
@@ -803,7 +1089,7 @@
         }
 
         .progress-label {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             justify-content: space-between;
             margin-bottom: 8px;
             font-weight: 500;
@@ -863,7 +1149,7 @@
         }
 
         .stat-item {
-            text-align: center;
+            
             padding: 20px 15px;
             background: rgba(44, 82, 130, 0.05);
             border-radius: 15px;
@@ -899,7 +1185,7 @@
             color: white;
             padding: 25px;
             border-radius: 15px;
-            text-align: center;
+            
             margin-bottom: 25px;
             position: relative;
             overflow: hidden;
@@ -940,7 +1226,7 @@
         }
 
         .activity-item {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             align-items: center;
             gap: 15px;
             padding: 12px 0;
@@ -956,7 +1242,7 @@
             height: 40px;
             background: #38a169;
             border-radius: 50%;
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             align-items: center;
             justify-content: center;
             color: white;
@@ -1013,7 +1299,7 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-                text-align: center;
+                
             }
             
             .hero-title {
@@ -1102,7 +1388,7 @@
         .coming-soon-section {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             padding: 4rem 2rem;
-            text-align: center;
+            
             border-radius: 12px;
             margin: 2rem 0;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -1246,7 +1532,7 @@
 
         /* 접근성 컨트롤 버튼 */
         .accessibility-controls {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             gap: 8px;
             margin-left: 20px;
         }
@@ -1255,12 +1541,12 @@
             width: 40px;
             height: 40px;
             border: 2px solid #2c5282;
-            background: white;
+            
             border-radius: 50%;
             font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             align-items: center;
             justify-content: center;
         }
@@ -1326,7 +1612,7 @@
         }
 
         .visualization-title {
-            text-align: center;
+            
             color: white;
             font-size: 3rem;
             font-weight: 700;
@@ -1343,7 +1629,7 @@
 
         /* 3D 데이터 큐브 */
         .data-cube-container {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             justify-content: center;
             align-items: center;
             height: 300px;
@@ -1367,7 +1653,7 @@
             position: absolute;
             width: 200px;
             height: 200px;
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -1410,7 +1696,7 @@
 
         .cube-label {
             font-size: 1rem;
-            text-align: center;
+            
             line-height: 1.2;
         }
 
@@ -1424,7 +1710,7 @@
 
         /* 3D 원통형 진행률 */
         .progress-cylinder-container {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             justify-content: center;
             align-items: center;
             height: 300px;
@@ -1449,7 +1735,7 @@
             width: 150px;
             height: 50px;
             border-radius: 75px;
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             justify-content: center;
             align-items: center;
             color: white;
@@ -1488,7 +1774,7 @@
             position: relative;
             height: 300px;
             perspective: 1000px;
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             justify-content: center;
             align-items: flex-end;
             padding: 20px;
@@ -1541,7 +1827,7 @@
             color: white;
             font-size: 0.8rem;
             font-weight: 600;
-            text-align: center;
+            
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
@@ -1561,7 +1847,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             gap: 10px;
         }
 
@@ -1575,7 +1861,7 @@
             font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(10px);
@@ -1659,57 +1945,115 @@
                     <h1 class="logo">MasVisio Research</h1>
                     <span class="tagline">Visual Rehabilitation & Autonomous Imaging Engineering</span>
                 </div>
-                <div class="nav-right">
-                    <ul class="nav-menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active" data-target="home">홈</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-target="research-overview">연구분야</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-target="team-intro">연구원소개</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-target="services">제공서비스</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="publications/index.html" class="nav-link">연구성과</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="contact.html" class="nav-link">문의</a>
-                        </li>
-                    </ul>
-                    
-                    <!-- Language Toggle -->
-                    <div class="language-toggle">
-                        <button class="lang-btn active" onclick="switchLanguage('ko')">한국어</button>
-                        <button class="lang-btn" onclick="switchLanguage('en')">English</button>
-                    </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link active">홈</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="team/index.html" class="nav-link">구성원</a>
+                        <div class="dropdown-menu">
+                            <a href="team/external.html">외부</a>
+                            <a href="team/alumni.html">Alumni</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="research/overview.html" class="nav-link">도전과제</a>
+                        <div class="dropdown-menu">
+                            <a href="research/projects/myopia-control.html">전체망막 완전교정과 근시제어</a>
+                            <a href="research/projects/visual-cognition.html">통합 바이오메트릭스 기반 안질환 예측</a>
+                            <a href="research/projects/scleral-scanner.html">공막렌즈 처방을 위한 공막 스캐너</a>
+                            <a href="research/projects/auto-refractometer.html">검영법 기반 실시간 자동안굴절계</a>
+                            <a href="research/projects/vision-rehabilitation.html">안질환에 의한 시각장애와 시각재활</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="publications/index.html" class="nav-link">연구성과</a>
+                        <div class="dropdown-menu">
+                            <a href="partnership/index.html">제공서비스</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">파트너</a>
+                    </li>
+                </ul>
+                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()" style="display: flex !important; flex-direction: column; cursor: pointer; padding: 8px; background: rgba(255,255,255,0.9); border: 2px solid #ff0000; border-radius: 6px; position: relative; z-index: 9999;">
+                    <span style="width: 25px; height: 3px; background: #000000; margin: 3px 0; display: block; border-radius: 2px;"></span>
+                    <span style="width: 25px; height: 3px; background: #000000; margin: 3px 0; display: block; border-radius: 2px;"></span>
+                    <span style="width: 25px; height: 3px; background: #000000; margin: 3px 0; display: block; border-radius: 2px;"></span>
                 </div>
                 
-                <div class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <!-- Language Toggle -->
+                <div class="language-toggle">
+                    <div class="lang-current">
+                        <span style="font-size: 1.2em;">🇰🇷</span> KR
+                    </div>
+                    <div class="lang-dropdown">
+                        <div class="lang-option" onclick="switchLanguage('en')">
+                            <span style="font-size: 1.2em;">🇬🇧</span> EN
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">MasVisio Research</h1>
+            <p class="hero-subtitle">
+                시각재활 분야의 혁신적 기술 개발과 상업화를 통해 
+                더 나은 미래를 만들어갑니다.
+            </p>
+        </div>
+    </section>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-nav-menu" id="mobile-nav-menu">
+                <ul>
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="team/index.html" class="nav-link">구성원</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="research/overview.html" class="nav-link">도전과제</a>
+                    </li>
+                    <li class="nav-item" style="padding-left: 1rem;">
+                        <a href="research/projects/myopia-control.html" class="nav-link" style="font-size: 0.9rem; color: #666;">• 전체망막 완전교정과 근시제어</a>
+                    </li>
+                    <li class="nav-item" style="padding-left: 1rem;">
+                        <a href="research/projects/visual-cognition.html" class="nav-link" style="font-size: 0.9rem; color: #666;">• 통합 바이오메트릭스 기반 안질환 예측</a>
+                    </li>
+                    <li class="nav-item" style="padding-left: 1rem;">
+                        <a href="research/projects/scleral-scanner.html" class="nav-link" style="font-size: 0.9rem; color: #666;">• 공막렌즈 처방을 위한 공막 스캐너</a>
+                    </li>
+                    <li class="nav-item" style="padding-left: 1rem;">
+                        <a href="research/projects/auto-refractometer.html" class="nav-link" style="font-size: 0.9rem; color: #666;">• 검영법 기반 실시간 자동안굴절계</a>
+                    </li>
+                    <li class="nav-item" style="padding-left: 1rem;">
+                        <a href="research/projects/vision-rehabilitation.html" class="nav-link" style="font-size: 0.9rem; color: #666;">• 안질환에 의한 시각장애와 시각재활</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="publications/index.html" class="nav-link">연구성과</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partnership/index.html" class="nav-link">제공서비스</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">파트너</a>
+                    </li>
+                </ul>
+                
+                <!-- Mobile Language Toggle -->
+
             </div>
         </nav>
     </header>
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <h1 class="hero-title">MasVisio Research</h1>
-                <p class="hero-subtitle">
-                    시각재활 분야의 혁신적 기술 개발과 상업화를 통해 
-                    더 나은 미래를 만들어갑니다.
-                </p>
-            </div>
-        </section>
-
         <!-- Main Content Section -->
         <section class="main-content-section" id="research-overview">
             <div class="container">
@@ -1985,18 +2329,18 @@
                     </div>
                 </div>
                 
-                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #1e40af, #2563eb); border-radius: 1rem; color: white;">
+                <div style=" margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #1e40af, #2563eb); border-radius: 1rem; color: white;">
                     <h3 style="color: white; margin-bottom: 1.5rem; font-size: 1.8rem; font-weight: 700;" class="certification-title">투자 신뢰성 보장</h3>
-                    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
-                        <div style="text-align: center;">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                        <div style="">
                             <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem;">ISO 9001:2015</p>
                             <p style="font-size: 0.9rem; opacity: 0.9;">품질경영시스템 인증</p>
                         </div>
-                        <div style="text-align: center;">
+                        <div style="">
                             <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem;">ICH-GCP</p>
                             <p style="font-size: 0.9rem; opacity: 0.9;">국제 임상시험 기준</p>
                         </div>
-                        <div style="text-align: center;">
+                        <div style="">
                             <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem;">KFDA 인증</p>
                             <p style="font-size: 0.9rem; opacity: 0.9;">식약처 의료기기 인증</p>
                         </div>
@@ -2165,7 +2509,7 @@
 
                         </div>
                     </div>
-                    <p class="visualization-description" style="color: white; text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                    <p class="visualization-description" style="color: white;  margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
                         마우스를 올려 회전을 멈추고, 클릭하여 각 면의 상세 정보를 확인하세요
                     </p>
                 </div>
@@ -2195,7 +2539,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="visualization-description" style="color: white; text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                    <p class="visualization-description" style="color: white;  margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
                         각 층을 클릭하여 세부 진행 상황과 일정을 확인하세요
                     </p>
                 </div>
@@ -2244,7 +2588,7 @@
                             <div class="bar-label">5년차</div>
                         </div>
                     </div>
-                    <p class="visualization-description" style="color: white; text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                    <p class="visualization-description" style="color: white;  margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
                         각 막대를 클릭하여 연도별 상세 수익 분석과 예측을 확인하세요
                     </p>
                 </div>
@@ -2347,22 +2691,54 @@
     <script src="assets/js/language-data.js"></script>
     
     <script>
-        function toggleMenu() {
-            const navToggle = document.getElementById('nav-toggle');
-            const navMenu = document.getElementById('nav-menu');
+        function toggleMobileMenu() {
+            console.log('모바일 메뉴 토글 클릭됨!'); // 디버깅용
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-nav-menu');
             
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            console.log('mobileToggle:', mobileToggle); // 디버깅
+            console.log('mobileMenu:', mobileMenu); // 디버깅
+            
+            if (mobileToggle && mobileMenu) {
+                mobileToggle.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                
+                // 배경 스크롤 방지
+                if (mobileMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                    console.log('메뉴 열림');
+                } else {
+                    document.body.style.overflow = 'auto';
+                    console.log('메뉴 닫힘');
+                }
+            } else {
+                console.error('모바일 메뉴 요소를 찾을 수 없음');
+                alert('모바일 메뉴 디버깅: 요소를 찾을 수 없습니다');
+            }
         }
         
         // ESC 키로 메뉴 닫기
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                const navMenu = document.getElementById('nav-menu');
-                if (navMenu.classList.contains('active')) {
-                    toggleMenu();
+                const mobileMenu = document.getElementById('mobile-nav-menu');
+                const mobileToggle = document.querySelector('.mobile-menu-toggle');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 }
             }
+        });
+        
+        // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+        document.querySelectorAll('.mobile-nav-menu .nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const mobileMenu = document.getElementById('mobile-nav-menu');
+                const mobileToggle = document.querySelector('.mobile-menu-toggle');
+                mobileMenu.classList.remove('active');
+                mobileToggle.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
         });
         
         // 숫자 카운트업 애니메이션
@@ -3120,7 +3496,7 @@
             const data = progressData[segmentIndex];
             const modal = createDetailsModal(`${data.title} 상세 정보`, `
                 <div style="padding: 20px;">
-                    <div style="margin-bottom: 30px; text-align: center;">
+                    <div style="margin-bottom: 30px; ">
                         <div style="font-size: 4rem; font-weight: bold; color: #2c5282; margin-bottom: 10px;">${data.progress}%</div>
                         <div style="font-size: 1.2rem; color: #4a5568;">진행률</div>
                     </div>
@@ -3150,7 +3526,7 @@
             const data = roiData[barIndex];
             const modal = createDetailsModal(`투자 수익률 ${data.year} 분석`, `
                 <div style="padding: 20px;">
-                    <div style="text-align: center; margin-bottom: 30px;">
+                    <div style=" margin-bottom: 30px;">
                         <div style="font-size: 4rem; font-weight: bold; color: #2c5282; margin-bottom: 10px;">${data.roi}</div>
                         <div style="font-size: 1.3rem; color: #4a5568;">예상 투자 수익률</div>
                     </div>
@@ -3169,16 +3545,16 @@
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                background: rgba(0,0,0,0.8); z-index: 9999; display: flex; 
+                background: rgba(0,0,0,0.8); z-index: 9999; display: flex; flex-direction: column; align-items: center; 
                 justify-content: center; align-items: center; opacity: 0; 
                 transition: opacity 0.3s ease;
             `;
             
             modal.innerHTML = `
-                <div style="background: white; border-radius: 15px; max-width: 900px; width: 90%; max-height: 80%; overflow-y: auto; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-                    <div style="padding: 25px; border-bottom: 2px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #2c5282, #38a169); color: white; border-radius: 15px 15px 0 0;">
+                <div style=" border-radius: 15px; max-width: 900px; width: 90%; max-height: 80%; overflow-y: auto; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                    <div style="padding: 25px; border-bottom: 2px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #2c5282, #38a169); color: white; border-radius: 15px 15px 0 0;">
                         <h3 style="margin: 0; font-size: 1.5rem; font-weight: 600;">${title}</h3>
-                        <button onclick="closeModal(this)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; width: 40px; height: 40px; font-size: 1.5rem; cursor: pointer; color: white; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;" aria-label="모달 닫기" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">&times;</button>
+                        <button onclick="closeModal(this)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); border-radius: 50%; width: 40px; height: 40px; font-size: 1.5rem; cursor: pointer; color: white; display: flex; flex-direction: column; align-items: center; align-items: center; justify-content: center; transition: all 0.3s ease;" aria-label="모달 닫기" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">&times;</button>
                     </div>
                     <div>${content}</div>
                 </div>
@@ -3343,6 +3719,13 @@
                 window.location.href = '../en/index.html';
             }
             // 한국어는 현재 페이지 유지
+        }
+
+        // 언어 전환 함수
+        function switchLanguage(lang) {
+            if (lang === 'en') {
+                window.location.href = '../en/index.html';
+            }
         }
     </script>
 </body>

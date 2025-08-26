@@ -9,7 +9,7 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: white; }
+        body { font-family: 'Inter', sans-serif;  }
         
         /* Header Styles - Contact Style */
         .header {
@@ -94,6 +94,108 @@
             width: 100%;
         }
 
+        /* Language Toggle Styles */
+        .language-toggle {
+            position: relative;
+            margin-left: 2rem;
+        }
+        .lang-current {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #374151;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+        }
+        .lang-current:hover {
+            color: #2563eb;
+        }
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            background: white;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            min-width: 120px;
+        }
+        .language-toggle:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 0.25rem;
+            white-space: nowrap;
+        }
+        .lang-option:hover {
+            color: #2563eb;
+        }
+        
+        /* 국기 이모지 크기 조정 */
+        .lang-current, .lang-option {
+            font-size: 1.1em;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            
+            min-width: 160px;
+            
+            
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-menu a:hover {
+            
+            color: #2563eb;
+        }
+        .dropdown-menu a.active {
+            background-color: #eff6ff;
+            color: #2563eb;
+        }
+
         /* Mobile Menu Toggle */
         .mobile-menu-toggle {
             display: none;
@@ -113,39 +215,111 @@
         
         /* Language Toggle Styles */
         .language-toggle {
-            display: flex;
-            gap: 0.5rem;
+            position: relative;
             margin-left: 2rem;
         }
-        .lang-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #d1d5db;
-            background: white;
+        
+        .lang-current {
+            display: flex; align-items: center;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
             color: #374151;
-            border-radius: 0.375rem;
             font-size: 0.875rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .lang-btn:hover {
-            background: #f3f4f6;
+        
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            
+            min-width: 140px;
+            
+            
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
         }
-        .lang-btn.active {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
+        .language-toggle:hover .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .lang-option {
+            display: flex; align-items: center;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: #374151;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .lang-option:hover {
+            
+            color: #2563eb;
         }
         
-        /* Hero Section - KAIST Style */
-        .hero { 
-            min-height: 100vh; 
-            background: white; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            padding-top: 140px; 
+        /* Mobile Menu Styles */
+        .mobile-nav-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #e5e7eb;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-nav-menu.active {
+            max-height: 400px;
+            padding: 1rem 0;
+        }
+
+        .mobile-nav-menu .nav-item {
+            display: block;
+            margin: 0;
+        }
+
+        .mobile-nav-menu .nav-link {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid #f3f4f6;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .mobile-nav-menu .nav-link:hover {
+            background: #f9fafb;
+            color: #1e40af;
+        }
+
+        .mobile-nav-menu .language-toggle {
+            margin: 1rem 1.5rem 0;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e40af, #2563eb);
+            padding: 6rem 0 4rem 0;
             position: relative;
+            overflow: hidden;
+            color: white;
+            text-align: center;
         }
         .hero::before {
             content: '';
@@ -154,12 +328,27 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('../assets/images/research/lab-photo.jpg') center/cover;
-            opacity: 0.1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(44, 82, 130, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(56, 161, 105, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(44, 82, 130, 0.03) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(56, 161, 105, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            opacity: 0.6;
             z-index: 0;
         }
         .hero-content { 
-            text-align: center; 
+             
             max-width: 800px; 
             padding: 0 2rem;
             position: relative;
@@ -182,7 +371,7 @@
             margin-right: auto;
         }
         .hero-buttons {
-            display: flex;
+            display: flex; flex-direction: column; align-items: center;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
@@ -236,7 +425,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             color: #2c5282;
-            text-align: center;
+            
             margin-bottom: 3rem;
             line-height: 1.2;
         }
@@ -254,7 +443,7 @@
             margin: 3rem 0;
         }
         .highlight-card {
-            background: white;
+            
             padding: 2rem;
             border-radius: 1rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
@@ -274,7 +463,7 @@
         /* Research Data Section */
         .research-data {
             padding: 5rem 0;
-            background: white;
+            
         }
         .data-grid {
             display: grid;
@@ -283,7 +472,7 @@
             margin: 3rem 0;
         }
         .data-card {
-            text-align: center;
+            
             padding: 2rem;
             border-radius: 1rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -357,7 +546,7 @@
         .footer-bottom {
             border-top: 1px solid #334155;
             padding-top: 2rem;
-            text-align: center;
+            
         }
         .copyright {
             color: #94a3b8;
@@ -381,7 +570,7 @@
             }
             
             .mobile-menu-toggle {
-                display: flex;
+                display: flex; flex-direction: column; align-items: center;
             }
             
             .hero-title { font-size: 2.8rem; }
@@ -421,19 +610,19 @@
                         <a href="index.html" class="nav-link active">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="research/overview.html" class="nav-link">Research Areas</a>
+                        <a href="team/index.html" class="nav-link">Members</a>
                     </li>
                     <li class="nav-item">
-                        <a href="team/index.html" class="nav-link">Researchers</a>
+                        <a href="research/overview.html" class="nav-link">Challenges</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="publications/index.html" class="nav-link">Research Results</a>
+                        <div class="dropdown-menu">
+                            <a href="partnership/index.html">Services</a>
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a href="partnership/index.html" class="nav-link">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="publications/index.html" class="nav-link">Publications</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="contact.html" class="nav-link">Partners</a>
                     </li>
                 </ul>
                 <div class="mobile-menu-toggle">
@@ -444,9 +633,41 @@
                 
                 <!-- Language Toggle -->
                 <div class="language-toggle">
-                    <button class="lang-btn" onclick="switchLanguage('ko')">한국어</button>
-                    <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+                    <div class="lang-current">
+                        <span style="font-size: 1.2em;">🇬🇧</span> EN
+                    </div>
+                    <div class="lang-dropdown">
+                        <div class="lang-option" onclick="switchLanguage('ko')">
+                            <span style="font-size: 1.2em;">🇰🇷</span> KR
+                        </div>
+                    </div>
                 </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-nav-menu" id="mobile-nav-menu">
+                <ul>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="team/index.html" class="nav-link">Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="research/overview.html" class="nav-link">Challenges</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="publications/index.html" class="nav-link">Research Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="partnership/index.html" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Partners</a>
+                    </li>
+                </ul>
+                
+
             </div>
         </nav>
     </header>
@@ -682,7 +903,7 @@
                     </div>
                 </div>
                 
-                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: #f8fafc; border-radius: 1rem; border-left: 4px solid #38a169;">
+                <div style=" margin-top: 3rem; padding: 2rem; background: #f8fafc; border-radius: 1rem; border-left: 4px solid #38a169;">
                     <h3 style="color: #2c5282; margin-bottom: 1rem; font-size: 1.5rem;" class="certification-title">We are certified!</h3>
                     <p style="color: #4a5568; font-size: 1.2rem; font-weight: 600;" class="certification-standard">ISO 9001:2015</p>
                     <p style="color: #4a5568; margin-top: 0.5rem;" class="certification-description">Quality Management System for Research Excellence</p>
@@ -757,6 +978,54 @@
             }
             // If 'en', stay on current page
         }
+
+        // Mobile menu toggle function
+        function toggleMobileMenu() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-nav-menu');
+            
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            
+            // Prevent background scrolling
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Add click event to mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', toggleMobileMenu);
+            }
+
+            // Close mobile menu when clicking on links
+            document.querySelectorAll('.mobile-nav-menu .nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    const mobileMenu = document.getElementById('mobile-nav-menu');
+                    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+                    mobileMenu.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // Close mobile menu with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const mobileMenu = document.getElementById('mobile-nav-menu');
+                    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+                    if (mobileMenu && mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        mobileToggle.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>
