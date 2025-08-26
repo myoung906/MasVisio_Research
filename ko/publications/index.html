@@ -752,11 +752,15 @@
                         <a href="../contact.html" class="nav-link">파트너</a>
                     </li>
                 </ul>
-                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <button class="mobile-menu-toggle" 
+                        onclick="toggleMobileMenu()" 
+                        aria-label="모바일 메뉴 열기" 
+                        aria-expanded="false"
+                        type="button">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </button>
                 
                 <!-- Language Toggle -->
                 <div class="language-toggle">
@@ -1448,14 +1452,18 @@
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
             const mobileMenu = document.getElementById('mobile-nav-menu');
             
-            mobileToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            
-            // 배경 스크롤 방지
-            if (mobileMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
+            if (mobileToggle && mobileMenu) {
+                const isExpanded = mobileMenu.classList.contains('active');
+                
+                mobileToggle.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                
+                // ARIA 상태 업데이트
+                mobileToggle.setAttribute('aria-expanded', !isExpanded);
+                mobileToggle.setAttribute('aria-label', !isExpanded ? '모바일 메뉴 닫기' : '모바일 메뉴 열기');
+                
+                // 배경 스크롤 방지
+                document.body.style.overflow = !isExpanded ? 'hidden' : 'auto';
             }
         }
         

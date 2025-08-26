@@ -593,11 +593,15 @@
                         <a href="contact.html" class="nav-link active">파트너</a>
                     </li>
                 </ul>
-                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <button class="mobile-menu-toggle" 
+                        onclick="toggleMobileMenu()" 
+                        aria-label="모바일 메뉴 열기" 
+                        aria-expanded="false"
+                        type="button">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </button>
                 
                 <!-- Language Toggle -->
                 <div class="language-toggle">
@@ -886,6 +890,42 @@
             }
             // If 'ko', stay on current page
         }
+        
+        // 모바일 메뉴 토글 함수
+        function toggleMobileMenu() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-nav-menu');
+            
+            if (mobileToggle && mobileMenu) {
+                const isExpanded = mobileMenu.classList.contains('active');
+                
+                mobileToggle.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                
+                // ARIA 상태 업데이트
+                mobileToggle.setAttribute('aria-expanded', !isExpanded);
+                mobileToggle.setAttribute('aria-label', !isExpanded ? '모바일 메뉴 닫기' : '모바일 메뉴 열기');
+                
+                // 배경 스크롤 방지
+                document.body.style.overflow = !isExpanded ? 'hidden' : 'auto';
+            }
+        }
+        
+        // ESC 키로 메뉴 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const mobileMenu = document.getElementById('mobile-nav-menu');
+                const mobileToggle = document.querySelector('.mobile-menu-toggle');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                    mobileToggle.setAttribute('aria-label', '모바일 메뉴 열기');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+        
     </script>
 </body>
 </html>
