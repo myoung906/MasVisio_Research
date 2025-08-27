@@ -1,5 +1,17 @@
 {
-  "dependencies": {
+  "name": "masvisio-research",
+  "version": "1.0.0",
+  "description": "시각재활 연구 웹사이트",
+  "main": "index.html",
+  "scripts": {
+    "test": "playwright test",
+    "dev": "python3 -m http.server 8080",
+    "start": "python3 -m http.server 8080"
+  },
+  "devDependencies": {
     "@playwright/test": "^1.55.0"
-  }
+  },
+  "keywords": ["시각재활", "연구", "웹사이트", "vision-rehabilitation"],
+  "author": "MasVisio Research Team",
+  "license": "MIT"
 }
