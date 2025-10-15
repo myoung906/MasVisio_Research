@@ -1,0 +1,24 @@
+2025-10-13 16:45:02,385 - src.server - INFO - server.py:421 - Configuration: host=localhost, port=8000, dev=True
+2025-10-13 16:45:02,385 - src.server - INFO - server.py:514 - Starting nanobanana-mcp in MCP mode...
+2025-10-13 16:45:02,385 - src.config_keyloader - INFO - config_keyloader.py:213 - Key loader initialized - Found key: False
+2025-10-13 16:45:02,385 - src.server - ERROR - server.py:524 - Gemini API key not found. Please set it in:
+1. MCP server configuration (recommended): mcpServers.nanobanana.env.GEMINI_API_KEY
+2. .env file: GEMINI_API_KEY, GOOGLE_API_KEY, or GOOGLE_AI_API_KEY
+2025-10-13 22:39:03,967 - src.server - INFO - server.py:421 - Configuration: host=localhost, port=8000, dev=True
+2025-10-13 22:39:03,967 - src.server - INFO - server.py:514 - Starting nanobanana-mcp in MCP mode...
+2025-10-13 22:39:03,969 - src.config_keyloader - INFO - config_keyloader.py:213 - Key loader initialized - Found key: False
+2025-10-13 22:39:03,970 - src.server - ERROR - server.py:524 - Gemini API key not found. Please set it in:
+1. MCP server configuration (recommended): mcpServers.nanobanana.env.GEMINI_API_KEY
+2. .env file: GEMINI_API_KEY, GOOGLE_API_KEY, or GOOGLE_AI_API_KEY
+2025-10-13 22:39:51,031 - src.server - INFO - server.py:421 - Configuration: host=localhost, port=8000, dev=True
+2025-10-13 22:39:51,031 - src.server - INFO - server.py:514 - Starting nanobanana-mcp in MCP mode...
+2025-10-13 22:39:51,031 - src.config_keyloader - INFO - config_keyloader.py:213 - Key loader initialized - Found key: False
+2025-10-13 22:39:51,031 - src.server - ERROR - server.py:524 - Gemini API key not found. Please set it in:
+1. MCP server configuration (recommended): mcpServers.nanobanana.env.GEMINI_API_KEY
+2. .env file: GEMINI_API_KEY, GOOGLE_API_KEY, or GOOGLE_AI_API_KEY
+2025-10-14 14:00:27,131 - src.server - INFO - server.py:421 - Configuration: host=localhost, port=8000, dev=True
+2025-10-14 14:00:27,131 - src.server - INFO - server.py:514 - Starting nanobanana-mcp in MCP mode...
+2025-10-14 14:00:27,132 - src.config_keyloader - INFO - config_keyloader.py:213 - Key loader initialized - Found key: False
+2025-10-14 14:00:27,132 - src.server - ERROR - server.py:524 - Gemini API key not found. Please set it in:
+1. MCP server configuration (recommended): mcpServers.nanobanana.env.GEMINI_API_KEY
+2. .env file: GEMINI_API_KEY, GOOGLE_API_KEY, or GOOGLE_AI_API_KEY

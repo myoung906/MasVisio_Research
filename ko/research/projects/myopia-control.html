@@ -4,8 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>전체망막 완전교정과 근시억제 - MasVisio Research</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="주변부 망막 초점 조절을 통한 혁신적 근시 제어 연구. FS' 초점선 위치 분석으로 근시 진행 메커니즘을 규명하고 광학적 개입 방법을 개발합니다.">
+    <meta name="keywords" content="근시 제어, 주변부 망막, FS' 초점선, 광학적 개입, 시각재활, 망막 곡률, 근시 억제, MasVisio Research">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://myoung906.github.io/MasVisio_Research/ko/research/projects/myopia-control.html">
+    <meta property="og:title" content="전체망막 완전교정과 근시억제 - MasVisio Research">
+    <meta property="og:description" content="주변부 망막의 초평면 위치와 안구 성장의 관계를 분석하여 근시 진행을 억제하는 광학적 개입 방법 연구">
+    <meta property="og:image" content="https://myoung906.github.io/MasVisio_Research/assets/images/og-myopia-control.png">
+
+    <!-- 다국어 페이지 연결 -->
+    <link rel="alternate" hreflang="ko" href="https://myoung906.github.io/MasVisio_Research/ko/research/projects/myopia-control.html">
+    <link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/en/research/projects/myopia-control.html">
+    <link rel="alternate" hreflang="x-default" href="https://myoung906.github.io/MasVisio_Research/en/research/projects/myopia-control.html">
+
+    <!-- 폰트 최적화 로딩 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -155,6 +177,8 @@
             flex-direction: column;
             cursor: pointer;
             padding: 4px;
+            background: none;
+            border: none;
         }
 
         .mobile-menu-toggle span {
@@ -165,7 +189,78 @@
             transition: 0.3s;
             border-radius: 2px;
         }
-        
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Navigation Menu */
+        .mobile-nav-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: calc(100vh - 80px);
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+
+        .mobile-nav-menu.active {
+            left: 0;
+        }
+
+        .mobile-nav-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mobile-nav-menu > ul > li {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .mobile-nav-menu a {
+            display: block;
+            padding: 1rem 2rem;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-menu a:hover,
+        .mobile-nav-menu a.active {
+            background: #f3f4f6;
+            color: #2563eb;
+        }
+
+        .mobile-submenu {
+            background: #f9fafb;
+        }
+
+        .mobile-submenu li {
+            border-bottom: none;
+        }
+
+        .mobile-submenu a {
+            padding-left: 3rem;
+            font-size: 0.9rem;
+        }
+
         /* Language Toggle Styles */
         .language-toggle {
             position: relative;
@@ -177,7 +272,7 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
-            
+            border: none;
             border-radius: 0.375rem;
             color: #374151;
             background: white;
@@ -185,9 +280,16 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
         }
         .lang-current:hover {
             background: #f3f4f6;
+        }
+
+        .language-toggle:focus-within .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
         
         .lang-dropdown {
@@ -520,6 +622,86 @@
             font-size: 0.75rem;
             font-style: italic;
         }
+
+        /* 모바일 반응형 디자인 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex !important;
+            }
+
+            .mobile-nav-menu {
+                display: block;
+            }
+
+            .language-toggle {
+                margin-left: 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .page-subtitle {
+                font-size: 1rem;
+            }
+
+            .main-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .research-section {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .research-stats,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-brand {
+                flex-grow: 1;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .tagline {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .research-section {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -562,21 +744,53 @@
                     </li>
                 </ul>
                 <div class="language-toggle">
-                    <div class="lang-current">
-                        <span style="font-size: 1.2em;">🇰🇷</span> KR
-                    </div>
-                    <div class="lang-dropdown">
-                        <div class="lang-option" onclick="switchLanguage('en')">
-                            <span style="font-size: 1.2em;">🇬🇧</span> EN
-                        </div>
+                    <button class="lang-current" aria-label="언어 선택" aria-haspopup="true" aria-expanded="false">
+                        <span style="font-size: 1.2em;" aria-hidden="true">🇰🇷</span> KR
+                    </button>
+                    <div class="lang-dropdown" role="menu">
+                        <a href="../../../en/research/projects/myopia-control.html" class="lang-option" role="menuitem">
+                            <span style="font-size: 1.2em;" aria-hidden="true">🇬🇧</span> EN
+                        </a>
                     </div>
                 </div>
-                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()"
+                        aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-nav-menu">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </div>
+        </nav>
+
+        <!-- 모바일 네비게이션 메뉴 -->
+        <nav id="mobile-nav-menu" class="mobile-nav-menu" aria-label="모바일 메인 메뉴">
+            <ul>
+                <li><a href="../../index.html">홈</a></li>
+                <li>
+                    <a href="../../team/index.html">구성원</a>
+                    <ul class="mobile-submenu">
+                        <li><a href="../../team/external.html">외부</a></li>
+                        <li><a href="../../team/alumni.html">Alumni</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="../overview.html" class="active">도전과제</a>
+                    <ul class="mobile-submenu">
+                        <li><a href="myopia-control.html">전체망막 완전교정과 근시제어</a></li>
+                        <li><a href="visual-cognition.html">통합 바이오메트릭스 기반 안질환 예측</a></li>
+                        <li><a href="scleral-scanner.html">공막렌즈 처방을 위한 공막 스캐너</a></li>
+                        <li><a href="auto-refractometer.html">검영법 기반 실시간 자동안굴절계</a></li>
+                        <li><a href="vision-rehabilitation.html">안질환에 의한 시각장애와 시각재활</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="../../publications/index.html">연구성과</a>
+                    <ul class="mobile-submenu">
+                        <li><a href="../../partnership/index.html">제공서비스</a></li>
+                    </ul>
+                </li>
+                <li><a href="../../contact.html">파트너</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -815,12 +1029,34 @@
     </footer>
 
     <script>
+        // 모바일 메뉴 토글 함수
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-nav-menu');
+            const toggleBtn = document.querySelector('.mobile-menu-toggle');
+
+            if (!mobileMenu) return;
+
+            if (mobileMenu.classList.contains('active')) {
+                // 메뉴 닫기
+                mobileMenu.classList.remove('active');
+                toggleBtn.classList.remove('active');
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            } else {
+                // 메뉴 열기
+                mobileMenu.classList.add('active');
+                toggleBtn.classList.add('active');
+                toggleBtn.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
         function switchLanguage(lang) {
             // 언어 전환 버튼 상태 업데이트
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            if (event) event.target.classList.add('active');
 
             // 영어 페이지로 리다이렉트
             if (lang === 'en') {
@@ -835,6 +1071,16 @@
                 header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
             } else {
                 header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // ESC 키로 메뉴 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const mobileMenu = document.getElementById('mobile-nav-menu');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
             }
         });
     </script>
