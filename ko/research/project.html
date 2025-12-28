@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연구 프로젝트 - MasVisio Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <h1>MasVisio Research</h1>
+                <div class="logo-subtitle">Vision Intelligence & Biomedical Engineering</div>
+            </div>
+            <nav>
+                <div class="lang-switch">
+                    <a href="#" onclick="switchLanguage('en'); return false;">🇺🇸</a> <span class="active">🇰🇷</span>
+                </div>
+                <div class="nav-links">
+                    <a href="../index.html">홈</a>
+                    <a href="../team/index.html">구성원</a>
+                    <a href="overview.html" class="active">도전과제</a>
+                    <a href="../publications/index.html">연구성과</a>
+                    <a href="../partnership/index.html">제공서비스</a>
+                    <a href="../contact.html">파트너</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>연구 프로젝트</h2>
+                <p>진행 중인 연구에 대한 상세 정보입니다.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div id="project-detail-container">
+                    <p>프로젝트 정보를 불러오는 중입니다...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MasVisio Research</p>
+            <div>
+                <a href="../privacy.html">개인정보처리방침</a>
+                <a href="../contact.html">문의하기</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function switchLanguage(lang) {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            if (lang === 'en') {
+                window.location.href = `../../research/project.html?id=${id}`;
+            } else {
+                window.location.href = `project.html?id=${id}`;
+            }
+        }
+    </script>
+</body>
+
+</html>

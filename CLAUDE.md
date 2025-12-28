@@ -7,7 +7,7 @@
 
 ## 프로젝트 정보
 - **목적**: 시각재활 연구결과를 바이어/스폰서에게 효과적으로 전달
-- **구조**: 한국어(ko/), 영어(en/) 다국어 지원
+- **구조**: 한국어(ko/) 중심, 루트(/)에 영어 페이지
 - **특징**: 모바일 반응형, 햄버거 메뉴, 언어 토글
 
 ## 🚀 토큰 절약 워크플로우 
@@ -131,7 +131,7 @@ document.getElementById('mobile-nav-menu'); // 메뉴 요소 확인
 
 ## 반드시 한국어로 답변할 것.
 ## Project Structure & Module Organization
-- Root HTML entry points live at `index.html`, `ko/index.html`, and `en/index.html`; locale-specific pages nest under `ko/` and `en/` (e.g., `ko/research/projects/*`).
+- Root HTML entry points live at `index.html` (English) and `ko/index.html` (Korean); Korean pages nest under `ko/` (e.g., `ko/research/projects/*`).
 - Shared styling, scripts, and imagery reside in `assets/` (`assets/css`, `assets/js`, `assets/images`).
 - Playwright-based utility scripts for manual or automated checks sit alongside the root (`mobile_test.js`, `korean_page_test.js`, `simple_mobile_test.js`).
 - Process and roadmap documentation is tracked in `README.md`, `CLAUDE.md`, and `project_plan.md`.

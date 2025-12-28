@@ -1,21 +1,41 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MasVisio Research</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/new-main.css">
+    <title>MasVisio Research - Vision Rehabilitation Research</title>
+    <meta name="description"
+        content="MasVisio Research is dedicated to advancing the field of vision science through innovative research and technology.">
+    <meta name="keywords"
+        content="Vision Rehabilitation, Research, Vision Science, MasVisio, Optometry, Myopia Control">
+    <meta property="og:title" content="MasVisio Research - Vision Rehabilitation Research">
+    <meta property="og:description" content="Pioneering vision science through innovative research and technology.">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
 </head>
+
 <body>
     <header>
         <div class="container">
-            <h1>MasVisio Research</h1>
+            <div class="logo-container">
+                <h1>MasVisio Research</h1>
+                <div class="logo-subtitle">Vision Intelligence & Biomedical Engineering</div>
+            </div>
             <nav>
-                <a href="index.html" class="active">Home</a>
-                <a href="research.html">Research</a>
-                <a href="publications.html">Publications</a>
+                <div class="lang-switch">
+                    <span class="active">🇺🇸</span> <a href="ko/index.html">🇰🇷</a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="team/index.html">Team</a>
+                    <a href="research/overview.html">Research</a>
+                    <a href="publications/index.html">Publications</a>
+                    <a href="partnership/index.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -23,14 +43,65 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h2>Pioneering Vision Science</h2>
-                <p>Dedicated to advancing the field of vision science through innovative research and technology.</p>
+                <h2>Innovating the Future of Vision Rehabilitation</h2>
+                <p>Developing next-generation vision rehabilitation solutions to improve the quality of life for the
+                    visually impaired and low vision patients through advanced AI technology and 4D myopia control
+                    systems.</p>
             </div>
         </section>
 
-        <div class="container" id="research-projects-container">
-            <!-- Projects will be loaded here by main.js -->
-        </div>
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Research Areas</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>4D Myopia Control</h3>
+                        <p>Researching next-generation myopia inhibition platforms integrating spatial, temporal,
+                            spectral, and individual dimensions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>AI-Based Visual Diagnosis</h3>
+                        <p>Developing precision visual diagnosis and personalized treatment systems using deep learning.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Biometric Measurement</h3>
+                        <p>Leading non-invasive ocular biomarker measurement technology using advanced optics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Research Status</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>3</h3>
+                        <p>Active Projects</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>7</h3>
+                        <p>Patents Registered</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Phase 2</h3>
+                        <p>Clinical Trials Completed</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">MasVisio Research Team</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    MasVisio Research, a gathering of world-class experts in vision rehabilitation, strives to improve
+                    the quality of life for the visually impaired through innovative technology development and clinical
+                    research.
+                </p>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -38,11 +109,12 @@
             <p>&copy; 2025 MasVisio Research</p>
             <div>
                 <a href="#">Privacy Policy</a>
-                <a href="#">Contact</a>
+                <a href="contact.html">Contact</a>
             </div>
         </div>
     </footer>
 
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>

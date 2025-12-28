@@ -31,3 +31,9 @@ memory.json
 .cache/
 .temp/
 tmp/
+cache/
+outputs/
+logs/
+
+# 임시 상태 파일
+project_status_*.md

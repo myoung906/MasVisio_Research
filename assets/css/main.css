@@ -1,0 +1,312 @@
+/* Reset and Base Styles */
+:root {
+    --primary-color: #003366;
+    /* Deep Blue */
+    --secondary-color: #f0f4f8;
+    /* Light Grayish Blue */
+    --accent-color: #007bff;
+    /* Bright Blue */
+    --text-color: #333;
+    --heading-color: #003366;
+    --background-color: #ffffff;
+    --heading-font: 'Roboto', 'Inter', sans-serif;
+    --body-font: 'Open Sans', 'Lato', sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--body-font);
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: 1.7;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    font-weight: 700;
+    margin-bottom: 0.75em;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2.2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: none;
+    /* Remove shadow to match "simple" look */
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* Align to top */
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin: 0;
+    color: var(--primary-color);
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.logo-subtitle {
+    font-size: 1.0rem;
+    color: #666;
+    font-weight: 700;
+    margin-top: 5px;
+    transform: scaleX(1.15);
+    /* Slightly stretched horizontally */
+    transform-origin: left;
+    display: inline-block;
+}
+
+header nav {
+    display: flex;
+    flex-direction: column;
+    /* Stack links and lang */
+    align-items: flex-end;
+    /* Align to right */
+    gap: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    font-weight: 700;
+    /* Bold */
+    color: var(--primary-color);
+    /* Match logo color */
+    text-transform: none;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+    /* Lighter blue on hover */
+    text-decoration: none;
+}
+
+.nav-links a.active {
+    color: var(--primary-color);
+    /* Keep dark blue for active state too */
+    text-decoration: none;
+}
+
+.nav-links a::after {
+    display: none;
+    /* Remove underline effect */
+}
+
+.lang-switch {
+    font-size: 1.5rem;
+    /* Increased from 1.2rem */
+    border: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+
+.lang-switch a {
+    text-decoration: none;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    margin-left: 10px;
+}
+
+.lang-switch a:hover,
+.lang-switch .active {
+    opacity: 1;
+    color: inherit;
+    /* Keep emoji color */
+}
+
+/* Hero Section */
+.hero {
+    background-color: #e2e8f0;
+    /* Slightly darker grayish blue background */
+    padding: 75px 0;
+    /* Reduced vertical padding by 25% */
+    text-align: center;
+    /* Center alignment */
+}
+
+.hero .container {
+    background-color: transparent;
+    /* Remove inner box background */
+    padding: 0 20px;
+    border-radius: 0;
+    max-width: 1000px;
+    /* Limit width for box look */
+    margin: 0 auto;
+}
+
+.hero h2 {
+    font-size: 3.5rem;
+    /* Increased font size */
+    margin-bottom: 30px;
+    color: var(--heading-color);
+    font-weight: 800;
+    /* Extra bold */
+}
+
+.hero p {
+    font-size: 1.3rem;
+    /* Increased font size */
+    color: #555;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Buttons */
+.btn-secondary {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 1.25rem;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+/* Footer - Structured & Informative */
+footer {
+    background-color: var(--bg-light);
+    border-top: 1px solid var(--border-color);
+    padding: 4rem 0;
+    margin-top: auto;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+footer div a {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-left: 2rem;
+    font-weight: 500;
+}
+
+footer div a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Mobile Menu (Hidden by default on Desktop) */
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .nav-links {
+        display: none;
+        /* Implement mobile menu logic if needed */
+    }
+
+    .hero {}
+
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        padding: 0 10px;
+    }
+
+    /* Footer */
+    footer .container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    footer a {
+        margin: 0 10px;
+        display: inline-block;
+    }
+
+    /* Stats */
+    .stat-item h3 {
+        font-size: 2.5rem;
+    }
+}

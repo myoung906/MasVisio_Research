@@ -1,4 +1,3 @@
-
 {
   "ko": {
     "projects": [
@@ -325,12 +324,385 @@
         "doi": "https://doi.org/10.5762/kais.2009.10.11.3412",
         "abstract": "저시력 환자와 정상인의 삶의 질을 비교하고 영향 요인을 분석. 저시력 환자의 주관적 삶의 만족도가 정상 대조군 대비 모든 항목에서 낮았으며(평균 차이 36.07±14.82), 나이가 근거리 활동성(r=-0.584), 원거리 활동성(r=-0.678) 등과 높은 상관관계를 보였다. 특히 안구진탕이 일상생활에 큰 어려움을 주는 것으로 확인했다."
       }
+    ],
+    "team": [
+      {
+        "name": "서재명",
+        "role": "연구책임자 (교수)",
+        "expertise": "시각광학, 근시 제어 메커니즘",
+        "bio": "시각 재활 및 광학 공학 분야를 선도하며, AI 기반 진단 시스템과 근시 제어 기술 개발에 주력하고 있습니다."
+      },
+      {
+        "name": "허민영",
+        "role": "책임연구원",
+        "expertise": "망막 곡률 측정, 안구 생체역학",
+        "bio": "안구의 생체역학적 특성과 망막 곡률 정밀 측정 기술을 연구하며, 임상 데이터 분석을 담당합니다."
+      },
+      {
+        "name": "정재헌",
+        "role": "연구원",
+        "expertise": "광학 시뮬레이션, 주변부 굴절 측정",
+        "bio": "광학 시뮬레이션을 통한 렌즈 설계 및 주변부 굴절력 측정 시스템 개발을 수행합니다."
+      },
+      {
+        "name": "여현주",
+        "role": "연구원",
+        "expertise": "임상시험 설계, 데이터 분석",
+        "bio": "임상시험 프로토콜 설계 및 수집된 데이터의 통계적 분석을 통해 연구의 유효성을 검증합니다."
+      }
     ]
   },
   "en": {
-    "projects": [],
-    "publications": []
+    "projects": [
+      {
+        "id": "myopia-control",
+        "title": "Full-Retina Total Correction & Myopia Control",
+        "subtitle": "An innovative myopia control platform researching optical intervention methods to inhibit myopia progression by analyzing the relationship between the peripheral retina's focal plane and ocular growth.",
+        "research_period": "2022-2025",
+        "core_tech": "FS' Focal Line",
+        "correction_rate": "100%",
+        "status": "Active",
+        "objective": "Systematically analyze the relationship between the focal position of the peripheral retina—a key mechanism in myopia progression—and ocular growth to identify the mechanism of myopia inhibition through the adjustment of the FS' focal line of oblique rays. Moving beyond traditional central refractive correction, we introduce the concept of total correction considering the refractive state of the entire retina to develop optical intervention methods that can fundamentally block myopia progression.",
+        "mechanisms": [
+          {
+            "title": "Peripheral Retinal Focal Plane and Ocular Growth",
+            "points": [
+              "FS' (Sagittal Focal Line): Acts as a major signal promoting ocular growth. When this focal line is located behind the retina, hyperopic defocus occurs, inducing posterior ocular growth.",
+              "Progressive Myopia Group: FS' focal line is located behind the retina, causing hyperopic defocus → posterior ocular growth → myopia progression.",
+              "Non-Progressive Myopia Group: Both FS' and FT' are located in front of the retina, causing myopic defocus → inhibition of ocular growth."
+            ]
+          },
+          {
+            "title": "Changes in Retinal Radius of Curvature and Peripheral Focal Position",
+            "points": [
+              "Ellipsoidal Shape: Most emmetropic/myopic eyes have an oblate ellipsoidal shape where the peripheral retinal radius of curvature is smaller than the central one.",
+              "Myopia Progression & Retinal Changes: As myopia progresses, the posterior eye becomes steeper. Specifically, as the nasal retina becomes steeper, FS' is positioned further behind the retina."
+            ]
+          },
+          {
+            "title": "Optical Intervention for Myopia Control",
+            "points": [
+              "Optical Design Principle: Orthokeratology, multifocal lenses, and power gradient contact lenses induce intentional myopic defocus in the periphery.",
+              "Mechanism of Action: Positioning the peripheral FS' in front of the retina to act as a signal for inhibiting ocular growth."
+            ]
+          }
+        ],
+        "results": [
+          {
+            "title": "Importance of FS' Focal Line Position",
+            "value": "Behind Retina",
+            "description": "Induces ocular growth via hyperopic peripheral defocus"
+          },
+          {
+            "title": "Retinal Curvature & Myopia Progression",
+            "value": "Steep Curvature",
+            "description": "Increases peripheral hyperopic defocus"
+          },
+          {
+            "title": "Effect of Optical Intervention",
+            "value": "In Front of Retina",
+            "description": "Inhibits ocular growth by adjusting FS' position"
+          },
+          {
+            "title": "Need for Total Correction",
+            "value": "Entire Retina",
+            "description": "Integrated correction of central + peripheral vision"
+          }
+        ],
+        "team": [
+          {
+            "name": "Jae-Myoung Seo",
+            "role": "Principal Investigator (Professor)",
+            "expertise": "Visual Optics, Myopia Control Mechanisms"
+          },
+          {
+            "name": "Min-Young Heo",
+            "role": "Co-Researcher (Principal Researcher)",
+            "expertise": "Retinal Curvature Measurement, Ocular Biomechanics"
+          },
+          {
+            "name": "Jae-Heon Jung",
+            "role": "Researcher",
+            "expertise": "Optical Simulation, Peripheral Refraction Measurement"
+          },
+          {
+            "name": "Hyun-Ju Yeo",
+            "role": "Researcher",
+            "expertise": "Clinical Trial Design, Data Analysis"
+          }
+        ],
+        "future_plans": [
+          "Personalized Optical Design: Development of optical design algorithms tailored to individual retinal curvature characteristics",
+          "Real-time Monitoring: Establishment of a real-time myopia progression monitoring system",
+          "AI Prediction Model: AI-based early assessment system for myopia progression risk",
+          "Personalized Solutions: Development of a platform providing personalized myopia control solutions"
+        ]
+      },
+      {
+        "id": "visual-cognition",
+        "title": "Integrated Biometrics-Based Disease Prediction Algorithm",
+        "subtitle": "An innovative platform simultaneously evaluating neurological, metabolic, and psychological states based on 47 biomarkers integrating pupil dynamics and contrast sensitivity.",
+        "biomarkers": 47,
+        "disease_categories": 4,
+        "accuracy": "90%+",
+        "test_time": "3 mins",
+        "objective": "To develop a single screening algorithm covering diabetic retinopathy, glaucoma, Mild Cognitive Impairment (MCI), and psychological traits (sexual preference, stress response) by combining pupil response indicators reflecting autonomic nervous system function, retinal contrast sensitivity (CSF), and cognitive/psychological states.",
+        "methodology": [
+          "Subjects: 36 adults aged 20–30 (21 males, 15 females)",
+          "Measurement Equipment: Basler acA 1300‑60 gm NIR industrial camera (±1 μm, ±15 ms), 25 mm fixed focal length lens, IR LED illumination",
+          "Recording Environment: High-speed recording at 66 fps in a 60 ± 20 Lux environment",
+          "Stimulus Types: Baseline (Blank), 4 Geometric Shapes, 2 Male Faces, 2 Female Faces (Total 9 types)",
+          "Measurement Protocol: 20 seconds per stimulus, total 3 minutes measurement",
+          "Biomarker Classification: 12 Temporal Dynamics, 10 Complexity, 8 Frequency Domain, 7 Morphology, 6 Statistical Distribution, 4 Adaptive Response",
+          "Contrast Sensitivity (CSF): Estimation of minimum contrast detection curve for low, medium, and high frequencies using qCSF (active learning)",
+          "Lifestyle Correction: Utilization of smoking (11 smokers vs 25 non-smokers) and caffeine intake level (High/Mid/Low) information"
+        ],
+        "results": [
+          {
+            "disease": "Diabetic Retinopathy Autonomic Neuropathy",
+            "auc": 0.92
+          },
+          {
+            "disease": "Early Glaucoma Damage",
+            "auc": 0.88
+          },
+          {
+            "disease": "Mild Cognitive Impairment (MCI)",
+            "auc": 0.90
+          },
+          {
+            "disease": "Psychological Trait Classification",
+            "auc": 0.85
+          }
+        ],
+        "conclusion": "The algorithm based on 47 biomarkers integrating pupil dynamics and contrast sensitivity is an innovative platform that simultaneously evaluates neurological, metabolic, and psychological states with a single non-invasive test."
+      }
+    ],
+    "publications": [
+      {
+        "year": "2022",
+        "field": "Policy",
+        "title": "A Study on the Visual Life Status of the Near-Poverty Class in Gyeongnam",
+        "authors": "Jeong-Sook Kim, Hyun-Ju Bae, Jae-Myoung Seo",
+        "journal": "J Korean Ophthalmic Opt Soc., 2022, Vol. 27, No. 4, pp. 335-340",
+        "doi": "http://dx.doi.org/10.14479/jkoos.2022.27.4.335",
+        "abstract": "A basic study utilizing the status of visual life and quality of life of the near-poverty class aged 65 and over for community policy development. As the addition (presbyopia correction lens power) increased, a significant negative correlation was found in both distance and near activities, and visual quality of life decreased as the hyperopia of the spherical equivalent refraction increased."
+      },
+      {
+        "year": "2022",
+        "field": "Policy",
+        "title": "A Review of the Current Status of E-commerce for Vision Correction Devices and Policy Directions for Korea (1) - Focusing on the EU and UK",
+        "authors": "Hyun-Sun Kim, Jae-Myoung Seo",
+        "journal": "J Korean Ophthalmic Opt Soc., 2022, Vol. 27, No. 3, pp. 201-208",
+        "doi": "https://doi.org/10.14479/jkoos.2022.27.3.201",
+        "abstract": "Exploring policy directions for Korea by analyzing cases of advanced European countries regarding online services for vision correction devices and eye refraction examinations. Confirmed that Korea's professional vision function and rehabilitation services are very poor compared to 5 European countries, and presented the limitations of e-commerce for vision correction devices."
+      },
+      {
+        "year": "2021",
+        "field": "Policy",
+        "title": "A Study on the Problems of Plans for Online Sales of Vision Correction Glasses",
+        "authors": "Hyun-Seok Sim, Jae-Myoung Seo, Sang-Hyun Kim",
+        "journal": "J Korean Ophthalmic Opt Soc., 2021, Vol. 26, No. 3, pp. 214-222",
+        "doi": "https://doi.org/10.14479/jkoos.2021.26.3.213",
+        "abstract": "Analyzed problems with plans for online sales of vision correction glasses. Pointed out that company plans do not match reality and violate current laws, and various problems such as glasses quality and dispensing issues were confirmed in overseas cases. Suggested policy improvement measures for providing better eye health services."
+      },
+      {
+        "year": "2020",
+        "field": "Policy",
+        "title": "Policy Proposals for the Education and Training of Excellent Opticians",
+        "authors": "Sang-Hyun Kim, Hyun-Seok Sim, Jae-Myoung Seo",
+        "journal": "Korean J. Vis. Sci., 2020, Vol. 22, No. 1, pp. 63-73",
+        "doi": "https://doi.org/10.17337/JMBI.2020.22.1.63",
+        "abstract": "Presented policy directions by comparing and analyzing optometrist curriculums in the US, UK, and Germany with the Department of Optometry curriculum in Korea. Proposed measures to produce excellent opticians through unification of education periods, standardized curriculums, and reinforcement of field training."
+      },
+      {
+        "year": "2020",
+        "field": "Policy",
+        "title": "A Study on the Future of the Korean Optical Industry with Scientific and Technological Development II: A Preliminary Study on the Development Direction of Optometry Subjects in the 4th Industrial Revolution Era",
+        "authors": "Jae-Myoung Seo, Dae-Jong Kim, Hyeong-Su Kim, Ki-Seok Lee, Ki-Hun Ye",
+        "journal": "J Korean Ophthalmic Opt Soc., 2020, Vol. 25, No. 2, pp. 103-111",
+        "doi": "https://doi.org/10.14479/jkoos.2020.25.2.103",
+        "abstract": "Explored the development direction of optometry subjects required in the 4th Industrial Revolution era. A survey of 152 opticians nationwide revealed that refraction and visual function abnormalities were perceived as the most important subjects, suggesting the need to strengthen expertise in these fields."
+      },
+      {
+        "year": "2019",
+        "field": "Policy",
+        "title": "A Study on the Meister and Optometrist Education System in Germany I",
+        "authors": "Jae-Myoung Seo, Hyun-Sun Kim, Wolfgang Sickenberger, Sang-Hyun Kim",
+        "journal": "J. Korean Oph. Opt. Soc., 24(3):205-214, 2019",
+        "doi": "https://doi.org/10.14479/jkoos.2019.24.3.205",
+        "abstract": "Analysis of the optometry-related education system in Germany. Germany trains optometry experts through various curriculums and is promoting the introduction of a common optometrist curriculum with the launch of the EU. Confirmed the excellence of the expert training system through continuing education for Opticians (AO) and Master Opticians (AM)."
+      },
+      {
+        "year": "2019",
+        "field": "Clinical",
+        "title": "Effect of Wetting Agent-Adsorbed Contact Lenses on Contrast Sensitivity Function",
+        "authors": "Kyung-Hee Yoon, Jae-Cheol Lee, Jae-Myoung Seo",
+        "journal": "J Korean Ophthalmic Opt Soc., 2019, Vol. 24, No. 2, pp. 109-115",
+        "doi": "https://doi.org/10.14479/jkoos.2019.24.2.109",
+        "abstract": "Analyzed the effect of wetting agent (PVP K90 0.3%) treated hydrogel contact lenses on improving contrast sensitivity. At a spatial frequency of 3 cpd, the wetting-treated lens showed statistically significant improvement in contrast sensitivity after 12 hours of wear, and generally confirmed a tendency to be similar to or better than spectacle lenses."
+      },
+      {
+        "year": "2018",
+        "field": "Clinical",
+        "title": "The Effect of Vergence Function on Eye-Hand Coordination",
+        "authors": "Jung-Ha Hwang, Jae-Myoung Seo",
+        "journal": "Korean J. Vis. Sci., 2018, Vol. 20, No. 3, pp. 289-295",
+        "doi": "https://doi.org/10.17337/JMBI.2018.20.3.289",
+        "abstract": "Analyzed the effect of vergence function on eye-hand coordination ability. Significant correlations were found with the AC/A ratio in the near esophoria group and with distance vergence facility in the exophoria group. Suggested the importance of designing rehabilitation training suitable for individual visual task types."
+      },
+      {
+        "year": "2018",
+        "field": "Clinical",
+        "title": "Temporal Characteristics of Stereopsis",
+        "authors": "Jae-Myoung Seo",
+        "journal": "Korean J. Vis. Sci., 2018, Vol. 20, No. 3, pp. 297-303",
+        "doi": "https://doi.org/10.17337/JMBI.2018.20.3.297",
+        "abstract": "Analyzed the temporal characteristics of stereopsis perception according to horizontal phoria direction. In the esophoria group, after relaxing the tension of extraocular muscles, the stereo-reaction time decreased by 78.3±96.1 ms, and when neural tension was also relaxed, it decreased by 107.2±80.3 ms, confirming that stereopsis can be improved with prism correction alone."
+      },
+      {
+        "year": "2018",
+        "field": "Clinical",
+        "title": "Methodological Analysis of German and Anglo-American Fixation Disparity",
+        "authors": "Jae-Myoung Seo, Jeong Ho Yoon, Sang-Bok Han",
+        "journal": "J Korean Ophthalmic Opt Soc., 2018, Vol. 23, No. 4, pp. 395-400",
+        "doi": "https://doi.org/10.14479/jkoos.2018.23.4.395",
+        "abstract": "Comparison of fixation disparity measurement between the German binocular vision test (MKH) and the Anglo-American method. Fixation disparity by the German method was 15.7±12.4', while the Anglo-American method was 65.4±52.8', showing a clear difference. Confirmed a tendency for illuminance changes to affect phoria in the age group under 30."
+      },
+      {
+        "year": "2017",
+        "field": "Policy",
+        "title": "A Study on the Curriculum of Optician Training Institutions in Korea",
+        "authors": "Mi-Jeong Park, Jae-Myoung Seo",
+        "journal": "Korean J. Vis. Sci., 2017, Vol. 19, No. 4, pp. 487-494",
+        "doi": "https://doi.org/10.17337/JMBI.2017.19.4.487",
+        "abstract": "Analyzed the curriculum and field practice status of Departments of Optometry nationwide. The subject importance index showed a ratio of 1:1.7 for Visual Optics Theory (4.1) to Visual Optics Application/Practice (7.1), and it was confirmed that an average of 270 hours of clinical practice is being conducted at most universities. Suggested the need to expand field-centered education."
+      },
+      {
+        "year": "2017",
+        "field": "Clinical",
+        "title": "A Study on Calculated Magnification and Prescribed Magnification of Optical Low Vision Aids",
+        "authors": "Jae-Myoung Seo, Daniela Quedenfeld",
+        "journal": "Korean J. Vis. Sci., 2017, Vol. 19, No. 4, pp. 503-508",
+        "doi": "https://doi.org/10.17337/JMBI.2017.19.4.503",
+        "abstract": "Comparative analysis of calculated magnification and actual prescribed magnification of optical aids for low vision patients. The actual prescribed magnification was 1.17 times higher than the calculated magnification, but it was not statistically significant, and the cross-correlation was high (r=0.92). Suggested that it is desirable to adjust and prescribe suitable for the working environment by referring to the manufacturer's magnification."
+      },
+      {
+        "year": "2016",
+        "field": "Clinical",
+        "title": "Changes in Contrast Sensitivity According to Color Filter Lenses",
+        "authors": "Jae-Myoung Seo",
+        "journal": "J Korean Ophthalmic Opt Soc., 2016, Vol. 21, No. 1, pp. 47-51",
+        "doi": "https://doi.org/10.14479/jkoos.2016.21.1.47",
+        "abstract": "Analyzed changes in contrast sensitivity for yellow, orange, and green color filter lenses. At instantaneous exposure (33 ms), the 2 cpd yellow filter showed the highest contrast sensitivity. At 233 ms, 8 cpd was most sensitive without a filter, but there was no statistical difference between yellow and orange. Emphasized the importance of considering cut-off wavelength when prescribing filter lenses."
+      },
+      {
+        "year": "2015",
+        "field": "Policy",
+        "title": "A Study on the Future of the Korean Optical Industry with Scientific and Technological Development I: Prediction of the Optical Industry and Policy Proposals",
+        "authors": "Hyun-Seok Sim, Sang-Hyun Kim, Jae-Myoung Seo",
+        "journal": "Korean J. Vis. Sci., 2015, Vol. 17, No. 4, pp. 377-384",
+        "doi": "https://doi.org/10.17337/JMBI.2015.17.4.377",
+        "abstract": "Predicted the future of the optical industry according to scientific and technological development and presented countermeasures. Productivity in the optical industry is increasing, but employment is decreasing. Confirmed the development of fully automatic glasses dispensing equipment and the possibility of general public use of refractometers. Proposed that opticians should expand beyond refraction into the field of visual function."
+      },
+      {
+        "year": "2015",
+        "field": "Policy",
+        "title": "On the Necessity of Changing the Optician System",
+        "authors": "Jae-Myoung Seo, Jae-Do Kim, Heung-Soo Kim, Hyun-Seok Sim, Sang-Hyun Kim",
+        "journal": "J Korean Ophthalmic Opt Soc., 2015, Vol. 20, No. 4, pp. 527-536",
+        "doi": "https://doi.org/10.14479/jkoos.2015.20.4.527",
+        "abstract": "Analyzed problems and improvement measures for the Korean optician system. Although the number of vision correction device wearers is increasing and 67% of refraction exams are performed in optical shops, it was pointed out that current laws do not properly reflect the characteristics of opticians' work. Argued that legal revision suitable for reality is needed as opticians' capabilities and education systems are sufficiently prepared."
+      },
+      {
+        "year": "2014",
+        "field": "Prototype",
+        "title": "A Study on the Development of a Vision Splitting Device for Rehabilitation of Patients with Homonymous Hemianopsia",
+        "authors": "Jae-Myoung Seo, Geun-Ho Park, Min-Young Heo, Ju-Hyun Jung",
+        "journal": "J Korean Ophthalmic Opt Soc., 2014, Vol. 19, No. 3, pp. 407-412",
+        "doi": "https://doi.org/10.14479/jkoos.2014.19.3.407",
+        "abstract": "Development of a vision splitting device for rehabilitation of patients with homonymous hemianopsia. In a space bisection experiment after using the device, the directional angle improved from +18.14° to +8.91°, and character recognition accuracy increased by 9%P for 4x4 charts and 15%P for 6x6 charts. Confirmed effectiveness as rehabilitation therapy for patients with difficulty securing visual field due to diplopia."
+      },
+      {
+        "year": "2014",
+        "field": "Prototype",
+        "title": "A Study on Readability According to Monitor Text Color Using an Eye Tracker",
+        "authors": "Ha-Rim Kim, Soo-Hyun Kim, Dong-Min Shin, Hee-Young Jung, Yong-Gil Kim, Tae-Hong Kim, Jae-Myoung Seo, Ju-Hyun Jung",
+        "journal": "J Korean Ophthalmic Opt Soc., 2014, Vol. 19, No. 2, pp. 279-284",
+        "doi": "https://doi.org/10.14479/jkoos.2014.19.2.279",
+        "abstract": "Study on readability by monitor text color using an eye tracker. Readability tended to decrease in the order of Black, Blue, Red, and Yellow. Confirmed that Black text color provides the best readability in all aspects of average reading time, reading errors, and average fixation time."
+      },
+      {
+        "year": "2014",
+        "field": "Clinical",
+        "title": "Neural Reorganization in the Outer Plexiform Layer of the Retina After Eccentric Viewing Training",
+        "authors": "Author Info Not Specified",
+        "journal": "J Korean Ophthalmic Opt Soc., 2014, Vol. 19, No. 2, pp. 247-252",
+        "doi": "https://doi.org/10.14479/jkoos.2014.19.2.247",
+        "abstract": "Analyzed neural reorganization of the retinal outer plexiform layer after eccentric viewing training. After 21 days of training, significant functional improvement was shown in both photopic sensitivity test (p<0.047) and multifocal electroretinogram (p<0.028). Confirmed that although the peripheral visual nervous system cannot regenerate, neural reorganization occurs even with short-term training."
+      },
+      {
+        "year": "2014",
+        "field": "Clinical",
+        "title": "Changes in Contrast Sensitivity in Peripheral Vision After Eccentric Viewing Training",
+        "authors": "Jae-Myoung Seo, Ki-Young Lee, Yong-Moo Lim",
+        "journal": "J Korean Ophthalmic Opt Soc., 2014, Vol. 19, No. 1, pp. 99-104",
+        "doi": "https://doi.org/10.14479/jkoos.2014.19.1.99",
+        "abstract": "Analyzed changes in contrast sensitivity of peripheral vision after eccentric viewing training. After 21 days of training, threshold and contrast sensitivity significantly increased at both 0.7 cpd and 3.0 cpd (p<0.05). Suggested that frequent repetitive training for a short time with clear and small fonts is effective."
+      },
+      {
+        "year": "2013",
+        "field": "Clinical",
+        "title": "A Study on Physiological Weighting of Peripheral Retina for Eccentric Viewing Training",
+        "authors": "Jae-Myoung Seo, Ki-Young Lee",
+        "journal": "J Korean Oph Opt Soc., 2013, Vol. 18, No. 4, pp. 489-493",
+        "doi": "https://doi.org/10.14479/jkoos.2013.18.4.489",
+        "abstract": "Investigated peripheral retinal characteristics for eccentric viewing training in low vision patients with macular degeneration. Measuring physiological weighting of the peripheral retina 20° temporal from the fovea in 30 subjects revealed that peripheral vision reached the threshold faster than central vision. Confirmed that frequent training for a short time targeting low-frequency bands is effective."
+      },
+      {
+        "year": "2009",
+        "field": "Clinical",
+        "title": "Visual Function Analysis of Low Vision Patients and Normal Subjects in Canada Using Contrast Sensitivity",
+        "authors": "Jae-Myoung Seo",
+        "journal": "J. Korean Oph. Opt. Soc., 2009, Vol. 14, No. 3, pp. 83-88",
+        "doi": "No DOI Info",
+        "abstract": "Comparative analysis of contrast sensitivity between low vision patients and normal subjects. Measuring 20 low vision patients and 20 normal controls at two spatial frequencies (0.7 c/d, 3.0 c/d) showed that contrast sensitivity of low vision patients was generally lower, but there was no difference according to object size and exposure time. Confirmed the efficiency of using low spatial frequencies."
+      },
+      {
+        "year": "2009",
+        "field": "Clinical",
+        "title": "A Study on Pathogenesis Affecting Quality of Life and Daily Life of Low Vision Patients",
+        "authors": "Jae-Myoung Seo",
+        "journal": "Journal of the Korea Academia-Industrial cooperation Society, 2009, Vol. 10, No. 11, pp. 3412-3417",
+        "doi": "https://doi.org/10.5762/kais.2009.10.11.3412",
+        "abstract": "Compared quality of life between low vision patients and normal subjects and analyzed influencing factors. Subjective life satisfaction of low vision patients was lower in all items compared to the normal control group (mean difference 36.07±14.82), and age showed a high correlation with near activity (r=-0.584) and distance activity (r=-0.678). Confirmed that nystagmus, in particular, causes great difficulty in daily life."
+      }
+    ],
+    "team": [
+      {
+        "name": "Jae-Myoung Seo",
+        "role": "Principal Investigator (Professor)",
+        "expertise": "Visual Optics, Myopia Control Mechanisms",
+        "bio": "Leading vision rehabilitation research with a focus on AI and optical engineering."
+      },
+      {
+        "name": "Min-Young Heo",
+        "role": "Principal Researcher",
+        "expertise": "Retinal Curvature Measurement, Ocular Biomechanics",
+        "bio": "Specializing in ocular biomechanics and precise measurement of retinal curvature."
+      },
+      {
+        "name": "Jae-Heon Jung",
+        "role": "Researcher",
+        "expertise": "Optical Simulation, Peripheral Refraction Measurement",
+        "bio": "Conducting optical simulations for lens design and developing peripheral refraction measurement systems."
+      },
+      {
+        "name": "Hyun-Ju Yeo",
+        "role": "Researcher",
+        "expertise": "Clinical Trial Design, Data Analysis",
+        "bio": "Designing clinical trial protocols and verifying research validity through statistical data analysis."
+      }
+    ]
   }
-}
-"
 }
