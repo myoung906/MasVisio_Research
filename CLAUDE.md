@@ -1,13 +1,12 @@
 # CLAUDE.md - 시각재활 연구 웹페이지
 
 ## 핵심 지침
-**언어**: 모든 작업은 한국어로 진행
-**작업 위치**: `/Applications/XAMPP/xamppfiles/htdocs/mvr`에서만 파일 생성/수정
+**언어**: 모든 답변과 작업은 반드시 한국어로 진행 (KOREAN ONLY)
 **배포**: GitHub Pages (https://myoung906.github.io/MasVisio_Research/)
 
 ## 프로젝트 정보
 - **목적**: 시각재활 연구결과를 바이어/스폰서에게 효과적으로 전달
-- **구조**: 한국어(ko/) 중심, 루트(/)에 영어 페이지
+- **구조**: 한국어(ko/), 영어(en/) 다국어 지원
 - **특징**: 모바일 반응형, 햄버거 메뉴, 언어 토글
 
 ## 🚀 토큰 절약 워크플로우 
@@ -21,11 +20,6 @@ git diff --stat HEAD~1      # 변경사항만 확인 (30토큰)
 ### ❌ 금지사항
 - 전체 HTML 파일 읽기 (수천 토큰 낭비)
 - 불필요한 파일 탐색
-
-## 개발 워크플로우
-1. **개발**: `/Applications/XAMPP/xamppfiles/htdocs/mvr`에서 작업
-2. **동기화**: `cp -r /Applications/XAMPP/xamppfiles/htdocs/mvr/* .`
-3. **배포**: `git add . && git commit -m "..." && git push origin master`
 
 ## 파일 관리 규칙
 - **크기 제한**: 각 파일 최대 18KB
@@ -64,12 +58,11 @@ open http://localhost/mvr/ko/
 ```
 
 ### ⚠️ macOS 10.15 환경 제한사항
-- **Playwright MCP**: Chromium 브라우저 지원 안됨
+- **Playwright MCP**: Chromium 브라우저 
 - **브라우저 설치 실패**: "ERROR: Playwright does not support chromium-headless-shell on mac10.15"
 - **해결책**: 수동 브라우저 테스트 또는 최신 macOS 사용 권장
 
 ### 🔧 웹사이트 테스트 체크리스트
-- [ ] XAMPP Apache 서버 작동 (포트 80)
 - [ ] 한국어 페이지 접속: `http://localhost/mvr/ko/`
 - [ ] 모바일 메뉴 동작: `toggleMobileMenu()` 함수 확인
 - [ ] 반응형 디자인: 768px 이하에서 햄버거 메뉴 표시
@@ -126,38 +119,3 @@ document.getElementById('mobile-nav-menu'); // 메뉴 요소 확인
 - 민감한 정보(API 키, 비밀번호 등)가 포함된 파일은 커밋 전 `.gitignore` 확인
 - 대용량 파일(>100MB)은 Git LFS 사용 권장
 - 충돌(conflict) 발생 시 사용자에게 즉시 알림
-
-# Repository Guidelines
-
-## 반드시 한국어로 답변할 것.
-## Project Structure & Module Organization
-- Root HTML entry points live at `index.html` (English) and `ko/index.html` (Korean); Korean pages nest under `ko/` (e.g., `ko/research/projects/*`).
-- Shared styling, scripts, and imagery reside in `assets/` (`assets/css`, `assets/js`, `assets/images`).
-- Playwright-based utility scripts for manual or automated checks sit alongside the root (`mobile_test.js`, `korean_page_test.js`, `simple_mobile_test.js`).
-- Process and roadmap documentation is tracked in `README.md`, `CLAUDE.md`, and `project_plan.md`.
-
-## Build, Test, and Development Commands
-- `npm install`: fetch the sole dev dependency (`@playwright/test`) before running tests locally.
-- `npm test`: invoke the Playwright test runner; extend with `.spec.ts` files under a future `tests/` directory if needed.
-- `npm run dev` / `npm start`: launch a static preview via `python3 -m http.server 8080` for quick inspection at `http://localhost:8080`.
-- For XAMPP users, mirror changes into `/Applications/XAMPP/xamppfiles/htdocs/mvr` as described in `README.md` before browser testing.
-
-## Coding Style & Naming Conventions
-- Follow the existing 4-space indentation in HTML, CSS, and JavaScript files; keep inline `<style>` blocks tightly scoped or move styles into `assets/css`.
-- Name locale assets with clear prefixes (`ko-`, `en-`) and use kebab-case for filenames (e.g., `critical.css`, `performance-optimizer.js`).
-- Favor semantic class names (`.nav-menu`, `.mobile-menu-toggle`) and ARIA attributes for accessibility; update both languages when adjusting navigation labels.
-
-## Testing Guidelines
-- Prefer Playwright for UI validation; place new specs under `tests/` with the pattern `feature-name.spec.ts`.
-- When adding scripts, guard UI selectors with resilient locators (`data-testid`, ARIA labels) to keep tests stable.
-- Capture before/after screenshots through Playwright's `page.screenshot` API when modifying responsive layouts or navigation.
-
-## Commit & Pull Request Guidelines
-- Match the existing Conventional-Emoji style: `<emoji> concise summary` (e.g., `⚡ 성능 개선: Critical CSS 분리`).
-- Reference locale or section touched in the subject, and keep body text focused on impact, testing, and roll-back notes when relevant.
-- Pull requests should include: a short problem statement, bullet list of changes, test evidence (`npm test` output or screenshots), and links to related issues or roadmap items in `project_plan.md`.
-
-## Agent-Specific Notes
-- Large edits should be staged in sections to respect the 18 KB per-file limit noted in `CLAUDE.md`.
-- Avoid editing generated docs (`README.md`, `CLAUDE.md`, `project_plan.md`) without also updating the workflow description they contain.
-- When touching `assets/js/performance-optimizer.js`, profile on low-power devices or note fallbacks for `performanceMode === 'low'`.

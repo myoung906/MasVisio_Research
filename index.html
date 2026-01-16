@@ -13,8 +13,8 @@
     <meta property="og:description" content="Pioneering vision science through innovative research and technology.">
     <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/main.css?v=1.2">
+    <link rel="stylesheet" href="assets/css/components.css?v=1.2">
 </head>
 
 <body>
@@ -31,7 +31,13 @@
                 <div class="nav-links">
                     <a href="index.html" class="active">Home</a>
                     <a href="team/index.html">Team</a>
-                    <a href="research/overview.html">Research</a>
+                    <div class="nav-item dropdown">
+                        <a href="research/overview.html">Research</a>
+                        <div class="dropdown-menu">
+                            <a href="research/overview.html">Overview</a>
+                            <a href="research/diagnostics.html">AI Diagnosis</a>
+                        </div>
+                    </div>
                     <a href="publications/index.html">Publications</a>
                     <a href="partnership/index.html">Services</a>
                     <a href="contact.html">Contact</a>
@@ -56,50 +62,29 @@
                 <div class="features-grid">
                     <div class="feature-card">
                         <h3>4D Myopia Control</h3>
+                        <img src="/assets/images/research/myopia_control_4d.png" alt="4D Myopia Control">
                         <p>Researching next-generation myopia inhibition platforms integrating spatial, temporal,
                             spectral, and individual dimensions.</p>
                     </div>
                     <div class="feature-card">
                         <h3>AI-Based Visual Diagnosis</h3>
+                        <img src="/assets/images/research/ai_visual_diagnosis.png" alt="AI-Based Visual Diagnosis">
                         <p>Developing precision visual diagnosis and personalized treatment systems using deep learning.
                         </p>
                     </div>
                     <div class="feature-card">
                         <h3>Biometric Measurement</h3>
+                        <img src="/assets/images/research/biometric_measurement.png" alt="Biometric Measurement">
                         <p>Leading non-invasive ocular biomarker measurement technology using advanced optics.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Research Status</h2>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <h3>3</h3>
-                        <p>Active Projects</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>7</h3>
-                        <p>Patents Registered</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>Phase 2</h3>
-                        <p>Clinical Trials Completed</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section class="section">
             <div class="container">
                 <h2 class="section-title">MasVisio Research Team</h2>
-                <p style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    MasVisio Research, a gathering of world-class experts in vision rehabilitation, strives to improve
-                    the quality of life for the visually impaired through innovative technology development and clinical
-                    research.
-                </p>
             </div>
         </section>
     </main>

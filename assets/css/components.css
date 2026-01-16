@@ -5,9 +5,42 @@
 .team-grid,
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+    align-items: stretch;
+    width: 100%;
+}
+
+.feature-card {
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.feature-card h3 {
+    margin-bottom: 1.2rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.feature-card img {
+    width: 100% !important;
+    height: 280px !important;
+    object-fit: cover !important;
+    background-color: #0f172a;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover img {
+    transform: scale(1.02);
 }
 
 /* Publications Container - Vertical Stack */
@@ -276,4 +309,197 @@
 .stat-item small {
     color: var(--text-light);
     font-size: 0.85rem;
+}
+
+/* AI Diagnosis Section Styles */
+.diagnostic-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #888;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.diagnostic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+
+.diagnostic-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+}
+
+.diagnostic-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.diagnostic-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.diagnostic-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.diagnostic-card:hover .diagnostic-image img {
+    transform: scale(1.05);
+}
+
+.diagnostic-info {
+    padding: 1.5rem;
+}
+
+.diagnostic-info h3 {
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.analysis-text {
+    font-size: 0.95rem;
+    color: #bbb;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.target-diseases strong {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+    color: #eee;
+}
+
+.target-diseases ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.target-diseases li {
+    background: rgba(0, 122, 255, 0.15);
+    color: #4dabff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(0, 122, 255, 0.2);
+}
+
+/* Risk Table Section */
+.risk-table-section {
+    margin-top: 5rem;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table-title {
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.risk-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.risk-table th {
+    padding: 1.2rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.risk-table td {
+    padding: 1.2rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.risk-badge {
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.badge-critical {
+    background: rgba(255, 59, 48, 0.2);
+    color: #ff3b30;
+    border: 1px solid rgba(255, 59, 48, 0.3);
+}
+
+.badge-high {
+    background: rgba(255, 149, 0, 0.2);
+    color: #ff9500;
+    border: 1px solid rgba(255, 149, 0, 0.3);
+}
+
+.badge-moderate {
+    background: rgba(255, 204, 0, 0.2);
+    color: #ffcc00;
+    border: 1px solid rgba(255, 204, 0, 0.3);
+}
+
+.badge-low {
+    background: rgba(52, 199, 89, 0.2);
+    color: #34c759;
+    border: 1px solid rgba(52, 199, 89, 0.3);
+}
+
+.risk-row-critical {
+    background: rgba(255, 59, 48, 0.03);
+}
+
+.risk-row-high {
+    background: rgba(255, 149, 0, 0.02);
+}
+
+@media (max-width: 768px) {
+    .risk-table-section {
+        padding: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
 }

@@ -49,6 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('team-container')) {
         loadTeamMembers();
     }
+
+    // If there is a diagnostics container, load diagnostics
+    if (document.getElementById('diagnostics-container')) {
+        loadDiagnostics();
+    }
 });
 
 function toggleMobileMenu() {
@@ -427,6 +432,97 @@ function loadTeamMembers() {
                 container.innerHTML = lang === 'ko'
                     ? '<p>팀원 정보를 불러올 수 없습니다. 나중에 다시 시도해주세요.</p>'
                     : '<p>Unable to load team members. Please try again later.</p>';
+            }
+        });
+}
+
+function loadDiagnostics() {
+    const lang = document.documentElement.lang || 'en';
+    const dataPath = '/assets/data/content.json';
+
+    fetch(dataPath)
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('diagnostics-container');
+            const diagnostics = data[lang]?.diagnostics;
+
+            if (container && diagnostics) {
+                let html = `
+                    <div class="diagnostic-intro">
+                        <h2 class="section-title">${diagnostics.title}</h2>
+                        <p class="section-subtitle">${diagnostics.description}</p>
+                    </div>
+                    
+                    <div class="diagnostic-grid">
+                `;
+
+                diagnostics.visualizations.forEach(vis => {
+                    html += `
+                        <div class="diagnostic-card">
+                            <div class="diagnostic-image">
+                                <img src="${vis.image}" alt="${vis.title}">
+                            </div>
+                            <div class="diagnostic-info">
+                                <h3>${vis.title}</h3>
+                                <p class="analysis-text">${vis.analysis}</p>
+                                <div class="target-diseases">
+                                    <strong>예측 가능 질환:</strong>
+                                    <ul>
+                                        ${vis.diseases.map(d => `<li>${d}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+
+                // Add Risk Table
+                html += `
+                    <div class="risk-table-section">
+                        <h3 class="table-title">질환별 예측 위험도 (Risk Level)</h3>
+                        <div class="table-wrapper">
+                            <table class="risk-table">
+                                <thead>
+                                    <tr>
+                                        <th>순위</th>
+                                        <th>부위</th>
+                                        <th>질환명</th>
+                                        <th>위험도</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${diagnostics.risk_table.map(row => `
+                                        <tr class="risk-row-${row.risk.toLowerCase()}">
+                                            <td>${row.rank}</td>
+                                            <td>${row.part}</td>
+                                            <td>${row.name}</td>
+                                            <td><span class="risk-badge badge-${row.risk.toLowerCase()}">${row.risk}</span></td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+
+                container.innerHTML = html;
+            } else {
+                if (container) {
+                    container.innerHTML = lang === 'ko'
+                        ? '<p class="error-text">진단 정보를 로드할 수 없습니다. 데이터 형식을 확인해주세요.</p>'
+                        : '<p class="error-text">Unable to load diagnostics. Please check data format.</p>';
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error loading diagnostics:', error);
+            const container = document.getElementById('diagnostics-container');
+            if (container) {
+                container.innerHTML = lang === 'ko'
+                    ? '<p class="error-text">데이터를 불러오는 중 오류가 발생했습니다. (' + error.message + ')</p>'
+                    : '<p class="error-text">Error loading data. (' + error.message + ')</p>';
             }
         });
 }

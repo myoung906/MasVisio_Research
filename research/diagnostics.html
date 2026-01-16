@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research - MasVisio Research</title>
+    <title>AI Disease Diagnosis & Prediction - MasVisio Research</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/components.css">
@@ -19,16 +19,16 @@
             </div>
             <nav>
                 <div class="lang-switch">
-                    <span class="active">🇺🇸</span> <a href="../../ko/research/overview.html">🇰🇷</a>
+                    <span class="active">🇺🇸</span> <a href="../ko/research/diagnostics.html">🇰🇷</a>
                 </div>
                 <div class="nav-links">
                     <a href="../index.html">Home</a>
                     <a href="../team/index.html">Team</a>
                     <div class="nav-item dropdown">
-                        <a href="overview.html" class="active">Research</a>
+                        <a href="../research/overview.html">Research</a>
                         <div class="dropdown-menu">
-                            <a href="overview.html" class="active">Overview</a>
-                            <a href="diagnostics.html">AI Diagnosis</a>
+                            <a href="../research/overview.html">Overview</a>
+                            <a href="../research/diagnostics.html" class="active">AI Diagnosis</a>
                         </div>
                     </div>
                     <a href="../publications/index.html">Publications</a>
@@ -40,18 +40,18 @@
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero compact">
             <div class="container">
-                <h2>Research Overview</h2>
-                <p>Exploring the frontiers of vision science and rehabilitation technology.</p>
+                <h2>AI Disease Prediction Based on Total Measurement</h2>
+                <p>8-stage eye disease risk analysis system using AI visual intelligence.</p>
             </div>
         </section>
 
         <section class="section">
             <div class="container">
-                <div id="research-projects-container">
-                    <!-- Dynamic content will be loaded here -->
-                    <p>Loading research projects...</p>
+                <div id="diagnostics-container">
+                    <!-- Dynamic content will be loaded here from assets/js/main.js -->
+                    <div class="loading">Loading data...</div>
                 </div>
             </div>
         </section>
@@ -62,15 +62,12 @@
             <p>&copy; 2025 MasVisio Research</p>
             <div>
                 <a href="#">Privacy Policy</a>
-                <a href="../../contact.html">Contact</a>
+                <a href="../contact.html">Contact Us</a>
             </div>
         </div>
     </footer>
 
-    <script src="../../assets/js/main.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', loadResearchProjects);
-    </script>
+    <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

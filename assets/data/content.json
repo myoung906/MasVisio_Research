@@ -125,6 +125,95 @@
         "conclusion": "동공 동역학과 대비감도를 통합한 47개 바이오마커 기반 알고리즘은 한 번의 비침습적 검사로 신경·대사·심리 상태를 동시 평가하는 혁신적 플랫폼입니다."
       }
     ],
+    "diagnostics": {
+      "title": "AI 질환 진단 및 예측",
+      "description": "전반적인 안구 측정 데이터를 AI로 분석하여 8단계 위험도 순으로 질환을 조기에 예측합니다.",
+      "visualizations": [
+        {
+          "id": "retina",
+          "title": "망막 및 시신경 분석",
+          "image": "/assets/images/research/ai_diag_retina.png",
+          "diseases": [
+            "습성 황반변성",
+            "망막박리",
+            "녹내장",
+            "시신경염"
+          ],
+          "analysis": "혈관 분포 및 출혈 여부, 시신경 유두 형태 분석을 통한 고위험 질환 예측"
+        },
+        {
+          "id": "lens",
+          "title": "수정체 및 유리체 분석",
+          "image": "/assets/images/research/ai_diag_lens.png",
+          "diseases": [
+            "백내장",
+            "유리체 출혈"
+          ],
+          "analysis": "수정체 혼탁도 및 유리체 내 부유물 밀도 분석을 통한 시력 저하 위험 평가"
+        },
+        {
+          "id": "adnexa",
+          "title": "눈부속기 분석",
+          "image": "/assets/images/research/ai_diag_adnexa.png",
+          "diseases": [
+            "누낭염",
+            "안검하수",
+            "안검염"
+          ],
+          "analysis": "안구 외부 랜드마크 감지 및 비대칭도 분석을 통한 부속기 병증 진단"
+        }
+      ],
+      "risk_table": [
+        {
+          "rank": 1,
+          "part": "망막/황반",
+          "name": "습성 황반변성 / 망막박리",
+          "risk": "Critical"
+        },
+        {
+          "rank": 2,
+          "part": "시신경",
+          "name": "녹내장 / 시신경염",
+          "risk": "Critical"
+        },
+        {
+          "rank": 3,
+          "part": "각막",
+          "name": "각막 궤양 / 원추각막",
+          "risk": "High"
+        },
+        {
+          "rank": 4,
+          "part": "안와",
+          "name": "안와봉와직염",
+          "risk": "High"
+        },
+        {
+          "rank": 5,
+          "part": "유리체",
+          "name": "유리체 출혈",
+          "risk": "Moderate"
+        },
+        {
+          "rank": 6,
+          "part": "수정체",
+          "name": "백내장",
+          "risk": "Moderate"
+        },
+        {
+          "rank": 7,
+          "part": "누기",
+          "name": "누낭염",
+          "risk": "Moderate"
+        },
+        {
+          "rank": 8,
+          "part": "안검",
+          "name": "안검하수 / 안검염",
+          "risk": "Low"
+        }
+      ]
+    },
     "publications": [
       {
         "year": "2022",
@@ -478,6 +567,95 @@
         "conclusion": "The algorithm based on 47 biomarkers integrating pupil dynamics and contrast sensitivity is an innovative platform that simultaneously evaluates neurological, metabolic, and psychological states with a single non-invasive test."
       }
     ],
+    "diagnostics": {
+      "title": "AI Disease Diagnosis & Prediction",
+      "description": "Utilizing AI to analyze comprehensive ocular measurement data for early disease prediction across 8 risk levels.",
+      "visualizations": [
+        {
+          "id": "retina",
+          "title": "Retina & Optic Nerve Analysis",
+          "image": "/assets/images/research/ai_diag_retina.png",
+          "diseases": [
+            "Wet AMD",
+            "Retinal Detachment",
+            "Glaucoma",
+            "Optic Neuritis"
+          ],
+          "analysis": "Prediction of high-risk diseases through analysis of vascular distribution, hemorrhage, and optic disc morphology."
+        },
+        {
+          "id": "lens",
+          "title": "Lens & Vitreous Analysis",
+          "image": "/assets/images/research/ai_diag_lens.png",
+          "diseases": [
+            "Cataracts",
+            "Vitreous Hemorrhage"
+          ],
+          "analysis": "Assessment of visual impairment risk via lens opacity and vitreous debris density analysis."
+        },
+        {
+          "id": "adnexa",
+          "title": "Adnexa Analysis",
+          "image": "/assets/images/research/ai_diag_adnexa.png",
+          "diseases": [
+            "Dacryocystitis",
+            "Ptosis",
+            "Blepharitis"
+          ],
+          "analysis": "Diagnosis of adnexal pathologies through external ocular landmark detection and asymmetry analysis."
+        }
+      ],
+      "risk_table": [
+        {
+          "rank": 1,
+          "part": "Retina/Macula",
+          "name": "Wet AMD / Retinal Detachment",
+          "risk": "Critical"
+        },
+        {
+          "rank": 2,
+          "part": "Optic Nerve",
+          "name": "Glaucoma / Optic Neuritis",
+          "risk": "Critical"
+        },
+        {
+          "rank": 3,
+          "part": "Cornea",
+          "name": "Corneal Ulcer / Keratoconus",
+          "risk": "High"
+        },
+        {
+          "rank": 4,
+          "part": "Orbit",
+          "name": "Orbital Cellulitis",
+          "risk": "High"
+        },
+        {
+          "rank": 5,
+          "part": "Vitreous",
+          "name": "Vitreous Hemorrhage",
+          "risk": "Moderate"
+        },
+        {
+          "rank": 6,
+          "part": "Lens",
+          "name": "Cataract",
+          "risk": "Moderate"
+        },
+        {
+          "rank": 7,
+          "part": "Lacrimal System",
+          "name": "Dacryocystitis",
+          "risk": "Moderate"
+        },
+        {
+          "rank": 8,
+          "part": "Eyelid",
+          "name": "Ptosis / Blepharitis",
+          "risk": "Low"
+        }
+      ]
+    },
     "publications": [
       {
         "year": "2022",

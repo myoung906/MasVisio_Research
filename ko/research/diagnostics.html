@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>도전과제 - MasVisio Research</title>
+    <title>AI 질환 진단 및 예측 - MasVisio Research</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="../../assets/css/components.css">
@@ -19,16 +19,16 @@
             </div>
             <nav>
                 <div class="lang-switch">
-                    <a href="../../research/overview.html">🇺🇸</a> <span class="active">🇰🇷</span>
+                    <a href="../../research/diagnostics.html">🇺🇸</a> <span class="active">🇰🇷</span>
                 </div>
                 <div class="nav-links">
                     <a href="../../ko/index.html">홈</a>
                     <a href="../../ko/team/index.html">구성원</a>
                     <div class="nav-item dropdown">
-                        <a href="overview.html" class="active">연구분야</a>
+                        <a href="../../ko/research/overview.html">도전과제</a>
                         <div class="dropdown-menu">
-                            <a href="overview.html" class="active">연구 개요</a>
-                            <a href="diagnostics.html">AI 질환 진단</a>
+                            <a href="../../ko/research/overview.html">연구 개요</a>
+                            <a href="../../ko/research/diagnostics.html" class="active">AI 질환 진단</a>
                         </div>
                     </div>
                     <a href="../../ko/publications/index.html">연구성과</a>
@@ -40,18 +40,18 @@
     </header>
 
     <main>
-        <section class="hero">
+        <section class="hero compact">
             <div class="container">
-                <h2>연구 과제</h2>
-                <p>시각 과학과 재활 기술의 최전선을 탐구합니다.</p>
+                <h2>전반적 안구 측정 기반 질환 예측</h2>
+                <p>AI 시각 지능을 활용한 8단계 안구 질환 위험도 분석 시스템</p>
             </div>
         </section>
 
         <section class="section">
             <div class="container">
-                <div id="research-projects-container">
-                    <!-- Dynamic content will be loaded here -->
-                    <p>프로젝트를 불러오는 중...</p>
+                <div id="diagnostics-container">
+                    <!-- Dynamic content will be loaded here from assets/js/main.js -->
+                    <div class="loading">데이터를 불러오는 중...</div>
                 </div>
             </div>
         </section>
@@ -68,9 +68,6 @@
     </footer>
 
     <script src="../../assets/js/main.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', loadResearchProjects);
-    </script>
 </body>
 
 </html>

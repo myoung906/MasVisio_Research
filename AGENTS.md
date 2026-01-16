@@ -1,6 +1,6 @@
 # Repository Guidelines
 
-## 반드시 한국어로 답변할 것.
+## ⚠️ 중요: 모든 답변은 반드시 한국어로 작성할 것 (All responses must be in KOREAN)
 ## Project Structure & Module Organization
 - Root HTML entry points live at `index.html`, `ko/index.html`, and `en/index.html`; locale-specific pages nest under `ko/` and `en/` (e.g., `ko/research/projects/*`).
 - Shared styling, scripts, and imagery reside in `assets/` (`assets/css`, `assets/js`, `assets/images`).
