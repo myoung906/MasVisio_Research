@@ -54,6 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('diagnostics-container')) {
         loadDiagnostics();
     }
+
+    // Initialize Lightbox
+    setupLightbox();
 });
 
 function toggleMobileMenu() {
@@ -109,6 +112,53 @@ function handleScrollAnimations() {
             }, index * 100);
         }
     });
+}
+
+function setupLightbox() {
+    // Create lightbox elements if they don't exist
+    if (!document.querySelector('.lightbox-overlay')) {
+        const overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
+        overlay.innerHTML = `
+            <div class="lightbox-close">&times;</div>
+            <img class="lightbox-content" src="" alt="Enlarged view">
+        `;
+        document.body.appendChild(overlay);
+
+        // Event listeners for closing
+        overlay.addEventListener('click', (e) => {
+            if (e.target !== document.querySelector('.lightbox-content')) {
+                closeLightbox();
+            }
+        });
+
+        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    }
+
+    // Add click listeners to all feature card images
+    const featureImages = document.querySelectorAll('.feature-card img');
+    featureImages.forEach(img => {
+        img.classList.add('zoomable-image');
+        img.addEventListener('click', function () {
+            openLightbox(this.src);
+        });
+    });
+}
+
+function openLightbox(imageSrc) {
+    const overlay = document.querySelector('.lightbox-overlay');
+    const content = document.querySelector('.lightbox-content');
+
+    // Update src and show
+    content.src = imageSrc;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+}
+
+function closeLightbox() {
+    const overlay = document.querySelector('.lightbox-overlay');
+    overlay.classList.remove('active');
+    document.body.style.overflow = 'auto'; // Restore scrolling
 }
 
 function loadResearchProjects() {
