@@ -1,3 +1,14 @@
+// Get base path for GitHub Pages compatibility
+function getBasePath() {
+    const path = window.location.pathname;
+    // Check if running on GitHub Pages (contains /MasVisio_Research/)
+    if (path.includes('/MasVisio_Research/')) {
+        return '/MasVisio_Research/';
+    }
+    // Local development
+    return '/';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // This is the only DOMContentLoaded listener
     console.log('DOM is fully loaded and parsed');
@@ -109,7 +120,7 @@ function handleScrollAnimations() {
 function loadResearchProjects() {
     const lang = document.documentElement.lang || 'en';
     // Use absolute path to avoid relative path issues with nested directories
-    const dataPath = '/assets/data/content.json';
+    const dataPath = getBasePath() + 'assets/data/content.json';
 
     fetch(dataPath)
         .then(response => {
@@ -127,7 +138,8 @@ function loadResearchProjects() {
                     let html = '';
                     projects.forEach(project => {
                         // Adjust link based on language
-                        const linkPrefix = lang === 'ko' ? '/ko' : '';
+                        const basePath = getBasePath();
+                        const linkPrefix = lang === 'ko' ? basePath + 'ko' : basePath.slice(0, -1);
                         const buttonText = lang === 'ko' ? '자세히 보기' : 'Learn More';
 
                         html += `
@@ -160,7 +172,7 @@ function loadResearchProjects() {
 
 function loadPublications() {
     const lang = document.documentElement.lang || 'en';
-    const dataPath = '/assets/data/content.json';
+    const dataPath = getBasePath() + 'assets/data/content.json';
 
     fetch(dataPath)
         .then(response => {
@@ -332,7 +344,7 @@ function loadProjectDetails() {
     if (!projectId) return;
 
     const lang = document.documentElement.lang || 'en';
-    const dataPath = '/assets/data/content.json';
+    const dataPath = getBasePath() + 'assets/data/content.json';
 
     fetch(dataPath)
         .then(response => response.json())
@@ -385,7 +397,7 @@ function loadProjectDetails() {
 
 function loadTeamMembers() {
     const lang = document.documentElement.lang || 'en';
-    const dataPath = '/assets/data/content.json';
+    const dataPath = getBasePath() + 'assets/data/content.json';
 
     fetch(dataPath)
         .then(response => {
