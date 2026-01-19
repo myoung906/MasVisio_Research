@@ -6,43 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - MasVisio Research</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/main.css?v=1.3">
+    <link rel="stylesheet" href="../assets/css/components.css?v=1.3">
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <div class="logo-container">
-                <h1>MasVisio Research</h1>
-                <div class="logo-subtitle">Vision Intelligence & Biomedical Engineering</div>
-            </div>
-            <nav>
-                <div class="lang-switch">
-                    <span class="active">🇺🇸</span> <a href="../../ko/partnership/index.html">🇰🇷</a>
-                </div>
-                <div class="nav-links">
-                    <a href="../../index.html">Home</a>
-                    <a href="../../team/index.html">Team</a>
-                    <a href="../../research/overview.html">Challenges</a>
-                    <a href="../../publications/index.html">Publications</a>
-                    <a href="index.html" class="active">Services</a>
-                    <a href="../../contact.html">Contact</a>
-                </div>
-            </nav>
+<body class="sidebar-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="sidebar-logo">
+                <h1>MasVisio<br>Research</h1>
+                <span class="sidebar-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
+            </a>
         </div>
-    </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h2>Services & Partnership</h2>
-                <p>Collaborate with us to bring innovative vision solutions to the world.</p>
+        <div class="lang-switch">
+            <span class="active">🇺🇸</span> <a href="../ko/partnership/index.html">🇰🇷</a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="../index.html" class="nav-item">Home</a>
+            <a href="../team/index.html" class="nav-item">Team</a>
+            <div class="nav-item dropdown">
+                <a href="../research/overview.html">Challenges</a>
+                <div class="dropdown-menu">
+                    <a href="../research/overview.html">Overview</a>
+                    <a href="../research/diagnostics.html">AI Diagnosis</a>
+                </div>
             </div>
-        </section>
+            <a href="../publications/index.html" class="nav-item">Publications</a>
+            <a href="index.html" class="nav-item active">Services</a>
+            <a href="../contact.html" class="nav-item">Partners</a>
+        </nav>
 
-        <section class="section">
+        <div class="sidebar-footer">
+            <p class="copyright">&copy; 2025 MasVisio Research</p>
+            <div style="margin-top: 10px; font-size: 0.7rem;">
+                <a href="../privacy.html" style="color: #94a3b8; text-decoration: none;">Privacy Policy</a> |
+                <a href="../contact.html" style="color: #94a3b8; text-decoration: none;">Contact</a>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <section class="section" style="padding: 4rem 4rem;">
             <div class="container">
+                <header style="margin-bottom: 4rem; border-bottom: none;">
+                    <h2 style="font-size: 3rem; margin-bottom: 1rem;">Services & Partnership</h2>
+                    <p style="font-size: 1.2rem; color: #64748b;">Collaborate with us to bring innovative vision
+                        solutions to the world.</p>
+                </header>
+
                 <div class="features-grid">
                     <div class="feature-card">
                         <h3>Research Partnership</h3>
@@ -69,17 +82,7 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 MasVisio Research</p>
-            <div>
-                <a href="#">Privacy Policy</a>
-                <a href="../../contact.html">Contact</a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../../assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

@@ -13,52 +13,89 @@
     <meta property="og:description" content="Pioneering vision science through innovative research and technology.">
     <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css?v=1.2">
-    <link rel="stylesheet" href="assets/css/components.css?v=1.2">
+    <link rel="stylesheet" href="assets/css/main.css?v=1.3">
+    <link rel="stylesheet" href="assets/css/components.css?v=1.3">
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <div class="logo-container">
-                <h1>MasVisio Research</h1>
-                <div class="logo-subtitle">Vision Intelligence & Biomedical Engineering</div>
-            </div>
-            <nav>
-                <div class="lang-switch">
-                    <span class="active">🇺🇸</span> <a href="ko/index.html">🇰🇷</a>
-                </div>
-                <div class="nav-links">
-                    <a href="index.html" class="active">Home</a>
-                    <a href="team/index.html">Team</a>
-                    <div class="nav-item dropdown">
-                        <a href="research/overview.html">Challenges</a>
-                        <div class="dropdown-menu">
-                            <a href="research/overview.html">Overview</a>
-                            <a href="research/diagnostics.html">AI Diagnosis</a>
-                        </div>
-                    </div>
-                    <a href="publications/index.html">Publications</a>
-                    <a href="partnership/index.html">Services</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-            </nav>
+<body class="sidebar-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <h1>MasVisio<br>Research</h1>
+                <span class="sidebar-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
+            </a>
         </div>
-    </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h2>Innovating the Future of Vision Rehabilitation</h2>
-                <p>Developing next-generation vision rehabilitation solutions to improve the quality of life for the
-                    visually impaired and low vision patients through advanced AI technology and 4D myopia control
-                    systems.</p>
+        <div class="lang-switch">
+            <span class="active">🇺🇸</span> <a href="ko/index.html">🇰🇷</a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item active">Home</a>
+            <a href="team/index.html" class="nav-item">Team</a>
+            <div class="nav-item dropdown">
+                <a href="research/overview.html">Challenges</a>
+                <div class="dropdown-menu">
+                    <a href="research/overview.html">Overview</a>
+                    <a href="research/diagnostics.html">AI Diagnosis</a>
+                </div>
+            </div>
+            <a href="publications/index.html" class="nav-item">Publications</a>
+            <a href="partnership/index.html" class="nav-item">Services</a>
+            <a href="contact.html" class="nav-item">Partners</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p class="copyright">&copy; 2025 MasVisio Research</p>
+            <div style="margin-top: 10px; font-size: 0.7rem;">
+                <a href="privacy.html" style="color: #94a3b8; text-decoration: none;">Privacy Policy</a> |
+                <a href="contact.html" style="color: #94a3b8; text-decoration: none;">Contact</a>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <section class="intro-section" style="padding: 6rem 4rem; background-color: #ffffff; color: #1e293b;">
+            <h2
+                style="font-size: 2rem; font-weight: 800; margin-bottom: 4rem; line-height: 1.2; color: #003366; text-align: left;">
+                Challenging the Limits of<br>Vision Rehabilitation & Augmentation
+            </h2>
+            <div class="row" style="display: flex; align-items: center; gap: 4rem;">
+                <div class="col-text" style="flex: 1;">
+                    <p
+                        style="font-size: 1rem; line-height: 1.7; color: #475569; margin-bottom: 2rem; word-break: keep-all; text-align: justify;">
+                        <strong
+                            style="font-size: 1.25rem; display: block; margin-bottom: 0.8rem; color: #003366;">Optical
+                            Measurement</strong>
+                        Collecting ultra-precise ocular data using advanced optical equipment.
+                    </p>
+                    <p
+                        style="font-size: 1rem; line-height: 1.7; color: #475569; margin-bottom: 2rem; word-break: keep-all; text-align: justify;">
+                        <strong style="font-size: 1.25rem; display: block; margin-bottom: 0.8rem; color: #003366;">AI
+                            Analysis</strong>
+                        Analyzing collected biometric data with deep learning algorithms to predict diseases and derive
+                        optimal improvement plans.
+                    </p>
+                    <p
+                        style="font-size: 1rem; line-height: 1.7; color: #475569; margin-bottom: 0; word-break: keep-all; text-align: justify;">
+                        <strong
+                            style="font-size: 1.25rem; display: block; margin-bottom: 0.8rem; color: #003366;">Vision
+                            augmented & rehabilitated by AI</strong>
+                        Providing optimized visual experiences to patients through 4D myopia control and vision
+                        rehabilitation programs.
+                    </p>
+                </div>
+                <div class="col-image" style="flex: 1; text-align: center;">
+                    <img src="assets/images/vision_engineering_concept.png?v=5" alt="Vision Engineering Process"
+                        style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                </div>
             </div>
         </section>
 
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Research Areas</h2>
+        <section class="section" style="padding: 0 4rem 4rem;">
+            <div class="container-fluid" style="padding: 0;">
+                <h2 class="section-title" style="font-size: 2rem; margin-bottom: 2rem; color: #1e293b;">Research Areas
+                </h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <h3>4D Myopia Control</h3>
@@ -67,37 +104,21 @@
                             spectral, and individual dimensions.</p>
                     </div>
                     <div class="feature-card">
-                        <h3>AI-Based Visual Diagnosis</h3>
-                        <img src="assets/images/research/ai_visual_diagnosis.png" alt="AI-Based Visual Diagnosis">
+                        <h3>AI Diagnosis</h3>
+                        <img src="assets/images/research/ai_visual_diagnosis.png" alt="AI Diagnosis">
                         <p>Developing precision visual diagnosis and personalized treatment systems using deep learning.
                         </p>
                     </div>
                     <div class="feature-card">
                         <h3>Biometric Measurement</h3>
                         <img src="assets/images/research/biometric_measurement.png?v=2" alt="Biometric Measurement">
-                        <p>Leading non-invasive ocular biomarker measurement technology using advanced optics.</p>
+                        <p>Leading non-invasive ocular biomarker measurement technology using advanced optical
+                            technology.</p>
                     </div>
                 </div>
             </div>
         </section>
-
-
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">MasVisio Research Team</h2>
-            </div>
-        </section>
     </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 MasVisio Research</p>
-            <div>
-                <a href="#">Privacy Policy</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </div>
-    </footer>
 
     <script src="assets/js/main.js"></script>
 </body>

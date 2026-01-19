@@ -11,82 +11,106 @@
     <meta property="og:description" content="혁신적인 연구와 기술을 통해 시각 과학 분야를 선도합니다.">
     <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css?v=2.0">
-    <link rel="stylesheet" href="../assets/css/components.css?v=2.0">
+    <link rel="stylesheet" href="../assets/css/main.css?v=1.3">
+    <link rel="stylesheet" href="../assets/css/components.css?v=1.3">
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <div class="header-left">
-                <div class="logo-container">
-                    <h1>MasVisio Research</h1>
-                    <div class="logo-subtitle">Vision Intelligence & Biomedical Engineering</div>
+<body class="sidebar-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <h1>MasVisio<br>Research</h1>
+                <span class="sidebar-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
+            </a>
+        </div>
+
+        <div class="lang-switch">
+            <a href="../index.html">🇺🇸</a> <span class="active">🇰🇷</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item active">홈</a>
+            <a href="team/index.html" class="nav-item">구성원</a>
+            <div class="nav-item dropdown">
+                <a href="research/overview.html">도전과제</a>
+                <div class="dropdown-menu">
+                    <a href="research/overview.html">연구 개요</a>
+                    <a href="research/diagnostics.html">AI 질환 진단</a>
                 </div>
-                <nav class="nav-links">
-                    <a href="index.html" class="active">홈</a>
-                    <a href="team/index.html">구성원</a>
-                    <div class="nav-item dropdown">
-                        <a href="research/overview.html">도전과제</a>
-                        <div class="dropdown-menu">
-                            <a href="research/overview.html">연구 개요</a>
-                            <a href="research/diagnostics.html">AI 질환 진단</a>
-                        </div>
-                    </div>
-                    <a href="publications/index.html">연구성과</a>
-                    <a href="partnership/index.html">제공서비스</a>
-                    <a href="contact.html">파트너</a>
-                </nav>
             </div>
-            <div class="lang-switch">
-                <a href="../index.html">🇺🇸</a> <span class="active">🇰🇷</span>
+            <a href="publications/index.html" class="nav-item">연구성과</a>
+            <a href="partnership/index.html" class="nav-item">제공서비스</a>
+            <a href="contact.html" class="nav-item">파트너</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p class="copyright">&copy; 2025 MasVisio Research</p>
+            <div style="margin-top: 10px; font-size: 0.7rem;">
+                <a href="#" style="color: #94a3b8; text-decoration: none;">개인정보처리방침</a> |
+                <a href="contact.html" style="color: #94a3b8; text-decoration: none;">문의하기</a>
             </div>
         </div>
-    </header>
+    </aside>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h2>시각재활의 미래를 혁신합니다</h2>
-                <p>첨단 AI 기술과 4D 근시제어 시스템을 통해 시각장애인과 저시력자의 삶의 질을 향상시키는 차세대 시각재활 솔루션을 개발합니다.</p>
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <section class="intro-section" style="padding: 6rem 4rem; background-color: #ffffff; color: #1e293b;">
+            <h2
+                style="font-size: 2rem; font-weight: 800; margin-bottom: 4rem; line-height: 1.2; color: #003366; text-align: left;">
+                시각재활과 시각증강의 한계에 도전
+            </h2>
+            <div class="row" style="display: flex; align-items: center; gap: 4rem;">
+                <div class="col-text" style="flex: 1;">
+                    <p
+                        style="font-size: 1rem; line-height: 1.7; color: #475569; margin-bottom: 2rem; word-break: keep-all; text-align: justify;">
+                        <strong style="font-size: 1.25rem; display: block; margin-bottom: 0.8rem; color: #003366;">정밀 시각
+                            측정 (Optical Measurement)</strong>
+                        첨단 광학 장비를 활용하여 초정밀 안구 데이터를 수집합니다.
+                    </p>
+                    <p
+                        style="font-size: 1rem; line-height: 1.7; color: #475569; margin-bottom: 2rem; word-break: keep-all; text-align: justify;">
+                        <strong style="font-size: 1.25rem; display: block; margin-bottom: 0.8rem; color: #003366;">AI 기반
+                            분석 (AI Analysis)</strong>
+                        수집된 생체 데이터를 딥러닝 알고리즘으로 분석하여 질환을 예측하고 최적의 개선안을 도출합니다.
+                    </p>
+                    <p
+                        style="font-size: 1rem; line-height: 1.7; color: #475569; margin-bottom: 0; word-break: keep-all; text-align: justify;">
+                        <strong style="font-size: 1.25rem; display: block; margin-bottom: 0.8rem; color: #003366;">맞춤형
+                            시각 솔루션 (Vision augmented & rehabilitated by AI)</strong>
+                        4D 근시 제어 및 시각 재활 프로그램을 통해 환자에게 최적화된 시각 경험을 제공합니다.
+                    </p>
+                </div>
+                <div class="col-image" style="flex: 1; text-align: center;">
+                    <img src="../assets/images/vision_engineering_concept.png?v=5" alt="Vision Engineering Process"
+                        style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                </div>
             </div>
         </section>
 
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">연구 분야</h2>
+        <section class="section" style="padding: 0 4rem 4rem;">
+            <div class="container-fluid" style="padding: 0;">
+                <h2 class="section-title" style="font-size: 2rem; margin-bottom: 2rem; color: #1e293b;">연구 분야</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <h3>4D 근시 제어 기술</h3>
+                        <h3>4D 근시 제어 기술<br>(4D Myopia Control)</h3>
                         <img src="../assets/images/research/myopia_control_4d.png" alt="4D 근시 제어 기술">
                         <p>공간, 시간, 스펙트럼, 개인 차원을 통합한 차세대 근시 억제 플랫폼을 연구합니다.</p>
                     </div>
                     <div class="feature-card">
-                        <h3>AI 기반 시각 진단</h3>
+                        <h3>AI 기반 시각 진단<br>(AI Diagnosis)</h3>
                         <img src="../assets/images/research/ai_visual_diagnosis.png" alt="AI 기반 시각 진단">
                         <p>딥러닝을 활용한 정밀 시각 진단 및 개인맞춤형 치료 시스템을 개발합니다.</p>
                     </div>
                     <div class="feature-card">
-                        <h3>바이오메트릭 측정</h3>
+                        <h3>바이오메트릭 측정<br>(Biometric Measurement)</h3>
                         <img src="../assets/images/research/biometric_measurement.png?v=2" alt="바이오메트릭 측정">
                         <p>첨단 광학 기술을 이용한 비침습적 안구 생체지표 측정 기술을 선도합니다.</p>
                     </div>
                 </div>
             </div>
         </section>
-
-
     </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 MasVisio Research</p>
-            <div>
-                <a href="#">개인정보처리방침</a>
-                <a href="contact.html">문의하기</a>
-            </div>
-        </div>
-    </footer>
 
     <script src="../assets/js/main.js"></script>
 </body>

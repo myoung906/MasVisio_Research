@@ -6,49 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 질환 진단 및 예측 - MasVisio Research</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/main.css">
-    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="../../assets/css/main.css?v=1.3">
+    <link rel="stylesheet" href="../../assets/css/components.css?v=1.3">
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <div class="logo-container">
-                <h1>MasVisio Research</h1>
-                <div class="logo-subtitle">Vision Intelligence & Biomedical Engineering</div>
-            </div>
-            <nav>
-                <div class="lang-switch">
-                    <a href="../../research/diagnostics.html">🇺🇸</a> <span class="active">🇰🇷</span>
-                </div>
-                <div class="nav-links">
-                    <a href="../../ko/index.html">홈</a>
-                    <a href="../../ko/team/index.html">구성원</a>
-                    <div class="nav-item dropdown">
-                        <a href="overview.html">도전과제</a>
-                        <div class="dropdown-menu">
-                            <a href="overview.html">연구 개요</a>
-                            <a href="diagnostics.html" class="active">AI 질환 진단</a>
-                        </div>
-                    </div>
-                    <a href="../../ko/publications/index.html">연구성과</a>
-                    <a href="../../ko/partnership/index.html">제공서비스</a>
-                    <a href="../../ko/contact.html">파트너</a>
-                </div>
-            </nav>
+<body class="sidebar-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="sidebar-logo">
+                <h1>MasVisio<br>Research</h1>
+                <span class="sidebar-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
+            </a>
         </div>
-    </header>
 
-    <main>
-        <section class="hero compact">
-            <div class="container">
-                <h2>전반적 안구 측정 기반 질환 예측</h2>
-                <p>AI 시각 지능을 활용한 8단계 안구 질환 위험도 분석 시스템</p>
+        <div class="lang-switch">
+            <a href="../../research/diagnostics.html">🇺🇸</a> <span class="active">🇰🇷</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="../index.html" class="nav-item">홈</a>
+            <a href="../team/index.html" class="nav-item">구성원</a>
+            <div class="nav-item dropdown">
+                <a href="overview.html" class="active">도전과제</a>
+                <div class="dropdown-menu">
+                    <a href="overview.html">연구 개요</a>
+                    <a href="diagnostics.html" class="active-item">AI 질환 진단</a>
+                </div>
             </div>
-        </section>
+            <a href="../publications/index.html" class="nav-item">연구성과</a>
+            <a href="../partnership/index.html" class="nav-item">제공서비스</a>
+            <a href="../contact.html" class="nav-item">파트너</a>
+        </nav>
 
-        <section class="section">
+        <div class="sidebar-footer">
+            <p class="copyright">&copy; 2025 MasVisio Research</p>
+            <div style="margin-top: 10px; font-size: 0.7rem;">
+                <a href="../privacy.html" style="color: #94a3b8; text-decoration: none;">개인정보처리방침</a> |
+                <a href="../contact.html" style="color: #94a3b8; text-decoration: none;">문의하기</a>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <section class="section" style="padding: 4rem 4rem;">
             <div class="container">
+                <header style="margin-bottom: 4rem; border-bottom: none;">
+                    <h2 style="font-size: 3rem; margin-bottom: 1rem;">전반적 안구 측정 기반 질환 예측</h2>
+                    <p style="font-size: 1.2rem; color: #64748b;">AI 시각 지능을 활용한 8단계 안구 질환 위험도 분석 시스템</p>
+                </header>
+
                 <div id="diagnostics-container">
                     <!-- Dynamic content will be loaded here from assets/js/main.js -->
                     <div class="loading">데이터를 불러오는 중...</div>
@@ -56,16 +62,6 @@
             </div>
         </section>
     </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 MasVisio Research</p>
-            <div>
-                <a href="#">개인정보처리방침</a>
-                <a href="../../ko/contact.html">문의하기</a>
-            </div>
-        </div>
-    </footer>
 
     <script src="../../assets/js/main.js"></script>
 </body>

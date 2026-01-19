@@ -6,59 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research - MasVisio Research</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/main.css?v=1.3">
+    <link rel="stylesheet" href="../assets/css/components.css?v=1.3">
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <div class="logo-container">
-                <h1>MasVisio Research</h1>
-                <div class="logo-subtitle">Vision Intelligence & Biomedical Engineering</div>
-            </div>
-            <nav>
-                <div class="lang-switch">
-                    <span class="active">🇺🇸</span> <a href="../../ko/research/overview.html">🇰🇷</a>
-                </div>
-                <div class="nav-links">
-                    <a href="../index.html">Home</a>
-                    <a href="../team/index.html">Team</a>
-                    <div class="nav-item dropdown">
-                        <a href="overview.html" class="active">Challenges</a>
-                        <div class="dropdown-menu">
-                            <a href="overview.html" class="active">Overview</a>
-                            <a href="diagnostics.html">AI Diagnosis</a>
-                        </div>
-                    </div>
-                    <a href="../publications/index.html">Publications</a>
-                    <a href="../partnership/index.html">Services</a>
-                    <a href="../contact.html">Contact</a>
-                </div>
-            </nav>
+<body class="sidebar-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="sidebar-logo">
+                <h1>MasVisio<br>Research</h1>
+                <span class="sidebar-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
+            </a>
         </div>
-    </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h2>Research Challenges</h2>
-                <p>Pioneering solutions for next-generation vision diagnostics and rehabilitation.</p>
+        <div class="lang-switch">
+            <span class="active">🇺🇸</span> <a href="../ko/research/overview.html">🇰🇷</a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="../index.html" class="nav-item">Home</a>
+            <a href="../team/index.html" class="nav-item">Team</a>
+            <div class="nav-item dropdown">
+                <a href="overview.html" class="active">Challenges</a>
+                <div class="dropdown-menu">
+                    <a href="overview.html" class="active-item">Overview</a>
+                    <a href="diagnostics.html">AI Diagnosis</a>
+                </div>
             </div>
-        </section>
+            <a href="../publications/index.html" class="nav-item">Publications</a>
+            <a href="../partnership/index.html" class="nav-item">Services</a>
+            <a href="../contact.html" class="nav-item">Partners</a>
+        </nav>
 
-        <section class="section">
+        <div class="sidebar-footer">
+            <p class="copyright">&copy; 2025 MasVisio Research</p>
+            <div style="margin-top: 10px; font-size: 0.7rem;">
+                <a href="../privacy.html" style="color: #94a3b8; text-decoration: none;">Privacy Policy</a> |
+                <a href="../contact.html" style="color: #94a3b8; text-decoration: none;">Contact</a>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <section class="section" style="padding: 4rem 4rem;">
             <div class="container">
+                <header style="margin-bottom: 4rem; border-bottom: none;">
+                    <h2 style="font-size: 3rem; margin-bottom: 1rem;">Research Challenges</h2>
+                    <p style="font-size: 1.2rem; color: #64748b;">Pioneering solutions for next-generation vision
+                        diagnostics and rehabilitation.</p>
+                </header>
+
                 <div class="challenges-list">
                     <!-- Challenge 1: Contrast Sensitivity -->
                     <div class="challenge-item">
                         <div class="challenge-text">
                             <h3>Contrast Sensitivity</h3>
                             <p>Developing advanced algorithms to measure and analyze contrast sensitivity functions
-                                (CSF)
-                                with higher precision. Our approach integrates psychophysical methods with machine
-                                learning
-                                to detect early visual impairments often missed by standard acuity tests.</p>
+                                (CSF) with higher precision. Our approach integrates psychophysical methods with machine
+                                learning to detect early visual impairments often missed by standard acuity tests.</p>
                             <p><strong>Key Focus:</strong> Early detection of glaucoma and retinal diseases through
                                 high-frequency contrast thresholds.</p>
                         </div>
@@ -76,12 +81,10 @@
                         <div class="challenge-text">
                             <h3>Corneo-Scleral Profiling &<br>3D Reconstruction</h3>
                             <p>A novel system for full-range anterior segment profiling. By reconstructing the 3D
-                                topography
-                                of both the cornea and sclera, we enable precise fitting of scleral lenses and advanced
-                                myopia control interventions.</p>
+                                topography of both the cornea and sclera, we enable precise fitting of scleral lenses
+                                and advanced myopia control interventions.</p>
                             <p><strong>Key Focus:</strong> 3D modeling of the ocular surface for personalized contact
-                                lens
-                                design.</p>
+                                lens design.</p>
                         </div>
                         <div class="challenge-media">
                             <!-- Placeholder for GIF/Image -->
@@ -98,8 +101,7 @@
                             <h3>Retinal Profiling &<br>3D Reconstruction</h3>
                             <p>Utilizing OCT and fundus imaging data to generate comprehensive 3D retinal maps. This
                                 technology allows for the precise tracking of retinal layer thickness changes, crucial
-                                for
-                                monitoring myopia progression and macular degeneration.</p>
+                                for monitoring myopia progression and macular degeneration.</p>
                             <p><strong>Key Focus:</strong> Quantitative analysis of retinal curvature and peripheral
                                 defocus.</p>
                         </div>
@@ -117,10 +119,8 @@
                         <div class="challenge-text">
                             <h3>Real-time Auto Refractometer</h3>
                             <p>Next-generation wavefront sensing technology that provides continuous, real-time
-                                refractive
-                                error measurements. This system is designed for dynamic accommodation studies and
-                                pediatric
-                                vision screening where speed and accuracy are paramount.</p>
+                                refractive error measurements. This system is designed for dynamic accommodation studies
+                                and pediatric vision screening where speed and accuracy are paramount.</p>
                             <p><strong>Key Focus:</strong> Binocular open-field autorefraction with high temporal
                                 resolution.</p>
                         </div>
@@ -139,8 +139,8 @@
                             <h3>Non-invasive General Disorder<br>Prediction Algorithm</h3>
                             <p>An AI-driven platform that correlates ocular biomarkers with systemic health issues. By
                                 analyzing micro-vascular changes in the retina and anterior segment, our algorithm
-                                predicts
-                                risks for diabetes, hypertension, and cardiovascular diseases non-invasively.</p>
+                                predicts risks for diabetes, hypertension, and cardiovascular diseases non-invasively.
+                            </p>
                             <p><strong>Key Focus:</strong> Multi-modal risk assessment using standard ocular imaging.
                             </p>
                         </div>
@@ -152,21 +152,10 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
     </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 MasVisio Research</p>
-            <div>
-                <a href="#">Privacy Policy</a>
-                <a href="../contact.html">Contact</a>
-            </div>
-        </div>
-    </footer>
 
     <script src="../assets/js/main.js"></script>
 </body>

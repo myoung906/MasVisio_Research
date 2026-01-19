@@ -4,51 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>논문성과 - MasVisio Research</title>
+    <title>연구성과 - MasVisio Research</title>
     <meta name="description" content="MasVisio Research의 최신 연구 논문과 학술 성과를 확인하세요.">
     <meta name="keywords" content="논문, 출판, 연구 성과, 시각 과학, MasVisio">
-    <meta property="og:title" content="논문성과 - MasVisio Research">
+    <meta property="og:title" content="연구성과 - MasVisio Research">
     <meta property="og:description" content="MasVisio Research의 최신 연구 논문과 학술 성과를 확인하세요.">
     <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/main.css?v=1.3">
+    <link rel="stylesheet" href="../assets/css/components.css?v=1.3">
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <h1>MasVisio Research</h1>
-            <nav>
-                <a href="index.html">홈</a>
-                <a href="research.html">연구</a>
-                <a href="publications.html" class="active">논문성과</a>
-                <div class="lang-switch">
-                    <a href="../publications.html">EN</a> | <span class="active">KO</span>
+<body class="sidebar-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <h1>MasVisio<br>Research</h1>
+                <span class="sidebar-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
+            </a>
+        </div>
+
+        <div class="lang-switch">
+            <a href="../publications/index.html">🇺🇸</a> <span class="active">🇰🇷</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">홈</a>
+            <a href="team/index.html" class="nav-item">구성원</a>
+            <div class="nav-item dropdown">
+                <a href="research/overview.html">도전과제</a>
+                <div class="dropdown-menu">
+                    <a href="research/overview.html">연구 개요</a>
+                    <a href="research/diagnostics.html">AI 질환 진단</a>
                 </div>
-            </nav>
-        </div>
-    </header>
+            </div>
+            <a href="publications.html" class="nav-item active">연구성과</a>
+            <a href="partnership/index.html" class="nav-item">제공서비스</a>
+            <a href="contact.html" class="nav-item">파트너</a>
+        </nav>
 
-    <main>
-        <div class="container">
-            <h2>논문성과</h2>
-            <p>우리는 연구 결과를 과학계와 공유하는 것을 자랑스럽게 생각합니다. 최근 발표된 논문들을 소개합니다.</p>
-            <div id="publications-container">
-                <!-- Publications will be loaded here by main.js -->
+        <div class="sidebar-footer">
+            <p class="copyright">&copy; 2025 MasVisio Research</p>
+            <div style="margin-top: 10px; font-size: 0.7rem;">
+                <a href="privacy.html" style="color: #94a3b8; text-decoration: none;">개인정보처리방침</a> |
+                <a href="contact.html" style="color: #94a3b8; text-decoration: none;">문의하기</a>
             </div>
         </div>
+    </aside>
+
+    <main class="main-content">
+        <section class="section" style="padding: 4rem 4rem;">
+            <div class="container">
+                <header style="margin-bottom: 4rem; border-bottom: none;">
+                    <h2 style="font-size: 3rem; margin-bottom: 1rem;">연구 성과</h2>
+                    <p style="font-size: 1.2rem; color: #64748b;">최신 연구 결과와 학술적 기여를 소개합니다.</p>
+                </header>
+
+                <div id="publications-container">
+                    <p>연구 성과를 불러오는 중...</p>
+                </div>
+            </div>
+        </section>
     </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 MasVisio Research</p>
-            <div>
-                <a href="#">개인정보처리방침</a>
-                <a href="#">문의하기</a>
-            </div>
-        </div>
-    </footer>
 
     <script src="../assets/js/main.js"></script>
 </body>
