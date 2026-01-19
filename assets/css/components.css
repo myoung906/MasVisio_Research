@@ -18,7 +18,8 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    position: relative;
+    /* Removed overflow: hidden to allow image pop-out */
 }
 
 .feature-card h3 {
@@ -30,18 +31,24 @@
 
 .feature-card img {
     width: 100% !important;
-    height: 280px !important;
+    height: 350px !important;
     object-fit: cover !important;
     background-color: #0f172a;
     border-radius: 8px;
     margin-bottom: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+    transform-origin: center center;
+    position: relative;
+    z-index: 10;
 }
 
 .feature-card:hover img {
-    transform: scale(1.02);
+    transform: scale(1.5);
+    z-index: 50;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+    cursor: zoom-in;
 }
 
 /* Publications Container - Vertical Stack */
@@ -321,10 +328,9 @@
 .section-title {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--heading-color);
+    position: relative;
+    display: inline-block;
 }
 
 .section-subtitle {

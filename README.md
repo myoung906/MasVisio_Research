@@ -103,47 +103,42 @@
 
 ## 🔄 개발 워크플로우
 
-### 🛠️ 웹페이지 수정 프로세스
+### 🛠️ 웹페이지 수정 및 실행 프로세스
 
-#### 1단계: 개발 환경에서 작업
+#### 1단계: 프로젝트 폴더로 이동 (필수)
+터미널을 열고 프로젝트가 있는 폴더로 이동해야 합니다.
 ```bash
-# XAMPP 개발 디렉토리에서 웹페이지 파일 수정/생성
-cd /Applications/XAMPP/xamppfiles/htdocs/mvr
-# 파일 편집, 새 기능 추가, 디자인 수정 등
+cd workspace/mvr
+# 또는 저장해둔 경로로 이동
 ```
 
-#### 2단계: 로컬 테스트
+#### 2단계: 로컬 서버 실행 (미리보기)
 ```bash
-# XAMPP 서버에서 웹사이트 동작 확인
-# http://localhost/mvr 접속하여 테스트
+# 로컬 개발 서버 시작
+npm run dev
+```
+- 실행 후 브라우저에서 `http://localhost:8080` 으로 접속하여 확인합니다.
+- 서버를 끄려면 터미널에서 `Ctrl + C`를 누릅니다.
+
+#### 3단계: 새 컴퓨터에서 처음 설정할 때
+새로운 컴퓨터에서 작업을 시작할 때는 먼저 필요한 도구들을 설치해야 합니다.
+1. `git clone [저장소 주소]` 로 프로젝트 내려받기
+2. 프로젝트 폴더로 이동 (`cd [폴더명]`)
+3. 의존성 설치:
+```bash
+npm install
 ```
 
-#### 3단계: Git 저장소로 동기화
+#### 4단계: 변경사항 GitHub 배포
 ```bash
-cd /Users/workspace/mvr_webpage
-
-# 개발 파일들을 Git 저장소로 복사
-cp -r /Applications/XAMPP/xamppfiles/htdocs/mvr/* .
-
 # 변경사항 확인
-git status --short
-git diff --stat HEAD~1
-```
+git status
 
-#### 4단계: 문서 업데이트 (자동화)
-```bash
-# 📋 CLAUDE.md 업데이트 (개발 가이드)
-# 📄 README.md 업데이트 (프로젝트 소개)
-# 📝 project_plan.md 업데이트 (진행 상황)
-```
-
-#### 5단계: GitHub 배포
-```bash
 # 모든 변경사항 커밋
 git add .
 git commit -m "웹사이트 업데이트: [수정 내용 요약]"
 
-# GitHub Pages에 자동 배포
+# GitHub Pages에 배포 (자동)
 git push origin master
 ```
 
