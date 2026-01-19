@@ -72,13 +72,6 @@ a:hover {
     color: var(--primary-color);
 }
 
-/* Layout */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
 /* Header */
 header {
     background-color: #fff;
@@ -88,14 +81,12 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: none;
-    /* Remove shadow to match "simple" look */
 }
 
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    /* Align to top */
 }
 
 header h1 {
@@ -112,7 +103,6 @@ header h1 {
     font-weight: 700;
     margin-top: 5px;
     transform: scaleX(1.15);
-    /* Slightly stretched horizontally */
     transform-origin: left;
     display: inline-block;
 }
@@ -120,9 +110,7 @@ header h1 {
 header nav {
     display: flex;
     flex-direction: column;
-    /* Stack links and lang */
     align-items: flex-end;
-    /* Align to right */
     gap: 10px;
 }
 
@@ -134,138 +122,299 @@ header nav {
 .nav-links a {
     font-size: 0.95rem;
     font-weight: 700;
-    /* Bold */
     color: var(--primary-color);
-    /* Match logo color */
     text-transform: none;
 }
 
 .nav-links a:hover {
     color: var(--accent-color);
-    /* Lighter blue on hover */
     text-decoration: none;
 }
 
 .nav-links a.active {
     color: var(--primary-color);
-    /* Keep dark blue for active state too */
     text-decoration: none;
 }
 
 .nav-links a::after {
     display: none;
-    /* Remove underline effect */
 }
 
-.lang-switch {
+header .lang-switch {
     font-size: 1.5rem;
-    /* Increased from 1.2rem */
     border: none;
     padding: 0;
     margin: 0;
     line-height: 1;
 }
 
-.lang-switch a {
+header .lang-switch a {
     text-decoration: none;
     opacity: 0.5;
     transition: opacity 0.3s;
     margin-left: 10px;
 }
 
-.lang-switch a:hover,
-.lang-switch .active {
+header .lang-switch a:hover,
+header .lang-switch .active {
     opacity: 1;
     color: inherit;
-    /* Keep emoji color */
 }
 
-/* Hero Section */
-.hero {
-    background-color: #e2e8f0;
-    /* Slightly darker grayish blue background */
-    padding: 75px 0;
-    /* Reduced vertical padding by 25% */
-    text-align: center;
-    /* Center alignment */
+/* Dropdown Menu */
+.nav-item.dropdown {
+    position: relative;
 }
 
-.hero .container {
-    background-color: transparent;
-    /* Remove inner box background */
-    padding: 0 20px;
-    border-radius: 0;
-    max-width: 1000px;
-    /* Limit width for box look */
-    margin: 0 auto;
+.nav-item.dropdown > a {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-transform: none;
 }
 
-.hero h2 {
-    font-size: 3.5rem;
-    /* Increased font size */
-    margin-bottom: 30px;
-    color: var(--heading-color);
-    font-weight: 800;
-    /* Extra bold */
-}
-
-.hero p {
-    font-size: 1.3rem;
-    /* Increased font size */
-    color: #555;
-    max-width: 900px;
-    margin: 0 auto;
-    line-height: 1.8;
-}
-
-/* Buttons */
-.btn-secondary {
-    display: inline-block;
-    padding: 12px 30px;
-    border-radius: 6px;
-    font-size: 1.25rem;
-    color: var(--text-light);
-    max-width: 700px;
-    margin: 0 auto;
-    font-weight: 300;
-}
-
-/* Footer - Structured & Informative */
-footer {
-    background-color: var(--bg-light);
-    border-top: 1px solid var(--border-color);
-    padding: 4rem 0;
-    margin-top: auto;
-}
-
-footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-footer p {
-    margin-bottom: 0;
-    font-size: 0.9rem;
-    color: var(--text-light);
-}
-
-footer div a {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-left: 2rem;
-    font-weight: 500;
-}
-
-footer div a:hover {
-    color: var(--accent-color);
-    text-decoration: underline;
-}
-
-/* Mobile Menu (Hidden by default on Desktop) */
-.mobile-menu-toggle {
+.dropdown-menu {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    margin-top: 5px;
+    padding: 10px 0;
+    z-index: 1001;
 }
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+}
+
+/* Layout */
+/* Layout & Sidebar System */
+body {
+    /* display: flex; */
+    min-height: 100vh;
+    background-color: #ffffff;
+    /* Light grey background for the app */
+}
+
+/* Sidebar (Left Navigation) */
+.sidebar {
+    width: 280px;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    z-index: 1000;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    margin-bottom: 3rem;
+}
+
+.sidebar-logo {
+    display: block;
+    text-decoration: none;
+}
+
+.sidebar-logo h1 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.sidebar-subtitle {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 500;
+    display: block;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    color: #334155;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background-color: #f1f5f9;
+    color: var(--primary-color);
+}
+
+.nav-item.active {
+    background-color: rgba(0, 51, 102, 0.05);
+    /* Light primary color bg */
+    color: var(--primary-color);
+    border-left: 3px solid var(--primary-color);
+}
+
+/* Sidebar Footer (Lang & Copyright) */
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.lang-switch {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.copyright {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+/* Main Content Area */
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    /* Width of sidebar */
+    min-width: 0;
+    /* Prevent flex overflow */
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.main-content>.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+    width: 100%;
+}
+
+/* Challenges Section (KAIST Style) */
+.challenges-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    /* Spacing between challenges */
+}
+
+.challenge-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Text | Image */
+    gap: 3rem;
+    align-items: start;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.challenge-item:last-child {
+    border-bottom: none;
+}
+
+.challenge-item.reverse {
+    direction: rtl;
+    /* Flip order */
+}
+
+.challenge-item.reverse .challenge-text {
+    direction: ltr;
+    /* Restore text direction */
+}
+
+.challenge-text h3 {
+    font-size: 2rem;
+    color: var(--heading-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.challenge-text p {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.challenge-media {
+    width: 100%;
+    background-color: #f8fafc;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #e2e8f0;
+    min-height: 350px;
+    /* Placeholder height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.challenge-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.challenge-placeholder {
+    color: #94a3b8;
+    font-weight: 500;
+    text-align: center;
+    padding: 2rem;
+}
+
+
+/* Responsive Design (Mobile) */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .challenge-item {
+        grid-template-columns: 1fr;
+        /* Stack vertically */
+    }
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
