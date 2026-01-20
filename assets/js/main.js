@@ -196,6 +196,13 @@ function refreshPublicationsView() {
             section.style.display = '';
         });
     }
+
+    if (isMobile) {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar && sidebar.classList.contains('active')) {
+            toggleMobileNav();
+        }
+    }
 }
 
 function initPublicationsNavigation() {
@@ -254,6 +261,8 @@ function initMobileNav() {
         });
         sidebar.dataset.mobileNavBound = 'true';
     }
+
+    ensureMobileHeader();
 }
 
 function toggleMobileNav() {
@@ -267,6 +276,24 @@ function toggleMobileNav() {
         toggleBtn.classList.toggle('active');
         document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
     }
+}
+
+function ensureMobileHeader() {
+    if (document.querySelector('.mobile-header')) return;
+
+    const lang = document.documentElement.lang || 'en';
+    const basePath = getBasePath();
+    const homeHref = lang === 'ko' ? `${basePath}ko/index.html` : `${basePath}index.html`;
+
+    const header = document.createElement('header');
+    header.className = 'mobile-header';
+    header.innerHTML = `
+        <a href="${homeHref}" class="mobile-logo">
+            <h1>MasVisio<br>Research</h1>
+            <span class="logo-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
+        </a>
+    `;
+    document.body.insertBefore(header, document.body.firstChild);
 }
 
 // Old functions removed/replaced
