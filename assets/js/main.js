@@ -170,7 +170,7 @@ function refreshPublicationsView() {
         link.classList.toggle('active', hasTarget && link === targetLink);
     });
 
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = window.innerWidth <= 1024;
     const header = document.querySelector('.publications-header');
     const sections = document.querySelectorAll('#publications-container > div[id]');
 
@@ -180,6 +180,13 @@ function refreshPublicationsView() {
         }
         sections.forEach(section => {
             section.style.display = section.id === targetId ? '' : 'none';
+        });
+    } else if (isMobile) {
+        if (header) {
+            header.style.display = '';
+        }
+        sections.forEach(section => {
+            section.style.display = 'none';
         });
     } else {
         if (header) {
@@ -233,6 +240,19 @@ function initMobileNav() {
         document.body.appendChild(overlay);
 
         overlay.addEventListener('click', toggleMobileNav);
+    }
+
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar && !sidebar.dataset.mobileNavBound) {
+        sidebar.addEventListener('click', (event) => {
+            const link = event.target.closest('a');
+            if (!link) return;
+
+            if (window.innerWidth <= 1024 && sidebar.classList.contains('active')) {
+                toggleMobileNav();
+            }
+        });
+        sidebar.dataset.mobileNavBound = 'true';
     }
 }
 
