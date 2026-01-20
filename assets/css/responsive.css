@@ -79,13 +79,12 @@
 /* Responsive Design (Mobile) */
 @media (max-width: 1024px) {
 
-    /* Sidebar Behavior */
-    .sidebar {
+    /* Sidebar Behavior - 높은 특이성으로 !important 없이 오버라이드 */
+    body .sidebar {
         width: 280px;
         height: 100vh;
         position: fixed;
-        left: -280px !important;
-        /* Force hidden by default */
+        left: -280px;
         top: 0;
         border-right: 1px solid #e5e7eb;
         border-bottom: none;
@@ -94,9 +93,8 @@
         z-index: 1001;
     }
 
-    .sidebar.active {
-        left: 0 !important;
-        /* Slide in */
+    body .sidebar.active {
+        left: 0;
     }
 
     /* Main Content Adjustments */
@@ -126,13 +124,13 @@
         /* Image always on top on mobile */
     }
 
-    /* Section Padding Reduction */
-    .intro-section {
-        padding: 4rem 2rem !important;
+    /* Section Padding Reduction - 높은 특이성으로 오버라이드 */
+    .main-content .intro-section {
+        padding: 4rem 2rem;
     }
 
-    .section {
-        padding: 0 2rem 4rem !important;
+    .main-content .section {
+        padding: 0 2rem 4rem;
     }
 
     /* Show Mobile Toggle */
@@ -143,32 +141,32 @@
 
 @media (max-width: 768px) {
 
-    /* Typography Scaling */
-    h1 {
+    /* Typography Scaling - 특이성 증가로 !important 제거 */
+    body h1 {
         font-size: 2rem;
     }
 
-    h2,
-    .section-title {
-        font-size: 1.75rem !important;
+    body h2,
+    body .section-title {
+        font-size: 1.75rem;
     }
 
-    h3 {
+    body h3 {
         font-size: 1.25rem;
     }
 
-    .sidebar-logo h1 {
+    .sidebar .sidebar-logo h1 {
         font-size: 2rem;
     }
 
-    .intro-section h2 {
-        font-size: 1.75rem !important;
-        margin-bottom: 2rem !important;
+    .main-content .intro-section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
     }
 
-    .row {
+    body .row {
         flex-direction: column;
-        gap: 2rem !important;
+        gap: 2rem;
     }
 
     .col-image {
@@ -178,5 +176,71 @@
     /* Footer Centering */
     .sidebar-footer {
         text-align: center;
+    }
+}
+
+/* 초소형 모바일 (480px 이하) */
+@media (max-width: 480px) {
+    /* 더 작은 타이포그래피 */
+    body h1 {
+        font-size: 1.75rem;
+    }
+
+    body h2,
+    body .section-title {
+        font-size: 1.5rem;
+    }
+
+    body h3 {
+        font-size: 1.1rem;
+    }
+
+    /* 컨테이너 패딩 축소 */
+    .main-content > .container {
+        padding: 2rem 1rem;
+    }
+
+    .main-content .intro-section {
+        padding: 2rem 1rem;
+    }
+
+    .main-content .section {
+        padding: 0 1rem 2rem;
+    }
+
+    /* 사이드바 조정 */
+    body .sidebar {
+        width: 260px;
+        padding: 1.5rem 1rem;
+    }
+
+    .sidebar-logo h1 {
+        font-size: 1.75rem;
+    }
+
+    /* 카드 그리드 단일 컬럼 */
+    .features-grid,
+    .team-grid,
+    #research-projects-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* 이미지 높이 축소 */
+    .features-grid .feature-card img {
+        height: 250px;
+    }
+
+    /* 통계 뱃지 작게 */
+    .stat-badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    /* 발행물 리스트 조정 */
+    .iso-item {
+        font-size: 0.9rem;
+        padding-left: 1rem;
+        text-indent: -1rem;
     }
 }

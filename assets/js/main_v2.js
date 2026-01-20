@@ -9,6 +9,98 @@ function getBasePath() {
     return '/';
 }
 
+// DataCache Singleton - 중복 fetch 방지
+const DataCache = {
+    _cache: {},
+    _pending: {},
+
+    async get(url, timeout = 10000) {
+        // 이미 캐시된 데이터 반환
+        if (this._cache[url]) {
+            return this._cache[url];
+        }
+
+        // 이미 요청 중이면 그 Promise 반환 (중복 요청 방지)
+        if (this._pending[url]) {
+            return this._pending[url];
+        }
+
+        // 새 요청 시작
+        this._pending[url] = this._fetchWithTimeout(url, timeout);
+
+        try {
+            const data = await this._pending[url];
+            this._cache[url] = data;
+            return data;
+        } finally {
+            delete this._pending[url];
+        }
+    },
+
+    async _fetchWithTimeout(url, timeout) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+        try {
+            const response = await fetch(url, { signal: controller.signal });
+            clearTimeout(timeoutId);
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            const text = await response.text();
+            try {
+                return JSON.parse(text);
+            } catch (parseError) {
+                throw new Error('JSON 파싱 실패: 데이터 형식이 올바르지 않습니다.');
+            }
+        } catch (error) {
+            clearTimeout(timeoutId);
+            if (error.name === 'AbortError') {
+                throw new Error('요청 시간 초과: 네트워크 연결을 확인해주세요.');
+            }
+            throw error;
+        }
+    },
+
+    clear() {
+        this._cache = {};
+        this._pending = {};
+    }
+};
+
+// 사용자 친화적 에러 메시지 생성
+function getErrorMessage(error, lang) {
+    const messages = {
+        ko: {
+            network: '네트워크 연결을 확인해주세요.',
+            timeout: '요청 시간이 초과되었습니다. 나중에 다시 시도해주세요.',
+            parse: '데이터를 처리하는 중 오류가 발생했습니다.',
+            default: '일시적인 오류가 발생했습니다. 나중에 다시 시도해주세요.'
+        },
+        en: {
+            network: 'Please check your network connection.',
+            timeout: 'Request timed out. Please try again later.',
+            parse: 'Error processing data.',
+            default: 'A temporary error occurred. Please try again later.'
+        }
+    };
+
+    const m = messages[lang] || messages.en;
+
+    if (error.message.includes('시간 초과') || error.message.includes('timeout')) {
+        return m.timeout;
+    }
+    if (error.message.includes('JSON') || error.message.includes('파싱')) {
+        return m.parse;
+    }
+    if (error.message.includes('fetch') || error.message.includes('network')) {
+        return m.network;
+    }
+    return m.default;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // This is the only DOMContentLoaded listener
     console.log('DOM is fully loaded and parsed');
@@ -35,8 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle dropdown menus on desktop
     setupDesktopDropdowns();
 
-    // Scroll animation logic
-    window.addEventListener('scroll', handleScrollAnimations);
+    // Scroll animation logic (passive for better scroll performance)
+    window.addEventListener('scroll', handleScrollAnimations, { passive: true });
     handleScrollAnimations(); // Also check on load
 
     // If there is a research projects container, load projects
@@ -137,79 +229,54 @@ function handleScrollAnimations() {
     });
 }
 
-function loadResearchProjects() {
+async function loadResearchProjects() {
     const lang = document.documentElement.lang || 'en';
-    // Use absolute path to avoid relative path issues with nested directories
     const dataPath = getBasePath() + 'assets/data/content.json';
+    const container = document.getElementById('research-projects-container');
 
-    fetch(dataPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const container = document.getElementById('research-projects-container');
-            const projects = data[lang]?.projects || [];
+    if (!container) return;
 
-            if (container) {
-                if (projects.length > 0) {
-                    let html = '';
-                    projects.forEach(project => {
-                        // Adjust link based on language
-                        const basePath = getBasePath();
-                        const linkPrefix = lang === 'ko' ? basePath + 'ko' : basePath.slice(0, -1);
-                        const buttonText = lang === 'ko' ? '자세히 보기' : 'Learn More';
+    try {
+        const data = await DataCache.get(dataPath);
+        const projects = data[lang]?.projects || [];
 
-                        html += `
-                            <div class="project-card">
-                                <h3>${project.title}</h3>
-                                <p>${project.subtitle}</p>
-                                <a href="${linkPrefix}/research/project.html?id=${project.id}" class="btn-secondary">${buttonText}</a>
-                            </div>
-                        `;
-                    });
-                    container.innerHTML = html;
-                } else {
-                    // Graceful fallback for empty data (e.g. English version currently)
-                    container.innerHTML = lang === 'ko'
-                        ? '<p>진행 중인 프로젝트가 없습니다.</p>'
-                        : '<p>No active projects at the moment.</p>';
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Could not load research projects:', error);
-            const container = document.getElementById('research-projects-container');
-            if (container) {
-                container.innerHTML = lang === 'ko'
-                    ? '<p>프로젝트를 불러올 수 없습니다. 나중에 다시 시도해주세요.</p>'
-                    : '<p>Unable to load projects. Please try again later.</p>';
-            }
-        });
+        if (projects.length > 0) {
+            const basePath = getBasePath();
+            const linkPrefix = lang === 'ko' ? basePath + 'ko' : basePath.slice(0, -1);
+            const buttonText = lang === 'ko' ? '자세히 보기' : 'Learn More';
+
+            container.innerHTML = projects.map(project => `
+                <div class="project-card">
+                    <h3>${project.title}</h3>
+                    <p>${project.subtitle}</p>
+                    <a href="${linkPrefix}/research/project.html?id=${project.id}" class="btn-secondary">${buttonText}</a>
+                </div>
+            `).join('');
+        } else {
+            container.innerHTML = lang === 'ko'
+                ? '<p>진행 중인 프로젝트가 없습니다.</p>'
+                : '<p>No active projects at the moment.</p>';
+        }
+    } catch (error) {
+        console.error('Could not load research projects:', error);
+        container.innerHTML = `<p class="error-text">${getErrorMessage(error, lang)}</p>`;
+    }
 }
 
 
-function loadPublications() {
+async function loadPublications() {
     const lang = document.documentElement.lang || 'en';
     const dataPath = getBasePath() + 'assets/data/content.json';
+    const container = document.getElementById('publications-container');
 
-    fetch(dataPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const container = document.getElementById('publications-container');
-            const publications = data[lang]?.publications || [];
+    if (!container) return;
 
-            if (container) {
-                if (publications.length > 0) {
+    try {
+        const data = await DataCache.get(dataPath);
+        const publications = data[lang]?.publications || [];
 
-                    // Categorize Publications
+        if (publications.length > 0) {
+            // Categorize Publications
                     const reviewedPapers = [];
                     const conferences = [];
                     const patents = [];
@@ -348,31 +415,23 @@ function loadPublications() {
                         htmlContent += '</div></div>';
                     }
 
-                    container.innerHTML = htmlContent;
-
-                } else {
-                    container.innerHTML = lang === 'ko'
-                        ? '<p>등록된 논문이 없습니다.</p>'
-                        : '<p>No publications listed yet.</p>';
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Could not load publications:', error);
-            const container = document.getElementById('publications-container');
-            if (container) {
-                container.innerHTML = lang === 'ko'
-                    ? '<p>논문을 불러올 수 없습니다. 나중에 다시 시도해주세요.</p>'
-                    : '<p>Unable to load publications. Please try again later.</p>';
-            }
-        });
+            container.innerHTML = htmlContent;
+        } else {
+            container.innerHTML = lang === 'ko'
+                ? '<p>등록된 논문이 없습니다.</p>'
+                : '<p>No publications listed yet.</p>';
+        }
+    } catch (error) {
+        console.error('Could not load publications:', error);
+        container.innerHTML = `<p class="error-text">${getErrorMessage(error, lang)}</p>`;
+    }
 }
 
 // Helper functions renderPublicationsByYear, createPublicationItem, openTab are no longer needed 
 // and replaced by the logic inside loadPublications or removed.
 
 
-function loadProjectDetails() {
+async function loadProjectDetails() {
     const params = new URLSearchParams(window.location.search);
     const projectId = params.get('id');
 
@@ -380,100 +439,85 @@ function loadProjectDetails() {
 
     const lang = document.documentElement.lang || 'en';
     const dataPath = getBasePath() + 'assets/data/content.json';
+    const container = document.getElementById('project-detail-container');
 
-    fetch(dataPath)
-        .then(response => response.json())
-        .then(data => {
-            const projects = data[lang]?.projects || [];
-            const project = projects.find(p => p.id === projectId);
+    if (!container) return;
 
-            if (project) {
-                document.title = `${project.title} - MasVisio Research`;
+    try {
+        const data = await DataCache.get(dataPath);
+        const projects = data[lang]?.projects || [];
+        const project = projects.find(p => p.id === projectId);
 
-                const container = document.getElementById('project-detail-container');
-                if (container) {
-                    let mechanismsHtml = '';
-                    if (project.mechanisms) {
-                        mechanismsHtml = '<h3>Mechanisms</h3><ul>';
-                        project.mechanisms.forEach(m => {
-                            mechanismsHtml += `<li><strong>${m.title}</strong><ul>${m.points.map(p => `<li>${p}</li>`).join('')}</ul></li>`;
-                        });
-                        mechanismsHtml += '</ul>';
-                    }
+        if (project) {
+            document.title = `${project.title} - MasVisio Research`;
 
-                    let resultsHtml = '';
-                    if (project.results) {
-                        resultsHtml = '<div class="stats-grid">';
-                        project.results.forEach(r => {
-                            resultsHtml += `<div class="stat-item"><h3>${r.value}</h3><p>${r.title}</p><small>${r.description}</small></div>`;
-                        });
-                        resultsHtml += '</div>';
-                    }
-
-                    container.innerHTML = `
-                        <h1>${project.title}</h1>
-                        <p class="subtitle">${project.subtitle}</p>
-                        <div class="project-meta">
-                            <span><strong>Status:</strong> ${project.status}</span>
-                            <span><strong>Period:</strong> ${project.research_period}</span>
-                        </div>
-                        <div class="project-content">
-                            <h3>Objective</h3>
-                            <p>${project.objective}</p>
-                            ${mechanismsHtml}
-                            ${resultsHtml}
-                        </div>
-                    `;
-                }
+            let mechanismsHtml = '';
+            if (project.mechanisms) {
+                mechanismsHtml = '<h3>Mechanisms</h3><ul>';
+                project.mechanisms.forEach(m => {
+                    mechanismsHtml += `<li><strong>${m.title}</strong><ul>${m.points.map(p => `<li>${p}</li>`).join('')}</ul></li>`;
+                });
+                mechanismsHtml += '</ul>';
             }
-        })
-        .catch(error => console.error('Error loading project details:', error));
+
+            let resultsHtml = '';
+            if (project.results) {
+                resultsHtml = '<div class="stats-grid">';
+                project.results.forEach(r => {
+                    resultsHtml += `<div class="stat-item"><h3>${r.value}</h3><p>${r.title}</p><small>${r.description}</small></div>`;
+                });
+                resultsHtml += '</div>';
+            }
+
+            container.innerHTML = `
+                <h1>${project.title}</h1>
+                <p class="subtitle">${project.subtitle}</p>
+                <div class="project-meta">
+                    <span><strong>Status:</strong> ${project.status}</span>
+                    <span><strong>Period:</strong> ${project.research_period}</span>
+                </div>
+                <div class="project-content">
+                    <h3>Objective</h3>
+                    <p>${project.objective}</p>
+                    ${mechanismsHtml}
+                    ${resultsHtml}
+                </div>
+            `;
+        }
+    } catch (error) {
+        console.error('Error loading project details:', error);
+        container.innerHTML = `<p class="error-text">${getErrorMessage(error, lang)}</p>`;
+    }
 }
 
-function loadTeamMembers() {
+async function loadTeamMembers() {
     const lang = document.documentElement.lang || 'en';
     const dataPath = getBasePath() + 'assets/data/content.json';
+    const container = document.getElementById('team-container');
 
-    fetch(dataPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const container = document.getElementById('team-container');
-            const teamMembers = data[lang]?.team || [];
+    if (!container) return;
 
-            if (container) {
-                if (teamMembers.length > 0) {
-                    let html = '';
-                    teamMembers.forEach(member => {
-                        html += `
-                            <div class="team-card">
-                                <div class="team-photo"></div>
-                                <h3>${member.name}</h3>
-                                <p class="role">${member.role}</p>
-                                <p class="bio">${member.bio}</p>
-                                <p class="expertise"><small>${member.expertise}</small></p>
-                            </div>
-                        `;
-                    });
-                    container.innerHTML = html;
-                } else {
-                    container.innerHTML = lang === 'ko'
-                        ? '<p>팀원 정보를 불러올 수 없습니다.</p>'
-                        : '<p>No team members found.</p>';
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Could not load team members:', error);
-            const container = document.getElementById('team-container');
-            if (container) {
-                container.innerHTML = lang === 'ko'
-                    ? '<p>팀원 정보를 불러올 수 없습니다. 나중에 다시 시도해주세요.</p>'
-                    : '<p>Unable to load team members. Please try again later.</p>';
-            }
-        });
+    try {
+        const data = await DataCache.get(dataPath);
+        const teamMembers = data[lang]?.team || [];
+
+        if (teamMembers.length > 0) {
+            container.innerHTML = teamMembers.map(member => `
+                <div class="team-card">
+                    <div class="team-photo"></div>
+                    <h3>${member.name}</h3>
+                    <p class="role">${member.role}</p>
+                    <p class="bio">${member.bio}</p>
+                    <p class="expertise"><small>${member.expertise}</small></p>
+                </div>
+            `).join('');
+        } else {
+            container.innerHTML = lang === 'ko'
+                ? '<p>팀원 정보를 불러올 수 없습니다.</p>'
+                : '<p>No team members found.</p>';
+        }
+    } catch (error) {
+        console.error('Could not load team members:', error);
+        container.innerHTML = `<p class="error-text">${getErrorMessage(error, lang)}</p>`;
+    }
 }

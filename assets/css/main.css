@@ -7,13 +7,20 @@
     --accent-color: #007bff;
     /* Bright Blue */
     --text-color: #333;
+    --text-light: #64748b;
+    /* Slate Gray for secondary text */
     --heading-color: #003366;
     --background-color: #ffffff;
+    --bg-light: #f8fafc;
+    /* Very light background */
+    --border-color: #e2e8f0;
+    /* Light border color */
     --heading-font: 'Roboto', 'Inter', sans-serif;
     --body-font: 'Open Sans', 'Lato', sans-serif;
     --border-radius: 8px;
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     --transition: all 0.3s ease;
+    --container-width: 1200px;
 }
 
 * {
