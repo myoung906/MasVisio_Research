@@ -188,85 +188,147 @@ function loadPublications() {
 
             if (container) {
                 if (publications.length > 0) {
-                    // 1. Calculate Statistics
-                    // Note: matching 'Prototype', 'Clinical', 'Policy' for EN, and '시제품', '임상', '정책' for KO
-                    // Or we can just count based on the field value present in data.
 
-                    const fieldCounts = publications.reduce((acc, pub) => {
-                        const field = pub.field || 'Other';
-                        acc[field] = (acc[field] || 0) + 1;
-                        return acc;
-                    }, {});
+                    // Categorize Publications
+                    const reviewedPapers = [];
+                    const conferences = [];
+                    const patents = [];
 
-                    const totalCount = publications.length;
+                    publications.forEach(pub => {
+                        // Normalize field to lower case for check (though data is mixed case/lang)
+                        const f = (pub.field || '').trim();
 
-                    // Define fixed keys for stats display
-                    const statsOrder = lang === 'ko'
-                        ? ['시제품', '임상', '정책']
-                        : ['Prototype', 'Clinical', 'Policy'];
+                        // Map specific fields to categories
+                        // Conference
+                        if (['학술발표', 'Conference', 'conference'].includes(f)) {
+                            conferences.push(pub);
+                        }
+                        // Patent
+                        else if (['특허', 'Patent', 'patent'].includes(f)) {
+                            patents.push(pub);
+                        }
+                        // Reviewed Papers (Default for 'Policy', 'Clinical', 'Prototype', etc.)
+                        else {
+                            reviewedPapers.push(pub);
+                        }
+                    });
 
-                    const totalLabel = lang === 'ko' ? '전체' : 'Total';
+                    let htmlContent = '';
 
-                    // 2. Render Stats Bar (Non-clickable)
-                    let statsHtml = '<div class="stats-bar-container" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">';
+                    // Helper to sort by year desc
+                    const sortByYear = (list) => {
+                        return list.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+                    };
 
-                    // Total
-                    statsHtml += `
-                        <div class="stat-badge" style="background: #f1f5f9; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; color: #475569; font-size: 0.9rem;">
-                            ${totalLabel} <span style="color: #003366;">${totalCount}</span>
-                        </div>
-                    `;
+                    // --- SECTION 1: Reviewed Papers ---
+                    if (reviewedPapers.length > 0) {
+                        const sorted = sortByYear(reviewedPapers);
 
-                    // Fields
-                    statsOrder.forEach(field => {
-                        const count = fieldCounts[field] || 0;
-                        statsHtml += `
-                            <div class="stat-badge" style="background: #fff; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; color: #64748b; font-size: 0.9rem;">
-                                ${field} <span style="color: #003366; font-weight: 600;">${count}</span>
+                        // Statistics for Reviewed Papers only
+                        const fieldCounts = sorted.reduce((acc, pub) => {
+                            const field = pub.field || 'Other';
+                            acc[field] = (acc[field] || 0) + 1;
+                            return acc;
+                        }, {});
+
+                        const totalCount = sorted.length;
+
+                        const statsOrder = lang === 'ko'
+                            ? ['시제품', '임상', '정책']
+                            : ['Prototype', 'Clinical', 'Policy'];
+                        const totalLabel = lang === 'ko' ? '전체' : 'Total';
+                        const sectionTitle = lang === 'ko' ? '연구논문' : 'Reviewed Papers';
+
+                        htmlContent += `<div id="reviewed-papers" style="margin-bottom: 4rem;">`;
+                        htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
+
+                        // Stats Bar
+                        htmlContent += '<div class="stats-bar-container" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">';
+
+                        // Total
+                        htmlContent += `
+                            <div class="stat-badge" style="background: #f1f5f9; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; color: #475569; font-size: 0.9rem;">
+                                ${totalLabel} <span style="color: #003366;">${totalCount}</span>
                             </div>
                         `;
-                    });
 
-                    statsHtml += '</div>';
+                        // Sub-fields
+                        statsOrder.forEach(field => {
+                            const count = fieldCounts[field] || 0;
+                            htmlContent += `
+                                <div class="stat-badge" style="background: #fff; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; color: #64748b; font-size: 0.9rem;">
+                                    ${field} <span style="color: #003366; font-weight: 600;">${count}</span>
+                                </div>
+                            `;
+                        });
+                        htmlContent += '</div>';
 
-                    // 3. Render List (ISO 690, Flat, Sorted by Year Desc)
+                        // List
+                        htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
+                        sorted.forEach((pub, index) => {
+                            htmlContent += `
+                                <div class="iso-item" style="font-size: 1rem; line-height: 1.6; padding-left: 1.5rem; text-indent: -1.5rem;">
+                                    <span style="color: #334155; font-weight: 600;">${index + 1}.</span> 
+                                    <span class="authors">${pub.authors}.</span> 
+                                    <a href="${pub.doi || '#'}" target="_blank" style="color: #003366; font-weight: 600; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; pointer-events: ${pub.doi ? 'auto' : 'none'};">
+                                        "${pub.title}"
+                                    </a>. 
+                                    <span class="journal" style="font-style: italic; color: #475569;">${pub.journal}</span>.
+                                </div>
+                            `;
+                        });
+                        htmlContent += '</div></div>';
+                    }
 
-                    // Sort by year desc
-                    const sortedPubs = [...publications].sort((a, b) => {
-                        return parseInt(b.year) - parseInt(a.year);
-                    });
+                    // --- SECTION 2: Conference ---
+                    if (conferences.length > 0) {
+                        const sorted = sortByYear(conferences);
+                        const sectionTitle = lang === 'ko' ? '학술발표' : 'Conference';
 
-                    // List Container
-                    let listHtml = '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
+                        htmlContent += `<div id="conference" style="margin-bottom: 4rem;">`;
+                        htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
 
-                    sortedPubs.forEach((pub, index) => {
-                        // ISO 690 Format: AUTHOR. Title. Journal.
-                        // We will use: Authors. Title (linked). Journal.
+                        htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
+                        sorted.forEach((pub, index) => {
+                            htmlContent += `
+                                <div class="iso-item" style="font-size: 1rem; line-height: 1.6; padding-left: 1.5rem; text-indent: -1.5rem;">
+                                    <span style="color: #334155; font-weight: 600;">${index + 1}.</span> 
+                                    <span class="authors">${pub.authors}.</span> 
+                                    <span style="color: #003366; font-weight: 600;">
+                                        "${pub.title}"
+                                    </span>. 
+                                    <span class="journal" style="font-style: italic; color: #475569;">${pub.journal}</span>.
+                                </div>
+                            `;
+                        });
+                        htmlContent += '</div></div>';
+                    }
 
-                        // Ensure authors end with period if not present (optional, but good for format)
-                        let authors = pub.authors;
-                        // if (!authors.endsWith('.')) authors += '.'; // Not modifying data strictly
+                    // --- SECTION 3: Patents ---
+                    if (patents.length > 0) {
+                        const sorted = sortByYear(patents);
+                        const sectionTitle = lang === 'ko' ? '특허' : 'Patent';
 
-                        // Journal usually includes Year, Vol, Pages
+                        htmlContent += `<div id="patent" style="margin-bottom: 4rem;">`;
+                        htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
 
-                        listHtml += `
-                            <div class="iso-item" style="font-size: 1rem; line-height: 1.6; padding-left: 1.5rem; text-indent: -1.5rem;">
-                                <span style="color: #334155; font-weight: 600;">${index + 1}.</span> 
-                                <span class="authors">${pub.authors}.</span> 
-                                <a href="${pub.doi}" target="_blank" style="color: #003366; font-weight: 600; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s;">
-                                    "${pub.title}"
-                                </a>. 
-                                <span class="journal" style="font-style: italic; color: #475569;">${pub.journal}</span>.
-                            </div>
-                        `;
-                    });
+                        htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
+                        sorted.forEach((pub, index) => {
+                            htmlContent += `
+                                <div class="iso-item" style="font-size: 1rem; line-height: 1.6; padding-left: 1.5rem; text-indent: -1.5rem;">
+                                    <span style="color: #334155; font-weight: 600;">${index + 1}.</span> 
+                                    <span class="authors">${pub.authors}.</span> 
+                                    <span style="color: #003366; font-weight: 600;">
+                                        "${pub.title}"
+                                    </span>. 
+                                    <span class="journal" style="font-style: italic; color: #475569;">${pub.journal}</span>.
+                                </div>
+                            `;
+                        });
+                        htmlContent += '</div></div>';
+                    }
 
-                    listHtml += '</div>';
-
-                    container.innerHTML = statsHtml + listHtml;
-
-                    // Add hover effect for links via JS or simple inline styles (added above)
-                    // We can inject a style block if needed for 'padding-left: 1.5rem; text-indent: -1.5rem' hanging indent
+                    container.innerHTML = htmlContent;
 
                 } else {
                     container.innerHTML = lang === 'ko'
