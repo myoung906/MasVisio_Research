@@ -422,30 +422,47 @@ async function loadPublications() {
                 const hash = window.location.hash;
                 const sessions = document.querySelectorAll('.publication-section');
 
+                // Helper to hide all then show specific
+                const showSection = (id) => {
+                    sessions.forEach(el => {
+                        if (el.id === id) {
+                            el.style.setProperty('display', 'block', 'important');
+                        } else {
+                            el.style.setProperty('display', 'none', 'important');
+                        }
+                    });
+                };
+
                 // If no hash or specific hash logic
                 if (hash === '#reviewed-papers') {
-                    sessions.forEach(el => {
-                        el.style.display = (el.id === 'reviewed-papers') ? 'block' : 'none';
-                    });
+                    showSection('reviewed-papers');
                 } else if (hash === '#conference') {
-                    sessions.forEach(el => {
-                        el.style.display = (el.id === 'conference') ? 'block' : 'none';
-                    });
+                    showSection('conference');
                 } else if (hash === '#patent') {
-                    sessions.forEach(el => {
-                        el.style.display = (el.id === 'patent') ? 'block' : 'none';
-                    });
+                    showSection('patent');
                 } else {
-                    // Default: show all (or could default to reviewed-papers if preferred)
-                    sessions.forEach(el => el.style.display = 'block');
+                    // Show all by default
+                    sessions.forEach(el => el.style.setProperty('display', 'block', 'important'));
+                }
+
+                // Scroll to top if filtering occurred to prevent being stuck in middle
+                if (hash && ['#reviewed-papers', '#conference', '#patent'].includes(hash)) {
+                    setTimeout(() => window.scrollTo(0, 0), 10);
                 }
             };
 
-            // Run on load
-            filterPublications();
+            // Run on load with slight delay to ensure render
+            setTimeout(filterPublications, 0);
 
             // Run on hash change
-            window.addEventListener('hashchange', filterPublications);
+            window.addEventListener('hashchange', () => {
+                filterPublications();
+                // Ensure Sidebar closes on mobile if open - Assuming toggleMobileNav is global
+                const sidebar = document.querySelector('.sidebar');
+                if (sidebar && sidebar.classList.contains('active') && typeof toggleMobileNav === 'function') {
+                    toggleMobileNav();
+                }
+            });
 
         } else {
             container.innerHTML = lang === 'ko'
