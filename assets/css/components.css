@@ -254,6 +254,12 @@
     padding: 3rem 2rem;
 }
 
+.team-card .affiliation {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0.2rem 0 0.6rem;
+}
+
 
 
 .team-card .role {
