@@ -449,6 +449,24 @@ async function loadPublications() {
                 if (hash && ['#reviewed-papers', '#conference', '#patent'].includes(hash)) {
                     setTimeout(() => window.scrollTo(0, 0), 10);
                 }
+
+                // Update Sidebar Active State
+                // Select all links in sidebar submenu - checking specific class .submenu-link
+                const currentHash = hash || '#reviewed-papers';
+                const subLinks = document.querySelectorAll('.sidebar-submenu a');
+
+                subLinks.forEach(link => {
+                    // Try to match href. Href might be full URL or just hash.
+                    // Get hash part from href
+                    const linkUrl = link.getAttribute('href');
+                    const linkHash = linkUrl.includes('#') ? '#' + linkUrl.split('#')[1] : linkUrl;
+
+                    if (linkHash === currentHash) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
             };
 
             // Run on load with slight delay to ensure render

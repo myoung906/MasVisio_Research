@@ -334,3 +334,23 @@ body {
         font-size: 2.5rem;
     }
 }
+/* Sidebar Submenu Styles */
+.sidebar-submenu .nav-item {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    color: #64748b;
+    font-weight: 400;
+    border-left: 3px solid transparent !important; /* Ensure consistent spacing */
+}
+
+.sidebar-submenu .nav-item:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 51, 102, 0.03);
+}
+
+.sidebar-submenu .nav-item.active {
+    color: var(--primary-color);
+    background-color: rgba(0, 51, 102, 0.05);
+    font-weight: 600;
+    border-left: 3px solid transparent !important; /* No border for submenu items */
+}
