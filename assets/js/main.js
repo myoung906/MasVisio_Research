@@ -277,83 +277,83 @@ async function loadPublications() {
 
         if (publications.length > 0) {
             // Categorize Publications
-                    const reviewedPapers = [];
-                    const conferences = [];
-                    const patents = [];
+            const reviewedPapers = [];
+            const conferences = [];
+            const patents = [];
 
-                    publications.forEach(pub => {
-                        // Normalize field to lower case for check (though data is mixed case/lang)
-                        const f = (pub.field || '').trim();
+            publications.forEach(pub => {
+                // Normalize field to lower case for check (though data is mixed case/lang)
+                const f = (pub.field || '').trim();
 
-                        // Map specific fields to categories
-                        // Conference
-                        if (['학술발표', 'Conference', 'conference'].includes(f)) {
-                            conferences.push(pub);
-                        }
-                        // Patent
-                        else if (['특허', 'Patent', 'patent'].includes(f)) {
-                            patents.push(pub);
-                        }
-                        // Reviewed Papers (Default for 'Policy', 'Clinical', 'Prototype', etc.)
-                        else {
-                            reviewedPapers.push(pub);
-                        }
-                    });
+                // Map specific fields to categories
+                // Conference
+                if (['학술발표', 'Conference', 'conference'].includes(f)) {
+                    conferences.push(pub);
+                }
+                // Patent
+                else if (['특허', 'Patent', 'patent'].includes(f)) {
+                    patents.push(pub);
+                }
+                // Reviewed Papers (Default for 'Policy', 'Clinical', 'Prototype', etc.)
+                else {
+                    reviewedPapers.push(pub);
+                }
+            });
 
-                    let htmlContent = '';
+            let htmlContent = '';
 
-                    // Helper to sort by year desc
-                    const sortByYear = (list) => {
-                        return list.sort((a, b) => parseInt(b.year) - parseInt(a.year));
-                    };
+            // Helper to sort by year desc
+            const sortByYear = (list) => {
+                return list.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+            };
 
-                    // --- SECTION 1: Reviewed Papers ---
-                    if (reviewedPapers.length > 0) {
-                        const sorted = sortByYear(reviewedPapers);
+            // --- SECTION 1: Reviewed Papers ---
+            if (reviewedPapers.length > 0) {
+                const sorted = sortByYear(reviewedPapers);
 
-                        // Statistics for Reviewed Papers only
-                        const fieldCounts = sorted.reduce((acc, pub) => {
-                            const field = pub.field || 'Other';
-                            acc[field] = (acc[field] || 0) + 1;
-                            return acc;
-                        }, {});
+                // Statistics for Reviewed Papers only
+                const fieldCounts = sorted.reduce((acc, pub) => {
+                    const field = pub.field || 'Other';
+                    acc[field] = (acc[field] || 0) + 1;
+                    return acc;
+                }, {});
 
-                        const totalCount = sorted.length;
+                const totalCount = sorted.length;
 
-                        const statsOrder = lang === 'ko'
-                            ? ['시제품', '임상', '정책']
-                            : ['Prototype', 'Clinical', 'Policy'];
-                        const totalLabel = lang === 'ko' ? '전체' : 'Total';
-                        const sectionTitle = lang === 'ko' ? '연구논문' : 'Reviewed Papers';
+                const statsOrder = lang === 'ko'
+                    ? ['시제품', '임상', '정책']
+                    : ['Prototype', 'Clinical', 'Policy'];
+                const totalLabel = lang === 'ko' ? '전체' : 'Total';
+                const sectionTitle = lang === 'ko' ? '연구논문' : 'Reviewed Papers';
 
-                        htmlContent += `<div id="reviewed-papers" style="margin-bottom: 4rem;">`;
-                        htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
+                htmlContent += `<div id="reviewed-papers" style="margin-bottom: 4rem;">`;
+                htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
 
-                        // Stats Bar
-                        htmlContent += '<div class="stats-bar-container" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">';
+                // Stats Bar
+                htmlContent += '<div class="stats-bar-container" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">';
 
-                        // Total
-                        htmlContent += `
+                // Total
+                htmlContent += `
                             <div class="stat-badge" style="background: #f1f5f9; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; color: #475569; font-size: 0.9rem;">
                                 ${totalLabel} <span style="color: #003366;">${totalCount}</span>
                             </div>
                         `;
 
-                        // Sub-fields
-                        statsOrder.forEach(field => {
-                            const count = fieldCounts[field] || 0;
-                            htmlContent += `
+                // Sub-fields
+                statsOrder.forEach(field => {
+                    const count = fieldCounts[field] || 0;
+                    htmlContent += `
                                 <div class="stat-badge" style="background: #fff; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; color: #64748b; font-size: 0.9rem;">
                                     ${field} <span style="color: #003366; font-weight: 600;">${count}</span>
                                 </div>
                             `;
-                        });
-                        htmlContent += '</div>';
+                });
+                htmlContent += '</div>';
 
-                        // List
-                        htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
-                        sorted.forEach((pub, index) => {
-                            htmlContent += `
+                // List
+                htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
+                sorted.forEach((pub, index) => {
+                    htmlContent += `
                                 <div class="iso-item" style="font-size: 1rem; line-height: 1.6; padding-left: 1.5rem; text-indent: -1.5rem;">
                                     <span style="color: #334155; font-weight: 600;">${index + 1}.</span> 
                                     <span class="authors">${pub.authors}.</span> 
@@ -363,21 +363,21 @@ async function loadPublications() {
                                     <span class="journal" style="font-style: italic; color: #475569;">${pub.journal}</span>.
                                 </div>
                             `;
-                        });
-                        htmlContent += '</div></div>';
-                    }
+                });
+                htmlContent += '</div></div>';
+            }
 
-                    // --- SECTION 2: Conference ---
-                    if (conferences.length > 0) {
-                        const sorted = sortByYear(conferences);
-                        const sectionTitle = lang === 'ko' ? '학술발표' : 'Conference';
+            // --- SECTION 2: Conference ---
+            if (conferences.length > 0) {
+                const sorted = sortByYear(conferences);
+                const sectionTitle = lang === 'ko' ? '학술발표' : 'Conference';
 
-                        htmlContent += `<div id="conference" style="margin-bottom: 4rem;">`;
-                        htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
+                htmlContent += `<div id="conference" style="margin-bottom: 4rem;">`;
+                htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
 
-                        htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
-                        sorted.forEach((pub, index) => {
-                            htmlContent += `
+                htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
+                sorted.forEach((pub, index) => {
+                    htmlContent += `
                                 <div class="iso-item" style="font-size: 1rem; line-height: 1.6; padding-left: 1.5rem; text-indent: -1.5rem;">
                                     <span style="color: #334155; font-weight: 600;">${index + 1}.</span> 
                                     <span class="authors">${pub.authors}.</span> 
@@ -387,21 +387,21 @@ async function loadPublications() {
                                     <span class="journal" style="font-style: italic; color: #475569;">${pub.journal}</span>.
                                 </div>
                             `;
-                        });
-                        htmlContent += '</div></div>';
-                    }
+                });
+                htmlContent += '</div></div>';
+            }
 
-                    // --- SECTION 3: Patents ---
-                    if (patents.length > 0) {
-                        const sorted = sortByYear(patents);
-                        const sectionTitle = lang === 'ko' ? '특허' : 'Patent';
+            // --- SECTION 3: Patents ---
+            if (patents.length > 0) {
+                const sorted = sortByYear(patents);
+                const sectionTitle = lang === 'ko' ? '특허' : 'Patent';
 
-                        htmlContent += `<div id="patent" style="margin-bottom: 4rem;">`;
-                        htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
+                htmlContent += `<div id="patent" style="margin-bottom: 4rem;">`;
+                htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
 
-                        htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
-                        sorted.forEach((pub, index) => {
-                            htmlContent += `
+                htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
+                sorted.forEach((pub, index) => {
+                    htmlContent += `
                                 <div class="iso-item" style="font-size: 1rem; line-height: 1.6; padding-left: 1.5rem; text-indent: -1.5rem;">
                                     <span style="color: #334155; font-weight: 600;">${index + 1}.</span> 
                                     <span class="authors">${pub.authors}.</span> 
@@ -411,9 +411,9 @@ async function loadPublications() {
                                     <span class="journal" style="font-style: italic; color: #475569;">${pub.journal}</span>.
                                 </div>
                             `;
-                        });
-                        htmlContent += '</div></div>';
-                    }
+                });
+                htmlContent += '</div></div>';
+            }
 
             container.innerHTML = htmlContent;
         } else {
@@ -504,11 +504,11 @@ async function loadTeamMembers() {
         if (teamMembers.length > 0) {
             container.innerHTML = teamMembers.map(member => `
                 <div class="team-card">
-                    <div class="team-photo"></div>
-                    <h3>${member.name}</h3>
-                    <p class="role">${member.role}</p>
-                    <p class="bio">${member.bio}</p>
-                    <p class="expertise"><small>${member.expertise}</small></p>
+                    <h3 style="margin-bottom: 0.5rem;">${member.name}</h3>
+                    <p class="affiliation" style="color: #003366; font-weight: 500; font-size: 0.95rem; margin-bottom: 0.5rem;">${member.affiliation}</p>
+                    <p class="role" style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">${member.role}</p>
+                    <p class="bio" style="font-size: 0.95rem; line-height: 1.6;">${member.bio}</p>
+                    <p class="expertise" style="margin-top: 1rem; color: #475569;"><small>${member.expertise}</small></p>
                 </div>
             `).join('');
         } else {
