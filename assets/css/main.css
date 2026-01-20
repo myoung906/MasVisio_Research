@@ -299,7 +299,7 @@ body {
         /* Implement mobile menu logic if needed */
     }
 
-    .hero {}
+    /* .hero {} removed */
 
     .hero h2 {
         font-size: 2.2rem;

@@ -13,26 +13,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // This is the only DOMContentLoaded listener
     console.log('DOM is fully loaded and parsed');
 
-    // Mobile menu functionality
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    if (mobileToggle) {
-        mobileToggle.addEventListener('click', toggleMobileMenu);
-    }
+    // Initialize Mobile Navigation
+    initMobileNav();
 
     // Close menu with Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            const mobileMenu = document.getElementById('mobile-nav-menu');
-            if (mobileMenu && mobileMenu.classList.contains('active')) {
-                closeMobileMenu();
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar && sidebar.classList.contains('active')) {
+                toggleMobileNav(); // Use unified toggle function
             }
         }
     });
 
-    // Close menu by clicking a link
-    document.querySelectorAll('.mobile-nav-menu .nav-link').forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
+    // Close menu by clicking a link (optional, if we want auto-close on navigate)
+    // Not strictly needed for multi-page app, but good for anchors.
+    // Keeping it simple for now.
+
+    // Handle dropdown menus on desktop
 
     // Handle dropdown menus on desktop
     setupDesktopDropdowns();
@@ -62,27 +60,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function toggleMobileMenu() {
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-nav-menu');
+function initMobileNav() {
+    // 1. Check if elements exist, if not inject them
+    if (!document.querySelector('.mobile-nav-toggle')) {
+        const toggleBtn = document.createElement('button');
+        toggleBtn.className = 'mobile-nav-toggle';
+        toggleBtn.ariaLabel = 'Toggle Navigation';
+        toggleBtn.innerHTML = `
+            <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        `;
+        document.body.appendChild(toggleBtn);
 
-    if (mobileToggle && mobileMenu) {
-        const isActive = mobileToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.style.overflow = isActive ? 'hidden' : 'auto';
+        toggleBtn.addEventListener('click', toggleMobileNav);
+    }
+
+    if (!document.querySelector('.mobile-nav-overlay')) {
+        const overlay = document.createElement('div');
+        overlay.className = 'mobile-nav-overlay';
+        document.body.appendChild(overlay);
+
+        overlay.addEventListener('click', toggleMobileNav);
     }
 }
 
-function closeMobileMenu() {
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-nav-menu');
+function toggleMobileNav() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.mobile-nav-overlay');
+    const toggleBtn = document.querySelector('.mobile-nav-toggle');
 
-    if (mobileToggle && mobileMenu) {
-        mobileToggle.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    if (sidebar && overlay && toggleBtn) {
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+        toggleBtn.classList.toggle('active');
+        document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
     }
 }
+
+// Old functions removed/replaced
+// function toggleMobileMenu() { ... }
+// function closeMobileMenu() { ... }
 
 function setupDesktopDropdowns() {
     const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
