@@ -181,6 +181,7 @@ body {
 .main-content {
     flex: 1;
     margin-left: 280px;
+    width: calc(100% - 280px);
     /* Width of sidebar */
     min-width: 0;
     /* Prevent flex overflow */

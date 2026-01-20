@@ -17,17 +17,10 @@
 </head>
 
 <body class="sidebar-layout">
-    <header class="mobile-header">
-        <a href="../index.html" class="mobile-logo">
-            <h1>MasVisio<br>Research</h1>
-            <span class="logo-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
-        </a>
-    </header>
-
-    <aside class="sidebar" role="navigation" aria-label="메인 네비게이션">
+    <aside class="sidebar">
         <div class="sidebar-header">
             <a href="../index.html" class="sidebar-logo">
-                <h1>MasVisio Research</h1>
+                <h1>MasVisio<br>Research</h1>
                 <span class="sidebar-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
             </a>
         </div>
@@ -43,9 +36,9 @@
             <a href="index.html" class="nav-item active">연구성과</a>
             <div class="sidebar-submenu"
                 style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.5rem;">
-                <a href="#reviewed-papers" class="nav-item submenu-link">연구논문</a>
-                <a href="#conference" class="nav-item submenu-link">학술발표</a>
-                <a href="#patent" class="nav-item submenu-link">특허</a>
+                <a href="#reviewed-papers" class="nav-item">연구논문</a>
+                <a href="#conference" class="nav-item">학술발표</a>
+                <a href="#patent" class="nav-item">특허</a>
             </div>
             <a href="../gallery/index.html" class="nav-item">갤러리</a>
             <a href="../partnership/index.html" class="nav-item">제공서비스</a>
@@ -64,7 +57,7 @@
     <main class="main-content">
         <section class="section" style="padding: 4rem 4rem;">
             <div class="container">
-                <header id="page-header" style="margin-bottom: 4rem; border-bottom: none;">
+                <header class="publications-header" style="margin-bottom: 4rem; border-bottom: none;">
                     <h2 style="font-size: 3rem; margin-bottom: 1rem;">연구 성과</h2>
                     <p style="font-size: 1.2rem; color: #64748b;">최신 연구 결과와 학술적 기여를 소개합니다.</p>
                 </header>
@@ -77,7 +70,10 @@
         </section>
     </main>
 
-    <script src="../../assets/js/main.js?v=1.6"></script>
+    <script src="../../assets/js/main.js?v=1.4"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadPublications);
+    </script>
 </body>
 
 </html>

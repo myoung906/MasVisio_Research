@@ -14,22 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/main.css?v=1.4">
-    <link rel="stylesheet" href="../assets/css/responsive.css?v=1.4">
     <link rel="stylesheet" href="../assets/css/components.css?v=1.4">
 </head>
 
 <body class="sidebar-layout">
-    <header class="mobile-header">
-        <a href="../index.html" class="mobile-logo">
-            <h1>MasVisio<br>Research</h1>
-            <span class="logo-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
-        </a>
-    </header>
-
-    <aside class="sidebar" role="navigation" aria-label="Main navigation">
+    <aside class="sidebar">
         <div class="sidebar-header">
             <a href="../index.html" class="sidebar-logo">
-                <h1>MasVisio Research</h1>
+                <h1>MasVisio<br>Research</h1>
                 <span class="sidebar-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
             </a>
         </div>
@@ -45,9 +37,9 @@
             <a href="index.html" class="nav-item active">Publications</a>
             <div class="sidebar-submenu"
                 style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.5rem;">
-                <a href="#reviewed-papers" class="nav-item submenu-link">Reviewed Papers</a>
-                <a href="#conference" class="nav-item submenu-link">Conference</a>
-                <a href="#patent" class="nav-item submenu-link">Patent</a>
+                <a href="#reviewed-papers" class="nav-item">Reviewed Papers</a>
+                <a href="#conference" class="nav-item">Conference</a>
+                <a href="#patent" class="nav-item">Patent</a>
             </div>
             <a href="../gallery/index.html" class="nav-item">Gallery</a>
             <a href="../partnership/index.html" class="nav-item">Services</a>
@@ -66,22 +58,24 @@
     <main class="main-content">
         <section class="section" style="padding: 4rem 4rem;">
             <div class="container">
-                <header id="page-header" style="margin-bottom: 4rem; border-bottom: none;">
-                    <h2 style="font-size: 3rem; margin-bottom: 1rem;">Research Publications</h2>
+                <header class="publications-header" style="margin-bottom: 4rem; border-bottom: none;">
+                    <h2 style="font-size: 3rem; margin-bottom: 1rem;">Publications</h2>
                     <p style="font-size: 1.2rem; color: #64748b;">Our latest research findings and academic
                         contributions.</p>
                 </header>
 
                 <div id="publications-container">
                     <!-- Dynamic content will be loaded here -->
-                    <div class="loading-spinner"></div>
-                    <p style="text-align:center; color:#64748b;">Loading publications...</p>
+                    <p>Loading publications...</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="../assets/js/main.js?v=1.6"></script>
+    <script src="../assets/js/main.js?v=1.4"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadPublications);
+    </script>
 </body>
 
 </html>

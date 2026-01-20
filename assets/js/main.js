@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // If there is a publications container, load publications
     if (document.getElementById('publications-container')) {
         loadPublications();
+        initPublicationsNavigation();
     }
 
     // If there is a project detail container, load details
@@ -151,6 +152,62 @@ document.addEventListener('DOMContentLoaded', () => {
         loadTeamMembers();
     }
 });
+
+function refreshPublicationsView() {
+    const container = document.getElementById('publications-container');
+    if (!container) return;
+
+    const submenuLinks = document.querySelectorAll('.sidebar-submenu .nav-item[href^="#"]');
+    if (!submenuLinks.length) return;
+
+    const hash = window.location.hash;
+    const targetLink = Array.from(submenuLinks).find(link => link.getAttribute('href') === hash);
+    const targetId = hash ? hash.slice(1) : '';
+    const targetSection = targetId ? document.getElementById(targetId) : null;
+    const hasTarget = Boolean(targetLink && targetSection);
+
+    submenuLinks.forEach(link => {
+        link.classList.toggle('active', hasTarget && link === targetLink);
+    });
+
+    const isMobile = window.innerWidth <= 768;
+    const header = document.querySelector('.publications-header');
+    const sections = document.querySelectorAll('#publications-container > div[id]');
+
+    if (isMobile && hasTarget) {
+        if (header) {
+            header.style.display = 'none';
+        }
+        sections.forEach(section => {
+            section.style.display = section.id === targetId ? '' : 'none';
+        });
+    } else {
+        if (header) {
+            header.style.display = '';
+        }
+        sections.forEach(section => {
+            section.style.display = '';
+        });
+    }
+}
+
+function initPublicationsNavigation() {
+    const container = document.getElementById('publications-container');
+    if (!container) return;
+
+    const submenuLinks = document.querySelectorAll('.sidebar-submenu .nav-item[href^="#"]');
+    if (!submenuLinks.length) return;
+
+    submenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            setTimeout(refreshPublicationsView, 0);
+        });
+    });
+
+    window.addEventListener('hashchange', refreshPublicationsView);
+    window.addEventListener('resize', refreshPublicationsView);
+    refreshPublicationsView();
+}
 
 function initMobileNav() {
     // 1. Check if elements exist, if not inject them
@@ -326,7 +383,7 @@ async function loadPublications() {
                 const totalLabel = lang === 'ko' ? '전체' : 'Total';
                 const sectionTitle = lang === 'ko' ? '연구논문' : 'Reviewed Papers';
 
-                htmlContent += `<div id="reviewed-papers" class="publication-section" style="margin-bottom: 4rem;">`;
+                htmlContent += `<div id="reviewed-papers" style="margin-bottom: 4rem;">`;
                 htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
 
                 // Stats Bar
@@ -372,7 +429,7 @@ async function loadPublications() {
                 const sorted = sortByYear(conferences);
                 const sectionTitle = lang === 'ko' ? '학술발표' : 'Conference';
 
-                htmlContent += `<div id="conference" class="publication-section" style="margin-bottom: 4rem;">`;
+                htmlContent += `<div id="conference" style="margin-bottom: 4rem;">`;
                 htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
 
                 htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
@@ -396,7 +453,7 @@ async function loadPublications() {
                 const sorted = sortByYear(patents);
                 const sectionTitle = lang === 'ko' ? '특허' : 'Patent';
 
-                htmlContent += `<div id="patent" class="publication-section" style="margin-bottom: 4rem;">`;
+                htmlContent += `<div id="patent" style="margin-bottom: 4rem;">`;
                 htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
 
                 htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
@@ -416,78 +473,7 @@ async function loadPublications() {
             }
 
             container.innerHTML = htmlContent;
-
-            // --- Logic for Visibility Handling ---
-            const filterPublications = () => {
-                const hash = window.location.hash;
-                const sessions = document.querySelectorAll('.publication-section');
-
-                // Helper to hide all then show specific
-                const showSection = (id) => {
-                    sessions.forEach(el => {
-                        if (el.id === id) {
-                            el.style.setProperty('display', 'block', 'important');
-                        } else {
-                            el.style.setProperty('display', 'none', 'important');
-                        }
-                    });
-                };
-
-                // If no hash or specific hash logic
-                const pageHeader = document.getElementById('page-header');
-
-                if (hash === '#reviewed-papers') {
-                    showSection('reviewed-papers');
-                    if (pageHeader) pageHeader.style.display = 'none';
-                } else if (hash === '#conference') {
-                    showSection('conference');
-                    if (pageHeader) pageHeader.style.display = 'none';
-                } else if (hash === '#patent') {
-                    showSection('patent');
-                    if (pageHeader) pageHeader.style.display = 'none';
-                } else {
-                    // Default behavior - Hide all lists, Show Header (for both langs)
-                    sessions.forEach(el => el.style.setProperty('display', 'none', 'important'));
-                    if (pageHeader) pageHeader.style.display = 'block';
-                }
-
-                // Scroll to top if filtering occurred to prevent being stuck in middle
-                if (hash && ['#reviewed-papers', '#conference', '#patent'].includes(hash)) {
-                    setTimeout(() => window.scrollTo(0, 0), 10);
-                }
-
-                // Update Sidebar Active State
-                // Select all links in sidebar submenu - checking specific class .submenu-link
-                const currentHash = hash || '#reviewed-papers';
-                const subLinks = document.querySelectorAll('.sidebar-submenu a');
-
-                subLinks.forEach(link => {
-                    // Try to match href. Href might be full URL or just hash.
-                    // Get hash part from href
-                    const linkUrl = link.getAttribute('href');
-                    const linkHash = linkUrl.includes('#') ? '#' + linkUrl.split('#')[1] : linkUrl;
-
-                    if (linkHash === currentHash) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
-            };
-
-            // Run on load with slight delay to ensure render
-            setTimeout(filterPublications, 0);
-
-            // Run on hash change
-            window.addEventListener('hashchange', () => {
-                filterPublications();
-                // Ensure Sidebar closes on mobile if open - Assuming toggleMobileNav is global
-                const sidebar = document.querySelector('.sidebar');
-                if (sidebar && sidebar.classList.contains('active') && typeof toggleMobileNav === 'function') {
-                    toggleMobileNav();
-                }
-            });
-
+            refreshPublicationsView();
         } else {
             container.innerHTML = lang === 'ko'
                 ? '<p>등록된 논문이 없습니다.</p>'
@@ -576,11 +562,10 @@ async function loadTeamMembers() {
         if (teamMembers.length > 0) {
             container.innerHTML = teamMembers.map(member => `
                 <div class="team-card">
-                    <h3 style="margin-bottom: 0.5rem;">${member.name}</h3>
-                    <p class="affiliation" style="color: #003366; font-weight: 500; font-size: 0.95rem; margin-bottom: 0.5rem;">${member.affiliation}</p>
-                    <p class="role" style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">${member.role}</p>
-                    <p class="bio" style="font-size: 0.95rem; line-height: 1.6;">${member.bio}</p>
-                    <p class="expertise" style="margin-top: 1rem; color: #475569;"><small>${member.expertise}</small></p>
+                    <h3>${member.name}</h3>
+                    <p class="role">${member.role}</p>
+                    <p class="bio">${member.bio}</p>
+                    <p class="expertise"><small>${member.expertise}</small></p>
                 </div>
             `).join('');
         } else {
