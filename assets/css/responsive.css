@@ -268,9 +268,11 @@
         /* border-bottom removed */
         /* No padding-right to ensure center alignment */
         flex-direction: column;
-        padding: 0.5rem 0;
+        padding: 1rem 0;
         height: auto;
-        min-height: 80px;
+        min-height: 120px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        /* Subtle shadow for depth */
     }
 
     /* Move toggle button position slightly to align with header if needed, but current top: 1.5rem is ~24px */
@@ -286,28 +288,30 @@
     .mobile-header .mobile-logo h1 {
         font-family: 'Inter', sans-serif;
         font-weight: 800;
-        font-size: 1.4rem;
+        font-size: 2rem;
+        /* Increased size for impact */
         color: #003366;
-        line-height: 1.2;
-        margin: 0;
+        line-height: 1.1;
+        margin: 0 0 0.5rem 0;
     }
 
-    .mobile-header .mobile-logo span {
+    .mobile-header .mobile-logo .logo-subtitle {
         font-family: 'Inter', sans-serif;
-        font-size: 0.7rem;
+        font-size: 0.9rem;
+        /* Increased readability */
         color: #64748b;
         font-weight: 500;
-        line-height: 1.3;
-        margin-top: 0.2rem;
+        line-height: 1.4;
     }
 
-    .mobile-header .mobile-logo span br {
-        display: none;
+    /* Ensure breaks work */
+    .mobile-header br {
+        display: block;
     }
 
     /* Push main content down so it doesn't hide behind header */
     .main-content {
-        padding-top: 80px !important;
+        padding-top: 140px !important;
     }
 
     /* Adjust intro section padding top since we added margin */
