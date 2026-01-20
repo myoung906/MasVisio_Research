@@ -265,7 +265,7 @@
         backdrop-filter: blur(10px);
         z-index: 1000;
         /* Ensure visibility */
-        border-bottom: 1px solid #e2e8f0;
+        /* border-bottom removed */
         /* No padding-right to ensure center alignment */
     }
 
