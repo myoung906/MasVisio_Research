@@ -170,6 +170,7 @@ function loadResearchProjects() {
         });
 }
 
+
 function loadPublications() {
     const lang = document.documentElement.lang || 'en';
     const dataPath = getBasePath() + 'assets/data/content.json';
@@ -187,69 +188,86 @@ function loadPublications() {
 
             if (container) {
                 if (publications.length > 0) {
-                    // Group by field
-                    const grouped = publications.reduce((acc, pub) => {
+                    // 1. Calculate Statistics
+                    // Note: matching 'Prototype', 'Clinical', 'Policy' for EN, and '시제품', '임상', '정책' for KO
+                    // Or we can just count based on the field value present in data.
+
+                    const fieldCounts = publications.reduce((acc, pub) => {
                         const field = pub.field || 'Other';
-                        if (!acc[field]) {
-                            acc[field] = [];
-                        }
-                        acc[field].push(pub);
+                        acc[field] = (acc[field] || 0) + 1;
                         return acc;
                     }, {});
 
-                    // Define fixed order
-                    const orderEn = ['Prototype', 'Clinical', 'Policy'];
-                    const orderKo = ['시제품', '임상', '정책'];
-                    const targetOrder = lang === 'ko' ? orderKo : orderEn;
-
-                    // Sort fields based on fixed order
-                    const fields = Object.keys(grouped).sort((a, b) => {
-                        const indexA = targetOrder.indexOf(a);
-                        const indexB = targetOrder.indexOf(b);
-
-                        if (indexA !== -1 && indexB !== -1) return indexA - indexB;
-                        if (indexA !== -1) return -1;
-                        if (indexB !== -1) return 1;
-                        return a.localeCompare(b);
-                    });
-
-                    // Prepare 'All' tab data
-                    const allLabel = lang === 'ko' ? '전체' : 'All';
                     const totalCount = publications.length;
 
-                    // Create Tabs
-                    let tabsHtml = '<div class="tab-container">';
+                    // Define fixed keys for stats display
+                    const statsOrder = lang === 'ko'
+                        ? ['시제품', '임상', '정책']
+                        : ['Prototype', 'Clinical', 'Policy'];
 
-                    // Add 'All' tab button
-                    tabsHtml += `<button class="tab-button active" onclick="openTab(event, 'All')">
-                        ${allLabel} <span class="count-badge">${totalCount}</span>
-                    </button>`;
+                    const totalLabel = lang === 'ko' ? '전체' : 'Total';
 
-                    // Add other field tab buttons
-                    fields.forEach(field => {
-                        const count = grouped[field].length;
-                        tabsHtml += `<button class="tab-button" onclick="openTab(event, '${field}')">
-                            ${field} <span class="count-badge">${count}</span>
-                        </button>`;
-                    });
-                    tabsHtml += '</div>';
+                    // 2. Render Stats Bar (Non-clickable)
+                    let statsHtml = '<div class="stats-bar-container" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">';
 
-                    // Create Content
-                    let contentHtml = '';
+                    // Total
+                    statsHtml += `
+                        <div class="stat-badge" style="background: #f1f5f9; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; color: #475569; font-size: 0.9rem;">
+                            ${totalLabel} <span style="color: #003366;">${totalCount}</span>
+                        </div>
+                    `;
 
-                    // 1. Create 'All' content block (Active by default)
-                    contentHtml += `<div id="All" class="tab-content active">`;
-                    contentHtml += renderPublicationsByYear(publications, lang);
-                    contentHtml += `</div>`;
-
-                    // 2. Create individual field content blocks (Hidden by default)
-                    fields.forEach(field => {
-                        contentHtml += `<div id="${field}" class="tab-content">`;
-                        contentHtml += renderPublicationsByYear(grouped[field], lang);
-                        contentHtml += `</div>`;
+                    // Fields
+                    statsOrder.forEach(field => {
+                        const count = fieldCounts[field] || 0;
+                        statsHtml += `
+                            <div class="stat-badge" style="background: #fff; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; color: #64748b; font-size: 0.9rem;">
+                                ${field} <span style="color: #003366; font-weight: 600;">${count}</span>
+                            </div>
+                        `;
                     });
 
-                    container.innerHTML = tabsHtml + contentHtml;
+                    statsHtml += '</div>';
+
+                    // 3. Render List (ISO 690, Flat, Sorted by Year Desc)
+
+                    // Sort by year desc
+                    const sortedPubs = [...publications].sort((a, b) => {
+                        return parseInt(b.year) - parseInt(a.year);
+                    });
+
+                    // List Container
+                    let listHtml = '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
+
+                    sortedPubs.forEach((pub, index) => {
+                        // ISO 690 Format: AUTHOR. Title. Journal.
+                        // We will use: Authors. Title (linked). Journal.
+
+                        // Ensure authors end with period if not present (optional, but good for format)
+                        let authors = pub.authors;
+                        // if (!authors.endsWith('.')) authors += '.'; // Not modifying data strictly
+
+                        // Journal usually includes Year, Vol, Pages
+
+                        listHtml += `
+                            <div class="iso-item" style="font-size: 1rem; line-height: 1.6; padding-left: 1.5rem; text-indent: -1.5rem;">
+                                <span style="color: #334155; font-weight: 600;">${index + 1}.</span> 
+                                <span class="authors">${pub.authors}.</span> 
+                                <a href="${pub.doi}" target="_blank" style="color: #003366; font-weight: 600; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s;">
+                                    "${pub.title}"
+                                </a>. 
+                                <span class="journal" style="font-style: italic; color: #475569;">${pub.journal}</span>.
+                            </div>
+                        `;
+                    });
+
+                    listHtml += '</div>';
+
+                    container.innerHTML = statsHtml + listHtml;
+
+                    // Add hover effect for links via JS or simple inline styles (added above)
+                    // We can inject a style block if needed for 'padding-left: 1.5rem; text-indent: -1.5rem' hanging indent
+
                 } else {
                     container.innerHTML = lang === 'ko'
                         ? '<p>등록된 논문이 없습니다.</p>'
@@ -268,74 +286,9 @@ function loadPublications() {
         });
 }
 
-function renderPublicationsByYear(publications, lang) {
-    // Group by year
-    const byYear = publications.reduce((acc, pub) => {
-        const year = pub.year || 'Unknown';
-        if (!acc[year]) acc[year] = [];
-        acc[year].push(pub);
-        return acc;
-    }, {});
+// Helper functions renderPublicationsByYear, createPublicationItem, openTab are no longer needed 
+// and replaced by the logic inside loadPublications or removed.
 
-    // Sort years descending
-    const years = Object.keys(byYear).sort((a, b) => parseInt(b) - parseInt(a));
-
-    let html = '';
-    years.forEach(year => {
-        const yearLabel = lang === 'ko' ? `${year}년` : year;
-        html += `<h3 class="year-header">${yearLabel}</h3>`;
-        html += `<div class="year-group">`; // Container for this year's items
-
-        // Sort items within year if needed (optional, assuming already sorted or order doesn't matter much)
-        byYear[year].forEach(pub => {
-            html += createPublicationItem(pub, lang);
-        });
-        html += `</div>`;
-    });
-    return html;
-}
-
-function createPublicationItem(pub, lang) {
-    const linkText = lang === 'ko' ? '논문 보기' : 'View Paper';
-    const authorLabel = lang === 'ko' ? '저자:' : 'Authors:';
-
-    return `
-        <div class="publication-item">
-            <h4>${pub.title}</h4>
-            <p><strong>${authorLabel}</strong> ${pub.authors}</p>
-            <p><em>${pub.journal}</em>, ${pub.year}</p>
-            <a href="${pub.doi}" target="_blank" class="publication-link">${linkText}</a>
-        </div>
-    `;
-}
-
-function openTab(evt, fieldName) {
-    // Hide all tab content
-    const tabContents = document.getElementsByClassName("tab-content");
-    for (let i = 0; i < tabContents.length; i++) {
-        tabContents[i].classList.remove("active");
-        tabContents[i].style.display = "none"; // Ensure hidden
-    }
-
-    // Remove active class from all tab buttons
-    const tabButtons = document.getElementsByClassName("tab-button");
-    for (let i = 0; i < tabButtons.length; i++) {
-        tabButtons[i].classList.remove("active");
-    }
-
-    // Show the specific tab content
-    const activeContent = document.getElementById(fieldName);
-    if (activeContent) {
-        activeContent.style.display = "block";
-        // Small delay to allow display:block to apply before adding active class for animation
-        setTimeout(() => {
-            activeContent.classList.add("active");
-        }, 10);
-    }
-
-    // Add active class to the button that opened the tab
-    evt.currentTarget.classList.add("active");
-}
 
 function loadProjectDetails() {
     const params = new URLSearchParams(window.location.search);
