@@ -434,21 +434,21 @@ async function loadPublications() {
                 };
 
                 // If no hash or specific hash logic
+                const pageHeader = document.getElementById('page-header');
+
                 if (hash === '#reviewed-papers') {
                     showSection('reviewed-papers');
+                    if (pageHeader) pageHeader.style.display = 'none';
                 } else if (hash === '#conference') {
                     showSection('conference');
+                    if (pageHeader) pageHeader.style.display = 'none';
                 } else if (hash === '#patent') {
                     showSection('patent');
+                    if (pageHeader) pageHeader.style.display = 'none';
                 } else {
-                    // Default behavior
-                    if (lang === 'ko' && !hash) {
-                        // Hide all for Korean main entry
-                        sessions.forEach(el => el.style.setProperty('display', 'none', 'important'));
-                    } else {
-                        // Show all for English or other cases
-                        sessions.forEach(el => el.style.setProperty('display', 'block', 'important'));
-                    }
+                    // Default behavior - Hide all lists, Show Header (for both langs)
+                    sessions.forEach(el => el.style.setProperty('display', 'none', 'important'));
+                    if (pageHeader) pageHeader.style.display = 'block';
                 }
 
                 // Scroll to top if filtering occurred to prevent being stuck in middle
