@@ -441,8 +441,14 @@ async function loadPublications() {
                 } else if (hash === '#patent') {
                     showSection('patent');
                 } else {
-                    // Show all by default
-                    sessions.forEach(el => el.style.setProperty('display', 'block', 'important'));
+                    // Default behavior
+                    if (lang === 'ko' && !hash) {
+                        // Hide all for Korean main entry
+                        sessions.forEach(el => el.style.setProperty('display', 'none', 'important'));
+                    } else {
+                        // Show all for English or other cases
+                        sessions.forEach(el => el.style.setProperty('display', 'block', 'important'));
+                    }
                 }
 
                 // Scroll to top if filtering occurred to prevent being stuck in middle
