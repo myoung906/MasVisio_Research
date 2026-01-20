@@ -326,7 +326,7 @@ async function loadPublications() {
                 const totalLabel = lang === 'ko' ? '전체' : 'Total';
                 const sectionTitle = lang === 'ko' ? '연구논문' : 'Reviewed Papers';
 
-                htmlContent += `<div id="reviewed-papers" style="margin-bottom: 4rem;">`;
+                htmlContent += `<div id="reviewed-papers" class="publication-section" style="margin-bottom: 4rem;">`;
                 htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
 
                 // Stats Bar
@@ -372,7 +372,7 @@ async function loadPublications() {
                 const sorted = sortByYear(conferences);
                 const sectionTitle = lang === 'ko' ? '학술발표' : 'Conference';
 
-                htmlContent += `<div id="conference" style="margin-bottom: 4rem;">`;
+                htmlContent += `<div id="conference" class="publication-section" style="margin-bottom: 4rem;">`;
                 htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
 
                 htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
@@ -396,7 +396,7 @@ async function loadPublications() {
                 const sorted = sortByYear(patents);
                 const sectionTitle = lang === 'ko' ? '특허' : 'Patent';
 
-                htmlContent += `<div id="patent" style="margin-bottom: 4rem;">`;
+                htmlContent += `<div id="patent" class="publication-section" style="margin-bottom: 4rem;">`;
                 htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
 
                 htmlContent += '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
@@ -416,6 +416,37 @@ async function loadPublications() {
             }
 
             container.innerHTML = htmlContent;
+
+            // --- Logic for Visibility Handling ---
+            const filterPublications = () => {
+                const hash = window.location.hash;
+                const sessions = document.querySelectorAll('.publication-section');
+
+                // If no hash or specific hash logic
+                if (hash === '#reviewed-papers') {
+                    sessions.forEach(el => {
+                        el.style.display = (el.id === 'reviewed-papers') ? 'block' : 'none';
+                    });
+                } else if (hash === '#conference') {
+                    sessions.forEach(el => {
+                        el.style.display = (el.id === 'conference') ? 'block' : 'none';
+                    });
+                } else if (hash === '#patent') {
+                    sessions.forEach(el => {
+                        el.style.display = (el.id === 'patent') ? 'block' : 'none';
+                    });
+                } else {
+                    // Default: show all (or could default to reviewed-papers if preferred)
+                    sessions.forEach(el => el.style.display = 'block');
+                }
+            };
+
+            // Run on load
+            filterPublications();
+
+            // Run on hash change
+            window.addEventListener('hashchange', filterPublications);
+
         } else {
             container.innerHTML = lang === 'ko'
                 ? '<p>등록된 논문이 없습니다.</p>'
