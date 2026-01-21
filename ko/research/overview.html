@@ -64,19 +64,21 @@
 
                 <div class="challenges-list">
                     <!-- 도전과제 1: 대비감도 -->
-                    <div class="challenge-item">
+                    <!-- 도전과제 1: 대비감도 -->
+                    <div class="challenge-item" id="contrast-sensitivity">
                         <div class="challenge-text">
-                            <h3>대비감도 측정</h3>
-                            <p>대비감도 함수(CSF)를 더 높은 정밀도로 측정하고 분석하는 고급 알고리즘을 개발하고 있습니다.
-                                우리의 접근 방식은 심리물리학적 방법과 머신러닝을 통합하여 표준 시력 검사에서
-                                종종 놓치는 초기 시각 장애를 감지합니다.</p>
-                            <p><strong>핵심 목표:</strong> 고주파 대비 역치를 통한 녹내장 및 망막 질환의 조기 발견</p>
+                            <h3>좌우 시각경로의 모션 대비감도 연구</h3>
+                            <p>반맹 시뮬레이션을 통해 시각 경로 우세성과 운동 대비감도의 상관관계를 규명합니다. 정지 및 운동 자극에 대한 검출 역치를 분석하여 시각 정보 처리의 특성을
+                                연구합니다.</p>
+                            <p><strong>핵심 목표:</strong> 반맹 시뮬레이션과 대비감도 분석을 통한 시각 경로 우세성 검증</p>
+                            <a href="project.html?id=contrast-sensitivity" class="btn-text"
+                                style="color: #003366; font-weight: 600; text-decoration: none; margin-top: 1rem; display: inline-block;">프로젝트
+                                자세히 보기 &rarr;</a>
                         </div>
                         <div class="challenge-media">
-                            <div class="challenge-placeholder">
-                                <p>[GIF] 대비감도 검사 과정</p>
-                                <small>assets/images/challenges/contrast_sensitivity/</small>
-                            </div>
+                            <img src="../../assets/images/contrast_sensitivity_plot.png" alt="Contrast Sensitivity Plot"
+                                style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer;"
+                                onclick="window.location.href='project.html?id=contrast-sensitivity'">
                         </div>
                     </div>
 
@@ -150,7 +152,9 @@
 
                 <!-- AI 질환 진단 섹션 -->
                 <div style="margin-top: 4rem;">
-                    <h3 style="font-size: 1.8rem; color: #003366; margin-bottom: 2rem; padding-bottom: 0.5rem; border-bottom: 2px solid #003366;">AI 질환 예측</h3>
+                    <h3
+                        style="font-size: 1.8rem; color: #003366; margin-bottom: 2rem; padding-bottom: 0.5rem; border-bottom: 2px solid #003366;">
+                        AI 질환 예측</h3>
                     <p style="color: #64748b; margin-bottom: 2rem;">AI 시각 지능을 활용한 8단계 안구 질환 위험도 분석 시스템</p>
                     <div id="diagnostics-container">
                         <div class="loading">데이터를 불러오는 중...</div>
