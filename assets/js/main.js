@@ -166,37 +166,43 @@ function refreshPublicationsView() {
     const targetSection = targetId ? document.getElementById(targetId) : null;
     const hasTarget = Boolean(targetLink && targetSection);
 
+    // 1. Sidebar Active State
     submenuLinks.forEach(link => {
         link.classList.toggle('active', hasTarget && link === targetLink);
     });
 
-    const isMobile = window.innerWidth <= 1024;
     const header = document.querySelector('.publications-header');
     const sections = document.querySelectorAll('#publications-container > div[id]');
 
-    if (isMobile && hasTarget) {
+    // 2. Visibility Logic (Unified for Desktop/Mobile)
+    if (hasTarget) {
+        // Case: Specific Section Selected
         if (header) {
-            header.style.display = 'none';
+            header.style.setProperty('display', 'none', 'important');
         }
         sections.forEach(section => {
-            section.style.display = section.id === targetId ? '' : 'none';
+            if (section.id === targetId) {
+                section.style.setProperty('display', 'block', 'important');
+            } else {
+                section.style.setProperty('display', 'none', 'important');
+            }
         });
-    } else if (isMobile) {
-        if (header) {
-            header.style.display = '';
-        }
-        sections.forEach(section => {
-            section.style.display = 'none';
-        });
+
+        // Scroll to top to ensure user sees the content
+        window.scrollTo(0, 0);
+
     } else {
+        // Case: Overview / No Selection
         if (header) {
-            header.style.display = '';
+            header.style.setProperty('display', 'block', 'important');
         }
         sections.forEach(section => {
-            section.style.display = '';
+            section.style.setProperty('display', 'none', 'important');
         });
     }
 
+    // 3. Mobile Specific: Close Sidebar on selection
+    const isMobile = window.innerWidth <= 1024;
     if (isMobile) {
         const sidebar = document.querySelector('.sidebar');
         if (sidebar && sidebar.classList.contains('active')) {
