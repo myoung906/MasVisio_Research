@@ -123,6 +123,45 @@
           }
         ],
         "conclusion": "동공 동역학과 대비감도를 통합한 47개 바이오마커 기반 알고리즘은 한 번의 비침습적 검사로 신경·대사·심리 상태를 동시 평가하는 혁신적 플랫폼입니다."
+      },
+      {
+        "id": "contrast-sensitivity",
+        "title": "좌우 시각경로의 모션 대비감도 연구",
+        "subtitle": "반맹 시뮬레이션을 통한 시각 경로 우세성 검증",
+        "status": "Completed",
+        "objective": "오른손잡이의 좌뇌 언어 우세성이 시각 경로의 대비민감도에도 반영되는지 검증하고, 중심오목 20도 편심 위치에서 저공간주파수(1 cpd) 자극에 대한 정지 및 운동 민감도를 분석합니다.",
+        "mechanisms": [
+          {
+            "title": "연구 방법",
+            "points": [
+              "대상: 정상 시력 성인 24명 (오른손잡이 21명, 왼손잡이 3명)",
+              "장비: Morphonome 소프트웨어, 반맹 시뮬레이터",
+              "조건: 좌반맹(LH) vs 우반맹(RH) 시뮬레이션",
+              "자극: 1 cpd 가보 패치, 이동 속도 3수준 (0, 10, 30 cm/s)"
+            ]
+          }
+        ],
+        "results": [
+          {
+            "title": "속도에 따른 민감도 변화",
+            "value": "유의한 감소",
+            "description": "자극 속도가 빠를수록 대비민감도 유의하게 저하 (p<.001)"
+          },
+          {
+            "title": "시각 경로별 차이",
+            "value": "통계적 유의성 없음",
+            "description": "우측 시로(RH)가 다소 높은 경향이나 유의하지 않음 (p=.075)"
+          },
+          {
+            "title": "결론 및 시사점",
+            "value": "반구 비대칭성 고려",
+            "description": "반구 우세성이 저수준 시각처리에 직접 반영되지 않음을 확인, 재활 훈련 시 고려 필요"
+          }
+        ],
+        "images": [
+          "/assets/images/contrast_sensitivity_plot.png",
+          "/assets/images/contrast_sensitivity_boxplot.png"
+        ]
       }
     ],
     "diagnostics": {
@@ -865,6 +904,45 @@
           }
         ],
         "conclusion": "The algorithm based on 47 biomarkers integrating pupil dynamics and contrast sensitivity is an innovative platform that simultaneously evaluates neurological, metabolic, and psychological states with a single non-invasive test."
+      },
+      {
+        "id": "contrast-sensitivity",
+        "title": "Motion Contrast Sensitivity in Visual Pathways",
+        "subtitle": "Investigating Hemispheric Asymmetry via Hemianopia Simulation",
+        "status": "Completed",
+        "objective": "To verify if the left-hemisphere language dominance in right-handers extends to visual contrast sensitivity, and to analyze sensitivity to static and moving stimuli at 1 cpd low spatial frequency in the peripheral field.",
+        "mechanisms": [
+          {
+            "title": "Methodology",
+            "points": [
+              "Subjects: 24 adults with normal vision (21 right-handed, 3 left-handed)",
+              "Equipment: Morphonome software, Hemianopia simulator",
+              "Conditions: Simulated Left Hemianopia (LH) vs Right Hemianopia (RH)",
+              "Stimuli: 1 cpd Gabor patches, 3 speed levels (0, 10, 30 cm/s)"
+            ]
+          }
+        ],
+        "results": [
+          {
+            "title": "Sensitivity by Speed",
+            "value": "Significant Decrease",
+            "description": "Contrast sensitivity significantly decreased as stimulus speed increased (p<.001)"
+          },
+          {
+            "title": "Pathway Comparison",
+            "value": "Not Significant",
+            "description": "Trend of higher sensitivity in Right Pathway (RH) but not statistically significant (p=.075)"
+          },
+          {
+            "title": "Conclusion",
+            "value": "Hemispheric Asymmetry",
+            "description": "Hemispheric dominance not directly reflected in low-level vision; implications for rehabilitation strategies"
+          }
+        ],
+        "images": [
+          "/assets/images/contrast_sensitivity_plot.png",
+          "/assets/images/contrast_sensitivity_boxplot.png"
+        ]
       }
     ],
     "diagnostics": {

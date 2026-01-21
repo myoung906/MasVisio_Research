@@ -580,6 +580,19 @@ async function loadProjectDetails() {
                 resultsHtml += '</div>';
             }
 
+            let imagesHtml = '';
+            if (project.images && project.images.length > 0) {
+                // Determine base path for images ensuring no double slashes if path starts with /
+                const basePath = getBasePath();
+                imagesHtml = '<div class="project-images" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">';
+                project.images.forEach(img => {
+                    // Remove leading slash if present to append cleanly to basePath
+                    const cleanPath = img.startsWith('/') ? img.slice(1) : img;
+                    imagesHtml += `<img src="${basePath + cleanPath}" alt="Project Image" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0;">`;
+                });
+                imagesHtml += '</div>';
+            }
+
             container.innerHTML = `
                 <h1>${project.title}</h1>
                 <p class="subtitle">${project.subtitle}</p>
@@ -592,12 +605,13 @@ async function loadProjectDetails() {
                     <p>${project.objective}</p>
                     ${mechanismsHtml}
                     ${resultsHtml}
+                    ${imagesHtml}
                 </div>
             `;
         }
     } catch (error) {
         console.error('Error loading project details:', error);
-        container.innerHTML = `<p class="error-text">${getErrorMessage(error, lang)}</p>`;
+        container.innerHTML = `< p class="error-text" > ${getErrorMessage(error, lang)}</p > `;
     }
 }
 
@@ -614,14 +628,14 @@ async function loadTeamMembers() {
 
         if (teamMembers.length > 0) {
             container.innerHTML = teamMembers.map(member => `
-                <div class="team-card">
+                < div class="team-card" >
                     <h3>${member.name}</h3>
                     ${member.affiliation ? `<p class="affiliation">${member.affiliation}</p>` : ''}
                     <p class="role">${member.role}</p>
                     <p class="bio">${member.bio}</p>
                     <p class="expertise"><small>${member.expertise}</small></p>
-                </div>
-            `).join('');
+                </div >
+                `).join('');
         } else {
             container.innerHTML = lang === 'ko'
                 ? '<p>팀원 정보를 불러올 수 없습니다.</p>'
@@ -629,6 +643,6 @@ async function loadTeamMembers() {
         }
     } catch (error) {
         console.error('Could not load team members:', error);
-        container.innerHTML = `<p class="error-text">${getErrorMessage(error, lang)}</p>`;
+        container.innerHTML = `< p class="error-text" > ${getErrorMessage(error, lang)}</p > `;
     }
 }
