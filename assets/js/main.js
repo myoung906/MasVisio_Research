@@ -190,7 +190,8 @@ function initTemporalFlicker() {
             startTime: performance.now(),
             lastCaption: null,
             lastTime: performance.now(),
-            alpha: 0.0
+            lastElapsed: 0,
+            phase: 0
         };
     }).filter(Boolean);
 
@@ -216,19 +217,23 @@ function initTemporalFlicker() {
                 const ratio = elapsed / config.duration;
                 const freq = config.start + (config.end - config.start) * ratio;
 
-                const wave = Math.sin(2 * Math.PI * freq * nowSeconds) >= 0 ? 1 : 0;
                 const dt = Math.max(0.001, (now - config.lastTime) / 1000);
                 config.lastTime = now;
-
-                const tau = 0.06;
-                const blend = dt / (tau + dt);
-                config.alpha += (wave - config.alpha) * blend;
+                if (elapsed < config.lastElapsed) {
+                    config.phase = 0;
+                }
+                config.lastElapsed = elapsed;
+                config.phase += 2 * Math.PI * freq * dt;
+                if (config.phase > Math.PI * 4) {
+                    config.phase %= (Math.PI * 2);
+                }
+                const alpha = Math.sin(config.phase) >= 0 ? 1 : 0;
 
                 if (config.offImg.complete && config.onImg.complete) {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.globalAlpha = 1;
                     ctx.drawImage(config.offImg, 0, 0, canvas.width, canvas.height);
-                    ctx.globalAlpha = config.alpha;
+                    ctx.globalAlpha = alpha;
                     ctx.drawImage(config.onImg, 0, 0, canvas.width, canvas.height);
                     ctx.globalAlpha = 1;
                 }
