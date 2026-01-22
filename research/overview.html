@@ -94,10 +94,12 @@
                             <!-- Spatial/Temporal frequency GIFs (same-size left/right boxes) -->
                             <div style="margin-bottom: 2rem; display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap;">
                                 <figure style="flex: 0 1 127px; margin: 0; text-align: center;">
-                                    <img src="../assets/images/gabor_spatial_frequency.gif"
-                                         alt="Gabor Patch Spatial Frequency Variation (1-30 cpd)"
-                                         style="width: 100%; height: auto; display: block; border: 1px solid #e2e8f0; border-radius: 0; background: #f1f5f9;"
-                                         loading="lazy">
+                                    <div style="position: relative; width: 100%; aspect-ratio: 1 / 1; border: 1px solid #e2e8f0; border-radius: 0; background: #f1f5f9; overflow: hidden;">
+                                        <img src="../assets/images/gabor_spatial_frequency.gif"
+                                             alt="Gabor Patch Spatial Frequency Variation (1-30 cpd)"
+                                             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;"
+                                             loading="lazy">
+                                    </div>
                                     <figcaption style="margin-top: 0.5rem; font-size: 0.9rem; color: #94a3b8; text-align: center; white-space: nowrap; min-height: 1.2em;"
                                         data-gabor-caption="true"
                                         data-caption-start="1"
