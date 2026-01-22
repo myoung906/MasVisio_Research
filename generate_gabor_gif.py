@@ -17,7 +17,7 @@ def _smoothstep(edge0: float, edge1: float, x: float) -> float:
     return t * t * (3 - 2 * t)
 
 
-def generate_gabor_patch(spatial_freq, size=200, contrast=0.8, sigma=None, phase=0.0):
+def generate_gabor_patch(spatial_freq, size=200, contrast=0.8, sigma=None, phase=0.0, x_shift_px=0.0):
     """
     가보 패치 생성 (numpy 없이 순수 Python으로)
     
@@ -72,7 +72,8 @@ def generate_gabor_patch(spatial_freq, size=200, contrast=0.8, sigma=None, phase
             aperture = 1.0 - _smoothstep(aperture_r - feather, aperture_r, r)
             
             # 정현파 격자 (수평 방향)
-            grating = math.sin(2 * math.pi * dx / wavelength + phase)
+            # - x_shift_px > 0 이면 줄무늬가 좌→우로 이동하는 드리프트 느낌이 명확해짐
+            grating = math.sin(2 * math.pi * (dx - x_shift_px) / wavelength + phase)
             
             # 가보 패치 = (가우시안 × 원형 구경) × 정현파
             gabor_value = (gaussian * aperture) * grating
@@ -109,10 +110,9 @@ def create_gabor_with_text(spatial_freq, patch_size=200, canvas_padding_bottom=4
     PIL.Image
         텍스트가 포함된 가보 패치 이미지
     """
-    # 가보 패치(사각틀) 생성
+    # (이 함수는 더 이상 기본 경로에서 사용하지 않음: 캡션은 HTML에서 박스 밖으로 표시)
+    # 필요시 디버깅용으로만 유지
     patch = generate_gabor_patch(spatial_freq, size=patch_size).convert('RGB')
-
-    # 전체 캔버스(사각틀 + 아래 텍스트 영역) 생성
     canvas_w = patch_size
     canvas_h = patch_size + canvas_padding_bottom
     img = Image.new("RGB", (canvas_w, canvas_h), (255, 255, 255))
@@ -175,7 +175,8 @@ def create_gabor_gif(output_path="gabor_spatial_frequency.gif", patch_size=200, 
     
     for i, freq in enumerate(spatial_freqs):
         print(f"생성 중: {freq} cpd ({i+1}/30)")
-        img = create_gabor_with_text(freq, patch_size=patch_size, label="spatial")
+        # 캡션은 HTML에서 처리: GIF는 순수 패치(200x200)만 생성
+        img = generate_gabor_patch(freq, size=patch_size).convert("RGB")
         images.append(img)
     
     # GIF로 저장
@@ -205,42 +206,18 @@ def create_temporal_frequency_gif(output_path="temporal_frequency.gif", patch_si
     images = []
 
     fixed_spatial_cpd = 4  # 시간주파수 표현용: 공간주파수는 고정
-    t = 0.08  # 임의 샘플 시간(초)
+    drift_px_per_hz = 2.0  # 1Hz 증가마다 2px씩 우측으로 이동(프레임 간 드리프트가 직관적)
 
     for i, hz in enumerate(range(1, 31)):
         print(f"생성 중: {hz} Hz ({i+1}/30)")
-        phase = 2 * math.pi * hz * t
+        # 프레임 번호가 증가할수록 줄무늬가 좌→우로 일관되게 이동하도록 x_shift를 사용
+        x_shift = hz * drift_px_per_hz
         patch = generate_gabor_patch(
             spatial_freq=fixed_spatial_cpd,
             size=patch_size,
-            phase=phase,
+            x_shift_px=x_shift,
         ).convert("RGB")
-
-        canvas_w = patch_size
-        canvas_h = patch_size + 40
-        img = Image.new("RGB", (canvas_w, canvas_h), (255, 255, 255))
-        img.paste(patch, (0, 0))
-
-        draw = ImageDraw.Draw(img)
-        text = f"{hz} temporal frequency (Hz)"
-
-        font_size = 15
-        try:
-            font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", font_size)
-        except:
-            try:
-                font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
-            except:
-                font = ImageFont.load_default()
-
-        bbox = draw.textbbox((0, 0), text, font=font)
-        text_width = bbox[2] - bbox[0]
-        text_height = bbox[3] - bbox[1]
-        x = (canvas_w - text_width) // 2
-        y = patch_size + (40 - text_height) // 2
-        draw.text((x, y), text, fill=(148, 163, 184), font=font)
-
-        images.append(img)
+        images.append(patch)
 
     print(f"GIF 저장 중: {output_path}")
     images[0].save(
