@@ -164,9 +164,10 @@ function initTemporalFlicker() {
         const end = Number(target.dataset.freqEnd);
         const duration = Number(target.dataset.rampDuration);
         const stepDuration = Number(target.dataset.stepDuration || 1000);
+        const speedMultiplier = Number(target.dataset.speedMultiplier || 1);
         const onSrc = target.dataset.onSrc;
         const offSrc = target.dataset.offSrc;
-        if (!Number.isFinite(start) || !Number.isFinite(end) || !Number.isFinite(duration) || !Number.isFinite(stepDuration) || !onSrc || !offSrc) {
+        if (!Number.isFinite(start) || !Number.isFinite(end) || !Number.isFinite(duration) || !Number.isFinite(stepDuration) || !Number.isFinite(speedMultiplier) || !onSrc || !offSrc) {
             return null;
         }
 
@@ -189,6 +190,7 @@ function initTemporalFlicker() {
             end,
             duration: Math.max(1, duration),
             stepDuration: Math.max(100, stepDuration),
+            speedMultiplier: Math.max(0.1, speedMultiplier),
             startTime: performance.now(),
             lastCaption: null,
             lastTime: performance.now(),
@@ -219,18 +221,21 @@ function initTemporalFlicker() {
                 const { ctx, canvas } = config;
                 const elapsed = (now - config.startTime) % config.duration;
                 const totalSteps = Math.max(1, Math.floor((config.end - config.start) + 1));
-                const stepIndex = Math.floor(elapsed / config.stepDuration) % totalSteps;
+                const effectiveStep = config.stepDuration / config.speedMultiplier;
+                const loopDuration = effectiveStep * totalSteps;
+                const loopElapsed = loopDuration > 0 ? (elapsed % loopDuration) : 0;
+                const stepIndex = Math.floor(loopElapsed / effectiveStep) % totalSteps;
                 const freq = config.start + stepIndex;
                 if (stepIndex !== config.stepIndex) {
                     config.stepIndex = stepIndex;
                     config.accumulator = 0;
                     config.state = 1;
                 }
-                const stepElapsed = elapsed - (stepIndex * config.stepDuration);
+                const stepElapsed = loopElapsed - (stepIndex * effectiveStep);
 
                 const dt = Math.max(0.001, (now - config.lastTime) / 1000);
                 config.lastTime = now;
-                if (elapsed < config.lastElapsed || stepElapsed < (config.lastElapsed % config.stepDuration)) {
+                if (elapsed < config.lastElapsed || stepElapsed < (config.lastElapsed % effectiveStep)) {
                     config.accumulator = 0;
                     config.state = 1;
                 }
