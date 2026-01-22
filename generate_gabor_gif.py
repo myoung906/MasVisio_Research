@@ -210,7 +210,7 @@ def create_temporal_frequency_gif(output_path="temporal_frequency.gif", patch_si
     # 프레임 설계
     # - GIF 환경에서 30Hz(33ms 주기)를 그대로 재현하기는 제약이 있으므로,
     #   "점점 빨라져서 거의 느껴지지 않음"을 목표로 한 램프를 만듭니다.
-    n_frames = 120
+    n_frames = 240
     dt = 0.03  # 30ms(프레임 기준)
     frame_duration_ms = 45  # 1.5배 느리게 재생되도록 저장 시간만 증가
 
