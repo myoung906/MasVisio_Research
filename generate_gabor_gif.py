@@ -8,7 +8,7 @@ import math
 from PIL import Image, ImageDraw, ImageFont
 import os
 
-def generate_gabor_patch(spatial_freq, size=400, contrast=0.8, sigma=None):
+def generate_gabor_patch(spatial_freq, size=200, contrast=0.8, sigma=None):
     """
     가보 패치 생성 (numpy 없이 순수 Python으로)
     
@@ -28,9 +28,10 @@ def generate_gabor_patch(spatial_freq, size=400, contrast=0.8, sigma=None):
     PIL.Image
         가보 패치 이미지
     """
-    # 가우시안 표준편차 설정 (공간주파수에 따라 조정)
+    # 가우시안 표준편차 설정
+    # - 요구사항: 공간주파수별로 구경(가우시안 포락선)이 작아지지 않도록 sigma는 고정
     if sigma is None:
-        sigma = size / (4 * spatial_freq)
+        sigma = size / 4
     
     # 공간주파수를 픽셀 단위로 변환
     # 1 cpd ≈ 60 pixels/cycle (시야각 1도 ≈ 60픽셀 가정)
@@ -74,7 +75,7 @@ def generate_gabor_patch(spatial_freq, size=400, contrast=0.8, sigma=None):
     
     return img
 
-def create_gabor_with_text(spatial_freq, size=400):
+def create_gabor_with_text(spatial_freq, patch_size=200, canvas_padding_bottom=40):
     """
     텍스트가 포함된 가보 패치 이미지 생성
     
@@ -82,28 +83,34 @@ def create_gabor_with_text(spatial_freq, size=400):
     -----------
     spatial_freq : float
         공간주파수 (cpd)
-    size : int
-        이미지 크기
+    patch_size : int
+        가보 패치 사각틀 크기(픽셀)
+    canvas_padding_bottom : int
+        텍스트를 사각틀 밖(아래)에 표시하기 위한 여백 높이(픽셀)
     
     Returns:
     --------
     PIL.Image
         텍스트가 포함된 가보 패치 이미지
     """
-    # 가보 패치 생성 (이미 PIL Image 반환)
-    img = generate_gabor_patch(spatial_freq, size=size)
-    
-    # RGB로 변환 (텍스트 색상을 위해)
-    img = img.convert('RGB')
+    # 가보 패치(사각틀) 생성
+    patch = generate_gabor_patch(spatial_freq, size=patch_size).convert('RGB')
+
+    # 전체 캔버스(사각틀 + 아래 텍스트 영역) 생성
+    canvas_w = patch_size
+    canvas_h = patch_size + canvas_padding_bottom
+    img = Image.new("RGB", (canvas_w, canvas_h), (255, 255, 255))
+    img.paste(patch, (0, 0))
     
     # 텍스트 추가
     draw = ImageDraw.Draw(img)
     
-    # 텍스트 내용
-    text = f"*{int(spatial_freq)} Spatial frequency(cpd)"
+    # 텍스트 내용: '*' 제거, 표기 통일
+    text = f"{int(spatial_freq)} spatial frequency (cpd)"
     
     # 폰트 크기 설정
-    font_size = max(16, size // 25)
+    # 사각틀이 작아졌으니 폰트도 축소
+    font_size = max(14, patch_size // 12)
     
     try:
         # 시스템 폰트 사용 시도
@@ -120,24 +127,16 @@ def create_gabor_with_text(spatial_freq, size=400):
     text_width = bbox[2] - bbox[0]
     text_height = bbox[3] - bbox[1]
     
-    # 우측 하단 위치 계산
-    margin = 10
-    x = size - text_width - margin
-    y = size - text_height - margin
-    
-    # 텍스트 배경 (반투명 흰색)
-    padding = 4
-    draw.rectangle(
-        [x - padding, y - padding, x + text_width + padding, y + text_height + padding],
-        fill=(255, 255, 255, 200)
-    )
-    
+    # 텍스트 위치: 사각틀 밖(아래), 가운데 정렬
+    x = (canvas_w - text_width) // 2
+    y = patch_size + (canvas_padding_bottom - text_height) // 2
+
     # 텍스트 그리기 (검은색)
     draw.text((x, y), text, fill=(0, 0, 0), font=font)
     
     return img
 
-def create_gabor_gif(output_path="gabor_spatial_frequency.gif", size=400, duration=100):
+def create_gabor_gif(output_path="gabor_spatial_frequency.gif", patch_size=200, duration=100):
     """
     가보 패치 GIF 생성
     
@@ -145,8 +144,8 @@ def create_gabor_gif(output_path="gabor_spatial_frequency.gif", size=400, durati
     -----------
     output_path : str
         출력 GIF 파일 경로
-    size : int
-        이미지 크기
+    patch_size : int
+        가보 패치 사각틀 크기(픽셀)
     duration : int
         각 프레임 지속 시간 (밀리초)
     """
@@ -158,7 +157,7 @@ def create_gabor_gif(output_path="gabor_spatial_frequency.gif", size=400, durati
     
     for i, freq in enumerate(spatial_freqs):
         print(f"생성 중: {freq} cpd ({i+1}/30)")
-        img = create_gabor_with_text(freq, size=size)
+        img = create_gabor_with_text(freq, patch_size=patch_size)
         images.append(img)
     
     # GIF로 저장
@@ -197,11 +196,11 @@ if __name__ == "__main__":
     output_path = os.path.join(output_dir, "gabor_spatial_frequency.gif")
     print(f"가보 패치 GIF 생성 시작...")
     print(f"출력 경로: {output_path}")
-    print(f"이미지 크기: 400x400 픽셀")
+    print(f"사각틀 크기: 200x200 픽셀 (기존 대비 50% 축소)")
     print(f"프레임 수: 30개 (1-30 cpd)")
     print(f"프레임 지속 시간: 150ms\n")
     
-    create_gabor_gif(output_path, size=400, duration=150)  # 150ms per frame
+    create_gabor_gif(output_path, patch_size=200, duration=150)  # 150ms per frame
     
     print(f"\n✅ 생성 완료: {output_path}")
 
