@@ -193,7 +193,9 @@ function initTemporalFlicker() {
             lastCaption: null,
             lastTime: performance.now(),
             lastElapsed: 0,
-            phase: 0
+            stepIndex: -1,
+            accumulator: 0,
+            state: 1
         };
     }).filter(Boolean);
 
@@ -219,19 +221,27 @@ function initTemporalFlicker() {
                 const totalSteps = Math.max(1, Math.floor((config.end - config.start) + 1));
                 const stepIndex = Math.floor(elapsed / config.stepDuration) % totalSteps;
                 const freq = config.start + stepIndex;
+                if (stepIndex !== config.stepIndex) {
+                    config.stepIndex = stepIndex;
+                    config.accumulator = 0;
+                    config.state = 1;
+                }
                 const stepElapsed = elapsed - (stepIndex * config.stepDuration);
 
                 const dt = Math.max(0.001, (now - config.lastTime) / 1000);
                 config.lastTime = now;
                 if (elapsed < config.lastElapsed || stepElapsed < (config.lastElapsed % config.stepDuration)) {
-                    config.phase = 0;
+                    config.accumulator = 0;
+                    config.state = 1;
                 }
                 config.lastElapsed = elapsed;
-                config.phase += 2 * Math.PI * freq * dt;
-                if (config.phase > Math.PI * 4) {
-                    config.phase %= (Math.PI * 2);
+                const halfPeriod = 0.5 / freq;
+                config.accumulator += dt;
+                while (config.accumulator >= halfPeriod) {
+                    config.state = config.state ? 0 : 1;
+                    config.accumulator -= halfPeriod;
                 }
-                const alpha = Math.sin(config.phase) >= 0 ? 1 : 0;
+                const alpha = config.state;
 
                 if (config.offImg.complete && config.onImg.complete) {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
