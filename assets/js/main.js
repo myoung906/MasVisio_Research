@@ -152,6 +152,67 @@ function initGaborCaptionAnimations() {
     requestAnimationFrame(update);
 }
 
+function initTemporalFlicker() {
+    const targets = Array.from(document.querySelectorAll('[data-temporal-flicker="true"]'));
+    if (targets.length === 0) return;
+
+    const configs = targets.map((target) => {
+        const onImg = target.querySelector('.temporal-flicker-on');
+        const offImg = target.querySelector('.temporal-flicker-off');
+        if (!onImg || !offImg) return null;
+
+        const start = Number(target.dataset.freqStart);
+        const end = Number(target.dataset.freqEnd);
+        const duration = Number(target.dataset.rampDuration);
+        if (!Number.isFinite(start) || !Number.isFinite(end) || !Number.isFinite(duration)) {
+            return null;
+        }
+
+        const captionValue = target.closest('figure')?.querySelector('.temporal-caption-value') || null;
+
+        return {
+            onImg,
+            offImg,
+            captionValue,
+            start,
+            end,
+            duration: Math.max(1, duration),
+            startTime: performance.now(),
+            lastCaption: null
+        };
+    }).filter(Boolean);
+
+    if (configs.length === 0) return;
+
+    const update = (now) => {
+        if (!document.hidden) {
+            const nowSeconds = now / 1000;
+            configs.forEach((config) => {
+                const elapsed = (now - config.startTime) % config.duration;
+                const ratio = elapsed / config.duration;
+                const freq = config.start + (config.end - config.start) * ratio;
+
+                const wave = Math.sin(2 * Math.PI * freq * nowSeconds);
+                const alpha = 0.5 + 0.5 * wave;
+                config.onImg.style.opacity = String(alpha);
+                config.offImg.style.opacity = String(1 - alpha);
+
+                if (config.captionValue) {
+                    const rounded = Math.max(config.start, Math.min(config.end, Math.round(freq)));
+                    if (rounded !== config.lastCaption) {
+                        config.captionValue.textContent = String(rounded);
+                        config.lastCaption = rounded;
+                    }
+                }
+            });
+        }
+
+        requestAnimationFrame(update);
+    };
+
+    requestAnimationFrame(update);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // This is the only DOMContentLoaded listener
     console.log('DOM is fully loaded and parsed');
@@ -159,6 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Mobile Navigation
     initMobileNav();
     initGaborCaptionAnimations();
+    initTemporalFlicker();
 
     // Close menu with Escape key
     document.addEventListener('keydown', (e) => {

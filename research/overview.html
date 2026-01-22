@@ -116,18 +116,26 @@
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: #94a3b8; text-align: center;">
                                         Temporal Frequency
                                     </div>
-                                    <img src="../assets/images/temporal_frequency.gif"
-                                         alt="Gabor Patch Temporal Frequency Variation (1-30 Hz)"
-                                         style="width: 100%; height: auto; display: block; border: 1px solid #e2e8f0; border-radius: 0; background: #f1f5f9;"
-                                         loading="lazy">
+                                    <div data-temporal-flicker="true"
+                                        data-freq-start="1"
+                                        data-freq-end="30"
+                                        data-ramp-duration="10800"
+                                        style="position: relative; width: 100%; aspect-ratio: 1 / 1; border: 1px solid #e2e8f0; border-radius: 0; background: #f1f5f9; overflow: hidden;">
+                                        <img src="../assets/images/temporal_frequency_on.png"
+                                             alt="Gabor Patch Temporal Frequency ON"
+                                             class="temporal-flicker-on"
+                                             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;"
+                                             loading="lazy">
+                                        <img src="../assets/images/temporal_frequency_off.png"
+                                             alt="Gabor Patch Temporal Frequency OFF"
+                                             class="temporal-flicker-off"
+                                             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;"
+                                             loading="lazy">
+                                    </div>
                                     <figcaption style="margin-top: 0.5rem; font-size: 0.9rem; color: #94a3b8; text-align: center;"
-                                        data-gabor-caption="true"
-                                        data-caption-start="1"
-                                        data-caption-end="30"
-                                        data-caption-frames="240"
-                                        data-caption-duration="10800">
+                                        data-temporal-caption="true">
                                         <span class="gabor-caption-label">temporal frequency:</span>
-                                        <span class="gabor-caption-value">1</span>
+                                        <span class="temporal-caption-value">1</span>
                                         <span class="gabor-caption-unit">Hz</span>
                                     </figcaption>
                                 </figure>
@@ -225,7 +233,7 @@
         </section>
     </main>
 
-    <script src="../assets/js/main.js?v=1.5"></script>
+    <script src="../assets/js/main.js?v=1.6"></script>
 </body>
 
 </html>

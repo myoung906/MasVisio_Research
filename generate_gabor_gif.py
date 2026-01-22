@@ -267,6 +267,28 @@ def create_temporal_frequency_gif(output_path="temporal_frequency.gif", patch_si
     print(f"완료! 파일 크기: {file_size:.2f} MB")
     return output_path
 
+def create_temporal_base_images(output_on_path, output_off_path, patch_size=200):
+    """
+    시간주파수 시각화용 기본 이미지 2종 생성
+    - ON: 고정 공간주파수(4 cpd) 패턴
+    - OFF: 평균 밝기의 회색(contrast=0)
+    """
+    fixed_spatial_cpd = 4
+    on_patch = generate_gabor_patch(
+        spatial_freq=fixed_spatial_cpd,
+        size=patch_size,
+        contrast=0.8,
+        phase=0.0,
+    ).convert("RGB")
+    off_patch = generate_gabor_patch(
+        spatial_freq=fixed_spatial_cpd,
+        size=patch_size,
+        contrast=0.0,
+        phase=0.0,
+    ).convert("RGB")
+    on_patch.save(output_on_path)
+    off_patch.save(output_off_path)
+
 if __name__ == "__main__":
     # 필요한 라이브러리 확인
     try:
@@ -298,3 +320,9 @@ if __name__ == "__main__":
     temporal_output_path = os.path.join(output_dir, "temporal_frequency.gif")
     create_temporal_frequency_gif(temporal_output_path, patch_size=200, duration=150)
     print(f"\n✅ 생성 완료: {temporal_output_path}")
+
+    temporal_on_path = os.path.join(output_dir, "temporal_frequency_on.png")
+    temporal_off_path = os.path.join(output_dir, "temporal_frequency_off.png")
+    create_temporal_base_images(temporal_on_path, temporal_off_path, patch_size=200)
+    print(f"\n✅ 생성 완료: {temporal_on_path}")
+    print(f"✅ 생성 완료: {temporal_off_path}")
