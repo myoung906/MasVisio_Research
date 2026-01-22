@@ -1,4 +1,4 @@
-# CLAUDE.md - 시각재활 연구 웹페이지
+@AGENTS.md
 
 ## 핵심 지침
 **언어**: 모든 답변과 작업은 반드시 한국어로 진행 (KOREAN ONLY)
@@ -9,7 +9,7 @@
 - **구조**: 한국어(ko/), 영어(en/) 다국어 지원
 - **특징**: 모바일 반응형, 햄버거 메뉴, 언어 토글
 
-## 🚀 토큰 절약 워크플로우 
+## 🚀 토큰 절약 워크플로우
 ### 작업 시작 전 필수
 ```bash
 git log --oneline -5        # 최근 변경사항 파악 (50토큰)
@@ -32,7 +32,7 @@ git diff --stat HEAD~1      # 변경사항만 확인 (30토큰)
 - 반응형: `@media (max-width: 768px)` 기준
 
 ## GitHub 정보
-- **저장소**: https://github.com/myoung906/MasVisio_Research  
+- **저장소**: https://github.com/myoung906/MasVisio_Research
 - **브랜치**: master
 - **배포 URL**: https://myoung906.github.io/MasVisio_Research/
 
@@ -58,7 +58,7 @@ open http://localhost/mvr/ko/
 ```
 
 ### ⚠️ macOS 10.15 환경 제한사항
-- **Playwright MCP**: Chromium 브라우저 
+- **Playwright MCP**: Chromium 브라우저
 - **브라우저 설치 실패**: "ERROR: Playwright does not support chromium-headless-shell on mac10.15"
 - **해결책**: 수동 브라우저 테스트 또는 최신 macOS 사용 권장
 
