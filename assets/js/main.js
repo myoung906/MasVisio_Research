@@ -101,12 +101,64 @@ function getErrorMessage(error, lang) {
     return m.default;
 }
 
+function initGaborCaptionAnimations() {
+    const captions = Array.from(document.querySelectorAll('[data-gabor-caption="true"]'));
+    if (captions.length === 0) return;
+
+    const configs = captions.map((caption) => {
+        const valueEl = caption.querySelector('.gabor-caption-value');
+        if (!valueEl) return null;
+
+        const start = Number(caption.dataset.captionStart);
+        const end = Number(caption.dataset.captionEnd);
+        const frames = Number(caption.dataset.captionFrames);
+        const duration = Number(caption.dataset.captionDuration);
+
+        if (!Number.isFinite(start) || !Number.isFinite(end) || !Number.isFinite(frames) || !Number.isFinite(duration)) {
+            return null;
+        }
+
+        return {
+            valueEl,
+            start,
+            end,
+            frames: Math.max(1, Math.floor(frames)),
+            duration: Math.max(1, duration),
+            startTime: performance.now(),
+            lastValue: null
+        };
+    }).filter(Boolean);
+
+    if (configs.length === 0) return;
+
+    const update = (now) => {
+        if (!document.hidden) {
+            configs.forEach((config) => {
+                const elapsed = (now - config.startTime) % config.duration;
+                const frameIndex = Math.floor((elapsed / config.duration) * config.frames);
+                const ratio = config.frames > 1 ? frameIndex / (config.frames - 1) : 0;
+                const value = Math.round(config.start + (config.end - config.start) * ratio);
+
+                if (value !== config.lastValue) {
+                    config.valueEl.textContent = String(value);
+                    config.lastValue = value;
+                }
+            });
+        }
+
+        requestAnimationFrame(update);
+    };
+
+    requestAnimationFrame(update);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // This is the only DOMContentLoaded listener
     console.log('DOM is fully loaded and parsed');
 
     // Initialize Mobile Navigation
     initMobileNav();
+    initGaborCaptionAnimations();
 
     // Close menu with Escape key
     document.addEventListener('keydown', (e) => {

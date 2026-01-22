@@ -211,8 +211,8 @@ def create_temporal_frequency_gif(output_path="temporal_frequency.gif", patch_si
     # - GIF 환경에서 30Hz(33ms 주기)를 그대로 재현하기는 제약이 있으므로,
     #   "점점 빨라져서 거의 느껴지지 않음"을 목표로 한 램프를 만듭니다.
     n_frames = 120
-    dt = 0.03  # 30ms(프레임)
-    frame_duration_ms = 30  # 저장 시 duration을 이 값으로 사용
+    dt = 0.03  # 30ms(프레임 기준)
+    frame_duration_ms = 45  # 1.5배 느리게 재생되도록 저장 시간만 증가
 
     # 깜빡임을 'ON/OFF'로 단순화: ON은 원 패턴, OFF는 평균(회색)으로
     # OFF에서 패턴이 완전히 사라지도록 contrast=0을 사용
@@ -286,4 +286,3 @@ if __name__ == "__main__":
     temporal_output_path = os.path.join(output_dir, "temporal_frequency.gif")
     create_temporal_frequency_gif(temporal_output_path, patch_size=200, duration=150)
     print(f"\n✅ 생성 완료: {temporal_output_path}")
-
