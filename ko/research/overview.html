@@ -55,276 +55,104 @@
     </aside>
 
     <main class="main-content">
-        <section class="section" style="padding: 4rem 4rem;">
+        <section class="section" style="padding: 4rem 5%;">
             <div class="container">
-                <header style="margin-bottom: 4rem; border-bottom: none;">
-                    <h2 style="font-size: 3rem; margin-bottom: 1rem;">도전과제</h2>
-                    <p style="font-size: 1.2rem; color: #64748b;">차세대 시각 진단 및 재활을 위한 혁신적 솔루션을 개척합니다.</p>
+
+                <!-- Hero Section -->
+                <header class="challenge-hero">
+                    <h2>도전과제</h2>
+                    <p>차세대 시각 진단 및 재활을 위한 혁신적 솔루션을 개척합니다.</p>
                 </header>
 
-                <div class="challenges-list">
-                    <div class="challenges-intro"
-                        style="margin-bottom: 5rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
-                        <p style="font-size: 1.3rem; line-height: 1.8; color: #475569; word-break: keep-all;">
-                            우리는 시각 문제를 해결하기 위해 기초적인 신경 경로를 이해하는 것에서 시작하여, 광학 솔루션을 공학적으로 설계하고, 마침내 바이오메트릭 지능을 통해 전신 건강을
-                            예측하는 여정이 필요하다고 믿습니다.
+                <!-- Lead Introduction -->
+                <div class="challenge-list">
+                    <!-- Lead text removed -->
+
+                    <!-- PHASE 1: Visual Neuroscience -->
+                    <div class="challenge-section">
+                        <span class="challenge-phase-label">Phase 1: 시각 신경과학</span>
+                        <h2 class="challenge-title">신경 코드의 <strong>해독</strong></h2>
+
+                        <p class="challenge-desc" style="word-break: keep-all;">
+                            시각을 교정하기 전에, 뇌가 이를 어떻게 처리하는지 먼저 이해해야 합니다. 우리의 연구는 시각 경로가 움직임과 대비를 어떻게 해석하는지 분석하여
+                            단순한 광학적 결함과 신경학적 처리 문제를 명확히 구분하는 기초 단계에서 시작됩니다.
+                        </p>
+
+                        <div class="challenge-visual-container">
+                            <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a; word-break: keep-all;">좌우
+                                시각경로의 모션 대비감도</h3>
+                            <div class="challenge-visual-grid">
+                                <figure>
+                                    <img src="../../assets/images/contrast_sensitivity_plot.png" alt="대비감도 그래프">
+                                    <figcaption
+                                        style="margin-top: 0.5rem; font-size: 0.9rem; color: #94a3b8; text-align: center;">
+                                        민감도 역치 (Sensitivity Thresholds)</figcaption>
+                                </figure>
+                                <figure>
+                                    <img src="../../assets/images/contrast_sensitivity_boxplot.png" alt="대비감도 박스플롯">
+                                    <figcaption
+                                        style="margin-top: 0.5rem; font-size: 0.9rem; color: #94a3b8; text-align: center;">
+                                        인구 집단 분석 (Population Analytics)</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Connector -->
+                    <div class="story-connector"></div>
+
+                    <!-- PHASE 2: Optical Engineering -->
+                    <div class="challenge-section">
+                        <span class="challenge-phase-label">Phase 2: 광학 공학</span>
+                        <h2 class="challenge-title">빛을 통한 안구의 <strong>제어</strong></h2>
+
+                        <p class="challenge-desc" style="word-break: keep-all;">
+                            우리는 단순히 시력을 교정하는 것에 그치지 않고, 안구의 성장을 능동적으로 관리합니다. 주변부 망막의 초점면을 분석하여
+                            근시 진행을 멈추는 광학적 개입("완전 교정") 기술을 개발합니다.
+                        </p>
+
+                        <div class="mechanism-grid">
+                            <div class="mechanism-item" style="border-top: 3px solid #003366;">
+                                <h4>문제점 (Problem)</h4>
+                                <p style="word-break: keep-all;">FS'(시상 초점선)이 망막 뒤에 맺히면 안구 성장을 촉진하는 신호가 발생합니다.</p>
+                            </div>
+                            <div class="mechanism-item" style="border-top: 3px solid #3b82f6;">
+                                <h4>관찰 (Observation)</h4>
+                                <p style="word-break: keep-all;">근시가 진행될수록 코쪽 망막이 가파라지며, 초점선을 더욱 뒤로 밀어냅니다.</p>
+                            </div>
+                            <div class="mechanism-item" style="border-top: 3px solid #06b6d4;">
+                                <h4>해결책 (Solution)</h4>
+                                <p style="word-break: keep-all;">주변부에 의도적으로 근시성 초점 이탈을 유도하여 안구 성장 고리를 끊어냅니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Connector -->
+                    <div class="story-connector"></div>
+
+                    <!-- PHASE 3: Biometric Intelligence -->
+                    <div class="challenge-section">
+                        <span class="challenge-phase-label">Phase 3: 바이오메트릭 지능</span>
+                        <h2 class="challenge-title">건강을 비추는 <strong>창, 눈</strong></h2>
+
+                        <p class="challenge-desc" style="word-break: keep-all;">
+                            동공 동역학, 안구 운동, 대비 감도를 AI와 결합하여 신경학적, 대사적 건강 상태를 비침습적으로 평가합니다.
+                            우리의 플랫폼은 당뇨망막병증, 녹내장, 경도인지장애(MCI)의 초기 징후를 조기에 감지합니다.
                         </p>
                     </div>
 
-                    <div class="challenges-content">
-
-                        <!-- CHAPTER 1: Visual Neuroscience -->
-                        <div class="research-chapter" style="margin-bottom: 6rem;">
-                            <div class="chapter-header"
-                                style="margin-bottom: 3rem; border-left: 4px solid #94a3b8; padding-left: 1.5rem;">
-                                <span
-                                    style="display: block; font-size: 0.9rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Phase
-                                    1: 시각 신경과학</span>
-                                <h2 style="font-size: 2.2rem; color: #334155; margin: 0; word-break: keep-all;">신경 코드의
-                                    해독</h2>
-                                <p
-                                    style="font-size: 1.1rem; color: #64748b; margin-top: 1rem; max-width: 700px; word-break: keep-all;">
-                                    시각을 교정하기 전에, 뇌가 이를 어떻게 처리하는지 먼저 이해해야 합니다. 우리의 연구는 시각 경로가 움직임과 대비를 어떻게 해석하는지 분석하는 기초
-                                    단계에서 시작됩니다.
-                                </p>
-                            </div>
-
-                            <!-- Project 1: Contrast Sensitivity -->
-                            <div class="project-section" id="contrast-sensitivity"
-                                style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 3rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
-                                <div class="project-header" style="margin-bottom: 2rem;">
-                                    <h3
-                                        style="font-size: 1.8rem; color: #0f172a; margin-bottom: 0.5rem; word-break: keep-all;">
-                                        좌우 시각경로의 모션 대비감도</h3>
-                                    <p class="subtitle" style="font-size: 1.1rem; color: #64748b;">반맹 시뮬레이션을 통한 뇌 반구
-                                        비대칭성 연구</p>
-                                </div>
-
-                                <div class="project-body" style="display: flex; flex-direction: column; gap: 2rem;">
-                                    <div class="project-text">
-                                        <p
-                                            style="margin-bottom: 1.5rem; line-height: 1.7; color: #334155; word-break: keep-all;">
-                                            오른손잡이라면 '오른쪽 시각 뇌'도 우세할까요? 우리는 반맹(시야 절반이 보이지 않는 상태) 시뮬레이션을 통해 정지 및 운동 자극에 대한
-                                            검출 역치를 테스트했습니다. 이 기초 연구는 시각 정보 처리의 한계를 이해하는 데 도움을 줍니다.
-                                        </p>
-
-                                        <div
-                                            style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
-                                            <div>
-                                                <h4
-                                                    style="font-size: 0.9rem; font-weight: 700; color: #475569; margin-bottom: 0.8rem;">
-                                                    연구 방법</h4>
-                                                <ul
-                                                    style="list-style-type: disc; padding-left: 1rem; color: #64748b; font-size: 0.95rem; line-height: 1.6;">
-                                                    <li><strong>대상:</strong> 성인 24명 (오른손잡이 21명)</li>
-                                                    <li><strong>과제:</strong> 1 cpd 가보 패치 검출</li>
-                                                    <li><strong>변수:</strong> 이동 속도 (0, 10, 30 cm/s)</li>
-                                                </ul>
-                                            </div>
-                                            <div>
-                                                <h4
-                                                    style="font-size: 0.9rem; font-weight: 700; color: #475569; margin-bottom: 0.8rem;">
-                                                    핵심 통찰</h4>
-                                                <p
-                                                    style="color: #64748b; font-size: 0.95rem; line-height: 1.6; word-break: keep-all;">
-                                                    속도가 빨라질수록 민감도는 급격히 떨어지지만(p<.001), 놀랍게도 언어적 뇌 우세성은 저수준 시각 정보 처리에 직접적인
-                                                        영향을 미치지 않았습니다. </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="project-images"
-                                        style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-                                        <figure style="flex: 1; min-width: 300px; margin: 0;">
-                                            <img src="../../assets/images/contrast_sensitivity_plot.png" alt="대비감도 그래프"
-                                                style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px;">
-                                        </figure>
-                                        <figure style="flex: 1; min-width: 300px; margin: 0;">
-                                            <img src="../../assets/images/contrast_sensitivity_boxplot.png"
-                                                alt="대비감도 박스플롯"
-                                                style="width: 100%; border: 1px solid #e2e8f0; border-radius: 8px;">
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- TRANSITION -->
-                        <div class="story-transition" style="text-align: center; margin: 4rem 0; position: relative;">
-                            <span style="font-size: 2rem; color: #cbd5e1;">&darr;</span>
-                            <p
-                                style="font-style: italic; color: #64748b; font-size: 1.1rem; margin-top: 1rem; word-break: keep-all;">
-                                "신경학적 한계를 이해하는 것에서 나아가, 이제 생물학적 변화를 제어하기 위한 광학적 개입으로 나아갑니다."
-                            </p>
-                        </div>
-
-                        <!-- CHAPTER 2: Optical Engineering -->
-                        <div class="research-chapter" style="margin-bottom: 6rem;">
-                            <div class="chapter-header"
-                                style="margin-bottom: 3rem; border-left: 4px solid #003366; padding-left: 1.5rem;">
-                                <span
-                                    style="display: block; font-size: 0.9rem; font-weight: 700; color: #003366; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Phase
-                                    2: 광학 공학</span>
-                                <h2 style="font-size: 2.2rem; color: #334155; margin: 0; word-break: keep-all;">빛을 통한
-                                    안구의 제어</h2>
-                                <p
-                                    style="font-size: 1.1rem; color: #64748b; margin-top: 1rem; max-width: 700px; word-break: keep-all;">
-                                    우리는 단순히 시력을 교정하는 것에 그치지 않고, 안구의 성장을 능동적으로 관리합니다. 주변부 망막의 초점면을 분석하여 근시 진행을 멈추는 광학적 개입
-                                    기술을 개발합니다.
-                                </p>
-                            </div>
-
-                            <!-- Project 2: Myopia Control -->
-                            <div class="project-section"
-                                style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 3rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
-                                <div class="project-header" style="margin-bottom: 2rem;">
-                                    <h3
-                                        style="font-size: 1.8rem; color: #0f172a; margin-bottom: 0.5rem; word-break: keep-all;">
-                                        전체망막 완전교정 플랫폼</h3>
-                                    <p class="subtitle" style="font-size: 1.1rem; color: #64748b;">근시 진행의 종식</p>
-                                </div>
-
-                                <div class="project-body">
-                                    <p
-                                        style="margin-bottom: 2rem; line-height: 1.7; color: #334155; word-break: keep-all;">
-                                        기존 안경은 시야의 중심부만 교정합니다. 우리의 연구는 <strong>주변부 초점 이탈(Peripheral Defocus)</strong>이
-                                        안구를 비정상적으로 길어지게 만든다(근시)는 사실에 주목했습니다. 우리는 망막 전체를 매핑하고 초점면을 정밀 조정하여 안구 성장을 억제하는
-                                        '완전 교정' 플랫폼을 개발하고 있습니다.
-                                    </p>
-
-                                    <div class="mechanism-cards"
-                                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-                                        <div
-                                            style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-top: 3px solid #003366;">
-                                            <strong style="display: block; color: #0f172a; margin-bottom: 0.5rem;">문제점
-                                                (Problem)</strong>
-                                            <p
-                                                style="font-size: 0.95rem; color: #64748b; margin: 0; word-break: keep-all;">
-                                                FS'(시상 초점선)이 망막 뒤에 맺히면 안구 성장을 촉진하는 신호가 발생합니다.</p>
-                                        </div>
-                                        <div
-                                            style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-top: 3px solid #3b82f6;">
-                                            <strong style="display: block; color: #0f172a; margin-bottom: 0.5rem;">관찰
-                                                (Observation)</strong>
-                                            <p
-                                                style="font-size: 0.95rem; color: #64748b; margin: 0; word-break: keep-all;">
-                                                근시가 진행될수록 코쪽 망막이 가파라지며, 초점선을 더욱 뒤로 밀어냅니다.</p>
-                                        </div>
-                                        <div
-                                            style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-top: 3px solid #06b6d4;">
-                                            <strong style="display: block; color: #0f172a; margin-bottom: 0.5rem;">해결책
-                                                (Solution)</strong>
-                                            <p
-                                                style="font-size: 0.95rem; color: #64748b; margin: 0; word-break: keep-all;">
-                                                주변부에 의도적으로 근시성 초점 이탈을 유도하여 안구 성장 고리를 끊어냅니다.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- TRANSITION -->
-                        <div class="story-transition" style="text-align: center; margin: 4rem 0; position: relative;">
-                            <span style="font-size: 2rem; color: #cbd5e1;">&darr;</span>
-                            <p
-                                style="font-style: italic; color: #64748b; font-size: 1.1rem; margin-top: 1rem; word-break: keep-all;">
-                                "우리의 광학적, 신경학적 전문성은 증상이 나타나기 전에 건강을 예측하는 디지털 플랫폼으로 완성됩니다."
-                            </p>
-                        </div>
-
-                        <!-- CHAPTER 3: AI & Digital Health -->
-                        <div class="research-chapter" style="margin-bottom: 6rem;">
-                            <div class="chapter-header"
-                                style="margin-bottom: 3rem; border-left: 4px solid #7c3aed; padding-left: 1.5rem;">
-                                <span
-                                    style="display: block; font-size: 0.9rem; font-weight: 700; color: #7c3aed; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Phase
-                                    3: 바이오메트릭 지능</span>
-                                <h2 style="font-size: 2.2rem; color: #334155; margin: 0; word-break: keep-all;">건강을 비추는
-                                    창, 눈</h2>
-                                <p
-                                    style="font-size: 1.1rem; color: #64748b; margin-top: 1rem; max-width: 700px; word-break: keep-all;">
-                                    동공 동역학, 안구 운동, 대비 감도를 AI와 결합하여 신경학적, 대사적 건강 상태를 비침습적으로 평가합니다.
-                                </p>
-                            </div>
-
-                            <!-- Project 3: Visual Cognition -->
-                            <div class="project-section"
-                                style="background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 3rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
-                                <div class="project-header" style="margin-bottom: 2rem;">
-                                    <h3
-                                        style="font-size: 1.8rem; color: #0f172a; margin-bottom: 0.5rem; word-break: keep-all;">
-                                        통합 바이오메트릭스 질환 예측</h3>
-                                    <p class="subtitle" style="font-size: 1.1rem; color: #64748b;">3분 안에 4가지 질환군 동시 평가
-                                    </p>
-                                </div>
-
-                                <div class="project-body">
-                                    <!-- Stats Grid -->
-                                    <div
-                                        style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 3rem; text-align: center;">
-                                        <div style="padding: 1rem; background: #f8fafc; border-radius: 8px;">
-                                            <span
-                                                style="display: block; font-size: 2rem; font-weight: 800; color: #7c3aed;">47</span>
-                                            <span
-                                                style="font-size: 0.8rem; color: #64748b; font-weight: 600;">바이오마커</span>
-                                        </div>
-                                        <div style="padding: 1rem; background: #f8fafc; border-radius: 8px;">
-                                            <span
-                                                style="display: block; font-size: 2rem; font-weight: 800; color: #7c3aed;">4</span>
-                                            <span style="font-size: 0.8rem; color: #64748b; font-weight: 600;">질환
-                                                카테고리</span>
-                                        </div>
-                                        <div style="padding: 1rem; background: #f8fafc; border-radius: 8px;">
-                                            <span
-                                                style="display: block; font-size: 2rem; font-weight: 800; color: #7c3aed;">92%</span>
-                                            <span style="font-size: 0.8rem; color: #64748b; font-weight: 600;">당뇨
-                                                예측률</span>
-                                        </div>
-                                        <div style="padding: 1rem; background: #f8fafc; border-radius: 8px;">
-                                            <span
-                                                style="display: block; font-size: 2rem; font-weight: 800; color: #7c3aed;">3분</span>
-                                            <span style="font-size: 0.8rem; color: #64748b; font-weight: 600;">검사
-                                                시간</span>
-                                        </div>
-                                    </div>
-
-                                    <p
-                                        style="margin-bottom: 2rem; line-height: 1.7; color: #334155; word-break: keep-all;">
-                                        우리는 <strong>당뇨망막병증, 녹내장, 경도인지장애(MCI), 그리고 심리적 성향</strong>까지 포괄하는 단일 스크리닝 알고리즘을
-                                        개발했습니다. 이 플랫폼은 인간이 감지할 수 없는 동공 반응과 망막 민감도의 미세한 변화를 분석합니다.
-                                    </p>
-
-                                    <h4
-                                        style="font-size: 0.9rem; font-weight: 700; color: #475569; margin-bottom: 1rem;">
-                                        예측 정확도 (AUC)</h4>
-                                    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
-                                        <span
-                                            style="padding: 0.6rem 1.2rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 30px; font-size: 0.95rem; color: #475569; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">당뇨망막병증:
-                                            <strong>0.92</strong></span>
-                                        <span
-                                            style="padding: 0.6rem 1.2rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 30px; font-size: 0.95rem; color: #475569; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">녹내장:
-                                            <strong>0.88</strong></span>
-                                        <span
-                                            style="padding: 0.6rem 1.2rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 30px; font-size: 0.95rem; color: #475569; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">경도인지장애:
-                                            <strong>0.90</strong></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- AI 질환 진단 섹션 -->
+                    <!-- AI Application Section -->
                     <div style="margin-top: 4rem;">
-                        <h3
-                            style="font-size: 1.8rem; color: #003366; margin-bottom: 2rem; padding-bottom: 0.5rem; border-bottom: 2px solid #003366;">
-                            AI 질환 예측</h3>
-                        <p style="color: #64748b; margin-bottom: 2rem;">AI 시각 지능을 활용한 8단계 안구 질환 위험도 분석 시스템</p>
-                        <div id="diagnostics-container">
+                        <h3 class="section-title">AI 질환 예측</h3>
+                        <p class="section-subtitle">AI 시각 지능을 활용한 8단계 안구 질환 위험도 분석 시스템</p>
+
+                        <!-- Dynamic Content Container -->
+                        <div id="diagnostics-container" style="margin-top: 3rem;">
                             <div class="loading">데이터를 불러오는 중...</div>
                         </div>
                     </div>
                 </div>
+            </div>
         </section>
     </main>
 
