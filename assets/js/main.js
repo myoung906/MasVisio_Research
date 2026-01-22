@@ -163,9 +163,10 @@ function initTemporalFlicker() {
         const start = Number(target.dataset.freqStart);
         const end = Number(target.dataset.freqEnd);
         const duration = Number(target.dataset.rampDuration);
+        const stepDuration = Number(target.dataset.stepDuration || 1000);
         const onSrc = target.dataset.onSrc;
         const offSrc = target.dataset.offSrc;
-        if (!Number.isFinite(start) || !Number.isFinite(end) || !Number.isFinite(duration) || !onSrc || !offSrc) {
+        if (!Number.isFinite(start) || !Number.isFinite(end) || !Number.isFinite(duration) || !Number.isFinite(stepDuration) || !onSrc || !offSrc) {
             return null;
         }
 
@@ -187,6 +188,7 @@ function initTemporalFlicker() {
             start,
             end,
             duration: Math.max(1, duration),
+            stepDuration: Math.max(100, stepDuration),
             startTime: performance.now(),
             lastCaption: null,
             lastTime: performance.now(),
@@ -214,12 +216,14 @@ function initTemporalFlicker() {
             configs.forEach((config) => {
                 const { ctx, canvas } = config;
                 const elapsed = (now - config.startTime) % config.duration;
-                const ratio = elapsed / config.duration;
-                const freq = config.start + (config.end - config.start) * ratio;
+                const totalSteps = Math.max(1, Math.floor((config.end - config.start) + 1));
+                const stepIndex = Math.floor(elapsed / config.stepDuration) % totalSteps;
+                const freq = config.start + stepIndex;
+                const stepElapsed = elapsed - (stepIndex * config.stepDuration);
 
                 const dt = Math.max(0.001, (now - config.lastTime) / 1000);
                 config.lastTime = now;
-                if (elapsed < config.lastElapsed) {
+                if (elapsed < config.lastElapsed || stepElapsed < (config.lastElapsed % config.stepDuration)) {
                     config.phase = 0;
                 }
                 config.lastElapsed = elapsed;
@@ -239,10 +243,9 @@ function initTemporalFlicker() {
                 }
 
                 if (config.captionValue) {
-                    const rounded = Math.max(config.start, Math.min(config.end, Math.round(freq)));
-                    if (rounded !== config.lastCaption) {
-                        config.captionValue.textContent = String(rounded);
-                        config.lastCaption = rounded;
+                    if (freq !== config.lastCaption) {
+                        config.captionValue.textContent = String(freq);
+                        config.lastCaption = freq;
                     }
                 }
             });
