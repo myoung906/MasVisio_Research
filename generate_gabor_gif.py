@@ -8,7 +8,16 @@ import math
 from PIL import Image, ImageDraw, ImageFont
 import os
 
-def generate_gabor_patch(spatial_freq, size=200, contrast=0.8, sigma=None):
+def _smoothstep(edge0: float, edge1: float, x: float) -> float:
+    """0~1 사이에서 부드럽게 전이되는 함수."""
+    if edge0 == edge1:
+        return 1.0 if x >= edge1 else 0.0
+    t = (x - edge0) / (edge1 - edge0)
+    t = max(0.0, min(1.0, t))
+    return t * t * (3 - 2 * t)
+
+
+def generate_gabor_patch(spatial_freq, size=200, contrast=0.8, sigma=None, phase=0.0):
     """
     가보 패치 생성 (numpy 없이 순수 Python으로)
     
@@ -31,7 +40,8 @@ def generate_gabor_patch(spatial_freq, size=200, contrast=0.8, sigma=None):
     # 가우시안 표준편차 설정
     # - 요구사항: 공간주파수별로 구경(가우시안 포락선)이 작아지지 않도록 sigma는 고정
     if sigma is None:
-        sigma = size / 4
+        # 원형 구경을 사각틀 내에서 최대한 크게 보이도록 완만한 가우시안
+        sigma = size / 2.2
     
     # 공간주파수를 픽셀 단위로 변환
     # 1 cpd ≈ 60 pixels/cycle (시야각 1도 ≈ 60픽셀 가정)
@@ -54,12 +64,18 @@ def generate_gabor_patch(spatial_freq, size=200, contrast=0.8, sigma=None):
             
             # 가우시안 포락선
             gaussian = math.exp(-dist_sq / (2 * sigma * sigma))
+
+            # 원형 구경(사각틀 내 최대한 큰 원) + 부드러운 가장자리
+            r = math.sqrt(dist_sq)
+            aperture_r = size * 0.48
+            feather = size * 0.04
+            aperture = 1.0 - _smoothstep(aperture_r - feather, aperture_r, r)
             
             # 정현파 격자 (수평 방향)
-            grating = math.sin(2 * math.pi * dx / wavelength)
+            grating = math.sin(2 * math.pi * dx / wavelength + phase)
             
-            # 가보 패치 = 가우시안 포락선 × 정현파 격자
-            gabor_value = gaussian * grating
+            # 가보 패치 = (가우시안 × 원형 구경) × 정현파
+            gabor_value = (gaussian * aperture) * grating
             
             # 대비 조정 및 0-255 범위로 변환
             pixel_value = int((gabor_value * contrast + 1) / 2 * 255)
@@ -75,7 +91,7 @@ def generate_gabor_patch(spatial_freq, size=200, contrast=0.8, sigma=None):
     
     return img
 
-def create_gabor_with_text(spatial_freq, patch_size=200, canvas_padding_bottom=40):
+def create_gabor_with_text(spatial_freq, patch_size=200, canvas_padding_bottom=40, label="spatial"):
     """
     텍스트가 포함된 가보 패치 이미지 생성
     
@@ -105,12 +121,14 @@ def create_gabor_with_text(spatial_freq, patch_size=200, canvas_padding_bottom=4
     # 텍스트 추가
     draw = ImageDraw.Draw(img)
     
-    # 텍스트 내용: '*' 제거, 표기 통일
-    text = f"{int(spatial_freq)} spatial frequency (cpd)"
+    # 텍스트 내용(HTML figcaption 스타일에 맞춰 통일)
+    if label == "temporal":
+        text = f"{int(spatial_freq)} temporal frequency (Hz)"
+    else:
+        text = f"{int(spatial_freq)} spatial frequency (cpd)"
     
-    # 폰트 크기 설정
-    # 사각틀이 작아졌으니 폰트도 축소
-    font_size = max(14, patch_size // 12)
+    # figcaption(0.9rem) 수준으로 맞춤: 14~15px 정도
+    font_size = 15
     
     try:
         # 시스템 폰트 사용 시도
@@ -131,8 +149,8 @@ def create_gabor_with_text(spatial_freq, patch_size=200, canvas_padding_bottom=4
     x = (canvas_w - text_width) // 2
     y = patch_size + (canvas_padding_bottom - text_height) // 2
 
-    # 텍스트 그리기 (검은색)
-    draw.text((x, y), text, fill=(0, 0, 0), font=font)
+    # figcaption 색상(#94a3b8)으로 맞춤
+    draw.text((x, y), text, fill=(148, 163, 184), font=font)
     
     return img
 
@@ -157,7 +175,7 @@ def create_gabor_gif(output_path="gabor_spatial_frequency.gif", patch_size=200, 
     
     for i, freq in enumerate(spatial_freqs):
         print(f"생성 중: {freq} cpd ({i+1}/30)")
-        img = create_gabor_with_text(freq, patch_size=patch_size)
+        img = create_gabor_with_text(freq, patch_size=patch_size, label="spatial")
         images.append(img)
     
     # GIF로 저장
@@ -174,6 +192,66 @@ def create_gabor_gif(output_path="gabor_spatial_frequency.gif", patch_size=200, 
     file_size = os.path.getsize(output_path) / (1024 * 1024)  # MB
     print(f"완료! 파일 크기: {file_size:.2f} MB")
     
+    return output_path
+
+
+def create_temporal_frequency_gif(output_path="temporal_frequency.gif", patch_size=200, duration=100):
+    """
+    시간주파수(1~30Hz) 변화 GIF 생성
+    - 좌측(공간주파수)와 동일한 크기/레이아웃(사각틀 + 아래 텍스트)
+    - 내부 패턴은 위상(phase)을 주파수에 비례해 변화시켜 시간 변화를 시각화
+    """
+    print("시간주파수 GIF 생성 중...")
+    images = []
+
+    fixed_spatial_cpd = 4  # 시간주파수 표현용: 공간주파수는 고정
+    t = 0.08  # 임의 샘플 시간(초)
+
+    for i, hz in enumerate(range(1, 31)):
+        print(f"생성 중: {hz} Hz ({i+1}/30)")
+        phase = 2 * math.pi * hz * t
+        patch = generate_gabor_patch(
+            spatial_freq=fixed_spatial_cpd,
+            size=patch_size,
+            phase=phase,
+        ).convert("RGB")
+
+        canvas_w = patch_size
+        canvas_h = patch_size + 40
+        img = Image.new("RGB", (canvas_w, canvas_h), (255, 255, 255))
+        img.paste(patch, (0, 0))
+
+        draw = ImageDraw.Draw(img)
+        text = f"{hz} temporal frequency (Hz)"
+
+        font_size = 15
+        try:
+            font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", font_size)
+        except:
+            try:
+                font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
+            except:
+                font = ImageFont.load_default()
+
+        bbox = draw.textbbox((0, 0), text, font=font)
+        text_width = bbox[2] - bbox[0]
+        text_height = bbox[3] - bbox[1]
+        x = (canvas_w - text_width) // 2
+        y = patch_size + (40 - text_height) // 2
+        draw.text((x, y), text, fill=(148, 163, 184), font=font)
+
+        images.append(img)
+
+    print(f"GIF 저장 중: {output_path}")
+    images[0].save(
+        output_path,
+        save_all=True,
+        append_images=images[1:],
+        duration=duration,
+        loop=0,
+    )
+    file_size = os.path.getsize(output_path) / (1024 * 1024)
+    print(f"완료! 파일 크기: {file_size:.2f} MB")
     return output_path
 
 if __name__ == "__main__":
@@ -203,4 +281,8 @@ if __name__ == "__main__":
     create_gabor_gif(output_path, patch_size=200, duration=150)  # 150ms per frame
     
     print(f"\n✅ 생성 완료: {output_path}")
+
+    temporal_output_path = os.path.join(output_dir, "temporal_frequency.gif")
+    create_temporal_frequency_gif(temporal_output_path, patch_size=200, duration=150)
+    print(f"\n✅ 생성 완료: {temporal_output_path}")
 
