@@ -226,8 +226,15 @@ def create_temporal_frequency_gif(output_path="temporal_frequency.gif", patch_si
         s = math.sin(2 * math.pi * hz * t)
         is_on = s >= 0
 
-        # 1Hz에서는 대비가 최대, 30Hz에서는 거의 정지처럼 보이도록 대비 축소
-        contrast_scale = max(0.0, 1.0 - (hz - 1) / 29) ** 1.3
+        # 1~중고주파 구간은 충분히 깜빡이게 유지하고, 30Hz 부근에서만 빠르게 대비를 낮춤
+        fusion_start_hz = 24.0
+        min_contrast_scale = 0.08
+        if hz <= fusion_start_hz:
+            contrast_scale = 1.0
+        else:
+            ramp = (hz - fusion_start_hz) / (30.0 - fusion_start_hz)
+            eased = _smoothstep(0.0, 1.0, ramp)
+            contrast_scale = 1.0 - eased * (1.0 - min_contrast_scale)
         on_contrast = 0.8 * contrast_scale
         off_contrast = 0.0
 
