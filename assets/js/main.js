@@ -164,7 +164,7 @@ function initTemporalFlicker() {
         const end = Number(target.dataset.freqEnd);
         const duration = Number(target.dataset.rampDuration);
         const stepDuration = Number(target.dataset.stepDuration || 1000);
-        const speedMultiplier = Number(target.dataset.speedMultiplier || 1);
+        const speedMultiplier = Number(target.dataset.speedMultiplier || 2.5);
         const onSrc = target.dataset.onSrc;
         const offSrc = target.dataset.offSrc;
         if (!Number.isFinite(start) || !Number.isFinite(end) || !Number.isFinite(duration) || !Number.isFinite(stepDuration) || !Number.isFinite(speedMultiplier) || !onSrc || !offSrc) {
