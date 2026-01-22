@@ -66,117 +66,211 @@
                 </header>
 
                 <div class="challenges-list">
-                    <!-- Challenge 1: Contrast Sensitivity -->
-                    <!-- Challenge 1: Contrast Sensitivity -->
-                    <div class="challenge-item" id="contrast-sensitivity">
-                        <div class="challenge-text">
-                            <h3>Motion Contrast Sensitivity in Visual Pathways</h3>
-                            <p>Investigating the correlation between visual pathway dominance and motion contrast
-                                sensitivity. We analyze detection thresholds for stationary and moving stimuli in
-                                simulated hemianopsia conditions.</p>
-                            <p><strong>Key Focus:</strong> Validating visual pathway dominance through hemianopsia
-                                simulation and contrast sensitivity analysis.</p>
-                            <a href="project.html?id=contrast-sensitivity" class="btn-text"
-                                style="color: #003366; font-weight: 600; text-decoration: none; margin-top: 1rem; display: inline-block;">View
-                                Project Details &rarr;</a>
-                        </div>
-                        <div class="challenge-media">
-                            <img src="../assets/images/contrast_sensitivity_plot.png" alt="Contrast Sensitivity Plot"
-                                style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer;"
-                                onclick="window.location.href='project.html?id=contrast-sensitivity'">
-                        </div>
-                    </div>
+                    <div class="challenges-content">
 
-                    <!-- Challenge 2: Corneo-Scleral Profiling (Reverse Layout) -->
-                    <div class="challenge-item reverse">
-                        <div class="challenge-text">
-                            <h3>Corneo-Scleral Profiling &<br>3D Reconstruction</h3>
-                            <p>A novel system for full-range anterior segment profiling. By reconstructing the 3D
-                                topography of both the cornea and sclera, we enable precise fitting of scleral lenses
-                                and advanced myopia control interventions.</p>
-                            <p><strong>Key Focus:</strong> 3D modeling of the ocular surface for personalized contact
-                                lens design.</p>
-                        </div>
-                        <div class="challenge-media">
-                            <!-- Placeholder for GIF/Image -->
-                            <div class="challenge-placeholder">
-                                <p>[Image/GIF] 3D Cornea-Sclera Model</p>
-                                <small>assets/images/challenges/corneo_scleral/</small>
+                        <!-- Project 1: Contrast Sensitivity -->
+                        <div class="project-section"
+                            style="margin-bottom: 5rem; padding-bottom: 4rem; border-bottom: 1px solid #e2e8f0;">
+                            <h3 style="font-size: 1.8rem; color: #0f172a; margin-bottom: 0.5rem;">Motion Contrast
+                                Sensitivity in Visual Pathways</h3>
+                            <p class="subtitle" style="font-size: 1.2rem; color: #64748b; margin-bottom: 2rem;">
+                                Investigating Hemispheric Asymmetry via Hemianopia Simulation</p>
+
+                            <div class="project-body" style="display: flex; flex-direction: column; gap: 2rem;">
+                                <div class="project-text">
+                                    <h4
+                                        style="font-size: 1rem; font-weight: 700; color: #334155; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+                                        Objective</h4>
+                                    <p style="margin-bottom: 1.5rem; line-height: 1.7; color: #334155;">To verify if the
+                                        left-hemisphere language dominance in right-handers extends to visual contrast
+                                        sensitivity, and to analyze sensitivity to static and moving stimuli at 1 cpd
+                                        low spatial frequency in the peripheral field.</p>
+
+                                    <h4
+                                        style="font-size: 1rem; font-weight: 700; color: #334155; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+                                        Methodology</h4>
+                                    <ul
+                                        style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #475569; line-height: 1.6;">
+                                        <li><strong>Subjects:</strong> 24 adults with normal vision (21 right-handed, 3
+                                            left-handed)</li>
+                                        <li><strong>Equipment:</strong> Morphonome software, Hemianopia simulator</li>
+                                        <li><strong>Conditions:</strong> Simulated Left Hemianopia (LH) vs Right
+                                            Hemianopia (RH)</li>
+                                        <li><strong>Stimuli:</strong> 1 cpd Gabor patches, 3 speed levels (0, 10, 30
+                                            cm/s)</li>
+                                    </ul>
+
+                                    <h4
+                                        style="font-size: 1rem; font-weight: 700; color: #334155; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+                                        Key Results</h4>
+                                    <ul
+                                        style="list-style-type: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                                        <li style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                                            <strong
+                                                style="display: block; color: #003366; margin-bottom: 0.2rem;">Significant
+                                                Decrease</strong>
+                                            <span style="font-size: 0.9rem; color: #64748b;">Contrast sensitivity
+                                                significantly decreased as stimulus speed increased (p<.001)< /span>
+                                        </li>
+                                        <li style="background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                                            <strong
+                                                style="display: block; color: #003366; margin-bottom: 0.2rem;">Pathway
+                                                Comparison</strong>
+                                            <span style="font-size: 0.9rem; color: #64748b;">Trend of higher sensitivity
+                                                in Right Pathway (RH) but not statistically significant (p=.075)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="project-images" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                    <figure style="margin: 0;">
+                                        <img src="../assets/images/contrast_sensitivity_plot.png"
+                                            alt="Contrast Sensitivity Plot"
+                                            style="height: 250px; width: auto; max-width: 100%; border: 1px solid #e2e8f0; border-radius: 4px;">
+                                        <figcaption style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem;">
+                                            Sensitivity Plot</figcaption>
+                                    </figure>
+                                    <figure style="margin: 0;">
+                                        <img src="../assets/images/contrast_sensitivity_boxplot.png"
+                                            alt="Contrast Sensitivity Boxplot"
+                                            style="height: 250px; width: auto; max-width: 100%; border: 1px solid #e2e8f0; border-radius: 4px;">
+                                        <figcaption style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem;">
+                                            Statistical Distribution</figcaption>
+                                    </figure>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Challenge 3: Retinal Profiling -->
-                    <div class="challenge-item">
-                        <div class="challenge-text">
-                            <h3>Retinal Profiling &<br>3D Reconstruction</h3>
-                            <p>Utilizing OCT and fundus imaging data to generate comprehensive 3D retinal maps. This
-                                technology allows for the precise tracking of retinal layer thickness changes, crucial
-                                for monitoring myopia progression and macular degeneration.</p>
-                            <p><strong>Key Focus:</strong> Quantitative analysis of retinal curvature and peripheral
-                                defocus.</p>
-                        </div>
-                        <div class="challenge-media">
-                            <!-- Placeholder for GIF/Image -->
-                            <div class="challenge-placeholder">
-                                <p>[Image/GIF] Retinal Layer Analysis</p>
-                                <small>assets/images/challenges/retinal/</small>
+                        <!-- Project 2: Full-Retina Total Correction -->
+                        <div class="project-section"
+                            style="margin-bottom: 5rem; padding-bottom: 4rem; border-bottom: 1px solid #e2e8f0;">
+                            <h3 style="font-size: 1.8rem; color: #0f172a; margin-bottom: 0.5rem;">Full-Retina Total
+                                Correction & Myopia Control</h3>
+                            <p class="subtitle" style="font-size: 1.2rem; color: #64748b; margin-bottom: 2rem;">An
+                                innovative myopia control platform</p>
+
+                            <div class="project-body">
+                                <h4
+                                    style="font-size: 1rem; font-weight: 700; color: #334155; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+                                    Objective</h4>
+                                <p style="margin-bottom: 1.5rem; line-height: 1.7; color: #334155;">Systematically
+                                    analyze the relationship between the focal position of the peripheral retina—a key
+                                    mechanism in myopia progression—and ocular growth to identify the mechanism of
+                                    myopia inhibition. Moving beyond traditional central refractive correction, we
+                                    introduce the concept of total correction considering the refractive state of the
+                                    entire retina.</p>
+
+                                <h4
+                                    style="font-size: 1rem; font-weight: 700; color: #334155; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+                                    Mechanisms</h4>
+                                <ul
+                                    style="list-style-type: none; padding: 0; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+                                    <li style="padding-left: 1rem; border-left: 3px solid #003366;">
+                                        <strong
+                                            style="color: #0f172a; display: block; margin-bottom: 0.3rem;">Peripheral
+                                            Retinal Focal Plane and Ocular Growth</strong>
+                                        <span style="color: #475569; display: block; font-size: 0.95rem;">FS' (Sagittal
+                                            Focal Line) acts as a major signal promoting ocular growth. Hyperopic
+                                            defocus induces posterior growth.</span>
+                                    </li>
+                                    <li style="padding-left: 1rem; border-left: 3px solid #003366;">
+                                        <strong style="color: #0f172a; display: block; margin-bottom: 0.3rem;">Retinal
+                                            Curvature Changes</strong>
+                                        <span style="color: #475569; display: block; font-size: 0.95rem;">As myopia
+                                            progresses, the posterior eye becomes steeper, positioning FS' further
+                                            behind the retina.</span>
+                                    </li>
+                                    <li style="padding-left: 1rem; border-left: 3px solid #003366;">
+                                        <strong style="color: #0f172a; display: block; margin-bottom: 0.3rem;">Optical
+                                            Intervention</strong>
+                                        <span style="color: #475569; display: block; font-size: 0.95rem;">Inducing
+                                            intentional myopic defocus in the periphery to inhibit ocular growth
+                                            loops.</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Challenge 4: Real-time Auto Refractometer (Reverse Layout) -->
-                    <div class="challenge-item reverse">
-                        <div class="challenge-text">
-                            <h3>Real-time Auto Refractometer</h3>
-                            <p>Next-generation wavefront sensing technology that provides continuous, real-time
-                                refractive error measurements. This system is designed for dynamic accommodation studies
-                                and pediatric vision screening where speed and accuracy are paramount.</p>
-                            <p><strong>Key Focus:</strong> Binocular open-field autorefraction with high temporal
-                                resolution.</p>
-                        </div>
-                        <div class="challenge-media">
-                            <!-- Placeholder for GIF/Image -->
-                            <div class="challenge-placeholder">
-                                <p>[GIF] Real-time Refraction Demo</p>
-                                <small>assets/images/challenges/auto_refractometer/</small>
+                        <!-- Project 3: Visual Cognition -->
+                        <div class="project-section" style="margin-bottom: 5rem;">
+                            <h3 style="font-size: 1.8rem; color: #0f172a; margin-bottom: 0.5rem;">Integrated
+                                Biometrics-Based Disease Prediction</h3>
+                            <p class="subtitle" style="font-size: 1.2rem; color: #64748b; margin-bottom: 2rem;">
+                                Simultaneous evaluation of neurological, metabolic, and psychological states</p>
+
+                            <div class="project-body">
+                                <!-- Stats Grid -->
+                                <div
+                                    style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; background: #f1f5f9; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                                    <div>
+                                        <span
+                                            style="display: block; font-size: 1.5rem; font-weight: 700; color: #003366;">47</span>
+                                        <span
+                                            style="font-size: 0.85rem; color: #64748b; text-transform: uppercase; font-weight: 600;">Biomarkers</span>
+                                    </div>
+                                    <div>
+                                        <span
+                                            style="display: block; font-size: 1.5rem; font-weight: 700; color: #003366;">4</span>
+                                        <span
+                                            style="font-size: 0.85rem; color: #64748b; text-transform: uppercase; font-weight: 600;">Disease
+                                            Cats</span>
+                                    </div>
+                                    <div>
+                                        <span
+                                            style="display: block; font-size: 1.5rem; font-weight: 700; color: #003366;">90%+</span>
+                                        <span
+                                            style="font-size: 0.85rem; color: #64748b; text-transform: uppercase; font-weight: 600;">Accuracy</span>
+                                    </div>
+                                    <div>
+                                        <span
+                                            style="display: block; font-size: 1.5rem; font-weight: 700; color: #003366;">3
+                                            mins</span>
+                                        <span
+                                            style="font-size: 0.85rem; color: #64748b; text-transform: uppercase; font-weight: 600;">Test
+                                            Time</span>
+                                    </div>
+                                </div>
+
+                                <h4
+                                    style="font-size: 1rem; font-weight: 700; color: #334155; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+                                    Objective</h4>
+                                <p style="margin-bottom: 1.5rem; line-height: 1.7; color: #334155;">To develop a single
+                                    screening algorithm covering diabetic retinopathy, glaucoma, MCI, and psychological
+                                    traits by combining pupil response indicators and retinal contrast sensitivity
+                                    (CSF).</p>
+
+                                <h4
+                                    style="font-size: 1rem; font-weight: 700; color: #334155; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+                                    Performance (AUC)</h4>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;">
+                                    <span
+                                        style="padding: 0.5rem 1rem; background: #fff; border: 1px solid #cbd5e1; border-radius: 20px; font-size: 0.9rem; color: #475569;">Diabetic
+                                        Retinopathy: <strong>0.92</strong></span>
+                                    <span
+                                        style="padding: 0.5rem 1rem; background: #fff; border: 1px solid #cbd5e1; border-radius: 20px; font-size: 0.9rem; color: #475569;">Glaucoma:
+                                        <strong>0.88</strong></span>
+                                    <span
+                                        style="padding: 0.5rem 1rem; background: #fff; border: 1px solid #cbd5e1; border-radius: 20px; font-size: 0.9rem; color: #475569;">MCI:
+                                        <strong>0.90</strong></span>
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
-                    <!-- Challenge 5: Non-invasive Disorder Prediction -->
-                    <div class="challenge-item">
-                        <div class="challenge-text">
-                            <h3>Non-invasive General Disorder<br>Prediction Algorithm</h3>
-                            <p>An AI-driven platform that correlates ocular biomarkers with systemic health issues. By
-                                analyzing micro-vascular changes in the retina and anterior segment, our algorithm
-                                predicts risks for diabetes, hypertension, and cardiovascular diseases non-invasively.
-                            </p>
-                            <p><strong>Key Focus:</strong> Multi-modal risk assessment using standard ocular imaging.
-                            </p>
-                        </div>
-                        <div class="challenge-media">
-                            <!-- Placeholder for GIF/Image -->
-                            <div class="challenge-placeholder">
-                                <p>[Image] AI Risk Prediction Scorecard</p>
-                                <small>assets/images/challenges/disorder_prediction/</small>
-                            </div>
+                    <!-- AI Disease Diagnosis Section -->
+                    <div style="margin-top: 4rem;">
+                        <h3
+                            style="font-size: 1.8rem; color: #003366; margin-bottom: 2rem; padding-bottom: 0.5rem; border-bottom: 2px solid #003366;">
+                            AI Disease Prediction</h3>
+                        <p style="color: #64748b; margin-bottom: 2rem;">8-stage eye disease risk analysis system using
+                            AI
+                            visual intelligence.</p>
+                        <div id="diagnostics-container">
+                            <div class="loading">Loading data...</div>
                         </div>
                     </div>
                 </div>
-
-                <!-- AI Disease Diagnosis Section -->
-                <div style="margin-top: 4rem;">
-                    <h3
-                        style="font-size: 1.8rem; color: #003366; margin-bottom: 2rem; padding-bottom: 0.5rem; border-bottom: 2px solid #003366;">
-                        AI Disease Prediction</h3>
-                    <p style="color: #64748b; margin-bottom: 2rem;">8-stage eye disease risk analysis system using AI
-                        visual intelligence.</p>
-                    <div id="diagnostics-container">
-                        <div class="loading">Loading data...</div>
-                    </div>
-                </div>
-            </div>
         </section>
     </main>
 
