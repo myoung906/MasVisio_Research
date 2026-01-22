@@ -116,21 +116,14 @@
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: #94a3b8; text-align: center;">
                                         Temporal Frequency
                                     </div>
-                                    <div data-temporal-flicker="true"
+                                    <div data-temporal-flicker="canvas"
                                         data-freq-start="1"
                                         data-freq-end="30"
                                         data-ramp-duration="10800"
+                                        data-on-src="../assets/images/temporal_frequency_on.png"
+                                        data-off-src="../assets/images/temporal_frequency_off.png"
                                         style="position: relative; width: 100%; aspect-ratio: 1 / 1; border: 1px solid #e2e8f0; border-radius: 0; background: #f1f5f9; overflow: hidden;">
-                                        <img src="../assets/images/temporal_frequency_on.png"
-                                             alt="Gabor Patch Temporal Frequency ON"
-                                             class="temporal-flicker-on"
-                                             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;"
-                                             loading="lazy">
-                                        <img src="../assets/images/temporal_frequency_off.png"
-                                             alt="Gabor Patch Temporal Frequency OFF"
-                                             class="temporal-flicker-off"
-                                             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;"
-                                             loading="lazy">
+                                        <canvas class="temporal-flicker-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
                                     </div>
                                     <figcaption style="margin-top: 0.5rem; font-size: 0.9rem; color: #94a3b8; text-align: center;"
                                         data-temporal-caption="true">
@@ -233,7 +226,7 @@
         </section>
     </main>
 
-    <script src="../assets/js/main.js?v=1.6"></script>
+    <script src="../assets/js/main.js?v=1.7"></script>
 </body>
 
 </html>

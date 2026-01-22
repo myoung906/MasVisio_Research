@@ -153,24 +153,34 @@ function initGaborCaptionAnimations() {
 }
 
 function initTemporalFlicker() {
-    const targets = Array.from(document.querySelectorAll('[data-temporal-flicker="true"]'));
+    const targets = Array.from(document.querySelectorAll('[data-temporal-flicker="canvas"]'));
     if (targets.length === 0) return;
 
     const configs = targets.map((target) => {
-        const onImg = target.querySelector('.temporal-flicker-on');
-        const offImg = target.querySelector('.temporal-flicker-off');
-        if (!onImg || !offImg) return null;
+        const canvas = target.querySelector('.temporal-flicker-canvas');
+        if (!canvas) return null;
 
         const start = Number(target.dataset.freqStart);
         const end = Number(target.dataset.freqEnd);
         const duration = Number(target.dataset.rampDuration);
-        if (!Number.isFinite(start) || !Number.isFinite(end) || !Number.isFinite(duration)) {
+        const onSrc = target.dataset.onSrc;
+        const offSrc = target.dataset.offSrc;
+        if (!Number.isFinite(start) || !Number.isFinite(end) || !Number.isFinite(duration) || !onSrc || !offSrc) {
             return null;
         }
 
         const captionValue = target.closest('figure')?.querySelector('.temporal-caption-value') || null;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return null;
+
+        const onImg = new Image();
+        const offImg = new Image();
+        onImg.src = onSrc;
+        offImg.src = offSrc;
 
         return {
+            canvas,
+            ctx,
             onImg,
             offImg,
             captionValue,
@@ -178,24 +188,50 @@ function initTemporalFlicker() {
             end,
             duration: Math.max(1, duration),
             startTime: performance.now(),
-            lastCaption: null
+            lastCaption: null,
+            lastTime: performance.now(),
+            alpha: 0.0
         };
     }).filter(Boolean);
 
     if (configs.length === 0) return;
 
+    const resizeCanvas = (config) => {
+        const { canvas } = config;
+        const rect = canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.max(1, Math.round(rect.width * dpr));
+        canvas.height = Math.max(1, Math.round(rect.height * dpr));
+    };
+
+    configs.forEach(resizeCanvas);
+    window.addEventListener('resize', () => configs.forEach(resizeCanvas));
+
     const update = (now) => {
         if (!document.hidden) {
             const nowSeconds = now / 1000;
             configs.forEach((config) => {
+                const { ctx, canvas } = config;
                 const elapsed = (now - config.startTime) % config.duration;
                 const ratio = elapsed / config.duration;
                 const freq = config.start + (config.end - config.start) * ratio;
 
-                const wave = Math.sin(2 * Math.PI * freq * nowSeconds);
-                const alpha = 0.5 + 0.5 * wave;
-                config.onImg.style.opacity = String(alpha);
-                config.offImg.style.opacity = String(1 - alpha);
+                const wave = Math.sin(2 * Math.PI * freq * nowSeconds) >= 0 ? 1 : 0;
+                const dt = Math.max(0.001, (now - config.lastTime) / 1000);
+                config.lastTime = now;
+
+                const tau = 0.06;
+                const blend = dt / (tau + dt);
+                config.alpha += (wave - config.alpha) * blend;
+
+                if (config.offImg.complete && config.onImg.complete) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.globalAlpha = 1;
+                    ctx.drawImage(config.offImg, 0, 0, canvas.width, canvas.height);
+                    ctx.globalAlpha = config.alpha;
+                    ctx.drawImage(config.onImg, 0, 0, canvas.width, canvas.height);
+                    ctx.globalAlpha = 1;
+                }
 
                 if (config.captionValue) {
                     const rounded = Math.max(config.start, Math.min(config.end, Math.round(freq)));
