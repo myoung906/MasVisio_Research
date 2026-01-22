@@ -215,7 +215,7 @@ def create_temporal_frequency_gif(output_path="temporal_frequency.gif", patch_si
     frame_duration_ms = 45  # 1.5배 느리게 재생되도록 저장 시간만 증가
 
     # 깜빡임을 'ON/OFF'로 단순화: ON은 원 패턴, OFF는 평균(회색)으로
-    # OFF에서 패턴이 완전히 사라지도록 contrast=0을 사용
+    # 높은 Hz에서는 거의 정지처럼 보이도록 대비를 점진적으로 낮춤
 
     for i in range(n_frames):
         # 시간에 따라 주파수가 1Hz -> 30Hz로 선형 증가
@@ -226,18 +226,23 @@ def create_temporal_frequency_gif(output_path="temporal_frequency.gif", patch_si
         s = math.sin(2 * math.pi * hz * t)
         is_on = s >= 0
 
+        # 1Hz에서는 대비가 최대, 30Hz에서는 거의 정지처럼 보이도록 대비 축소
+        contrast_scale = max(0.0, 1.0 - (hz - 1) / 29) ** 1.3
+        on_contrast = 0.8 * contrast_scale
+        off_contrast = 0.0
+
         if is_on:
             patch = generate_gabor_patch(
                 spatial_freq=fixed_spatial_cpd,
                 size=patch_size,
-                contrast=0.8,
+                contrast=on_contrast,
                 phase=0.0,
             ).convert("RGB")
         else:
             patch = generate_gabor_patch(
                 spatial_freq=fixed_spatial_cpd,
                 size=patch_size,
-                contrast=0.0,  # 회색(평균)로 떨어뜨려 깜빡임을 강하게 체감
+                contrast=off_contrast,  # 회색(평균)로 떨어뜨려 깜빡임을 강하게 체감
                 phase=0.0,
             ).convert("RGB")
 
