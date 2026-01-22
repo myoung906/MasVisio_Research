@@ -1,343 +1,340 @@
 /* Mobile Navigation Toggle Button */
 .mobile-nav-toggle {
-    display: none;
-    position: fixed;
-    top: 1.5rem;
-    left: 1.5rem;
-    z-index: 2001;
-    width: 45px;
-    height: 45px;
-    border: none;
-    background-color: #fff;
-    cursor: pointer;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    transition: all 0.3s ease;
+  display: none;
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 2001;
+  width: 45px;
+  height: 45px;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.3s ease;
 }
 
 .mobile-nav-toggle i {
-    font-size: 24px;
-    color: var(--primary-color);
-    line-height: 0;
+  font-size: 24px;
+  color: var(--primary-color);
+  line-height: 0;
 }
 
 /* Simple Hamburger Icon (CSS-only) */
 .hamburger-icon {
-    width: 24px;
-    height: 18px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hamburger-icon span {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary-color);
-    border-radius: 2px;
-    transition: all 0.3s ease;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
 /* Transform to X when active */
 .mobile-nav-toggle.active .hamburger-icon span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
 
 .mobile-nav-toggle.active .hamburger-icon span:nth-child(2) {
-    opacity: 0;
+  opacity: 0;
 }
 
 .mobile-nav-toggle.active .hamburger-icon span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Overlay Backdrop */
 .mobile-nav-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 900;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(2px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(2px);
 }
 
 .mobile-nav-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Responsive Design (Mobile) */
 @media (max-width: 1024px) {
+  /* Sidebar Behavior - 높은 특이성으로 !important 없이 오버라이드 */
+  body .sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    left: -280px;
+    top: 0;
+    border-right: 1px solid #e5e7eb;
+    border-bottom: none;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+  }
 
-    /* Sidebar Behavior - 높은 특이성으로 !important 없이 오버라이드 */
-    body .sidebar {
-        width: 280px;
-        height: 100vh;
-        position: fixed;
-        left: -280px;
-        top: 0;
-        border-right: 1px solid #e5e7eb;
-        border-bottom: none;
-        transition: left 0.3s ease-in-out;
-        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
-        z-index: 1001;
-    }
+  body .sidebar.active {
+    left: 0;
+  }
 
-    body .sidebar.active {
-        left: 0;
-    }
+  /* Main Content Adjustments */
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
 
-    /* Main Content Adjustments */
-    .main-content {
-        margin-left: 0;
-        width: 100%;
-    }
+  .main-content > .container {
+    padding: 4rem 2rem;
+    /* Reduce padding side */
+  }
 
-    .main-content>.container {
-        padding: 4rem 2rem;
-        /* Reduce padding side */
-    }
+  /* Challenge Item Stacking */
+  .challenge-item {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 
-    /* Challenge Item Stacking */
-    .challenge-item {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+  .challenge-item.reverse {
+    direction: ltr;
+    /* Reset direction for vertical stacking */
+  }
 
-    .challenge-item.reverse {
-        direction: ltr;
-        /* Reset direction for vertical stacking */
-    }
+  .challenge-media {
+    order: -1;
+    /* Image always on top on mobile */
+  }
 
-    .challenge-media {
-        order: -1;
-        /* Image always on top on mobile */
-    }
+  /* Section Padding Reduction - 높은 특이성으로 오버라이드 */
+  .main-content .intro-section {
+    padding: 4rem 2rem;
+  }
 
-    /* Section Padding Reduction - 높은 특이성으로 오버라이드 */
-    .main-content .intro-section {
-        padding: 4rem 2rem;
-    }
+  .main-content .section {
+    padding: 0 2rem 4rem;
+  }
 
-    .main-content .section {
-        padding: 0 2rem 4rem;
-    }
-
-    /* Show Mobile Toggle */
-    .mobile-nav-toggle {
-        display: flex;
-    }
+  /* Show Mobile Toggle */
+  .mobile-nav-toggle {
+    display: flex;
+  }
 }
 
 @media (max-width: 768px) {
+  /* Typography Scaling - 특이성 증가로 !important 제거 */
+  body h1 {
+    font-size: 2rem;
+  }
 
-    /* Typography Scaling - 특이성 증가로 !important 제거 */
-    body h1 {
-        font-size: 2rem;
-    }
+  body h2,
+  body .section-title {
+    font-size: 1.75rem;
+  }
 
-    body h2,
-    body .section-title {
-        font-size: 1.75rem;
-    }
+  body h3 {
+    font-size: 1.25rem;
+  }
 
-    body h3 {
-        font-size: 1.25rem;
-    }
+  .sidebar .sidebar-logo h1 {
+    font-size: 2rem;
+  }
 
-    .sidebar .sidebar-logo h1 {
-        font-size: 2rem;
-    }
+  .main-content .intro-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
 
-    .main-content .intro-section h2 {
-        font-size: 1.75rem;
-        margin-bottom: 2rem;
-    }
+  body .row {
+    flex-direction: column;
+    gap: 2rem;
+  }
 
-    body .row {
-        flex-direction: column;
-        gap: 2rem;
-    }
+  .col-image {
+    margin-top: 1rem;
+  }
 
-    .col-image {
-        margin-top: 1rem;
-    }
-
-    /* Footer Centering */
-    .sidebar-footer {
-        text-align: center;
-    }
+  /* Footer Centering */
+  .sidebar-footer {
+    text-align: center;
+  }
 }
 
 /* 초소형 모바일 (480px 이하) */
 @media (max-width: 480px) {
+  /* 더 작은 타이포그래피 */
+  body h1 {
+    font-size: 1.75rem;
+  }
 
-    /* 더 작은 타이포그래피 */
-    body h1 {
-        font-size: 1.75rem;
-    }
+  body h2,
+  body .section-title {
+    font-size: 1.5rem;
+  }
 
-    body h2,
-    body .section-title {
-        font-size: 1.5rem;
-    }
+  body h3 {
+    font-size: 1.1rem;
+  }
 
-    body h3 {
-        font-size: 1.1rem;
-    }
+  /* 컨테이너 패딩 축소 */
+  .main-content > .container {
+    padding: 2rem 1rem;
+  }
 
-    /* 컨테이너 패딩 축소 */
-    .main-content>.container {
-        padding: 2rem 1rem;
-    }
+  .main-content .intro-section {
+    padding: 2rem 1rem;
+  }
 
-    .main-content .intro-section {
-        padding: 2rem 1rem;
-    }
+  .main-content .section {
+    padding: 0 1rem 2rem;
+  }
 
-    .main-content .section {
-        padding: 0 1rem 2rem;
-    }
+  /* 사이드바 조정 */
+  body .sidebar {
+    width: 260px;
+    padding: 1.5rem 1rem;
+  }
 
-    /* 사이드바 조정 */
-    body .sidebar {
-        width: 260px;
-        padding: 1.5rem 1rem;
-    }
+  .sidebar-logo h1 {
+    font-size: 1.75rem;
+  }
 
-    .sidebar-logo h1 {
-        font-size: 1.75rem;
-    }
+  /* 카드 그리드 단일 컬럼 */
+  .features-grid,
+  .team-grid,
+  #research-projects-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 
-    /* 카드 그리드 단일 컬럼 */
-    .features-grid,
-    .team-grid,
-    #research-projects-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
+  /* 이미지 높이 축소 */
+  .features-grid .feature-card img {
+    height: 250px;
+  }
 
-    /* 이미지 높이 축소 */
-    .features-grid .feature-card img {
-        height: 250px;
-    }
+  /* 통계 뱃지 작게 */
+  .stat-badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
 
-    /* 통계 뱃지 작게 */
-    .stat-badge {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-    }
-
-    /* 발행물 리스트 조정 */
-    .iso-item {
-        font-size: 0.9rem;
-        padding-left: 1rem;
-        text-indent: -1rem;
-    }
+  /* 발행물 리스트 조정 */
+  .iso-item {
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    text-indent: -1rem;
+  }
 }
 
 /* Mobile Header - Logo bar for mobile view */
 .mobile-header {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 1024px) {
-    .mobile-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 60px;
-        background-color: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        z-index: 1000;
-        /* Ensure visibility */
-        /* border-bottom removed */
-        /* No padding-right to ensure center alignment */
-        flex-direction: column;
-        padding: 1rem 0;
-        height: auto;
-        min-height: 120px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        /* Subtle shadow for depth */
-    }
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    /* Ensure visibility */
+    /* border-bottom removed */
+    /* No padding-right to ensure center alignment */
+    flex-direction: column;
+    padding: 1rem 0;
+    height: auto;
+    min-height: 120px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    /* Subtle shadow for depth */
+  }
 
-    /* Move toggle button position slightly to align with header if needed, but current top: 1.5rem is ~24px */
+  /* Move toggle button position slightly to align with header if needed, but current top: 1.5rem is ~24px */
 
-    .mobile-header .mobile-logo {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        text-align: center;
-    }
+  .mobile-header .mobile-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    text-align: center;
+  }
 
-    .mobile-header .mobile-logo h1 {
-        font-family: 'Inter', sans-serif;
-        font-weight: 800;
-        font-size: 2rem;
-        /* Increased size for impact */
-        color: #003366;
-        line-height: 1.1;
-        margin: 0 0 0.5rem 0;
-    }
+  .mobile-header .mobile-logo h1 {
+    font-family: "Inter", sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    /* Increased size for impact */
+    color: #003366;
+    line-height: 1.1;
+    margin: 0 0 0.5rem 0;
+  }
 
-    .mobile-header .mobile-logo .logo-subtitle {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.9rem;
-        /* Increased readability */
-        color: #64748b;
-        font-weight: 500;
-        line-height: 1.4;
-    }
+  .mobile-header .mobile-logo .logo-subtitle {
+    font-family: "Inter", sans-serif;
+    font-size: 0.9rem;
+    /* Increased readability */
+    color: #64748b;
+    font-weight: 500;
+    line-height: 1.4;
+  }
 
-    /* Ensure breaks work */
-    .mobile-header br {
-        display: block;
-    }
+  /* Ensure breaks work */
+  .mobile-header br {
+    display: block;
+  }
 
-    /* Push main content down so it doesn't hide behind header */
-    .main-content {
-        padding-top: 140px !important;
-    }
+  /* Push main content down so it doesn't hide behind header */
+  .main-content {
+    padding-top: 140px !important;
+  }
 
-    /* Adjust intro section padding top since we added margin */
-    .intro-section {
-        padding-top: 2rem !important;
-    }
+  /* Adjust intro section padding top since we added margin */
+  .intro-section {
+    padding-top: 2rem !important;
+  }
 
-    /* Challenges Page Responsive */
-    .project-section {
-        padding: 2rem !important;
-    }
+  /* Challenges Page Responsive */
+  .project-section {
+    padding: 2rem !important;
+  }
 
-    .project-body .project-text>div {
-        grid-template-columns: 1fr !important;
-        gap: 2rem;
-    }
+  .project-body .project-text > div {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
 
-    .projects-images {
-        flex-direction: column;
-    }
+  .projects-images {
+    flex-direction: column;
+  }
 
-    .project-images figure {
-        width: 100%;
-    }
+  .project-images figure {
+    width: 100%;
+  }
 
-    .mechanism-cards {
-        grid-template-columns: 1fr !important;
-    }
+  .mechanism-cards {
+    grid-template-columns: 1fr !important;
+  }
 }
