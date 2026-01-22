@@ -318,4 +318,26 @@
     .intro-section {
         padding-top: 2rem !important;
     }
+
+    /* Challenges Page Responsive */
+    .project-section {
+        padding: 2rem !important;
+    }
+
+    .project-body .project-text>div {
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
+    }
+
+    .projects-images {
+        flex-direction: column;
+    }
+
+    .project-images figure {
+        width: 100%;
+    }
+
+    .mechanism-cards {
+        grid-template-columns: 1fr !important;
+    }
 }
