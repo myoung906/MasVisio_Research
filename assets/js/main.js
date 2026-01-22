@@ -628,14 +628,14 @@ async function loadTeamMembers() {
 
         if (teamMembers.length > 0) {
             container.innerHTML = teamMembers.map(member => `
-                < div class="team-card" >
+                <div class="team-card">
                     <h3>${member.name}</h3>
                     ${member.affiliation ? `<p class="affiliation">${member.affiliation}</p>` : ''}
                     <p class="role">${member.role}</p>
                     <p class="bio">${member.bio}</p>
                     <p class="expertise"><small>${member.expertise}</small></p>
-                </div >
-                `).join('');
+                </div>
+            `).join('');
         } else {
             container.innerHTML = lang === 'ko'
                 ? '<p>팀원 정보를 불러올 수 없습니다.</p>'
@@ -643,6 +643,6 @@ async function loadTeamMembers() {
         }
     } catch (error) {
         console.error('Could not load team members:', error);
-        container.innerHTML = `< p class="error-text" > ${getErrorMessage(error, lang)}</p > `;
+        container.innerHTML = `<p class="error-text">${getErrorMessage(error, lang)}</p>`;
     }
 }
