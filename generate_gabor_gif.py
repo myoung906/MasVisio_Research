@@ -198,25 +198,49 @@ def create_gabor_gif(output_path="gabor_spatial_frequency.gif", patch_size=200, 
 
 def create_temporal_frequency_gif(output_path="temporal_frequency.gif", patch_size=200, duration=100):
     """
-    시간주파수(1~30Hz) 변화 GIF 생성
-    - 좌측(공간주파수)와 동일한 크기/레이아웃(사각틀 + 아래 텍스트)
-    - 내부 패턴은 위상(phase)을 주파수에 비례해 변화시켜 시간 변화를 시각화
+    시간주파수(1~30Hz) 플리커(깜빡임) GIF 생성
+    - 사용자 체감이 중요한 시각화이므로, 프레임이 진행될수록 플리커가 빨라지는 '램프' 형태로 구현
+    - 낮은 Hz에서는 천천히 명확하게 깜빡이고, 높은 Hz에서는 점점 깜빡임이 느껴지지 않도록(거의 안정된 회색/평균화) 유도
     """
     print("시간주파수 GIF 생성 중...")
     images = []
 
-    fixed_spatial_cpd = 4  # 시간주파수 표현용: 공간주파수는 고정
-    drift_px_per_hz = 2.0  # 1Hz 증가마다 2px씩 우측으로 이동(프레임 간 드리프트가 직관적)
+    fixed_spatial_cpd = 4  # 시간주파수 표현용: 공간 패턴은 고정
 
-    for i, hz in enumerate(range(1, 31)):
-        print(f"생성 중: {hz} Hz ({i+1}/30)")
-        # 프레임 번호가 증가할수록 줄무늬가 좌→우로 일관되게 이동하도록 x_shift를 사용
-        x_shift = hz * drift_px_per_hz
-        patch = generate_gabor_patch(
-            spatial_freq=fixed_spatial_cpd,
-            size=patch_size,
-            x_shift_px=x_shift,
-        ).convert("RGB")
+    # 프레임 설계
+    # - GIF 환경에서 30Hz(33ms 주기)를 그대로 재현하기는 제약이 있으므로,
+    #   "점점 빨라져서 거의 느껴지지 않음"을 목표로 한 램프를 만듭니다.
+    n_frames = 120
+    dt = 0.03  # 30ms(프레임)
+    frame_duration_ms = 30  # 저장 시 duration을 이 값으로 사용
+
+    # 깜빡임을 'ON/OFF'로 단순화: ON은 원 패턴, OFF는 평균(회색)으로
+    # OFF에서 패턴이 완전히 사라지도록 contrast=0을 사용
+
+    for i in range(n_frames):
+        # 시간에 따라 주파수가 1Hz -> 30Hz로 선형 증가
+        t = i * dt
+        hz = 1 + (29 * i / (n_frames - 1))
+
+        # 플리커 상태 결정: sin 부호로 ON/OFF
+        s = math.sin(2 * math.pi * hz * t)
+        is_on = s >= 0
+
+        if is_on:
+            patch = generate_gabor_patch(
+                spatial_freq=fixed_spatial_cpd,
+                size=patch_size,
+                contrast=0.8,
+                phase=0.0,
+            ).convert("RGB")
+        else:
+            patch = generate_gabor_patch(
+                spatial_freq=fixed_spatial_cpd,
+                size=patch_size,
+                contrast=0.0,  # 회색(평균)로 떨어뜨려 깜빡임을 강하게 체감
+                phase=0.0,
+            ).convert("RGB")
+
         images.append(patch)
 
     print(f"GIF 저장 중: {output_path}")
@@ -224,7 +248,7 @@ def create_temporal_frequency_gif(output_path="temporal_frequency.gif", patch_si
         output_path,
         save_all=True,
         append_images=images[1:],
-        duration=duration,
+        duration=frame_duration_ms,
         loop=0,
     )
     file_size = os.path.getsize(output_path) / (1024 * 1024)
