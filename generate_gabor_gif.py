@@ -90,11 +90,8 @@ def create_gabor_with_text(spatial_freq, size=400):
     PIL.Image
         텍스트가 포함된 가보 패치 이미지
     """
-    # 가보 패치 생성
-    gabor_array = generate_gabor_patch(spatial_freq, size=size)
-    
-    # PIL Image로 변환
-    img = Image.fromarray(gabor_array, mode='L')
+    # 가보 패치 생성 (이미 PIL Image 반환)
+    img = generate_gabor_patch(spatial_freq, size=size)
     
     # RGB로 변환 (텍스트 색상을 위해)
     img = img.convert('RGB')
