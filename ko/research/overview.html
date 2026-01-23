@@ -264,197 +264,77 @@
             </h2>
 
             <p class="challenge-desc" style="word-break: keep-all">
-              근시 진행은 단순히 안축장의 증가만이 아닌, 주변부 망막의 형태적
-              변화와 밀접한 관련이 있습니다. 우리는 등가구면굴절력에 따른
-              주변부 망막 곡률반경의 변화를 경선별로 정밀하게 분석하여,
-              근시도가 망막의 기하학적 구조에 미치는 영향을 정량적으로
-              규명합니다.
+              근시 진행은 단순히 안축장의 증가만이 아닌, 주변부 망막의 형태적 변화와 밀접한 관련이 있습니다. 우리는 정밀 기하광학 모델링과 색수차 원리를 통해 근시도가 망막의 기하학적 구조에 미치는 영향을 정량적으로 규명합니다.
             </p>
 
-            <div class="challenge-visual-container">
-              <h3 style="
-                    font-size: 1.2rem;
-                    margin-bottom: 1rem;
-                    color: #0f172a;
-                    word-break: keep-all;
-                  ">
-                정밀 기하광학 모델링 및 시뮬레이션
+            <!-- Study 1 -->
+            <div class="challenge-visual-container" style="margin-top: 3rem;">
+              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a; word-break: keep-all;">
+                연구 1: 정밀 기하광학 모델링 및 시뮬레이션
               </h3>
-
-              <p style="
-                    font-size: 0.95rem;
-                    color: #475569;
-                    margin-bottom: 2rem;
-                    line-height: 1.6;
-                    word-break: keep-all;
-                  ">
-                2014년부터 지속적으로 고도화해 온 독자적인 계산 알고리즘을
-                통해,
-                <strong>각막 전면과 후면, 수정체 피질의 전면과 후면, 그리고 수정체
-                  핵의 전면과 후면 등 총 6개의 굴절면</strong>에서 발생하는 모든 입사각과 굴절각을 기하광학적 관점에서
-                계산합니다. 이러한 정밀한
-                <strong>Ray-tracing(광선 추적)</strong> 시뮬레이션은 망막 상의
-                최종 수렴 지점을 정확히 예측하며, DRI OCT Triton으로 실측된
-                0~315도 경선의 망막 데이터와 결합되어 굴절이상도와 망막 형상
-                간의 상관관계를 완벽하게 검증합니다.
-              </p>
-
-              <!-- Images resized to be compact (similar to Phase 1) and arranged in a row -->
-              <div class="challenge-visual-grid" style="
-                    display: flex;
-                    gap: 1rem;
-                    justify-content: center;
-                    flex-wrap: wrap;
-                  ">
-                <figure style="
-                      flex: 0 1 220px;
-                      background: #f8fafc;
-                      padding: 0.5rem;
-                      border-radius: 8px;
-                      border: 1px solid #e2e8f0;
-                    ">
-                  <img src="../../assets/images/research/phase2/oct_analysis.png" alt="망막 OCT 측정"
-                    style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.8rem;
-                        color: #64748b;
-                        text-align: center;
-                      ">
-                    OCT 망막 곡률 실측
-                  </figcaption>
-                </figure>
-
-                <figure style="
-                      flex: 0 1 220px;
-                      background: #f8fafc;
-                      padding: 0.5rem;
-                      border-radius: 8px;
-                      border: 1px solid #e2e8f0;
-                    ">
-                  <img src="../../assets/images/research/phase2/optical_simulation.png" alt="Ray-tracing 시뮬레이션"
-                    style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.8rem;
-                        color: #64748b;
-                        text-align: center;
-                      ">
-                    6개 굴절면 Ray-tracing
-                  </figcaption>
-                </figure>
-
-                <figure style="
-                      flex: 0 1 220px;
-                      background: #f8fafc;
-                      padding: 0.5rem;
-                      border-radius: 8px;
-                      border: 1px solid #e2e8f0;
-                    ">
-                  <img src="../../assets/images/research/phase2/curvature_graph.png" alt="곡률 변화 그래프"
-                    style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.8rem;
-                        color: #64748b;
-                        text-align: center;
-                      ">
-                    굴절이상도별 망막 형상
-                  </figcaption>
-                </figure>
+              <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 2rem;">
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">연구 개요</h4>
+                <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1.5rem; word-break: keep-all;">
+                  2014년부터 지속적으로 고도화해 온 독자적인 계산 알고리즘을 통해, <strong>각막 전면과 후면, 수정체 피질의 전면과 후면, 그리고 수정체 핵의 전면과 후면 등 총 6개의 굴절면</strong>에서 발생하는 모든 입사각과 굴절각을 기하광학적 관점에서 계산합니다.
+                </p>
+                <div class="challenge-visual-grid" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                  <figure style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase2/oct_analysis.png" alt="망막 OCT 측정" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">OCT 망막 곡률 실측</figcaption>
+                  </figure>
+                  <figure style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase2/optical_simulation.png" alt="Ray-tracing 시뮬레이션" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">6개 굴절면 Ray-tracing</figcaption>
+                  </figure>
+                  <figure style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase2/curvature_graph.png" alt="곡률 변화 그래프" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">굴절이상도별 망막 형상</figcaption>
+                  </figure>
+                </div>
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">핵심 발견 (Key Findings)</h4>
+                <ul style="list-style: none; padding: 0; font-size: 0.95rem; color: #475569; line-height: 1.7;">
+                  <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
+                    <strong>상관관계 확인:</strong> 등가구면굴절력과 망막 곡률반경 간에는 강한 양의 상관관계(r=0.836)가 확인되었습니다.
+                  </li>
+                  <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
+                    <strong>비대칭 팽창:</strong> <strong>이측(Temporal)과 하측(Inferior) 망막</strong>에서 가장 뚜렷한 변화가 관찰되어, 근시 진행 시 망막이 특정 방향으로 비대칭적으로 팽창함을 시사합니다.
+                  </li>
+                </ul>
               </div>
-
-              <p style="
-                    font-size: 0.95rem;
-                    color: #475569;
-                    margin-top: 2rem;
-                    line-height: 1.6;
-                    word-break: keep-all;
-                  ">
-                <strong style="color: #0f172a">핵심 결과 (Key Findings):</strong>
-                등가구면굴절력과 망막 곡률반경 간에는 강한 양의
-                상관관계(r=0.836)가 확인되었습니다. 특히
-                <strong>이측(Temporal)과 하측(Inferior) 망막</strong>에서 가장
-                뚜렷한 변화가 관찰되어, 근시 진행 시 망막이 특정 방향으로
-                비대칭적으로 팽창함을 시사합니다.
-              </p>
-
             </div>
 
-            <!-- Connector for second approach -->
-            <div class="story-connector" style="margin: 2rem auto"></div>
+            <!-- Connector between studies -->
+            <div class="story-connector" style="margin: 2rem auto;"></div>
 
-            <h2 class="challenge-title" style="margin-top: 0">
-              색수차 이론에 따른 <strong>주변부망막 초점 위치</strong> 계산
-            </h2>
-
-            <p class="challenge-desc" style="word-break: keep-all">
-              주변부 망막의 굴절 상태를 정밀하게 측정하기 위해 적색(Red)과 녹색(Green) 파장의
-              <strong>색수차(Longitudinal Chromatic Aberration)</strong> 원리를 이용합니다.
-            </p>
-
+            <!-- Study 2 -->
             <div class="challenge-visual-container">
               <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a; word-break: keep-all;">
-                색수차 기반 주변부 굴절력 측정
+                연구 2: 색수차 기반 주변부 망막 굴절력 측정
               </h3>
-
-              <p
-                style="font-size: 0.95rem; color: #475569; margin-bottom: 1.5rem; line-height: 1.6; word-break: keep-all;">
-                먼저 중심와(Fovea)에서 1cpd 적녹 가보 패치(Gabor Patch)의 등가 시인성(Iso-visibility)을 확보한 후,
-                주변부 8°, 16°, 32° 지점에 배치된 LED 링의 점멸 테스트를 통해 각 이심률(Eccentricity)에서의 굴절력을 산출합니다.
-              </p>
-
-              <!-- Logic Box -->
-              <div
-                style="margin-bottom: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
-                <h4 style="font-size: 1rem; margin-bottom: 0.8rem; color: #334155;">측정 원리 (Measurement Logic)</h4>
-                <ul
-                  style="list-style: none; padding: 0; margin-bottom: 1rem; font-size: 0.9rem; color: #475569; line-height: 1.7;">
-                  <li style="margin-bottom: 0.5rem;"><strong>Step 1. 시인성 보정:</strong> 중심시야에서 1cpd 적/녹 패치의 대비감도를 측정하여
-                    주관적 등가 선명도(Iso-clarity) 기준값 설정</li>
-                  <li style="margin-bottom: 0.5rem;"><strong>Step 2. 주변부 자극:</strong> 8°, 16°, 32° 동심원상에 배치된 적/녹 LED
-                    쌍을 무작위 순서로 점멸(Flicker)</li>
-                  <li style="margin-bottom: 0.5rem;"><strong>Step 3. 굴절 산출:</strong> 피험자의 색상별 시인성 응답 패턴을 분석하여 망막상 초점
-                    위치(Defocus) 역산</li>
+              <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">연구 개요</h4>
+                <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1rem; word-break: keep-all;">
+                  주변부 망막의 굴절 상태를 정밀하게 측정하기 위해 적색(Red)과 녹색(Green) 파장의 <strong>색수차(Longitudinal Chromatic Aberration)</strong> 원리를 이용합니다.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; font-size: 0.95rem; color: #475569; line-height: 1.8;">
+                  <li style="margin-bottom: 0.5rem;"><strong>Step 1. 시인성 보정:</strong> 중심시야에서 1cpd 적/녹 패치의 대비감도를 측정하여 주관적 등가 선명도 기준값 설정</li>
+                  <li style="margin-bottom: 0.5rem;"><strong>Step 2. 주변부 자극:</strong> 8°, 16°, 32° 동심원상에 배치된 적/녹 LED 쌍을 무작위 순서로 점멸</li>
+                  <li style="margin-bottom: 0.5rem;"><strong>Step 3. 굴절 산출:</strong> 피험자의 색상별 시인성 응답 패턴을 분석하여 망막상 초점 위치 역산</li>
                 </ul>
-                <div
-                  style="margin-top: 1rem; padding: 1rem; background: #fff; border-radius: 4px; text-align: center; border: 1px solid #e2e8f0;">
-                  <div
-                    style="font-family: 'Times New Roman', serif; font-size: 1.1rem; color: #0f172a; margin-bottom: 0.5rem;">
-                    <em>R</em><sub>ecc</sub> = <em>R</em><sub>fovea</sub> + &alpha; &middot;
-                    log(<em>S</em><sub>red</sub> / <em>S</em><sub>green</sub>)
-                  </div>
-                  <span style="font-size: 0.8rem; color: #94a3b8;">
-                    (<em>R</em>: Refraction, &alpha;: Chromatic Coefficient, <em>S</em>: Sensitivity)
-                  </span>
+                <div class="challenge-visual-grid" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                  <figure style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase2/peripheral_setup_schematic.png" alt="측정 시스템 모식도" style="width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">주변부 망막 완전교정 pilot study</figcaption>
+                  </figure>
+                  <figure style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase2/led_flicker.gif" alt="LED 회로도" style="width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">LED 제어 회로도</figcaption>
+                  </figure>
+                  <figure style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase2/peripheral_prototype.gif" alt="시제품" style="width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">주변부 망막 완전교정 측정장비 시제품</figcaption>
+                  </figure>
                 </div>
-              </div>
-
-              <!-- Images -->
-              <div class="challenge-visual-grid"
-                style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <figure
-                  style="flex: 0 1 220px; background: #f8fafc; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                  <img src="../../assets/images/research/phase2/peripheral_setup_schematic.png"
-                    alt="Experimental Setup Schematic"
-                    style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
-                  <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">주변부
-                    망막 완전교정 pilot study</figcaption>
-                </figure>
-                <figure
-                  style="flex: 0 1 220px; background: #f8fafc; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                  <img src="../../assets/images/research/phase2/led_flicker.gif" alt="LED Ring Circuit Design"
-                    style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
-                  <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">LED
-                    제어 회로도 (Circuit Diagram)</figcaption>
-                </figure>
-                <figure
-                  style="flex: 0 1 220px; background: #f8fafc; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                  <img src="../../assets/images/research/phase2/peripheral_prototype.gif" alt="주변부 측정 시제품"
-                    style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
-                  <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">주변부
-                    망막 완전교정 측정장비 시제품</figcaption>
-                </figure>
               </div>
             </div>
           </div>
@@ -466,208 +346,82 @@
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 3: 시제품 개발</span>
             <h2 class="challenge-title">
-              실시간 <strong>자동안굴절계</strong>
+              실시간 <strong>안구 계측 시스템</strong>
             </h2>
 
             <p class="challenge-desc" style="word-break: keep-all">
-              우리는 눈에서 반사되는 빛의 미세한 패턴인 망막 그림자(Retinal
-              Shadow)의 밝기, 두께, 그리고 이동 속도를 분석하여 굴절이상을
-              측정하는 혁신적인 시스템을 개발했습니다. 자체 개발한
-              검영법(Retinoscopy) 모델은 지속적인 업데이트를 통해 고도화되고
-              있으며, 이를 기반으로 굴절이상을 확률적 모델에 근거하여
-              실시간으로 산출합니다.
+              우리는 망막 그림자 분석을 통한 실시간 굴절이상 측정 시스템과, 적외선 구조화광 패턴을 이용한 각공막 3D 재구성 기술을 개발하고 있습니다.
             </p>
 
-            <div class="challenge-visual-container">
-              <h3 style="
-                    font-size: 1.2rem;
-                    margin-bottom: 1rem;
-                    color: #0f172a;
-                    word-break: keep-all;
-                  ">
-                머신러닝 기반 검영법 실시간 분석 프로세스
+            <!-- Study 1: Auto Refractometer -->
+            <div class="challenge-visual-container" style="margin-top: 3rem;">
+              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a; word-break: keep-all;">
+                연구 1: 머신러닝 기반 실시간 자동안굴절계
               </h3>
-
-              <div class="challenge-visual-grid" style="
-                    display: flex;
-                    gap: 1rem;
-                    justify-content: center;
-                    flex-wrap: wrap;
-                    align-items: flex-start;
-                  ">
-                <figure style="
-                      flex: 0 1 330px;
-                      background: #f8fafc;
-                      padding: 0.5rem;
-                      border-radius: 8px;
-                      border: 1px solid #e2e8f0;
-                    ">
-                  <img src="../../assets/images/research/phase3/auto_ref_device.png" alt="실시간 자동안굴절계 프로토타입"
-                    style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.8rem;
-                        color: #64748b;
-                        text-align: center;
-                      ">
-                    실시간 자동안굴절계 프로토타입
-                  </figcaption>
-                </figure>
-
-                <figure style="
-                      flex: 0 1 638px;
-                      background: #f8fafc;
-                      padding: 0.5rem;
-                      border-radius: 8px;
-                      border: 1px solid #e2e8f0;
-                    ">
-                  <img src="../../assets/images/research/phase3/retinoscopy_view.png" alt="망막 그림자 패턴 분석"
-                    style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.8rem;
-                        color: #64748b;
-                        text-align: center;
-                      ">
-                    망막 그림자의 실시간 이미지 처리 기법
-                  </figcaption>
-                </figure>
-
-                <figure style="
-                      flex: 0 1 440px;
-                      background: #f8fafc;
-                      padding: 0.5rem;
-                      border-radius: 8px;
-                      border: 1px solid #e2e8f0;
-                    ">
-                  <img src="../../assets/images/research/phase3/ai_process_flow.png" alt="AI 학습 및 출력 프로세스"
-                    style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.8rem;
-                        color: #64748b;
-                        text-align: center;
-                      ">
-                    실시간 처리된 이미지의 추론 파이프라인
-                  </figcaption>
-                </figure>
+              <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 2rem;">
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">연구 개요</h4>
+                <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1.5rem; word-break: keep-all;">
+                  눈에서 반사되는 빛의 미세한 패턴인 망막 그림자(Retinal Shadow)의 밝기, 두께, 이동 속도를 분석하여 굴절이상을 측정합니다. 자체 개발한 검영법(Retinoscopy) 모델은 지속적인 업데이트를 통해 고도화되고 있으며, 이를 기반으로 굴절이상을 확률적 모델에 근거하여 실시간으로 산출합니다.
+                </p>
+                <div class="challenge-visual-grid" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                  <figure style="flex: 1 1 auto; max-width: 330px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase3/auto_ref_device.png" alt="실시간 자동안굴절계 프로토타입" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">실시간 자동안굴절계 프로토타입</figcaption>
+                  </figure>
+                  <figure style="flex: 1 1 auto; max-width: 638px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase3/retinoscopy_view.png" alt="망막 그림자 패턴 분석" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">망막 그림자의 실시간 이미지 처리 기법</figcaption>
+                  </figure>
+                  <figure style="flex: 1 1 auto; max-width: 440px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase3/ai_process_flow.png" alt="AI 학습 및 출력 프로세스" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">실시간 처리된 이미지의 추론 파이프라인</figcaption>
+                  </figure>
+                </div>
               </div>
             </div>
 
-            <!-- Connector for Item 2 -->
-            <div class="story-connector" style="margin: 3rem auto"></div>
+            <!-- Connector between studies -->
+            <div class="story-connector" style="margin: 2rem auto;"></div>
 
-            <h2 class="challenge-title" style="margin-top: 0">
-              각공막 <strong>3D 재구성</strong>
-            </h2>
-            <p class="challenge-desc" style="word-break: keep-all">
-              적외선 구조화광 패턴(Structured Light Pattern)을 안구 표면에
-              투사하여 각막과 공막의 3차원 형상을 정밀 계측하는 기술을
-              개발하고 있습니다. 획득된 패턴 이미지를 Mesh 기법으로 재구성하여
-              각막과 공막의 프로파일(Profile)을 3D로 시각화하며, 이는 개인별
-              안구 형태에 완벽하게 부합하는 맞춤형 공막렌즈 처방을 위한
-              핵심적인 정량 데이터를 제공합니다.
-            </p>
-
+            <!-- Study 2: 3D Reconstruction -->
             <div class="challenge-visual-container">
-              <h3 style="
-                      font-size: 1.2rem;
-                      margin-bottom: 1rem;
-                      color: #0f172a;
-                      word-break: keep-all;
-                    ">
-                구조화광 패턴 기반 3D 형상 복원
+              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a; word-break: keep-all;">
+                연구 2: 각공막 3D 재구성 및 분석 시스템
               </h3>
-
-              <!-- Logic Pipeline & Formula Description -->
-              <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f1f5f9; border-radius: 8px;">
-                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155;">분석 파이프라인 (Logic Pipeline)</h4>
-                <ul
-                  style="list-style: none; padding: 0; margin-bottom: 1.5rem; font-size: 0.95rem; color: #475569; line-height: 1.8;">
-                  <li style="margin-bottom: 0.5rem;">
-                    <strong>1. 패턴 투사 (Pattern Projection):</strong> 적외선 LED 동심원을 안구 표면에 일정한 간격으로 투사
+              <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">연구 개요</h4>
+                <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1rem; word-break: keep-all;">
+                  적외선 구조화광 패턴을 안구 표면에 투사하여 각막과 공막의 3차원 형상을 정밀 계측합니다. 획득된 패턴 이미지를 Mesh 기법으로 재구성하여 개인별 안구 형태에 완벽하게 부합하는 맞춤형 공막렌즈 처방을 위한 핵심 데이터를 제공합니다.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; font-size: 0.95rem; color: #475569; line-height: 1.8;">
+                  <li style="margin-bottom: 0.5rem;"><strong>1. 패턴 투사:</strong> 적외선 LED 동심원을 안구 표면에 일정한 간격으로 투사</li>
+                  <li style="margin-bottom: 0.5rem;"><strong>2. 왜곡 분석:</strong> 각막 및 공막의 곡률에 따라 변형된 동심원 패턴의 거리 차와 일그러짐 계측</li>
+                  <li style="margin-bottom: 0.5rem;"><strong>3. 형상 복원:</strong> 링 패턴의 변위를 높이 정보로 변환</li>
+                  <li style="margin-bottom: 0.5rem;"><strong>4. 3D 메쉬:</strong> 복원된 좌표점을 연결하여 정밀한 3D 토포그래피 메쉬 구현</li>
+                </ul>
+                <div class="challenge-visual-grid" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                  <figure style="flex: 1 1 auto; max-width: 506px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase3/structured_light_process.jpg" alt="구조화광 패턴 이미지 처리 과정" style="width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">적외선 패턴 투사 및 이미지 처리 파이프라인</figcaption>
+                  </figure>
+                  <figure style="flex: 1 1 auto; max-width: 374px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase3/3d_reconstruction_method.png" alt="복원 알고리즘" style="width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">물리적 및 머신러닝 기반 하이브리드 복원</figcaption>
+                  </figure>
+                  <figure style="flex: 1 1 auto; max-width: 660px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="분석 UI" style="width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">실시간 각공막 3D 분석 소프트웨어</figcaption>
+                  </figure>
+                </div>
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">핵심 발견 (Key Findings)</h4>
+                <ul style="list-style: none; padding: 0; font-size: 0.95rem; color: #475569; line-height: 1.7;">
+                  <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
+                    <strong>비구면도 산출:</strong> 복원된 3D 데이터를 기반으로 각막의 비구면도(Asphericity)를 실시간으로 산출합니다.
                   </li>
-                  <li style="margin-bottom: 0.5rem;">
-                    <strong>2. 왜곡 분석 (Distortion Analysis):</strong> 각막 및 공막의 곡률에 따라 변형된 동심원 패턴의 거리 차와 일그러짐 계측
-                  </li>
-                  <li style="margin-bottom: 0.5rem;">
-                    <strong>3. 형상 복원 (Shape Recovery):</strong> 링 패턴의 변위(Displacement)를 높이 정보로 변환
-                    <div
-                      style="margin: 0.8rem 0; padding: 0.8rem; background: #fff; border-radius: 4px; text-align: center; font-family: 'Times New Roman', serif; font-size: 1.1rem; color: #0f172a;">
-                      <em>Z</em>(<em>r</em>) &propto; &Delta;<em>d</em> &middot; tan(&theta;)
-                    </div>
-                    <span style="font-size: 0.85rem; color: #64748b; display: block; text-align: right;">(<em>Z</em>: 표면
-                      높이, &Delta;<em>d</em>: 패턴 변위, &theta;: 투사 각도)</span>
-                  </li>
-                  <li>
-                    <strong>4. 3D 메쉬 (Mesh Generation):</strong> 복원된 좌표점(Point Cloud)을 연결하여 정밀한 3D 토포그래피 메쉬 구현
+                  <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
+                    <strong>공막 비대칭성 분석:</strong> 공막의 비대칭성(Sagittal Height Difference)을 분석하여 공막 렌즈 착용 성공률을 획기적으로 높이는 피팅 가이드를 제공합니다.
                   </li>
                 </ul>
-              </div>
-
-              <div class="challenge-visual-grid" style="
-                      display: flex;
-                      gap: 1rem;
-                      justify-content: center;
-                      flex-wrap: wrap;
-                      align-items: flex-start;
-                    ">
-                <figure style="
-                        flex: 0 1 506px;
-                        background: #f8fafc;
-                        padding: 0.5rem;
-                        border-radius: 8px;
-                        border: 1px solid #e2e8f0;
-                      ">
-                  <img src="../../assets/images/research/phase3/structured_light_process.jpg" alt="구조화광 패턴 이미지 처리 과정"
-                    style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                          margin-top: 0.5rem;
-                          font-size: 0.8rem;
-                          color: #64748b;
-                          text-align: center;
-                        ">
-                    적외선 패턴 투사 및 이미지 처리 파이프라인
-                  </figcaption>
-                </figure>
-
-                <figure style="
-                        flex: 0 1 374px;
-                        background: #f8fafc;
-                        padding: 0.5rem;
-                        border-radius: 8px;
-                        border: 1px solid #e2e8f0;
-                      ">
-                  <img src="../../assets/images/research/phase3/3d_reconstruction_method.png" alt="3D 재구성 알고리즘 및 딥러닝 모델"
-                    style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                          margin-top: 0.5rem;
-                          font-size: 0.8rem;
-                          color: #64748b;
-                          text-align: center;
-                        ">
-                    물리적 계산방식과 머신러닝 기반 통계방식 중 선택적으로 계산
-                  </figcaption>
-                </figure>
-
-                <figure style="
-                        flex: 0 1 440px;
-                        background: #f8fafc;
-                        padding: 0.5rem;
-                        border-radius: 8px;
-                        border: 1px solid #e2e8f0;
-                      ">
-                  <img src="../../assets/images/research/phase3/corneo_scleral_analysis_ui.png"
-                    alt="실시간 각공막 분석 소프트웨어 UI" style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                          margin-top: 0.5rem;
-                          font-size: 0.8rem;
-                          color: #64748b;
-                          text-align: center;
-                        ">
-                    실시간 각공막 3D 분석 소프트웨어 (Real-time Analysis UI)
-                  </figcaption>
-                </figure>
               </div>
             </div>
           </div>
@@ -768,58 +522,30 @@
                   Entropy), 프랙탈 차원 등 47개의 고차원 바이오마커를 추출하여 파킨슨병, 알츠하이머병, 당뇨망막병증 등 10개 신경학적 질환의 위험도를 예측하는 모델을 개발했습니다.
                 </p>
 
-                <div class="challenge-visual-grid"
-                  style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
-                  <!-- 1. Setup -->
-                  <figure
-                    style="flex: 1 1 auto; max-width: 260px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img src="../../assets/images/research/phase4_study2_experiment_setup.jpg" alt="실험 셋업"
-                      style="width: auto; max-width: 100%; height: auto; border-radius: 4px;">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                      고정밀 동공 반응 측정 셋업
-                    </figcaption>
+                <div class="challenge-visual-grid" style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1.5rem;">
+                  <figure style="flex: 0 1 30%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase4_study2_experiment_setup.jpg" alt="실험 셋업" style="width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">고정밀 동공 반응 측정 셋업</figcaption>
                   </figure>
-
-                  <!-- 2. Risk Distribution -->
-                  <figure
-                    style="flex: 1 1 auto; max-width: 350px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img src="../../assets/images/research/phase4_study2_risk_distribution.jpg" alt="질환 위험도 분포 분석"
-                      style="width: auto; max-width: 100%; height: auto; border-radius: 4px;">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                      질환별 위험도 분포 (Risk Distribution)
-                    </figcaption>
+                  <figure style="flex: 0 1 38%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase4_study2_risk_distribution.jpg" alt="질환 위험도 분포 분석" style="width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">질환별 위험도 분포</figcaption>
                   </figure>
-
-                  <!-- 3. Correlation Matrix -->
-                  <figure
-                    style="flex: 1 1 auto; max-width: 330px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img src="../../assets/images/research/phase4_study2_correlation_matrix.jpg" alt="바이오마커 상관관계 매트릭스"
-                      style="width: auto; max-width: 100%; height: auto; border-radius: 4px;">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                      동공 바이오마커 상관관계 매트릭스
-                    </figcaption>
+                  <figure style="flex: 0 1 32%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase4_study2_correlation_matrix.jpg" alt="바이오마커 상관관계 매트릭스" style="width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">동공 바이오마커 상관관계 매트릭스</figcaption>
                   </figure>
                 </div>
 
-                <div class="challenge-visual-grid" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0;">
-                  <!-- Informational Cards for Biomarkers -->
-                  <div
-                    style="flex: 1 1 300px; background: #fff; padding: 1rem; border-radius: 6px; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
-                    <h5 style="font-size: 0.9rem; color: #0f172a; margin-bottom: 0.5rem;">📊 Sample Entropy 분석</h5>
-                    <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5;">
-                      기하학적 도형보다 <strong>인간 얼굴 자극</strong>에서 동공 반응의 복잡성(Entropy)이 유의하게 높게 나타났습니다(F=12.47, p&lt;0.001). 이는
-                      사회적 자극 처리에 관여하는 자율신경계의 특화된 반응을 시사하며, 자율신경계 미세 조절 능력의 지표로 활용됩니다.
-                    </p>
-                  </div>
-                  <div
-                    style="flex: 1 1 300px; background: #fff; padding: 1rem; border-radius: 6px; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
-                    <h5 style="font-size: 0.9rem; color: #0f172a; margin-bottom: 0.5rem;">🎯 질환별 민감도</h5>
-                    <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5;">
-                      개발된 알고리즘은 특히 <strong>당뇨망막병증(60.9%)</strong>, 다발성경화증, 파킨슨병 순으로 높은 위험도 검출 민감도를 보였습니다. 이는 동공 계측이 망막 및
-                      중추신경계 손상을 조기에 선별하는 비침습적 도구로서 강력한 잠재력을 가짐을 증명합니다.
-                    </p>
-                  </div>
-                </div>
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">핵심 발견 (Key Findings)</h4>
+                <ul style="list-style: none; padding: 0; font-size: 0.95rem; color: #475569; line-height: 1.7;">
+                  <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
+                    <strong>Sample Entropy 분석:</strong> 기하학적 도형보다 <strong>인간 얼굴 자극</strong>에서 동공 반응의 복잡성(Entropy)이 유의하게 높게 나타났습니다(F=12.47, p&lt;0.001). 이는 사회적 자극 처리에 관여하는 자율신경계의 특화된 반응을 시사합니다.
+                  </li>
+                  <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
+                    <strong>질환별 민감도:</strong> 개발된 알고리즘은 특히 <strong>당뇨망막병증(60.9%)</strong>, 다발성경화증, 파킨슨병 순으로 높은 위험도 검출 민감도를 보였습니다. 이는 동공 계측이 망막 및 중추신경계 손상을 조기에 선별하는 비침습적 도구로서 강력한 잠재력을 가짐을 증명합니다.
+                  </li>
+                </ul>
 
 
               </div>
