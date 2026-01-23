@@ -347,71 +347,31 @@
                 <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">Machine Learning-based Real-time Retinoscopy Analysis</h4>
 
               <!-- Images arranged in a row -->
-              <div class="challenge-visual-grid" style="
-                    display: flex;
-                    gap: 1rem;
-                    justify-content: center;
-                    flex-wrap: wrap;
-                    align-items: flex-start;
-                  ">
-                <figure style="
-                      flex: 0 1 330px;
-                      background: #f8fafc;
-                      padding: 0.5rem;
-                      border-radius: 8px;
-                      border: 1px solid #e2e8f0;
-                    ">
-                  <img src="../assets/images/research/phase3/auto_ref_device.png"
-                    alt="Real-time Auto Refractometer Prototype"
-                    style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.8rem;
-                        color: #64748b;
-                        text-align: center;
-                      ">
-                    Real-time Auto Refractometer Prototype
-                  </figcaption>
-                </figure>
-
-                <figure style="
-                      flex: 0 1 638px;
-                      background: #f8fafc;
-                      padding: 0.5rem;
-                      border-radius: 8px;
-                      border: 1px solid #e2e8f0;
-                    ">
-                  <img src="../assets/images/research/phase3/retinoscopy_view.png" alt="Retinal Shadow Pattern Analysis"
-                    style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.8rem;
-                        color: #64748b;
-                        text-align: center;
-                      ">
-                    Real-time Image Processing of Retinal Shadow
-                  </figcaption>
-                </figure>
-
-                <figure style="
-                      flex: 0 1 440px;
-                      background: #f8fafc;
-                      padding: 0.5rem;
-                      border-radius: 8px;
-                      border: 1px solid #e2e8f0;
-                    ">
-                  <img src="../assets/images/research/phase3/ai_process_flow.png" alt="AI Learning & Output Process"
-                    style="width: 100%; height: auto; border-radius: 4px" />
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.8rem;
-                        color: #64748b;
-                        text-align: center;
-                      ">
-                    Inference Pipeline for Real-time Processed Images
-                  </figcaption>
-                </figure>
-              </div>
+                <!-- Top: Experiment Setup -->
+                <div style="margin-bottom: 1rem;">
+                  <figure style="background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; max-width: 700px; margin: 0 auto;">
+                    <img src="../assets/images/research/phase3/experiment_setup.png" alt="Raspberry Pi + Arduino based Experiment Setup" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">Raspberry Pi + Arduino based Real-time Auto Refractometer Prototype</figcaption>
+                  </figure>
+                </div>
+                <!-- Middle: Retinoscope View + IR Pupil Image (2 columns) -->
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
+                  <figure style="flex: 1 1 auto; max-width: 280px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../assets/images/research/phase3/retinoscope_view.png" alt="Retinoscope View" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">Retinoscopy Optical System View</figcaption>
+                  </figure>
+                  <figure style="flex: 1 1 auto; max-width: 280px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../assets/images/research/phase3/ir_pupil_image.png" alt="IR Pupil Image" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">IR Camera Retinal Shadow Pattern</figcaption>
+                  </figure>
+                </div>
+                <!-- Bottom: AI Learning Pipeline -->
+                <div style="margin-bottom: 1.5rem;">
+                  <figure style="background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; max-width: 900px; margin: 0 auto;">
+                    <img src="../assets/images/research/phase3/ai_learning_pipeline.png" alt="AI Learning Pipeline" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">Tuning → Learning → Testing → Output ML Pipeline</figcaption>
+                  </figure>
+                </div>
               </div>
             </div>
 
@@ -454,25 +414,27 @@
                   </li>
                 </ul>
 
-                <div class="challenge-visual-grid" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
-                  <figure style="flex: 0 1 506px; background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <!-- Row 1: IR Pattern Projection (left) + Hybrid Reconstruction (right) -->
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1rem;">
+                  <figure style="flex: 0 1 65%; background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
                     <img src="../assets/images/research/phase3/structured_light_process.jpg" alt="Structured Light Pattern Image Processing" style="width: 100%; height: auto; border-radius: 4px" />
                     <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
                       Infrared Pattern Projection & Image Processing Pipeline
                     </figcaption>
                   </figure>
-
-                  <figure style="flex: 0 1 374px; background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                  <figure style="flex: 0 1 35%; background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
                     <img src="../assets/images/research/phase3/3d_reconstruction_method.png" alt="3D Reconstruction Algorithm" style="width: 100%; height: auto; border-radius: 4px" />
                     <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                      Selective Calculation: Physical vs ML-based Methods
+                      Physical vs ML-based Hybrid Reconstruction
                     </figcaption>
                   </figure>
-
-                  <figure style="flex: 0 1 660px; background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                </div>
+                <!-- Row 2: Analysis UI -->
+                <div style="margin-bottom: 1.5rem;">
+                  <figure style="background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0; max-width: 660px; margin: 0 auto;">
                     <img src="../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="Real-time Corneo-Scleral Analysis Software UI" style="width: 100%; height: auto; border-radius: 4px" />
                     <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                      Real-time Corneo-Scleral 3D Analysis Software (Real-time Analysis UI)
+                      Real-time Corneo-Scleral 3D Analysis Software
                     </figcaption>
                   </figure>
                 </div>

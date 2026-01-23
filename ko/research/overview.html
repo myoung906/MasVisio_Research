@@ -363,18 +363,29 @@
                 <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1.5rem; word-break: keep-all;">
                   눈에서 반사되는 빛의 미세한 패턴인 망막 그림자(Retinal Shadow)의 밝기, 두께, 이동 속도를 분석하여 굴절이상을 측정합니다. 자체 개발한 검영법(Retinoscopy) 모델은 지속적인 업데이트를 통해 고도화되고 있으며, 이를 기반으로 굴절이상을 확률적 모델에 근거하여 실시간으로 산출합니다.
                 </p>
-                <div class="challenge-visual-grid" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
-                  <figure style="flex: 1 1 auto; max-width: 330px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img src="../../assets/images/research/phase3/auto_ref_device.png" alt="실시간 자동안굴절계 프로토타입" style="width: 100%; height: auto; border-radius: 4px">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">실시간 자동안굴절계 프로토타입</figcaption>
+                <!-- 상단: 실험 환경 -->
+                <div style="margin-bottom: 1rem;">
+                  <figure style="background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; max-width: 700px; margin: 0 auto;">
+                    <img src="../../assets/images/research/phase3/experiment_setup.png" alt="Raspberry Pi + Arduino 기반 실험 환경" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">Raspberry Pi + Arduino 기반 실시간 안굴절계 시제품</figcaption>
                   </figure>
-                  <figure style="flex: 1 1 auto; max-width: 638px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img src="../../assets/images/research/phase3/retinoscopy_view.png" alt="망막 그림자 패턴 분석" style="width: 100%; height: auto; border-radius: 4px">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">망막 그림자의 실시간 이미지 처리 기법</figcaption>
+                </div>
+                <!-- 중단: 검영기 뷰 + 적외선 동공 이미지 (2열) -->
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
+                  <figure style="flex: 1 1 auto; max-width: 280px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase3/retinoscope_view.png" alt="검영기 뷰" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">검영법 광학계 뷰</figcaption>
                   </figure>
-                  <figure style="flex: 1 1 auto; max-width: 440px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img src="../../assets/images/research/phase3/ai_process_flow.png" alt="AI 학습 및 출력 프로세스" style="width: 100%; height: auto; border-radius: 4px">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">실시간 처리된 이미지의 추론 파이프라인</figcaption>
+                  <figure style="flex: 1 1 auto; max-width: 280px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase3/ir_pupil_image.png" alt="적외선 동공 이미지" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">IR 카메라 망막 그림자 패턴</figcaption>
+                  </figure>
+                </div>
+                <!-- 하단: AI 학습 파이프라인 -->
+                <div style="margin-bottom: 1.5rem;">
+                  <figure style="background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; max-width: 900px; margin: 0 auto;">
+                    <img src="../../assets/images/research/phase3/ai_learning_pipeline.png" alt="AI 학습 파이프라인" style="width: 100%; height: auto; border-radius: 4px">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">Tuning → Learning → Testing → Output 머신러닝 파이프라인</figcaption>
                   </figure>
                 </div>
               </div>
@@ -399,16 +410,20 @@
                   <li style="margin-bottom: 0.5rem;"><strong>3. 형상 복원:</strong> 링 패턴의 변위를 높이 정보로 변환</li>
                   <li style="margin-bottom: 0.5rem;"><strong>4. 3D 메쉬:</strong> 복원된 좌표점을 연결하여 정밀한 3D 토포그래피 메쉬 구현</li>
                 </ul>
-                <div class="challenge-visual-grid" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
-                  <figure style="flex: 1 1 auto; max-width: 506px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                <!-- 첫째 줄: 적외선 패턴 투사(좌) + 하이브리드 복원(우) -->
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1rem;">
+                  <figure style="flex: 0 1 65%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
                     <img src="../../assets/images/research/phase3/structured_light_process.jpg" alt="구조화광 패턴 이미지 처리 과정" style="width: 100%; height: auto; border-radius: 4px;">
                     <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">적외선 패턴 투사 및 이미지 처리 파이프라인</figcaption>
                   </figure>
-                  <figure style="flex: 1 1 auto; max-width: 374px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                  <figure style="flex: 0 1 35%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
                     <img src="../../assets/images/research/phase3/3d_reconstruction_method.png" alt="복원 알고리즘" style="width: 100%; height: auto; border-radius: 4px;">
                     <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">물리적 및 머신러닝 기반 하이브리드 복원</figcaption>
                   </figure>
-                  <figure style="flex: 1 1 auto; max-width: 660px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                </div>
+                <!-- 둘째 줄: 분석 UI -->
+                <div style="margin-bottom: 1.5rem;">
+                  <figure style="background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; max-width: 660px; margin: 0 auto;">
                     <img src="../../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="분석 UI" style="width: 100%; height: auto; border-radius: 4px;">
                     <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">실시간 각공막 3D 분석 소프트웨어</figcaption>
                   </figure>
