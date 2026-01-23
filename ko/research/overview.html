@@ -398,64 +398,64 @@
                 색수차 기반 주변부 굴절력 측정
               </h3>
 
-                <p
-                  style="font-size: 0.95rem; color: #475569; margin-bottom: 1.5rem; line-height: 1.6; word-break: keep-all;">
-                  먼저 중심와(Fovea)에서 1cpd 적녹 가보 패치(Gabor Patch)의 등가 시인성(Iso-visibility)을 확보한 후,
-                  주변부 8°, 16°, 32° 지점에 배치된 LED 링의 점멸 테스트를 통해 각 이심률(Eccentricity)에서의 굴절력을 산출합니다.
-                </p>
+              <p
+                style="font-size: 0.95rem; color: #475569; margin-bottom: 1.5rem; line-height: 1.6; word-break: keep-all;">
+                먼저 중심와(Fovea)에서 1cpd 적녹 가보 패치(Gabor Patch)의 등가 시인성(Iso-visibility)을 확보한 후,
+                주변부 8°, 16°, 32° 지점에 배치된 LED 링의 점멸 테스트를 통해 각 이심률(Eccentricity)에서의 굴절력을 산출합니다.
+              </p>
 
-                <!-- Logic Box -->
+              <!-- Logic Box -->
+              <div
+                style="margin-bottom: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <h4 style="font-size: 1rem; margin-bottom: 0.8rem; color: #334155;">측정 원리 (Measurement Logic)</h4>
+                <ul
+                  style="list-style: none; padding: 0; margin-bottom: 1rem; font-size: 0.9rem; color: #475569; line-height: 1.7;">
+                  <li style="margin-bottom: 0.5rem;"><strong>Step 1. 시인성 보정:</strong> 중심시야에서 1cpd 적/녹 패치의 대비감도를 측정하여
+                    주관적 등가 선명도(Iso-clarity) 기준값 설정</li>
+                  <li style="margin-bottom: 0.5rem;"><strong>Step 2. 주변부 자극:</strong> 8°, 16°, 32° 동심원상에 배치된 적/녹 LED
+                    쌍을 무작위 순서로 점멸(Flicker)</li>
+                  <li style="margin-bottom: 0.5rem;"><strong>Step 3. 굴절 산출:</strong> 피험자의 색상별 시인성 응답 패턴을 분석하여 망막상 초점
+                    위치(Defocus) 역산</li>
+                </ul>
                 <div
-                  style="margin-bottom: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
-                  <h4 style="font-size: 1rem; margin-bottom: 0.8rem; color: #334155;">측정 원리 (Measurement Logic)</h4>
-                  <ul
-                    style="list-style: none; padding: 0; margin-bottom: 1rem; font-size: 0.9rem; color: #475569; line-height: 1.7;">
-                    <li style="margin-bottom: 0.5rem;"><strong>Step 1. 시인성 보정:</strong> 중심시야에서 1cpd 적/녹 패치의 대비감도를 측정하여
-                      주관적 등가 선명도(Iso-clarity) 기준값 설정</li>
-                    <li style="margin-bottom: 0.5rem;"><strong>Step 2. 주변부 자극:</strong> 8°, 16°, 32° 동심원상에 배치된 적/녹 LED
-                      쌍을 무작위 순서로 점멸(Flicker)</li>
-                    <li style="margin-bottom: 0.5rem;"><strong>Step 3. 굴절 산출:</strong> 피험자의 색상별 시인성 응답 패턴을 분석하여 망막상 초점
-                      위치(Defocus) 역산</li>
-                  </ul>
+                  style="margin-top: 1rem; padding: 1rem; background: #fff; border-radius: 4px; text-align: center; border: 1px solid #e2e8f0;">
                   <div
-                    style="margin-top: 1rem; padding: 1rem; background: #fff; border-radius: 4px; text-align: center; border: 1px solid #e2e8f0;">
-                    <div
-                      style="font-family: 'Times New Roman', serif; font-size: 1.1rem; color: #0f172a; margin-bottom: 0.5rem;">
-                      <em>R</em><sub>ecc</sub> = <em>R</em><sub>fovea</sub> + &alpha; &middot;
-                      log(<em>S</em><sub>red</sub> / <em>S</em><sub>green</sub>)
-                    </div>
-                    <span style="font-size: 0.8rem; color: #94a3b8;">
-                      (<em>R</em>: Refraction, &alpha;: Chromatic Coefficient, <em>S</em>: Sensitivity)
-                    </span>
+                    style="font-family: 'Times New Roman', serif; font-size: 1.1rem; color: #0f172a; margin-bottom: 0.5rem;">
+                    <em>R</em><sub>ecc</sub> = <em>R</em><sub>fovea</sub> + &alpha; &middot;
+                    log(<em>S</em><sub>red</sub> / <em>S</em><sub>green</sub>)
                   </div>
+                  <span style="font-size: 0.8rem; color: #94a3b8;">
+                    (<em>R</em>: Refraction, &alpha;: Chromatic Coefficient, <em>S</em>: Sensitivity)
+                  </span>
                 </div>
+              </div>
 
-                <!-- Images -->
-                <div class="challenge-visual-grid"
-                  style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                  <figure
-                    style="flex: 0 1 220px; background: #f8fafc; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                    <img src="../../assets/images/research/phase2/peripheral_setup_schematic.png"
-                      alt="Experimental Setup Schematic"
-                      style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">주변부
-                      망막 완전교정 pilot study</figcaption>
-                  </figure>
-                  <figure
-                    style="flex: 0 1 220px; background: #f8fafc; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                    <img src="../../assets/images/research/phase2/led_flicker.gif" alt="LED Ring Circuit Design"
-                      style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">LED
-                      제어 회로도 (Circuit Diagram)</figcaption>
-                  </figure>
-                  <figure
-                    style="flex: 0 1 220px; background: #f8fafc; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                    <img src="../../assets/images/research/phase2/peripheral_prototype.gif" alt="주변부 측정 시제품"
-                      style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">주변부
-                      망막 완전교정 측정장비 시제품</figcaption>
-                  </figure>
-                </div>
+              <!-- Images -->
+              <div class="challenge-visual-grid"
+                style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <figure
+                  style="flex: 0 1 220px; background: #f8fafc; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                  <img src="../../assets/images/research/phase2/peripheral_setup_schematic.png"
+                    alt="Experimental Setup Schematic"
+                    style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">주변부
+                    망막 완전교정 pilot study</figcaption>
+                </figure>
+                <figure
+                  style="flex: 0 1 220px; background: #f8fafc; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                  <img src="../../assets/images/research/phase2/led_flicker.gif" alt="LED Ring Circuit Design"
+                    style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">LED
+                    제어 회로도 (Circuit Diagram)</figcaption>
+                </figure>
+                <figure
+                  style="flex: 0 1 220px; background: #f8fafc; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                  <img src="../../assets/images/research/phase2/peripheral_prototype.gif" alt="주변부 측정 시제품"
+                    style="width: 100%; height: 180px; object-fit: cover; border-radius: 4px;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">주변부
+                    망막 완전교정 측정장비 시제품</figcaption>
+                </figure>
+              </div>
             </div>
           </div>
 
@@ -672,16 +672,126 @@
             </div>
           </div>
 
-          <!-- AI Application Section -->
-          <div style="margin-top: 4rem">
-            <h3 class="section-title">AI 질환 예측</h3>
-            <p class="section-subtitle">
-              AI 시각 지능을 활용한 8단계 안구 질환 위험도 분석 시스템
+
+          <!-- Connector -->
+          <div class="story-connector"></div>
+
+          <!-- PHASE 4: AI Disease Prediction -->
+          <div class="challenge-section">
+            <span class="challenge-phase-label">Phase 4: AI 질환 예측</span>
+            <h2 class="challenge-title">
+              동공 반응 기반 <strong>AI 바이오마커</strong>
+            </h2>
+            <p class="challenge-desc">
+              동공은 자율신경계의 활동을 반영하는 중요한 생리학적 윈도우입니다. 우리는 동공 반응의 미세한 변화를 초정밀 컴퓨터 비전과 AI 알고리즘으로 분석하여, 무의식적 인지 과정부터 신경학적 질환의
+              징후까지 포착하는 혁신적인 스크리닝 기술을 연구합니다.
             </p>
 
-            <!-- Dynamic Content Container -->
-            <div id="diagnostics-container" style="margin-top: 3rem">
-              <div class="loading">데이터를 불러오는 중...</div>
+            <!-- Study 1: Brain Hacking -->
+            <div class="challenge-visual-container" style="margin-top: 3rem;">
+              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a; word-break: keep-all;">
+                연구 1: '브레인 해킹' - 성적 선호도 및 라이프스타일 분석
+              </h3>
+
+              <div
+                style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 2rem;">
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">연구 개요</h4>
+                <p
+                  style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1rem; word-break: keep-all;">
+                  본 연구는 동공 반응을 통해 인간의 무의식적 성적 선호도를 객관적으로 평가하는 방법론을 제시했습니다. Basler 고속 산업용 카메라와 고정초점 렌즈 기반의 적외선 동공 추적 시스템을
+                  구축하여, OpenCV 기반 자체 알고리즘을 통해 영상 데이터에서 동공의 미세 번화와 반응 속도를 정밀하게 추출 및 분석하는 파이프라인을 확립했습니다.
+                </p>
+
+                <!-- Phase 4 Images -->
+                <div class="challenge-visual-grid"
+                  style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                  <!-- 1. Experiment Scene -->
+                  <figure
+                    style="flex: 1 1 auto; max-width: 249px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase4_experiment_scene_new.jpg" alt="실제 실험 진행 장면"
+                      style="width: auto; max-width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
+                      적외선으로 낮은 조도에서도 선명한 이미지 획득
+                    </figcaption>
+                  </figure>
+
+                  <!-- 2. Eye Tracking Monitor -->
+                  <figure
+                    style="flex: 1 1 auto; max-width: 247px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase4_eye_tracking_monitor.jpg" alt="동공 추적 모니터링 화면"
+                      style="width: auto; max-width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
+                      실시간 ROI 검출 후 10가지 동공정보 계산 및 출력 자동화
+                    </figcaption>
+                  </figure>
+
+                  <!-- 3. Pupil Graph -->
+                  <figure
+                    style="flex: 1 1 auto; max-width: 1000px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img src="../../assets/images/research/phase4_pupil_graph.jpg" alt="동공 반응 결과 그래프"
+                      style="width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
+                      자극별 시계열 동공 반응 분석 (Pupil Response by Stimulus)
+                    </figcaption>
+                  </figure>
+                </div>
+
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600; margin-top: 1.5rem;">
+                  핵심 발견 (Key Findings)</h4>
+                <ul style="list-style: none; padding: 0; font-size: 0.95rem; color: #475569; line-height: 1.7;">
+                  <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
+                    <strong>성적 지향성 탐지:</strong> 남성은 여성 이미지에, 여성은 남성 이미지에 유의하게 더 큰 동공 반응을 보였으며(p&lt;0.001), 특히 여성의 반응 차이가
+                    남성보다 2.4배 더 뚜렷하게 나타났습니다.
+                  </li>
+                  <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
+                    <strong>라이프스타일의 영향:</strong> 흡연자는 비흡연자에 비해 자극 전환 시 '즉시 반응' 비율이 낮았으나(0.88배), 반응 시 변화량은 오히려 더 크게 나타나
+                    니코틴이 자율신경계 반응성에 미치는 복합적인 영향을 확인했습니다.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Connector between studies -->
+            <div class="story-connector" style="margin: 2rem auto;"></div>
+
+            <!-- Study 2: Neurological Screening -->
+            <div class="challenge-visual-container">
+              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a; word-break: keep-all;">
+                연구 2: 다중 신경학적 질환 조기 스크리닝 알고리즘
+              </h3>
+
+              <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">연구 개요</h4>
+                <p
+                  style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1rem; word-break: keep-all;">
+                  단순한 동공 크기 변화가 아닌, 반응의 <strong>'시간적 복잡성(Temporal Complexity)'</strong>에 주목했습니다. 주파수 분석, 엔트로피(Sample
+                  Entropy), 프랙탈 차원 등 47개의 고차원 바이오마커를 추출하여 파킨슨병, 알츠하이머병, 당뇨망막병증 등 10개 신경학적 질환의 위험도를 예측하는 모델을 개발했습니다.
+                </p>
+
+                <div class="challenge-visual-grid" style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0;">
+                  <!-- Informational Cards for Biomarkers -->
+                  <div
+                    style="flex: 1 1 300px; background: #fff; padding: 1rem; border-radius: 6px; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                    <h5 style="font-size: 0.9rem; color: #0f172a; margin-bottom: 0.5rem;">📊 Sample Entropy 분석</h5>
+                    <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5;">
+                      기하학적 도형보다 <strong>인간 얼굴 자극</strong>에서 동공 반응의 복잡성(Entropy)이 유의하게 높게 나타났습니다(F=12.47, p&lt;0.001). 이는
+                      사회적 자극 처리에 관여하는 자율신경계의 특화된 반응을 시사하며, 자율신경계 미세 조절 능력의 지표로 활용됩니다.
+                    </p>
+                  </div>
+                  <div
+                    style="flex: 1 1 300px; background: #fff; padding: 1rem; border-radius: 6px; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                    <h5 style="font-size: 0.9rem; color: #0f172a; margin-bottom: 0.5rem;">🎯 질환별 민감도</h5>
+                    <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5;">
+                      개발된 알고리즘은 특히 <strong>당뇨망막병증(60.9%)</strong>, 다발성경화증, 파킨슨병 순으로 높은 위험도 검출 민감도를 보였습니다. 이는 동공 계측이 망막 및
+                      중추신경계 손상을 조기에 선별하는 비침습적 도구로서 강력한 잠재력을 가짐을 증명합니다.
+                    </p>
+                  </div>
+                </div>
+
+                <p style="font-size: 0.9rem; color: #475569; margin-top: 1rem; text-align: center; font-style: italic;">
+                  "향후 이 기술은 스마트폰이나 VR 기기 탑재를 통해 일상생활 속에서 치매나 파킨슨병과 같은 퇴행성 뇌지환을 조기에 발견하는 '디지털 헬스케어의 핵심'이 될 것입니다."
+                </p>
+              </div>
             </div>
           </div>
         </div>
