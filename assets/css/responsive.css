@@ -175,6 +175,25 @@
   .sidebar-footer {
     text-align: center;
   }
+
+  /* Stats grid responsive */
+  .key-metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+}
+
+/* 모바일 key-metrics */
+@media (max-width: 480px) {
+  .key-metrics-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.8rem !important;
+    padding: 1.5rem 0 !important;
+  }
+
+  .key-metrics-grid p {
+    font-size: 1.6rem !important;
+  }
 }
 
 /* 초소형 모바일 (480px 이하) */
