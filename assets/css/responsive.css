@@ -178,21 +178,21 @@
 
   /* Stats grid responsive */
   .key-metrics-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1rem !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }
 
 /* 모바일 key-metrics */
 @media (max-width: 480px) {
   .key-metrics-grid {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 0.8rem !important;
-    padding: 1.5rem 0 !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    padding: 1.5rem 0;
   }
 
   .key-metrics-grid p {
-    font-size: 1.6rem !important;
+    font-size: 1.6rem;
   }
 }
 
@@ -327,21 +327,21 @@
 
   /* Push main content down so it doesn't hide behind header */
   .main-content {
-    padding-top: 140px !important;
+    padding-top: 140px;
   }
 
   /* Adjust intro section padding top since we added margin */
   .intro-section {
-    padding-top: 2rem !important;
+    padding-top: 2rem;
   }
 
   /* Challenges Page Responsive */
   .project-section {
-    padding: 2rem !important;
+    padding: 2rem;
   }
 
   .project-body .project-text > div {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
     gap: 2rem;
   }
 
@@ -354,6 +354,41 @@
   }
 
   .mechanism-cards {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile Language Toggle */
+.mobile-lang-toggle {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .mobile-lang-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background 0.2s;
+  }
+
+  .mobile-lang-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .mobile-header {
+    position: relative;
   }
 }

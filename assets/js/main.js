@@ -450,7 +450,8 @@ function initMobileNav() {
   if (!document.querySelector(".mobile-nav-toggle")) {
     const toggleBtn = document.createElement("button");
     toggleBtn.className = "mobile-nav-toggle";
-    toggleBtn.ariaLabel = "Toggle Navigation";
+    toggleBtn.setAttribute("aria-label", "Toggle Navigation");
+    toggleBtn.setAttribute("aria-expanded", "false");
     toggleBtn.innerHTML = `
             <div class="hamburger-icon">
                 <span></span>
@@ -496,9 +497,9 @@ function toggleMobileNav() {
     sidebar.classList.toggle("active");
     overlay.classList.toggle("active");
     toggleBtn.classList.toggle("active");
-    document.body.style.overflow = sidebar.classList.contains("active")
-      ? "hidden"
-      : "";
+    const isOpen = sidebar.classList.contains("active");
+    toggleBtn.setAttribute("aria-expanded", String(isOpen));
+    document.body.style.overflow = isOpen ? "hidden" : "";
   }
 }
 
@@ -510,6 +511,17 @@ function ensureMobileHeader() {
   const homeHref =
     lang === "ko" ? `${basePath}ko/index.html` : `${basePath}index.html`;
 
+  // 언어 토글 링크 생성
+  const currentPath = window.location.pathname;
+  let langToggleHref, langToggleLabel;
+  if (lang === "ko") {
+    langToggleHref = currentPath.replace("/ko/", "/").replace("/MasVisio_Research/ko/", "/MasVisio_Research/");
+    langToggleLabel = "EN";
+  } else {
+    langToggleHref = currentPath.replace("/MasVisio_Research/", "/MasVisio_Research/ko/");
+    langToggleLabel = "KO";
+  }
+
   const header = document.createElement("header");
   header.className = "mobile-header";
   header.innerHTML = `
@@ -517,8 +529,15 @@ function ensureMobileHeader() {
             <h1>MasVisio<br>Research</h1>
             <span class="logo-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
         </a>
+        <a href="${langToggleHref}" class="mobile-lang-toggle" aria-label="Switch language">${langToggleLabel}</a>
     `;
   document.body.insertBefore(header, document.body.firstChild);
+
+  // main 태그에 role 추가
+  const mainEl = document.querySelector("main");
+  if (mainEl && !mainEl.getAttribute("role")) {
+    mainEl.setAttribute("role", "main");
+  }
 }
 
 // Old functions removed/replaced

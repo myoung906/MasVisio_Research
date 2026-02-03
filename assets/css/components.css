@@ -1,5 +1,73 @@
 /* Components - Premium Design System */
-@import "lightbox.css";
+
+/* Image Lightbox Styles (merged from lightbox.css) */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: zoom-out;
+}
+
+.lightbox-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+.lightbox-overlay.active .lightbox-content {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 2001;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.zoomable-image {
+  cursor: zoom-in;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.zoomable-image:hover {
+  filter: brightness(1.1);
+}
 
 /* Grid Layouts */
 #research-projects-container,
@@ -766,4 +834,404 @@
   background: linear-gradient(to bottom, transparent, #cbd5e1 50%, transparent);
   margin: 0 auto;
   display: block;
+}
+
+/* =========================================
+   Homepage Inline Style Replacements
+   ========================================= */
+
+/* Sidebar Footer Links */
+.sidebar-footer-meta {
+  margin-top: 10px;
+  font-size: 0.7rem;
+}
+
+.sidebar-footer-link {
+  color: #94a3b8;
+  text-decoration: none;
+}
+
+/* Homepage Hero Section */
+.intro-section {
+  padding: 5rem 4rem 4rem;
+  background-color: #ffffff;
+  color: #1e293b;
+}
+
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #1a73e8;
+  margin-bottom: 1.5rem;
+}
+
+.section-heading-hero {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.25;
+  color: #0a2540;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #64748b;
+  max-width: 680px;
+  margin-bottom: 3.5rem;
+  word-break: keep-all;
+}
+
+.row-flex {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+.col-flex {
+  flex: 1;
+}
+
+.col-flex-center {
+  flex: 1;
+  text-align: center;
+}
+
+/* Research Pillars */
+.research-pillar {
+  border-left: 3px solid #1a73e8;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.research-pillar:last-child {
+  margin-bottom: 0;
+}
+
+.pillar-number {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1a73e8;
+  margin-bottom: 0.5rem;
+}
+
+.pillar-title {
+  font-size: 1.15rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #0a2540;
+}
+
+.pillar-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0;
+  word-break: keep-all;
+}
+
+.hero-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(10, 37, 64, 0.12);
+}
+
+/* Key Metrics Section */
+.metrics-section {
+  padding: 0 4rem;
+  margin-bottom: 3rem;
+}
+
+.key-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.key-metric {
+  text-align: center;
+}
+
+.key-metric-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0a2540;
+  margin-bottom: 0.3rem;
+  text-align: center;
+}
+
+.key-metric-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin: 0;
+}
+
+/* Research Section */
+.research-section {
+  padding: 0 4rem 4rem;
+}
+
+.research-section .container-fluid {
+  padding: 0;
+}
+
+.section-label-sm {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #1a73e8;
+  margin-bottom: 0.8rem;
+}
+
+.section-heading-md {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: #0a2540;
+}
+
+/* Overview Page Inline Style Replacements */
+.overview-section {
+  padding: 4rem 5%;
+}
+
+.overview-research-box {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 2rem;
+}
+
+.overview-research-box h4 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #334155;
+  font-weight: 600;
+}
+
+.overview-text {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  word-break: keep-all;
+}
+
+.overview-text-sm {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  word-break: keep-all;
+}
+
+.overview-figure-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin-bottom: 1.5rem;
+}
+
+.overview-figure-card {
+  flex: 0 1 30%;
+  max-width: 30%;
+  background: #fff;
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  min-width: 0;
+}
+
+.overview-figure-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.overview-figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #64748b;
+  text-align: center;
+}
+
+.overview-findings-list {
+  list-style: none;
+  padding: 0;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.overview-findings-list li {
+  margin-bottom: 0.8rem;
+  padding-left: 1rem;
+  border-left: 3px solid #3b82f6;
+}
+
+.overview-subheading {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #0f172a;
+  word-break: keep-all;
+}
+
+/* Phase Tab Navigation */
+.phase-tab-nav {
+  display: flex;
+  gap: 0;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.phase-tab-link {
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.phase-tab-link:hover {
+  color: #1a73e8;
+}
+
+.phase-tab-link.active {
+  color: #1a73e8;
+  border-bottom-color: #1a73e8;
+}
+
+@media (max-width: 768px) {
+  .intro-section {
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .section-heading-hero {
+    font-size: 1.6rem;
+  }
+
+  .section-desc {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .row-flex {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .key-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .metrics-section,
+  .research-section {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .overview-figure-row {
+    flex-direction: column;
+  }
+
+  .overview-figure-card {
+    flex: 1;
+    max-width: 100%;
+  }
+
+  .phase-tab-nav {
+    overflow-x: auto;
+  }
+}
+
+/* Challenge Visual Elements */
+.challenge-visual-box {
+  width: 127px;
+  height: 127px;
+  background: #000;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.challenge-visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.challenge-figure-item {
+  flex: 0 1 127px;
+  margin: 0;
+  text-align: center;
+}
+
+.challenge-figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-align: center;
+  line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.challenge-figcaption-sm {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.challenge-caption-value {
+  font-family: 'Inter', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.02em;
+}
+
+.overview-figure-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.overview-arrow {
+  font-size: 1rem;
+  color: #94a3b8;
+  line-height: 1;
+}
+
+.overview-figure-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
 }

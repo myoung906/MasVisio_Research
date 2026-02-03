@@ -11,6 +11,13 @@
   <meta property="og:description"
     content="Overview of MasVisio Research programs including 4D myopia control, AI diagnostics, and biometric measurement." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://myoung906.github.io/MasVisio_Research/assets/images/vision_engineering_concept.png" />
+  <meta property="og:url" content="https://myoung906.github.io/MasVisio_Research/research/overview.html" />
+  <link rel="canonical" href="https://myoung906.github.io/MasVisio_Research/research/overview.html" />
+  <link rel="alternate" hreflang="ko" href="https://myoung906.github.io/MasVisio_Research/ko/research/overview.html" />
+  <link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/research/overview.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/main.css?v=1.4" />
   <link rel="stylesheet" href="../assets/css/responsive.css?v=1.4" />
@@ -50,21 +57,27 @@
 
     <div class="sidebar-footer">
       <p class="copyright">&copy; 2025 MasVisio Research</p>
-      <div style="margin-top: 10px; font-size: 0.7rem">
-        <a href="../privacy.html" style="color: #94a3b8; text-decoration: none">Privacy Policy</a>
+      <div class="sidebar-footer-meta">
+        <a href="../privacy.html" class="sidebar-footer-link">Privacy Policy</a>
         |
-        <a href="../contact.html" style="color: #94a3b8; text-decoration: none">Contact</a>
+        <a href="../contact.html" class="sidebar-footer-link">Contact</a>
       </div>
     </div>
   </aside>
 
   <main class="main-content">
-    <section class="section" style="padding: 4rem 5%">
+    <section class="section overview-section">
       <div class="container">
         <!-- Hero Section Removed -->
 
         <!-- Lead Introduction -->
         <div class="challenge-list">
+          <!-- Phase Tab Navigation -->
+          <nav class="phase-tab-nav">
+            <a href="overview.html" class="phase-tab-link active">Phase 1-2: Foundation</a>
+            <a href="overview-advanced.html" class="phase-tab-link ">Phase 3-4: Prototype & AI</a>
+          </nav>
+
           <!-- Lead text removed -->
 
           <!-- PHASE 1: Visual Neuroscience -->
@@ -113,7 +126,7 @@
                     flex-wrap: nowrap;
                     align-items: flex-start;
                   ">
-                <figure style="flex: 0 1 127px; margin: 0; text-align: center">
+                <figure class="challenge-figure-item">
                   <div style="
                         position: relative;
                         width: 127px;
@@ -124,7 +137,7 @@
                         overflow: hidden;
                         transform: translateX(6mm);
                       ">
-                    <img src="../assets/images/gabor_spatial_frequency.gif"
+                    <picture><source srcset="../assets/images/gabor_spatial_frequency.webp" type="image/webp"><img src="../assets/images/gabor_spatial_frequency.gif"
                       alt="Gabor Patch Spatial Frequency Variation (1-30 cpd)" style="
                           position: absolute;
                           inset: 0;
@@ -132,7 +145,7 @@
                           height: 100%;
                           object-fit: contain;
                           display: block;
-                        " loading="lazy" />
+                        " loading="lazy" /></picture>
                   </div>
                   <figcaption style="
                         margin-top: 0.5rem;
@@ -155,7 +168,7 @@
                     <span class="gabor-caption-unit">cpd</span>
                   </figcaption>
                 </figure>
-                <figure style="flex: 0 1 127px; margin: 0; text-align: center">
+                <figure class="challenge-figure-item">
                   <div data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="12000"
                     data-step-duration="400" data-speed-multiplier="2.5"
                     data-on-src="../assets/images/temporal_frequency_on.png"
@@ -195,7 +208,7 @@
 
               <div class="challenge-visual-grid">
                 <figure>
-                  <img src="../assets/images/contrast_sensitivity_plot.png" alt="Contrast Sensitivity Plot" />
+                  <img loading="lazy" src="../assets/images/contrast_sensitivity_plot.png" alt="Contrast Sensitivity Plot" />
                   <figcaption style="
                         margin-top: 0.5rem;
                         font-size: 0.9rem;
@@ -206,7 +219,7 @@
                   </figcaption>
                 </figure>
                 <figure>
-                  <img src="../assets/images/contrast_sensitivity_boxplot.png" alt="Contrast Sensitivity Boxplot" />
+                  <img loading="lazy" src="../assets/images/contrast_sensitivity_boxplot.png" alt="Contrast Sensitivity Boxplot" />
                   <figcaption style="
                         margin-top: 0.5rem;
                         font-size: 0.9rem;
@@ -224,7 +237,7 @@
                     margin-top: 2rem;
                     line-height: 1.6;
                   ">
-                <strong style="color: #0f172a">Key Findings:</strong> The
+                <strong>Key Findings:</strong> The
                 sensitivity threshold analysis reveals distinct functional
                 baselines across age groups, with the boxplot demonstrating
                 significant variance in the older demographic. This data
@@ -251,13 +264,12 @@
             </p>
 
             <!-- Study 1 -->
-            <div class="challenge-visual-container" style="margin-top: 3rem;">
+            <div class="challenge-visual-container">
               <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a;">
                 Study 1: Precise Geometrical Optics Modeling & Simulation
               </h3>
-              <div
-                style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 2rem;">
-                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">Research Overview
+              <div class="overview-research-box">
+                <h4>Research Overview
                 </h4>
                 <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1.5rem;">
                   Since 2014, we have applied a proprietary calculation algorithm to precisely calculate all angles of
@@ -268,33 +280,30 @@
                   style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
                   <figure
                     style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img src="../assets/images/research/phase2/oct_analysis.png" alt="Retinal OCT Measurement"
-                      style="width: 100%; height: auto; border-radius: 4px">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">OCT
+                    <img loading="lazy" src="../assets/images/research/phase2/oct_analysis.png" alt="Retinal OCT Measurement">
+                    <figcaption class="overview-figcaption">OCT
                       Retinal Curvature Measurement</figcaption>
                   </figure>
                   <figure
                     style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img src="../assets/images/research/phase2/optical_simulation.png" alt="Ray-tracing Simulation"
-                      style="width: 100%; height: auto; border-radius: 4px">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
+                    <img loading="lazy" src="../assets/images/research/phase2/optical_simulation.png" alt="Ray-tracing Simulation">
+                    <figcaption class="overview-figcaption">
                       6-Surface Ray-tracing</figcaption>
                   </figure>
                   <figure
                     style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img src="../assets/images/research/phase2/curvature_graph.png" alt="Curvature Change Graph"
-                      style="width: 100%; height: auto; border-radius: 4px">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
+                    <img loading="lazy" src="../assets/images/research/phase2/curvature_graph.png" alt="Curvature Change Graph">
+                    <figcaption class="overview-figcaption">
                       Retinal Shape by Refractive Error</figcaption>
                   </figure>
                 </div>
-                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">Key Findings</h4>
-                <ul style="list-style: none; padding: 0; font-size: 0.95rem; color: #475569; line-height: 1.7;">
-                  <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
+                <h4>Key Findings</h4>
+                <ul class="overview-findings-list">
+                  <li>
                     <strong>Correlation Confirmed:</strong> A strong positive correlation (r=0.836) was confirmed
                     between spherical equivalent refraction and retinal curvature radius.
                   </li>
-                  <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
+                  <li>
                     <strong>Asymmetric Expansion:</strong> The most distinct changes were observed in the
                     <strong>Temporal and Inferior retina</strong>, suggesting asymmetric expansion during myopia
                     progression.
@@ -304,51 +313,46 @@
             </div>
 
             <!-- Connector between studies -->
-            <div class="story-connector" style="margin: 2rem auto;"></div>
+            <div class="story-connector"></div>
 
             <!-- Study 2 -->
             <div class="challenge-visual-container">
               <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a;">
                 Study 2: Chromatic Aberration-based Peripheral Refraction Measurement
               </h3>
-              <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">Research Overview
+              <div class="overview-research-box">
+                <h4>Research Overview
                 </h4>
                 <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1rem;">
                   To accurately measure the refractive state of the peripheral retina, we utilize the principle of
                   <strong>Longitudinal Chromatic Aberration</strong> between Red and Green wavelengths.
                 </p>
-                <ul
-                  style="list-style: none; padding: 0; margin-bottom: 1.5rem; font-size: 0.95rem; color: #475569; line-height: 1.8;">
-                  <li style="margin-bottom: 0.5rem;"><strong>Step 1. Iso-clarity Calibration:</strong> Establish
+                <ul class="overview-findings-list">
+                  <li><strong>Step 1. Iso-clarity Calibration:</strong> Establish
                     subjective iso-clarity baseline by measuring contrast sensitivity of 1cpd Red/Green patches in the
                     central field.</li>
-                  <li style="margin-bottom: 0.5rem;"><strong>Step 2. Peripheral Stimulation:</strong> Randomly flicker
+                  <li><strong>Step 2. Peripheral Stimulation:</strong> Randomly flicker
                     Red/Green LED pairs arranged on concentric circles at 8°, 16°, and 32°.</li>
-                  <li style="margin-bottom: 0.5rem;"><strong>Step 3. Refraction Calculation:</strong> Inverse calculate
+                  <li><strong>Step 3. Refraction Calculation:</strong> Inverse calculate
                     the focal position on the retina by analyzing clarity response patterns.</li>
                 </ul>
-                <div class="challenge-visual-grid"
-                  style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1.5rem;">
+                <div class="challenge-visual-grid" class="overview-figure-row">
                   <figure
                     style="flex: 1; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; min-width: 0;">
-                    <img src="../assets/images/research/phase2/peripheral_setup_schematic.png" alt="Setup Schematic"
-                      style="width: 100%; height: auto; border-radius: 4px;">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
+                    <img loading="lazy" src="../assets/images/research/phase2/peripheral_setup_schematic.png" alt="Setup Schematic">
+                    <figcaption class="overview-figcaption">
                       Peripheral Retinal Full-correction Pilot Study</figcaption>
                   </figure>
                   <figure
                     style="flex: 1; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; min-width: 0;">
-                    <img src="../assets/images/research/phase2/led_flicker.gif" alt="LED Circuit"
-                      style="width: 100%; height: auto; border-radius: 4px;">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">LED
+                    <img loading="lazy" src="../assets/images/research/phase2/led_flicker.gif" alt="LED Circuit">
+                    <figcaption class="overview-figcaption">LED
                       Control Circuit Diagram</figcaption>
                   </figure>
                   <figure
                     style="flex: 1; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; min-width: 0;">
-                    <img src="../assets/images/research/phase2/peripheral_prototype.gif" alt="Prototype"
-                      style="width: 100%; height: auto; border-radius: 4px;">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
+                    <picture><source srcset="../assets/images/research/phase2/peripheral_prototype.webp" type="image/webp"><img loading="lazy" src="../assets/images/research/phase2/peripheral_prototype.gif" alt="Prototype"></picture>
+                    <figcaption class="overview-figcaption">
                       Peripheral Retinal Full-correction Prototype</figcaption>
                   </figure>
                 </div>
@@ -356,329 +360,12 @@
             </div>
           </div>
 
-          <!-- Connector -->
-          <div class="story-connector"></div>
-
-          <!-- PHASE 3: Prototype Development -->
-          <div class="challenge-section">
-            <span class="challenge-phase-label">Phase 3: Prototype Development</span>
-            <h2 class="challenge-title">
-              Precision Measurement <strong>Prototype System</strong>
-            </h2>
-            <p class="challenge-desc">
-              We are developing innovative prototypes for precision eye measurement. Study 1 focuses on real-time
-              refractive error measurement through retinal shadow analysis, while Study 2 researches corneo-scleral 3D
-              reconstruction technology using structured light patterns.
-            </p>
-
-            <!-- Study 1: Real-time Auto Refractometer -->
-            <div class="challenge-visual-container" style="margin-top: 3rem;">
-              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a;">
-                Study 1: Real-time Auto Refractometer
-              </h3>
-              <div
-                style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 2rem;">
-                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">Research Overview
-                </h4>
-                <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1rem;">
-                  We have developed an innovative system that measures refractive error by analyzing the brightness,
-                  thickness, and movement speed of the Retinal Shadow—a subtle pattern of light reflected from the eye.
-                  Our proprietary Retinoscopy model is continuously updated, calculating refractive errors in real-time
-                  based on probabilistic models.
-                </p>
-
-                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">Machine
-                  Learning-based Real-time Retinoscopy Analysis</h4>
-
-                <!-- Row 1: Experiment (Left) + Optical/IR Views (Right) -->
-                <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                  <!-- Left: Experiment Setup (approx 0.7 scale relative to container or layout balance) -->
-                  <figure
-                    style="flex: 0 0 65%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img src="../assets/images/research/phase3/experiment_setup.png"
-                      alt="Raspberry Pi + Arduino based Experiment Setup"
-                      style="width: 100%; height: auto; border-radius: 4px">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                      Raspberry Pi + Arduino based Real-time Auto Refractometer Prototype</figcaption>
-                  </figure>
-
-                  <!-- Right: Vertical Column -->
-                  <div
-                    style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem; justify-content: center; align-items: center;">
-                    <!-- Top Right -->
-                    <figure
-                      style="width: 100%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                      <img src="../assets/images/research/phase3/retinoscope_view.png" alt="Retinoscope View"
-                        style="width: 100%; height: auto; border-radius: 4px">
-                      <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                        Retinoscopy Optical System View</figcaption>
-                    </figure>
-
-                    <!-- Arrow -->
-                    <div style="font-size: 2rem; color: #94a3b8; line-height: 1;">↓</div>
-
-                    <!-- Bottom Right -->
-                    <figure
-                      style="width: 100%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                      <img src="../assets/images/research/phase3/ir_pupil_image.png" alt="IR Pupil Image"
-                        style="width: 100%; height: auto; border-radius: 4px">
-                      <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">IR
-                        Camera Retinal Shadow Pattern</figcaption>
-                    </figure>
                   </div>
-                </div>
-
-                <!-- Bottom: AI Learning Pipeline (0.75 scale) -->
-                <div style="margin-bottom: 1.5rem; text-align: center;">
-                  <figure
-                    style="background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; display: inline-block; width: 75%;">
-                    <img src="../assets/images/research/phase3/ai_learning_pipeline.png" alt="AI Learning Pipeline"
-                      style="width: 100%; height: auto; border-radius: 4px">
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                      Tuning → Learning → Testing → Output ML Pipeline</figcaption>
-                  </figure>
-                </div>
-              </div>
-            </div>
-
-            <!-- Connector between studies -->
-            <div class="story-connector" style="margin: 2rem auto;"></div>
-
-            <!-- Study 2: Corneo-scleral 3D Reconstruction -->
-            <div class="challenge-visual-container">
-              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a;">
-                Study 2: Corneo-scleral 3D Reconstruction
-              </h3>
-              <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">Research Overview
-                </h4>
-                <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1rem;">
-                  We are developing technology to precisely measure the 3D shape of the cornea and sclera by projecting
-                  Infrared Structured Light Patterns onto the eye surface. By reconstructing the captured pattern images
-                  using Mesh techniques, we visualize the profile of the cornea and sclera in 3D. This provides key
-                  quantitative data for prescribing custom scleral lenses that perfectly fit individual eye shapes.
-                </p>
-
-                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">Logic Pipeline</h4>
-                <ul
-                  style="list-style: none; padding: 0; margin-bottom: 1.5rem; font-size: 0.95rem; color: #475569; line-height: 1.8;">
-                  <li style="margin-bottom: 0.5rem;">
-                    <strong>1. Pattern Projection:</strong> Infrared LED concentric circles are projected onto the eye
-                    surface at regular intervals
-                  </li>
-                  <li style="margin-bottom: 0.5rem;">
-                    <strong>2. Distortion Analysis:</strong> Measuring distance differences and distortions of
-                    concentric circle patterns deformed by corneal and scleral curvature
-                  </li>
-                  <li style="margin-bottom: 0.5rem;">
-                    <strong>3. Shape Recovery:</strong> Converting ring pattern displacement into height information
-                    <div
-                      style="margin: 0.8rem 0; padding: 0.8rem; background: #fff; border-radius: 4px; text-align: center; font-family: 'Times New Roman', serif; font-size: 1.1rem; color: #0f172a;">
-                      <em>Z</em>(<em>r</em>) &propto; &Delta;<em>d</em> &middot; tan(&theta;)
-                    </div>
-                    <span style="font-size: 0.85rem; color: #64748b; display: block; text-align: right;">(<em>Z</em>:
-                      Surface Height, &Delta;<em>d</em>: Pattern Displacement, &theta;: Projection Angle)</span>
-                  </li>
-                  <li style="margin-bottom: 0.5rem;">
-                    <strong>4. Mesh Generation:</strong> Implementing precise 3D topography mesh by connecting recovered
-                    point cloud coordinates
-                  </li>
-                </ul>
-
-                <!-- Row 1: IR Pattern Projection (left) + Hybrid Reconstruction (right) -->
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1rem;">
-                  <figure
-                    style="flex: 0 1 40%; background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                    <img src="../assets/images/research/phase3/structured_light_process.jpg"
-                      alt="Structured Light Pattern Image Processing"
-                      style="width: 100%; height: auto; border-radius: 4px" />
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                      Infrared Pattern Projection & Image Processing Pipeline
-                    </figcaption>
-                  </figure>
-                  <figure
-                    style="flex: 0 1 60%; background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                    <img src="../assets/images/research/phase3/3d_reconstruction_method.png"
-                      alt="3D Reconstruction Algorithm" style="width: 100%; height: auto; border-radius: 4px" />
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                      Physical vs ML-based Hybrid Reconstruction
-                    </figcaption>
-                  </figure>
-                </div>
-                <!-- Row 2: Analysis UI -->
-                <div style="margin-bottom: 1.5rem;">
-                  <figure
-                    style="background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0; max-width: 660px; margin: 0 auto;">
-                    <img src="../assets/images/research/phase3/corneo_scleral_analysis_ui.png?v=20250124"
-                      alt="Real-time Corneo-Scleral Analysis Software UI"
-                      style="width: 100%; height: auto; border-radius: 4px; transform: scale(0.5); transform-origin: center center; display: block; margin: 0 auto;" />
-                    <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                      Real-time Corneo-Scleral 3D Analysis Software
-                    </figcaption>
-                  </figure>
-                </div>
-              </div>
-            </div>
-
-            <!-- Connector -->
-            <div class="story-connector"></div>
-
-            <!-- PHASE 4: AI Disease Prediction -->
-            <div class="challenge-section">
-              <span class="challenge-phase-label">Phase 4: AI Disease Prediction</span>
-              <h2 class="challenge-title">
-                Pupil Response-based <strong>AI Biomarkers</strong>
-              </h2>
-              <p class="challenge-desc">
-                The pupil is a physiological window that reflects the activity of the autonomic nervous system. We
-                analyze minute changes in pupil response using ultra-precision computer vision and AI algorithms to
-                research innovative screening technologies that capture everything from unconscious cognitive processes
-                to signs of neurological diseases.
-              </p>
-
-              <!-- Study 1: Brain Hacking -->
-              <div class="challenge-visual-container" style="margin-top: 3rem;">
-                <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a;">
-                  Study 1: 'Brain Hacking' - Sexual Preference & Lifestyle Analysis
-                </h3>
-
-                <div
-                  style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 2rem;">
-                  <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">Research Overview
-                  </h4>
-                  <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1rem;">
-                    This study proposed a methodology to objectively evaluate unconscious human sexual preferences
-                    through pupil responses. We established an infrared pupil tracking system based on a Basler
-                    high-speed industrial camera and a fixed-focus lens, and developed a pipeline to precisely extract
-                    and analyze minute pupil changes and response speeds from video data using our proprietary
-                    OpenCV-based algorithm.
-                  </p>
-
-                  <!-- Phase 4 Images -->
-                  <div class="challenge-visual-grid"
-                    style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
-                    <!-- 1. Experiment Scene -->
-                    <figure
-                      style="flex: 1 1 auto; max-width: 249px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                      <img src="../assets/images/research/phase4_experiment_scene_new.jpg" alt="Experiment Scene"
-                        style="width: auto; max-width: 100%; height: auto; border-radius: 4px;">
-                      <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                        Clear image acquisition even in low light with IR
-                      </figcaption>
-                    </figure>
-
-                    <!-- 2. Eye Tracking Monitor -->
-                    <figure
-                      style="flex: 1 1 auto; max-width: 247px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                      <img src="../assets/images/research/phase4_eye_tracking_monitor.jpg" alt="Eye Tracking Monitor"
-                        style="width: auto; max-width: 100%; height: auto; border-radius: 4px;">
-                      <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                        Automated calculation & output of 10 pupil metrics after real-time ROI detection
-                      </figcaption>
-                    </figure>
-
-                    <!-- 3. Pupil Graph -->
-                    <figure
-                      style="flex: 1 1 auto; max-width: 1000px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                      <img src="../assets/images/research/phase4_pupil_graph.jpg" alt="Pupil Response Graph"
-                        style="width: 100%; height: auto; border-radius: 4px;">
-                      <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                        Time-series Pupil Response Analysis by Stimulus
-                      </figcaption>
-                    </figure>
-                  </div>
-
-                  <h4
-                    style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600; margin-top: 1.5rem;">
-                    Key Findings</h4>
-                  <ul style="list-style: none; padding: 0; font-size: 0.95rem; color: #475569; line-height: 1.7;">
-                    <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
-                      <strong>Sexual Orientation Detection:</strong> Men showed significantly larger pupil responses to
-                      female images, and women to male images (p&lt;0.001). Notably, the difference in response for
-                      women was 2.4 times more distinct than that of men.
-                    </li>
-                    <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
-                      <strong>Impact of Lifestyle:</strong> Smokers had a lower ratio of 'immediate response' during
-                      stimulus transition compared to non-smokers (0.88 times), but the magnitude of change was
-                      significantly larger, confirming the complex effect of nicotine on autonomic reactivity.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <!-- Connector between studies -->
-              <div class="story-connector" style="margin: 2rem auto;"></div>
-
-              <!-- Study 2: Neurological Screening -->
-              <div class="challenge-visual-container">
-                <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a;">
-                  Study 2: Multi-Neurological Disease Early Screening Algorithm
-                </h3>
-
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                  <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">Research Overview
-                  </h4>
-                  <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1rem;">
-                    Focusing on the <strong>'Temporal Complexity'</strong> of the response rather than simple pupil size
-                    changes, we extracted 47 high-dimensional biomarkers including frequency analysis, Sample Entropy,
-                    and Fractal Dimension. We developed a model to predict the risk of 10 neurological diseases,
-                    including Parkinson's, Alzheimer's, and Diabetic Retinopathy.
-                  </p>
-
-                  <div class="challenge-visual-grid"
-                    style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1.5rem;">
-                    <figure
-                      style="flex: 0 1 30%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                      <img src="../assets/images/research/phase4_study2_experiment_setup.jpg" alt="Experiment Setup"
-                        style="width: 100%; height: auto; border-radius: 4px;">
-                      <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                        High-precision Pupil Response Measurement Setup
-                      </figcaption>
-                    </figure>
-                    <figure
-                      style="flex: 0 1 38%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                      <img src="../assets/images/research/phase4_study2_risk_distribution.jpg"
-                        alt="Disease Risk Distribution" style="width: 100%; height: auto; border-radius: 4px;">
-                      <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                        Risk Distribution by Disease Category
-                      </figcaption>
-                    </figure>
-                    <figure
-                      style="flex: 0 1 32%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                      <img src="../assets/images/research/phase4_study2_correlation_matrix.jpg"
-                        alt="Biomarker Correlation Matrix" style="width: 100%; height: auto; border-radius: 4px;">
-                      <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-                        Pupillometric Biomarker Correlation Matrix
-                      </figcaption>
-                    </figure>
-                  </div>
-
-                  <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600;">Key Findings</h4>
-                  <ul style="list-style: none; padding: 0; font-size: 0.95rem; color: #475569; line-height: 1.7;">
-                    <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
-                      <strong>Sample Entropy Analysis:</strong> Pupil response complexity (Entropy) was significantly
-                      higher for human face stimuli than for geometric shapes (F=12.47, p&lt;0.001). This suggests
-                      specialized autonomic responses involved in social stimulus processing and serves as an indicator
-                      of fine autonomic regulation.
-                    </li>
-                    <li style="margin-bottom: 0.8rem; padding-left: 1rem; border-left: 3px solid #3b82f6;">
-                      <strong>Disease Sensitivity:</strong> The developed algorithm showed high detection sensitivity,
-                      particularly for Diabetic Retinopathy (60.9%), followed by Multiple Sclerosis and Parkinson's
-                      Disease. This proves the strong potential of pupillometry as a non-invasive tool for early
-                      screening of retinal and central nervous system damage.
-                    </li>
-                  </ul>
-
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      </div>
     </section>
   </main>
 
-  <script src="../assets/js/main.js?v=2.2"></script>
+  <script src="../assets/js/main.js?v=2.2" defer></script>
 </body>
 
 </html>

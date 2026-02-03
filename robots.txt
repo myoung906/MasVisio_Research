@@ -9,7 +9,7 @@ Allow: /js/
 Allow: /assets/images/
 
 # Sitemap
-Sitemap: https://visualrehab.kr/sitemap.xml
+Sitemap: https://myoung906.github.io/MasVisio_Research/sitemap.xml
 
 # Crawl delay for respectful crawling
 Crawl-delay: 1

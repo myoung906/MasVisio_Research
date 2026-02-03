@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>도전과제 (Phase 3-4) - MasVisio Research</title>
+  <meta name="description" content="MasVisio Research 연구 프로그램 개요: 4D 근시 제어, AI 진단, 바이오메트릭 측정." />
+  <meta property="og:title" content="연구 개요 - MasVisio Research" />
+  <meta property="og:description" content="MasVisio Research 연구 프로그램 개요: 4D 근시 제어, AI 진단, 바이오메트릭 측정." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://myoung906.github.io/MasVisio_Research/assets/images/vision_engineering_concept.png" />
+  <meta property="og:url" content="https://myoung906.github.io/MasVisio_Research/ko/research/overview-advanced.html" />
+  <link rel="canonical" href="https://myoung906.github.io/MasVisio_Research/ko/research/overview-advanced.html" />
+  <link rel="alternate" hreflang="ko" href="https://myoung906.github.io/MasVisio_Research/ko/research/overview-advanced.html" />
+  <link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/research/overview-advanced.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/css/main.css?v=1.4" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css?v=1.4" />
+  <link rel="stylesheet" href="../../assets/css/components.css?v=1.4" />
+</head>
+
+<body class="sidebar-layout">
+  <header class="mobile-header">
+    <a href="../index.html" class="mobile-logo">
+      <h1>MasVisio<br />Research</h1>
+      <span class="logo-subtitle">Vision Intelligence &<br />Biomedical Engineering</span>
+    </a>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a href="../index.html" class="sidebar-logo">
+        <h1>MasVisio Research</h1>
+        <span class="sidebar-subtitle">Vision Intelligence &<br />Biomedical Engineering</span>
+      </a>
+    </div>
+
+    <div class="lang-switch">
+      <span class="active">🇰🇷</span>
+      <a href="../../research/overview.html">🇬🇧</a>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="../index.html" class="nav-item">홈</a>
+      <a href="../team/index.html" class="nav-item">구성원</a>
+      <a href="overview.html" class="nav-item active">도전과제</a>
+      <a href="../publications/index.html" class="nav-item">연구성과</a>
+      <a href="../gallery/index.html" class="nav-item">갤러리</a>
+      <a href="../partnership/index.html" class="nav-item">제공서비스</a>
+      <a href="../contact.html" class="nav-item">파트너</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p class="copyright">&copy; 2025 MasVisio Research</p>
+      <div class="sidebar-footer-meta">
+        <a href="../privacy.html" class="sidebar-footer-link">개인정보처리방침</a>
+        |
+        <a href="../contact.html" class="sidebar-footer-link">문의하기</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <section class="section overview-section">
+      <div class="container">
+        <div class="challenge-list">
+
+          <!-- Phase Tab Navigation -->
+          <nav class="phase-tab-nav">
+            <a href="overview.html" class="phase-tab-link ">Phase 1-2: 기초연구</a>
+            <a href="overview-advanced.html" class="phase-tab-link active">Phase 3-4: 시제품·AI</a>
+          </nav>
+
+          <!-- PHASE 3: Prototype Development -->
+          <div class="challenge-section">
+            <span class="challenge-phase-label">Phase 3: 시제품 개발</span>
+            <h2 class="challenge-title">
+              실시간 <strong>안구 계측 시스템</strong>
+            </h2>
+
+            <p class="challenge-desc">
+              우리는 망막 그림자 분석을 통한 실시간 굴절이상 측정 시스템과, 적외선 구조화광 패턴을 이용한 각공막 3D 재구성 기술을 개발하고 있습니다.
+            </p>
+
+            <!-- Study 1: Auto Refractometer -->
+            <div class="challenge-visual-container">
+              <h3 class="overview-subheading">
+                연구 1: 머신러닝 기반 실시간 자동안굴절계
+              </h3>
+              <div class="overview-research-box">
+                <h4>연구 개요</h4>
+                <p class="overview-text">
+                  눈에서 반사되는 빛의 미세한 패턴인 망막 그림자(Retinal Shadow)의 밝기, 두께, 이동 속도를 분석하여 굴절이상을 측정합니다. 자체 개발한 검영법(Retinoscopy)
+                  모델은 지속적인 업데이트를 통해 고도화되고 있으며, 이를 기반으로 굴절이상을 확률적 모델에 근거하여 실시간으로 산출합니다.
+                </p>
+                <!-- Row 1: Experiment (Left) + Optical/IR Views (Right) -->
+                <div class="overview-figure-row" style="gap: 0.8rem; flex-wrap: wrap; align-items: flex-start;">
+                  <!-- Left: Experiment Setup -->
+                  <figure class="overview-figure-card" style="flex: 0 0 65%; max-width: 65%;">
+                    <img loading="lazy" src="../../assets/images/research/phase3/experiment_setup.png"
+                      alt="Raspberry Pi + Arduino 기반 실험 환경" style="width: 110%; margin-left: -5%;">
+                    <figcaption class="overview-figcaption">
+                      Raspberry Pi + Arduino 기반 실시간 안굴절계 시제품</figcaption>
+                  </figure>
+
+                  <!-- Right: Vertical Column -->
+                  <div class="overview-figure-col">
+                    <!-- Top Right -->
+                    <figure class="overview-figure-card" style="width: 100%; max-width: 100%; flex: none;">
+                      <img loading="lazy" src="../../assets/images/research/phase3/retinoscope_view.png" alt="검영기 뷰" style="width: 80%; margin: 0 auto; display: block;">
+                      <figcaption class="overview-figcaption">검영법
+                        광학계 뷰</figcaption>
+                    </figure>
+
+                    <!-- Arrow -->
+                    <div class="overview-arrow">↓</div>
+
+                    <!-- Bottom Right -->
+                    <figure class="overview-figure-card" style="width: 100%; max-width: 100%; flex: none;">
+                      <img loading="lazy" src="../../assets/images/research/phase3/ir_pupil_image.png" alt="이진화 이미지 처리" style="width: 80%; margin: 0 auto; display: block;">
+                      <figcaption class="overview-figcaption">이진화
+                        이미지 처리</figcaption>
+                    </figure>
+                  </div>
+                </div>
+
+                <!-- Bottom: AI 학습 파이프라인 (0.75 scale) -->
+                <div style="margin: -2.2rem 0 1.2rem; text-align: center;">
+                  <figure class="overview-figure-card" style="display: inline-block; width: 90%; overflow: hidden;">
+                    <img loading="lazy" src="../../assets/images/research/phase3/ai_learning_pipeline.png" alt="AI 학습 파이프라인" style="transform: scale(1.2); transform-origin: center top;">
+                    <figcaption class="overview-figcaption">
+                      Tuning → Learning → Testing → Output 머신러닝 파이프라인</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connector between studies -->
+            <div class="story-connector"></div>
+
+            <!-- Study 2: 3D Reconstruction -->
+            <div class="challenge-visual-container">
+              <h3 class="overview-subheading">
+                연구 2: 각공막 3D 재구성 및 분석 시스템
+              </h3>
+              <div class="overview-research-box">
+                <h4>연구 개요</h4>
+                <p class="overview-text-sm">
+                  적외선 구조화광 패턴을 안구 표면에 투사하여 각막과 공막의 3차원 형상을 정밀 계측합니다. 획득된 패턴 이미지를 Mesh 기법으로 재구성하여 개인별 안구 형태에 완벽하게 부합하는
+                  맞춤형 공막렌즈 처방을 위한 핵심 데이터를 제공합니다.
+                </p>
+                <ul class="overview-findings-list">
+                  <li><strong>1. 패턴 투사:</strong> 적외선 LED 동심원을 안구 표면에 일정한 간격으로 투사</li>
+                  <li><strong>2. 왜곡 분석:</strong> 각막 및 공막의 곡률에 따라 변형된 동심원 패턴의 거리 차와 일그러짐
+                    계측</li>
+                  <li><strong>3. 형상 복원:</strong> 링 패턴의 변위를 높이 정보로 변환</li>
+                  <li><strong>4. 3D 메쉬:</strong> 복원된 좌표점을 연결하여 정밀한 3D 토포그래피 메쉬 구현</li>
+                </ul>
+                <!-- 첫째 줄: 적외선 패턴 투사(좌) + 하이브리드 복원(우) -->
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1rem; align-items: flex-start;">
+                  <figure
+                    style="flex: 0 1 53%; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; transform: translateY(-8px); overflow: hidden;">
+                    <img loading="lazy" src="../../assets/images/research/phase3/structured_light_process.jpg" alt="구조화광 패턴 이미지 처리 과정" style="transform: scale(1.2); transform-origin: center top;">
+                    <figcaption style="margin-top: 1rem; font-size: 0.8rem; color: #64748b; text-align: center;">적외선
+                      패턴 투사 및 이미지 처리 파이프라인</figcaption>
+                  </figure>
+                  <figure
+                    style="flex: 0 1 47%; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                    <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_method.png" alt="복원 알고리즘"
+                      style="width: 100%; height: auto; border-radius: 4px; transform: scale(1.2); transform-origin: center top; display: block; margin: 0 auto;">
+                    <figcaption style="margin-top: 1rem; font-size: 0.8rem; color: #64748b; text-align: center;">물리적 및
+                      머신러닝 기반 하이브리드 복원</figcaption>
+                  </figure>
+                </div>
+                <!-- 둘째 줄: 분석 UI -->
+                <div style="margin-bottom: 1.5rem;">
+                  <figure
+                    style="background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; max-width: 660px; margin: 0 auto; overflow: hidden;">
+                    <img loading="lazy" src="../../assets/images/research/phase3/corneo_scleral_analysis_ui.png?v=20250124" alt="분석 UI"
+                      style="width: 100%; height: auto; border-radius: 4px; transform: scale(0.5); transform-origin: center center; display: block; margin: 0 auto;">
+                    <figcaption class="overview-figcaption">실시간
+                      각공막 3D 분석 소프트웨어</figcaption>
+                  </figure>
+                </div>
+                <h4>핵심 발견 (Key Findings)
+                </h4>
+                <ul class="overview-findings-list">
+                  <li>
+                    <strong>비구면도 산출:</strong> 복원된 3D 데이터를 기반으로 각막의 비구면도(Asphericity)를 실시간으로 산출합니다.
+                  </li>
+                  <li>
+                    <strong>공막 비대칭성 분석:</strong> 공막의 비대칭성(Sagittal Height Difference)을 분석하여 공막 렌즈 착용 성공률을 획기적으로 높이는 피팅
+                    가이드를 제공합니다.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connector -->
+          <div class="story-connector"></div>
+
+          <!-- PHASE 4: AI Disease Prediction -->
+          <div class="challenge-section">
+            <span class="challenge-phase-label">Phase 4: AI 질환 예측</span>
+            <h2 class="challenge-title">
+              동공 반응 기반 <strong>AI 바이오마커</strong>
+            </h2>
+            <p class="challenge-desc">
+              동공은 자율신경계의 활동을 반영하는 중요한 생리학적 윈도우입니다. 우리는 동공 반응의 미세한 변화를 초정밀 컴퓨터 비전과 AI 알고리즘으로 분석하여, 무의식적 인지 과정부터 신경학적 질환의
+              징후까지 포착하는 혁신적인 스크리닝 기술을 연구합니다.
+            </p>
+
+            <!-- Study 1: Brain Hacking -->
+            <div class="challenge-visual-container">
+              <h3 class="overview-subheading">
+                연구 1: '브레인 해킹' - 성적 선호도 및 라이프스타일 분석
+              </h3>
+
+              <div class="overview-research-box">
+                <h4>연구 개요</h4>
+                <p class="overview-text-sm">
+                  본 연구는 동공 반응을 통해 인간의 무의식적 성적 선호도를 객관적으로 평가하는 방법론을 제시했습니다. Basler 고속 산업용 카메라와 고정초점 렌즈 기반의 적외선 동공 추적 시스템을
+                  구축하여, OpenCV 기반 자체 알고리즘을 통해 영상 데이터에서 동공의 미세 번화와 반응 속도를 정밀하게 추출 및 분석하는 파이프라인을 확립했습니다.
+                </p>
+
+                <!-- Phase 4 Images -->
+                <div class="challenge-visual-grid"
+                  style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                  <!-- 1. Experiment Scene -->
+                  <figure
+                    style="flex: 1 1 auto; max-width: 249px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img loading="lazy" src="../../assets/images/research/phase4_experiment_scene_new.jpg" alt="실제 실험 진행 장면"
+                      style="width: auto; max-width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption class="overview-figcaption">
+                      적외선으로 낮은 조도에서도 선명한 이미지 획득
+                    </figcaption>
+                  </figure>
+
+                  <!-- 2. Eye Tracking Monitor -->
+                  <figure
+                    style="flex: 1 1 auto; max-width: 247px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img loading="lazy" src="../../assets/images/research/phase4_eye_tracking_monitor.jpg" alt="동공 추적 모니터링 화면"
+                      style="width: auto; max-width: 100%; height: auto; border-radius: 4px;">
+                    <figcaption class="overview-figcaption">
+                      실시간 ROI 검출 후 10가지 동공정보 계산 및 출력 자동화
+                    </figcaption>
+                  </figure>
+
+                  <!-- 3. Pupil Graph -->
+                  <figure
+                    style="flex: 1 1 auto; max-width: 1000px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img loading="lazy" src="../../assets/images/research/phase4_pupil_graph.jpg" alt="동공 반응 결과 그래프">
+                    <figcaption class="overview-figcaption">
+                      자극별 시계열 동공 반응 분석 (Pupil Response by Stimulus)
+                    </figcaption>
+                  </figure>
+                </div>
+
+                <h4 style="font-size: 1rem; margin-bottom: 1rem; color: #334155; font-weight: 600; margin-top: 1.5rem;">
+                  핵심 발견 (Key Findings)</h4>
+                <ul class="overview-findings-list">
+                  <li>
+                    <strong>성적 지향성 탐지:</strong> 남성은 여성 이미지에, 여성은 남성 이미지에 유의하게 더 큰 동공 반응을 보였으며(p&lt;0.001), 특히 여성의 반응 차이가
+                    남성보다 2.4배 더 뚜렷하게 나타났습니다.
+                  </li>
+                  <li>
+                    <strong>라이프스타일의 영향:</strong> 흡연자는 비흡연자에 비해 자극 전환 시 '즉시 반응' 비율이 낮았으나(0.88배), 반응 시 변화량은 오히려 더 크게 나타나
+                    니코틴이 자율신경계 반응성에 미치는 복합적인 영향을 확인했습니다.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Connector between studies -->
+            <div class="story-connector"></div>
+
+            <!-- Study 2: Neurological Screening -->
+            <div class="challenge-visual-container">
+              <h3 class="overview-subheading">
+                연구 2: 다중 신경학적 질환 조기 스크리닝 알고리즘
+              </h3>
+
+              <div class="overview-research-box">
+                <h4>연구 개요</h4>
+                <p class="overview-text-sm">
+                  단순한 동공 크기 변화가 아닌, 반응의 <strong>'시간적 복잡성(Temporal Complexity)'</strong>에 주목했습니다. 주파수 분석, 엔트로피(Sample
+                  Entropy), 프랙탈 차원 등 47개의 고차원 바이오마커를 추출하여 파킨슨병, 알츠하이머병, 당뇨망막병증 등 10개 신경학적 질환의 위험도를 예측하는 모델을 개발했습니다.
+                </p>
+
+                <div class="challenge-visual-grid" class="overview-figure-row">
+                  <figure
+                    style="flex: 0 1 30%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img loading="lazy" src="../../assets/images/research/phase4_study2_experiment_setup.jpg" alt="실험 셋업">
+                    <figcaption class="overview-figcaption">고정밀
+                      동공 반응 측정 셋업</figcaption>
+                  </figure>
+                  <figure
+                    style="flex: 0 1 38%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img loading="lazy" src="../../assets/images/research/phase4_study2_risk_distribution.jpg" alt="질환 위험도 분포 분석">
+                    <figcaption class="overview-figcaption">질환별
+                      위험도 분포</figcaption>
+                  </figure>
+                  <figure
+                    style="flex: 0 1 32%; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <img loading="lazy" src="../../assets/images/research/phase4_study2_correlation_matrix.jpg" alt="바이오마커 상관관계 매트릭스">
+                    <figcaption class="overview-figcaption">동공
+                      바이오마커 상관관계 매트릭스</figcaption>
+                  </figure>
+                </div>
+
+                <h4>핵심 발견 (Key Findings)
+                </h4>
+                <ul class="overview-findings-list">
+                  <li>
+                    <strong>Sample Entropy 분석:</strong> 기하학적 도형보다 <strong>인간 얼굴 자극</strong>에서 동공 반응의 복잡성(Entropy)이 유의하게
+                    높게 나타났습니다(F=12.47, p&lt;0.001). 이는 사회적 자극 처리에 관여하는 자율신경계의 특화된 반응을 시사합니다.
+                  </li>
+                  <li>
+                    <strong>질환별 민감도:</strong> 개발된 알고리즘은 특히 <strong>당뇨망막병증(60.9%)</strong>, 다발성경화증, 파킨슨병 순으로 높은 위험도 검출
+                    민감도를 보였습니다. 이는 동공 계측이 망막 및 중추신경계 손상을 조기에 선별하는 비침습적 도구로서 강력한 잠재력을 가짐을 증명합니다.
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../../assets/js/main.js?v=2.2" defer></script>
+</body>
+
+</html>
