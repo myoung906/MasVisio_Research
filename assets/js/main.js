@@ -866,7 +866,7 @@ async function loadProjectDetails() {
     }
   } catch (error) {
     console.error("Error loading project details:", error);
-    container.innerHTML = `< p class="error-text" > ${getErrorMessage(error, lang)}</p > `;
+    container.innerHTML = `<p class="error-text">${getErrorMessage(error, lang)}</p>`;
   }
 }
 
