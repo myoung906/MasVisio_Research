@@ -312,6 +312,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // This is the only DOMContentLoaded listener
   console.log("DOM is fully loaded and parsed");
 
+  loadAdvancedPhases();
+
   // Initialize Mobile Navigation
   initMobileNav();
   initGaborCaptionAnimations();
@@ -440,9 +442,54 @@ function initPublicationsNavigation() {
     });
   });
 
+  const publicationsRootLink = document.querySelector(
+    '.sidebar-nav > .nav-item.active[href$="index.html"]',
+  );
+  if (publicationsRootLink) {
+    publicationsRootLink.addEventListener("click", (event) => {
+      if (window.location.hash) {
+        event.preventDefault();
+        history.replaceState(null, "", window.location.pathname);
+        refreshPublicationsView();
+      }
+    });
+  }
+
   window.addEventListener("hashchange", refreshPublicationsView);
   window.addEventListener("resize", refreshPublicationsView);
   refreshPublicationsView();
+}
+
+async function loadAdvancedPhases() {
+  const mount = document.getElementById("advanced-phase-mount");
+  if (!mount) return;
+
+  const sourcePath = mount.dataset.advancedPhaseSource;
+  if (!sourcePath) return;
+
+  try {
+    const response = await fetch(sourcePath);
+    if (!response.ok) return;
+
+    const html = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const sourceList = doc.querySelector(".challenge-list");
+    if (!sourceList) return;
+
+    const fragment = document.createDocumentFragment();
+    Array.from(sourceList.children).forEach((node) => {
+      if (node.classList && node.classList.contains("phase-tab-nav")) {
+        return;
+      }
+      fragment.appendChild(node.cloneNode(true));
+    });
+
+    mount.innerHTML = "";
+    mount.appendChild(fragment);
+  } catch (error) {
+    console.error("Could not load advanced challenge sections:", error);
+  }
 }
 
 function initMobileNav() {

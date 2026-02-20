@@ -66,7 +66,7 @@
 }
 
 .zoomable-image:hover {
-  filter: brightness(1.1);
+  filter: none;
 }
 
 /* Grid Layouts */
@@ -132,19 +132,16 @@
   margin-bottom: 1.2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: block;
-  transition:
-    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.4s ease;
-  transform-origin: center center;
+  transition: box-shadow 0.2s ease;
   position: relative;
   z-index: 10;
 }
 
 .feature-card:hover img {
-  transform: scale(1.4);
-  z-index: 50;
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
-  cursor: zoom-in;
+  transform: none;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: default;
 }
 
 /* Publications Container - Vertical Stack */
@@ -456,11 +453,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: none;
 }
 
 .diagnostic-card:hover .diagnostic-image img {
-  transform: scale(1.05);
+  transform: none;
 }
 
 .diagnostic-info {
@@ -1119,6 +1116,38 @@
 .phase-tab-link.active {
   color: #1a73e8;
   border-bottom-color: #1a73e8;
+}
+
+/* Unified image layout for appended Phase 3-4 content */
+.advanced-phase-content .overview-figure-row,
+.advanced-phase-content .challenge-visual-grid {
+  display: flex !important;
+  gap: 1rem !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  align-items: stretch !important;
+}
+
+.advanced-phase-content figure {
+  flex: 1 1 280px !important;
+  max-width: 340px !important;
+  min-width: 240px !important;
+  background: #fff;
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.advanced-phase-content figure img {
+  width: 100% !important;
+  height: 220px !important;
+  object-fit: contain !important;
+  background: #f8fafc;
+  border-radius: 4px;
+  transform: none !important;
+  margin: 0 !important;
+  display: block;
 }
 
 @media (max-width: 768px) {
