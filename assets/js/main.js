@@ -313,6 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM is fully loaded and parsed");
 
   loadAdvancedPhases();
+  initPublicationsSubmenuToggle();
 
   // Initialize Mobile Navigation
   initMobileNav();
@@ -442,22 +443,67 @@ function initPublicationsNavigation() {
     });
   });
 
-  const publicationsRootLink = document.querySelector(
-    '.sidebar-nav > .nav-item.active[href$="index.html"]',
-  );
-  if (publicationsRootLink) {
-    publicationsRootLink.addEventListener("click", (event) => {
-      if (window.location.hash) {
-        event.preventDefault();
-        history.replaceState(null, "", window.location.pathname);
-        refreshPublicationsView();
-      }
-    });
-  }
-
   window.addEventListener("hashchange", refreshPublicationsView);
   window.addEventListener("resize", refreshPublicationsView);
   refreshPublicationsView();
+}
+
+function initPublicationsSubmenuToggle() {
+  const nav = document.querySelector(".sidebar-nav");
+  if (!nav) return;
+
+  const rootLink = nav.querySelector(
+    '.nav-item[href*="publications/index.html"]:not(.sidebar-submenu .nav-item)',
+  );
+  if (!rootLink) return;
+
+  const isKo = window.location.pathname.includes("/ko/");
+  const isPublicationsPage = /\/(?:ko\/)?publications\/index\.html$/.test(
+    window.location.pathname,
+  );
+  const basePath = getBasePath();
+  const publicationsPath = isKo
+    ? `${basePath}ko/publications/index.html`
+    : `${basePath}publications/index.html`;
+
+  const submenuItems = isKo
+    ? [
+        { label: "연구논문", hash: "#reviewed-papers" },
+        { label: "학술발표", hash: "#conference" },
+        { label: "특허", hash: "#patent" },
+      ]
+    : [
+        { label: "Reviewed Papers", hash: "#reviewed-papers" },
+        { label: "Conference", hash: "#conference" },
+        { label: "Patent", hash: "#patent" },
+      ];
+
+  let submenu = rootLink.nextElementSibling;
+  if (!submenu || !submenu.classList.contains("sidebar-submenu")) {
+    submenu = document.createElement("div");
+    submenu.className = "sidebar-submenu";
+    rootLink.insertAdjacentElement("afterend", submenu);
+  }
+  submenu.removeAttribute("style");
+
+  submenu.innerHTML = "";
+  submenuItems.forEach((item) => {
+    const link = document.createElement("a");
+    link.className = "nav-item";
+    link.textContent = item.label;
+    link.href = isPublicationsPage ? item.hash : `${publicationsPath}${item.hash}`;
+    submenu.appendChild(link);
+  });
+
+  const defaultOpen = isPublicationsPage;
+  submenu.classList.toggle("open", defaultOpen);
+  rootLink.setAttribute("aria-expanded", defaultOpen ? "true" : "false");
+
+  rootLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    const isOpen = submenu.classList.toggle("open");
+    rootLink.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
 }
 
 async function loadAdvancedPhases() {

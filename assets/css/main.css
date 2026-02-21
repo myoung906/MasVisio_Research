@@ -123,6 +123,10 @@ body {
   font-weight: 800;
 }
 
+.sidebar-logo h1 br {
+  display: none;
+}
+
 .sidebar-subtitle {
   font-family: 'Inter', sans-serif;
   font-size: 0.98rem;
@@ -164,6 +168,18 @@ body {
   color: var(--primary-color);
   border-left: 3px solid var(--accent-color);
   font-weight: 600;
+}
+
+.sidebar-submenu {
+  display: none;
+  padding-left: 1.5rem;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-submenu.open {
+  display: flex;
 }
 
 /* Sidebar Footer (Lang & Copyright) */
