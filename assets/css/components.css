@@ -751,8 +751,11 @@
   font-size: 1rem;
   color: #475569;
   line-height: 1.7;
-  max-width: 750px;
+  max-width: 100%;
   margin-bottom: 2rem;
+  text-align: justify;
+  text-justify: inter-word;
+  word-break: keep-all;
 }
 
 /* Visuals */
@@ -1034,6 +1037,8 @@
   line-height: 1.7;
   margin-bottom: 1.5rem;
   word-break: keep-all;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .overview-text-sm {
@@ -1042,6 +1047,13 @@
   line-height: 1.7;
   margin-bottom: 1rem;
   word-break: keep-all;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.overview-research-box p {
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .overview-figure-row {
@@ -1081,6 +1093,8 @@
   font-size: 0.95rem;
   color: #475569;
   line-height: 1.7;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .overview-findings-list li {
