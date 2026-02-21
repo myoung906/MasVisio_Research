@@ -1145,6 +1145,51 @@
   letter-spacing: 0 !important;
 }
 
+.challenge-caption-fixed,
+.challenge-caption-dynamic {
+  display: inline;
+}
+
+@media (min-width: 1025px) {
+  .challenge-caption-fixed,
+  .challenge-caption-dynamic {
+    display: block;
+    text-align: center;
+  }
+
+  .phase3-study1-rightshift {
+    transform: translateX(2.2%);
+  }
+
+  .phase3-vertical-right {
+    width: 62% !important;
+    max-width: 62% !important;
+    margin-left: 34% !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .phase3-study2-mobile-stack,
+  .phase4-study1-mobile-stack {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .phase3-study2-mobile-stack > figure,
+  .phase4-study1-mobile-stack > figure {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 1 auto !important;
+  }
+
+  .phase4-stimulus-image {
+    width: 112.167% !important;
+    max-width: none !important;
+    margin-left: -6.0835% !important;
+  }
+}
+
 .overview-findings-list {
   list-style: none;
   padding: 0;

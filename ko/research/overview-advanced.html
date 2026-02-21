@@ -17,9 +17,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../assets/css/main.css?v=2.8" />
-  <link rel="stylesheet" href="../../assets/css/responsive.css?v=2.8" />
-  <link rel="stylesheet" href="../../assets/css/components.css?v=2.8" />
+  <link rel="stylesheet" href="../../assets/css/main.css?v=2.9" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css?v=2.9" />
+  <link rel="stylesheet" href="../../assets/css/components.css?v=2.9" />
 </head>
 
 <body class="sidebar-layout">
@@ -97,12 +97,12 @@
                   모델은 지속적인 업데이트를 통해 고도화되고 있으며, 이를 기반으로 굴절이상을 확률적 모델에 근거하여 실시간으로 산출합니다.
                 </p>
                 <!-- Row 1: Experiment (Left) + Optical/IR Views (Right) -->
-                <div class="overview-figure-row" style="gap: 0.8rem; flex-wrap: wrap; align-items: flex-start;">
+                <div class="overview-figure-row phase3-study1-rightshift" style="gap: 0.8rem; flex-wrap: wrap; align-items: flex-start;">
                   <!-- Left: Experiment Setup -->
                   <figure class="overview-figure-card" style="flex: 0 0 65% !important; max-width: 65% !important; display: flex; flex-direction: column; justify-content: center;">
                     <img loading="lazy" src="../../assets/images/research/phase3/experiment_setup.png"
                       alt="Raspberry Pi + Arduino 기반 실험 환경"
-                      style="width: 130.5% !important; max-width: none !important; height: auto !important; margin: 0 0 0 -15.25% !important; display: block !important;">
+                      style="width: 117.45% !important; max-width: none !important; height: auto !important; margin: 0 0 0 -4.5% !important; display: block !important;">
                     <figcaption class="overview-figcaption">
                       Raspberry Pi + Arduino 기반 실시간 안굴절계 시제품</figcaption>
                   </figure>
@@ -112,7 +112,7 @@
                     <!-- Top Right -->
                     <figure class="overview-figure-card" style="width: 100% !important; max-width: 100% !important; flex: none !important;">
                       <img loading="lazy" src="../../assets/images/research/phase3/retinoscope_view.png" alt="검영기 뷰"
-                        style="width: 64% !important; max-width: 64% !important; margin: 0 auto !important; display: block !important; height: auto !important;">
+                        class="phase3-vertical-right" style="width: 64% !important; max-width: 64% !important; margin: 0 auto !important; display: block !important; height: auto !important;">
                       <figcaption class="overview-figcaption">검영기를 통한
                         반사광선 뷰</figcaption>
                     </figure>
@@ -123,7 +123,7 @@
                     <!-- Bottom Right -->
                     <figure class="overview-figure-card" style="width: 100% !important; max-width: 100% !important; flex: none !important;">
                       <img loading="lazy" src="../../assets/images/research/phase3/ir_pupil_image.png" alt="이진화 이미지 처리"
-                        style="width: 64% !important; max-width: 64% !important; margin: 0 auto !important; display: block !important; height: auto !important;">
+                        class="phase3-vertical-right" style="width: 64% !important; max-width: 64% !important; margin: 0 auto !important; display: block !important; height: auto !important;">
                       <figcaption class="overview-figcaption">이진화
                         이미지 처리</figcaption>
                     </figure>
@@ -134,7 +134,7 @@
                 <div style="margin: -0.8rem 0 1.2rem; text-align: center;">
                   <figure class="overview-figure-card" style="display: inline-block; width: 90% !important; max-width: 90% !important; overflow: hidden;">
                     <img loading="lazy" src="../../assets/images/research/phase3/ai_learning_pipeline.png" alt="AI 학습 파이프라인"
-                      style="width: 97.92% !important; max-width: none !important; margin-left: 1.04% !important; margin-top: 0.2rem !important; display: block !important; height: auto !important;">
+                      style="width: 112.608% !important; max-width: none !important; margin-left: -6.304% !important; margin-top: 0.2rem !important; display: block !important; height: auto !important;">
                     <figcaption class="overview-figcaption">
                       Tuning → Learning → Testing → Output 머신러닝 파이프라인</figcaption>
                   </figure>
@@ -173,7 +173,7 @@
                   </figure>
                 </div>
                 <!-- 아랫줄: 좌-물리적/우-실시간 (동일 y, 각 1.4배) -->
-                <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1.5rem; align-items: stretch;">
+                <div class="phase3-study2-mobile-stack" style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1.5rem; align-items: stretch;">
                   <figure class="mobile-tight-card" style="flex: 0 1 48% !important; max-width: 48% !important; min-width: 0 !important; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; min-height: 320px;">
                     <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_method.png" alt="복원 알고리즘"
                       style="width: 104.49% !important; max-width: none !important; margin-left: -2.245% !important; display: block !important; height: auto !important;">
@@ -231,7 +231,7 @@
 
                 <!-- Phase 4 Images -->
                 <div style="margin-bottom: 1.5rem;">
-                  <div style="display: flex; gap: 1rem; justify-content: center; align-items: stretch; flex-wrap: nowrap; margin-bottom: 1rem;">
+                  <div class="phase4-study1-mobile-stack" style="display: flex; gap: 1rem; justify-content: center; align-items: stretch; flex-wrap: nowrap; margin-bottom: 1rem;">
                     <figure
                       class="mobile-tight-card" style="flex: 0 1 45% !important; max-width: 45% !important; min-width: 0 !important; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; height: 360px;">
                       <img loading="lazy" src="../../assets/images/research/phase4_experiment_scene.jpg" alt="실제 실험 진행 장면"
@@ -253,7 +253,7 @@
                     <figure
                       style="display: inline-block; width: 97.865% !important; max-width: 97.865% !important; min-width: 0 !important; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
                       <img loading="lazy" src="../../assets/images/research/phase4_pupil_graph.jpg" alt="동공 반응 결과 그래프"
-                        style="width: 101.97% !important; max-width: none !important; margin-left: -0.985% !important; display: block !important; height: auto !important; border-radius: 4px;">
+                        class="phase4-stimulus-image" style="width: 101.97% !important; max-width: none !important; margin-left: -0.985% !important; display: block !important; height: auto !important; border-radius: 4px;">
                       <figcaption class="overview-figcaption">
                         자극별 시계열 동공 반응 분석 (Pupil Response by Stimulus)
                       </figcaption>
@@ -340,7 +340,7 @@
       window.location.replace("overview.html#phase-3");
     }
   </script>
-  <script src="../../assets/js/main.js?v=2.8" defer></script>
+  <script src="../../assets/js/main.js?v=2.9" defer></script>
 </body>
 
 </html>

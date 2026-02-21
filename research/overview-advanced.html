@@ -19,9 +19,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/main.css?v=2.8" />
-  <link rel="stylesheet" href="../assets/css/responsive.css?v=2.8" />
-  <link rel="stylesheet" href="../assets/css/components.css?v=2.8" />
+  <link rel="stylesheet" href="../assets/css/main.css?v=2.9" />
+  <link rel="stylesheet" href="../assets/css/responsive.css?v=2.9" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=2.9" />
 </head>
 
 <body class="sidebar-layout">
@@ -107,12 +107,12 @@
                   Learning-based Real-time Retinoscopy Analysis</h4>
 
                 <!-- Row 1: Experiment (Left) + Optical/IR Views (Right) -->
-                <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <div class="phase3-study1-rightshift" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
                   <!-- Left: Experiment Setup (approx 0.7 scale relative to container or layout balance) -->
                   <figure class="overview-figure-card" style="flex: 0 0 65% !important; max-width: 65% !important; display: flex; flex-direction: column; justify-content: center;">
                     <img loading="lazy" src="../assets/images/research/phase3/experiment_setup.png"
                       alt="Raspberry Pi + Arduino based Experiment Setup"
-                      style="width: 130.5% !important; max-width: none !important; height: auto !important; margin: 0 0 0 -15.25% !important; display: block !important;">
+                      style="width: 117.45% !important; max-width: none !important; height: auto !important; margin: 0 0 0 -4.5% !important; display: block !important;">
                     <figcaption class="overview-figcaption">
                       Raspberry Pi + Arduino based Real-time Auto Refractometer Prototype</figcaption>
                   </figure>
@@ -123,7 +123,7 @@
                     <!-- Top Right -->
                     <figure class="overview-figure-card" style="width: 100% !important; max-width: 100% !important; flex: none !important;">
                       <img loading="lazy" src="../assets/images/research/phase3/retinoscope_view.png" alt="Retinoscope View"
-                        style="width: 64% !important; max-width: 64% !important; margin: 0 auto !important; display: block !important; height: auto !important;">
+                        class="phase3-vertical-right" style="width: 64% !important; max-width: 64% !important; margin: 0 auto !important; display: block !important; height: auto !important;">
                       <figcaption class="overview-figcaption">
                         Retinoscopy Optical System View</figcaption>
                     </figure>
@@ -134,7 +134,7 @@
                     <!-- Bottom Right -->
                     <figure class="overview-figure-card" style="width: 100% !important; max-width: 100% !important; flex: none !important;">
                       <img loading="lazy" src="../assets/images/research/phase3/ir_pupil_image.png" alt="IR Pupil Image"
-                        style="width: 64% !important; max-width: 64% !important; margin: 0 auto !important; display: block !important; height: auto !important;">
+                        class="phase3-vertical-right" style="width: 64% !important; max-width: 64% !important; margin: 0 auto !important; display: block !important; height: auto !important;">
                       <figcaption class="overview-figcaption">IR
                         Camera Retinal Shadow Pattern</figcaption>
                     </figure>
@@ -146,7 +146,7 @@
                   <figure
                     style="background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; display: inline-block; width: 90% !important; max-width: 90% !important; overflow: hidden;">
                     <img loading="lazy" src="../assets/images/research/phase3/ai_learning_pipeline.png" alt="AI Learning Pipeline"
-                      style="width: 97.92% !important; max-width: none !important; margin-left: 1.04% !important; margin-top: 0.2rem !important; display: block !important; height: auto !important;">
+                      style="width: 112.608% !important; max-width: none !important; margin-left: -6.304% !important; margin-top: 0.2rem !important; display: block !important; height: auto !important;">
                     <figcaption class="overview-figcaption">
                       Tuning → Learning → Testing → Output ML Pipeline</figcaption>
                   </figure>
@@ -209,7 +209,7 @@
                   </figure>
                 </div>
                 <!-- Bottom Row: left-Physical / right-Real-time (same y, each 1.4x) -->
-                <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1.5rem; align-items: stretch;">
+                <div class="phase3-study2-mobile-stack" style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1.5rem; align-items: stretch;">
                   <figure class="mobile-tight-card" style="flex: 0 1 48% !important; max-width: 48% !important; min-width: 0 !important; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; min-height: 320px;">
                     <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_method.png"
                       alt="3D Reconstruction Algorithm"
@@ -265,7 +265,7 @@
 
                   <!-- Phase 4 Images -->
                   <div style="margin-bottom: 1.5rem;">
-                    <div style="display: flex; gap: 1rem; justify-content: center; align-items: stretch; flex-wrap: nowrap; margin-bottom: 1rem;">
+                    <div class="phase4-study1-mobile-stack" style="display: flex; gap: 1rem; justify-content: center; align-items: stretch; flex-wrap: nowrap; margin-bottom: 1rem;">
                       <figure
                         class="mobile-tight-card" style="flex: 0 1 45% !important; max-width: 45% !important; min-width: 0 !important; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; height: 360px;">
                         <img loading="lazy" src="../assets/images/research/phase4_experiment_scene.jpg" alt="Experiment Scene"
@@ -287,7 +287,7 @@
                       <figure
                         style="display: inline-block; width: 97.865% !important; max-width: 97.865% !important; min-width: 0 !important; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
                         <img loading="lazy" src="../assets/images/research/phase4_pupil_graph.jpg" alt="Pupil Response Graph"
-                          style="width: 101.97% !important; max-width: none !important; margin-left: -0.985% !important; display: block !important; height: auto !important; border-radius: 4px;">
+                          class="phase4-stimulus-image" style="width: 101.97% !important; max-width: none !important; margin-left: -0.985% !important; display: block !important; height: auto !important; border-radius: 4px;">
                         <figcaption class="overview-figcaption">
                           Time-series Pupil Response Analysis by Stimulus
                         </figcaption>
@@ -391,7 +391,7 @@
       window.location.replace("overview.html#phase-3");
     }
   </script>
-  <script src="../assets/js/main.js?v=2.8" defer></script>
+  <script src="../assets/js/main.js?v=2.9" defer></script>
 </body>
 
 </html>
