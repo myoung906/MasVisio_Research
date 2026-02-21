@@ -309,6 +309,9 @@
     color: #003366;
     line-height: 1.1;
     letter-spacing: -0.02em;
+    font-kerning: normal;
+    font-stretch: normal;
+    text-rendering: geometricPrecision;
     margin: 0 0 0.5rem 0;
   }
 
