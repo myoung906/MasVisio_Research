@@ -109,9 +109,10 @@
                 <!-- Row 1: Experiment (Left) + Optical/IR Views (Right) -->
                 <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
                   <!-- Left: Experiment Setup (approx 0.7 scale relative to container or layout balance) -->
-                  <figure class="overview-figure-card" style="flex: 0 0 65%; max-width: 65%;">
+                  <figure class="overview-figure-card" style="flex: 0 0 65% !important; max-width: 65% !important;">
                     <img loading="lazy" src="../assets/images/research/phase3/experiment_setup.png"
-                      alt="Raspberry Pi + Arduino based Experiment Setup">
+                      alt="Raspberry Pi + Arduino based Experiment Setup"
+                      style="width: 170% !important; max-width: none !important; height: auto !important; margin-top: 4.2rem !important; margin-left: -35% !important; display: block !important;">
                     <figcaption class="overview-figcaption">
                       Raspberry Pi + Arduino based Real-time Auto Refractometer Prototype</figcaption>
                   </figure>
@@ -120,8 +121,9 @@
                   <div
                     style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem; justify-content: center; align-items: center;">
                     <!-- Top Right -->
-                    <figure class="overview-figure-card" style="width: 100%; max-width: 100%; flex: none;">
-                      <img loading="lazy" src="../assets/images/research/phase3/retinoscope_view.png" alt="Retinoscope View">
+                    <figure class="overview-figure-card" style="width: 100% !important; max-width: 100% !important; flex: none !important;">
+                      <img loading="lazy" src="../assets/images/research/phase3/retinoscope_view.png" alt="Retinoscope View"
+                        style="width: 64% !important; max-width: 64% !important; margin: 0 0 0 28% !important; display: block !important; height: auto !important;">
                       <figcaption class="overview-figcaption">
                         Retinoscopy Optical System View</figcaption>
                     </figure>
@@ -130,8 +132,9 @@
                     <div style="font-size: 2rem; color: #94a3b8; line-height: 1;">↓</div>
 
                     <!-- Bottom Right -->
-                    <figure class="overview-figure-card" style="width: 100%; max-width: 100%; flex: none;">
-                      <img loading="lazy" src="../assets/images/research/phase3/ir_pupil_image.png" alt="IR Pupil Image">
+                    <figure class="overview-figure-card" style="width: 100% !important; max-width: 100% !important; flex: none !important;">
+                      <img loading="lazy" src="../assets/images/research/phase3/ir_pupil_image.png" alt="IR Pupil Image"
+                        style="width: 64% !important; max-width: 64% !important; margin: 0 0 0 28% !important; display: block !important; height: auto !important;">
                       <figcaption class="overview-figcaption">IR
                         Camera Retinal Shadow Pattern</figcaption>
                     </figure>
@@ -139,10 +142,11 @@
                 </div>
 
                 <!-- Bottom: AI Learning Pipeline (0.75 scale) -->
-                <div style="margin-bottom: 1.5rem; text-align: center;">
+                <div style="margin: -0.8rem 0 1.2rem; text-align: center;">
                   <figure
-                    style="background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; display: inline-block; width: 75%;">
-                    <img loading="lazy" src="../assets/images/research/phase3/ai_learning_pipeline.png" alt="AI Learning Pipeline">
+                    style="background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; display: inline-block; width: 90% !important; max-width: 90% !important; overflow: hidden;">
+                    <img loading="lazy" src="../assets/images/research/phase3/ai_learning_pipeline.png" alt="AI Learning Pipeline"
+                      style="width: 180% !important; max-width: none !important; margin-left: -40% !important; margin-top: 0.2rem !important; display: block !important; height: auto !important;">
                     <figcaption class="overview-figcaption">
                       Tuning → Learning → Testing → Output ML Pipeline</figcaption>
                   </figure>
@@ -193,32 +197,31 @@
                   </li>
                 </ul>
 
-                <!-- Row 1: IR Pattern Projection (left) + Hybrid Reconstruction (right) -->
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1rem;">
-                  <figure
-                    style="flex: 0 1 40%; background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <!-- Top Row: IR Pattern (frame removed, centered, 1.75x) -->
+                <div style="margin-bottom: 1rem; text-align: center;">
+                  <figure style="display: inline-block; width: 58% !important; max-width: 58% !important; min-width: 0 !important; background: transparent; border: none; padding: 0; overflow: visible;">
                     <img loading="lazy" src="../assets/images/research/phase3/structured_light_process.jpg"
-                      alt="Structured Light Pattern Image Processing" />
+                      alt="Structured Light Pattern Image Processing"
+                      style="width: 175% !important; max-width: none !important; margin-left: -37.5% !important; display: block !important; height: auto !important;" />
                     <figcaption class="overview-figcaption">
                       Infrared Pattern Projection & Image Processing Pipeline
                     </figcaption>
                   </figure>
-                  <figure
-                    style="flex: 0 1 60%; background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                </div>
+                <!-- Bottom Row: left-Physical / right-Real-time (same y, each 1.4x) -->
+                <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1.5rem; align-items: flex-start;">
+                  <figure style="flex: 0 1 48% !important; max-width: 48% !important; min-width: 0 !important; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
                     <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_method.png"
-                      alt="3D Reconstruction Algorithm" />
+                      alt="3D Reconstruction Algorithm"
+                      style="width: 140% !important; max-width: none !important; margin-left: -20% !important; display: block !important; height: auto !important;" />
                     <figcaption class="overview-figcaption">
                       Physical vs ML-based Hybrid Reconstruction
                     </figcaption>
                   </figure>
-                </div>
-                <!-- Row 2: Analysis UI -->
-                <div style="margin-bottom: 1.5rem;">
-                  <figure
-                    style="background: #fff; padding: 0.5rem; border-radius: 8px; border: 1px solid #e2e8f0; max-width: 660px; margin: 0 auto;">
+                  <figure style="flex: 0 1 48% !important; max-width: 48% !important; min-width: 0 !important; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
                     <img loading="lazy" src="../assets/images/research/phase3/corneo_scleral_analysis_ui.png?v=20250124"
                       alt="Real-time Corneo-Scleral Analysis Software UI"
-                      style="width: 100%; height: auto; border-radius: 4px; transform: scale(0.5); transform-origin: center center; display: block; margin: 0 auto;" />
+                      style="width: 140% !important; max-width: none !important; margin-left: -20% !important; display: block !important; height: auto !important;" />
                     <figcaption class="overview-figcaption">
                       Real-time Corneo-Scleral 3D Analysis Software
                     </figcaption>

@@ -99,9 +99,10 @@
                 <!-- Row 1: Experiment (Left) + Optical/IR Views (Right) -->
                 <div class="overview-figure-row" style="gap: 0.8rem; flex-wrap: wrap; align-items: flex-start;">
                   <!-- Left: Experiment Setup -->
-                  <figure class="overview-figure-card" style="flex: 0 0 65%; max-width: 65%;">
+                  <figure class="overview-figure-card" style="flex: 0 0 65% !important; max-width: 65% !important;">
                     <img loading="lazy" src="../../assets/images/research/phase3/experiment_setup.png"
-                      alt="Raspberry Pi + Arduino 기반 실험 환경" style="width: 110%; margin-left: -5%;">
+                      alt="Raspberry Pi + Arduino 기반 실험 환경"
+                      style="width: 170% !important; max-width: none !important; height: auto !important; margin-top: 4.2rem !important; margin-left: -35% !important; display: block !important;">
                     <figcaption class="overview-figcaption">
                       Raspberry Pi + Arduino 기반 실시간 안굴절계 시제품</figcaption>
                   </figure>
@@ -109,8 +110,9 @@
                   <!-- Right: Vertical Column -->
                   <div class="overview-figure-col">
                     <!-- Top Right -->
-                    <figure class="overview-figure-card" style="width: 100%; max-width: 100%; flex: none;">
-                      <img loading="lazy" src="../../assets/images/research/phase3/retinoscope_view.png" alt="검영기 뷰" style="width: 80%; margin: 0 auto; display: block;">
+                    <figure class="overview-figure-card" style="width: 100% !important; max-width: 100% !important; flex: none !important;">
+                      <img loading="lazy" src="../../assets/images/research/phase3/retinoscope_view.png" alt="검영기 뷰"
+                        style="width: 64% !important; max-width: 64% !important; margin: 0 0 0 28% !important; display: block !important; height: auto !important;">
                       <figcaption class="overview-figcaption">검영법
                         광학계 뷰</figcaption>
                     </figure>
@@ -119,8 +121,9 @@
                     <div class="overview-arrow">↓</div>
 
                     <!-- Bottom Right -->
-                    <figure class="overview-figure-card" style="width: 100%; max-width: 100%; flex: none;">
-                      <img loading="lazy" src="../../assets/images/research/phase3/ir_pupil_image.png" alt="이진화 이미지 처리" style="width: 80%; margin: 0 auto; display: block;">
+                    <figure class="overview-figure-card" style="width: 100% !important; max-width: 100% !important; flex: none !important;">
+                      <img loading="lazy" src="../../assets/images/research/phase3/ir_pupil_image.png" alt="이진화 이미지 처리"
+                        style="width: 64% !important; max-width: 64% !important; margin: 0 0 0 28% !important; display: block !important; height: auto !important;">
                       <figcaption class="overview-figcaption">이진화
                         이미지 처리</figcaption>
                     </figure>
@@ -128,9 +131,10 @@
                 </div>
 
                 <!-- Bottom: AI 학습 파이프라인 (0.75 scale) -->
-                <div style="margin: -2.2rem 0 1.2rem; text-align: center;">
-                  <figure class="overview-figure-card" style="display: inline-block; width: 90%; overflow: hidden;">
-                    <img loading="lazy" src="../../assets/images/research/phase3/ai_learning_pipeline.png" alt="AI 학습 파이프라인" style="transform: scale(1.2); transform-origin: center top;">
+                <div style="margin: -0.8rem 0 1.2rem; text-align: center;">
+                  <figure class="overview-figure-card" style="display: inline-block; width: 90% !important; max-width: 90% !important; overflow: hidden;">
+                    <img loading="lazy" src="../../assets/images/research/phase3/ai_learning_pipeline.png" alt="AI 학습 파이프라인"
+                      style="width: 180% !important; max-width: none !important; margin-left: -40% !important; margin-top: 0.2rem !important; display: block !important; height: auto !important;">
                     <figcaption class="overview-figcaption">
                       Tuning → Learning → Testing → Output 머신러닝 파이프라인</figcaption>
                   </figure>
@@ -159,28 +163,26 @@
                   <li><strong>3. 형상 복원:</strong> 링 패턴의 변위를 높이 정보로 변환</li>
                   <li><strong>4. 3D 메쉬:</strong> 복원된 좌표점을 연결하여 정밀한 3D 토포그래피 메쉬 구현</li>
                 </ul>
-                <!-- 첫째 줄: 적외선 패턴 투사(좌) + 하이브리드 복원(우) -->
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1rem; align-items: flex-start;">
-                  <figure
-                    style="flex: 0 1 53%; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; transform: translateY(-8px); overflow: hidden;">
-                    <img loading="lazy" src="../../assets/images/research/phase3/structured_light_process.jpg" alt="구조화광 패턴 이미지 처리 과정" style="transform: scale(1.2); transform-origin: center top;">
-                    <figcaption style="margin-top: 1rem; font-size: 0.8rem; color: #64748b; text-align: center;">적외선
+                <!-- 윗줄: 적외선 패턴(프레임 제거, 중앙 정렬, 1.75배) -->
+                <div style="margin-bottom: 1rem; text-align: center;">
+                  <figure style="display: inline-block; width: 58% !important; max-width: 58% !important; min-width: 0 !important; background: transparent; border: none; padding: 0; overflow: visible;">
+                    <img loading="lazy" src="../../assets/images/research/phase3/structured_light_process.jpg" alt="구조화광 패턴 이미지 처리 과정"
+                      style="width: 175% !important; max-width: none !important; margin-left: -37.5% !important; display: block !important; height: auto !important;">
+                    <figcaption style="margin-top: 0.9rem; font-size: 0.8rem; color: #64748b; text-align: center;">적외선
                       패턴 투사 및 이미지 처리 파이프라인</figcaption>
                   </figure>
-                  <figure
-                    style="flex: 0 1 47%; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                </div>
+                <!-- 아랫줄: 좌-물리적/우-실시간 (동일 y, 각 1.4배) -->
+                <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1.5rem; align-items: flex-start;">
+                  <figure style="flex: 0 1 48% !important; max-width: 48% !important; min-width: 0 !important; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
                     <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_method.png" alt="복원 알고리즘"
-                      style="width: 100%; height: auto; border-radius: 4px; transform: scale(1.2); transform-origin: center top; display: block; margin: 0 auto;">
-                    <figcaption style="margin-top: 1rem; font-size: 0.8rem; color: #64748b; text-align: center;">물리적 및
+                      style="width: 140% !important; max-width: none !important; margin-left: -20% !important; display: block !important; height: auto !important;">
+                    <figcaption style="margin-top: 0.9rem; font-size: 0.8rem; color: #64748b; text-align: center;">물리적 및
                       머신러닝 기반 하이브리드 복원</figcaption>
                   </figure>
-                </div>
-                <!-- 둘째 줄: 분석 UI -->
-                <div style="margin-bottom: 1.5rem;">
-                  <figure
-                    style="background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; max-width: 660px; margin: 0 auto; overflow: hidden;">
+                  <figure style="flex: 0 1 48% !important; max-width: 48% !important; min-width: 0 !important; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
                     <img loading="lazy" src="../../assets/images/research/phase3/corneo_scleral_analysis_ui.png?v=20250124" alt="분석 UI"
-                      style="width: 100%; height: auto; border-radius: 4px; transform: scale(0.5); transform-origin: center center; display: block; margin: 0 auto;">
+                      style="width: 140% !important; max-width: none !important; margin-left: -20% !important; display: block !important; height: auto !important;">
                     <figcaption class="overview-figcaption">실시간
                       각공막 3D 분석 소프트웨어</figcaption>
                   </figure>
