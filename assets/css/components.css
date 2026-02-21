@@ -1102,6 +1102,21 @@
   border-radius: 0 !important;
 }
 
+/* Phase 3 frameless image layout */
+.phase3-no-frame figure,
+.phase3-no-frame .overview-figure-card {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.phase3-no-frame img {
+  border-radius: 0 !important;
+}
+
 .overview-findings-list {
   list-style: none;
   padding: 0;
