@@ -1170,6 +1170,19 @@
   display: block;
 }
 
+@media (max-width: 1024px) {
+  .advanced-phase-content .mobile-tight-card {
+    height: auto !important;
+    min-height: 0 !important;
+    justify-content: flex-start !important;
+  }
+
+  .advanced-phase-content .mobile-tight-card .overview-figcaption {
+    min-height: 0 !important;
+    margin-top: 0.6rem !important;
+  }
+}
+
 @media (max-width: 768px) {
   .intro-section {
     padding: 3rem 1.5rem 2rem;
