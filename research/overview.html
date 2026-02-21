@@ -19,9 +19,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/main.css?v=2.9" />
-  <link rel="stylesheet" href="../assets/css/responsive.css?v=2.9" />
-  <link rel="stylesheet" href="../assets/css/components.css?v=2.9" />
+  <link rel="stylesheet" href="../assets/css/main.css?v=3.0" />
+  <link rel="stylesheet" href="../assets/css/responsive.css?v=3.0" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=3.0" />
 </head>
 
 <body class="sidebar-layout">
@@ -122,14 +122,21 @@
                   ">
                 <figure class="challenge-figure-item">
                   <div style="
+                        margin-bottom: 0.5rem;
+                        font-size: 0.9rem;
+                        color: #94a3b8;
+                        text-align: center;
+                        ">
+                    Spatial Frequency
+                  </div>
+                  <div style="
                         position: relative;
-                        width: 127px;
-                        height: 127px;
+                        width: 152px;
+                        height: 152px;
                         border: 1px solid #e2e8f0;
                         border-radius: 0;
                         background: #f1f5f9;
                         overflow: hidden;
-                        transform: translateX(6mm);
                       ">
                     <picture><source srcset="../assets/images/gabor_spatial_frequency.webp" type="image/webp"><img src="../assets/images/gabor_spatial_frequency.gif"
                       alt="Gabor Patch Spatial Frequency Variation (1-30 cpd)" style="
@@ -148,7 +155,6 @@
                         text-align: center;
                         line-height: 1.4;
                         overflow: hidden;
-                        transform: translateX(3mm);
                       " data-gabor-caption="true" data-caption-start="1" data-caption-end="30" data-caption-frames="30"
                     data-caption-duration="4500">
                     <span class="gabor-caption-label challenge-caption-fixed">spatial frequency:</span>
@@ -160,18 +166,25 @@
                   </figcaption>
                 </figure>
                 <figure class="challenge-figure-item">
+                  <div style="
+                        margin-bottom: 0.5rem;
+                        font-size: 0.9rem;
+                        color: #94a3b8;
+                        text-align: center;
+                        ">
+                    Temporal Frequency
+                  </div>
                   <div data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="12000"
                     data-step-duration="400" data-speed-multiplier="2.5"
                     data-on-src="../assets/images/temporal_frequency_on.png"
                     data-off-src="../assets/images/temporal_frequency_off.png" style="
                         position: relative;
-                        width: 127px;
-                        height: 127px;
+                        width: 152px;
+                        height: 152px;
                         border: 1px solid #e2e8f0;
                         border-radius: 0;
                         background: #f1f5f9;
                         overflow: hidden;
-                        transform: translateX(6mm);
                       ">
                     <canvas class="temporal-flicker-canvas" style="width: 100%; height: 100%; display: block"></canvas>
                   </div>
@@ -182,7 +195,6 @@
                         text-align: center;
                         line-height: 1.4;
                         overflow: hidden;
-                        transform: translateX(-3.5mm);
                       " data-temporal-caption="true">
                     <span class="gabor-caption-label challenge-caption-fixed">temporal frequency:</span>
                     <span class="challenge-caption-dynamic"><span class="temporal-caption-value" style="
@@ -334,14 +346,14 @@
                   <figure
                     style="flex: 1; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; min-width: 0;">
                     <img loading="lazy" src="../assets/images/research/phase2/led_flicker.gif" alt="LED Circuit"
-                      style="width: 100%; height: 220px; object-fit: contain; object-position: center 56%; display: block;">
+                      style="width: 100%; height: 220px; object-fit: contain; object-position: center 60%; display: block;">
                     <figcaption class="overview-figcaption">LED
                       Control Circuit Diagram</figcaption>
                   </figure>
                   <figure
                     style="flex: 1; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; min-width: 0;">
                     <picture><source srcset="../assets/images/research/phase2/peripheral_prototype.webp" type="image/webp"><img loading="lazy" src="../assets/images/research/phase2/peripheral_prototype.gif" alt="Prototype"
-                        style="width: 100%; height: 220px; object-fit: contain; object-position: center 56%; display: block;"></picture>
+                        style="width: 100%; height: 220px; object-fit: contain; object-position: center 60%; display: block;"></picture>
                     <figcaption class="overview-figcaption">
                       Peripheral Retinal Full-correction Prototype</figcaption>
                   </figure>
@@ -349,13 +361,13 @@
               </div>
             </div>
           </div>
-          <div id="advanced-phase-mount" class="advanced-phase-content" data-advanced-phase-source="overview-advanced.html?v=2.9"></div>
+          <div id="advanced-phase-mount" class="advanced-phase-content" data-advanced-phase-source="overview-advanced.html?v=3.0"></div>
         </div>
       </div>
     </section>
   </main>
 
-  <script src="../assets/js/main.js?v=2.9" defer></script>
+  <script src="../assets/js/main.js?v=3.0" defer></script>
 </body>
 
 </html>

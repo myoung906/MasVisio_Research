@@ -1132,6 +1132,50 @@
   border-radius: 0 !important;
 }
 
+.phase3-ir-image {
+  width: 158.11% !important;
+  max-width: none !important;
+  margin-left: -29.055% !important;
+}
+
+.phase3-physical-image {
+  width: 104.49% !important;
+  max-width: none !important;
+  margin-left: -2.245% !important;
+}
+
+.phase3-realtime-image {
+  width: 94.095% !important;
+  max-width: none !important;
+  margin-left: 2.9525% !important;
+}
+
+.phase4-ir-image {
+  width: 101.25% !important;
+  max-width: none !important;
+  margin-left: -0.625% !important;
+}
+
+.phase4-realtime-image {
+  width: 74.52% !important;
+  max-width: none !important;
+  margin-left: 12.74% !important;
+}
+
+.phase4-stimulus-image {
+  width: 101.97% !important;
+  max-width: none !important;
+  margin-left: -0.985% !important;
+}
+
+.phase3-vertical-right {
+  width: 64% !important;
+  max-width: 64% !important;
+  margin: 0 auto !important;
+  display: block !important;
+  height: auto !important;
+}
+
 /* Match Phase 2-4 captions to the cleaner Phase 1 tone */
 .phase2-no-frame figcaption,
 .phase3-no-frame figcaption,
@@ -1147,25 +1191,18 @@
 
 .challenge-caption-fixed,
 .challenge-caption-dynamic {
-  display: inline;
+  display: block;
+  text-align: center;
 }
 
 @media (min-width: 1025px) {
-  .challenge-caption-fixed,
-  .challenge-caption-dynamic {
-    display: block;
-    text-align: center;
-  }
-
   .phase3-study1-rightshift {
     transform: translateX(2.2%);
   }
 
   .phase3-vertical-right {
-    width: 62% !important;
-    max-width: 62% !important;
-    margin-left: 34% !important;
-    margin-right: 0 !important;
+    margin-left: 32% !important;
+    margin-right: 4% !important;
   }
 }
 
@@ -1181,6 +1218,51 @@
     width: 100% !important;
     max-width: 100% !important;
     flex: 0 1 auto !important;
+  }
+
+  .mobile-tight-card {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 0.5rem 0.5rem 0.75rem !important;
+  }
+
+  .phase3-study2-mobile-stack figcaption,
+  .phase4-study1-mobile-stack figcaption {
+    white-space: normal !important;
+    word-break: keep-all !important;
+    max-width: 92% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .phase3-ir-image {
+    width: 181.8265% !important;
+    max-width: none !important;
+    margin-left: -40.91325% !important;
+  }
+
+  .phase3-physical-image {
+    width: 198.531% !important;
+    max-width: none !important;
+    margin-left: -49.2655% !important;
+  }
+
+  .phase3-realtime-image {
+    width: 150.552% !important;
+    max-width: none !important;
+    margin-left: -25.276% !important;
+  }
+
+  .phase4-ir-image {
+    width: 151.875% !important;
+    max-width: none !important;
+    margin-left: -25.9375% !important;
+  }
+
+  .phase4-realtime-image {
+    width: 141.588% !important;
+    max-width: none !important;
+    margin-left: -20.794% !important;
   }
 
   .phase4-stimulus-image {
@@ -1262,7 +1344,7 @@
   overflow: hidden;
 }
 
-.advanced-phase-content figure img {
+.advanced-phase-content figure img:not(.phase3-ir-image):not(.phase3-physical-image):not(.phase3-realtime-image):not(.phase4-ir-image):not(.phase4-realtime-image):not(.phase4-stimulus-image):not(.phase3-vertical-right) {
   width: 100% !important;
   height: 220px !important;
   object-fit: contain !important;
