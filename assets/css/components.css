@@ -1087,6 +1087,21 @@
   text-align: center;
 }
 
+/* Phase 2 frameless image layout */
+.phase2-no-frame figure,
+.phase2-no-frame .overview-figure-card {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.phase2-no-frame img {
+  border-radius: 0 !important;
+}
+
 .overview-findings-list {
   list-style: none;
   padding: 0;
