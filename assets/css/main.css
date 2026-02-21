@@ -119,10 +119,11 @@ body {
   line-height: 1.2;
   margin-bottom: 0.5rem;
   color: var(--primary-color);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   font-weight: 800;
   font-kerning: normal;
   font-stretch: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
   text-rendering: geometricPrecision;
 }
 

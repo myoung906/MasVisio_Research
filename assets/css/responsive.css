@@ -308,9 +308,10 @@
     /* Increased size for impact */
     color: #003366;
     line-height: 1.1;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     font-kerning: normal;
     font-stretch: normal;
+    font-feature-settings: "kern" 1, "liga" 1;
     text-rendering: geometricPrecision;
     margin: 0 0 0.5rem 0;
   }

@@ -451,6 +451,7 @@ function initPublicationsNavigation() {
 function initPublicationsSubmenuToggle() {
   const nav = document.querySelector(".sidebar-nav");
   if (!nav) return;
+  const submenuStorageKey = "mv_publications_submenu_open";
 
   const topLevelLinks = Array.from(nav.querySelectorAll(":scope > .nav-item"));
   const rootLink = topLevelLinks.find((link) => {
@@ -483,6 +484,15 @@ function initPublicationsSubmenuToggle() {
         { label: "Conference", hash: "#conference" },
         { label: "Patent", hash: "#patent" },
       ];
+  const submenuHashSet = new Set(submenuItems.map((item) => item.hash));
+  const hasSubmenuHash = submenuHashSet.has(window.location.hash);
+
+  let persistedOpen = false;
+  try {
+    persistedOpen = window.localStorage.getItem(submenuStorageKey) === "1";
+  } catch (error) {
+    persistedOpen = false;
+  }
 
   let submenu = rootLink.nextElementSibling;
   if (!submenu || !submenu.classList.contains("sidebar-submenu")) {
@@ -498,10 +508,17 @@ function initPublicationsSubmenuToggle() {
     link.className = "nav-item";
     link.textContent = item.label;
     link.href = isPublicationsPage ? item.hash : `${publicationsPath}${item.hash}`;
+    link.addEventListener("click", () => {
+      try {
+        window.localStorage.setItem(submenuStorageKey, "1");
+      } catch (error) {
+        // Ignore localStorage access failures.
+      }
+    });
     submenu.appendChild(link);
   });
 
-  const defaultOpen = isPublicationsPage;
+  const defaultOpen = isPublicationsPage || hasSubmenuHash || persistedOpen;
   submenu.classList.toggle("open", defaultOpen);
   rootLink.setAttribute("aria-expanded", defaultOpen ? "true" : "false");
 
@@ -509,6 +526,11 @@ function initPublicationsSubmenuToggle() {
     event.preventDefault();
     const isOpen = submenu.classList.toggle("open");
     rootLink.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    try {
+      window.localStorage.setItem(submenuStorageKey, isOpen ? "1" : "0");
+    } catch (error) {
+      // Ignore localStorage access failures.
+    }
   });
 
   topLevelLinks.forEach((link) => {
@@ -516,6 +538,11 @@ function initPublicationsSubmenuToggle() {
     link.addEventListener("click", () => {
       submenu.classList.remove("open");
       rootLink.setAttribute("aria-expanded", "false");
+      try {
+        window.localStorage.setItem(submenuStorageKey, "0");
+      } catch (error) {
+        // Ignore localStorage access failures.
+      }
     });
   });
 }
