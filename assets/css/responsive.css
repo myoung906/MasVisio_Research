@@ -154,7 +154,7 @@
   }
 
   .sidebar .sidebar-logo h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .main-content .intro-section h2 {
@@ -303,8 +303,8 @@
 
   .mobile-header .mobile-logo h1 {
     font-family: "Inter", sans-serif;
-    font-weight: 800;
-    font-size: 2rem;
+    font-weight: 900;
+    font-size: 2.2rem;
     /* Increased size for impact */
     color: #003366;
     line-height: 1.1;
@@ -313,10 +313,10 @@
 
   .mobile-header .mobile-logo .logo-subtitle {
     font-family: "Inter", sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     /* Increased readability */
     color: #64748b;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 1.4;
   }
 

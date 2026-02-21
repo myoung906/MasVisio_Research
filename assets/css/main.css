@@ -115,18 +115,19 @@ body {
 
 .sidebar-logo h1 {
   font-family: var(--logo-font);
-  font-size: 2.2rem;
+  font-size: 2.45rem;
   line-height: 1.2;
   margin-bottom: 0.5rem;
   color: var(--primary-color);
   letter-spacing: -0.02em;
+  font-weight: 800;
 }
 
 .sidebar-subtitle {
   font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   color: #64748b;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.4;
   display: block;
   letter-spacing: 0.02em;
