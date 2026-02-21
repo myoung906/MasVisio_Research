@@ -1132,6 +1132,19 @@
   border-radius: 0 !important;
 }
 
+/* Match Phase 2-4 captions to the cleaner Phase 1 tone */
+.phase2-no-frame figcaption,
+.phase3-no-frame figcaption,
+.phase4-no-frame figcaption {
+  margin-top: 0.5rem !important;
+  font-size: 0.9rem !important;
+  line-height: 1.4 !important;
+  color: #94a3b8 !important;
+  text-align: center !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+}
+
 .overview-findings-list {
   list-style: none;
   padding: 0;
