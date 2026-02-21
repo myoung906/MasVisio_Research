@@ -392,8 +392,4 @@
   .mobile-lang-toggle:hover {
     background: rgba(255, 255, 255, 0.2);
   }
-
-  .mobile-header {
-    position: relative;
-  }
 }
