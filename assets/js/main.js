@@ -452,9 +452,15 @@ function initPublicationsSubmenuToggle() {
   const nav = document.querySelector(".sidebar-nav");
   if (!nav) return;
 
-  const rootLink = nav.querySelector(
-    '.nav-item[href*="publications/index.html"]:not(.sidebar-submenu .nav-item)',
-  );
+  const topLevelLinks = Array.from(nav.querySelectorAll(":scope > .nav-item"));
+  const rootLink = topLevelLinks.find((link) => {
+    const href = link.getAttribute("href") || "";
+    return (
+      href.includes("publications/index.html") ||
+      (link.classList.contains("active") &&
+        /\/(?:ko\/)?publications\/index\.html$/.test(window.location.pathname))
+    );
+  });
   if (!rootLink) return;
 
   const isKo = window.location.pathname.includes("/ko/");
@@ -503,6 +509,14 @@ function initPublicationsSubmenuToggle() {
     event.preventDefault();
     const isOpen = submenu.classList.toggle("open");
     rootLink.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  topLevelLinks.forEach((link) => {
+    if (link === rootLink) return;
+    link.addEventListener("click", () => {
+      submenu.classList.remove("open");
+      rootLink.setAttribute("aria-expanded", "false");
+    });
   });
 }
 

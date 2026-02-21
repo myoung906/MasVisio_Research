@@ -882,7 +882,7 @@
   font-size: 1.05rem;
   line-height: 1.7;
   color: #64748b;
-  max-width: 680px;
+  max-width: none;
   margin-bottom: 3.5rem;
   word-break: keep-all;
   text-align: justify;

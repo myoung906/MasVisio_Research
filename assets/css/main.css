@@ -123,10 +123,6 @@ body {
   font-weight: 800;
 }
 
-.sidebar-logo h1 br {
-  display: none;
-}
-
 .sidebar-subtitle {
   font-family: 'Inter', sans-serif;
   font-size: 0.98rem;
