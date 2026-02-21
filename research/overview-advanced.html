@@ -19,9 +19,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/main.css?v=3.1" />
-  <link rel="stylesheet" href="../assets/css/responsive.css?v=3.1" />
-  <link rel="stylesheet" href="../assets/css/components.css?v=3.1" />
+  <link rel="stylesheet" href="../assets/css/main.css?v=3.0" />
+  <link rel="stylesheet" href="../assets/css/responsive.css?v=3.0" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=3.0" />
 </head>
 
 <body class="sidebar-layout">
@@ -118,8 +118,8 @@
                   </figure>
 
                   <!-- Right: Vertical Column -->
-                  <div class="overview-figure-col phase3-right-col"
-                    style="gap: 0.5rem;">
+                  <div
+                    style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem; justify-content: center; align-items: center;">
                     <!-- Top Right -->
                     <figure class="overview-figure-card" style="width: 100% !important; max-width: 100% !important; flex: none !important;">
                       <img loading="lazy" src="../assets/images/research/phase3/retinoscope_view.png" alt="Retinoscope View"
@@ -210,7 +210,7 @@
                 </div>
                 <!-- Bottom Row: left-Physical / right-Real-time (same y, each 1.4x) -->
                 <div class="phase3-study2-mobile-stack" style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: nowrap; margin-bottom: 1.5rem; align-items: stretch;">
-                  <figure class="mobile-tight-card" style="flex: 0 1 48%; max-width: 48%; min-width: 0; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; min-height: 320px;">
+                  <figure class="mobile-tight-card" style="flex: 0 1 48% !important; max-width: 48% !important; min-width: 0 !important; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; min-height: 320px;">
                     <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_method.png"
                       alt="3D Reconstruction Algorithm"
                       class="phase3-physical-image" style="display: block !important; height: auto !important;" />
@@ -218,7 +218,7 @@
                       Physical vs ML-based Hybrid Reconstruction
                     </figcaption>
                   </figure>
-                  <figure class="mobile-tight-card" style="flex: 0 1 48%; max-width: 48%; min-width: 0; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; min-height: 320px;">
+                  <figure class="mobile-tight-card" style="flex: 0 1 48% !important; max-width: 48% !important; min-width: 0 !important; background: #fff; padding: 0.5rem 0.5rem 1.1rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; min-height: 320px;">
                     <img loading="lazy" src="../assets/images/research/phase3/corneo_scleral_analysis_ui.png?v=20250124"
                       alt="Real-time Corneo-Scleral Analysis Software UI"
                       class="phase3-realtime-image" style="display: block !important; height: auto !important;" />
@@ -267,7 +267,7 @@
                   <div style="margin-bottom: 1.5rem;">
                     <div class="phase4-study1-mobile-stack" style="display: flex; gap: 1rem; justify-content: center; align-items: stretch; flex-wrap: nowrap; margin-bottom: 1rem;">
                       <figure
-                        class="mobile-tight-card" style="flex: 0 1 45%; max-width: 45%; min-width: 0; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; height: 360px;">
+                        class="mobile-tight-card" style="flex: 0 1 45% !important; max-width: 45% !important; min-width: 0 !important; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; height: 360px;">
                         <img loading="lazy" src="../assets/images/research/phase4_experiment_scene.jpg" alt="Experiment Scene"
                           class="phase4-ir-image" style="display: block !important; height: auto !important; border-radius: 4px;">
                         <figcaption class="overview-figcaption" style="min-height: 2.8em; display: flex; align-items: center; justify-content: center;">
@@ -275,7 +275,7 @@
                         </figcaption>
                       </figure>
                       <figure
-                        class="mobile-tight-card" style="flex: 0 1 45%; max-width: 45%; min-width: 0; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; height: 360px;">
+                        class="mobile-tight-card" style="flex: 0 1 45% !important; max-width: 45% !important; min-width: 0 !important; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; height: 360px;">
                         <img loading="lazy" src="../assets/images/research/phase4_eye_tracking_monitor.jpg" alt="Eye Tracking Monitor"
                           class="phase4-realtime-image" style="display: block !important; height: auto !important; border-radius: 4px;">
                         <figcaption class="overview-figcaption" style="min-height: 2.8em; display: flex; align-items: center; justify-content: center;">
@@ -391,7 +391,7 @@
       window.location.replace("overview.html#phase-3");
     }
   </script>
-  <script src="../assets/js/main.js?v=3.1" defer></script>
+  <script src="../assets/js/main.js?v=3.0" defer></script>
 </body>
 
 </html>

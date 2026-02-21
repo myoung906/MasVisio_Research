@@ -1204,20 +1204,6 @@
     margin-left: 32% !important;
     margin-right: 4% !important;
   }
-
-  .phase3-right-col .overview-figure-card .overview-figcaption {
-    width: 64%;
-    margin-left: 32%;
-    margin-right: 4%;
-    text-align: center;
-  }
-
-  .phase3-right-col .overview-arrow {
-    width: 64%;
-    margin-left: 32%;
-    margin-right: 4%;
-    text-align: center;
-  }
 }
 
 @media (max-width: 1024px) {
@@ -1243,12 +1229,10 @@
   .phase3-study2-mobile-stack figcaption,
   .phase4-study1-mobile-stack figcaption {
     white-space: normal !important;
-    word-break: normal !important;
-    max-width: 100% !important;
-    width: 100% !important;
+    word-break: keep-all !important;
+    max-width: 92% !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    line-height: 1.35 !important;
   }
 
   .phase3-ir-image {
