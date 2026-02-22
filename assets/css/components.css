@@ -1240,6 +1240,12 @@
     padding: 0.5rem 0.5rem 0.75rem !important;
   }
 
+  .mobile-ref-size {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 1 auto !important;
+  }
+
   .phase3-study2-mobile-stack figcaption,
   .phase4-study1-mobile-stack figcaption {
     white-space: normal !important;
@@ -1266,21 +1272,21 @@
   }
 
   .phase3-realtime-image {
-    width: 150.552% !important;
-    max-width: none !important;
-    margin-left: -25.276% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
   }
 
   .phase4-ir-image {
-    width: 151.875% !important;
-    max-width: none !important;
-    margin-left: -25.9375% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
   }
 
   .phase4-realtime-image {
-    width: 141.588% !important;
-    max-width: none !important;
-    margin-left: -20.794% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
   }
 
   .phase4-stimulus-image {
