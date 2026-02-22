@@ -820,17 +820,16 @@ async function loadPublications() {
         const totalLabel = lang === "ko" ? "전체" : "Total";
         const sectionTitle = lang === "ko" ? "연구논문" : "Reviewed Papers";
 
-        htmlContent += `<div id="reviewed-papers" style="margin-bottom: 4rem;">`;
-        htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
+        htmlContent += `<div id="reviewed-papers" class="publication-section">`;
+        htmlContent += `<h3 class="publication-section-title">${sectionTitle}</h3>`;
 
         // Stats Bar
-        htmlContent +=
-          '<div class="stats-bar-container" style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">';
+        htmlContent += '<div class="stats-bar-container">';
 
         // Total
         htmlContent += `
-                            <div class="stat-badge" style="background: #f1f5f9; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 600; color: #475569; font-size: 0.9rem;">
-                                ${totalLabel} <span style="color: #003366;">${totalCount}</span>
+                            <div class="stat-badge">
+                                ${totalLabel} <span class="stat-count">${totalCount}</span>
                             </div>
                         `;
 
@@ -838,25 +837,24 @@ async function loadPublications() {
         statsOrder.forEach((field) => {
           const count = fieldCounts[field] || 0;
           htmlContent += `
-                                <div class="stat-badge" style="background: #fff; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; color: #64748b; font-size: 0.9rem;">
-                                    ${field} <span style="color: #003366; font-weight: 600;">${count}</span>
+                                <div class="stat-badge-outline">
+                                    ${field} <span class="stat-count">${count}</span>
                                 </div>
                             `;
         });
         htmlContent += "</div>";
 
         // List
-        htmlContent +=
-          '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
+        htmlContent += '<div class="publication-list-iso">';
         sorted.forEach((pub, index) => {
           htmlContent += `
-                                <div class="iso-item" style="font-size: 1rem; line-height: 1.6; padding-left: 1.5rem; text-indent: -1.5rem;">
-                                    <span style="color: #334155; font-weight: 600;">${index + 1}.</span> 
-                                    <span class="authors">${pub.authors}.</span> 
-                                    <a href="${pub.doi || "#"}" target="_blank" style="color: #003366; font-weight: 600; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; pointer-events: ${pub.doi ? "auto" : "none"};">
+                                <div class="iso-item">
+                                    <span class="iso-item-number">${index + 1}.</span>
+                                    <span class="authors">${pub.authors}.</span>
+                                    <a href="${pub.doi || "#"}" target="_blank" class="iso-item-title-link" style="pointer-events: ${pub.doi ? "auto" : "none"};">
                                         "${pub.title}"
-                                    </a>. 
-                                    <span class="journal" style="font-style: italic; color: #475569;">${pub.journal}</span>.
+                                    </a>.
+                                    <span class="iso-item-journal">${pub.journal}</span>.
                                 </div>
                             `;
         });
@@ -868,20 +866,19 @@ async function loadPublications() {
         const sorted = sortByYear(conferences);
         const sectionTitle = lang === "ko" ? "학술발표" : "Conference";
 
-        htmlContent += `<div id="conference" style="margin-bottom: 4rem;">`;
-        htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
+        htmlContent += `<div id="conference" class="publication-section">`;
+        htmlContent += `<h3 class="publication-section-title">${sectionTitle}</h3>`;
 
-        htmlContent +=
-          '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
+        htmlContent += '<div class="publication-list-iso">';
         sorted.forEach((pub, index) => {
           htmlContent += `
-                                <div class="iso-item" style="font-size: 1rem; line-height: 1.6; padding-left: 1.5rem; text-indent: -1.5rem;">
-                                    <span style="color: #334155; font-weight: 600;">${index + 1}.</span> 
-                                    <span class="authors">${pub.authors}.</span> 
-                                    <span style="color: #003366; font-weight: 600;">
+                                <div class="iso-item">
+                                    <span class="iso-item-number">${index + 1}.</span>
+                                    <span class="authors">${pub.authors}.</span>
+                                    <span class="iso-item-title">
                                         "${pub.title}"
-                                    </span>. 
-                                    <span class="journal" style="font-style: italic; color: #475569;">${pub.journal}</span>.
+                                    </span>.
+                                    <span class="iso-item-journal">${pub.journal}</span>.
                                 </div>
                             `;
         });
@@ -893,20 +890,19 @@ async function loadPublications() {
         const sorted = sortByYear(patents);
         const sectionTitle = lang === "ko" ? "특허" : "Patent";
 
-        htmlContent += `<div id="patent" style="margin-bottom: 4rem;">`;
-        htmlContent += `<h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">${sectionTitle}</h3>`;
+        htmlContent += `<div id="patent" class="publication-section">`;
+        htmlContent += `<h3 class="publication-section-title">${sectionTitle}</h3>`;
 
-        htmlContent +=
-          '<div class="publication-list-iso" style="display: flex; flex-direction: column; gap: 1.5rem;">';
+        htmlContent += '<div class="publication-list-iso">';
         sorted.forEach((pub, index) => {
           htmlContent += `
-                                <div class="iso-item" style="font-size: 1rem; line-height: 1.6; padding-left: 1.5rem; text-indent: -1.5rem;">
-                                    <span style="color: #334155; font-weight: 600;">${index + 1}.</span> 
-                                    <span class="authors">${pub.authors}.</span> 
-                                    <span style="color: #003366; font-weight: 600;">
+                                <div class="iso-item">
+                                    <span class="iso-item-number">${index + 1}.</span>
+                                    <span class="authors">${pub.authors}.</span>
+                                    <span class="iso-item-title">
                                         "${pub.title}"
-                                    </span>. 
-                                    <span class="journal" style="font-style: italic; color: #475569;">${pub.journal}</span>.
+                                    </span>.
+                                    <span class="iso-item-journal">${pub.journal}</span>.
                                 </div>
                             `;
         });
