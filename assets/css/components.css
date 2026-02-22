@@ -1231,9 +1231,10 @@
     margin-left: -1.75225% !important;
   }
 
-.phase3-study2-mobile-stack > figure:nth-child(1) figcaption,
-.phase3-study2-mobile-stack > figure:nth-child(2) figcaption {
-  text-align: center !important;
+  .phase3-study2-mobile-stack > figure:nth-child(1) figcaption,
+  .phase3-study2-mobile-stack > figure:nth-child(2) figcaption {
+    text-align: center !important;
+  }
 }
 
 .phase3-tuning-image {
@@ -1243,7 +1244,6 @@
   margin-top: 0.2rem !important;
   display: block !important;
   height: auto !important;
-}
 }
 
 @media (max-width: 1024px) {
@@ -1412,7 +1412,7 @@
   overflow: hidden;
 }
 
-.advanced-phase-content figure img:not(.phase3-ir-image):not(.phase3-physical-image):not(.phase3-realtime-image):not(.phase4-ir-image):not(.phase4-realtime-image):not(.phase4-stimulus-image):not(.phase3-vertical-right) {
+.advanced-phase-content figure img:not(.phase3-ir-image):not(.phase3-physical-image):not(.phase3-realtime-image):not(.phase4-ir-image):not(.phase4-realtime-image):not(.phase4-stimulus-image):not(.phase3-vertical-right):not(.phase3-tuning-image) {
   width: 100% !important;
   height: 220px !important;
   object-fit: contain !important;
