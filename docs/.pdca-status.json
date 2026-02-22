@@ -1,0 +1,59 @@
+{
+  "version": "2.0",
+  "lastUpdated": "2026-02-03T22:45:58.957Z",
+  "activeFeatures": [
+    "login",
+    "js"
+  ],
+  "primaryFeature": "login",
+  "features": {
+    "login": {
+      "phase": "plan",
+      "startedAt": "2026-02-01T10:00:00.000Z",
+      "planPath": "docs/01-plan/features/login.plan.md"
+    },
+    "js": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-03T22:45:43.829Z",
+        "lastUpdated": "2026-02-03T22:45:58.957Z"
+      },
+      "lastFile": "/Users/jaemyoungseo/workspace/mvr/assets/js/main.js"
+    }
+  },
+  "pipeline": {
+    "currentPhase": 1,
+    "level": "Dynamic",
+    "phaseHistory": []
+  },
+  "session": {
+    "startedAt": "2026-02-01T09:28:11.993Z",
+    "onboardingCompleted": false,
+    "lastActivity": "2026-02-03T22:45:58.957Z"
+  },
+  "history": [
+    {
+      "timestamp": "2026-02-03T22:45:43.829Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T22:45:55.474Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T22:45:58.957Z",
+      "feature": "js",
+      "phase": "do",
+      "action": "updated"
+    }
+  ]
+}
