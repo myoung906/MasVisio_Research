@@ -1259,6 +1259,10 @@
     text-align: center !important;
   }
 
+  .phase3-caption-nowrap {
+    white-space: nowrap !important;
+  }
+
   .phase3-ir-image {
     width: 181.8265% !important;
     max-width: none !important;
