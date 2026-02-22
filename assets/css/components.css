@@ -1218,6 +1218,23 @@
     margin-right: 4%;
     text-align: center;
   }
+
+  .phase3-physical-image {
+    width: 114.939% !important;
+    max-width: none !important;
+    margin-left: -7.4695% !important;
+  }
+
+  .phase3-realtime-image {
+    width: 103.5045% !important;
+    max-width: none !important;
+    margin-left: -1.75225% !important;
+  }
+
+  .phase3-study2-mobile-stack > figure:nth-child(1) figcaption,
+  .phase3-study2-mobile-stack > figure:nth-child(2) figcaption {
+    text-align: center !important;
+  }
 }
 
 @media (max-width: 1024px) {
