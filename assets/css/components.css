@@ -1280,6 +1280,10 @@
     white-space: nowrap !important;
   }
 
+  .phase4-stimulus-shift {
+    margin-top: 1.8rem !important;
+  }
+
   .phase3-ir-image {
     width: 181.8265% !important;
     max-width: none !important;
