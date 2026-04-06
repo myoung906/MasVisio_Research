@@ -25,12 +25,13 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../assets/css/main.css?v=3.0" />
-    <link rel="stylesheet" href="../../assets/css/responsive.css?v=3.0" />
-    <link rel="stylesheet" href="../../assets/css/components.css?v=3.0" />
+    <link rel="stylesheet" href="../../assets/css/main.css?v=4.0" />
+    <link rel="stylesheet" href="../../assets/css/responsive.css?v=4.0" />
+    <link rel="stylesheet" href="../../assets/css/components.css?v=4.0" />
   </head>
 
   <body class="sidebar-layout">
+  <a href="#main-content" class="skip-link">본문으로 건너뛰기</a>
     <header class="mobile-header">
       <a href="../index.html" class="mobile-logo">
         <h1>MasVisio<br />Research</h1>
@@ -58,7 +59,7 @@
       <nav class="sidebar-nav">
         <a href="../index.html" class="nav-item">홈</a>
         <a href="../team/index.html" class="nav-item">구성원</a>
-        <a href="overview.html" class="nav-item active">도전과제</a>
+        <a href="overview.html" class="nav-item active" aria-current="page">도전과제</a>
         <a href="../publications/index.html" class="nav-item">연구성과</a>
         <a href="../gallery/index.html" class="nav-item">갤러리</a>
         <a href="../partnership/index.html" class="nav-item">제공서비스</a>
@@ -67,30 +68,22 @@
 
       <div class="sidebar-footer">
         <p class="copyright">&copy; 2025 MasVisio Research</p>
-        <div style="margin-top: 10px; font-size: 0.7rem">
-          <a
-            href="../privacy.html"
-            style="color: #94a3b8; text-decoration: none"
-            >개인정보처리방침</a
-          >
+        <div class="sidebar-footer-meta">
+          <a href="../privacy.html" class="sidebar-footer-link">개인정보처리방침</a>
           |
-          <a
-            href="../contact.html"
-            style="color: #94a3b8; text-decoration: none"
-            >문의하기</a
-          >
+          <a href="../contact.html" class="sidebar-footer-link">문의하기</a>
         </div>
       </div>
     </aside>
 
-    <main class="main-content">
-      <section class="section" style="padding: 4rem 4rem">
+    <main class="main-content" id="main-content">
+      <section class="section page-section">
         <div class="container">
-          <header style="margin-bottom: 4rem; border-bottom: none">
-            <h2 style="font-size: 3rem; margin-bottom: 1rem">
+          <header class="page-header">
+            <h2 class="page-title">
               전반적 안구 측정 기반 질환 예측
             </h2>
-            <p style="font-size: 1.2rem; color: #64748b">
+            <p class="page-subtitle">
               AI 시각 지능을 활용한 8단계 안구 질환 위험도 분석 시스템
             </p>
           </header>
@@ -103,6 +96,6 @@
       </section>
     </main>
 
-    <script src="../../assets/js/main.js?v=3.0" defer></script>
+    <script src="../../assets/js/main.js?v=4.0" defer></script>
   </body>
 </html>

@@ -308,10 +308,15 @@ function initTemporalFlicker() {
   requestAnimationFrame(update);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  // This is the only DOMContentLoaded listener
-  console.log("DOM is fully loaded and parsed");
+function initCopyrightYear() {
+  const year = new Date().getFullYear();
+  document.querySelectorAll(".copyright").forEach((el) => {
+    el.innerHTML = el.innerHTML.replace(/\d{4}/, String(year));
+  });
+}
 
+document.addEventListener("DOMContentLoaded", () => {
+  initCopyrightYear();
   loadAdvancedPhases();
   initPublicationsSubmenuToggle();
 

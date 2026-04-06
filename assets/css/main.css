@@ -1,4 +1,6 @@
-/* Reset and Base Styles */
+/* =========================================
+   Reset and Base Styles
+   ========================================= */
 :root {
   --primary-color: #0a2540;
   --secondary-color: #f0f4f8;
@@ -8,15 +10,18 @@
   --heading-color: #0a2540;
   --background-color: #ffffff;
   --bg-light: #f8fafc;
+  --bg-app: #f8f9fa;
   --border-color: #e2e8f0;
-  --heading-font: "Roboto", "Inter", sans-serif;
-  --body-font: "Open Sans", "Lato", sans-serif;
+  --heading-font: "Inter", sans-serif;
+  --body-font: "Inter", sans-serif;
   --logo-font: "Georgia", serif;
   --mono-font: "JetBrains Mono", "Fira Code", monospace;
   --border-radius: 8px;
   --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   --transition: all 0.3s ease;
   --container-width: 1200px;
+  --sidebar-width: 280px;
+  --mobile-header-height: 120px;
 }
 
 * {
@@ -25,14 +30,18 @@
   padding: 0;
 }
 
+/* =========================================
+   Base / Typography
+   ========================================= */
 body {
   font-family: var(--body-font);
   color: var(--text-color);
-  background-color: var(--background-color);
+  background-color: var(--bg-app);
   line-height: 1.7;
+  display: flex;
+  min-height: 100vh;
 }
 
-/* Typography */
 h1,
 h2,
 h3,
@@ -46,21 +55,10 @@ h6 {
   letter-spacing: -0.01em;
 }
 
-h1 {
-  font-size: 2.5rem;
-}
-
-h2 {
-  font-size: 2.2rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-h4 {
-  font-size: 1.2rem;
-}
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.2rem; }
 
 p {
   font-size: 0.95rem;
@@ -79,18 +77,40 @@ a:hover {
   color: var(--primary-color);
 }
 
-/* Layout */
-/* Layout & Sidebar System */
-body {
-  display: flex;
-  min-height: 100vh;
-  background-color: #f8f9fa;
-  /* Light grey background for the app */
+/* =========================================
+   Accessibility
+   ========================================= */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  transition: top 0.2s ease;
 }
 
-/* Sidebar (Left Navigation) */
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* =========================================
+   Layout — Sidebar System
+   ========================================= */
 .sidebar {
-  width: 280px;
+  width: var(--sidebar-width);
   background-color: #fafbfc;
   border-right: 1px solid #e8ecf1;
   height: 100vh;
@@ -128,7 +148,7 @@ body {
 }
 
 .sidebar-subtitle {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.98rem;
   color: #64748b;
   font-weight: 700;
@@ -150,7 +170,7 @@ body {
   padding: 0.55rem 1rem;
   border-radius: 6px;
   color: #475569;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 0.9rem;
   transition: all 0.2s ease;
@@ -163,7 +183,8 @@ body {
   color: var(--primary-color);
 }
 
-.nav-item.active {
+.nav-item.active,
+.nav-item[aria-current="page"] {
   background-color: rgba(10, 37, 64, 0.04);
   color: var(--primary-color);
   border-left: 3px solid var(--accent-color);
@@ -182,7 +203,29 @@ body {
   display: flex;
 }
 
-/* Sidebar Footer (Lang & Copyright) */
+/* Sidebar Submenu Items */
+.sidebar-submenu .nav-item {
+  font-size: 0.9rem;
+  padding: 0.4rem 1rem;
+  color: #64748b;
+  font-weight: 400;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-submenu .nav-item:hover {
+  color: var(--primary-color);
+  background-color: rgba(0, 51, 102, 0.03);
+}
+
+.sidebar-submenu .nav-item.active,
+.sidebar-submenu .nav-item[aria-current="page"] {
+  color: var(--primary-color);
+  background-color: rgba(0, 51, 102, 0.05);
+  font-weight: 600;
+  border-left: 3px solid transparent;
+}
+
+/* Sidebar Footer */
 .sidebar-footer {
   margin-top: auto;
   padding-top: 2rem;
@@ -200,38 +243,61 @@ body {
   line-height: 1.5;
 }
 
-/* Main Content Area */
+/* =========================================
+   Main Content Area
+   ========================================= */
 .main-content {
   flex: 1;
-  margin-left: 280px;
-  width: calc(100% - 280px);
-  /* Width of sidebar */
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
   min-width: 0;
-  /* Prevent flex overflow */
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: var(--background-color);
 }
 
 .main-content > .container {
-  max-width: 1200px;
+  max-width: var(--container-width);
   margin: 0 auto;
   padding: 4rem 3rem;
   width: 100%;
 }
 
-/* Challenges Section (KAIST Style) */
+/* =========================================
+   Utility — Page Layout Classes
+   (replaces per-page inline styles)
+   ========================================= */
+.page-section {
+  padding: 4rem;
+}
+
+.page-header {
+  margin-bottom: 4rem;
+}
+
+.page-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--heading-color);
+}
+
+.page-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+}
+
+/* =========================================
+   Challenges Section
+   ========================================= */
 .challenges-list {
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  /* Spacing between challenges */
 }
 
 .challenge-item {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* Text | Image */
   gap: 3rem;
   align-items: start;
   padding-bottom: 4rem;
@@ -242,14 +308,9 @@ body {
   border-bottom: none;
 }
 
-.challenge-item.reverse {
-  direction: rtl;
-  /* Flip order */
-}
-
-.challenge-item.reverse .challenge-text {
-  direction: ltr;
-  /* Restore text direction */
+/* Use order instead of direction:rtl to avoid i18n issues */
+.challenge-item.reverse .challenge-media {
+  order: -1;
 }
 
 .challenge-text h3 {
@@ -274,7 +335,6 @@ body {
   position: relative;
   border: 1px solid #e2e8f0;
   min-height: 350px;
-  /* Placeholder height */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,88 +351,4 @@ body {
   font-weight: 500;
   text-align: center;
   padding: 2rem;
-}
-
-/* Responsive Design (Mobile) */
-@media (max-width: 1024px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-    border-right: none;
-    border-bottom: 1px solid #e2e8f0;
-  }
-
-  .main-content {
-    margin-left: 0;
-  }
-
-  .challenge-item {
-    grid-template-columns: 1fr;
-    /* Stack vertically */
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  .nav-links {
-    display: none;
-    /* Implement mobile menu logic if needed */
-  }
-
-  /* .hero {} removed */
-
-  .hero h2 {
-    font-size: 2.2rem;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-    padding: 0 10px;
-  }
-
-  /* Footer */
-  footer .container {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-  }
-
-  footer a {
-    margin: 0 10px;
-    display: inline-block;
-  }
-
-  /* Stats */
-  .stat-item h3 {
-    font-size: 2.5rem;
-  }
-}
-/* Sidebar Submenu Styles */
-.sidebar-submenu .nav-item {
-  font-size: 0.9rem;
-  padding: 0.4rem 1rem;
-  color: #64748b;
-  font-weight: 400;
-  border-left: 3px solid transparent !important; /* Ensure consistent spacing */
-}
-
-.sidebar-submenu .nav-item:hover {
-  color: var(--primary-color);
-  background-color: rgba(0, 51, 102, 0.03);
-}
-
-.sidebar-submenu .nav-item.active {
-  color: var(--primary-color);
-  background-color: rgba(0, 51, 102, 0.05);
-  font-weight: 600;
-  border-left: 3px solid transparent !important; /* No border for submenu items */
 }
