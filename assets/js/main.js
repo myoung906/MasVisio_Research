@@ -1014,9 +1014,16 @@ async function loadTeamMembers() {
 
   try {
     const data = await DataCache.get(dataPath);
-    const teamMembers = data[lang]?.team || [];
+    let teamMembers = data[lang]?.team || [];
 
     if (teamMembers.length > 0) {
+      // CEO(이환희)를 강제로 맨 위로 정렬 (근본적 해결)
+      teamMembers.sort((a, b) => {
+        if (a.name === "이환희" || a.name === "Hwan-Hee Lee" || a.role === "대표" || a.role === "CEO") return -1;
+        if (b.name === "이환희" || b.name === "Hwan-Hee Lee" || b.role === "대표" || b.role === "CEO") return 1;
+        return 0;
+      });
+
       container.innerHTML = teamMembers
         .map(
           (member) => `
