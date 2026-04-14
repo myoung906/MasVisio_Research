@@ -40,7 +40,17 @@
       "mcp__playwright-stealth__playwright_navigate",
       "mcp__playwright-stealth__playwright_screenshot",
       "mcp__playwright-stealth__playwright_get_visible_text",
-      "mcp__playwright-stealth__playwright_close"
+      "mcp__playwright-stealth__playwright_close",
+      "Bash(gh api:*)",
+      "Bash(python3 -c \"import sys,json,base64; d=json.load\\(sys.stdin\\); print\\(base64.b64decode\\(d['content']\\).decode\\('utf-8', errors='ignore'\\)\\)\")",
+      "Bash(python3 -c \"import sys,json,base64; d=json.load\\(sys.stdin\\); content=base64.b64decode\\(d['content']\\).decode\\('utf-8', errors='ignore'\\); print\\(content[:3000]\\)\")",
+      "Bash(sed -i '' 's/main\\\\.css?v=3\\\\.0/main.css?v=4.0/g; s/responsive\\\\.css?v=3\\\\.0/responsive.css?v=4.0/g; s/components\\\\.css?v=3\\\\.0/components.css?v=4.0/g; s/main\\\\.js?v=3\\\\.0/main.js?v=4.0/g' /Users/jmseo/Documents/workspace/mvr/research/diagnostics.html)",
+      "Bash(sed -i '' 's/main\\\\.css?v=3\\\\.1/main.css?v=4.0/g; s/responsive\\\\.css?v=3\\\\.1/responsive.css?v=4.0/g; s/components\\\\.css?v=3\\\\.1/components.css?v=4.0/g; s/main\\\\.js?v=3\\\\.1/main.js?v=4.0/g' /Users/jmseo/Documents/workspace/mvr/research/overview-advanced.html)",
+      "Bash(sed -i '' 's/main\\\\.css?v=3\\\\.0/main.css?v=4.0/g; s/responsive\\\\.css?v=3\\\\.0/responsive.css?v=4.0/g; s/components\\\\.css?v=3\\\\.0/components.css?v=4.0/g; s/main\\\\.js?v=3\\\\.0/main.js?v=4.0/g' /Users/jmseo/Documents/workspace/mvr/research/project.html)",
+      "Bash(read f:*)",
+      "WebFetch(domain:kiss.kstudy.com)",
+      "WebFetch(domain:www.dbpia.co.kr)",
+      "WebFetch(domain:www.kci.go.kr)"
     ],
     "deny": [],
     "ask": []

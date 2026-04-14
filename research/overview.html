@@ -18,7 +18,22 @@
   <link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/research/overview.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #0a2540; --accent-color: #1a73e8; --text-color: #1e293b; --bg-app: #f8f9fa; --sidebar-width: 280px; --logo-font: "Georgia", serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Inter", sans-serif; color: var(--text-color); background-color: var(--bg-app); display: flex; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+    .sidebar { width: var(--sidebar-width); background-color: #fafbfc; border-right: 1px solid #e8ecf1; height: 100vh; position: fixed; top: 0; left: 0; z-index: 1000; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; }
+    .main-content { flex: 1; margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); background-color: #ffffff; min-width: 0; display: flex; flex-direction: column; }
+    .mobile-header { display: none; }
+    @media (max-width: 1024px) {
+      .sidebar { left: calc(-1 * var(--sidebar-width)); transition: left 0.3s ease-in-out; }
+      .main-content { margin-left: 0; width: 100%; padding-top: 120px; }
+      .mobile-header { display: flex; position: fixed; top: 0; left: 0; width: 100%; min-height: 120px; background: rgba(255, 255, 255, 0.98); z-index: 1000; align-items: center; justify-content: center; }
+    }
+  </style>
   <link rel="stylesheet" href="../assets/css/main.css?v=4.0" />
   <link rel="stylesheet" href="../assets/css/responsive.css?v=4.0" />
   <link rel="stylesheet" href="../assets/css/components.css?v=4.0" />
