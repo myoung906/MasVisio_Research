@@ -119,3 +119,140 @@ document.getElementById('mobile-nav-menu'); // 메뉴 요소 확인
 - 민감한 정보(API 키, 비밀번호 등)가 포함된 파일은 커밋 전 `.gitignore` 확인
 - 대용량 파일(>100MB)은 Git LFS 사용 권장
 - 충돌(conflict) 발생 시 사용자에게 즉시 알림
+
+---
+
+# 📚 LLM Wiki 시스템 (세컨드 브레인)
+
+## 개념
+LLM이 자동으로 유지하는 구조화된 마크다운 위키. 원본 소스는 변경하지 않고, 위키에서 지식을 통합·검색·유지합니다.
+
+## 폴더 구조
+```
+wiki/
+├── raw/              # 원본 소스 (불변) - 문서, 링크, 이미지
+├── sources/          # 소스별 요약 페이지
+├── entities/         # 개념, 주제, 인물 페이지
+├── concepts/         # 영역별 개념 정리
+├── logs/             # 활동 로그
+├── _index.md         # 위키 카탈로그 (전체 페이지 목록)
+└── _log.md          # 추가 전용 활동 기록
+```
+
+## 운영 규칙
+
+### 1️⃣ Ingest (소스 추가)
+사용자가 새로운 소스를 제공하면:
+1. `wiki/raw/` 에 저장 (파일명: `[날짜]_[제목].md`)
+2. 주요 내용 추출 & `wiki/sources/` 에 요약 생성
+3. 관련 `entities/`, `concepts/` 페이지 업데이트
+4. `_index.md` 갱신
+5. `_log.md` 에 진행 사항 기록
+
+### 2️⃣ Query (질문 답변)
+사용자의 질문에 대해:
+1. `_index.md` 읽기 → 관련 페이지 식별
+2. 해당 페이지들 읽기 → 합성
+3. 마크다운 답변 제공 (출처 명시)
+4. 새로운 통찰 발견 시 → 위키에 새 페이지 추가
+
+### 3️⃣ Lint (위키 건강 검진)
+주기적으로:
+- 모순 찾기 (상충하는 정보)
+- 고아 페이지 (연결 없음)
+- 누락된 교차 참조
+- 오래된 주장 (최신 소스로 갱신)
+
+## 페이지 포맷
+
+### Entity 페이지 (entities/)
+```yaml
+---
+title: 개념/주제명
+aliases: [별칭1, 별칭2]
+tags: [분류]
+sources: [소스1, 소스2]
+created: 2026-04-29
+updated: 2026-04-29
+---
+
+## 개요
+한 문장 정의
+
+## 상세
+### 부분 1
+...
+
+## 관련 항목
+- [[다른 항목]]
+```
+
+### Concept 페이지 (concepts/)
+```yaml
+---
+title: 개념 이름
+category: 분류
+related_entities: [[entity1]], [[entity2]]
+---
+
+## 정의
+...
+
+## 사례
+...
+
+## 출처
+- [소스명](sources/source.md)
+```
+
+### Source 페이지 (sources/)
+```yaml
+---
+title: 소스 제목
+type: 논문|책|기사|영상
+url: https://...
+date: 2026-04-29
+key_points: [핵심1, 핵심2]
+---
+
+## 요약
+...
+
+## 핵심 내용
+- 포인트 1
+- 포인트 2
+
+## 관련 개념
+[[개념1]], [[개념2]]
+```
+
+## 파일명 규칙
+- **entities**: `topic-name.md` (소문자, 하이픈)
+- **concepts**: `concept-name.md`
+- **sources**: `YYYY-MM-DD_source-title.md`
+- **logs**: `_log.md` (수정하지 않음, append만)
+
+## 로그 형식 (_log.md)
+```markdown
+## [2026-04-29] ingest | 프로젝트명
+
+입력: raw/2026-04-29_source-title.md
+작업:
+- sources/source-title.md 생성
+- entities/entity.md 업데이트 (3개 크로스 참조 추가)
+- concepts/concept.md 갱신
+
+결과: ✅ 완료
+```
+
+## 토큰 절약 전략
+- `_index.md` 를 먼저 읽기 (전체 구조 파악)
+- 관련 페이지만 선택적 읽기
+- 대용량 파일 없음 (크기 제한: 페이지당 5KB)
+- raw/ 는 절대 전체 읽기 금지
+
+## Obsidian 통합
+- `wiki/` 디렉토리를 Vault로 설정
+- Graph view로 연결 구조 시각화
+- Frontmatter로 메타데이터 추적
+- 백링크로 자동 연결 확인
