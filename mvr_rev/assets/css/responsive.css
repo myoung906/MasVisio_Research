@@ -1,0 +1,401 @@
+/* =========================================
+   Mobile Navigation Toggle Button
+   ========================================= */
+.mobile-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 2001;
+  width: 45px;
+  height: 45px;
+  border: none;
+  background-color: #0e1728;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-toggle i {
+  font-size: 24px;
+  color: var(--primary-color);
+  line-height: 0;
+}
+
+/* CSS-only Hamburger Icon */
+.hamburger-icon {
+  width: 24px;
+  height: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Animate to X when active */
+.mobile-nav-toggle.active .hamburger-icon span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-nav-toggle.active .hamburger-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-nav-toggle.active .hamburger-icon span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Overlay Backdrop */
+.mobile-nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+
+.mobile-nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Header */
+.mobile-header {
+  display: none;
+}
+
+/* =========================================
+   Tablet + Mobile  (≤ 1024px)
+   ========================================= */
+@media (max-width: 1024px) {
+  /* Slide-in sidebar */
+  body .sidebar {
+    width: var(--sidebar-width, 280px);
+    height: 100vh;
+    position: fixed;
+    left: calc(-1 * var(--sidebar-width, 280px));
+    top: 0;
+    border-right: 1px solid #1d2a42;
+    border-bottom: none;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+  }
+
+  body .sidebar.active {
+    left: 0;
+  }
+
+  /* Full-width content */
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .main-content > .container {
+    padding: 4rem 2rem;
+  }
+
+  /* Show toggle button */
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  /* Fixed top header */
+  .mobile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: var(--mobile-header-height, 120px);
+    background-color: rgba(10, 17, 32, 0.98);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .mobile-header .mobile-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .mobile-header .mobile-logo h1 {
+    font-family: var(--logo-font);
+    font-weight: 800;
+    font-size: 2.2rem;
+    color: #a8dcea;
+    line-height: 1.1;
+    letter-spacing: 0;
+    font-kerning: normal;
+    font-stretch: normal;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: geometricPrecision;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .mobile-header .mobile-logo .logo-subtitle {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    color: #8b9bb4;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  /* Push content below fixed header */
+  .main-content {
+    padding-top: var(--mobile-header-height, 120px);
+  }
+
+  .intro-section {
+    padding-top: 2rem;
+  }
+
+  /* Section padding reduction */
+  .main-content .intro-section {
+    padding: 4rem 2rem;
+  }
+
+  .main-content .section {
+    padding: 0 2rem 4rem;
+  }
+
+  /* page-section utility on mobile */
+  .page-section {
+    padding: 4rem 2rem;
+  }
+
+  /* Challenge items stack vertically */
+  .challenge-item {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .challenge-item.reverse .challenge-media {
+    order: -1;
+  }
+
+  /* Project page */
+  .project-section {
+    padding: 2rem;
+  }
+
+  .project-body .project-text > div {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .projects-images {
+    flex-direction: column;
+  }
+
+  .project-images figure {
+    width: 100%;
+  }
+
+  .mechanism-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile Language Toggle */
+.mobile-lang-toggle {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .mobile-lang-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: rgba(127, 212, 230, 0.08);
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background 0.2s;
+  }
+
+  .mobile-lang-toggle:hover {
+    background: rgba(127, 212, 230, 0.15);
+  }
+}
+
+/* =========================================
+   Tablet 2-column grid  (768px–1024px)
+   ========================================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #research-projects-container,
+  .team-grid,
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================================
+   Mobile  (≤ 768px)
+   ========================================= */
+@media (max-width: 768px) {
+  body h1 {
+    font-size: 2rem;
+  }
+
+  body h2,
+  body .section-title {
+    font-size: 1.75rem;
+  }
+
+  body h3 {
+    font-size: 1.25rem;
+  }
+
+  .sidebar .sidebar-logo h1 {
+    font-size: 2.2rem;
+  }
+
+  .main-content .intro-section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  body .row {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .col-image {
+    margin-top: 1rem;
+  }
+
+  .sidebar-footer {
+    text-align: center;
+  }
+
+  .key-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  /* page-section on mobile */
+  .page-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* =========================================
+   Small Mobile  (≤ 480px)
+   ========================================= */
+@media (max-width: 480px) {
+  body h1 {
+    font-size: 1.75rem;
+  }
+
+  body h2,
+  body .section-title {
+    font-size: 1.5rem;
+  }
+
+  body h3 {
+    font-size: 1.1rem;
+  }
+
+  .main-content > .container {
+    padding: 2rem 1rem;
+  }
+
+  .main-content .intro-section {
+    padding: 2rem 1rem;
+  }
+
+  .main-content .section {
+    padding: 0 1rem 2rem;
+  }
+
+  .page-section {
+    padding: 2rem 1rem;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  body .sidebar {
+    width: 260px;
+    padding: 1.5rem 1rem;
+  }
+
+  .sidebar-logo h1 {
+    font-size: 1.75rem;
+  }
+
+  /* Single column cards */
+  .features-grid,
+  .team-grid,
+  #research-projects-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .features-grid .feature-card img {
+    height: 250px;
+  }
+
+  .stat-badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .iso-item {
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    text-indent: -1rem;
+  }
+
+  .key-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    padding: 1.5rem 0;
+  }
+
+  .key-metrics-grid p {
+    font-size: 1.6rem;
+  }
+}

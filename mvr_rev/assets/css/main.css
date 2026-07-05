@@ -1,0 +1,354 @@
+/* =========================================
+   Reset and Base Styles
+   ========================================= */
+:root {
+  --primary-color: #dfe9f7;
+  --secondary-color: #111c31;
+  --accent-color: #7fd4e6;
+  --text-color: #dbe4f0;
+  --text-light: #8b9bb4;
+  --heading-color: #dfe9f7;
+  --background-color: #0e1728;
+  --bg-light: #101b2e;
+  --bg-app: #0a1120;
+  --border-color: #1d2a42;
+  --heading-font: "Inter", sans-serif;
+  --body-font: "Inter", sans-serif;
+  --logo-font: "Georgia", serif;
+  --mono-font: "JetBrains Mono", "Fira Code", monospace;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+  --container-width: 1200px;
+  --sidebar-width: 280px;
+  --mobile-header-height: 120px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================================
+   Base / Typography
+   ========================================= */
+body {
+  font-family: var(--body-font);
+  color: var(--text-color);
+  background-color: var(--bg-app);
+  line-height: 1.7;
+  display: flex;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+  color: var(--heading-color);
+  font-weight: 700;
+  margin-bottom: 0.75em;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.2rem; }
+
+p {
+  font-size: 0.95rem;
+  text-align: justify;
+  margin-bottom: 1rem;
+  color: #b6c2d6;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+/* =========================================
+   Accessibility
+   ========================================= */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--primary-color);
+  color: #0e1728;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* =========================================
+   Layout — Sidebar System
+   ========================================= */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: #0c1526;
+  border-right: 1px solid #1d2a42;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 1000;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  margin-bottom: 3rem;
+}
+
+.sidebar-logo {
+  display: block;
+  text-decoration: none;
+}
+
+.sidebar-logo h1 {
+  font-family: var(--logo-font);
+  font-size: 2.45rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+  letter-spacing: 0;
+  font-weight: 800;
+  font-kerning: normal;
+  font-stretch: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: geometricPrecision;
+}
+
+.sidebar-subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 0.98rem;
+  color: #8b9bb4;
+  font-weight: 700;
+  line-height: 1.4;
+  display: block;
+  letter-spacing: 0.02em;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-item {
+  display: block;
+  padding: 0.55rem 1rem;
+  border-radius: 6px;
+  color: #a3b1c6;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+  letter-spacing: 0.01em;
+}
+
+.nav-item:hover {
+  background-color: #131f36;
+  color: var(--primary-color);
+}
+
+.nav-item.active,
+.nav-item[aria-current="page"] {
+  background-color: rgba(127, 212, 230, 0.04);
+  color: var(--primary-color);
+  border-left: 3px solid var(--accent-color);
+  font-weight: 600;
+}
+
+.sidebar-submenu {
+  display: none;
+  padding-left: 1.5rem;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-submenu.open {
+  display: flex;
+}
+
+/* Sidebar Submenu Items */
+.sidebar-submenu .nav-item {
+  font-size: 0.9rem;
+  padding: 0.4rem 1rem;
+  color: #8b9bb4;
+  font-weight: 400;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-submenu .nav-item:hover {
+  color: var(--primary-color);
+  background-color: rgba(127, 212, 230, 0.03);
+}
+
+.sidebar-submenu .nav-item.active,
+.sidebar-submenu .nav-item[aria-current="page"] {
+  color: var(--primary-color);
+  background-color: rgba(127, 212, 230, 0.05);
+  font-weight: 600;
+  border-left: 3px solid transparent;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid #1d2a42;
+}
+
+.lang-switch {
+  margin-bottom: 1rem;
+  font-size: 1.7rem;
+}
+
+.copyright {
+  font-size: 0.75rem;
+  color: #5f7089;
+  line-height: 1.5;
+}
+
+/* =========================================
+   Main Content Area
+   ========================================= */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+}
+
+.main-content > .container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 4rem 3rem;
+  width: 100%;
+}
+
+/* =========================================
+   Utility — Page Layout Classes
+   (replaces per-page inline styles)
+   ========================================= */
+.page-section {
+  padding: 4rem;
+}
+
+.page-header {
+  margin-bottom: 4rem;
+}
+
+.page-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--heading-color);
+}
+
+.page-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+}
+
+/* =========================================
+   Challenges Section
+   ========================================= */
+.challenges-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.challenge-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid #1d2a42;
+}
+
+.challenge-item:last-child {
+  border-bottom: none;
+}
+
+/* Use order instead of direction:rtl to avoid i18n issues */
+.challenge-item.reverse .challenge-media {
+  order: -1;
+}
+
+.challenge-text h3 {
+  font-size: 2rem;
+  color: var(--heading-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.challenge-text p {
+  font-size: 1.05rem;
+  color: #a3b1c6;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.challenge-media {
+  width: 100%;
+  background-color: #101b2e;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #1d2a42;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.challenge-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.challenge-placeholder {
+  color: #5f7089;
+  font-weight: 500;
+  text-align: center;
+  padding: 2rem;
+}

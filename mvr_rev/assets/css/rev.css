@@ -1,0 +1,391 @@
+/* =========================================================
+   MasVisio Research — REV 다크 과학 테마 오버라이드
+   콘셉트: 계측 용지 위의 연구소 (igloo.inc의 과학적 분위기 참고,
+   과한 효과·배경음 없이 정적/절제된 연출)
+   ========================================================= */
+
+:root {
+  --ink: #0a1120;          /* 바탕 */
+  --panel: #0e1728;        /* 패널 */
+  --panel-2: #111c31;
+  --hairline: #1d2a42;     /* 헤어라인 */
+  --hairline-soft: #16223a;
+  --paper: #e3eaf6;        /* 본문 텍스트 */
+  --fog: #8b9bb4;          /* 보조 텍스트 */
+  --fog-dim: #5f7089;
+  --ice: #7fd4e6;          /* 포인트 (아이스 시안) */
+  --ice-dim: rgba(127, 212, 230, 0.14);
+  --mono: ui-monospace, "SF Mono", "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* 기존 토큰 재정의 */
+  --primary-color: #dfe9f7;
+  --secondary-color: #111c31;
+  --accent-color: #7fd4e6;
+  --text-color: #cfd9e8;
+  --text-light: #8b9bb4;
+  --heading-color: #e8eef9;
+  --background-color: #0a1120;
+  --bg-light: #0e1728;
+  --bg-app: #0a1120;
+  --border-color: #1d2a42;
+  --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --border-radius: 3px;
+}
+
+html { background: var(--ink); }
+
+body {
+  background-color: var(--ink);
+  color: var(--text-color);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+::selection { background: var(--ice); color: var(--ink); }
+
+p { color: var(--fog); text-align: left; }
+a:hover { color: var(--ice); filter: brightness(1.15); }
+
+h1, h2, h3, h4, h5, h6 { color: var(--heading-color); letter-spacing: -0.015em; }
+
+img { border-radius: 2px; }
+
+/* ---------- 모노 계측 라벨 ---------- */
+.section-label,
+.section-label-sm,
+.pillar-number,
+.challenge-phase-label,
+.mono-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ice);
+  font-variant-numeric: tabular-nums;
+  background: none;
+}
+
+/* ---------- 사이드바 → 데스크톱 상단 내비 ---------- */
+@media (min-width: 1025px) {
+  body.sidebar-layout { display: block; }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.8rem 2.2rem;
+    background: rgba(10, 17, 32, 0.92);
+    backdrop-filter: blur(10px);
+    border-right: none;
+    border-bottom: 1px solid var(--hairline);
+    overflow: visible;
+  }
+
+  .sidebar-header { margin-bottom: 0; flex-shrink: 0; }
+
+  .sidebar-logo h1 {
+    font-family: var(--body-font, "Inter", sans-serif);
+    font-size: 1.02rem;
+    line-height: 1.18;
+    margin-bottom: 0.15rem;
+    font-weight: 700;
+    color: var(--paper);
+    letter-spacing: -0.01em;
+  }
+
+  .sidebar-subtitle {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fog-dim);
+    font-weight: 400;
+  }
+
+  .lang-switch { margin-bottom: 0; font-size: 1.05rem; order: 3; margin-left: auto; }
+
+  .sidebar-nav {
+    flex: 0 1 auto;
+    flex-direction: row;
+    gap: 0.15rem;
+    order: 2;
+    margin-left: 1rem;
+  }
+
+  .nav-item {
+    padding: 0.45rem 0.85rem;
+    border-left: none;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    color: var(--fog);
+    white-space: nowrap;
+  }
+
+  .nav-item:hover { background: var(--panel-2); color: var(--paper); }
+
+  .nav-item.active,
+  .nav-item[aria-current="page"] {
+    background: none;
+    border-left: none;
+    color: var(--ice);
+    font-weight: 600;
+  }
+
+  .sidebar-footer { display: none; }
+
+  /* 상단 내비에서는 하위메뉴(연구성과 연도별) 숨김 — 본문에 전체 목록 노출 */
+  .sidebar-submenu { display: none !important; }
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+/* 사이드바(모바일 슬라이드인) 다크 보정 */
+@media (max-width: 1024px) {
+  body .sidebar {
+    background-color: var(--panel);
+    border-right: 1px solid var(--hairline);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+  }
+  .mobile-header {
+    background-color: rgba(10, 17, 32, 0.95);
+    border-bottom: 1px solid var(--hairline);
+    box-shadow: none;
+  }
+  .mobile-header .mobile-logo h1 { color: var(--paper); }
+  .mobile-nav-toggle { background-color: var(--panel-2); border: 1px solid var(--hairline); }
+  .hamburger-icon span { background-color: var(--paper); }
+  .mobile-lang-toggle { background: var(--ice-dim); color: var(--ice); }
+}
+
+/* ---------- 계측 레일 (본문 좌우 헤어라인) ---------- */
+.main-content { position: relative; background-color: var(--ink); }
+
+/* ---------- 카드/패널 공통 보정 ---------- */
+.feature-card,
+.team-card,
+.project-card,
+.challenge-media,
+.publication-item,
+.pub-item {
+  background-color: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+}
+
+.feature-card:hover,
+.team-card:hover,
+.project-card:hover {
+  border-color: var(--fog-dim);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- 히어로 (REV 홈 전용) ---------- */
+.rev-hero { border-bottom: 1px solid var(--hairline); overflow: hidden; }
+
+.rev-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 48px;
+  align-items: center;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 76px 2rem 68px;
+}
+
+.rev-hero h2.section-heading-hero,
+.rev-hero .rev-hero-title {
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  line-height: 1.24;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: var(--paper);
+  margin: 0 0 22px;
+}
+
+.rev-hero .accent { color: var(--ice); }
+
+.rev-hero-desc { max-width: 34em; color: var(--fog); margin: 0 0 30px; font-size: 1rem; }
+
+.rev-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.rev-btn {
+  font-size: 14px;
+  text-decoration: none;
+  padding: 12px 22px;
+  border: 1px solid var(--hairline);
+  color: var(--paper);
+  border-radius: 2px;
+}
+
+.rev-btn:hover { border-color: var(--fog-dim); color: var(--paper); }
+
+.rev-btn.primary {
+  background: var(--ice);
+  border-color: var(--ice);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.rev-btn.primary:hover { filter: brightness(1.08); color: var(--ink); }
+
+.rev-instrument {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 440px;
+  width: 100%;
+  margin-left: auto;
+}
+
+.rev-instrument canvas { width: 100%; height: 100%; display: block; }
+.rev-instrument .corner { position: absolute; }
+.rev-instrument .tl { top: 0; left: 0; }
+.rev-instrument .br { bottom: 0; right: 0; text-align: right; }
+
+.rev-eyebrow { margin: 0 0 20px; color: var(--fog); }
+.rev-eyebrow .tick { color: var(--ice); }
+
+/* ---------- 계기판 스트립 ---------- */
+.rev-readout { border-bottom: 1px solid var(--hairline); background: var(--panel); }
+
+.rev-readout-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.rev-readout-cell { padding: 20px 26px; border-left: 1px solid var(--hairline); }
+.rev-readout-cell:first-child { border-left: 0; }
+
+.rev-readout-cell .num {
+  font-family: var(--mono);
+  font-size: 28px;
+  color: var(--paper);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.rev-readout-cell .num small { font-size: 14px; color: var(--ice); }
+.rev-readout-cell .lbl { margin-top: 4px; color: var(--fog-dim); }
+
+/* ---------- 필러(3축) 그리드 ---------- */
+.rev-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--hairline);
+  margin-top: 2rem;
+}
+
+.rev-pillars .research-pillar {
+  padding: 28px 26px 32px;
+  border-left: 1px solid var(--hairline);
+  background: var(--panel);
+  margin: 0;
+}
+
+.rev-pillars .research-pillar:first-child { border-left: 0; }
+
+.rev-pillars .pillar-title { display: block; font-size: 1.02rem; margin: 12px 0 8px; color: var(--paper); }
+.rev-pillars .pillar-desc { font-size: 0.88rem; line-height: 1.8; color: var(--fog); margin: 0; text-align: left; }
+
+/* ---------- 연구분야 카드 (기존 features-grid 보정) ---------- */
+.features-grid .feature-card img { opacity: 0.94; background: #060b16; }
+
+.rev-figcaption {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fog-dim);
+  display: block;
+  padding: 8px 2px 0;
+}
+
+/* ---------- Phase 로드맵 ---------- */
+.rev-phases { border-top: 1px solid var(--hairline); margin-top: 2rem; }
+
+.rev-phase {
+  display: grid;
+  grid-template-columns: 170px 1fr 280px;
+  gap: 28px;
+  padding: 24px 6px;
+  border-bottom: 1px solid var(--hairline);
+  align-items: baseline;
+  text-decoration: none;
+  color: inherit;
+}
+
+.rev-phase:hover { background: var(--panel); color: inherit; }
+
+.rev-phase .p-no {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ice);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.rev-phase .p-title { font-size: 1.1rem; font-weight: 700; color: var(--paper); letter-spacing: -0.01em; }
+
+.rev-phase .p-field {
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fog-dim);
+}
+
+/* ---------- CTA 블록 ---------- */
+.rev-cta-block { padding: 80px 2rem; max-width: 1160px; margin: 0 auto; }
+
+.rev-cta-block h2 {
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  margin: 12px 0 16px;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  text-wrap: balance;
+}
+
+.rev-cta-block > p { color: var(--fog); max-width: 36em; margin: 0 0 28px; }
+
+/* ---------- 섹션 래퍼 ---------- */
+.rev-block { border-bottom: 1px solid var(--hairline); padding: 68px 2rem; }
+.rev-block .rev-inner { max-width: 1160px; margin: 0 auto; }
+.rev-block.alt { background: var(--panel); }
+
+.rev-sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+.rev-sec-head .sec-tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; color: var(--fog-dim); text-transform: uppercase; }
+
+/* ---------- 표/코드 등 와이드 콘텐츠 ---------- */
+table { border-color: var(--hairline); }
+th, td { border-color: var(--hairline); }
+
+/* ---------- 모션 절제 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ---------- 반응형 (REV 신규 섹션) ---------- */
+@media (max-width: 1024px) {
+  .rev-hero-grid { grid-template-columns: 1fr; padding: 48px 2rem; gap: 36px; }
+  .rev-instrument { margin: 0 auto; max-width: 360px; }
+  .rev-readout-grid { grid-template-columns: repeat(2, 1fr); }
+  .rev-readout-cell { border-top: 1px solid var(--hairline); }
+  .rev-readout-cell:nth-child(-n + 2) { border-top: 0; }
+  .rev-readout-cell:nth-child(3) { border-left: 0; }
+  .rev-pillars { grid-template-columns: 1fr; }
+  .rev-pillars .research-pillar { border-left: 0; border-top: 1px solid var(--hairline); }
+  .rev-pillars .research-pillar:first-child { border-top: 0; }
+  .rev-phase { grid-template-columns: 1fr; gap: 4px; padding: 20px 4px; }
+  .rev-phase .p-field { text-align: left; }
+}

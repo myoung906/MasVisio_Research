@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MasVisio Research - 시각재활 연구</title>
+  <meta name="description" content="MasVisio Research는 혁신적인 연구와 기술을 통해 시각 과학 분야를 발전시키는 데 전념하고 있습니다." />
+  <meta name="keywords" content="시각재활, 연구, 시각 과학, MasVisio, 안경광학, 근시 제어" />
+  <meta property="og:title" content="MasVisio Research - 시각재활 연구" />
+  <meta property="og:description" content="혁신적인 연구와 기술을 통해 시각 과학 분야를 선도합니다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://myoung906.github.io/MasVisio_Research/assets/images/vision_engineering_concept.png" />
+  <meta property="og:url" content="https://myoung906.github.io/MasVisio_Research/ko/index.html" />
+  <link rel="canonical" href="https://myoung906.github.io/MasVisio_Research/ko/index.html" />
+  <link rel="alternate" hreflang="ko" href="https://myoung906.github.io/MasVisio_Research/ko/index.html" />
+  <link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/index.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="../assets/images/research/phase2/optical_simulation.png" as="image" />
+  <style>
+    :root {
+      --primary-color: #dfe9f7; --accent-color: #7fd4e6; --text-color: #dbe4f0; --bg-app: #0a1120; --sidebar-width: 280px; --logo-font: "Georgia", serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Inter", sans-serif; color: var(--text-color); background-color: var(--bg-app); display: flex; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+    .sidebar { width: var(--sidebar-width); background-color: #0c1526; border-right: 1px solid #1d2a42; height: 100vh; position: fixed; top: 0; left: 0; z-index: 1000; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; }
+    .main-content { flex: 1; margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); background-color: #0e1728; min-width: 0; display: flex; flex-direction: column; }
+    .mobile-header { display: none; }
+    @media (max-width: 1024px) {
+      .sidebar { left: calc(-1 * var(--sidebar-width)); transition: left 0.3s ease-in-out; }
+      .main-content { margin-left: 0; width: 100%; padding-top: 120px; }
+      .mobile-header { display: flex; position: fixed; top: 0; left: 0; width: 100%; min-height: 120px; background: rgba(10, 17, 32, 0.98); z-index: 1000; align-items: center; justify-content: center; }
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/css/main.css?v=4.0" />
+  <link rel="stylesheet" href="../assets/css/responsive.css?v=4.0" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=4.0" />
+  <link rel="stylesheet" href="../assets/css/rev.css?v=1" />
+</head>
+
+<body class="sidebar-layout">
+  <a href="#main-content" class="skip-link">본문으로 건너뛰기</a>
+  <header class="mobile-header">
+    <a href="index.html" class="mobile-logo">
+      <h1>MasVisio<br />Research</h1>
+      <span class="logo-subtitle">Vision Intelligence &<br />Biomedical Engineering</span>
+    </a>
+  </header>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar" role="navigation" aria-label="메인 네비게이션">
+    <div class="sidebar-header">
+      <a href="index.html" class="sidebar-logo">
+        <h1>MasVisio<br />Research</h1>
+        <span class="sidebar-subtitle">Vision Intelligence &<br />Biomedical Engineering</span>
+      </a>
+    </div>
+
+    <div class="lang-switch">
+      <span class="active">🇰🇷</span> <a href="../index.html">🇬🇧</a>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-item active" aria-current="page">홈</a>
+      <a href="team/index.html" class="nav-item">구성원</a>
+      <a href="research/overview.html" class="nav-item">도전과제</a>
+      <a href="publications/index.html" class="nav-item">연구성과</a>
+      <a href="gallery/index.html" class="nav-item">갤러리</a>
+      <a href="partnership/index.html" class="nav-item">제공서비스</a>
+      <a href="contact.html" class="nav-item">파트너</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <p class="copyright">&copy; 2025 MasVisio Research</p>
+      <div class="sidebar-footer-meta">
+        <a href="privacy.html" class="sidebar-footer-link">개인정보처리방침</a>
+        |
+        <a href="contact.html" class="sidebar-footer-link">문의하기</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content" id="main-content">
+    <!-- 히어로: 계측 콘셉트 -->
+    <section class="rev-hero">
+      <div class="rev-hero-grid">
+        <div>
+          <p class="section-label rev-eyebrow"><span class="tick">●</span>&nbsp; Vision Science &amp; Biomedical Engineering</p>
+          <h2 class="rev-hero-title">시각재활과 시각증강의<br /><span class="accent">한계</span>에 도전합니다</h2>
+          <p class="rev-hero-desc">
+            정밀 광학 계측, AI 기반 바이오마커 분석, 맞춤형 시각 솔루션을 통합하여 안과학의 새로운 지평을 열어갑니다.
+          </p>
+          <div class="rev-cta-row">
+            <a class="rev-btn primary" href="research/overview.html">연구 살펴보기</a>
+            <a class="rev-btn" href="contact.html">파트너십 문의</a>
+          </div>
+        </div>
+        <div class="rev-instrument" role="img" aria-label="각공막 지형도를 형상화한 동심원 계측 그래픽">
+          <canvas id="rev-topo"></canvas>
+          <span class="mono-label corner tl">Corneo-Scleral Profile</span>
+          <span class="mono-label corner br">Axis 0°–180° · µm scale</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 연구 현황 계기판 -->
+    <section class="rev-readout" aria-label="연구 현황 요약">
+      <div class="rev-readout-grid">
+        <div class="rev-readout-cell">
+          <div class="num">04</div>
+          <div class="lbl mono-label">Research Phases</div>
+        </div>
+        <div class="rev-readout-cell">
+          <div class="num">59</div>
+          <div class="lbl mono-label">Publications</div>
+        </div>
+        <div class="rev-readout-cell">
+          <div class="num">03</div>
+          <div class="lbl mono-label">Active Projects</div>
+        </div>
+        <div class="rev-readout-cell">
+          <div class="num">µm<small> /scale</small></div>
+          <div class="lbl mono-label">계측 정밀도</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3대 연구 축 -->
+    <section class="rev-block">
+      <div class="rev-inner">
+        <div class="rev-sec-head">
+          <p class="section-label-sm">Core Capabilities</p>
+          <span class="sec-tag">Sec. A</span>
+        </div>
+        <h2 class="section-title section-heading-md">세 가지 축으로 연구합니다</h2>
+        <div class="rev-pillars">
+          <div class="research-pillar">
+            <p class="pillar-number">01</p>
+            <strong class="pillar-title">정밀 광학 계측 Precision Optics</strong>
+            <p class="pillar-desc">
+              적외선 구조화광(Structured Light) 및 고속 ROI 추적 시스템을 통해 각공막의 3D 형상부터 동공의 미세한 떨림까지 마이크로 단위의 초정밀 데이터를 포착합니다.
+            </p>
+          </div>
+          <div class="research-pillar">
+            <p class="pillar-number">02</p>
+            <strong class="pillar-title">AI 바이오마커 분석 AI Analysis</strong>
+            <p class="pillar-desc">
+              수집된 시각 데이터를 독자적인 딥러닝 모델로 해석하여, 퇴행성 뇌질환 및 안구 병변의 징후를 조기에 탐지하는 비침습적 디지털 바이오마커를 연구합니다.
+            </p>
+          </div>
+          <div class="research-pillar">
+            <p class="pillar-number">03</p>
+            <strong class="pillar-title">맞춤형 시각 솔루션 Vision Solution</strong>
+            <p class="pillar-desc">
+              개인별 안구 광학 스펙트럼과 라이프스타일 데이터를 통합 분석하여, 4D 근시 제어 및 개인맞춤형 시각 재활(Vision Rehabilitation) 솔루션을 제공합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 연구 분야 -->
+    <section class="rev-block alt research-section">
+      <div class="rev-inner">
+        <div class="rev-sec-head">
+          <p class="section-label-sm">What We Study</p>
+          <span class="sec-tag">Sec. B</span>
+        </div>
+        <h2 class="section-title section-heading-md">연구 분야</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>4D 근시 제어 기술</h3>
+            <img src="../assets/images/research/phase2/optical_simulation.png" alt="초정밀 광선 추적 시뮬레이션" width="800" height="600" loading="lazy" />
+            <span class="rev-figcaption">Fig. 01 — Optical Ray-Tracing Simulation</span>
+            <p>
+              주변부 망막 프로파일 및 안매체 경계면에서의 굴절을 고려한 초정밀 광선 추적 시뮬레이션을 통해, 개인별 최적화된 차세대 4D 근시 제어 기술을 연구합니다.
+            </p>
+          </div>
+          <div class="feature-card">
+            <h3>AI 질환 예측 및 진단</h3>
+            <img src="../assets/images/research/phase4_study2_correlation_matrix.jpg" alt="다차원 생체 신호 상관관계 행렬" width="800" height="600" loading="lazy" />
+            <span class="rev-figcaption">Fig. 02 — Biomarker Correlation Matrix</span>
+            <p>
+              망막 혈관 구조, 사시각 편차, 눈꺼풀 처짐(Ptosis), 동공 반응 등 다차원 안구 생체 신호를 통합 분석하여 전신 질환의 발병 확률을 예측하는 AI 시스템을 개발합니다.
+            </p>
+          </div>
+          <div class="feature-card">
+            <h3>초정밀 각공막 3D 재구성</h3>
+            <img src="../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="실시간 각공막 분석 시스템 화면" width="800" height="600" loading="lazy" />
+            <span class="rev-figcaption">Fig. 03 — Real-time Corneo-Scleral Analysis</span>
+            <p>
+              각막과 공막의 3D 프로파일을 정밀 계측 및 재구성하여, 맞춤형 공막 렌즈 처방과 인공 각막 제작을 위한 핵심 형상 데이터베이스를 구축합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 도전과제 로드맵 -->
+    <section class="rev-block">
+      <div class="rev-inner">
+        <div class="rev-sec-head">
+          <p class="section-label-sm">Research Roadmap</p>
+          <span class="sec-tag">Sec. C</span>
+        </div>
+        <h2 class="section-title section-heading-md">도전과제 — 4단계 연구 프로그램</h2>
+        <div class="rev-phases">
+          <a class="rev-phase" href="research/overview.html">
+            <span class="p-no">Phase 01</span>
+            <span class="p-title">신경 코드의 디코딩</span>
+            <span class="p-field">신경시과학 · Visual Neuroscience</span>
+          </a>
+          <a class="rev-phase" href="research/overview.html">
+            <span class="p-no">Phase 02</span>
+            <span class="p-title">눈의 6개 경계면에서의 신비, 굴절</span>
+            <span class="p-field">시광학 계측 · Optical Engineering</span>
+          </a>
+          <a class="rev-phase" href="research/overview-advanced.html">
+            <span class="p-no">Phase 03</span>
+            <span class="p-title">실시간 안구 계측 시스템</span>
+            <span class="p-field">시제품 개발 · Prototype Dev.</span>
+          </a>
+          <a class="rev-phase" href="research/overview-advanced.html">
+            <span class="p-no">Phase 04</span>
+            <span class="p-title">동공 반응 기반 AI 바이오마커</span>
+            <span class="p-field">AI 질환 예측 · Disease Prediction</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 파트너십 CTA -->
+    <section class="rev-cta-block" id="partnership-cta">
+      <p class="section-label rev-eyebrow"><span class="tick">●</span>&nbsp; Partnership</p>
+      <h2>연구 데이터가 증명하는 기술,<br />함께할 파트너를 찾습니다</h2>
+      <p>바이어·스폰서를 위한 기술 소개 자료와 연구 성과 데이터를 제공합니다. 협업, 투자, 라이선스 문의를 환영합니다.</p>
+      <div class="rev-cta-row">
+        <a class="rev-btn primary" href="contact.html">문의하기</a>
+        <a class="rev-btn" href="publications/index.html">연구성과 보기</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // 각공막 지형도(topography) 모티프 — 정적 렌더, 애니메이션 없음
+    (function () {
+      var cv = document.getElementById('rev-topo');
+      if (!cv) return;
+      function draw() {
+        var s = cv.parentElement.clientWidth;
+        if (!s) return;
+        var dpr = window.devicePixelRatio || 1;
+        cv.width = s * dpr; cv.height = s * dpr;
+        var g = cv.getContext('2d');
+        g.scale(dpr, dpr);
+        g.clearRect(0, 0, s, s);
+        var cx = s / 2, cy = s / 2, R = s * 0.42;
+        g.strokeStyle = 'rgba(29,42,66,0.55)';
+        g.lineWidth = 1;
+        for (var i = 1; i < 8; i++) {
+          var t = (s / 8) * i;
+          g.beginPath(); g.moveTo(t, 0); g.lineTo(t, s); g.stroke();
+          g.beginPath(); g.moveTo(0, t); g.lineTo(s, t); g.stroke();
+        }
+        for (var r = 0; r < 14; r++) {
+          var frac = (r + 1) / 14;
+          var rad = R * Math.pow(frac, 0.82);
+          var ecc = 1 - 0.06 * frac;
+          g.beginPath();
+          g.ellipse(cx, cy, rad, rad * ecc, -0.18, 0, Math.PI * 2);
+          g.strokeStyle = r % 4 === 3 ? 'rgba(127,212,230,0.45)' : 'rgba(139,155,180,0.28)';
+          g.lineWidth = r % 4 === 3 ? 1.2 : 0.7;
+          g.stroke();
+        }
+        g.lineWidth = 0.8;
+        g.strokeStyle = 'rgba(139,155,180,0.35)';
+        g.beginPath(); g.moveTo(cx - R - 14, cy); g.lineTo(cx + R + 14, cy); g.stroke();
+        g.beginPath(); g.moveTo(cx, cy - R - 14); g.lineTo(cx, cy + R + 14); g.stroke();
+        for (var a = 0; a < 360; a += 15) {
+          var rd = (a * Math.PI) / 180;
+          var r1 = R + 4, r2 = R + (a % 45 === 0 ? 12 : 7);
+          g.beginPath();
+          g.moveTo(cx + r1 * Math.cos(rd), cy + r1 * Math.sin(rd));
+          g.lineTo(cx + r2 * Math.cos(rd), cy + r2 * Math.sin(rd));
+          g.strokeStyle = a % 45 === 0 ? 'rgba(127,212,230,0.6)' : 'rgba(139,155,180,0.35)';
+          g.stroke();
+        }
+        var pts = [[0.30, -0.12], [-0.22, 0.20], [0.10, 0.33], [-0.31, -0.24]];
+        pts.forEach(function (p) {
+          var px = cx + R * p[0], py = cy + R * p[1];
+          g.strokeStyle = 'rgba(127,212,230,0.85)';
+          g.lineWidth = 1;
+          g.beginPath(); g.moveTo(px - 5, py); g.lineTo(px + 5, py); g.stroke();
+          g.beginPath(); g.moveTo(px, py - 5); g.lineTo(px, py + 5); g.stroke();
+        });
+        g.fillStyle = '#7fd4e6';
+        g.beginPath(); g.arc(cx, cy, 2.4, 0, Math.PI * 2); g.fill();
+      }
+      draw();
+      window.addEventListener('resize', draw);
+      window.addEventListener('load', draw);
+    })();
+  </script>
+
+  <script src="../assets/js/main.js?v=4.0" defer></script>
+</body>
+
+</html>
