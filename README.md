@@ -1,7 +1,7 @@
 # 🔬 MasVisio Research - 시각재활 연구결과 웹페이지
 
-[![Website](https://img.shields.io/website?url=https%3A//myoung906.github.io/MasVisio_Research/)](https://myoung906.github.io/MasVisio_Research/)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://myoung906.github.io/MasVisio_Research/)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fraw.githack.com%2Fmyoung906%2FMasVisio_Research%2Fclaude%2Fresearch-homepage-redesign-y81y7h%2Fmvr_rev%2Findex.html)](https://raw.githack.com/myoung906/MasVisio_Research/claude/research-homepage-redesign-y81y7h/mvr_rev/index.html)
+[![GitHub Pages](https://img.shields.io/badge/Branch%20Preview-Live-brightgreen)](https://raw.githack.com/myoung906/MasVisio_Research/claude/research-homepage-redesign-y81y7h/mvr_rev/index.html)
 [![License](https://img.shields.io/badge/License-Research-blue)](#)
 
 > **시각재활 연구의 혁신적 성과를 세계에 공유하는 전문 웹사이트**  
@@ -9,11 +9,11 @@
 
 ## 🌐 라이브 웹사이트
 
-**👉 [MasVisio Research 웹사이트 방문](https://myoung906.github.io/MasVisio_Research/)**
+**👉 [MasVisio Research 웹사이트 방문](https://raw.githack.com/myoung906/MasVisio_Research/claude/research-homepage-redesign-y81y7h/mvr_rev/index.html)**
 
 ### 🌍 다국어 지원
-- **🇰🇷 한국어**: [Korean Version](https://myoung906.github.io/MasVisio_Research/ko/)
-- **🇺🇸 영어**: [English Version](https://myoung906.github.io/MasVisio_Research/en/)
+- **🇰🇷 한국어**: [Korean Version](https://raw.githack.com/myoung906/MasVisio_Research/claude/research-homepage-redesign-y81y7h/mvr_rev/ko/)
+- **🇺🇸 영어**: [English Version](https://raw.githack.com/myoung906/MasVisio_Research/claude/research-homepage-redesign-y81y7h/mvr_rev/index.html)
 
 ## 📊 프로젝트 개요
 
@@ -154,7 +154,7 @@ git push origin master
 ## 🎯 사용 방법
 
 ### 👥 방문자용
-1. **웹사이트 접속**: https://myoung906.github.io/MasVisio_Research/
+1. **웹사이트 접속**: https://raw.githack.com/myoung906/MasVisio_Research/claude/research-homepage-redesign-y81y7h/mvr_rev/index.html
 2. **언어 선택**: 한국어 또는 영어 선택
 3. **연구 탐색**: 다양한 섹션에서 연구 성과 확인
 4. **문의하기**: 연락처 정보를 통한 파트너십 문의
