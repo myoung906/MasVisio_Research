@@ -368,6 +368,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("team-container")) {
     loadTeamMembers();
   }
+
+  // If there is a diagnostics container, load diagnostics
+  if (document.getElementById("diagnostics-container")) {
+    loadDiagnostics();
+  }
 });
 
 function refreshPublicationsView() {
@@ -1045,6 +1050,99 @@ async function loadTeamMembers() {
     }
   } catch (error) {
     console.error("Could not load team members:", error);
+    container.innerHTML = `<p class="error-text">${getErrorMessage(error, lang)}</p>`;
+  }
+}
+
+async function loadDiagnostics() {
+  const lang = document.documentElement.lang || "en";
+  const dataPath = getBasePath() + "assets/data/content.json";
+  const container = document.getElementById("diagnostics-container");
+
+  if (!container) return;
+
+  try {
+    const data = await DataCache.get(dataPath);
+    const diagnostics = data[lang]?.diagnostics;
+
+    if (diagnostics) {
+      let html = `
+        <div class="diagnostic-intro">
+            <h2 class="section-title">${diagnostics.title}</h2>
+            <p class="section-subtitle">${diagnostics.description}</p>
+        </div>
+        
+        <div class="diagnostic-grid">
+      `;
+
+      diagnostics.visualizations.forEach(vis => {
+        const basePath = getBasePath();
+        const cleanPath = vis.image.startsWith("/") ? vis.image.slice(1) : vis.image;
+        const targetDiseasesTitle = lang === "ko" ? "예측 가능 질환" : "Predictable Diseases";
+        html += `
+            <div class="diagnostic-card">
+                <div class="diagnostic-image">
+                    <img src="${basePath + cleanPath}" alt="${vis.title}">
+                </div>
+                <div class="diagnostic-info">
+                    <h3>${vis.title}</h3>
+                    <p class="analysis-text">${vis.analysis}</p>
+                    <div class="target-diseases">
+                        <strong>${targetDiseasesTitle}:</strong>
+                        <ul>
+                            ${vis.diseases.map(d => `<li>${d}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `;
+      });
+
+      html += `</div>`;
+
+      // Add Risk Table
+      const tableTitle = lang === "ko" ? "질환별 예측 위험도" : "Predictive Risk Level by Disease";
+      const tableRank = lang === "ko" ? "순위" : "Rank";
+      const tablePart = lang === "ko" ? "부위" : "Part";
+      const tableDisease = lang === "ko" ? "질환명" : "Disease";
+      const tableRisk = lang === "ko" ? "위험도" : "Risk Level";
+
+      html += `
+          <div class="risk-table-section">
+              <h3 class="table-title">${tableTitle}</h3>
+              <div class="table-wrapper">
+                  <table class="risk-table">
+                      <thead>
+                          <tr>
+                              <th>${tableRank}</th>
+                              <th>${tablePart}</th>
+                              <th>${tableDisease}</th>
+                              <th>${tableRisk}</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          ${diagnostics.risk_table.map(row => `
+                              <tr class="risk-row-${row.risk.toLowerCase()}">
+                                  <td>${row.rank}</td>
+                                  <td>${row.part}</td>
+                                  <td>${row.name}</td>
+                                  <td><span class="risk-badge badge-${row.risk.toLowerCase()}">${row.risk}</span></td>
+                              </tr>
+                          `).join('')}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      `;
+
+      container.innerHTML = html;
+    } else {
+      container.innerHTML = lang === 'ko'
+          ? '<p class="error-text">진단 정보를 로드할 수 없습니다. 데이터 형식을 확인해주세요.</p>'
+          : '<p class="error-text">Unable to load diagnostics. Please check data format.</p>';
+    }
+  } catch (error) {
+    console.error('Error loading diagnostics:', error);
     container.innerHTML = `<p class="error-text">${getErrorMessage(error, lang)}</p>`;
   }
 }

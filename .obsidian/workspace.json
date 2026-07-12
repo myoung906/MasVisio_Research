@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "4ae3b8820e9745e2",
+        "id": "d14ebb2364755cbe",
         "type": "tabs",
         "children": [
           {
-            "id": "9632769a7e20fc35",
+            "id": "1ee2aaf00be33913",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "그래프 뷰"
+              "icon": "lucide-file",
+              "title": "새 탭"
             }
           }
         ]
@@ -179,10 +179,10 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "9632769a7e20fc35",
+  "active": "1ee2aaf00be33913",
   "lastOpenFiles": [
-    "wiki/concepts/B2B-비즈니스-모델.md",
     "wiki/concepts/의료기기-개발.md",
+    "wiki/concepts/B2B-비즈니스-모델.md",
     "wiki/entities/의료-웹사이트.md",
     "wiki/entities/4D-근시-제어.md",
     "wiki/entities/AI-진단-시스템.md",
