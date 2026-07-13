@@ -672,7 +672,7 @@ function ensureMobileHeader() {
   header.className = "mobile-header";
   header.innerHTML = `
         <a href="${homeHref}" class="mobile-logo">
-            <h1>MasVisio<br>Research</h1>
+            <h1>Optinex<br>Research</h1>
             <span class="logo-subtitle">Vision Intelligence &<br>Biomedical Engineering</span>
         </a>
         <a href="${langToggleHref}" class="mobile-lang-toggle" aria-label="Switch language">${langToggleLabel}</a>
@@ -956,7 +956,7 @@ async function loadProjectDetails() {
     const project = projects.find((p) => p.id === projectId);
 
     if (project) {
-      document.title = `${project.title} - MasVisio Research`;
+      document.title = `${project.title} - Optinex Research`;
 
       let mechanismsHtml = "";
       if (project.mechanisms) {
@@ -1192,7 +1192,7 @@ function initAccessibilityControls() {
     const isKo = document.documentElement.lang === "ko";
     const welcome = isKo 
       ? "시각재활 연구 웹사이트에 오신 것을 환영합니다. 마우스를 올리거나 탭 키로 이동하면 안내 음성이 나옵니다." 
-      : "Welcome to MasVisio Research. Hover or tab to hear descriptions.";
+      : "Welcome to Optinex Research. Hover or tab to hear descriptions.";
     setTimeout(() => speakText(welcome), 1000);
   }
 

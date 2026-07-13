@@ -1,5 +1,5 @@
 {
-  "name": "masvisio-research",
+  "name": "optinex-research",
   "version": "1.0.0",
   "description": "시각재활 연구 웹사이트",
   "main": "index.html",
@@ -12,6 +12,6 @@
     "@playwright/test": "^1.55.0"
   },
   "keywords": ["시각재활", "연구", "웹사이트", "vision-rehabilitation"],
-  "author": "MasVisio Research Team",
+  "author": "Optinex Research Team",
   "license": "MIT"
 }

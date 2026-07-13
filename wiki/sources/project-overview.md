@@ -1,5 +1,5 @@
 ---
-title: MasVisio Research 프로젝트 개요
+title: Optinex Research 프로젝트 개요
 type: 프로젝트 문서
 date: 2026-04-29
 source_file: raw/2026-04-29_project-overview.md
@@ -10,11 +10,11 @@ key_points:
   - GitHub Pages 배포
 ---
 
-# MasVisio Research 프로젝트 개요
+# Optinex Research 프로젝트 개요
 
 ## 요약
 
-**MasVisio Research**는 시각재활 분야의 혁신적 연구 결과를 세계에 공유하고, 바이어·스폰서와의 상업적 파트너십을 창출하기 위한 전문 웹사이트 프로젝트입니다.
+**Optinex Research**는 시각재활 분야의 혁신적 연구 결과를 세계에 공유하고, 바이어·스폰서와의 상업적 파트너십을 창출하기 위한 전문 웹사이트 프로젝트입니다.
 
 ### 핵심 목표
 - 연구 성과의 국제적 공개 및 공유

@@ -22,7 +22,7 @@
 | [[시각재활]] | 시각 기능 회복 중재 및 재활 프로그램 | project-overview | 2026-04-29 |
 | [[AI-진단-시스템]] | 47개 바이오마커 기반 자동 진단 | project-overview | 2026-04-29 |
 | [[4D-근시-제어]] | 4차원적 근시 관리 생태계 | project-overview | 2026-04-29 |
-| [[의료-웹사이트]] | MasVisio Research B2B 포털 | project-overview | 2026-04-29 |
+| [[의료-웹사이트]] | Optinex Research B2B 포털 | project-overview | 2026-04-29 |
 
 ### 💡 Concepts (영역별 개념)
 | 페이지 | 카테고리 | 연관 | 업데이트 |

@@ -2,14 +2,29 @@
 <html lang="en">
 
 <head>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const langParam = params.get("lang");
+    if (langParam === "en") {
+      localStorage.setItem("mv_lang_preference", "en");
+    } else if (langParam === "ko") {
+      localStorage.setItem("mv_lang_preference", "ko");
+      window.location.replace("ko/index.html");
+    } else {
+      const pref = localStorage.getItem("mv_lang_preference");
+      if (pref !== "en") {
+        window.location.replace("ko/index.html");
+      }
+    }
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MasVisio Research - Vision Rehabilitation Research</title>
+  <title>Optinex Research - Vision Rehabilitation Research</title>
   <meta name="description"
-    content="MasVisio Research is dedicated to advancing the field of vision science through innovative research and technology." />
+    content="Optinex Research is dedicated to advancing the field of vision science through innovative research and technology." />
   <meta name="keywords"
-    content="Vision Rehabilitation, Research, Vision Science, MasVisio, Optometry, Myopia Control" />
-  <meta property="og:title" content="MasVisio Research - Vision Rehabilitation Research" />
+    content="Vision Rehabilitation, Research, Vision Science, Optinex, Optometry, Myopia Control" />
+  <meta property="og:title" content="Optinex Research - Vision Rehabilitation Research" />
   <meta property="og:description" content="Pioneering vision science through innovative research and technology." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://myoung906.github.io/MasVisio_Research/assets/images/vision_engineering_concept.png" />
@@ -45,20 +60,20 @@
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <header class="mobile-header">
     <a href="index.html" class="mobile-logo">
-      <h1>MasVisio<br />Research</h1>
+      <h1>Optinex<br />Research</h1>
       <span class="logo-subtitle">Vision Intelligence &<br />Biomedical Engineering</span>
     </a>
   </header>
   <aside class="sidebar" role="navigation" aria-label="Main navigation">
     <div class="sidebar-header">
       <a href="index.html" class="sidebar-logo">
-        <h1>MasVisio<br />Research</h1>
+        <h1>Optinex<br />Research</h1>
         <span class="sidebar-subtitle">Vision Intelligence &<br />Biomedical Engineering</span>
       </a>
     </div>
 
     <div class="lang-switch">
-      <a href="ko/index.html">🇰🇷</a> <span class="active">🇬🇧</span>
+      <a href="ko/index.html" onclick="localStorage.setItem('mv_lang_preference', 'ko');">🇰🇷</a> <span class="active">🇬🇧</span>
     </div>
 
     <nav class="sidebar-nav">
@@ -72,7 +87,7 @@
     </nav>
 
     <div class="sidebar-footer">
-      <p class="copyright">&copy; 2025 MasVisio Research</p>
+      <p class="copyright">&copy; 2025 Optinex Research</p>
       <div class="sidebar-footer-meta">
         <a href="privacy.html" class="sidebar-footer-link">Privacy Policy</a>
         |

@@ -17,7 +17,7 @@
 9. **en/research/projects/neural-stimulation.html**: 단순 푸터 → 3단 그리드 푸터 (CSS + HTML)
 
 #### 🏗️ 새로운 푸터 구조
-- **1열 (2fr)**: MasVisio Research 브랜딩 + 연락처 정보
+- **1열 (2fr)**: Optinex Research 브랜딩 + 연락처 정보
 - **2열 (1fr)**: 연구 분야 링크 (연구 성과, 근시 제어, AI 진단, 바이오메트릭)  
 - **3열 (1fr)**: 파트너십 링크 (연락처, 협력 기회, 개인정보처리방침, 이용약관)
 - **하단**: 저작권 정보 + 연구 면책조항
@@ -56,7 +56,7 @@
 - 상용화 타임라인
 
 ### 3단계: 기술적 우위 다이어그램 (예정)
-- 기존 기술 vs MasVisio 기술 비교
+- 기존 기술 vs Optinex 기술 비교
 - 비용 효율성 및 성능 우위 표현
 
 ### 4단계: 웹사이트 통합 및 최적화 (예정)
@@ -477,7 +477,7 @@ Performance: Hardware Acceleration + 60fps Optimization
 - **디자인 기준**: contact.html의 깔끔하고 미니멀한 헤더 스타일 채택
 - **통합 대상**: 한국어/영어 전체 10개 페이지 헤더 완전 통일
 - **색상 체계**: 투명도 95% 흰색 배경 + 10px 블러 효과
-- **브랜딩**: "MasVisio Research" + "Visual Rehabilitation & Autonomous Imaging Engineering" 태그라인
+- **브랜딩**: "Optinex Research" + "Visual Rehabilitation & Autonomous Imaging Engineering" 태그라인
 
 #### 2. 완료된 페이지 목록
 **한국어 페이지 (ko/)**:

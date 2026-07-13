@@ -1,4 +1,4 @@
-# 🔬 MasVisio Research - 시각재활 연구결과 웹페이지
+# 🔬 Optinex Research - 시각재활 연구결과 웹페이지
 
 [![Website](https://img.shields.io/website?url=https%3A//myoung906.github.io/MasVisio_Research/)](https://myoung906.github.io/MasVisio_Research/)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://myoung906.github.io/MasVisio_Research/)
@@ -9,7 +9,7 @@
 
 ## 🌐 라이브 웹사이트
 
-**👉 [MasVisio Research 웹사이트 방문](https://myoung906.github.io/MasVisio_Research/)**
+**👉 [Optinex Research 웹사이트 방문](https://myoung906.github.io/MasVisio_Research/)**
 
 ### 🌍 다국어 지원
 - **🇰🇷 한국어**: [Korean Version](https://myoung906.github.io/MasVisio_Research/ko/)

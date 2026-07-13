@@ -1,6 +1,6 @@
 # DALL-E 3 이미지 생성 프롬프트 모음
 
-이 문서는 MasVisio Research 웹사이트의 핵심 시각 자료를 생성하기 위한 DALL-E 3 프롬프트 모음입니다.
+이 문서는 Optinex Research 웹사이트의 핵심 시각 자료를 생성하기 위한 DALL-E 3 프롬프트 모음입니다.
 모든 이미지는 **"Premium, Futuristic, Medical, Trustworthy"** 톤앤매너를 유지합니다.
 
 ## 1. 핵심 연구 성과 (Key Research Achievements)
@@ -40,10 +40,10 @@
 ## 3. 기술적 우위 (Technical Advantage)
 
 ### 3-1. 기술 비교 (Technology Comparison)
-**목표**: 기존 기술 대비 MasVisio 기술의 우월성 강조.
+**목표**: 기존 기술 대비 Optinex 기술의 우월성 강조.
 **스타일**: Split screen or Layered, Contrast (Old vs New).
 **프롬프트 (English)**:
-> A conceptual comparison image. On the left, a dull, wireframe, low-poly generic medical device (old technology). On the right, a highly detailed, glowing, advanced AI-infused holographic eye scanner (MasVisio technology). The transition is smooth but shows a clear upgrade in quality and complexity. The new technology side emits a confident blue aura. 8k, detailed texture.
+> A conceptual comparison image. On the left, a dull, wireframe, low-poly generic medical device (old technology). On the right, a highly detailed, glowing, advanced AI-infused holographic eye scanner (Optinex technology). The transition is smooth but shows a clear upgrade in quality and complexity. The new technology side emits a confident blue aura. 8k, detailed texture.
 
 ## 4. 플레이스홀더 이미지 생성 가이드 (Placeholder Strategy)
 DALL-E 연동 전까지는 다음 CSS/SVG 패턴을 활용하여 유사한 느낌을 냅니다.

@@ -2,7 +2,7 @@
 
 > **Summary**: 사용자 로그인 및 인증 기능 구현
 >
-> **Project**: MasVisio Research
+> **Project**: Optinex Research
 > **Version**: 1.0.0
 > **Author**: jaemyoungseo
 > **Date**: 2026-02-01
@@ -18,7 +18,7 @@
 
 ### 1.2 Background
 
-현재 MasVisio Research 웹사이트는 정적 사이트로 운영 중이며, GitHub Pages에 배포되어 있습니다. 바이어/스폰서에게 비공개 연구자료를 제공하기 위해 인증 시스템이 필요합니다.
+현재 Optinex Research 웹사이트는 정적 사이트로 운영 중이며, GitHub Pages에 배포되어 있습니다. 바이어/스폰서에게 비공개 연구자료를 제공하기 위해 인증 시스템이 필요합니다.
 
 ### 1.3 Related Documents
 
