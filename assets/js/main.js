@@ -324,6 +324,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initGaborCaptionAnimations();
   initTemporalFlicker();
+  initAccessibilityControls();
+
 
   // Close menu with Escape key
   document.addEventListener("keydown", (e) => {
@@ -1146,3 +1148,252 @@ async function loadDiagnostics() {
     container.innerHTML = `<p class="error-text">${getErrorMessage(error, lang)}</p>`;
   }
 }
+
+// =========================================
+// Accessibility & Voice Guide (TTS) System
+// =========================================
+let voiceGuideActive = false;
+let largeTextActive = false;
+let highContrastActive = false;
+
+function initAccessibilityControls() {
+  // Load saved settings
+  try {
+    voiceGuideActive = localStorage.getItem("mv_voice_guide") === "1";
+    largeTextActive = localStorage.getItem("mv_large_text") === "1";
+    highContrastActive = localStorage.getItem("mv_high_contrast") === "1";
+  } catch (e) {
+    console.error("Local storage error:", e);
+  }
+
+  // Create UI Controls Toolbar dynamically
+  if (!document.querySelector(".accessibility-controls")) {
+    const controls = document.createElement("div");
+    controls.className = "accessibility-controls";
+    controls.setAttribute("role", "toolbar");
+    controls.setAttribute("aria-label", "접근성 컨트롤");
+    controls.innerHTML = `
+      <button id="btn-large-text" class="acc-btn" onclick="toggleLargeText()" aria-label="큰 글씨 모드" aria-pressed="${largeTextActive}">🔍</button>
+      <button id="btn-high-contrast" class="acc-btn" onclick="toggleHighContrast()" aria-label="고대비 모드" aria-pressed="${highContrastActive}">🌓</button>
+      <button id="btn-voice-guide" class="acc-btn" onclick="toggleVoiceGuide()" aria-label="음성 가이드" aria-pressed="${voiceGuideActive}">🔊</button>
+    `;
+    document.body.appendChild(controls);
+  }
+
+  // Apply CSS styling for accessibility controls
+  injectAccessibilityStyles();
+
+  // Apply loaded states
+  if (largeTextActive) document.body.classList.add("large-text");
+  if (highContrastActive) document.body.classList.add("high-contrast");
+
+  // Welcome message if voice guide is active
+  if (voiceGuideActive) {
+    const isKo = document.documentElement.lang === "ko";
+    const welcome = isKo 
+      ? "시각재활 연구 웹사이트에 오신 것을 환영합니다. 마우스를 올리거나 탭 키로 이동하면 안내 음성이 나옵니다." 
+      : "Welcome to MasVisio Research. Hover or tab to hear descriptions.";
+    setTimeout(() => speakText(welcome), 1000);
+  }
+
+  // Bind mouseover and focus events
+  bindAccessibilityEvents();
+}
+
+function injectAccessibilityStyles() {
+  if (document.getElementById("accessibility-inline-css")) return;
+  const style = document.createElement("style");
+  style.id = "accessibility-inline-css";
+  style.innerHTML = `
+    .accessibility-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 1002;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #cbd5e1;
+      padding: 8px 12px;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    .acc-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #e2e8f0;
+      background: white;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .acc-btn:hover {
+      background: #f1f5f9;
+      transform: scale(1.1);
+    }
+    .acc-btn[aria-pressed="true"] {
+      background: #1a73e8;
+      border-color: #1a73e8;
+      color: white;
+    }
+    body.large-text {
+      font-size: 1.25rem !important;
+      line-height: 1.8 !important;
+    }
+    body.large-text .section-heading-hero,
+    body.large-text .section-title {
+      font-size: 2.8rem !important;
+    }
+    body.large-text p, 
+    body.large-text a, 
+    body.large-text span, 
+    body.large-text li {
+      font-size: 1.15rem !important;
+    }
+    body.high-contrast {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+    }
+    body.high-contrast .main-content {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+    }
+    body.high-contrast .sidebar {
+      background-color: #121212 !important;
+      border-right-color: #333333 !important;
+    }
+    body.high-contrast a {
+      color: #ffff00 !important;
+    }
+    body.high-contrast .feature-card,
+    body.high-contrast .team-card,
+    body.high-contrast .diagnostic-card {
+      background: #121212 !important;
+      border-color: #ffff00 !important;
+    }
+    body.high-contrast h1,
+    body.high-contrast h2,
+    body.high-contrast h3,
+    body.high-contrast h4 {
+      color: #ffff00 !important;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+function toggleLargeText() {
+  largeTextActive = !largeTextActive;
+  document.body.classList.toggle("large-text", largeTextActive);
+  document.getElementById("btn-large-text").setAttribute("aria-pressed", String(largeTextActive));
+  try {
+    localStorage.setItem("mv_large_text", largeTextActive ? "1" : "0");
+  } catch (e) {}
+  
+  const isKo = document.documentElement.lang === "ko";
+  const msg = largeTextActive 
+    ? (isKo ? "큰 글씨 모드가 켜졌습니다." : "Large text mode enabled.")
+    : (isKo ? "큰 글씨 모드가 꺼졌습니다." : "Large text mode disabled.");
+  speakText(msg);
+}
+
+function toggleHighContrast() {
+  highContrastActive = !highContrastActive;
+  document.body.classList.toggle("high-contrast", highContrastActive);
+  document.getElementById("btn-high-contrast").setAttribute("aria-pressed", String(highContrastActive));
+  try {
+    localStorage.setItem("mv_high_contrast", highContrastActive ? "1" : "0");
+  } catch (e) {}
+
+  const isKo = document.documentElement.lang === "ko";
+  const msg = highContrastActive 
+    ? (isKo ? "고대비 모드가 켜졌습니다." : "High contrast mode enabled.")
+    : (isKo ? "고대비 모드가 꺼졌습니다." : "High contrast mode disabled.");
+  speakText(msg);
+}
+
+function toggleVoiceGuide() {
+  voiceGuideActive = !voiceGuideActive;
+  document.getElementById("btn-voice-guide").setAttribute("aria-pressed", String(voiceGuideActive));
+  try {
+    localStorage.setItem("mv_voice_guide", voiceGuideActive ? "1" : "0");
+  } catch (e) {}
+
+  if (!voiceGuideActive) {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+  } else {
+    const isKo = document.documentElement.lang === "ko";
+    const msg = isKo ? "음성 가이드가 활성화되었습니다." : "Voice guide enabled.";
+    speakText(msg);
+  }
+}
+
+function speakText(text) {
+  if (!voiceGuideActive || !window.speechSynthesis) return;
+
+  window.speechSynthesis.cancel(); // Stop current speech
+  const utterance = new SpeechSynthesisUtterance(text);
+  const isKo = document.documentElement.lang === "ko";
+  utterance.lang = isKo ? "ko-KR" : "en-US";
+  window.speechSynthesis.speak(utterance);
+}
+
+function bindAccessibilityEvents() {
+  const elements = document.querySelectorAll(
+    "a, button, .feature-card, .team-card, .data-card, h1, h2, h3, .research-pillar"
+  );
+
+  elements.forEach((el) => {
+    const handleEvent = (e) => {
+      if (!voiceGuideActive) return;
+      e.stopPropagation();
+
+      let textToSpeak = "";
+      if (el.getAttribute("aria-label")) {
+        textToSpeak = el.getAttribute("aria-label");
+      } else if (el.tagName.startsWith("H")) {
+        textToSpeak = el.textContent;
+      } else if (el.classList.contains("feature-card")) {
+        const title = el.querySelector("h3")?.textContent || "";
+        const desc = el.querySelector("p")?.textContent || "";
+        textToSpeak = `${title}. ${desc}`;
+      } else if (el.classList.contains("team-card")) {
+        const name = el.querySelector("h3")?.textContent || "";
+        const role = el.querySelector(".role")?.textContent || "";
+        textToSpeak = `${name}. ${role}`;
+      } else if (el.classList.contains("research-pillar")) {
+        const title = el.querySelector(".pillar-title")?.textContent || "";
+        const desc = el.querySelector(".pillar-desc")?.textContent || "";
+        textToSpeak = `${title}. ${desc}`;
+      } else {
+        textToSpeak = el.textContent || el.innerText || "";
+      }
+
+      // 스크린리더 충돌 방지: 음성 가이드 동작 시 해당 요소를 일시적으로 aria-hidden 처리하여 스크린리더 중복 낭독 억제
+      if (textToSpeak.trim()) {
+        const originalAriaHidden = el.getAttribute("aria-hidden");
+        el.setAttribute("aria-hidden", "true");
+        speakText(textToSpeak);
+        
+        // 낭독이 끝나거나 일정 시간 후 원상복구
+        setTimeout(() => {
+          if (originalAriaHidden === null) {
+            el.removeAttribute("aria-hidden");
+          } else {
+            el.setAttribute("aria-hidden", originalAriaHidden);
+          }
+        }, 100);
+      }
+    };
+
+    el.addEventListener("mouseenter", handleEvent);
+    el.addEventListener("focus", handleEvent);
+  });
+}
+

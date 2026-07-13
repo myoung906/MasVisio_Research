@@ -401,3 +401,37 @@
     font-size: 1.6rem;
   }
 }
+
+/* =========================================
+   Custom Phase 3-4 Mobile Layout Fixes
+   ========================================= */
+@media (max-width: 768px) {
+  .phase3-study2-mobile-stack,
+  .phase4-study1-mobile-stack,
+  .overview-figure-row {
+    flex-direction: column !important;
+    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+  }
+
+  .phase3-study2-mobile-stack .mobile-tight-card,
+  .phase4-study1-mobile-stack .mobile-tight-card,
+  .overview-figure-row .overview-figure-card,
+  .phase3-study1-rightshift .overview-figure-card,
+  .phase3-study1-rightshift .overview-figure-col {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+  }
+
+  .phase3-study1-rightshift img {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .phase3-tuning-image {
+    max-width: 100% !important;
+  }
+}
+
