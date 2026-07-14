@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Research - Optinex Research</title>
+  <title>Research Challenges - Optinex Research</title>
   <meta name="description"
-    content="Overview of Optinex Research programs including 4D myopia control, AI diagnostics, and biometric measurement." />
-  <meta property="og:title" content="Research Overview - Optinex Research" />
+    content="Detailed overview of Optinex Research programs including 4D myopia control, AI diagnostics, and biometric measurement." />
+  <meta property="og:title" content="Research Challenges - Optinex Research" />
   <meta property="og:description"
-    content="Overview of Optinex Research programs including 4D myopia control, AI diagnostics, and biometric measurement." />
+    content="Detailed overview of Optinex Research programs including 4D myopia control, AI diagnostics, and biometric measurement." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://myoung906.github.io/MasVisio_Research/assets/images/vision_engineering_concept.png" />
   <meta property="og:url" content="https://myoung906.github.io/MasVisio_Research/research/overview.html" />
@@ -18,20 +18,490 @@
   <link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/research/overview.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --primary-color: #0a2540; --accent-color: #1a73e8; --text-color: #1e293b; --bg-app: #f8f9fa; --sidebar-width: 280px; --logo-font: "Georgia", serif;
+    /* Page specific overrides for dark scientific theme */
+    .hero {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 3rem 0 5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 48px;
+      align-items: center;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Inter", sans-serif; color: var(--text-color); background-color: var(--bg-app); display: flex; min-height: 100vh; -webkit-font-smoothing: antialiased; }
-    .sidebar { width: var(--sidebar-width); background-color: #fafbfc; border-right: 1px solid #e8ecf1; height: 100vh; position: fixed; top: 0; left: 0; z-index: 1000; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; }
-    .main-content { flex: 1; margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); background-color: #ffffff; min-width: 0; display: flex; flex-direction: column; }
-    .mobile-header { display: none; }
+    .eyebrow {
+      font-family: var(--mono-font);
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--primary-color);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--primary-color);
+    }
+    .hero h1 {
+      font-family: var(--heading-font);
+      font-weight: 500;
+      font-size: clamp(32px, 4.2vw, 52px);
+      line-height: 1.12;
+      letter-spacing: -.015em;
+      margin-bottom: 26px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--primary-color);
+    }
+    .hero-desc {
+      color: var(--text-light);
+      font-size: 1.05rem;
+      max-width: 34em;
+      margin-bottom: 38px;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono-font);
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--text-color);
+      border: 1px solid var(--line-strong);
+      padding: 13px 22px;
+      border-radius: 2px;
+      transition: border-color .2s, background .2s;
+    }
+    .hero-cta:hover {
+      border-color: var(--primary-color);
+      background: rgba(169,214,238,.06);
+    }
+    
+    /* Placido reticle styling */
+    .reticle-wrap {
+      position: relative;
+      aspect-ratio: 1/1;
+      max-width: 380px;
+      justify-self: center;
+      width: 100%;
+    }
+    .reticle-wrap svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .reticle-core {
+      position: absolute;
+      inset: 20.5%;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      filter: saturate(0.8) contrast(1.05);
+    }
+    .reticle-core img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .ring-anim {
+      animation: spin 90s linear infinite;
+      transform-origin: center;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .tick-label {
+      font-family: var(--mono-font);
+      font-size: 9px;
+      fill: var(--text-light);
+      letter-spacing: 0.1em;
+    }
+    .readout {
+      font-family: var(--mono-font);
+      font-size: 9.5px;
+      fill: var(--text-light);
+    }
+    
+    /* Instrument strip */
+    .strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(169, 214, 238, 0.03), transparent);
+      margin: 2rem 0 4rem;
+    }
+    .strip-inner {
+      padding: 14px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 34px;
+      font-family: var(--mono-font);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--primary-color);
+    }
+    .strip-inner span::before {
+      content: "·";
+      margin-right: 34px;
+      color: var(--line-strong);
+    }
+    .strip-inner span:first-child::before {
+      content: none;
+      margin: 0;
+    }
+
+    /* Section styling */
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .sec-label {
+      font-family: var(--mono-font);
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--primary-color);
+      white-space: nowrap;
+    }
+    .sec-title {
+      font-family: var(--heading-font);
+      font-weight: 500;
+      font-size: clamp(24px, 3vw, 34px);
+      letter-spacing: -.01em;
+    }
+    .sec-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+      align-self: center;
+    }
+
+    /* Research Pillars Grid */
+    .pillars {
+      border-top: 1px solid var(--line);
+      margin-bottom: 5rem;
+    }
+    .pillar {
+      display: grid;
+      grid-template-columns: 110px 300px 1fr;
+      gap: 28px;
+      padding: 34px 0;
+      border-bottom: 1px solid var(--line);
+      transition: background 0.2s;
+    }
+    .pillar:hover {
+      background: rgba(169, 214, 238, 0.025);
+    }
+    .pillar-no {
+      font-family: var(--mono-font);
+      font-size: 12px;
+      color: var(--primary-color);
+      letter-spacing: .14em;
+      padding-top: 5px;
+    }
+    .pillar-title {
+      font-family: var(--heading-font);
+      font-weight: 500;
+      font-size: 19px;
+    }
+    .pillar-desc {
+      color: var(--text-light);
+      font-size: 15.5px;
+      max-width: 48em;
+    }
+
+    /* Featured Project */
+    .featured {
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 4rem -3rem;
+      padding: 5rem 3rem;
+    }
+    .featured-inner {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 56px;
+      align-items: center;
+    }
+    .featured-img {
+      border: 1px solid var(--line);
+      background: #05080b;
+      padding: 26px;
+      display: flex;
+      justify-content: center;
+    }
+    .featured-img img {
+      max-width: 320px;
+      width: 100%;
+      filter: saturate(0.85);
+    }
+    .featured h2 {
+      font-family: var(--heading-font);
+      font-weight: 500;
+      font-size: clamp(26px, 3.2vw, 38px);
+      letter-spacing: -.01em;
+      margin-bottom: 20px;
+    }
+    .featured p {
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+    .spec-list {
+      margin: 26px 0 30px;
+      border-top: 1px solid var(--line);
+    }
+    .spec {
+      display: flex;
+      gap: 18px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+    .spec dt {
+      font-family: var(--mono-font);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--primary-color);
+      width: 150px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .spec dd {
+      color: var(--text-light);
+    }
+
+    /* Infrastructure Diagram */
+    .infra {
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 5rem -3rem;
+      padding: 5rem 3rem;
+    }
+    .infra-inner {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 56px;
+      align-items: center;
+    }
+    .infra h2 {
+      font-family: var(--heading-font);
+      font-weight: 500;
+      font-size: clamp(26px, 3.2vw, 38px);
+      letter-spacing: -.01em;
+      margin-bottom: 20px;
+    }
+    .infra p {
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+    .infra-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono-font);
+      font-size: 10.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--primary-color);
+      border: 1px solid var(--line-strong);
+      border-radius: 2px;
+      padding: 6px 12px;
+      margin-bottom: 24px;
+    }
+    .infra-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      box-shadow: 0 0 8px var(--primary-color);
+    }
+    .diagram {
+      border: 1px solid var(--line);
+      background: #05080b;
+      padding: 24px;
+    }
+    .diagram svg {
+      width: 100%;
+      height: auto;
+    }
+    .dlabel {
+      font-family: var(--mono-font);
+      font-size: 10px;
+      letter-spacing: .06em;
+      fill: var(--text-color);
+    }
+    .dsub {
+      font-family: var(--mono-font);
+      font-size: 8.5px;
+      letter-spacing: .06em;
+      fill: var(--text-light);
+    }
+    .dnote {
+      font-family: var(--mono-font);
+      font-size: 8px;
+      letter-spacing: .14em;
+      fill: var(--primary-color);
+      text-transform: uppercase;
+    }
+
+    /* Software Projects */
+    .proj {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-bottom: 5rem;
+    }
+    .proj-card {
+      background: var(--panel);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: background 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-card:hover {
+      background: var(--panel2);
+    }
+    .proj-kind {
+      font-family: var(--mono-font);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--primary-color);
+    }
+    .proj-card h3 {
+      font-family: var(--heading-font);
+      font-weight: 500;
+      font-size: 23px;
+      letter-spacing: -.005em;
+    }
+    .proj-card p {
+      color: var(--text-light);
+      font-size: 14.5px;
+    }
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .proj-tags span {
+      font-family: var(--mono-font);
+      font-size: 10px;
+      letter-spacing: .06em;
+      color: var(--text-light);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 4px 11px;
+    }
+    .proj-cta {
+      margin-top: auto;
+      padding-top: 8px;
+      font-family: var(--mono-font);
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--primary-color);
+    }
+
+    /* Publications list */
+    .pubs {
+      border-top: 1px solid var(--line);
+      margin-bottom: 5rem;
+    }
+    .pub {
+      display: grid;
+      grid-template-columns: 120px 1fr 200px;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+      transition: background 0.2s;
+    }
+    .pub:hover {
+      background: rgba(169, 214, 238, 0.025);
+    }
+    .pub-year {
+      font-family: var(--mono-font);
+      font-size: 12px;
+      color: var(--primary-color);
+      letter-spacing: .12em;
+    }
+    .pub-title {
+      font-size: 15.5px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+    .pub-venue {
+      font-family: var(--mono-font);
+      font-size: 11px;
+      color: var(--text-light);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-align: right;
+    }
+    .pubs-more {
+      margin-top: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono-font);
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--primary-color);
+    }
+
+    /* Responsive modifications */
     @media (max-width: 1024px) {
-      .sidebar { left: calc(-1 * var(--sidebar-width)); transition: left 0.3s ease-in-out; }
-      .main-content { margin-left: 0; width: 100%; padding-top: 120px; }
-      .mobile-header { display: flex; position: fixed; top: 0; left: 0; width: 100%; min-height: 120px; background: rgba(255, 255, 255, 0.98); z-index: 1000; align-items: center; justify-content: center; }
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 2rem;
+      }
+      .reticle-wrap {
+        max-width: 320px;
+      }
+      .pillar {
+        grid-template-columns: 64px 1fr;
+        gap: 14px;
+      }
+      .pillar-desc {
+        grid-column: 2;
+      }
+      .featured-inner, .infra-inner {
+        grid-template-columns: 1fr;
+      }
+      .pub {
+        grid-template-columns: 80px 1fr;
+      }
+      .pub-venue {
+        grid-column: 2;
+        text-align: left;
+      }
+      .proj {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
   <link rel="stylesheet" href="../assets/css/main.css?v=4.0" />
@@ -84,301 +554,375 @@
   <main class="main-content" id="main-content">
     <section class="section overview-section">
       <div class="container">
-        <!-- Hero Section Removed -->
+        
+        <!-- Hero area with Placido Reticle -->
+        <div class="hero">
+          <div>
+            <p class="eyebrow">Vision Science &amp; Biomedical Engineering</p>
+            <h1>Challenging the Limits of <em>Vision Rehabilitation</em> &amp; Augmentation</h1>
+            <p class="hero-desc">Bridging precision optics, AI-driven biomarker analysis, and personalized vision solutions to advance ocular science.</p>
+            <a class="hero-cta" href="#challenges-anchor">Explore research <span class="arrow">→</span></a>
+          </div>
+          <div class="reticle-wrap" aria-hidden="true">
+            <svg viewBox="0 0 460 460" fill="none">
+              <g stroke="rgba(168,200,224,.16)" stroke-width="1">
+                <circle cx="230" cy="230" r="224"/><circle cx="230" cy="230" r="196"/><circle cx="230" cy="230" r="168"/>
+              </g>
+              <g class="ring-anim"><circle cx="230" cy="230" r="182" stroke="rgba(169,214,238,.35)" stroke-width="1" stroke-dasharray="2 9"/></g>
+              <g stroke="rgba(168,200,224,.3)" stroke-width="1">
+                <line x1="230" y1="2" x2="230" y2="16"/><line x1="230" y1="444" x2="230" y2="458"/>
+                <line x1="2" y1="230" x2="16" y2="230"/><line x1="444" y1="230" x2="458" y2="230"/>
+              </g>
+              <text x="238" y="14" class="tick-label">90°</text><text x="238" y="454" class="tick-label">270°</text>
+              <text x="20" y="222" class="tick-label">180°</text><text x="424" y="222" class="tick-label">0°</text>
+              <text x="316" y="58" class="readout">IR STRUCTURED LIGHT</text>
+              <text x="22" y="416" class="readout">ROI 120 fps</text>
+              <text x="342" y="428" class="readout">PUPIL Ø 4.12 mm</text>
+            </svg>
+            <div class="reticle-core"><img src="../assets/images/vision_engineering_concept.png" alt="Ocular topography core visual" /></div>
+          </div>
+        </div>
 
-        <!-- Lead Introduction -->
+        <div class="strip">
+          <div class="strip-inner">
+            <span>Precision Optics</span><span>AI Biomarkers</span><span>Myopia Modeling</span><span>Corneo-Scleral 3D</span><span>Agentic Software</span><span>Data Pipelines</span>
+          </div>
+        </div>
+
+        <!-- Pillars -->
+        <div class="sec-head">
+          <span class="sec-label">Our Approach</span>
+          <h2 class="sec-title">Three Research Pillars</h2>
+          <span class="sec-rule"></span>
+        </div>
+        <div class="pillars">
+          <div class="pillar">
+            <span class="pillar-no">PX-01</span>
+            <span class="pillar-title">Precision Optics Measurement</span>
+            <p class="pillar-desc">Capturing micro-level precision data, from 3D corneo-scleral shapes to minute pupil tremors, using Infrared Structured Light and high-speed ROI tracking systems.</p>
+          </div>
+          <div class="pillar">
+            <span class="pillar-no">PX-02</span>
+            <span class="pillar-title">AI Biomarker Analysis</span>
+            <p class="pillar-desc">Analyzing collected visual data with proprietary deep learning models to detect early signs of degenerative brain diseases and ocular pathologies as non-invasive digital biomarkers.</p>
+          </div>
+          <div class="pillar">
+            <span class="pillar-no">PX-03</span>
+            <span class="pillar-title">Personalized Vision Solutions</span>
+            <p class="pillar-desc">Providing high-fidelity myopia progression models and personalized vision rehabilitation designs by integrating individual ocular optical spectra and lifestyle data.</p>
+          </div>
+        </div>
+
+        <!-- Featured Project (RetiX-RT Prototype) -->
+        <section class="featured" id="retix">
+          <div class="featured-inner">
+            <div class="featured-img"><img src="../assets/images/vision_engineering_concept.png" alt="RetiX-RT optical device visual"/></div>
+            <div>
+              <span class="sec-label">Featured Project</span>
+              <h2>RetiX-RT — Skiascopy-Driven Automated Refractometry</h2>
+              <p>Our flagship prototype combines the classical retinoscope with machine learning: the dynamics of the retinoscopic reflex are captured optically, then interpreted by deep learning models to estimate refractive error automatically — objective refraction without subjective judgment.</p>
+              <dl class="spec-list">
+                <div class="spec"><dt>Principle</dt><dd>Dynamic skiascopy reflex analysis</dd></div>
+                <div class="spec"><dt>Method</dt><dd>Optical capture + supervised machine learning models</dd></div>
+                <div class="spec"><dt>Status</dt><dd>Working prototype · Clinical validation phase planning</dd></div>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dynamic Challenge Sections -->
+        <div class="sec-head" id="challenges-anchor" style="margin-top: 5rem;">
+          <span class="sec-label">The Challenges</span>
+          <h2 class="sec-title">Four Research Phases</h2>
+          <span class="sec-rule"></span>
+        </div>
+
         <div class="challenge-list">
-          <!-- Lead text removed -->
-
-          <!-- PHASE 1: Visual Neuroscience -->
+          
+          <!-- PHASE 1 -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 1: Visual Neuroscience</span>
-            <h2 class="challenge-title">
-              Decoding the <strong>Neural Code</strong>
-            </h2>
-
+            <h2 class="challenge-title">Decoding the <strong>Neural Code</strong></h2>
             <p class="challenge-desc">
-              Before we can correct vision, we must understand how the brain
-              processes it. Our research begins at the foundational level:
-              analyzing how visual pathways interpret motion and contrast to
-              distinguish between optical deficits and neurological processing
-              issues.
+              Before we can correct vision, we must understand how the brain processes it. Our research begins at the foundational level: analyzing how visual pathways interpret motion and contrast to distinguish between optical deficits and neurological processing issues.
             </p>
 
-            <div class="challenge-visual-container">
-              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a">
+            <div class="challenge-visual-container" style="background-color: var(--panel); border: 1px solid var(--line);">
+              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--text-color);">
                 Motion Contrast Sensitivity
               </h3>
-
-              <p style="
-                    font-size: 0.95rem;
-                    color: #475569;
-                    margin-bottom: 2rem;
-                    line-height: 1.6;
-                  ">
-                Contrast sensitivity measures the visual system's ability to
-                distinguish objects from their background, a critical
-                indicator of functional vision beyond standard acuity. We
-                utilize <strong>Gabor patches</strong>—sinusoidal gratings
-                modulated by a Gaussian envelope—to precisely probe spatial
-                and temporal summation mechanisms. By varying the size and
-                duration of these stimuli, we can map the receptive field
-                properties of visual neurons and isolate deficits in specific
-                neural channels.
+              <p style="font-size: 0.95rem; color: var(--text-light); margin-bottom: 2rem; line-height: 1.6; text-align: justify;">
+                Contrast sensitivity measures the visual system's ability to distinguish objects from their background, a critical indicator of functional vision beyond standard acuity. We utilize <strong>Gabor patches</strong>—sinusoidal gratings modulated by a Gaussian envelope—to precisely probe spatial and temporal summation mechanisms. By varying the size and duration of these stimuli, we can map the receptive field properties of visual neurons and isolate deficits in specific neural channels.
               </p>
 
-              <!-- Spatial/Temporal frequency GIFs (same-size left/right boxes) -->
-              <div style="
-                    margin-bottom: 2rem;
-                    display: flex;
-                    gap: 2rem;
-                    justify-content: center;
-                    flex-wrap: nowrap;
-                    align-items: flex-start;
-                  ">
+              <!-- Spatial/Temporal frequency GIFs -->
+              <div style="margin-bottom: 2rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
                 <figure class="challenge-figure-item">
-                  <div style="
-                        margin-bottom: 0.5rem;
-                        font-size: 0.9rem;
-                        color: #94a3b8;
-                        text-align: center;
-                        ">
-                    Spatial Frequency
+                  <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">Spatial Frequency</div>
+                  <div style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden;">
+                    <picture>
+                      <source srcset="../assets/images/gabor_spatial_frequency.webp" type="image/webp">
+                      <img src="../assets/images/gabor_spatial_frequency.gif" alt="Gabor Patch Spatial Frequency Variation" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;" loading="lazy" />
+                    </picture>
                   </div>
-                  <div style="
-                        position: relative;
-                        width: 152px;
-                        height: 152px;
-                        border: 1px solid #e2e8f0;
-                        border-radius: 0;
-                        background: #f1f5f9;
-                        overflow: hidden;
-                      ">
-                    <picture><source srcset="../assets/images/gabor_spatial_frequency.webp" type="image/webp"><img src="../assets/images/gabor_spatial_frequency.gif"
-                      alt="Gabor Patch Spatial Frequency Variation (1-30 cpd)" style="
-                          position: absolute;
-                          inset: 0;
-                          width: 100%;
-                          height: 100%;
-                          object-fit: contain;
-                          display: block;
-                        " loading="lazy" /></picture>
-                  </div>
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.9rem;
-                        color: #94a3b8;
-                        text-align: center;
-                        line-height: 1.4;
-                        overflow: hidden;
-                      " data-gabor-caption="true" data-caption-start="1" data-caption-end="30" data-caption-frames="30"
-                    data-caption-duration="4500">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center; line-height: 1.4;" data-gabor-caption="true" data-caption-start="1" data-caption-end="30" data-caption-frames="30" data-caption-duration="4500">
                     <span class="gabor-caption-label challenge-caption-fixed">spatial frequency:</span>
-                    <span class="challenge-caption-dynamic"><span class="gabor-caption-value" style="
-                          display: inline-block;
-                          min-width: 2ch;
-                          text-align: right;
-                        ">1</span> <span class="gabor-caption-unit">cpd</span></span>
+                    <span class="challenge-caption-dynamic"><span class="gabor-caption-value" style="display: inline-block; min-width: 2ch; text-align: right;">1</span> <span class="gabor-caption-unit">cpd</span></span>
                   </figcaption>
                 </figure>
                 <figure class="challenge-figure-item">
-                  <div style="
-                        margin-bottom: 0.5rem;
-                        font-size: 0.9rem;
-                        color: #94a3b8;
-                        text-align: center;
-                        ">
-                    Temporal Frequency
-                  </div>
-                  <div data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="12000"
-                    data-step-duration="400" data-speed-multiplier="2.5"
-                    data-on-src="../assets/images/temporal_frequency_on.png"
-                    data-off-src="../assets/images/temporal_frequency_off.png" style="
-                        position: relative;
-                        width: 152px;
-                        height: 152px;
-                        border: 1px solid #e2e8f0;
-                        border-radius: 0;
-                        background: #f1f5f9;
-                        overflow: hidden;
-                      ">
+                  <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">Temporal Frequency</div>
+                  <div data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="12000" data-step-duration="400" data-speed-multiplier="2.5" data-on-src="../assets/images/temporal_frequency_on.png" data-off-src="../assets/images/temporal_frequency_off.png" style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden;">
                     <canvas class="temporal-flicker-canvas" style="width: 100%; height: 100%; display: block"></canvas>
                   </div>
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.9rem;
-                        color: #94a3b8;
-                        text-align: center;
-                        line-height: 1.4;
-                        overflow: hidden;
-                      " data-temporal-caption="true">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center; line-height: 1.4;" data-temporal-caption="true">
                     <span class="gabor-caption-label challenge-caption-fixed">temporal frequency:</span>
-                    <span class="challenge-caption-dynamic"><span class="temporal-caption-value" style="
-                          display: inline-block;
-                          min-width: 2ch;
-                          text-align: right;
-                        ">1</span> <span class="gabor-caption-unit">Hz</span></span>
+                    <span class="challenge-caption-dynamic"><span class="temporal-caption-value" style="display: inline-block; min-width: 2ch; text-align: right;">1</span> <span class="gabor-caption-unit">Hz</span></span>
                   </figcaption>
                 </figure>
               </div>
 
-              <div class="challenge-visual-grid">
-                <figure>
-                  <img loading="lazy" src="../assets/images/contrast_sensitivity_plot.png" alt="Contrast Sensitivity Plot" />
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.9rem;
-                        color: #94a3b8;
-                        text-align: center;
-                      ">
-                    Effects of Dominant Hand and Visual Pathway on Dynamic Visual Perception
-                  </figcaption>
+              <div class="challenge-visual-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <figure style="margin: 0;">
+                  <img loading="lazy" src="../assets/images/contrast_sensitivity_plot.png" alt="Contrast Sensitivity Plot" style="border: 1px solid var(--line); filter: saturate(0.85); background: #000;" />
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">Effects of Dominant Hand and Visual Pathway</figcaption>
                 </figure>
-                <figure>
-                  <img loading="lazy" src="../assets/images/contrast_sensitivity_boxplot.png" alt="Contrast Sensitivity Boxplot" />
-                  <figcaption style="
-                        margin-top: 0.5rem;
-                        font-size: 0.9rem;
-                        color: #94a3b8;
-                        text-align: center;
-                      ">
-                    Population Analytics
-                  </figcaption>
+                <figure style="margin: 0;">
+                  <img loading="lazy" src="../assets/images/contrast_sensitivity_boxplot.png" alt="Contrast Sensitivity Boxplot" style="border: 1px solid var(--line); filter: saturate(0.85); background: #000;" />
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">Population Analytics and Demographics</figcaption>
                 </figure>
               </div>
-
-              <p style="
-                    font-size: 0.95rem;
-                    color: #475569;
-                    margin-top: 2rem;
-                    line-height: 1.6;
-                  ">
-                <strong>Key Findings:</strong> The
-                sensitivity threshold analysis reveals distinct functional
-                baselines across age groups, with the boxplot demonstrating
-                significant variance in the older demographic. This data
-                establishes a quantitative standard for detecting subtle
-                neural degradation before structural damage becomes visible.
-              </p>
             </div>
           </div>
 
-          <!-- Connector -->
-          <div class="story-connector"></div>
+          <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
 
-          <!-- PHASE 2: Optical Metrology -->
+          <!-- PHASE 2 -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 2: Optometric Metrology</span>
-            <h2 class="challenge-title">
-              Mysteries of the Eye's 6 Interfaces: <strong>Refraction</strong>
-            </h2>
-
+            <h2 class="challenge-title">Mysteries of the Eye's 6 Interfaces: <strong>Refraction</strong></h2>
             <p class="challenge-desc">
-              Myopia progression is closely related to morphological changes in the peripheral retina. We use precise
-              geometric optical modeling and chromatic aberration principles to quantitatively determine the impact of
-              myopia on retinal geometry.
+              Myopia progression is closely related to morphological changes in the peripheral retina. We use precise geometric optical modeling and chromatic aberration principles to quantitatively determine the impact of myopia on retinal geometry.
             </p>
 
-            <!-- Study 1 -->
-            <div class="challenge-visual-container">
-              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a;">
-                Study 1: Precise Geometrical Optics Modeling & Simulation
+            <div class="challenge-visual-container" style="background-color: var(--panel); border: 1px solid var(--line);">
+              <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-color);">
+                Study 1: Precise Geometrical Optics Modeling &amp; Simulation
               </h3>
-              <div class="overview-research-box">
-                <h4>Research Overview
-                </h4>
-                <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1.5rem;">
-                  Since 2014, we have applied a proprietary calculation algorithm to precisely calculate all angles of
-                  incidence and refraction at <strong>6 refractive surfaces: anterior/posterior cornea,
-                    anterior/posterior lens cortex, and anterior/posterior lens nucleus</strong>.
-                </p>
-                <div class="challenge-visual-grid phase2-no-frame"
-                  style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
-                  <figure
-                    style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img loading="lazy" src="../assets/images/research/phase2/oct_analysis.png" alt="Retinal OCT Measurement">
-                    <figcaption class="overview-figcaption">OCT
-                      Retinal Curvature Measurement</figcaption>
-                  </figure>
-                  <figure
-                    style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img loading="lazy" src="../assets/images/research/phase2/optical_simulation.png" alt="Ray-tracing Simulation">
-                    <figcaption class="overview-figcaption">
-                      6-Surface Ray-tracing</figcaption>
-                  </figure>
-                  <figure
-                    style="flex: 1 1 auto; max-width: 300px; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px;">
-                    <img loading="lazy" src="../assets/images/research/phase2/curvature_graph.png" alt="Curvature Change Graph">
-                    <figcaption class="overview-figcaption">
-                      Retinal Shape by Refractive Error</figcaption>
-                  </figure>
-                </div>
-                <h4>Key Findings</h4>
-                <ul class="overview-findings-list">
-                  <li>
-                    <strong>Correlation Confirmed:</strong> A strong positive correlation (r=0.836) was confirmed
-                    between spherical equivalent refraction and retinal curvature radius.
-                  </li>
-                  <li>
-                    <strong>Asymmetric Expansion:</strong> The most distinct changes were observed in the
-                    <strong>Temporal and Inferior retina</strong>, suggesting asymmetric expansion during myopia
-                    progression.
-                  </li>
-                </ul>
+              <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
+                Since 2014, we have applied a calculation algorithm to precisely compute all angles of incidence and refraction at <strong>6 refractive surfaces: anterior/posterior cornea, anterior/posterior lens cortex, and anterior/posterior lens nucleus</strong>.
+                We map curvature radii ($R$) and refractive indices ($n_i$, $n_t$) to calculate refraction vectors. According to <strong>Snell's Law</strong>:
+                $$n_i \cdot \sin(\theta_i) = n_t \cdot \sin(\theta_t)$$
+                By computing the optical path differences (OPD) at each boundary using dynamic ray-tracing, we accurately trace how peripheral retinal shape correlates with systemic myopia development.
+              </p>
+              
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <img loading="lazy" src="../assets/images/research/phase2/oct_analysis.png" alt="Retinal OCT Curvature Measurement" style="width: 100%; height: 180px; object-fit: contain;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">OCT Retinal Curvature</figcaption>
+                </figure>
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <img loading="lazy" src="../assets/images/research/phase2/optical_simulation.png" alt="6-Surface Ray-tracing Simulation" style="width: 100%; height: 180px; object-fit: contain;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">6-Surface Ray-tracing</figcaption>
+                </figure>
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <img loading="lazy" src="../assets/images/research/phase2/curvature_graph.png" alt="Retinal Shape Graph" style="width: 100%; height: 180px; object-fit: contain;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">Shape by Refractive Error</figcaption>
+                </figure>
               </div>
-            </div>
 
-            <!-- Connector between studies -->
-            <div class="story-connector"></div>
-
-            <!-- Study 2 -->
-            <div class="challenge-visual-container">
-              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a;">
+              <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-color); border-top: 1px solid var(--line); padding-top: 2rem;">
                 Study 2: Chromatic Aberration-based Peripheral Refraction Measurement
               </h3>
-              <div class="overview-research-box">
-                <h4>Research Overview
-                </h4>
-                <p style="font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 1rem;">
-                  To accurately measure the refractive state of the peripheral retina, we utilize the principle of
-                  <strong>Longitudinal Chromatic Aberration</strong> between Red and Green wavelengths.
-                </p>
-                <ul class="overview-findings-list">
-                  <li><strong>Step 1. Iso-clarity Calibration:</strong> Establish
-                    subjective iso-clarity baseline by measuring contrast sensitivity of 1cpd Red/Green patches in the
-                    central field.</li>
-                  <li><strong>Step 2. Peripheral Stimulation:</strong> Randomly flicker
-                    Red/Green LED pairs arranged on concentric circles at 8°, 16°, and 32°.</li>
-                  <li><strong>Step 3. Refraction Calculation:</strong> Inverse calculate
-                    the focal position on the retina by analyzing clarity response patterns.</li>
-                </ul>
-                <div class="challenge-visual-grid phase2-no-frame overview-figure-row">
-                  <figure
-                    style="flex: 1; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; min-width: 0;">
-                    <img loading="lazy" src="../assets/images/research/phase2/peripheral_setup_schematic.png" alt="Setup Schematic">
-                    <figcaption class="overview-figcaption">
-                      Peripheral Retinal Full-correction Pilot Study</figcaption>
-                  </figure>
-                  <figure
-                    style="flex: 1; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; min-width: 0;">
-                    <img loading="lazy" src="../assets/images/research/phase2/led_flicker.gif" alt="LED Circuit"
-                      style="width: 100%; height: 220px; object-fit: contain; object-position: center 60%; display: block;">
-                    <figcaption class="overview-figcaption">LED
-                      Control Circuit Diagram</figcaption>
-                  </figure>
-                  <figure
-                    style="flex: 1; background: #fff; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 8px; min-width: 0;">
-                    <picture><source srcset="../assets/images/research/phase2/peripheral_prototype.webp" type="image/webp"><img loading="lazy" src="../assets/images/research/phase2/peripheral_prototype.gif" alt="Prototype"
-                        style="width: 100%; height: 220px; object-fit: contain; object-position: center 60%; display: block;"></picture>
-                    <figcaption class="overview-figcaption">
-                      Peripheral Retinal Full-correction Prototype</figcaption>
-                  </figure>
-                </div>
+              <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
+                To accurately measure the refractive state of the peripheral retina, we utilize the principle of <strong>Longitudinal Chromatic Aberration</strong> between Red and Green wavelengths. By projecting concentric flicker stimuli at 8°, 16°, and 32° and measuring subjective focus disparity, we map focal plane curvature deviations without standard subjective autorefractors.
+              </p>
+              
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <img loading="lazy" src="../assets/images/research/phase2/peripheral_setup_schematic.png" alt="Setup Schematic" style="width: 100%; height: 160px; object-fit: contain;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">Peripheral Retinal correction Setup</figcaption>
+                </figure>
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <img loading="lazy" src="../assets/images/research/phase2/led_flicker.gif" alt="LED Circuit animation" style="width: 100%; height: 160px; object-fit: contain;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">LED Control Circuitry</figcaption>
+                </figure>
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <picture>
+                    <source srcset="../assets/images/research/phase2/peripheral_prototype.webp" type="image/webp">
+                    <img loading="lazy" src="../assets/images/research/phase2/peripheral_prototype.gif" alt="Prototype simulation" style="width: 100%; height: 160px; object-fit: contain;">
+                  </picture>
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">Peripheral Refraction Prototype</figcaption>
+                </figure>
               </div>
             </div>
           </div>
-          <div id="advanced-phase-mount" class="advanced-phase-content" data-advanced-phase-source="overview-advanced.html?v=3.1"></div>
+
+          <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
+
+          <!-- PHASE 3 -->
+          <div class="challenge-section">
+            <span class="challenge-phase-label">Phase 3: Prototype Development</span>
+            <h2 class="challenge-title">Precision Corneo-Scleral <strong>3D Reconstruction</strong></h2>
+            <p class="challenge-desc">
+              To fit specialty contact lenses and plan corneal surgeries, mapping the cornea is insufficient—we must capture the entire corneo-scleral topography. We develop high-speed prototype devices to reconstruct this geometry in 3D using Infrared Structured Light.
+            </p>
+
+            <div class="challenge-visual-container" style="background-color: var(--panel); border: 1px solid var(--line);">
+              <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-color);">
+                3D Reconstruction via Structured Light Deformation
+              </h3>
+              <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
+                By projecting concentric infrared ring patterns onto the ocular surface, we capture pattern deformations with high-speed cameras. Using principles of <strong>differential geometry</strong>, we calculate height deviations ($Z(r)$) at each radius $r$ through:
+                $$Z(r) \propto \Delta d \cdot \tan(\theta)$$
+                where $\Delta d$ is the local pattern displacement on the camera sensor, and $\theta$ is the projection angle. An optimized mesh-fitting algorithm reconstructs the complete 3D corneo-scleral topography in real-time with sub-micron precision, providing automated fitting parameters for clinical partners.
+              </p>
+              
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <img loading="lazy" src="../assets/images/research/phase3/corneal_topography_rings.png" alt="Projected Rings" style="width: 100%; height: 160px; object-fit: contain;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">Deformed Ring Capture</figcaption>
+                </figure>
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <img loading="lazy" src="../assets/images/research/phase3/topography_3d_mesh.png" alt="3D Mesh Reconstruction" style="width: 100%; height: 160px; object-fit: contain;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">3D Mesh Reconstruction</figcaption>
+                </figure>
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <img loading="lazy" src="../assets/images/research/phase3/clinical_fitting_view.png" alt="Clinical Lens Fitting View" style="width: 100%; height: 160px; object-fit: contain;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">Automated Lens Fitting Model</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
+
+          <!-- PHASE 4 -->
+          <div class="challenge-section">
+            <span class="challenge-phase-label">Phase 4: AI &amp; Software Integration</span>
+            <h2 class="challenge-title">AI-Driven Autonomic <strong>Biomarker Screening</strong></h2>
+            <p class="challenge-desc">
+              The eye is a window to the brain. We capture and analyze dynamic pupil reactions under structured light stimulation, utilizing deep learning algorithms to isolate autonomic biomarker indices for early-stage neurodegenerative diseases.
+            </p>
+
+            <div class="challenge-visual-container" style="background-color: var(--panel); border: 1px solid var(--line);">
+              <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-color);">
+                High-Speed Pupil Tracking &amp; Biomarker Analysis
+              </h3>
+              <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
+                Using high-frame-rate cameras (up to 120 fps) under infrared illumination, we track pupil contours and capture sub-millimeter oscillations. Our pipeline extracts <strong>10 key autonomic parameters</strong> (e.g., constriction latency, dilation velocity) and 47 high-dimensional biomarkers. We evaluate signal complexity through <strong>Sample Entropy (SampEn)</strong>:
+                $$SampEn(m, r, N) = -\ln\left(\frac{A}{B}\right)$$
+                where $m$ is the template length, $r$ is the tolerance threshold, and $A, B$ represent the counts of matching sub-patterns. Reduced pupil oscillation complexity serves as a non-invasive digital biomarker for early autonomic dysfunction.
+              </p>
+              
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <img loading="lazy" src="../assets/images/research/phase4/pupil_tracking_raw.png" alt="Raw Pupil Contour Tracking" style="width: 100%; height: 160px; object-fit: contain;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">Real-time Contour Tracking</figcaption>
+                </figure>
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <img loading="lazy" src="../assets/images/research/phase4/pupil_flicker_response.png" alt="Pupil Response Curve" style="width: 100%; height: 160px; object-fit: contain;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">Autonomic Response Waveform</figcaption>
+                </figure>
+                <figure style="margin: 0; padding: 0.5rem; border: 1px solid var(--line); border-radius: 4px; background: #000;">
+                  <img loading="lazy" src="../assets/images/research/phase4/biomarker_correlation_matrix.png" alt="Biomarker Correlation Matrix" style="width: 100%; height: 160px; object-fit: contain;">
+                  <figcaption style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-light); text-align: center;">47-Biomarker Cluster Matrix</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
         </div>
+
+        <!-- Infrastructure Section -->
+        <section class="infra" id="infra">
+          <div class="infra-inner">
+            <div>
+              <span class="sec-label">Cloud Infrastructure</span>
+              <h2>Optinex Global Data Pipeline</h2>
+              <div class="infra-badge"><span class="dot"></span>ACTIVE · HIPAA COMPLIANT</div>
+              <p>Optinex Research deploys a robust, low-latency data pipeline: secure raw data from Edge devices is ingested to cloud instances, run through deep learning inference engines, and compiled into clinical reports available on remote clinician dashboards in seconds.</p>
+            </div>
+            <div class="diagram">
+              <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="240" rx="4" fill="#040608"/>
+                <g stroke="rgba(168,200,224,.18)" stroke-width="1">
+                  <!-- Ingestion flow lines -->
+                  <path d="M70 120 H150" stroke-dasharray="3 3"/>
+                  <path d="M210 120 H290" stroke-dasharray="3 3"/>
+                  <path d="M180 85 V65" stroke-dasharray="2 2"/>
+                </g>
+                <!-- Nodes -->
+                <circle cx="70" cy="120" r="28" fill="#0e141b" stroke="rgba(168,200,224,.28)"/>
+                <circle cx="180" cy="120" r="32" fill="#111922" stroke="#a9d6ee"/>
+                <circle cx="290" cy="120" r="28" fill="#0e141b" stroke="rgba(168,200,224,.28)"/>
+                <!-- Texts inside nodes -->
+                <text x="70" y="117" class="dlabel" text-anchor="middle">EDGE</text>
+                <text x="70" y="129" class="dsub" text-anchor="middle">DEVICE</text>
+                
+                <text x="180" y="117" class="dlabel" text-anchor="middle" fill="#a9d6ee">AWS CLOUD</text>
+                <text x="180" y="129" class="dsub" text-anchor="middle">INFERENCE</text>
+                
+                <text x="290" y="117" class="dlabel" text-anchor="middle">CLINICAL</text>
+                <text x="290" y="129" class="dsub" text-anchor="middle">DASHBOARD</text>
+                
+                <text x="180" y="55" class="dnote" text-anchor="middle">HIPAA Vault</text>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- Software Projects Section -->
+        <div class="sec-head">
+          <span class="sec-label">Deployments</span>
+          <h2 class="sec-title">Software Repositories</h2>
+          <span class="sec-rule"></span>
+        </div>
+        <div class="proj">
+          <div class="proj-card">
+            <span class="proj-kind">CLINICAL SUITE</span>
+            <h3>Hermes</h3>
+            <p>Real-time client software for high-speed pupil contour extraction, dynamic light stimulation control, and local pre-processing of autonomic biomarkers.</p>
+            <div class="proj-tags">
+              <span>C++</span><span>OpenCV</span><span>Qt</span><span>GStreamer</span>
+            </div>
+            <a href="#" class="proj-cta">View repository</a>
+          </div>
+          <div class="proj-card">
+            <span class="proj-kind">DATA PIPELINE</span>
+            <h3>Optinex Factory</h3>
+            <p>Cloud server backend for processing massive topographic mesh fittings, computing Sample Entropy, and managing medical dashboard APIs.</p>
+            <div class="proj-tags">
+              <span>Python</span><span>FastAPI</span><span>PyTorch</span><span>Docker</span>
+            </div>
+            <a href="#" class="proj-cta">View repository</a>
+          </div>
+        </div>
+
+        <!-- Publications Section -->
+        <div class="sec-head">
+          <span class="sec-label">Scientific Output</span>
+          <h2 class="sec-title">Selected Publications</h2>
+          <span class="sec-rule"></span>
+        </div>
+        <div class="pubs" id="pubs">
+          <div class="pub">
+            <span class="pub-year">2024</span>
+            <span class="pub-title">Analysis of Peripheral Retinal Refraction Gradients Using Longitudinal Chromatic Aberration in Myopic Populations</span>
+            <span class="pub-venue">Journal of Vision Science</span>
+          </div>
+          <div class="pub">
+            <span class="pub-year">2023</span>
+            <span class="pub-title">Three-Dimensional Reconstruction of Corneo-Scleral Surface Topography via concentric Structured Light Patterns</span>
+            <span class="pub-venue">Optometry &amp; Vision Science</span>
+          </div>
+          <div class="pub">
+            <span class="pub-year">2021</span>
+            <span class="pub-title">Autonomic Biomarkers in Pupil Light Reflex: High-Speed Contour Analytics and Sample Entropy Evaluation</span>
+            <span class="pub-venue">Frontiers in Neuroscience</span>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
