@@ -32,7 +32,7 @@
       font-size: 11px;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--primary-color);
+      color: var(--primary-color) !important;
       margin-bottom: 22px;
       display: flex;
       align-items: center;
@@ -62,33 +62,28 @@
       max-width: 48em;
       line-height: 1.6;
     }
-    
-    /* Section styling */
-    .sec-head {
-      display: flex;
-      align-items: baseline;
-      gap: 20px;
-      margin-bottom: 48px;
-    }
-    .sec-label {
+
+    /* Challenge Titles Readability Boost */
+    .challenge-phase-label {
       font-family: var(--mono-font);
       font-size: 11px;
-      letter-spacing: .22em;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--primary-color);
-      white-space: nowrap;
+      color: var(--primary-color) !important; /* Brighter ice blue */
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: block;
     }
-    .sec-title {
+    .challenge-title {
       font-family: var(--heading-font);
       font-weight: 500;
-      font-size: clamp(24px, 3vw, 34px);
-      letter-spacing: -.01em;
+      font-size: 28px;
+      margin-bottom: 18px;
+      color: #fff !important; /* Clear white text */
     }
-    .sec-rule {
-      flex: 1;
-      height: 1px;
-      background: var(--line);
-      align-self: center;
+    .challenge-title strong {
+      color: var(--primary-color) !important; /* Brighter ice blue accent for core terms */
+      font-weight: 600;
     }
 
     /* Challenge Visual Cards Alignment & Chart Dark-mode adaptation */
@@ -131,6 +126,50 @@
       display: block;
       transition: filter 0.3s ease;
     }
+
+    /* Phase 4 Custom Image Grid (Large graph on top, 2 photos below) */
+    .phase4-layout-top {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .phase4-layout-top figure {
+      background: var(--panel2) !important;
+      border: 1px solid var(--line) !important;
+      border-radius: 4px !important;
+      padding: 16px !important;
+      margin: 0;
+    }
+    .phase4-layout-top img {
+      width: 100%;
+      height: 380px; /* 2.5x larger scale */
+      object-fit: contain;
+      border-radius: 2px;
+      display: block;
+    }
+    .phase4-layout-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .phase4-layout-bottom figure {
+      background: var(--panel2) !important;
+      border: 1px solid var(--line) !important;
+      border-radius: 4px !important;
+      padding: 12px !important;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .phase4-layout-bottom img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 2px;
+      display: block;
+    }
+
     /* White-background charts inversion to merge with dark theme */
     .chart-img {
       filter: invert(0.9) hue-rotate(180deg) brightness(1.1) contrast(1.1);
@@ -187,7 +226,7 @@
       font-size: 10.5px;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--primary-color);
+      color: var(--primary-color) !important;
       border: 1px solid var(--line-strong);
       border-radius: 2px;
       padding: 6px 12px;
@@ -254,7 +293,7 @@
     .pub-year {
       font-family: var(--mono-font);
       font-size: 12px;
-      color: var(--primary-color);
+      color: var(--primary-color) !important;
       letter-spacing: .12em;
     }
     .pub-title {
@@ -271,13 +310,73 @@
       text-align: right;
     }
 
+    /* Featured Project - Clean Text Layout without redundant eye graphic */
+    .featured {
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 5rem -3rem;
+      padding: 5rem 3rem;
+    }
+    .featured-inner-clean {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .featured h2 {
+      font-family: var(--heading-font);
+      font-weight: 500;
+      font-size: clamp(26px, 3.2vw, 38px);
+      letter-spacing: -.01em;
+      margin-bottom: 20px;
+    }
+    .featured p {
+      color: var(--text-light);
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+    .spec-list {
+      margin: 0;
+      border-top: 1px solid var(--line);
+    }
+    .spec {
+      display: flex;
+      gap: 18px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+    .spec dt {
+      font-family: var(--mono-font);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--primary-color) !important;
+      width: 150px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .spec dd {
+      color: var(--text-light);
+    }
+
     /* Responsive modifications */
     @media (max-width: 1024px) {
       .hero-challenge h1 {
         font-size: 28px;
       }
       .challenge-visual-grid,
-      .challenge-figure-row {
+      .challenge-figure-row,
+      .phase4-layout-bottom {
+        grid-template-columns: 1fr;
+      }
+      .phase4-layout-top img {
+        height: 220px;
+      }
+      .featured-inner-clean {
         grid-template-columns: 1fr;
       }
       .infra-inner {
@@ -350,16 +449,8 @@
           <p class="hero-challenge-desc">We follow a structured R&amp;D path to study ocular properties and develop non-invasive biometric algorithms. Explore each phase below to see our core models, formulas, and visual outcomes.</p>
         </div>
 
-        <!-- Infinite scrolling ticker to prevent data pipeline breaks -->
-        <div class="strip">
-          <div class="strip-inner">
-            <span>Precision Optics</span><span>AI Biomarkers</span><span>Myopia Modeling</span><span>Corneo-Scleral 3D</span><span>Agentic Software</span><span>Data Pipelines</span>
-            <span>Precision Optics</span><span>AI Biomarkers</span><span>Myopia Modeling</span><span>Corneo-Scleral 3D</span><span>Agentic Software</span><span>Data Pipelines</span>
-          </div>
-        </div>
-
         <!-- Dynamic Challenge Sections -->
-        <div class="challenge-list">
+        <div class="challenge-list" style="margin-top: 4rem;">
           
           <!-- PHASE 1 -->
           <div class="challenge-section">
@@ -520,7 +611,7 @@
 
           <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
 
-          <!-- PHASE 4 -->
+          <!-- PHASE 4 (Rearranged layout: large graph on top, 2 photos below) -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 4: AI &amp; Software Integration</span>
             <h2 class="challenge-title">AI-Driven Autonomic <strong>Biomarker Screening</strong></h2>
@@ -538,15 +629,17 @@
                 where $m$ is the template length, $r$ is the tolerance threshold, and $A, B$ represent the counts of matching sub-patterns. Reduced pupil oscillation complexity serves as a non-invasive digital biomarker for early autonomic dysfunction.
               </p>
               
-              <!-- Corrected actual paths for Phase 4 -->
-              <div class="challenge-visual-grid">
+              <!-- Realigned visual layout -->
+              <div class="phase4-layout-top">
+                <figure>
+                  <img loading="lazy" src="../assets/images/research/phase4_pupil_graph.jpg" alt="Pupil Reflex Response Curve" class="chart-img">
+                  <figcaption class="overview-figcaption">Autonomic Response Waveform (Large Analysis Scale)</figcaption>
+                </figure>
+              </div>
+              <div class="phase4-layout-bottom">
                 <figure>
                   <img loading="lazy" src="../assets/images/research/phase4_eye_tracking_monitor.jpg" alt="High-Speed Eye Tracking Monitor" class="photo-img">
                   <figcaption class="overview-figcaption">Real-time Contour Tracking</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" src="../assets/images/research/phase4_pupil_graph.jpg" alt="Pupil Reflex Response Curve" class="chart-img">
-                  <figcaption class="overview-figcaption">Autonomic Response Waveform</figcaption>
                 </figure>
                 <figure>
                   <img loading="lazy" src="../assets/images/research/phase4_study2_correlation_matrix.jpg" alt="Biomarker Cluster Matrix" class="chart-img">
@@ -558,14 +651,15 @@
 
         </div>
 
-        <!-- Featured Project (RetiX-RT Prototype, Corrected with retinoscope_view.png) -->
+        <!-- Featured Project (RetiX-RT Prototype, clean layout without redundant eye graphic) -->
         <section class="featured" id="retix" style="margin-top: 5rem;">
-          <div class="featured-inner">
-            <div class="featured-img"><img src="../assets/images/research/phase3/retinoscope_view.png" alt="RetiX-RT Optical View" class="photo-img"/></div>
+          <div class="featured-inner-clean">
             <div>
               <span class="sec-label">Featured Project</span>
               <h2>RetiX-RT — Automated Refractometry</h2>
               <p>Optinex's featured prototype, RetiX-RT, merges traditional skiascopy principles with computer vision. By tracking dynamic reflex speeds and refraction movements across pupil axes in real-time, the system automatically calculates objective refraction values without manual user intervention.</p>
+            </div>
+            <div>
               <dl class="spec-list">
                 <div class="spec"><dt>Concept</dt><dd>Skiascopy Reflex Waveform Analysis</dd></div>
                 <div class="spec"><dt>Method</dt><dd>Dynamic Image Processing + Neural Net Fitting</dd></div>

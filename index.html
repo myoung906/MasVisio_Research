@@ -36,11 +36,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    /* Home Hero Layout with Reticle animation */
+    /* Home Hero Layout with Eye graphic */
     .hero {
       max-width: 100%;
       margin: 0 auto;
-      padding: 3rem 0 5rem;
+      padding: 3rem 0 4rem;
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
       gap: 48px;
@@ -51,7 +51,7 @@
       font-size: 11px;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--primary-color);
+      color: var(--primary-color) !important;
       margin-bottom: 22px;
       display: flex;
       align-items: center;
@@ -100,81 +100,53 @@
       background: rgba(169,214,238,.06);
     }
     
-    /* Placido reticle styling */
-    .reticle-wrap {
-      position: relative;
+    /* Clean Hero Image styling */
+    .hero-image-wrap {
+      border: 1px solid var(--line-strong);
+      background: var(--panel);
+      padding: 16px;
+      border-radius: 4px;
       aspect-ratio: 1/1;
       max-width: 380px;
       justify-self: center;
       width: 100%;
-    }
-    .reticle-wrap svg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-    .reticle-core {
-      position: absolute;
-      inset: 20.5%;
-      border-radius: 50%;
       overflow: hidden;
-      border: 1px solid var(--line-strong);
-      filter: saturate(0.8) contrast(1.05);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
     }
-    .reticle-core img {
+    .hero-image-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-    .ring-anim {
-      animation: spin 90s linear infinite;
-      transform-origin: center;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    .tick-label {
-      font-family: var(--mono-font);
-      font-size: 9px;
-      fill: var(--text-light);
-      letter-spacing: 0.1em;
-    }
-    .readout {
-      font-family: var(--mono-font);
-      font-size: 9.5px;
-      fill: var(--text-light);
+      border-radius: 2px;
+      filter: saturate(0.85) contrast(1.05);
     }
     
-    /* Instrument strip */
+    /* Infinite Scrolling Ticker */
     .strip {
+      overflow: hidden;
+      white-space: nowrap;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
       background: linear-gradient(180deg, rgba(169, 214, 238, 0.03), transparent);
-      margin: 2rem 0 4rem;
+      margin: 1rem 0 4rem;
+      width: 100%;
     }
     .strip-inner {
+      display: inline-flex;
+      animation: ticker 30s linear infinite;
       padding: 14px 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 34px;
+    }
+    .strip-inner span {
+      padding: 0 30px;
       font-family: var(--mono-font);
       font-size: 10.5px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--primary-color);
-    }
-    .strip-inner span::before {
-      content: "·";
-      margin-right: 34px;
-      color: var(--line-strong);
-    }
-    .strip-inner span:first-child::before {
-      content: none;
-      margin: 0;
+      color: var(--primary-color) !important;
+      display: inline-block;
     }
 
-    /* Pillars */
+    /* Pillars Readability */
     .sec-head {
       display: flex;
       align-items: baseline;
@@ -186,7 +158,7 @@
       font-size: 11px;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--primary-color);
+      color: var(--primary-color) !important;
       white-space: nowrap;
     }
     .sec-title {
@@ -219,49 +191,50 @@
     .pillar-no {
       font-family: var(--mono-font);
       font-size: 12px;
-      color: var(--primary-color);
+      color: var(--primary-color) !important;
       letter-spacing: .14em;
       padding-top: 5px;
+      font-weight: 600;
     }
     .pillar-title {
       font-family: var(--heading-font);
-      font-weight: 500;
+      font-weight: 600;
       font-size: 19px;
+      color: #fff !important; /* White text for contrast */
     }
     .pillar-desc {
       color: var(--text-light);
       font-size: 15.5px;
       max-width: 48em;
+      line-height: 1.65;
     }
 
-    /* Grid layout */
+    /* Features Grid and dark-state cards */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       margin-top: 3rem;
+      margin-bottom: 3rem;
     }
     .feature-card {
-      background: var(--panel);
-      border: 1px solid var(--line);
+      background: var(--panel2) !important; /* Force dark background */
+      border: 1px solid var(--line-strong) !important; /* Force strong borders */
       padding: 30px;
       border-radius: 4px;
       display: flex;
       flex-direction: column;
       gap: 16px;
-      transition: background 0.25s, border-color 0.25s;
+      transition: border-color 0.25s;
     }
     .feature-card:hover {
-      background: var(--panel2);
-      border-color: var(--primary-color);
-      transform: none;
-      box-shadow: none;
+      border-color: var(--primary-color) !important;
     }
     .feature-card h3 {
       font-family: var(--heading-font);
       font-weight: 500;
       font-size: 20px;
-      color: var(--text-color);
+      color: #fff !important; /* White title inside card */
       margin-bottom: 0;
     }
     .feature-card img {
@@ -286,7 +259,7 @@
         grid-template-columns: 1fr;
         padding-top: 2rem;
       }
-      .reticle-wrap {
+      .hero-image-wrap {
         max-width: 320px;
       }
       .pillar {
@@ -350,7 +323,7 @@
     <section class="section overview-section">
       <div class="container">
         
-        <!-- Hero area with Placido Reticle -->
+        <!-- Hero area with Eye Graphic instead of SVG -->
         <div class="hero">
           <div>
             <p class="eyebrow">Vision Science &amp; Biomedical Engineering</p>
@@ -358,26 +331,12 @@
             <p class="hero-desc">Bridging precision optics, AI-driven biomarker analysis, and personalized vision solutions to advance ocular science.</p>
             <a class="hero-cta" href="research/overview.html">Explore our R&amp;D challenges <span class="arrow">→</span></a>
           </div>
-          <div class="reticle-wrap" aria-hidden="true">
-            <svg viewBox="0 0 460 460" fill="none">
-              <g stroke="rgba(168,200,224,.16)" stroke-width="1">
-                <circle cx="230" cy="230" r="224"/><circle cx="230" cy="230" r="196"/><circle cx="230" cy="230" r="168"/>
-              </g>
-              <g class="ring-anim"><circle cx="230" cy="230" r="182" stroke="rgba(169,214,238,.35)" stroke-width="1" stroke-dasharray="2 9"/></g>
-              <g stroke="rgba(168,200,224,.3)" stroke-width="1">
-                <line x1="230" y1="2" x2="230" y2="16"/><line x1="230" y1="444" x2="230" y2="458"/>
-                <line x1="2" y1="230" x2="16" y2="230"/><line x1="444" y1="230" x2="458" y2="230"/>
-              </g>
-              <text x="238" y="14" class="tick-label">90°</text><text x="238" y="454" class="tick-label">270°</text>
-              <text x="20" y="222" class="tick-label">180°</text><text x="424" y="222" class="tick-label">0°</text>
-              <text x="316" y="58" class="readout">IR STRUCTURED LIGHT</text>
-              <text x="22" y="416" class="readout">ROI 120 fps</text>
-              <text x="342" y="428" class="readout">PUPIL Ø 4.12 mm</text>
-            </svg>
-            <div class="reticle-core"><img src="assets/images/vision_engineering_concept.png" alt="Ocular topography core visual" /></div>
+          <div class="hero-image-wrap">
+            <img src="assets/images/vision_engineering_concept.png" alt="Ocular topography core visual" />
           </div>
         </div>
 
+        <!-- 1-Row Infinite scrolling ticker -->
         <div class="strip">
           <div class="strip-inner">
             <span>Precision Optics</span><span>AI Biomarkers</span><span>Myopia Modeling</span><span>Corneo-Scleral 3D</span><span>Agentic Software</span><span>Data Pipelines</span>
