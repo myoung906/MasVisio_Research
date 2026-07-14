@@ -115,6 +115,7 @@
       align-items: center;
       justify-content: space-between;
       min-width: 0;
+      text-align: center;
     }
     .challenge-visual-grid img,
     .challenge-figure-row img {
@@ -127,18 +128,39 @@
       transition: filter 0.3s ease;
     }
 
-    /* Phase 1 Figure Left Shift (-37px) */
-    .phase1-figure-shift {
-      transform: translateX(-37px);
+    /* Phase 1 Figure Gabor alignment (Centered, no offset translation) */
+    .phase1-figure-centered {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
-    /* Phase 3 alignment center correction */
-    .phase3-align-center {
+    /* Phase 3 vertical split and scale styling */
+    .phase3-vertical-split {
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
       align-items: center !important;
-      padding-top: 22px !important;
+      padding: 20px 12px !important;
+    }
+    .split-images-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0 25px;
+      width: 100%;
+    }
+    .split-img {
+      width: 90% !important;
+      height: auto !important;
+      max-height: 130px !important;
+      object-fit: contain !important;
+      transform: scale(1.3); /* 1.3x scale increase */
+      transform-origin: center;
+      display: block;
     }
 
     /* Phase 4 Custom Image Grid (Large graph on top, 2 photos below) */
@@ -178,7 +200,7 @@
     }
     .phase4-layout-bottom img {
       width: 100%;
-      height: 240px; /* Thicker scale (2 steps up from 180px) */
+      height: 240px;
       object-fit: contain;
       border-radius: 2px;
       display: block;
@@ -264,20 +286,20 @@
     }
     .dlabel {
       font-family: var(--mono-font);
-      font-size: 9.5px;
-      letter-spacing: .06em;
+      font-size: 9px;
+      letter-spacing: .05em;
       fill: var(--text-color);
     }
     .dsub {
       font-family: var(--mono-font);
-      font-size: 8px;
-      letter-spacing: .04em;
+      font-size: 7.5px;
+      letter-spacing: .02em;
       fill: var(--text-light);
     }
     .dnote {
       font-family: var(--mono-font);
-      font-size: 8px;
-      letter-spacing: .14em;
+      font-size: 7.5px;
+      letter-spacing: .12em;
       fill: var(--primary-color);
       text-transform: uppercase;
     }
@@ -324,59 +346,6 @@
       text-align: right;
     }
 
-    /* Featured Project - Clean Text Layout without redundant eye graphic */
-    .featured {
-      background: var(--panel);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      margin: 5rem -3rem;
-      padding: 5rem 3rem;
-    }
-    .featured-inner-clean {
-      max-width: var(--container-width);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 56px;
-      align-items: center;
-    }
-    .featured h2 {
-      font-family: var(--heading-font);
-      font-weight: 500;
-      font-size: clamp(26px, 3.2vw, 38px);
-      letter-spacing: -.01em;
-      margin-bottom: 20px;
-    }
-    .featured p {
-      color: var(--text-light);
-      margin-bottom: 16px;
-      line-height: 1.7;
-    }
-    .spec-list {
-      margin: 0;
-      border-top: 1px solid var(--line);
-    }
-    .spec {
-      display: flex;
-      gap: 18px;
-      padding: 11px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 14px;
-    }
-    .spec dt {
-      font-family: var(--mono-font);
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--primary-color) !important;
-      width: 150px;
-      flex-shrink: 0;
-      padding-top: 2px;
-    }
-    .spec dd {
-      color: var(--text-light);
-    }
-
     /* Responsive modifications */
     @media (max-width: 1024px) {
       .hero-challenge h1 {
@@ -389,9 +358,6 @@
       }
       .phase4-layout-top img {
         height: 220px;
-      }
-      .featured-inner-clean {
-        grid-template-columns: 1fr;
       }
       .infra-inner {
         grid-template-columns: 1fr;
@@ -482,11 +448,11 @@
                 Contrast sensitivity measures the visual system's ability to distinguish objects from their background, a critical indicator of functional vision beyond standard acuity. We utilize <strong>Gabor patches</strong>—sinusoidal gratings modulated by a Gaussian envelope—to precisely probe spatial and temporal summation mechanisms. By varying the size and duration of these stimuli, we can map the receptive field properties of visual neurons and isolate deficits in specific neural channels.
               </p>
 
-              <!-- Spatial/Temporal frequency Gabor elements (Synced duration 3s to match animation) shifted left by 37px -->
-              <div style="margin-bottom: 2rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
-                <figure class="phase1-figure-shift">
+              <!-- Spatial/Temporal Gabor elements aligned centered (No offset) -->
+              <div style="margin-bottom: 2rem; display: flex; gap: 4rem; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
+                <figure class="phase1-figure-centered">
                   <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">Spatial Frequency</div>
-                  <div style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden;">
+                  <div style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden; margin-bottom: 8px;">
                     <picture>
                       <source srcset="../assets/images/gabor_spatial_frequency.webp" type="image/webp">
                       <img src="../assets/images/gabor_spatial_frequency.gif" alt="Gabor Patch Spatial Frequency Variation" class="photo-img" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;" loading="lazy" />
@@ -497,9 +463,9 @@
                     <span class="challenge-caption-dynamic"><span class="gabor-caption-value" style="display: inline-block; min-width: 2ch; text-align: right;">1</span> <span class="gabor-caption-unit">cpd</span></span>
                   </figcaption>
                 </figure>
-                <figure class="phase1-figure-shift">
+                <figure class="phase1-figure-centered">
                   <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">Temporal Frequency</div>
-                  <div data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="3000" data-step-duration="100" data-speed-multiplier="1.0" data-on-src="../assets/images/temporal_frequency_on.png" data-off-src="../assets/images/temporal_frequency_off.png" style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden;">
+                  <div data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="3000" data-step-duration="100" data-speed-multiplier="1.0" data-on-src="../assets/images/temporal_frequency_on.png" data-off-src="../assets/images/temporal_frequency_off.png" style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden; margin-bottom: 8px;">
                     <canvas class="temporal-flicker-canvas" style="width: 100%; height: 100%; display: block"></canvas>
                   </div>
                   <figcaption class="overview-figcaption" data-temporal-caption="true">
@@ -524,7 +490,7 @@
 
           <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
 
-          <!-- PHASE 2 -->
+          <!-- PHASE 2 (Fixed LaTeX Equations to plain text equations) -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 2: Optometric Metrology</span>
             <h2 class="challenge-title">Mysteries of the Eye's 6 Interfaces: <strong>Refraction</strong></h2>
@@ -537,10 +503,8 @@
                 Study 1: Precise Geometrical Optics Modeling &amp; Simulation
               </h3>
               <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                Since 2014, we have applied a calculation algorithm to precisely compute all angles of incidence and refraction at <strong>6 refractive surfaces: anterior/posterior cornea, anterior/posterior lens cortex, and anterior/posterior lens nucleus</strong>.
-                We map curvature radii ($R$) and refractive indices ($n_i$, $n_t$) to calculate refraction vectors. According to <strong>Snell's Law</strong>:
-                $$n_i \cdot \sin(\theta_i) = n_t \cdot \sin(\theta_t)$$
-                By computing the optical path differences (OPD) at each boundary using dynamic ray-tracing, we accurately trace how peripheral retinal shape correlates with systemic myopia development.
+                Since 2014, we have applied a calculation algorithm to precisely compute all angles of incidence and refraction at 6 refractive surfaces: anterior/posterior cornea, anterior/posterior lens cortex, and anterior/posterior lens nucleus.
+                We map curvature radii (R) and refractive indices (ni, nt) to calculate refraction vectors. According to Snell's Law (ni * sin(theta_i) = nt * sin(theta_t)), by computing the optical path differences (OPD) at each boundary using dynamic ray-tracing, we accurately trace how peripheral retinal shape correlates with systemic myopia development.
               </p>
               
               <div class="challenge-visual-grid">
@@ -562,7 +526,7 @@
                 Study 2: Chromatic Aberration-based Peripheral Refraction Measurement
               </h3>
               <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                To accurately measure the refractive state of the peripheral retina, we utilize the principle of <strong>Longitudinal Chromatic Aberration</strong> between Red and Green wavelengths. By projecting concentric flicker stimuli at 8°, 16°, and 32° and measuring subjective focus disparity, we map focal plane curvature deviations without standard subjective autorefractors.
+                To accurately measure the refractive state of the peripheral retina, we utilize the principle of Longitudinal Chromatic Aberration between Red and Green wavelengths. By projecting concentric flicker stimuli at 8°, 16°, and 32° and measuring subjective focus disparity, we map focal plane curvature deviations without standard subjective autorefractors.
               </p>
               
               <div class="challenge-figure-row">
@@ -587,7 +551,7 @@
 
           <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
 
-          <!-- PHASE 3 -->
+          <!-- PHASE 3 (Fixed LaTeX Equations & split middle image vertically, scale 1.3x) -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 3: Prototype Development</span>
             <h2 class="challenge-title">Precision Corneo-Scleral <strong>3D Reconstruction</strong></h2>
@@ -600,19 +564,20 @@
                 3D Reconstruction via Structured Light Deformation
               </h3>
               <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                By projecting concentric infrared ring patterns onto the ocular surface, we capture pattern deformations with high-speed cameras. Using principles of <strong>differential geometry</strong>, we calculate height deviations ($Z(r)$) at each radius $r$ through:
-                $$Z(r) \propto \Delta d \cdot \tan(\theta)$$
-                where $\Delta d$ is the local pattern displacement on the camera sensor, and $\theta$ is the projection angle. An optimized mesh-fitting algorithm reconstructs the complete 3D corneo-scleral topography in real-time with sub-micron precision, providing automated fitting parameters for clinical partners.
+                By projecting concentric infrared ring patterns onto the ocular surface, we capture pattern deformations with high-speed cameras. Using principles of differential geometry, we calculate height deviations Z(r) at each radius r through the linear proportion Z(r) = delta_d * tan(theta), where delta_d is the local pattern displacement on the camera sensor, and theta is the projection angle. An optimized mesh-fitting algorithm reconstructs the complete 3D corneo-scleral topography in real-time with sub-micron precision, providing automated fitting parameters for clinical partners.
               </p>
               
-              <!-- Corrected actual paths for Phase 3 (First image updated to ping-pong red grid laser) -->
+              <!-- Corrected actual paths for Phase 3 (Middle figure vertically stacked and scaled 1.3x) -->
               <div class="challenge-visual-grid">
                 <figure>
                   <img loading="lazy" src="../assets/images/research/phase3/ping_pong_laser_grid.png" alt="Projected Red Grid Laser Pattern" class="photo-img">
                   <figcaption class="overview-figcaption">Laser Grid Projection</figcaption>
                 </figure>
-                <figure class="phase3-align-center">
-                  <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_method.png" alt="3D Reconstruction Method" class="photo-img">
+                <figure class="phase3-vertical-split">
+                  <div class="split-images-wrap">
+                    <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_left.png" alt="3D Reconstruction Left Method" class="photo-img split-img">
+                    <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_right.png" alt="3D Reconstruction Right Method" class="photo-img split-img">
+                  </div>
                   <figcaption class="overview-figcaption">3D Reconstruction Method</figcaption>
                 </figure>
                 <figure>
@@ -625,7 +590,7 @@
 
           <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
 
-          <!-- PHASE 4 (Rearranged layout: large graph on top, 2 photos below) -->
+          <!-- PHASE 4 -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 4: AI &amp; Software Integration</span>
             <h2 class="challenge-title">AI-Driven Autonomic <strong>Biomarker Screening</strong></h2>
@@ -663,72 +628,56 @@
 
         </div>
 
-        <!-- Featured Project (RetiX-RT Prototype, clean layout without redundant eye graphic) -->
-        <section class="featured" id="retix" style="margin-top: 5rem;">
-          <div class="featured-inner-clean">
-            <div>
-              <span class="sec-label">Featured Project</span>
-              <h2>RetiX-RT — Automated Refractometry</h2>
-              <p>Optinex's featured prototype, RetiX-RT, merges traditional skiascopy principles with computer vision. By tracking dynamic reflex speeds and refraction movements across pupil axes in real-time, the system automatically calculates objective refraction values without manual user intervention.</p>
-            </div>
-            <div>
-              <dl class="spec-list">
-                <div class="spec"><dt>Concept</dt><dd>Skiascopy Reflex Waveform Analysis</dd></div>
-                <div class="spec"><dt>Method</dt><dd>Dynamic Image Processing + Neural Net Fitting</dd></div>
-                <div class="spec"><dt>Status</dt><dd>Optical Bench Prototype completed · Clinical validation planned</dd></div>
-              </dl>
-            </div>
-          </div>
-        </section>
-
-        <!-- Redesigned Cloud Infrastructure Section (Edge Ingestion Pipeline Architecture - Incorporates Optinex Intro) -->
+        <!-- Redesigned Cloud Infrastructure Section (Edge Ingestion Pipeline Architecture - Incorporates Hardware + Software Agent + Productization Flow) -->
         <section class="infra" id="infra">
           <div class="infra-inner">
             <div>
               <span class="sec-label">Data Pipeline Architecture</span>
               <h2>Real-time Edge Ingestion Pipeline</h2>
               <div class="infra-badge"><span class="dot"></span>ACTIVE · HIPAA SECURE</div>
-              <p>Optinex Research is an autonomous visual intelligence R&amp;D station specializing in advanced optometric diagnostics and ocular screening. Our real-time data pipeline streams high-frequency video feeds from edge diagnostic sensors via WebSocket connections. Cloud-based autonomous agents instantly process GPU-accelerated Gabor contrast mappings and fit 3D corneo-scleral mesh topologies, delivering secure clinical analytics to remote patient portals in seconds.</p>
+              <p>Optinex Research deploys a low-latency, cyber-physical pipeline designed to commercialize advanced vision diagnostics. High-frequency raw visual frames are captured by a **Basler industrial camera (ROI 120fps)** and preprocessed locally on an **NVIDIA Jetson Orin** edge board. The preprocessed data is streamed via low-latency WebSockets to the cloud server, where a **Self-evolving Agent** automatically executes 3D corneo-scleral mesh calculations and evaluates Gabor neural contrast summation. Crucially, this software agent utilizes closed-loop feedback from diagnostic trials to autonomously update deep learning weights, continuously evolving AI accuracy. Secure clinical reports are archived in a **HIPAA database** and delivered directly to the **Clinician Portal** as a certified medical screening device, completing the productization pipeline.</p>
             </div>
             <div class="diagram">
-              <svg viewBox="0 0 420 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 420 280" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Background frame -->
-                <rect width="420" height="250" rx="6" fill="#040608" stroke="rgba(168,200,224,.1)" stroke-width="1"/>
+                <rect width="420" height="280" rx="6" fill="#040608" stroke="rgba(168,200,224,.1)" stroke-width="1"/>
                 
                 <!-- Data flow paths -->
-                <path d="M75 125 H145" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <path d="M215 125 H285" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <path d="M180 85 V50 H180" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
-                <path d="M180 165 V200 H180" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
+                <path d="M75 130 H140" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <path d="M210 130 H275" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <path d="M175 90 V55" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
+                <path d="M175 170 V205" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
                 
                 <!-- Flow texts -->
-                <text x="110" y="115" class="dflow" text-anchor="middle">WebSocket</text>
-                <text x="250" y="115" class="dflow" text-anchor="middle">TLS 1.3</text>
+                <text x="108" y="120" class="dflow" text-anchor="middle">WebSocket</text>
+                <text x="242" y="120" class="dflow" text-anchor="middle">TLS 1.3</text>
                 
                 <!-- Nodes -->
-                <!-- Edge Device Node -->
-                <rect x="25" y="95" width="50" height="60" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
-                <circle cx="50" cy="120" r="12" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
-                <text x="50" y="145" class="dlabel" text-anchor="middle" fill="#fff">Ocular Scan</text>
-                <text x="50" y="152" class="dsub" text-anchor="middle">Edge Sensor</text>
+                <!-- Basler Camera & Jetson Orin Edge Node -->
+                <rect x="15" y="85" width="60" height="90" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
+                <circle cx="45" cy="115" r="10" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
+                <text x="45" y="137" class="dlabel" text-anchor="middle" fill="#fff">Basler Cam</text>
+                <text x="45" y="147" class="dsub" text-anchor="middle">120fps ROI</text>
+                <text x="45" y="160" class="dnote" text-anchor="middle">Jetson Orin</text>
 
-                <!-- Processing GPU Node -->
-                <rect x="145" y="85" width="70" height="80" rx="3" fill="#111922" stroke="#a9d6ee" stroke-width="1.5"/>
-                <text x="180" y="110" class="dlabel" text-anchor="middle" fill="#a9d6ee" font-weight="600">PyTorch GPU</text>
-                <text x="180" y="125" class="dsub" text-anchor="middle" fill="#fff">3D Mesh Fitting</text>
-                <text x="180" y="137" class="dsub" text-anchor="middle" fill="#fff">SampEn Calc</text>
-                <text x="180" y="150" class="dsub" text-anchor="middle">Inference Engine</text>
+                <!-- Processing GPU + Self-evolving Agent Node -->
+                <rect x="140" y="90" width="70" height="80" rx="3" fill="#111922" stroke="#a9d6ee" stroke-width="1.5"/>
+                <text x="175" y="112" class="dlabel" text-anchor="middle" fill="#a9d6ee" font-weight="600">Cloud Agent</text>
+                <text x="175" y="125" class="dsub" text-anchor="middle" fill="#fff">Self-evolving</text>
+                <text x="175" y="135" class="dsub" text-anchor="middle" fill="#fff">Auto Weights</text>
+                <text x="175" y="148" class="dsub" text-anchor="middle">PyTorch Core</text>
 
                 <!-- HIPAA DB Node -->
-                <rect x="150" y="15" width="60" height="35" rx="3" fill="#080c10" stroke="rgba(168,200,224,.2)" stroke-width="1"/>
-                <text x="180" y="28" class="dlabel" text-anchor="middle" fill="#fff">Secure DB</text>
-                <text x="180" y="38" class="dsub" text-anchor="middle">HIPAA Vault</text>
+                <rect x="145" y="20" width="60" height="35" rx="3" fill="#080c10" stroke="rgba(168,200,224,.2)" stroke-width="1"/>
+                <text x="175" y="33" class="dlabel" text-anchor="middle" fill="#fff">HIPAA Vault</text>
+                <text x="175" y="43" class="dsub" text-anchor="middle">Secure DB</text>
 
-                <!-- Doctor Dashboard Node -->
-                <rect x="285" y="95" width="55" height="60" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
-                <rect x="300" y="110" width="25" height="20" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
-                <text x="312" y="145" class="dlabel" text-anchor="middle" fill="#fff">Clinician</text>
-                <text x="312" y="152" class="dsub" text-anchor="middle">Dashboard</text>
+                <!-- Productization: Clinician Portal Node -->
+                <rect x="275" y="85" width="60" height="90" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
+                <rect x="292" y="102" width="26" height="18" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
+                <text x="305" y="137" class="dlabel" text-anchor="middle" fill="#fff">Clinician</text>
+                <text x="305" y="147" class="dsub" text-anchor="middle">Portal Web</text>
+                <text x="305" y="160" class="dnote" text-anchor="middle">PRODUCTIZED</text>
               </svg>
             </div>
           </div>

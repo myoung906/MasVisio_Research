@@ -115,6 +115,7 @@
       align-items: center;
       justify-content: space-between;
       min-width: 0;
+      text-align: center;
     }
     .challenge-visual-grid img,
     .challenge-figure-row img {
@@ -127,18 +128,39 @@
       transition: filter 0.3s ease;
     }
 
-    /* Phase 1 Figure Left Shift (-37px) */
-    .phase1-figure-shift {
-      transform: translateX(-37px);
+    /* Phase 1 Figure Gabor alignment (Centered, no offset translation) */
+    .phase1-figure-centered {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
-    /* Phase 3 alignment center correction */
-    .phase3-align-center {
+    /* Phase 3 vertical split and scale styling */
+    .phase3-vertical-split {
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
       align-items: center !important;
-      padding-top: 22px !important;
+      padding: 20px 12px !important;
+    }
+    .split-images-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0 25px;
+      width: 100%;
+    }
+    .split-img {
+      width: 90% !important;
+      height: auto !important;
+      max-height: 130px !important;
+      object-fit: contain !important;
+      transform: scale(1.3); /* 1.3x scale increase */
+      transform-origin: center;
+      display: block;
     }
 
     /* Phase 4 Custom Image Grid (Large graph on top, 2 photos below) */
@@ -178,7 +200,7 @@
     }
     .phase4-layout-bottom img {
       width: 100%;
-      height: 240px; /* Thicker scale (2 steps up from 180px) */
+      height: 240px;
       object-fit: contain;
       border-radius: 2px;
       display: block;
@@ -264,20 +286,20 @@
     }
     .dlabel {
       font-family: var(--mono-font);
-      font-size: 9.5px;
-      letter-spacing: .06em;
+      font-size: 9px;
+      letter-spacing: .05em;
       fill: var(--text-color);
     }
     .dsub {
       font-family: var(--mono-font);
-      font-size: 8px;
-      letter-spacing: .04em;
+      font-size: 7.5px;
+      letter-spacing: .02em;
       fill: var(--text-light);
     }
     .dnote {
       font-family: var(--mono-font);
-      font-size: 8px;
-      letter-spacing: .14em;
+      font-size: 7.5px;
+      letter-spacing: .12em;
       fill: var(--primary-color);
       text-transform: uppercase;
     }
@@ -324,59 +346,6 @@
       text-align: right;
     }
 
-    /* Featured Project - Clean Text Layout without redundant eye graphic */
-    .featured {
-      background: var(--panel);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      margin: 5rem -3rem;
-      padding: 5rem 3rem;
-    }
-    .featured-inner-clean {
-      max-width: var(--container-width);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 56px;
-      align-items: center;
-    }
-    .featured h2 {
-      font-family: var(--heading-font);
-      font-weight: 500;
-      font-size: clamp(26px, 3.2vw, 38px);
-      letter-spacing: -.01em;
-      margin-bottom: 20px;
-    }
-    .featured p {
-      color: var(--text-light);
-      margin-bottom: 16px;
-      line-height: 1.7;
-    }
-    .spec-list {
-      margin: 0;
-      border-top: 1px solid var(--line);
-    }
-    .spec {
-      display: flex;
-      gap: 18px;
-      padding: 11px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 14px;
-    }
-    .spec dt {
-      font-family: var(--mono-font);
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--primary-color) !important;
-      width: 150px;
-      flex-shrink: 0;
-      padding-top: 2px;
-    }
-    .spec dd {
-      color: var(--text-light);
-    }
-
     /* Responsive modifications */
     @media (max-width: 1024px) {
       .hero-challenge h1 {
@@ -389,9 +358,6 @@
       }
       .phase4-layout-top img {
         height: 220px;
-      }
-      .featured-inner-clean {
-        grid-template-columns: 1fr;
       }
       .infra-inner {
         grid-template-columns: 1fr;
@@ -482,11 +448,11 @@
                 대비감도는 배경과 사물을 구별해내는 눈의 능력을 뜻하며, 표준 시력 검사표만으로 측정하기 힘든 실질적 기능 시력 지표입니다. 본 연구진은 가우시안 윈도우로 modulated된 사인파 격자인 <strong>가보 패치(Gabor patch)</strong> 자극을 사용하여 시각 뉴런의 공간 및 시간 가중 합산 특성을 정확히 분석합니다. 자극의 공간 주파수 및 제시 시간을 미세 조정함으로써 망막에서 시각 피질로 이어지는 특이 경로의 신경학적 결함을 국소적으로 진단해냅니다.
               </p>
 
-              <!-- Spatial/Temporal frequency Gabor elements (Synced duration 3s to match animation) shifted left by 37px -->
-              <div style="margin-bottom: 2rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
-                <figure class="phase1-figure-shift">
+              <!-- Spatial/Temporal Gabor elements aligned centered (No offset) -->
+              <div style="margin-bottom: 2rem; display: flex; gap: 4rem; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
+                <figure class="phase1-figure-centered">
                   <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">공간 주파수 (Spatial Frequency)</div>
-                  <div style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden;">
+                  <div style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden; margin-bottom: 8px;">
                     <picture>
                       <source srcset="../../assets/images/gabor_spatial_frequency.webp" type="image/webp">
                       <img src="../../assets/images/gabor_spatial_frequency.gif" alt="Gabor Patch 공간 주파수 자극 애니메이션" class="photo-img" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;" loading="lazy" />
@@ -497,9 +463,9 @@
                     <span class="challenge-caption-dynamic"><span class="gabor-caption-value" style="display: inline-block; min-width: 2ch; text-align: right;">1</span> <span class="gabor-caption-unit">cpd</span></span>
                   </figcaption>
                 </figure>
-                <figure class="phase1-figure-shift">
+                <figure class="phase1-figure-centered">
                   <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">시간 주파수 (Temporal Frequency)</div>
-                  <div data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="3000" data-step-duration="100" data-speed-multiplier="1.0" data-on-src="../../assets/images/temporal_frequency_on.png" data-off-src="../../assets/images/temporal_frequency_off.png" style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden;">
+                  <div data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="3000" data-step-duration="100" data-speed-multiplier="1.0" data-on-src="../../assets/images/temporal_frequency_on.png" data-off-src="../../assets/images/temporal_frequency_off.png" style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden; margin-bottom: 8px;">
                     <canvas class="temporal-flicker-canvas" style="width: 100%; height: 100%; display: block"></canvas>
                   </div>
                   <figcaption class="overview-figcaption" data-temporal-caption="true">
@@ -524,7 +490,7 @@
 
           <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
 
-          <!-- PHASE 2 -->
+          <!-- PHASE 2 (Fixed LaTeX Equations to plain text equations) -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 2: Optometric Metrology</span>
             <h2 class="challenge-title">시광학 계측: <strong>시광학 계측</strong></h2>
@@ -537,9 +503,7 @@
                 연구 1: 6경계면 기하광학 모델링 및 실시간 레이트레이싱 시뮬레이션
               </h3>
               <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                안구의 주요 경계면인 <strong>각막 전/후면, 수정체 피질 전/후면, 수정체 핵 전/후면 등 총 6개의 광학적 굴절 인터페이스</strong>를 모델링하고, 각 경계의 곡률 반경($R$)과 매질 굴절률($n$)을 고려하여 광선을 계산합니다. <strong>스넬의 법칙(Snell's Law)</strong>:
-                $$n_i \cdot \sin(\theta_i) = n_t \cdot \sin(\theta_t)$$
-                에 근거하여 입사각과 굴절각 벡터를 실시간 시뮬레이션하며, 망막 주변부에서의 광로차(Optical Path Difference) 분석을 통해 안구 신장(Elongation)에 따른 굴절 오차 맵을 완성합니다.
+                안구의 주요 경계면인 각막 전/후면, 수정체 피질 전/후면, 수정체 핵 전/후면 등 총 6개의 광학적 굴절 인터페이스를 모델링하고, 각 경계의 곡률 반경(R)과 매질 굴절률(n)을 고려하여 광선을 계산합니다. 스넬의 법칙(Snell's Law): ni * sin(theta_i) = nt * sin(theta_t) 에 근거하여 입사각과 굴절각 벡터를 실시간 시뮬레이션하며, 망막 주변부에서의 광로차(Optical Path Difference) 분석을 통해 안구 신장(Elongation)에 따른 굴절 오차 맵을 완성합니다.
               </p>
               
               <div class="challenge-visual-grid">
@@ -561,7 +525,7 @@
                 연구 2: 파장별 종색수차 기반 주변부 망막 굴절 계측법
               </h3>
               <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                주변부 망막에 조사된 적색과 녹색 파장의 **종색수차(Longitudinal Chromatic Aberration)** 초점 Disparity를 유도하여, 피험자가 인지하는 상대적 명확도를 측정합니다. 8°, 16°, 32°에 위치한 다점 자극 광원 반응을 역추적함으로써 복잡한 고가 장비 없이도 주변부 망막의 광학적 초점 이탈 상태를 정밀 실증합니다.
+                주변부 망막에 조사된 적색과 녹색 파장의 종색수차(Longitudinal Chromatic Aberration) 초점 Disparity를 유도하여, 피험자가 인지하는 상대적 명확도를 측정합니다. 8°, 16°, 32°에 위치한 다점 자극 광원 반응을 역추적함으로써 복잡한 고가 장비 없이도 주변부 망막의 광학적 초점 이탈 상태를 정밀 실증합니다.
               </p>
               
               <div class="challenge-figure-row">
@@ -586,7 +550,7 @@
 
           <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
 
-          <!-- PHASE 3 -->
+          <!-- PHASE 3 (Fixed LaTeX Equations & split middle image vertically, scale 1.3x) -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 3: Prototype Development</span>
             <h2 class="challenge-title">시제품 개발: <strong>시제품 개발</strong></h2>
@@ -599,19 +563,20 @@
                 구조화광 패턴 변형 분석 기반 3D 메쉬 복원
               </h3>
               <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                안구 전면에 구조화된 적외선 동심원 링 패턴을 투사한 뒤, 안구 표면 굴곡에 의해 왜곡된 패턴의 기하학적 형태를 고해상도 카메라로 분석합니다. **미분 기하학(Differential Geometry)** 해석 기법에 따라 각 패턴 반경 $r$에서의 높이 편차($Z(r)$)를 산출합니다:
-                $$Z(r) \propto \Delta d \cdot \tan(\theta)$$
-                ($\Delta d$: 센서상 패턴 변위량, $\theta$: 프로젝션 광원의 투사각). 최적화된 메쉬 피팅 알고리즘을 통해 마이크로미터 단위의 고해상도 3차원 안구 형상 맵을 렌더링하고, 협력 임상 파트너사에게 가이드 파라미터를 실시간 전송합니다.
+                안구 전면에 구조화된 적외선 동심원 링 패턴을 투사한 뒤, 안구 표면 굴곡에 의해 왜곡된 패턴의 기하학적 형태를 고해상도 카메라로 분석합니다. 미분 기하학(Differential Geometry) 해석 기법에 따라 각 패턴 반경 r에서의 높이 편차 Z(r)를 산출합니다. 높이 편차 Z(r)는 센서상 패턴 변위량(delta_d)과 프로젝션 광원의 투사각(theta)의 탄젠트 값에 비례(Z(r) = delta_d * tan(theta))하여 계산됩니다. 최적화된 메쉬 피팅 알고리즘을 통해 마이크로미터 단위의 고해상도 3차원 안구 형상 맵을 렌더링하고, 협력 임상 파트너사에게 가이드 파라미터를 실시간 전송합니다.
               </p>
               
-              <!-- Corrected actual paths for Phase 3 (First image updated to ping-pong red grid laser, second aligned center) -->
+              <!-- Corrected actual paths for Phase 3 (Middle figure vertically stacked and scaled 1.3x) -->
               <div class="challenge-visual-grid">
                 <figure>
                   <img loading="lazy" src="../../assets/images/research/phase3/ping_pong_laser_grid.png" alt="적색 레이저 격자가 투사된 탁구공 형상" class="photo-img">
                   <figcaption class="overview-figcaption">적색 레이저 격자 투사</figcaption>
                 </figure>
-                <figure class="phase3-align-center">
-                  <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_method.png" alt="3차원 메쉬 모델" class="photo-img">
+                <figure class="phase3-vertical-split">
+                  <div class="split-images-wrap">
+                    <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_left.png" alt="3차원 복원 알고리즘 기하모델" class="photo-img split-img">
+                    <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_right.png" alt="3차원 복원 알고리즘 인공신경망" class="photo-img split-img">
+                  </div>
                   <figcaption class="overview-figcaption">3차원 복원 알고리즘 시각화</figcaption>
                 </figure>
                 <figure>
@@ -624,7 +589,7 @@
 
           <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
 
-          <!-- PHASE 4 (Rearranged layout: large graph on top, 2 photos below) -->
+          <!-- PHASE 4 -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 4: AI &amp; Software Integration</span>
             <h2 class="challenge-title">AI &amp; 소프트웨어 통합: <strong>AI &amp; 소프트웨어 통합</strong></h2>
@@ -662,72 +627,56 @@
 
         </div>
 
-        <!-- Featured Project (RetiX-RT Prototype, clean layout without redundant eye graphic) -->
-        <section class="featured" id="retix" style="margin-top: 5rem;">
-          <div class="featured-inner-clean">
-            <div>
-              <span class="sec-label">Featured Project</span>
-              <h2>RetiX-RT — 자동 굴절 측정 검사 시제품</h2>
-              <p>Optinex의 핵심 시제품인 RetiX-RT는 전통적인 검영법(Skiascopy)과 기계 학습을 결합합니다. 안구 내 반사되는 검영 광선(Retinoscopic Reflex)의 동적 움직임을 초고속 카메라로 캡처한 뒤, 학습된 인공 신경망 모델을 통해 환자의 굴절 이상 수치를 객관적이고 자동으로 도출해냅니다.</p>
-            </div>
-            <div>
-              <dl class="spec-list">
-                <div class="spec"><dt>측정 원리</dt><dd>검영기 광반사(Skiascopy Reflex) 동적 파형 분석</dd></div>
-                <div class="spec"><dt>분석 기법</dt><dd>광학 영상 캡처 + 지도학습형 기계학습 모델 적용</dd></div>
-                <div class="spec"><dt>진행 상태</dt><dd>프로토타입 장비 구축 완료 · 임상 검증 단계 기획 중</dd></div>
-              </dl>
-            </div>
-          </div>
-        </section>
-
-        <!-- Redesigned Cloud Infrastructure Section (Edge Ingestion Pipeline Architecture - Incorporates Optinex Intro) -->
+        <!-- Redesigned Cloud Infrastructure Section (Edge Ingestion Pipeline Architecture - Incorporates Hardware + Software Agent + Productization Flow) -->
         <section class="infra" id="infra">
           <div class="infra-inner">
             <div>
               <span class="sec-label">Data Pipeline Architecture</span>
               <h2>실시간 엣지 데이터 파이프라인</h2>
               <div class="infra-badge"><span class="dot"></span>ACTIVE · HIPAA SECURE</div>
-              <p>Optinex Research는 시각재활 기술 및 안구 분석 분야를 전문으로 하는 자율 R&amp;D 스테이션입니다. 당사의 실시간 데이터 파이프라인은 엣지 센서 장비로부터 취득된 고속 시각 데이터를 WebSocket 프로토콜을 거쳐 실시간으로 처리합니다. 클라우드 상의 지능형 자율 에이전트가 3D 각공막 메쉬 피팅과 동공 바이오마커 연산을 병렬 처리하며, 안전하게 암호화된 결과를 임상 대시보드로 즉각 전송합니다.</p>
+              <p>Optinex Research는 하드웨어 센싱부터 소프트웨어 자율 지능까지 유기적으로 결합된 제품화 파이프라인을 운영합니다. 환자 안구에서 수집된 초고속 비디오 프레임(ROI 120fps)은 엣지 단의 **Basler 고성능 카메라**를 거쳐 로컬에 탑재된 **NVIDIA Jetson Orin** 온보드 컴퓨팅 디바이스에서 실시간 전처리됩니다. 전처리된 데이터는 WebSocket 프로토콜을 타고 클라우드로 스트리밍되며, 클라우드 코어에 위치한 **자율성장 에이전트(Self-evolving Agent)** 소프트웨어가 3D 각공막 메쉬 피팅과 동공 바이오마커 연산을 총괄합니다. 이 소프트웨어 에이전트는 피드백 루프를 통해 딥러닝 모델의 가중치를 자율 갱신(Self-updating)하며 의료 솔루션 성능을 스스로 고도화합니다. 최종 결과는 **HIPAA 보안 DB**에 영구 보존되고, 인증 규격을 갖춘 **의료진용 진단 보조 솔루션 웹 포털**로 안전하게 상용화 및 제품화되어 서비스됩니다.</p>
             </div>
             <div class="diagram">
-              <svg viewBox="0 0 420 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 420 280" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Background frame -->
-                <rect width="420" height="250" rx="6" fill="#040608" stroke="rgba(168,200,224,.1)" stroke-width="1"/>
+                <rect width="420" height="280" rx="6" fill="#040608" stroke="rgba(168,200,224,.1)" stroke-width="1"/>
                 
                 <!-- Data flow paths -->
-                <path d="M75 125 H145" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <path d="M215 125 H285" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <path d="M180 85 V50 H180" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
-                <path d="M180 165 V200 H180" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
+                <path d="M75 130 H140" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <path d="M210 130 H275" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                <path d="M175 90 V55" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
+                <path d="M175 170 V205" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
                 
                 <!-- Flow texts -->
-                <text x="110" y="115" class="dflow" text-anchor="middle">WebSocket</text>
-                <text x="250" y="115" class="dflow" text-anchor="middle">TLS 1.3 암호화</text>
+                <text x="108" y="120" class="dflow" text-anchor="middle">WebSocket</text>
+                <text x="242" y="120" class="dflow" text-anchor="middle">TLS 1.3 암호화</text>
                 
                 <!-- Nodes -->
-                <!-- Edge Device Node -->
-                <rect x="25" y="95" width="50" height="60" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
-                <circle cx="50" cy="120" r="12" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
-                <text x="50" y="145" class="dlabel" text-anchor="middle" fill="#fff">안구 스캔</text>
-                <text x="50" y="152" class="dsub" text-anchor="middle">엣지 센서</text>
+                <!-- Basler Camera & Jetson Orin Edge Node -->
+                <rect x="15" y="85" width="60" height="90" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
+                <circle cx="45" cy="115" r="10" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
+                <text x="45" y="137" class="dlabel" text-anchor="middle" fill="#fff">Basler Cam</text>
+                <text x="45" y="147" class="dsub" text-anchor="middle">120fps ROI</text>
+                <text x="45" y="160" class="dnote" text-anchor="middle">Jetson Orin</text>
 
-                <!-- Processing GPU Node -->
-                <rect x="145" y="85" width="70" height="80" rx="3" fill="#111922" stroke="#a9d6ee" stroke-width="1.5"/>
-                <text x="180" y="110" class="dlabel" text-anchor="middle" fill="#a9d6ee" font-weight="600">PyTorch GPU</text>
-                <text x="180" y="125" class="dsub" text-anchor="middle" fill="#fff">3D 메쉬 피팅</text>
-                <text x="180" y="137" class="dsub" text-anchor="middle" fill="#fff">SampEn 연산</text>
-                <text x="180" y="150" class="dsub" text-anchor="middle">실시간 분석</text>
+                <!-- Processing GPU + Self-evolving Agent Node -->
+                <rect x="140" y="90" width="70" height="80" rx="3" fill="#111922" stroke="#a9d6ee" stroke-width="1.5"/>
+                <text x="175" y="112" class="dlabel" text-anchor="middle" fill="#a9d6ee" font-weight="600">Cloud Agent</text>
+                <text x="175" y="125" class="dsub" text-anchor="middle" fill="#fff">Self-evolving</text>
+                <text x="175" y="135" class="dsub" text-anchor="middle" fill="#fff">Auto Weights</text>
+                <text x="175" y="148" class="dsub" text-anchor="middle">PyTorch Core</text>
 
                 <!-- HIPAA DB Node -->
-                <rect x="150" y="15" width="60" height="35" rx="3" fill="#080c10" stroke="rgba(168,200,224,.2)" stroke-width="1"/>
-                <text x="180" y="28" class="dlabel" text-anchor="middle" fill="#fff">보안 DB</text>
-                <text x="180" y="38" class="dsub" text-anchor="middle">HIPAA 스토리지</text>
+                <rect x="145" y="20" width="60" height="35" rx="3" fill="#080c10" stroke="rgba(168,200,224,.2)" stroke-width="1"/>
+                <text x="175" y="33" class="dlabel" text-anchor="middle" fill="#fff">보안 DB</text>
+                <text x="175" y="43" class="dsub" text-anchor="middle">HIPAA 스토리지</text>
 
-                <!-- Doctor Dashboard Node -->
-                <rect x="285" y="95" width="55" height="60" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
-                <rect x="300" y="110" width="25" height="20" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
-                <text x="312" y="145" class="dlabel" text-anchor="middle" fill="#fff">의료진</text>
-                <text x="312" y="152" class="dsub" text-anchor="middle">대시보드</text>
+                <!-- Productization: Clinician Portal Node -->
+                <rect x="275" y="85" width="60" height="90" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
+                <rect x="292" y="102" width="26" height="18" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
+                <text x="305" y="137" class="dlabel" text-anchor="middle" fill="#fff">의료진</text>
+                <text x="305" y="147" class="dsub" text-anchor="middle">포털 서비스</text>
+                <text x="305" y="160" class="dnote" text-anchor="middle">제품화 완료</text>
               </svg>
             </div>
           </div>
