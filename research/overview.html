@@ -234,7 +234,7 @@
       line-height: 1.4;
     }
 
-    /* Cloud Infrastructure & Tree Pipeline */
+    /* Cloud Infrastructure & Vertical Flow Tree Pipeline */
     .infra {
       background: var(--panel);
       border-top: 1px solid var(--line);
@@ -245,10 +245,10 @@
     .infra-inner {
       max-width: var(--container-width);
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-      gap: 56px;
-      align-items: center;
+      display: flex;
+      flex-direction: column; /* Changed from 2-columns grid to 1-column layout */
+      gap: 40px;
+      align-items: flex-start;
     }
     .infra h2 {
       font-family: var(--heading-font);
@@ -287,6 +287,15 @@
     /* Tree Pipeline Description styling (No asterisks) */
     .pipeline-summary {
       margin-top: 1.5rem;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    @media (max-width: 768px) {
+      .pipeline-summary {
+        grid-template-columns: 1fr;
+      }
     }
     .pipeline-section-title {
       font-family: var(--mono-font);
@@ -297,6 +306,8 @@
       margin-top: 1.5rem;
       margin-bottom: 0.5rem;
       font-weight: 600;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
     }
     .pipeline-list {
       list-style: none;
@@ -323,51 +334,16 @@
     .diagram {
       border: 1px solid var(--line);
       background: #05080b;
-      padding: 16px;
+      padding: 12px;
       border-radius: 4px;
+      width: 100%; /* Expands to full container width at the bottom */
+      box-sizing: border-box;
     }
     .diagram img {
       width: 100%;
       height: auto;
       display: block;
       border-radius: 2px;
-    }
-
-    /* Publications list */
-    .pubs {
-      border-top: 1px solid var(--line);
-      margin-bottom: 5rem;
-    }
-    .pub {
-      display: grid;
-      grid-template-columns: 120px 1fr 200px;
-      gap: 24px;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--line);
-      align-items: baseline;
-      transition: background 0.2s;
-    }
-    .pub:hover {
-      background: rgba(169, 214, 238, 0.025);
-    }
-    .pub-year {
-      font-family: var(--mono-font);
-      font-size: 12px;
-      color: var(--primary-color) !important;
-      letter-spacing: .12em;
-    }
-    .pub-title {
-      font-size: 15.5px;
-      font-weight: 500;
-      color: var(--text-color);
-    }
-    .pub-venue {
-      font-family: var(--mono-font);
-      font-size: 11px;
-      color: var(--text-light);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      text-align: right;
     }
 
     /* Responsive modifications */
@@ -385,13 +361,6 @@
       }
       .infra-inner {
         grid-template-columns: 1fr;
-      }
-      .pub {
-        grid-template-columns: 80px 1fr;
-      }
-      .pub-venue {
-        grid-column: 2;
-        text-align: left;
       }
     }
   </style>
@@ -602,7 +571,7 @@
                     <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_left.png" alt="3D Reconstruction Left Method" class="photo-img split-img split-img-top">
                     <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_right.png" alt="3D Reconstruction Right Method" class="photo-img split-img split-img-bottom">
                   </div>
-                  <figcaption class="overview-figcaption" style="margin-top: 15px;">3D Reconstruction Method</figcaption>
+                  <figcaption class="overview-figcaption">3D Reconstruction Method</figcaption>
                 </figure>
                 <figure>
                   <img loading="lazy" src="../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="Corneo-Scleral Analysis UI" class="photo-img">
@@ -652,71 +621,57 @@
 
         </div>
 
-        <!-- Redesigned Cloud Infrastructure Section (Tree pipeline description & infographic integration) -->
+        <!-- Redesigned Cloud Infrastructure Section (Tree pipeline description & widescreen infographic integration) -->
         <section class="infra" id="infra">
           <div class="infra-inner">
-            <div>
+            <div class="infra-text">
               <span class="sec-label">Data Pipeline Architecture</span>
               <h2>Real-time Edge Ingestion Pipeline</h2>
               <div class="infra-badge"><span class="dot"></span>ACTIVE · HIPAA SECURE</div>
               <p>Optinex Research operates an integrated B2B productization workflow connecting hardware edge sensors, autonomous software agents, and remote medical services in a structured tree architecture.</p>
               
               <div class="pipeline-summary">
-                <h3 class="pipeline-section-title">Equipment</h3>
-                <ul class="pipeline-list">
-                  <li>Basler Camera: ROI 120fps industrial optical capture device</li>
-                  <li>NVIDIA Jetson Orin: Edge computing unit for real-time video frame pre-processing</li>
-                </ul>
+                <div>
+                  <h3 class="pipeline-section-title">Hardware Stack</h3>
+                  <ul class="pipeline-list">
+                    <li>Camera Sensors: Basler acA 1300-60gm NIR 18W, acA 1300-60gc 18W, a2A 1920-160um BAS 36W, FLIR BFS-U3-13Y3M-C 18W, and small camera modules for Raspberry Pi/Jetson</li>
+                    <li>Optical Lenses: Interchangeable focal lengths of 8mm, 12mm, 16mm, and 24mm</li>
+                    <li>Stimulation Units: LED &amp; Buzzer Scheduler paired with high-output Infrared Light Sources</li>
+                    <li>Testbeds &amp; SBCs: J4012 developer kit, Jetson Orin Nano Super, and Raspberry Pi 5</li>
+                  </ul>
 
-                <h3 class="pipeline-section-title">Ocular Diagnostics &amp; Tech</h3>
-                <ul class="pipeline-list">
-                  <li>Gabor contrast summation mapping</li>
-                  <li>3D corneo-scleral mesh reconstruction</li>
-                  <li>Pupil Light Reflex Sample Entropy (SampEn) analysis</li>
-                </ul>
+                  <h3 class="pipeline-section-title">AI Workstation (optinex-station Compute)</h3>
+                  <ul class="pipeline-list">
+                    <li>CPU &amp; Motherboard: AMD Ryzen 9 7950X CPU running on MSI MAG X670E Tomahawk</li>
+                    <li>GPU Hardware: Palit GeForce RTX 5070 Ti D7 16GB for deep neural network training</li>
+                    <li>Memory &amp; Storage: G.Skill DDR5-6000 CL30 Flare X5 64GB RAM, dual Samsung 990 2TB SSD, WD 2TB, and WD 1TB drives</li>
+                    <li>Chassis &amp; Cooling: Arctic Liquid Freezer III Pro 360 liquid cooler housed in Fractal Design Meshify 2 case powered by Seasonic Focus GX-1000 Gold supply</li>
+                  </ul>
+                </div>
 
-                <h3 class="pipeline-section-title">Self-Evolving Agent</h3>
-                <ul class="pipeline-list">
-                  <li>Closed-loop neural learning pipeline running in cloud GPU environments</li>
-                  <li>Autonomous neural weight adjustment using diagnostic trial feedback</li>
-                </ul>
+                <div>
+                  <h3 class="pipeline-section-title">Data Ingestion (Internet connection)</h3>
+                  <ul class="pipeline-list">
+                    <li>Edge Nodes: Raspberry Pi 5 unit fitted with WD 1TB drive connected via high-speed USB LAN ports</li>
+                    <li>RAG Vector Database: Automatic ingestion pipeline running ChromaDB to index peripheral retina, myopia control, scleral profile, contrast sensitivity, and low vision literature daily from 09:00 to 22:00</li>
+                  </ul>
 
-                <h3 class="pipeline-section-title">Productization</h3>
-                <ul class="pipeline-list">
-                  <li>Secure archiving in HIPAA-compliant database vaults</li>
-                  <li>Certified Clinician Portal delivering analytics dashboards to medical practitioners</li>
-                </ul>
+                  <h3 class="pipeline-section-title">Self-Evolving Agent (Software Architecture)</h3>
+                  <ul class="pipeline-list">
+                    <li>Closed-Loop Optimizer: Multi-agent system that index papers, generates novel hardware/SaaS development reports, and updates PyTorch neural weights based on clinical trial feedback</li>
+                    <li>Telegram Messenger Gateway: Autonomous notification agent sending R&amp;D status reports and decision requests directly to the research lab head</li>
+                    <li>Productization Endpoints: Direct data routing into encrypted HIPAA databases and certified Clinician Web Portal services</li>
+                  </ul>
+                </div>
               </div>
             </div>
+            
+            <!-- Widescreen Infographic placed at the bottom, taking full width -->
             <div class="diagram">
-              <img src="../assets/images/research/research_pipeline_flow.png" alt="Optinex Research Advanced R&amp;D Pipeline Flowchart" loading="lazy" />
+              <img src="../assets/images/research/wide_pipeline_flow.png" alt="Optinex Research Advanced R&amp;D Pipeline Infographic Flow" loading="lazy" />
             </div>
           </div>
         </section>
-
-        <!-- Publications Section -->
-        <div class="sec-head">
-          <span class="sec-label">Scientific Output</span>
-          <h2 class="sec-title">Selected Publications</h2>
-          <span class="sec-rule"></span>
-        </div>
-        <div class="pubs" id="pubs">
-          <div class="pub">
-            <span class="pub-year">2024</span>
-            <span class="pub-title">Analysis of Peripheral Retinal Refraction Gradients Using Longitudinal Chromatic Aberration in Myopic Populations</span>
-            <span class="pub-venue">Journal of Vision Science</span>
-          </div>
-          <div class="pub">
-            <span class="pub-year">2023</span>
-            <span class="pub-title">Three-Dimensional Reconstruction of Corneo-Scleral Surface Topography via concentric Structured Light Patterns</span>
-            <span class="pub-venue">Optometry &amp; Vision Science</span>
-          </div>
-          <div class="pub">
-            <span class="pub-year">2021</span>
-            <span class="pub-title">Autonomic Biomarkers in Pupil Light Reflex: High-Speed Contour Analytics and Sample Entropy Evaluation</span>
-            <span class="pub-venue">Frontiers in Neuroscience</span>
-          </div>
-        </div>
 
       </div>
     </section>
