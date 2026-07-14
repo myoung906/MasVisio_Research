@@ -128,7 +128,7 @@
       transition: filter 0.3s ease;
     }
 
-    /* Phase 1 Figure Gabor alignment (Centered, no offset translation) */
+    /* Phase 1 Figure Gabor alignment (Centered) */
     .phase1-figure-centered {
       display: flex;
       flex-direction: column;
@@ -136,13 +136,14 @@
       text-align: center;
     }
 
-    /* Phase 3 vertical split and scale styling */
+    /* Phase 3 vertical split and scale styling (Centered Alignment fixed) */
     .phase3-vertical-split {
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
       align-items: center !important;
       padding: 20px 12px !important;
+      text-align: center !important;
     }
     .split-images-wrap {
       display: flex;
@@ -152,15 +153,22 @@
       justify-content: center;
       margin: 15px 0 25px;
       width: 100%;
+      text-align: center !important;
     }
     .split-img {
-      width: 90% !important;
+      width: 80% !important;
       height: auto !important;
       max-height: 130px !important;
       object-fit: contain !important;
-      transform: scale(1.3); /* 1.3x scale increase */
       transform-origin: center;
       display: block;
+      margin: 0 auto !important;
+    }
+    .split-img-top {
+      transform: scale(1.3) translateX(14px) !important;
+    }
+    .split-img-bottom {
+      transform: scale(1.3) translateX(-14px) !important;
     }
 
     /* Phase 4 Custom Image Grid (Large graph on top, 2 photos below) */
@@ -226,7 +234,7 @@
       line-height: 1.4;
     }
 
-    /* Cloud Infrastructure */
+    /* Cloud Infrastructure & Tree Pipeline */
     .infra {
       background: var(--panel);
       border-top: 1px solid var(--line);
@@ -275,38 +283,54 @@
       background: var(--primary-color);
       box-shadow: 0 0 8px var(--primary-color);
     }
+    
+    /* Tree Pipeline Description styling (No asterisks) */
+    .pipeline-summary {
+      margin-top: 1.5rem;
+    }
+    .pipeline-section-title {
+      font-family: var(--mono-font);
+      font-size: 12px;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .pipeline-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1.5rem;
+    }
+    .pipeline-list li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 14.5px;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+    .pipeline-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+      font-size: 10px;
+      top: 1px;
+    }
+
     .diagram {
       border: 1px solid var(--line);
       background: #05080b;
-      padding: 24px;
+      padding: 16px;
+      border-radius: 4px;
     }
-    .diagram svg {
+    .diagram img {
       width: 100%;
       height: auto;
-    }
-    .dlabel {
-      font-family: var(--mono-font);
-      font-size: 9px;
-      letter-spacing: .05em;
-      fill: var(--text-color);
-    }
-    .dsub {
-      font-family: var(--mono-font);
-      font-size: 7.5px;
-      letter-spacing: .02em;
-      fill: var(--text-light);
-    }
-    .dnote {
-      font-family: var(--mono-font);
-      font-size: 7.5px;
-      letter-spacing: .12em;
-      fill: var(--primary-color);
-      text-transform: uppercase;
-    }
-    .dflow {
-      font-family: var(--mono-font);
-      font-size: 7.5px;
-      fill: var(--primary-color);
+      display: block;
+      border-radius: 2px;
     }
 
     /* Publications list */
@@ -551,7 +575,7 @@
 
           <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
 
-          <!-- PHASE 3 (Fixed LaTeX Equations & split middle image vertically, scale 1.3x) -->
+          <!-- PHASE 3 (Vertically stacked, centered split images with 1.3x scale) -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 3: Prototype Development</span>
             <h2 class="challenge-title">Precision Corneo-Scleral <strong>3D Reconstruction</strong></h2>
@@ -567,7 +591,7 @@
                 By projecting concentric infrared ring patterns onto the ocular surface, we capture pattern deformations with high-speed cameras. Using principles of differential geometry, we calculate height deviations Z(r) at each radius r through the linear proportion Z(r) = delta_d * tan(theta), where delta_d is the local pattern displacement on the camera sensor, and theta is the projection angle. An optimized mesh-fitting algorithm reconstructs the complete 3D corneo-scleral topography in real-time with sub-micron precision, providing automated fitting parameters for clinical partners.
               </p>
               
-              <!-- Corrected actual paths for Phase 3 (Middle figure vertically stacked and scaled 1.3x) -->
+              <!-- Corrected actual paths for Phase 3 (Middle figure vertically stacked and centered alignment fixed) -->
               <div class="challenge-visual-grid">
                 <figure>
                   <img loading="lazy" src="../assets/images/research/phase3/ping_pong_laser_grid.png" alt="Projected Red Grid Laser Pattern" class="photo-img">
@@ -575,10 +599,10 @@
                 </figure>
                 <figure class="phase3-vertical-split">
                   <div class="split-images-wrap">
-                    <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_left.png" alt="3D Reconstruction Left Method" class="photo-img split-img">
-                    <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_right.png" alt="3D Reconstruction Right Method" class="photo-img split-img">
+                    <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_left.png" alt="3D Reconstruction Left Method" class="photo-img split-img split-img-top">
+                    <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_right.png" alt="3D Reconstruction Right Method" class="photo-img split-img split-img-bottom">
                   </div>
-                  <figcaption class="overview-figcaption">3D Reconstruction Method</figcaption>
+                  <figcaption class="overview-figcaption" style="margin-top: 15px;">3D Reconstruction Method</figcaption>
                 </figure>
                 <figure>
                   <img loading="lazy" src="../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="Corneo-Scleral Analysis UI" class="photo-img">
@@ -628,57 +652,44 @@
 
         </div>
 
-        <!-- Redesigned Cloud Infrastructure Section (Edge Ingestion Pipeline Architecture - Incorporates Hardware + Software Agent + Productization Flow) -->
+        <!-- Redesigned Cloud Infrastructure Section (Tree pipeline description & infographic integration) -->
         <section class="infra" id="infra">
           <div class="infra-inner">
             <div>
               <span class="sec-label">Data Pipeline Architecture</span>
               <h2>Real-time Edge Ingestion Pipeline</h2>
               <div class="infra-badge"><span class="dot"></span>ACTIVE · HIPAA SECURE</div>
-              <p>Optinex Research deploys a low-latency, cyber-physical pipeline designed to commercialize advanced vision diagnostics. High-frequency raw visual frames are captured by a **Basler industrial camera (ROI 120fps)** and preprocessed locally on an **NVIDIA Jetson Orin** edge board. The preprocessed data is streamed via low-latency WebSockets to the cloud server, where a **Self-evolving Agent** automatically executes 3D corneo-scleral mesh calculations and evaluates Gabor neural contrast summation. Crucially, this software agent utilizes closed-loop feedback from diagnostic trials to autonomously update deep learning weights, continuously evolving AI accuracy. Secure clinical reports are archived in a **HIPAA database** and delivered directly to the **Clinician Portal** as a certified medical screening device, completing the productization pipeline.</p>
+              <p>Optinex Research operates an integrated B2B productization workflow connecting hardware edge sensors, autonomous software agents, and remote medical services in a structured tree architecture.</p>
+              
+              <div class="pipeline-summary">
+                <h3 class="pipeline-section-title">Equipment</h3>
+                <ul class="pipeline-list">
+                  <li>Basler Camera: ROI 120fps industrial optical capture device</li>
+                  <li>NVIDIA Jetson Orin: Edge computing unit for real-time video frame pre-processing</li>
+                </ul>
+
+                <h3 class="pipeline-section-title">Ocular Diagnostics &amp; Tech</h3>
+                <ul class="pipeline-list">
+                  <li>Gabor contrast summation mapping</li>
+                  <li>3D corneo-scleral mesh reconstruction</li>
+                  <li>Pupil Light Reflex Sample Entropy (SampEn) analysis</li>
+                </ul>
+
+                <h3 class="pipeline-section-title">Self-Evolving Agent</h3>
+                <ul class="pipeline-list">
+                  <li>Closed-loop neural learning pipeline running in cloud GPU environments</li>
+                  <li>Autonomous neural weight adjustment using diagnostic trial feedback</li>
+                </ul>
+
+                <h3 class="pipeline-section-title">Productization</h3>
+                <ul class="pipeline-list">
+                  <li>Secure archiving in HIPAA-compliant database vaults</li>
+                  <li>Certified Clinician Portal delivering analytics dashboards to medical practitioners</li>
+                </ul>
+              </div>
             </div>
             <div class="diagram">
-              <svg viewBox="0 0 420 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Background frame -->
-                <rect width="420" height="280" rx="6" fill="#040608" stroke="rgba(168,200,224,.1)" stroke-width="1"/>
-                
-                <!-- Data flow paths -->
-                <path d="M75 130 H140" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <path d="M210 130 H275" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <path d="M175 90 V55" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
-                <path d="M175 170 V205" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
-                
-                <!-- Flow texts -->
-                <text x="108" y="120" class="dflow" text-anchor="middle">WebSocket</text>
-                <text x="242" y="120" class="dflow" text-anchor="middle">TLS 1.3</text>
-                
-                <!-- Nodes -->
-                <!-- Basler Camera & Jetson Orin Edge Node -->
-                <rect x="15" y="85" width="60" height="90" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
-                <circle cx="45" cy="115" r="10" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
-                <text x="45" y="137" class="dlabel" text-anchor="middle" fill="#fff">Basler Cam</text>
-                <text x="45" y="147" class="dsub" text-anchor="middle">120fps ROI</text>
-                <text x="45" y="160" class="dnote" text-anchor="middle">Jetson Orin</text>
-
-                <!-- Processing GPU + Self-evolving Agent Node -->
-                <rect x="140" y="90" width="70" height="80" rx="3" fill="#111922" stroke="#a9d6ee" stroke-width="1.5"/>
-                <text x="175" y="112" class="dlabel" text-anchor="middle" fill="#a9d6ee" font-weight="600">Cloud Agent</text>
-                <text x="175" y="125" class="dsub" text-anchor="middle" fill="#fff">Self-evolving</text>
-                <text x="175" y="135" class="dsub" text-anchor="middle" fill="#fff">Auto Weights</text>
-                <text x="175" y="148" class="dsub" text-anchor="middle">PyTorch Core</text>
-
-                <!-- HIPAA DB Node -->
-                <rect x="145" y="20" width="60" height="35" rx="3" fill="#080c10" stroke="rgba(168,200,224,.2)" stroke-width="1"/>
-                <text x="175" y="33" class="dlabel" text-anchor="middle" fill="#fff">HIPAA Vault</text>
-                <text x="175" y="43" class="dsub" text-anchor="middle">Secure DB</text>
-
-                <!-- Productization: Clinician Portal Node -->
-                <rect x="275" y="85" width="60" height="90" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
-                <rect x="292" y="102" width="26" height="18" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
-                <text x="305" y="137" class="dlabel" text-anchor="middle" fill="#fff">Clinician</text>
-                <text x="305" y="147" class="dsub" text-anchor="middle">Portal Web</text>
-                <text x="305" y="160" class="dnote" text-anchor="middle">PRODUCTIZED</text>
-              </svg>
+              <img src="../assets/images/research/research_pipeline_flow.png" alt="Optinex Research Advanced R&amp;D Pipeline Flowchart" loading="lazy" />
             </div>
           </div>
         </section>

@@ -128,7 +128,7 @@
       transition: filter 0.3s ease;
     }
 
-    /* Phase 1 Figure Gabor alignment (Centered, no offset translation) */
+    /* Phase 1 Figure Gabor alignment (Centered) */
     .phase1-figure-centered {
       display: flex;
       flex-direction: column;
@@ -136,13 +136,14 @@
       text-align: center;
     }
 
-    /* Phase 3 vertical split and scale styling */
+    /* Phase 3 vertical split and scale styling (Centered Alignment fixed) */
     .phase3-vertical-split {
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
       align-items: center !important;
       padding: 20px 12px !important;
+      text-align: center !important;
     }
     .split-images-wrap {
       display: flex;
@@ -152,15 +153,22 @@
       justify-content: center;
       margin: 15px 0 25px;
       width: 100%;
+      text-align: center !important;
     }
     .split-img {
-      width: 90% !important;
+      width: 80% !important;
       height: auto !important;
       max-height: 130px !important;
       object-fit: contain !important;
-      transform: scale(1.3); /* 1.3x scale increase */
       transform-origin: center;
       display: block;
+      margin: 0 auto !important; /* Forces perfect horizontal center alignment */
+    }
+    .split-img-top {
+      transform: scale(1.3) translateX(14px) !important;
+    }
+    .split-img-bottom {
+      transform: scale(1.3) translateX(-14px) !important;
     }
 
     /* Phase 4 Custom Image Grid (Large graph on top, 2 photos below) */
@@ -226,7 +234,7 @@
       line-height: 1.4;
     }
 
-    /* Cloud Infrastructure */
+    /* Cloud Infrastructure & Tree Pipeline */
     .infra {
       background: var(--panel);
       border-top: 1px solid var(--line);
@@ -275,38 +283,54 @@
       background: var(--primary-color);
       box-shadow: 0 0 8px var(--primary-color);
     }
+    
+    /* Tree Pipeline Description styling (No asterisks) */
+    .pipeline-summary {
+      margin-top: 1.5rem;
+    }
+    .pipeline-section-title {
+      font-family: var(--mono-font);
+      font-size: 12px;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .pipeline-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1.5rem;
+    }
+    .pipeline-list li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 14.5px;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+    .pipeline-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+      font-size: 10px;
+      top: 1px;
+    }
+
     .diagram {
       border: 1px solid var(--line);
       background: #05080b;
-      padding: 24px;
+      padding: 16px;
+      border-radius: 4px;
     }
-    .diagram svg {
+    .diagram img {
       width: 100%;
       height: auto;
-    }
-    .dlabel {
-      font-family: var(--mono-font);
-      font-size: 9px;
-      letter-spacing: .05em;
-      fill: var(--text-color);
-    }
-    .dsub {
-      font-family: var(--mono-font);
-      font-size: 7.5px;
-      letter-spacing: .02em;
-      fill: var(--text-light);
-    }
-    .dnote {
-      font-family: var(--mono-font);
-      font-size: 7.5px;
-      letter-spacing: .12em;
-      fill: var(--primary-color);
-      text-transform: uppercase;
-    }
-    .dflow {
-      font-family: var(--mono-font);
-      font-size: 7.5px;
-      fill: var(--primary-color);
+      display: block;
+      border-radius: 2px;
     }
 
     /* Publications list */
@@ -550,7 +574,7 @@
 
           <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
 
-          <!-- PHASE 3 (Fixed LaTeX Equations & split middle image vertically, scale 1.3x) -->
+          <!-- PHASE 3 (Vertically stacked, centered split images with 1.3x scale) -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 3: Prototype Development</span>
             <h2 class="challenge-title">시제품 개발: <strong>시제품 개발</strong></h2>
@@ -566,7 +590,7 @@
                 안구 전면에 구조화된 적외선 동심원 링 패턴을 투사한 뒤, 안구 표면 굴곡에 의해 왜곡된 패턴의 기하학적 형태를 고해상도 카메라로 분석합니다. 미분 기하학(Differential Geometry) 해석 기법에 따라 각 패턴 반경 r에서의 높이 편차 Z(r)를 산출합니다. 높이 편차 Z(r)는 센서상 패턴 변위량(delta_d)과 프로젝션 광원의 투사각(theta)의 탄젠트 값에 비례(Z(r) = delta_d * tan(theta))하여 계산됩니다. 최적화된 메쉬 피팅 알고리즘을 통해 마이크로미터 단위의 고해상도 3차원 안구 형상 맵을 렌더링하고, 협력 임상 파트너사에게 가이드 파라미터를 실시간 전송합니다.
               </p>
               
-              <!-- Corrected actual paths for Phase 3 (Middle figure vertically stacked and scaled 1.3x) -->
+              <!-- Corrected actual paths for Phase 3 (Middle figure vertically stacked and centered alignment fixed) -->
               <div class="challenge-visual-grid">
                 <figure>
                   <img loading="lazy" src="../../assets/images/research/phase3/ping_pong_laser_grid.png" alt="적색 레이저 격자가 투사된 탁구공 형상" class="photo-img">
@@ -574,10 +598,10 @@
                 </figure>
                 <figure class="phase3-vertical-split">
                   <div class="split-images-wrap">
-                    <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_left.png" alt="3차원 복원 알고리즘 기하모델" class="photo-img split-img">
-                    <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_right.png" alt="3차원 복원 알고리즘 인공신경망" class="photo-img split-img">
+                    <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_left.png" alt="3차원 복원 알고리즘 기하모델" class="photo-img split-img split-img-top">
+                    <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_right.png" alt="3차원 복원 알고리즘 인공신경망" class="photo-img split-img split-img-bottom">
                   </div>
-                  <figcaption class="overview-figcaption">3차원 복원 알고리즘 시각화</figcaption>
+                  <figcaption class="overview-figcaption">3D Reconstruction Method</figcaption>
                 </figure>
                 <figure>
                   <img loading="lazy" src="../../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="가상 렌즈 피팅 시뮬레이션" class="photo-img">
@@ -627,57 +651,44 @@
 
         </div>
 
-        <!-- Redesigned Cloud Infrastructure Section (Edge Ingestion Pipeline Architecture - Incorporates Hardware + Software Agent + Productization Flow) -->
+        <!-- Redesigned Cloud Infrastructure Section (Tree pipeline description & infographic integration) -->
         <section class="infra" id="infra">
           <div class="infra-inner">
             <div>
               <span class="sec-label">Data Pipeline Architecture</span>
               <h2>실시간 엣지 데이터 파이프라인</h2>
               <div class="infra-badge"><span class="dot"></span>ACTIVE · HIPAA SECURE</div>
-              <p>Optinex Research는 하드웨어 센싱부터 소프트웨어 자율 지능까지 유기적으로 결합된 제품화 파이프라인을 운영합니다. 환자 안구에서 수집된 초고속 비디오 프레임(ROI 120fps)은 엣지 단의 **Basler 고성능 카메라**를 거쳐 로컬에 탑재된 **NVIDIA Jetson Orin** 온보드 컴퓨팅 디바이스에서 실시간 전처리됩니다. 전처리된 데이터는 WebSocket 프로토콜을 타고 클라우드로 스트리밍되며, 클라우드 코어에 위치한 **자율성장 에이전트(Self-evolving Agent)** 소프트웨어가 3D 각공막 메쉬 피팅과 동공 바이오마커 연산을 총괄합니다. 이 소프트웨어 에이전트는 피드백 루프를 통해 딥러닝 모델의 가중치를 자율 갱신(Self-updating)하며 의료 솔루션 성능을 스스로 고도화합니다. 최종 결과는 **HIPAA 보안 DB**에 영구 보존되고, 인증 규격을 갖춘 **의료진용 진단 보조 솔루션 웹 포털**로 안전하게 상용화 및 제품화되어 서비스됩니다.</p>
+              <p>Optinex Research는 하드웨어 센싱부터 소프트웨어 자율 지능까지 유기적으로 결합된 제품화 파이프라인을 운영합니다.</p>
+              
+              <div class="pipeline-summary">
+                <h3 class="pipeline-section-title">보유 장비 (Hardware Stack)</h3>
+                <ul class="pipeline-list">
+                  <li>Basler Camera: ROI 120fps 초고속 프레임스킵 산업용 광학 캡처 카메라</li>
+                  <li>NVIDIA Jetson Orin: 온보드 엣지 연산 장치를 통한 현장 실시간 동영상 전처리</li>
+                </ul>
+
+                <h3 class="pipeline-section-title">보유 기술 (Core Technology)</h3>
+                <ul class="pipeline-list">
+                  <li>Gabor contrast summation 대뇌 시각 피질 대비감도 맵핑 기술</li>
+                  <li>적외선 구조화광 concentric 링 기반 3D 각공막 메쉬 실시간 복원 기술</li>
+                  <li>동공 Light Reflex 자율운동 패턴 및 Sample Entropy (SampEn) 파형 연산 기술</li>
+                </ul>
+
+                <h3 class="pipeline-section-title">자율성장 에이전트 (Self-Evolving Agent)</h3>
+                <ul class="pipeline-list">
+                  <li>클라우드 GPU 분산 인프라에서 수행되는 폐루프(Closed-loop) 딥러닝 파이프라인</li>
+                  <li>실시간 임상 피드백 신호를 반영한 인공신경망 가중치 자율 갱신(Self-updating weights) 기술</li>
+                </ul>
+
+                <h3 class="pipeline-section-title">상용 제품화 (B2B Productization)</h3>
+                <ul class="pipeline-list">
+                  <li>HIPAA 보안 표준 규격을 만족하는 암호화 클라우드 데이터 스토리지 적재</li>
+                  <li>인증 규격을 갖춘 의료진 전용 진단 지원 웹포털 대시보드 솔루션 완제품 서비스</li>
+                </ul>
+              </div>
             </div>
             <div class="diagram">
-              <svg viewBox="0 0 420 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Background frame -->
-                <rect width="420" height="280" rx="6" fill="#040608" stroke="rgba(168,200,224,.1)" stroke-width="1"/>
-                
-                <!-- Data flow paths -->
-                <path d="M75 130 H140" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <path d="M210 130 H275" stroke="rgba(169,214,238,.3)" stroke-width="1.5" stroke-dasharray="3 3"/>
-                <path d="M175 90 V55" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
-                <path d="M175 170 V205" stroke="rgba(168,200,224,.15)" stroke-width="1"/>
-                
-                <!-- Flow texts -->
-                <text x="108" y="120" class="dflow" text-anchor="middle">WebSocket</text>
-                <text x="242" y="120" class="dflow" text-anchor="middle">TLS 1.3 암호화</text>
-                
-                <!-- Nodes -->
-                <!-- Basler Camera & Jetson Orin Edge Node -->
-                <rect x="15" y="85" width="60" height="90" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
-                <circle cx="45" cy="115" r="10" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
-                <text x="45" y="137" class="dlabel" text-anchor="middle" fill="#fff">Basler Cam</text>
-                <text x="45" y="147" class="dsub" text-anchor="middle">120fps ROI</text>
-                <text x="45" y="160" class="dnote" text-anchor="middle">Jetson Orin</text>
-
-                <!-- Processing GPU + Self-evolving Agent Node -->
-                <rect x="140" y="90" width="70" height="80" rx="3" fill="#111922" stroke="#a9d6ee" stroke-width="1.5"/>
-                <text x="175" y="112" class="dlabel" text-anchor="middle" fill="#a9d6ee" font-weight="600">Cloud Agent</text>
-                <text x="175" y="125" class="dsub" text-anchor="middle" fill="#fff">Self-evolving</text>
-                <text x="175" y="135" class="dsub" text-anchor="middle" fill="#fff">Auto Weights</text>
-                <text x="175" y="148" class="dsub" text-anchor="middle">PyTorch Core</text>
-
-                <!-- HIPAA DB Node -->
-                <rect x="145" y="20" width="60" height="35" rx="3" fill="#080c10" stroke="rgba(168,200,224,.2)" stroke-width="1"/>
-                <text x="175" y="33" class="dlabel" text-anchor="middle" fill="#fff">보안 DB</text>
-                <text x="175" y="43" class="dsub" text-anchor="middle">HIPAA 스토리지</text>
-
-                <!-- Productization: Clinician Portal Node -->
-                <rect x="275" y="85" width="60" height="90" rx="3" fill="#0c1219" stroke="rgba(168,200,224,.3)" stroke-width="1"/>
-                <rect x="292" y="102" width="26" height="18" fill="#131c26" stroke="#a9d6ee" stroke-width="1"/>
-                <text x="305" y="137" class="dlabel" text-anchor="middle" fill="#fff">의료진</text>
-                <text x="305" y="147" class="dsub" text-anchor="middle">포털 서비스</text>
-                <text x="305" y="160" class="dnote" text-anchor="middle">제품화 완료</text>
-              </svg>
+              <img src="../../assets/images/research/research_pipeline_flow.png" alt="Optinex Research Advanced R&amp;D Pipeline Flowchart" loading="lazy" />
             </div>
           </div>
         </section>
