@@ -284,13 +284,26 @@ function initTemporalFlicker() {
         }
         const alpha = config.state;
 
-        if (config.offImg.complete && config.onImg.complete) {
+        if (config.offImg.complete && config.onImg.complete && config.offImg.naturalWidth > 0) {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.globalAlpha = 1;
           ctx.drawImage(config.offImg, 0, 0, canvas.width, canvas.height);
           ctx.globalAlpha = alpha;
           ctx.drawImage(config.onImg, 0, 0, canvas.width, canvas.height);
           ctx.globalAlpha = 1;
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = alpha ? "rgba(169, 214, 238, 0.9)" : "rgba(8, 12, 17, 0.9)";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          
+          ctx.strokeStyle = "rgba(169, 214, 238, 0.25)";
+          ctx.lineWidth = 8;
+          ctx.beginPath();
+          for (let i = 0; i < canvas.width; i += 20) {
+            ctx.moveTo(i, 0);
+            ctx.lineTo(i, canvas.height);
+          }
+          ctx.stroke();
         }
 
         if (config.captionValue) {
