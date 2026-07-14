@@ -69,7 +69,7 @@
       font-size: 11px;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--primary-color) !important; /* Brighter ice blue */
+      color: var(--primary-color) !important;
       font-weight: 600;
       margin-bottom: 12px;
       display: block;
@@ -79,10 +79,10 @@
       font-weight: 500;
       font-size: 28px;
       margin-bottom: 18px;
-      color: #fff !important; /* Clear white text */
+      color: #fff !important;
     }
     .challenge-title strong {
-      color: var(--primary-color) !important; /* Brighter ice blue accent for core terms */
+      color: var(--primary-color) !important;
       font-weight: 600;
     }
 
@@ -127,6 +127,20 @@
       transition: filter 0.3s ease;
     }
 
+    /* Phase 1 Figure Left Shift (-37px) */
+    .phase1-figure-shift {
+      transform: translateX(-37px);
+    }
+
+    /* Phase 3 alignment center correction */
+    .phase3-align-center {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      padding-top: 22px !important;
+    }
+
     /* Phase 4 Custom Image Grid (Large graph on top, 2 photos below) */
     .phase4-layout-top {
       width: 100%;
@@ -141,7 +155,7 @@
     }
     .phase4-layout-top img {
       width: 100%;
-      height: 380px; /* 2.5x larger scale */
+      height: 380px;
       object-fit: contain;
       border-radius: 2px;
       display: block;
@@ -164,7 +178,7 @@
     }
     .phase4-layout-bottom img {
       width: 100%;
-      height: 180px;
+      height: 240px; /* Thicker scale (2 steps up from 180px) */
       object-fit: contain;
       border-radius: 2px;
       display: block;
@@ -444,7 +458,7 @@
         
         <!-- Clean Hero area for overview -->
         <div class="hero-challenge">
-          <p class="eyebrow">Vision Science &amp; Biomedical Engineering</p>
+          <p class="eyebrow">Vision Intelligence &amp; Biomedical Engineering</p>
           <h1>Optinex Research <em>연구 도전과제 및 개발 단계</em></h1>
           <p class="hero-challenge-desc">우리는 체계적인 R&amp;D 로드맵을 따라 안구 특성을 연구하고 비침습적 생체 정보 스크리닝 알고리즘을 구축합니다. 아래 각 단계를 통해 코어 모델, 공식 및 시각 성과 데이터를 확인해 보세요.</p>
         </div>
@@ -468,9 +482,9 @@
                 대비감도는 배경과 사물을 구별해내는 눈의 능력을 뜻하며, 표준 시력 검사표만으로 측정하기 힘든 실질적 기능 시력 지표입니다. 본 연구진은 가우시안 윈도우로 modulated된 사인파 격자인 <strong>가보 패치(Gabor patch)</strong> 자극을 사용하여 시각 뉴런의 공간 및 시간 가중 합산 특성을 정확히 분석합니다. 자극의 공간 주파수 및 제시 시간을 미세 조정함으로써 망막에서 시각 피질로 이어지는 특이 경로의 신경학적 결함을 국소적으로 진단해냅니다.
               </p>
 
-              <!-- Spatial/Temporal frequency Gabor elements (Synced duration 3s to match animation) -->
+              <!-- Spatial/Temporal frequency Gabor elements (Synced duration 3s to match animation) shifted left by 37px -->
               <div style="margin-bottom: 2rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
-                <figure>
+                <figure class="phase1-figure-shift">
                   <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">공간 주파수 (Spatial Frequency)</div>
                   <div style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden;">
                     <picture>
@@ -483,7 +497,7 @@
                     <span class="challenge-caption-dynamic"><span class="gabor-caption-value" style="display: inline-block; min-width: 2ch; text-align: right;">1</span> <span class="gabor-caption-unit">cpd</span></span>
                   </figcaption>
                 </figure>
-                <figure>
+                <figure class="phase1-figure-shift">
                   <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">시간 주파수 (Temporal Frequency)</div>
                   <div data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="3000" data-step-duration="100" data-speed-multiplier="1.0" data-on-src="../../assets/images/temporal_frequency_on.png" data-off-src="../../assets/images/temporal_frequency_off.png" style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden;">
                     <canvas class="temporal-flicker-canvas" style="width: 100%; height: 100%; display: block"></canvas>
@@ -590,13 +604,13 @@
                 ($\Delta d$: 센서상 패턴 변위량, $\theta$: 프로젝션 광원의 투사각). 최적화된 메쉬 피팅 알고리즘을 통해 마이크로미터 단위의 고해상도 3차원 안구 형상 맵을 렌더링하고, 협력 임상 파트너사에게 가이드 파라미터를 실시간 전송합니다.
               </p>
               
-              <!-- Corrected actual paths for Phase 3 -->
+              <!-- Corrected actual paths for Phase 3 (First image updated to ping-pong red grid laser, second aligned center) -->
               <div class="challenge-visual-grid">
                 <figure>
-                  <img loading="lazy" src="../../assets/images/research/phase3/ir_pupil_image.png" alt="투사된 링 반사 이미지" class="photo-img">
-                  <figcaption class="overview-figcaption">적외선 구조화광 반사 촬영</figcaption>
+                  <img loading="lazy" src="../../assets/images/research/phase3/ping_pong_laser_grid.png" alt="적색 레이저 격자가 투사된 탁구공 형상" class="photo-img">
+                  <figcaption class="overview-figcaption">적색 레이저 격자 투사</figcaption>
                 </figure>
-                <figure>
+                <figure class="phase3-align-center">
                   <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_method.png" alt="3차원 메쉬 모델" class="photo-img">
                   <figcaption class="overview-figcaption">3차원 복원 알고리즘 시각화</figcaption>
                 </figure>
@@ -623,12 +637,10 @@
                 동공 운동 추적 및 인공지능 기반 복잡도 분석
               </h3>
               <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                적외선 링 조명 환경에서 최대 120fps 고속 카메라로 동공 외곽선을 실시간 검출하고 미세 떨림 파형을 수집합니다. 수집된 신호로부터 <strong>10가지 대표 자율신경계 파라미터</strong>(수축 지연 시간, 확장 속도 등)와 47가지 다차원 바이오마커를 도출합니다. 또한, 시계열 신호의 복잡도 변화를 판별하기 위해 **샘플 엔트로피(Sample Entropy)** 분석을 수행합니다:
-                $$SampEn(m, r, N) = -\ln\left(\frac{A}{B}\right)$$
-                ($m$: 템플릿 길이, $r$: 필터 임계값, $A, B$: 매칭되는 부분 시퀀스 수). 동공 자율 운동의 복잡도 감소 현상을 통해 조기 자율신경계 기능 퇴행 여부를 정밀 판별합니다.
+                적외선 조명 환경에서 최대 120fps 고속 카메라로 동공 외곽선을 실시간 검출하고 미세 떨림 파형을 수집합니다. 수집된 신호로부터 수축 지연 시간, 확장 속도 등의 자율신경계 파라미터와 47가지 다차원 바이오마커를 도출합니다. 또한, 시계열 신호의 복잡도 변화를 판별하기 위해 샘플 엔트로피 분석을 수행합니다. 동공 자율 운동의 복잡도 감소 현상을 통해 조기 자율신경계 기능 퇴행 여부를 정밀 판별합니다.
               </p>
               
-              <!-- Realigned visual layout -->
+              <!-- Realigned visual layout (Bottom images scaled up by 2 steps to 240px height) -->
               <div class="phase4-layout-top">
                 <figure>
                   <img loading="lazy" src="../../assets/images/research/phase4_pupil_graph.jpg" alt="동공 자극 반응 신호 곡선" class="chart-img">
@@ -668,14 +680,14 @@
           </div>
         </section>
 
-        <!-- Redesigned Cloud Infrastructure Section (Edge Ingestion Pipeline Architecture) -->
+        <!-- Redesigned Cloud Infrastructure Section (Edge Ingestion Pipeline Architecture - Incorporates Optinex Intro) -->
         <section class="infra" id="infra">
           <div class="infra-inner">
             <div>
               <span class="sec-label">Data Pipeline Architecture</span>
               <h2>실시간 엣지 데이터 파이프라인</h2>
               <div class="infra-badge"><span class="dot"></span>ACTIVE · HIPAA SECURE</div>
-              <p>각막 및 공막의 3D 형상 측정과 동공 바이오마커 식별을 위한 고속 연산 분산 파이프라인 아키텍처입니다. 엣지 기기에서 취득한 120fps 비디오 스트림은 WebRTC 프로토콜을 거쳐 클라우드 인프라의 동적 로드 밸런서로 라우팅됩니다. 분석 클러스터는 PyTorch 기반 동공 윤곽 검출 및 가상 안구 형상 3D Mesh 피팅 연산을 병렬 처리하며, HIPAA 보안 규격 토큰 및 TLS 1.3 암호화를 통해 의료진 포털에 2초 이내로 정밀 결과를 전송합니다.</p>
+              <p>Optinex Research는 시각재활 기술 및 안구 분석 분야를 전문으로 하는 자율 R&amp;D 스테이션입니다. 당사의 실시간 데이터 파이프라인은 엣지 센서 장비로부터 취득된 고속 시각 데이터를 WebSocket 프로토콜을 거쳐 실시간으로 처리합니다. 클라우드 상의 지능형 자율 에이전트가 3D 각공막 메쉬 피팅과 동공 바이오마커 연산을 병렬 처리하며, 안전하게 암호화된 결과를 임상 대시보드로 즉각 전송합니다.</p>
             </div>
             <div class="diagram">
               <svg viewBox="0 0 420 250" fill="none" xmlns="http://www.w3.org/2000/svg">

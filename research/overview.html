@@ -69,7 +69,7 @@
       font-size: 11px;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: var(--primary-color) !important; /* Brighter ice blue */
+      color: var(--primary-color) !important;
       font-weight: 600;
       margin-bottom: 12px;
       display: block;
@@ -79,10 +79,10 @@
       font-weight: 500;
       font-size: 28px;
       margin-bottom: 18px;
-      color: #fff !important; /* Clear white text */
+      color: #fff !important;
     }
     .challenge-title strong {
-      color: var(--primary-color) !important; /* Brighter ice blue accent for core terms */
+      color: var(--primary-color) !important;
       font-weight: 600;
     }
 
@@ -127,6 +127,20 @@
       transition: filter 0.3s ease;
     }
 
+    /* Phase 1 Figure Left Shift (-37px) */
+    .phase1-figure-shift {
+      transform: translateX(-37px);
+    }
+
+    /* Phase 3 alignment center correction */
+    .phase3-align-center {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      padding-top: 22px !important;
+    }
+
     /* Phase 4 Custom Image Grid (Large graph on top, 2 photos below) */
     .phase4-layout-top {
       width: 100%;
@@ -141,7 +155,7 @@
     }
     .phase4-layout-top img {
       width: 100%;
-      height: 380px; /* 2.5x larger scale */
+      height: 380px;
       object-fit: contain;
       border-radius: 2px;
       display: block;
@@ -164,7 +178,7 @@
     }
     .phase4-layout-bottom img {
       width: 100%;
-      height: 180px;
+      height: 240px; /* Thicker scale (2 steps up from 180px) */
       object-fit: contain;
       border-radius: 2px;
       display: block;
@@ -444,7 +458,7 @@
         
         <!-- Clean Hero area for overview -->
         <div class="hero-challenge">
-          <p class="eyebrow">Vision Science &amp; Biomedical Engineering</p>
+          <p class="eyebrow">Vision Intelligence &amp; Biomedical Engineering</p>
           <h1>Optinex Research <em>Challenges &amp; Phases</em></h1>
           <p class="hero-challenge-desc">We follow a structured R&amp;D path to study ocular properties and develop non-invasive biometric algorithms. Explore each phase below to see our core models, formulas, and visual outcomes.</p>
         </div>
@@ -468,9 +482,9 @@
                 Contrast sensitivity measures the visual system's ability to distinguish objects from their background, a critical indicator of functional vision beyond standard acuity. We utilize <strong>Gabor patches</strong>—sinusoidal gratings modulated by a Gaussian envelope—to precisely probe spatial and temporal summation mechanisms. By varying the size and duration of these stimuli, we can map the receptive field properties of visual neurons and isolate deficits in specific neural channels.
               </p>
 
-              <!-- Spatial/Temporal frequency Gabor elements (Synced duration 3s to match animation) -->
+              <!-- Spatial/Temporal frequency Gabor elements (Synced duration 3s to match animation) shifted left by 37px -->
               <div style="margin-bottom: 2rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
-                <figure>
+                <figure class="phase1-figure-shift">
                   <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">Spatial Frequency</div>
                   <div style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden;">
                     <picture>
@@ -483,7 +497,7 @@
                     <span class="challenge-caption-dynamic"><span class="gabor-caption-value" style="display: inline-block; min-width: 2ch; text-align: right;">1</span> <span class="gabor-caption-unit">cpd</span></span>
                   </figcaption>
                 </figure>
-                <figure>
+                <figure class="phase1-figure-shift">
                   <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">Temporal Frequency</div>
                   <div data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="3000" data-step-duration="100" data-speed-multiplier="1.0" data-on-src="../assets/images/temporal_frequency_on.png" data-off-src="../assets/images/temporal_frequency_off.png" style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden;">
                     <canvas class="temporal-flicker-canvas" style="width: 100%; height: 100%; display: block"></canvas>
@@ -591,13 +605,13 @@
                 where $\Delta d$ is the local pattern displacement on the camera sensor, and $\theta$ is the projection angle. An optimized mesh-fitting algorithm reconstructs the complete 3D corneo-scleral topography in real-time with sub-micron precision, providing automated fitting parameters for clinical partners.
               </p>
               
-              <!-- Corrected actual paths for Phase 3 -->
+              <!-- Corrected actual paths for Phase 3 (First image updated to ping-pong red grid laser) -->
               <div class="challenge-visual-grid">
                 <figure>
-                  <img loading="lazy" src="../assets/images/research/phase3/ir_pupil_image.png" alt="IR Pupil Pattern Reflection" class="photo-img">
-                  <figcaption class="overview-figcaption">IR Structured Light Reflection</figcaption>
+                  <img loading="lazy" src="../assets/images/research/phase3/ping_pong_laser_grid.png" alt="Projected Red Grid Laser Pattern" class="photo-img">
+                  <figcaption class="overview-figcaption">Laser Grid Projection</figcaption>
                 </figure>
-                <figure>
+                <figure class="phase3-align-center">
                   <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_method.png" alt="3D Reconstruction Method" class="photo-img">
                   <figcaption class="overview-figcaption">3D Reconstruction Method</figcaption>
                 </figure>
@@ -624,12 +638,10 @@
                 High-Speed Pupil Tracking &amp; Biomarker Analysis
               </h3>
               <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                Using high-frame-rate cameras (up to 120 fps) under infrared illumination, we track pupil contours and capture sub-millimeter oscillations. Our pipeline extracts <strong>10 key autonomic parameters</strong> (e.g., constriction latency, dilation velocity) and 47 high-dimensional biomarkers. We evaluate signal complexity through <strong>Sample Entropy (SampEn)</strong>:
-                $$SampEn(m, r, N) = -\ln\left(\frac{A}{B}\right)$$
-                where $m$ is the template length, $r$ is the tolerance threshold, and $A, B$ represent the counts of matching sub-patterns. Reduced pupil oscillation complexity serves as a non-invasive digital biomarker for early autonomic dysfunction.
+                Using high-frame-rate cameras (up to 120 fps) under infrared illumination, we track pupil contours and capture sub-millimeter oscillations. Our pipeline extracts 10 key autonomic parameters (such as constriction latency and dilation velocity) and 47 high-dimensional biomarkers. We evaluate signal complexity through Sample Entropy metrics to track focal path variations. A reduction in pupil oscillation complexity serves as a non-invasive digital biomarker for early autonomic dysfunction.
               </p>
               
-              <!-- Realigned visual layout -->
+              <!-- Realigned visual layout (Bottom images scaled up by 2 steps to 240px height) -->
               <div class="phase4-layout-top">
                 <figure>
                   <img loading="lazy" src="../assets/images/research/phase4_pupil_graph.jpg" alt="Pupil Reflex Response Curve" class="chart-img">
@@ -669,14 +681,14 @@
           </div>
         </section>
 
-        <!-- Redesigned Cloud Infrastructure Section (Edge Ingestion Pipeline Architecture) -->
+        <!-- Redesigned Cloud Infrastructure Section (Edge Ingestion Pipeline Architecture - Incorporates Optinex Intro) -->
         <section class="infra" id="infra">
           <div class="infra-inner">
             <div>
               <span class="sec-label">Data Pipeline Architecture</span>
               <h2>Real-time Edge Ingestion Pipeline</h2>
               <div class="infra-badge"><span class="dot"></span>ACTIVE · HIPAA SECURE</div>
-              <p>To support high-frequency ocular modeling, Optinex Research deploys a low-latency data processing pipeline. Raw video feeds (120fps) captured by the edge diagnostic cameras are streamed via WebSocket protocols. The cloud analytics server processes the data in parallel: performing GPU-accelerated Gabor contrast mapping, fitting 3D corneo-scleral mesh models, and evaluating pupil light reflex Sample Entropy. Fully encrypted reports are delivered to clinicians in under 2 seconds.</p>
+              <p>Optinex Research is an autonomous visual intelligence R&amp;D station specializing in advanced optometric diagnostics and ocular screening. Our real-time data pipeline streams high-frequency video feeds from edge diagnostic sensors via WebSocket connections. Cloud-based autonomous agents instantly process GPU-accelerated Gabor contrast mappings and fit 3D corneo-scleral mesh topologies, delivering secure clinical analytics to remote patient portals in seconds.</p>
             </div>
             <div class="diagram">
               <svg viewBox="0 0 420 250" fill="none" xmlns="http://www.w3.org/2000/svg">

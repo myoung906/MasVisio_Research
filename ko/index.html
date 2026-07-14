@@ -85,7 +85,7 @@
       background: rgba(169,214,238,.06);
     }
     
-    /* Placido reticle styling with user's customized core image */
+    /* Placido reticle styling with user's raw core image (no filters) */
     .reticle-wrap {
       position: relative;
       aspect-ratio: 1/1;
@@ -104,8 +104,8 @@
       inset: 20.5%;
       border-radius: 50%;
       overflow: hidden;
-      border: 1px solid var(--line-strong);
-      filter: saturate(0.9) contrast(1.05);
+      border: 2px solid rgba(169, 214, 238, 0.7); /* Thicker cyan border */
+      filter: none !important; /* No color filters, display original colors */
     }
     .reticle-core img {
       width: 100%;
@@ -121,14 +121,15 @@
     }
     .tick-label {
       font-family: var(--mono-font);
-      font-size: 9px;
-      fill: var(--text-light);
+      font-size: 9.5px;
+      fill: rgba(169, 214, 238, 0.9) !important; /* Bright label colors */
       letter-spacing: 0.1em;
+      font-weight: 500;
     }
     .readout {
       font-family: var(--mono-font);
       font-size: 9.5px;
-      fill: var(--text-light);
+      fill: rgba(169, 214, 238, 0.8) !important;
     }
     
     /* Infinite Scrolling Ticker */
@@ -335,25 +336,30 @@
     <section class="section overview-section">
       <div class="container">
         
-        <!-- Hero area with restored Placido Reticle & newly uploaded core eye image -->
+        <!-- Hero area with restored, highly visible Placido Reticle & newly uploaded core eye image -->
         <div class="hero">
           <div>
-            <p class="eyebrow">Vision Science &amp; Biomedical Engineering</p>
+            <p class="eyebrow">Vision Intelligence &amp; Biomedical Engineering</p>
             <h1>시각 재활 및 시각 증강 기술의 <em>한계에 도전합니다</em></h1>
             <p class="hero-desc">정밀 광학 계측, AI 기반 바이오마커 분석, 맞춤형 시각 솔루션을 통합하여 안구 과학의 진보를 선도합니다.</p>
             <a class="hero-cta" href="research/overview.html">연구 단계 알아보기 <span class="arrow">→</span></a>
           </div>
           <div class="reticle-wrap" aria-hidden="true">
             <svg viewBox="0 0 460 460" fill="none">
-              <g stroke="rgba(168,200,224,.16)" stroke-width="1">
+              <!-- Concentric rings thickened by 3 scale steps (stroke-width: 3.5) & color made brighter -->
+              <g stroke="rgba(169, 214, 238, 0.45)" stroke-width="3.5">
                 <circle cx="230" cy="230" r="224"/><circle cx="230" cy="230" r="196"/><circle cx="230" cy="230" r="168"/>
               </g>
-              <g class="ring-anim"><circle cx="230" cy="230" r="182" stroke="rgba(169,214,238,.35)" stroke-width="1" stroke-dasharray="2 9"/></g>
-              <g stroke="rgba(168,200,224,.3)" stroke-width="1">
+              <!-- Dashed outer ring thickened (stroke-width: 4.5) & color made brighter -->
+              <g class="ring-anim">
+                <circle cx="230" cy="230" r="182" stroke="rgba(169, 214, 238, 0.85)" stroke-width="4.5" stroke-dasharray="3 10"/>
+              </g>
+              <!-- Crosshair metrics thickened & brightened -->
+              <g stroke="rgba(169, 214, 238, 0.7)" stroke-width="2.5">
                 <line x1="230" y1="2" x2="230" y2="16"/><line x1="230" y1="444" x2="230" y2="458"/>
                 <line x1="2" y1="230" x2="16" y2="230"/><line x1="444" y1="230" x2="458" y2="230"/>
               </g>
-              <text x="238" y="14" class="tick-label">90°</text><text x="238" y="454" class="tick-label">270°</text>
+              <text x="238" y="15" class="tick-label">90°</text><text x="238" y="452" class="tick-label">270°</text>
               <text x="20" y="222" class="tick-label">180°</text><text x="424" y="222" class="tick-label">0°</text>
               <text x="316" y="58" class="readout">IR STRUCTURED LIGHT</text>
               <text x="22" y="416" class="readout">ROI 120 fps</text>
