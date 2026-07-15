@@ -246,9 +246,10 @@
       max-width: var(--container-width);
       margin: 0 auto;
       display: flex;
-      flex-direction: column; /* Changed from 2-columns grid to 1-column layout */
+      flex-direction: column;
       gap: 40px;
       align-items: flex-start;
+      width: 100%;
     }
     .infra h2 {
       font-family: var(--heading-font);
@@ -331,19 +332,65 @@
       top: 1px;
     }
 
-    .diagram {
+    /* Interactive SVG Animation Data flow styles */
+    .diagram-interactive {
       border: 1px solid var(--line);
       background: #05080b;
-      padding: 12px;
       border-radius: 4px;
-      width: 100%; /* Expands to full container width at the bottom */
+      width: 100%;
       box-sizing: border-box;
+      padding: 30px;
     }
-    .diagram img {
+    .diagram-interactive svg {
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 2px;
+    }
+    @keyframes data-flow-dash {
+      to {
+        stroke-dashoffset: -20;
+      }
+    }
+    .animated-flow-line {
+      stroke: var(--primary-color);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 4;
+      animation: data-flow-dash 1.2s linear infinite;
+    }
+    .static-flow-line {
+      stroke: var(--line);
+      stroke-width: 1;
+    }
+    .node-bg {
+      fill: #0c1219;
+      stroke: var(--line);
+      stroke-width: 1.2;
+      transition: stroke 0.3s, fill 0.3s;
+    }
+    .node-group:hover .node-bg {
+      stroke: var(--primary-color);
+      fill: #121a24;
+    }
+    .node-text-title {
+      font-family: var(--heading-font);
+      font-size: 11px;
+      fill: #fff;
+      font-weight: 500;
+    }
+    .node-text-sub {
+      font-family: var(--mono-font);
+      font-size: 8.5px;
+      fill: var(--text-light);
+    }
+    .node-text-badge {
+      font-family: var(--mono-font);
+      font-size: 7.5px;
+      fill: var(--primary-color);
+      font-weight: 600;
+    }
+    .node-icon-emoji {
+      font-size: 20px;
+      alignment-baseline: middle;
     }
 
     /* Responsive modifications */
@@ -358,9 +405,6 @@
       }
       .phase4-layout-top img {
         height: 220px;
-      }
-      .infra-inner {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -621,7 +665,7 @@
 
         </div>
 
-        <!-- Redesigned Cloud Infrastructure Section (Tree pipeline description & widescreen infographic integration) -->
+        <!-- Redesigned Cloud Infrastructure Section (Tree pipeline description & animated data flow integration) -->
         <section class="infra" id="infra">
           <div class="infra-inner">
             <div class="infra-text">
@@ -634,18 +678,17 @@
                 <div>
                   <h3 class="pipeline-section-title">Hardware Stack</h3>
                   <ul class="pipeline-list">
-                    <li>Camera Sensors: Basler acA 1300-60gm NIR 18W, acA 1300-60gc 18W, a2A 1920-160um BAS 36W, FLIR BFS-U3-13Y3M-C 18W, and small camera modules for Raspberry Pi/Jetson</li>
-                    <li>Optical Lenses: Interchangeable focal lengths of 8mm, 12mm, 16mm, and 24mm</li>
+                    <li>Camera Sensors: Basler acA 1300-60gm NIR, acA 1300-60gc, a2A 1920-160um BAS, FLIR BFS-U3-13Y3M-C, and small camera modules for Raspberry Pi/Jetson</li>
+                    <li>Optical Lenses: Interchangeable focal lengths of 8mm, 12mm, 16mm, 24mm, and telecentric lenses</li>
                     <li>Stimulation Units: LED &amp; Buzzer Scheduler paired with high-output Infrared Light Sources</li>
-                    <li>Testbeds &amp; SBCs: J4012 developer kit, Jetson Orin Nano Super, and Raspberry Pi 5</li>
+                    <li>Testbeds &amp; SBCs: J4012 developer kit, Jetson Orin Nano Super, and Raspberry Pi 5 + Hailo-8</li>
                   </ul>
 
                   <h3 class="pipeline-section-title">AI Workstation (optinex-station Compute)</h3>
                   <ul class="pipeline-list">
                     <li>CPU &amp; Motherboard: AMD Ryzen 9 7950X CPU running on MSI MAG X670E Tomahawk</li>
                     <li>GPU Hardware: Palit GeForce RTX 5070 Ti D7 16GB for deep neural network training</li>
-                    <li>Memory &amp; Storage: G.Skill DDR5-6000 CL30 Flare X5 64GB RAM, dual Samsung 990 2TB SSD, WD 2TB, and WD 1TB drives</li>
-                    <li>Chassis &amp; Cooling: Arctic Liquid Freezer III Pro 360 liquid cooler housed in Fractal Design Meshify 2 case powered by Seasonic Focus GX-1000 Gold supply</li>
+                    <li>Memory Hardware: G.Skill DDR5-6000 CL30 Flare X5 64GB RAM</li>
                   </ul>
                 </div>
 
@@ -666,9 +709,72 @@
               </div>
             </div>
             
-            <!-- Widescreen Infographic placed at the bottom, taking full width -->
-            <div class="diagram">
-              <img src="../assets/images/research/wide_pipeline_flow_en.png" alt="Optinex Research Advanced R&amp;D Pipeline Infographic Flow" loading="lazy" />
+            <!-- Animated SVG Flowchart placed at the bottom, taking full width -->
+            <div class="diagram-interactive">
+              <svg viewBox="0 0 800 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background glow links -->
+                <path d="M125 120 H255" class="animated-flow-line" />
+                <path d="M375 120 H505" class="animated-flow-line" />
+                <path d="M625 120 H705" class="animated-flow-line" />
+                <path d="M315 160 V200 H565 V160" class="static-flow-line" />
+
+                <!-- Node 1: Edge Sensing -->
+                <g class="node-group">
+                  <rect x="15" y="70" width="110" height="100" rx="4" class="node-bg" />
+                  <text x="70" y="93" class="node-icon-emoji" text-anchor="middle">📸</text>
+                  <text x="70" y="120" class="node-text-title" text-anchor="middle">Edge Sensing</text>
+                  <text x="70" y="138" class="node-text-sub" text-anchor="middle">Basler / FLIR / Lenses</text>
+                  <text x="70" y="152" class="node-text-badge" text-anchor="middle">acA &amp; Telecentric</text>
+                </g>
+
+                <!-- Node 2: SBC Ingestion -->
+                <g class="node-group">
+                  <rect x="255" y="70" width="120" height="100" rx="4" class="node-bg" />
+                  <text x="315" y="93" class="node-icon-emoji" text-anchor="middle">💻</text>
+                  <text x="315" y="120" class="node-text-title" text-anchor="middle">Ingestion Hub</text>
+                  <text x="315" y="138" class="node-text-sub" text-anchor="middle">Jetson Orin &amp; RPi5</text>
+                  <text x="315" y="152" class="node-text-badge" text-anchor="middle">Hailo-8 / USB LAN</text>
+                </g>
+
+                <!-- Node 3: AI Station -->
+                <g class="node-group">
+                  <rect x="505" y="70" width="120" height="100" rx="4" class="node-bg" />
+                  <text x="565" y="93" class="node-icon-emoji" text-anchor="middle">🧠</text>
+                  <text x="565" y="120" class="node-text-title" text-anchor="middle">optinex-station</text>
+                  <text x="565" y="138" class="node-text-sub" text-anchor="middle">Ryzen 7950X &amp; 5070Ti</text>
+                  <text x="565" y="152" class="node-text-badge" text-anchor="middle">PyTorch &amp; ChromaDB</text>
+                </g>
+
+                <!-- Node 4: HIPAA Cloud Vault -->
+                <g class="node-group">
+                  <rect x="360" y="180" width="110" height="48" rx="4" class="node-bg" />
+                  <text x="382" y="209" class="node-icon-emoji">🔒</text>
+                  <text x="445" y="203" class="node-text-title" text-anchor="middle">HIPAA DB</text>
+                  <text x="445" y="215" class="node-text-sub" text-anchor="middle">Encrypted Storage</text>
+                </g>
+
+                <!-- Node 5: Productized Portal -->
+                <g class="node-group">
+                  <rect x="705" y="80" width="80" height="80" rx="4" class="node-bg" />
+                  <text x="745" y="105" class="node-icon-emoji" text-anchor="middle">🏥</text>
+                  <text x="745" y="130" class="node-text-title" text-anchor="middle">Clinician</text>
+                  <text x="745" y="145" class="node-text-badge" text-anchor="middle">B2B PORTAL</text>
+                </g>
+              </svg>
+              <div style="margin-top: 15px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
+                  <strong>📸 Sensing Node</strong>: High-speed Basler and FLIR sensor arrays capture micro-oscillations, passed through custom telecentric optical lenses to prevent optical aberration.
+                </div>
+                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
+                  <strong>💻 Processing Hub</strong>: Jetson Orin Nano Super and Raspberry Pi 5 + Hailo-8 run real-time noise reduction, streaming packets via wired 1Gbps USB LAN interfaces.
+                </div>
+                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
+                  <strong>🧠 Compute Node</strong>: The Ryzen 7950X + RTX 5070 Ti compute server indexes active paper trends in ChromaDB, updating PyTorch model weights via self-evolving agent.
+                </div>
+                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
+                  <strong>🏥 B2B Ingestion</strong>: Diagnostic results are secured in HIPAA-compliant database vaults, rendering real-time mesh topologies directly to remote Clinician Web Portals.
+                </div>
+              </div>
             </div>
           </div>
         </section>

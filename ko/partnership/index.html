@@ -48,9 +48,12 @@
       .feature-card h3 {
         font-family: var(--heading-font);
         font-weight: 500;
-        font-size: 20px;
+        font-size: 19px;
         color: var(--text-color);
         margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
       .feature-card p {
         color: var(--text-light);
@@ -90,7 +93,7 @@
         padding: 24px;
         border-radius: 4px;
         overflow-x: auto;
-        margin: 0 0 30px;
+        margin: 0 0 40px;
       }
 
       /* Detailed B2B Workflow styling */
@@ -98,6 +101,7 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 20px;
+        margin-bottom: 40px;
       }
       .b2b-workflow-step {
         position: relative;
@@ -132,6 +136,27 @@
         font-size: 14px;
         line-height: 1.6;
         color: var(--text-light);
+      }
+
+      /* Toned Down Services Pipeline Image Container */
+      .services-diagram-wrap {
+        border: 1px solid var(--line);
+        background: #05080b;
+        padding: 12px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 30px;
+      }
+      .services-diagram-wrap img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 2px;
+        opacity: 0.9;
+        transition: opacity 0.3s;
+      }
+      .services-diagram-wrap img:hover {
+        opacity: 1;
       }
 
       @media (max-width: 820px) {
@@ -206,27 +231,27 @@
 
           <div class="features-grid">
             <div class="feature-card">
-              <h3>3D 각공막 형상 분석 및 피팅 협력</h3>
+              <h3>🔬 임상 연구 및 시제품 실증 (Clinical Studies)</h3>
               <p>
-                안구 렌즈 설계를 연구하는 B2B 파트너를 위해 적외선 구조화광 패턴 분석 및 3D 형상 데이터 피팅 가이드 기술 협력을 도모합니다.
+                맞춤형 특수 콘택트렌즈 및 주변부 근시 제어 장치의 유효성을 평가하는 독립 임상 연구를 수행합니다. 체계적인 임상 설계를 바탕으로 광학 매개변수를 교정하고, 신뢰도 높은 검증 보고서를 도출합니다.
               </p>
             </div>
             <div class="feature-card">
-              <h3>AI 동공 반응 및 자율신경계 분석 프로토타입 검증</h3>
+              <h3>⚙️ 하드웨어 시제품 개발 및 광학 교정</h3>
               <p>
-                고속 동공 추적 시스템과 동공 운동 지표 알고리즘 프로토타입의 정합성을 검증하기 위한 공동 R&amp;D 및 분석 파트너십을 진행합니다.
+                카메라와 특수 광학 렌즈(Telecentric 등)를 결합한 이미징 하드웨어 시제품 설계를 지원합니다. 동공 추적 및 형상 복원에 적합하도록 자극 장치 동기화 스케줄러와 하드웨어 통합 튜닝을 제공합니다.
               </p>
             </div>
             <div class="feature-card">
-              <h3>주변부 망막 굴절력 측정 및 실증 지원</h3>
+              <h3>💻 소프트웨어 통합 및 AI API 개발</h3>
               <p>
-                자체 연구 중인 주변부 망막 굴절이상 측정 시제품 장비를 활용해 파트너사 광학 솔루션의 제어 성능 실증 및 협력을 지원합니다.
+                안구 각공막 3D 복원 알고리즘 및 미세 동공 반응 분석 소프트웨어를 파트너사의 의료 시스템에 API 형태로 연결합니다. PyTorch 가중치 모델 연산 및 WebSocket 데이터 스트림 파이프라인 개발을 지원합니다.
               </p>
             </div>
             <div class="feature-card">
-              <h3>산학 공동 연구개발(R&amp;D) 및 파트너십</h3>
+              <h3>🎓 전문가 교육 세미나 및 컨설팅</h3>
               <p>
-                신경시과학 및 시광학 계측 분야의 공동 연구개발 로드맵을 설계하고, 미래 원천 기술 확보를 위한 산학 협력 기회를 제공합니다.
+                비침습 생체 정보 스크리닝 및 기하 광학 계측 분야의 최신 연구 성과를 바탕으로 기업 기술 워크숍 및 학술 세미나를 기획합니다. 원천 특허 확보를 위한 도메인 지식 전수 컨설팅을 수행합니다.
               </p>
             </div>
           </div>
@@ -239,16 +264,16 @@
             </p>
 
             <pre class="ascii-tree">
-D:\Optinex_연구개발_파이프라인
+Optinex Research_연구개발_파이프라인
 ├── Hardware_Stack (엣지 센싱 장비)
 │    ├── Cameras (고속 영상 캡처 카메라군)
-│    │    ├── acA 1300-60gm NIR (18W 적외선 흑백 카메라)
-│    │    ├── acA 1300-60gc (18W 컬러 카메라)
-│    │    ├── a2A 1920-160um BAS (36W 고해상도 카메라)
-│    │    ├── Flir BFS-U3-13Y3M-C (18W 편광 광학 카메라)
+│    │    ├── acA 1300-60gm NIR (적외선 흑백 카메라)
+│    │    ├── acA 1300-60gc (컬러 카메라)
+│    │    ├── a2A 1920-160um BAS (고해상도 카메라)
+│    │    ├── Flir BFS-U3-13Y3M-C (편광 광학 카메라)
 │    │    └── 소형 카메라 모듈 (라즈베리 파이 및 Jetson Orin 개발자 키트용)
 │    ├── Lenses (초점 거리별 광학 렌즈)
-│    │    └── 8mm, 12mm, 16mm, 24mm 기하 광학 렌즈군
+│    │    └── 8mm, 12mm, 16mm, 24mm, telecentric 기하 광학 렌즈
 │    └── Controllers (광원 및 부저 자극 장치)
 │         ├── LED 및 버저 동기화 스케줄러 (LED &amp; Buzzer Scheduler)
 │         └── 적외선 검사 광원 (Infrared Light Source)
@@ -256,19 +281,15 @@ D:\Optinex_연구개발_파이프라인
 │    ├── SBC Testbeds (현장 실시간 연산 및 실증 장비)
 │    │    ├── J4012 개발자 보드
 │    │    ├── Jetson Orin Nano Super
-│    │    └── Raspberry Pi 5
+│    │    └── Raspberry Pi 5 + hailo 8
 │    └── Ingestion (클라우드 전송 데이터 허브)
 │         └── RPi 5 + WD 1TB 스토리지 및 USB LAN 포트 조합 (1Gbps 유선 전송)
 ├── Cloud_AI_Station (연구소 핵심 AI 워크스테이션)
 │    ├── 워크스테이션 사양 (optinex-station)
 │    │    ├── AMD Ryzen 9 7950X CPU
 │    │    ├── Palit GeForce RTX 5070 Ti D7 16GB
-│    │    ├── G.Skill DDR5-6000 CL30 Flare X5 64GB RAM
-│    │    ├── Arctic Liquid Freezer III Pro 360 수랭 쿨러
-│    │    ├── Samsung 990 2TB SSD (듀얼), WD 2TB &amp; WD 1TB 보조 스토리지
-│    │    ├── Seasonic Focus GX-1000 Gold 전원공급장치
-│    │    └── Fractal Design Meshify 2 케이스
-│    └── Database (RAG 지식 검색 데이터베이스)
+│    │    └── G.Skill DDR5-6000 CL30 Flare X5 64GB RAM
+│    └── Vector Database 구축(RAG 지식 검색 데이터베이스)
 │         └── ChromaDB 벡터 스토어 (매일 09:00 - 22:00 논문/특허 자동 수집 및 인덱싱)
 ├── Self_Evolving_Agent (소프트웨어 자율성장 R&amp;D 루프)
 │    ├── PyTorch 폐루프 기계학습 노드 (임상 피드백 반영 모델 가중치 자동 갱신)
@@ -284,25 +305,30 @@ D:\Optinex_연구개발_파이프라인
 
             <div class="b2b-workflow-detail">
               <div class="b2b-workflow-step">
-                <h4>1. 광학 문제 발굴 및 정의 (Optical Problem Discovery)</h4>
+                <h4>1. 광학 문제 발굴 및 정의 🎯</h4>
                 <p>주변부 망막 탈초점 제어 렌즈, 각공막 형상 피팅, 동공 자율신경 지표 등 임상 및 시장에서 요구되는 미해결 문제들을 정교하게 발굴하고 공동 R&amp;D 로드맵을 정의합니다.</p>
               </div>
               <div class="b2b-workflow-step">
-                <h4>2. 광학 도메인 지식 및 기술 매핑 (Optics &amp; Tech Integration)</h4>
+                <h4>2. 광학 도메인 지식 및 기술 매핑 🔬</h4>
                 <p>연구소의 광학 도메인 지식을 토대로 8mm에서 24mm 렌즈 광학계를 설계하고, LED &amp; 버저 스케줄러 및 적외선 광원을 환자 자극 디바이스에 통합 설정합니다.</p>
               </div>
               <div class="b2b-workflow-step">
-                <h4>3. 고정밀 안구 데이터 수집 및 증강 (Data Ingestion &amp; Augmentation)</h4>
+                <h4>3. 고정밀 안구 데이터 수집 및 증강 📸</h4>
                 <p>Basler 및 FLIR 카메라 시스템을 통해 환자의 안구 비디오 프레임을 120fps ROI 초고속 캡처합니다. 수집된 데이터를 RPi5 및 JetsonOrin 등 SBC 기반 엣지 단에서 로컬 전처리한 후 클라우드로 실시간 전송합니다.</p>
               </div>
               <div class="b2b-workflow-step">
-                <h4>4. 인공지능 모델 개발 및 임상 Pilot Study</h4>
+                <h4>4. 인공지능 모델 개발 및 임상 Pilot Study 🧠</h4>
                 <p>optinex-station의 RTX 5070 Ti 인프라를 활용해 3D 각공막 메쉬 복원 및 동공 수축 샘플 엔트로피 분석 AI 모델을 학습시킵니다. 이후, 통제된 IRB 파라미터 하에 소규모 임상 파일럿 실증 연구를 수행합니다.</p>
               </div>
               <div class="b2b-workflow-step">
-                <h4>5. 상용 B2B 의료 서비스 배포 및 상용화 (B2B Service Delivery)</h4>
+                <h4>5. 상용 B2B 의료 서비스 배포 및 상용화 🏥</h4>
                 <p>검증된 AI 엔진을 HIPAA 규격의 보안 DB 클라우드에 탑재하고, 최종 사용자인 안과의사 및 렌즈 피팅 전문가가 직관적으로 진단할 수 있도록 임상의용 대시보드 웹 포털 형태로 상용 제품화를 완료합니다.</p>
               </div>
+            </div>
+
+            <!-- Toned Down Services Pipeline Diagram -->
+            <div class="services-diagram-wrap">
+              <img src="../../assets/images/research/services_pipeline_ko.png" alt="B2B 시제품 실증개발 서비스 파이프라인 흐름도" loading="lazy" />
             </div>
           </div>
 

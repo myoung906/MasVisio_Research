@@ -246,9 +246,10 @@
       max-width: var(--container-width);
       margin: 0 auto;
       display: flex;
-      flex-direction: column; /* Changed from 2-columns grid to 1-column layout */
+      flex-direction: column;
       gap: 40px;
       align-items: flex-start;
+      width: 100%;
     }
     .infra h2 {
       font-family: var(--heading-font);
@@ -331,19 +332,65 @@
       top: 1px;
     }
 
-    .diagram {
+    /* Interactive SVG Animation Data flow styles */
+    .diagram-interactive {
       border: 1px solid var(--line);
       background: #05080b;
-      padding: 12px;
       border-radius: 4px;
-      width: 100%; /* Expands to full container width at the bottom */
+      width: 100%;
       box-sizing: border-box;
+      padding: 30px;
     }
-    .diagram img {
+    .diagram-interactive svg {
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 2px;
+    }
+    @keyframes data-flow-dash {
+      to {
+        stroke-dashoffset: -20;
+      }
+    }
+    .animated-flow-line {
+      stroke: var(--primary-color);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 4;
+      animation: data-flow-dash 1.2s linear infinite;
+    }
+    .static-flow-line {
+      stroke: var(--line);
+      stroke-width: 1;
+    }
+    .node-bg {
+      fill: #0c1219;
+      stroke: var(--line);
+      stroke-width: 1.2;
+      transition: stroke 0.3s, fill 0.3s;
+    }
+    .node-group:hover .node-bg {
+      stroke: var(--primary-color);
+      fill: #121a24;
+    }
+    .node-text-title {
+      font-family: var(--heading-font);
+      font-size: 11px;
+      fill: #fff;
+      font-weight: 500;
+    }
+    .node-text-sub {
+      font-family: var(--mono-font);
+      font-size: 8.5px;
+      fill: var(--text-light);
+    }
+    .node-text-badge {
+      font-family: var(--mono-font);
+      font-size: 7.5px;
+      fill: var(--primary-color);
+      font-weight: 600;
+    }
+    .node-icon-emoji {
+      font-size: 20px;
+      alignment-baseline: middle;
     }
 
     /* Responsive modifications */
@@ -358,9 +405,6 @@
       }
       .phase4-layout-top img {
         height: 220px;
-      }
-      .infra-inner {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -570,7 +614,7 @@
                     <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_left.png" alt="3차원 복원 알고리즘 기하모델" class="photo-img split-img split-img-top">
                     <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_right.png" alt="3차원 복원 알고리즘 인공신경망" class="photo-img split-img split-img-bottom">
                   </div>
-                  <figcaption class="overview-figcaption">3차원 복원 알고리즘 시각화</figcaption>
+                  <figcaption class="overview-figcaption">3D Reconstruction Method</figcaption>
                 </figure>
                 <figure>
                   <img loading="lazy" src="../../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="가상 렌즈 피팅 시뮬레이션" class="photo-img">
@@ -620,7 +664,7 @@
 
         </div>
 
-        <!-- Redesigned Cloud Infrastructure Section (Tree pipeline description & widescreen infographic integration) -->
+        <!-- Redesigned Cloud Infrastructure Section (Tree pipeline description & animated data flow integration) -->
         <section class="infra" id="infra">
           <div class="infra-inner">
             <div class="infra-text">
@@ -633,18 +677,17 @@
                 <div>
                   <h3 class="pipeline-section-title">보유 장비 (Hardware Stack)</h3>
                   <ul class="pipeline-list">
-                    <li>카메라 센서: Basler acA 1300-60gm NIR 18w, acA 1300-60gc 18w, a2A 1920-160um BAS 36w, Flir BFS-U3-13Y3M-C 18w 및 라즈베리 파이/젯슨 전용 소형 카메라 모듈</li>
-                    <li>광학 렌즈군: 초점거리 8mm, 12mm, 16mm, 24mm 교체형 렌즈 지원</li>
+                    <li>카메라 센서: Basler acA 1300-60gm NIR, acA 1300-60gc, a2A 1920-160um BAS, Flir BFS-U3-13Y3M-C 및 라즈베리 파이/젯슨 전용 소형 카메라 모듈</li>
+                    <li>광학 렌즈군: 초점거리 8mm, 12mm, 16mm, 24mm 및 텔레센트릭(Telecentric) 렌즈</li>
                     <li>광학 컨트롤러: 적외선 LED 광원 및 LED &amp; 버저 스케줄러(Buzzer Scheduler) 제어 유닛</li>
-                    <li>테스트 베드 SBC: J4012 개발자 키트, Jetson Orin Nano Super 및 Raspberry Pi 5</li>
+                    <li>테스트 베드 SBC: J4012 개발자 키트, Jetson Orin Nano Super 및 Raspberry Pi 5 + Hailo-8</li>
                   </ul>
 
                   <h3 class="pipeline-section-title">AI 스테이션 (optinex-station 컴퓨팅 스펙)</h3>
                   <ul class="pipeline-list">
                     <li>CPU 및 메인보드: AMD Ryzen 9 7950X CPU, MSI MAG X670E Tomahawk 마더보드</li>
                     <li>GPU 하드웨어: Palit GeForce RTX 5070 Ti D7 16GB 그래픽카드 장착 (딥러닝 자율 R&amp;D 가속)</li>
-                    <li>메모리 및 저장 장치: G.Skill DDR5-6000 CL30 Flare X5 64GB RAM, dual Samsung 990 2TB SSD, WD 2TB, WD 1TB 초고속 스토리지 구성</li>
-                    <li>전원 및 쿨링 케이스: Arctic Liquid Freezer III Pro 360 수랭 쿨러, Seasonic Focus GX-1000 Gold 전원공급장치 및 Fractal Design Meshify 2 케이스</li>
+                    <li>메모리 하드웨어: G.Skill DDR5-6000 CL30 Flare X5 64GB RAM</li>
                   </ul>
                 </div>
 
@@ -665,9 +708,72 @@
               </div>
             </div>
             
-            <!-- Widescreen Infographic placed at the bottom, taking full width -->
-            <div class="diagram">
-              <img src="../../assets/images/research/wide_pipeline_flow_ko.png" alt="Optinex Research Advanced R&amp;D Pipeline Infographic Flow" loading="lazy" />
+            <!-- Animated SVG Flowchart placed at the bottom, taking full width -->
+            <div class="diagram-interactive">
+              <svg viewBox="0 0 800 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background glow links -->
+                <path d="M125 120 H255" class="animated-flow-line" />
+                <path d="M375 120 H505" class="animated-flow-line" />
+                <path d="M625 120 H705" class="animated-flow-line" />
+                <path d="M315 160 V200 H565 V160" class="static-flow-line" />
+
+                <!-- Node 1: Edge Sensing -->
+                <g class="node-group">
+                  <rect x="15" y="70" width="110" height="100" rx="4" class="node-bg" />
+                  <text x="70" y="93" class="node-icon-emoji" text-anchor="middle">📸</text>
+                  <text x="70" y="120" class="node-text-title" text-anchor="middle">광학 엣지 센싱</text>
+                  <text x="70" y="138" class="node-text-sub" text-anchor="middle">Basler / FLIR / 렌즈</text>
+                  <text x="70" y="152" class="node-text-badge" text-anchor="middle">acA 및 텔레센트릭</text>
+                </g>
+
+                <!-- Node 2: SBC Ingestion -->
+                <g class="node-group">
+                  <rect x="255" y="70" width="120" height="100" rx="4" class="node-bg" />
+                  <text x="315" y="93" class="node-icon-emoji" text-anchor="middle">💻</text>
+                  <text x="315" y="120" class="node-text-title" text-anchor="middle">데이터 허브</text>
+                  <text x="315" y="138" class="node-text-sub" text-anchor="middle">Jetson Orin &amp; RPi5</text>
+                  <text x="315" y="152" class="node-text-badge" text-anchor="middle">Hailo-8 / USB LAN</text>
+                </g>
+
+                <!-- Node 3: AI Station -->
+                <g class="node-group">
+                  <rect x="505" y="70" width="120" height="100" rx="4" class="node-bg" />
+                  <text x="565" y="93" class="node-icon-emoji" text-anchor="middle">🧠</text>
+                  <text x="565" y="120" class="node-text-title" text-anchor="middle">optinex-station</text>
+                  <text x="565" y="138" class="node-text-sub" text-anchor="middle">Ryzen 7950X &amp; 5070Ti</text>
+                  <text x="565" y="152" class="node-text-badge" text-anchor="middle">PyTorch &amp; ChromaDB</text>
+                </g>
+
+                <!-- Node 4: HIPAA Cloud Vault -->
+                <g class="node-group">
+                  <rect x="360" y="180" width="110" height="48" rx="4" class="node-bg" />
+                  <text x="382" y="209" class="node-icon-emoji">🔒</text>
+                  <text x="445" y="203" class="node-text-title" text-anchor="middle">보안 DB 적재</text>
+                  <text x="445" y="215" class="node-text-sub" text-anchor="middle">HIPAA 암호화 Vault</text>
+                </g>
+
+                <!-- Node 5: Productized Portal -->
+                <g class="node-group">
+                  <rect x="705" y="80" width="80" height="80" rx="4" class="node-bg" />
+                  <text x="745" y="105" class="node-icon-emoji" text-anchor="middle">🏥</text>
+                  <text x="745" y="130" class="node-text-title" text-anchor="middle">의료진 포털</text>
+                  <text x="745" y="145" class="node-text-badge" text-anchor="middle">웹 대시보드</text>
+                </g>
+              </svg>
+              <div style="margin-top: 15px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
+                  <strong>📸 센싱 노드</strong>: Basler 및 FLIR 카메라가 환자 동공 진동을 초고속 캡처하며, 텔레센트릭 렌즈를 통해 외곽 왜곡 없는 정밀 광학 이미징을 수행합니다.
+                </div>
+                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
+                  <strong>💻 엣지 허브</strong>: Jetson Orin Nano Super 및 Raspberry Pi 5 + Hailo-8 가속 칩을 탑재해 동적 노이즈를 필터링하고 USB LAN 포트로 고속 전송합니다.
+                </div>
+                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
+                  <strong>🧠 AI 연산 스테이션</strong>: Ryzen 7950X CPU와 RTX 5070 Ti GPU 기반 학습 서버에서 ChromaDB 실시간 RAG 인덱싱 및 PyTorch 에이전트 연산을 실행합니다.
+                </div>
+                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
+                  <strong>🏥 의료 서비스 배포</strong>: HIPAA 보안 DB 클라우드에 적재되어, 3D 메쉬 및 동공 자율신경 검출 결과를 실시간 Clinician Web Portal 대시보드로 B2B 제품화 배포합니다.
+                </div>
+              </div>
             </div>
           </div>
         </section>
