@@ -332,7 +332,7 @@
       top: 1px;
     }
 
-    /* Interactive SVG Animation Data flow styles */
+    /* Interactive SVG Animation Data flow styles (2x Larger Boxes) */
     .diagram-interactive {
       border: 1px solid var(--line);
       background: #05080b;
@@ -359,7 +359,7 @@
     }
     .static-flow-line {
       stroke: var(--line);
-      stroke-width: 1;
+      stroke-width: 1.2;
     }
     .node-bg {
       fill: #0c1219;
@@ -373,23 +373,23 @@
     }
     .node-text-title {
       font-family: var(--heading-font);
-      font-size: 11px;
+      font-size: 14.5px; /* ~2x larger font */
       fill: #fff;
       font-weight: 500;
     }
     .node-text-sub {
       font-family: var(--mono-font);
-      font-size: 8.5px;
+      font-size: 10px;
       fill: var(--text-light);
     }
     .node-text-badge {
       font-family: var(--mono-font);
-      font-size: 7.5px;
+      font-size: 9px;
       fill: var(--primary-color);
       font-weight: 600;
     }
     .node-icon-emoji {
-      font-size: 20px;
+      font-size: 26px; /* Larger emoticon */
       alignment-baseline: middle;
     }
 
@@ -700,7 +700,7 @@
 
                   <h3 class="pipeline-section-title">자율성장 에이전트 및 서비스 제품화 (Software)</h3>
                   <ul class="pipeline-list">
-                    <li>폐루프 학습 프로세스: 분산 GPU 컴퓨팅 노드를 돌려 논문 지식을 RAG로 참고하고 시제품 설계도 작성 및 모델 가중치를 자율 갱신(Self-updating weights)하는 에이전트 소프트웨어 탑재</li>
+                    <li>Closed-Loop 학습 프로세스: 분산 GPU 컴퓨팅 노드를 돌려 논문 지식을 RAG로 참고하고 시제품 설계도 작성 및 모델 가중치를 자율 갱신(Self-updating weights)하는 에이전트 소프트웨어 탑재</li>
                     <li>텔레그램 보고 시스템: 에이전트들의 연구 설계 성과물 및 중요 의사결정 결재 안건을 연구소장에게 메신저 게이트웨이를 통해 자율 중간 보고 수행</li>
                     <li>상용 제품화 연동: 결과 데이터를 암호화하여 HIPAA 보안 DB에 이식하고, 최종 의료진 포털 솔루션 웹 대시보드로 상용화 완료</li>
                   </ul>
@@ -708,70 +708,93 @@
               </div>
             </div>
             
-            <!-- Animated SVG Flowchart placed at the bottom, taking full width -->
+            <!-- Animated SVG Flowchart placed at the bottom, taking full width (2x Bigger Boxes & Clean abstract specs) -->
             <div class="diagram-interactive">
-              <svg viewBox="0 0 800 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 920 320" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Background glow links -->
-                <path d="M125 120 H255" class="animated-flow-line" />
-                <path d="M375 120 H505" class="animated-flow-line" />
-                <path d="M625 120 H705" class="animated-flow-line" />
-                <path d="M315 160 V200 H565 V160" class="static-flow-line" />
+                <path d="M180 140 H275" class="animated-flow-line" />
+                <path d="M440 140 H545" class="animated-flow-line" />
+                <path d="M720 140 H810" class="animated-flow-line" />
+                <path d="M357.5 200 V247.5 H410" class="static-flow-line" />
+                <path d="M632.5 200 V247.5 H580" class="static-flow-line" />
 
-                <!-- Node 1: Edge Sensing -->
+                <!-- Node 1: Edge Sensing (Large box, abstract label) -->
                 <g class="node-group">
-                  <rect x="15" y="70" width="110" height="100" rx="4" class="node-bg" />
-                  <text x="70" y="93" class="node-icon-emoji" text-anchor="middle">📸</text>
-                  <text x="70" y="120" class="node-text-title" text-anchor="middle">광학 엣지 센싱</text>
-                  <text x="70" y="138" class="node-text-sub" text-anchor="middle">Basler / FLIR / 렌즈</text>
-                  <text x="70" y="152" class="node-text-badge" text-anchor="middle">acA 및 텔레센트릭</text>
+                  <rect x="15" y="80" width="165" height="120" rx="4" class="node-bg" />
+                  <text x="97.5" y="108" class="node-icon-emoji" text-anchor="middle">📸</text>
+                  <text x="97.5" y="138" class="node-text-title" text-anchor="middle">광학 엣지 센싱</text>
+                  <text x="97.5" y="160" class="node-text-sub" text-anchor="middle">고성능 산업용 카메라</text>
+                  <text x="97.5" y="176" class="node-text-badge" text-anchor="middle">정밀 기하광학 렌즈</text>
                 </g>
 
-                <!-- Node 2: SBC Ingestion -->
+                <!-- Node 2: SBC Ingestion (Large box, abstract label) -->
                 <g class="node-group">
-                  <rect x="255" y="70" width="120" height="100" rx="4" class="node-bg" />
-                  <text x="315" y="93" class="node-icon-emoji" text-anchor="middle">💻</text>
-                  <text x="315" y="120" class="node-text-title" text-anchor="middle">데이터 허브</text>
-                  <text x="315" y="138" class="node-text-sub" text-anchor="middle">Jetson Orin &amp; RPi5</text>
-                  <text x="315" y="152" class="node-text-badge" text-anchor="middle">Hailo-8 / USB LAN</text>
+                  <rect x="275" y="80" width="165" height="120" rx="4" class="node-bg" />
+                  <text x="357.5" y="108" class="node-icon-emoji" text-anchor="middle">💻</text>
+                  <text x="357.5" y="138" class="node-text-title" text-anchor="middle">데이터 엣지 허브</text>
+                  <text x="357.5" y="160" class="node-text-sub" text-anchor="middle">실시간 SBC 전처리</text>
+                  <text x="357.5" y="176" class="node-text-badge" text-anchor="middle">초고속 유선 전송</text>
                 </g>
 
-                <!-- Node 3: AI Station -->
+                <!-- Node 3: AI Station (Large box, abstract label) -->
                 <g class="node-group">
-                  <rect x="505" y="70" width="120" height="100" rx="4" class="node-bg" />
-                  <text x="565" y="93" class="node-icon-emoji" text-anchor="middle">🧠</text>
-                  <text x="565" y="120" class="node-text-title" text-anchor="middle">optinex-station</text>
-                  <text x="565" y="138" class="node-text-sub" text-anchor="middle">Ryzen 7950X &amp; 5070Ti</text>
-                  <text x="565" y="152" class="node-text-badge" text-anchor="middle">PyTorch &amp; ChromaDB</text>
+                  <rect x="545" y="80" width="175" height="120" rx="4" class="node-bg" />
+                  <text x="632.5" y="108" class="node-icon-emoji" text-anchor="middle">🧠</text>
+                  <text x="632.5" y="138" class="node-text-title" text-anchor="middle">AI 연산 스테이션</text>
+                  <text x="632.5" y="160" class="node-text-sub" text-anchor="middle">고성능 분산 컴퓨팅</text>
+                  <text x="632.5" y="176" class="node-text-badge" text-anchor="middle">RAG 지식 실시간 검색</text>
                 </g>
 
                 <!-- Node 4: HIPAA Cloud Vault -->
                 <g class="node-group">
-                  <rect x="360" y="180" width="110" height="48" rx="4" class="node-bg" />
-                  <text x="382" y="209" class="node-icon-emoji">🔒</text>
-                  <text x="445" y="203" class="node-text-title" text-anchor="middle">보안 DB 적재</text>
-                  <text x="445" y="215" class="node-text-sub" text-anchor="middle">HIPAA 암호화 Vault</text>
+                  <rect x="410" y="220" width="170" height="55" rx="4" class="node-bg" />
+                  <text x="435" y="253" class="node-icon-emoji">🔒</text>
+                  <text x="505" y="244" class="node-text-title" text-anchor="middle">보안 DB 적재</text>
+                  <text x="505" y="258" class="node-text-sub" text-anchor="middle">HIPAA 보안 스토리지</text>
                 </g>
 
                 <!-- Node 5: Productized Portal -->
                 <g class="node-group">
-                  <rect x="705" y="80" width="80" height="80" rx="4" class="node-bg" />
-                  <text x="745" y="105" class="node-icon-emoji" text-anchor="middle">🏥</text>
-                  <text x="745" y="130" class="node-text-title" text-anchor="middle">의료진 포털</text>
-                  <text x="745" y="145" class="node-text-badge" text-anchor="middle">웹 대시보드</text>
+                  <rect x="810" y="90" width="95" height="100" rx="4" class="node-bg" />
+                  <text x="857.5" y="117" class="node-icon-emoji" text-anchor="middle">🏥</text>
+                  <text x="857.5" y="146" class="node-text-title" text-anchor="middle">의료진 포털</text>
+                  <text x="857.5" y="163" class="node-text-badge" text-anchor="middle">웹 대시보드</text>
                 </g>
               </svg>
-              <div style="margin-top: 15px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
-                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
-                  <strong>📸 센싱 노드</strong>: Basler 및 FLIR 카메라가 환자 동공 진동을 초고속 캡처하며, 텔레센트릭 렌즈를 통해 외곽 왜곡 없는 정밀 광학 이미징을 수행합니다.
+
+              <!-- Description refactored into neat Bulleted Lists -->
+              <div style="margin-top: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div style="font-size: 13.5px; color: var(--text-light); line-height: 1.6; padding: 12px; border-left: 2px solid var(--primary-color); background: rgba(169, 214, 238, 0.015);">
+                  <strong style="color: #fff;">📸 광학 센싱 노드</strong>
+                  <ul style="margin: 8px 0 0; padding-left: 15px; list-style-type: square; font-size: 12.5px; color: var(--text-light);">
+                    <li>동적 광 자극 하에서 실시간 안구 생체 데이터를 정밀하게 스캔합니다.</li>
+                    <li>고성능 산업용 카메라를 활용해 미세 동공 진동을 노이즈 없이 캡처합니다.</li>
+                    <li>교정된 텔레센트릭 렌즈계를 통과시켜 외곽 굴절 왜곡을 효과적으로 제어합니다.</li>
+                  </ul>
                 </div>
-                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
-                  <strong>💻 엣지 허브</strong>: Jetson Orin Nano Super 및 Raspberry Pi 5 + Hailo-8 가속 칩을 탑재해 동적 노이즈를 필터링하고 USB LAN 포트로 고속 전송합니다.
+                <div style="font-size: 13.5px; color: var(--text-light); line-height: 1.6; padding: 12px; border-left: 2px solid var(--primary-color); background: rgba(169, 214, 238, 0.015);">
+                  <strong style="color: #fff;">💻 데이터 엣지 허브</strong>
+                  <ul style="margin: 8px 0 0; padding-left: 15px; list-style-type: square; font-size: 12.5px; color: var(--text-light);">
+                    <li>엣지 SBC 연산 장치를 활용하여 실시간으로 영상 프레임 노이즈를 1차 필터링합니다.</li>
+                    <li>로컬 신경망 연산 가속 칩을 이용해 고속 contour 전처리를 가동합니다.</li>
+                    <li>USB LAN 유선 포트를 매개로 클라우드로의 지연 없는 패킷 스트리밍을 수행합니다.</li>
+                  </ul>
                 </div>
-                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
-                  <strong>🧠 AI 연산 스테이션</strong>: Ryzen 7950X CPU와 RTX 5070 Ti GPU 기반 학습 서버에서 ChromaDB 실시간 RAG 인덱싱 및 PyTorch 에이전트 연산을 실행합니다.
+                <div style="font-size: 13.5px; color: var(--text-light); line-height: 1.6; padding: 12px; border-left: 2px solid var(--primary-color); background: rgba(169, 214, 238, 0.015);">
+                  <strong style="color: #fff;">🧠 AI 연산 스테이션</strong>
+                  <ul style="margin: 8px 0 0; padding-left: 15px; list-style-type: square; font-size: 12.5px; color: var(--text-light);">
+                    <li>optinex-station 서버의 고성능 GPU 병렬 처리를 통해 PyTorch 딥러닝 R&amp;D를 수행합니다.</li>
+                    <li>ChromaDB 벡터 데이터베이스와 연계해 매일 임상/광학 논문을 자율 RAG로 인덱싱합니다.</li>
+                    <li>임상 반응 피드백을 실시간으로 역전파하여 신경망 모델 가중치를 자율 갱신합니다.</li>
+                  </ul>
                 </div>
-                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
-                  <strong>🏥 의료 서비스 배포</strong>: HIPAA 보안 DB 클라우드에 적재되어, 3D 메쉬 및 동공 자율신경 검출 결과를 실시간 Clinician Web Portal 대시보드로 B2B 제품화 배포합니다.
+                <div style="font-size: 13.5px; color: var(--text-light); line-height: 1.6; padding: 12px; border-left: 2px solid var(--primary-color); background: rgba(169, 214, 238, 0.015);">
+                  <strong style="color: #fff;">🏥 의료 서비스 배포</strong>
+                  <ul style="margin: 8px 0 0; padding-left: 15px; list-style-type: square; font-size: 12.5px; color: var(--text-light);">
+                    <li>수집된 환자 생체 지표 데이터를 HIPAA 보안 규격에 맞게 격리된 Vault 클라우드에 보존합니다.</li>
+                    <li>분석된 3D 공막 높이 편차 및 동공 진단 피팅 값을 마이크로미터 단위 정밀도로 복원합니다.</li>
+                    <li>최종 B2B Clinician Portal 웹 대시보드로 다이렉트 전송하여 진료실 현장 실증을 완료합니다.</li>
+                  </ul>
                 </div>
               </div>
             </div>

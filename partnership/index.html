@@ -49,14 +49,14 @@
         font-family: var(--heading-font);
         font-weight: 500;
         font-size: 19px;
-        color: var(--text-color);
+        color: #c5d4df !important; /* Toned down from pure white */
         margin-bottom: 0;
         display: flex;
         align-items: center;
         gap: 10px;
       }
       .feature-card p {
-        color: var(--text-light);
+        color: #9eb1c0 !important; /* Softened gray-cyan text */
         font-size: 14.5px;
         line-height: 1.7;
         margin-bottom: 0;
@@ -74,11 +74,11 @@
         font-family: var(--heading-font);
         font-weight: 500;
         font-size: 22px;
-        color: var(--text-color);
+        color: #c5d4df !important; /* Softened text */
         margin-bottom: 12px;
       }
       .ascii-tree-container p {
-        color: var(--text-light);
+        color: #9eb1c0 !important; /* Softened text */
         font-size: 14.5px;
         line-height: 1.7;
         margin-bottom: 25px;
@@ -87,7 +87,7 @@
         font-family: var(--mono-font);
         font-size: 12.5px;
         line-height: 1.55;
-        color: var(--primary-color);
+        color: #83a1b5 !important; /* Calm steel blue instead of neon cyan */
         background: var(--panel2);
         border: 1px solid var(--line);
         padding: 24px;
@@ -128,14 +128,14 @@
       .b2b-workflow-step h4 {
         font-family: var(--heading-font);
         font-size: 16px;
-        color: var(--text-color);
+        color: #c5d4df !important; /* Softened */
         margin-bottom: 6px;
         font-weight: 500;
       }
       .b2b-workflow-step p {
         font-size: 14px;
         line-height: 1.6;
-        color: var(--text-light);
+        color: #9eb1c0 !important; /* Softened */
       }
 
       /* Toned Down Services Pipeline Image Container */
@@ -152,7 +152,7 @@
         height: auto;
         display: block;
         border-radius: 2px;
-        opacity: 0.9;
+        opacity: 0.85;
         transition: opacity 0.3s;
       }
       .services-diagram-wrap img:hover {
@@ -224,7 +224,7 @@
         <div class="container">
           <header class="page-header">
             <h2 class="page-title">Services &amp; Partnership</h2>
-            <p class="page-subtitle">
+            <p class="page-subtitle" style="color: #9eb1c0 !important;">
               Collaborate with us to advance visual science and prototype development.
             </p>
           </header>
@@ -260,7 +260,7 @@
           <div class="ascii-tree-container">
             <h3>B2B R&amp;D Pipeline Architecture</h3>
             <p>
-              We provide a complete, integrated cyber-physical pipeline spanning high-speed optical hardware, local edge ingestion nodes, high-performance GPU AI training servers (optinex-station), and certified SaaS productization endpoints.
+              We provide a complete, integrated cyber-physical pipeline spanning high-speed optical hardware, local edge ingestion nodes, high-performance GPU AI training servers (optinex-station), and remote B2B service portals.
             </p>
 
             <pre class="ascii-tree">
@@ -326,9 +326,9 @@ Optinex Research_R&amp;D_Pipeline
               </div>
             </div>
 
-            <!-- Toned Down Services Pipeline Diagram -->
+            <!-- Toned Down Services Pipeline Diagram (Updated to dark mode version) -->
             <div class="services-diagram-wrap">
-              <img src="../assets/images/research/services_pipeline_en.png" alt="B2B Visual Intelligence Service Pipeline Diagram" loading="lazy" />
+              <img src="../assets/images/research/services_pipeline_en_dark.png" alt="B2B Visual Intelligence Service Pipeline Diagram" loading="lazy" />
             </div>
           </div>
 

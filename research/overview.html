@@ -332,7 +332,7 @@
       top: 1px;
     }
 
-    /* Interactive SVG Animation Data flow styles */
+    /* Interactive SVG Animation Data flow styles (2x Larger Boxes) */
     .diagram-interactive {
       border: 1px solid var(--line);
       background: #05080b;
@@ -359,7 +359,7 @@
     }
     .static-flow-line {
       stroke: var(--line);
-      stroke-width: 1;
+      stroke-width: 1.2;
     }
     .node-bg {
       fill: #0c1219;
@@ -373,23 +373,23 @@
     }
     .node-text-title {
       font-family: var(--heading-font);
-      font-size: 11px;
+      font-size: 14.5px; /* ~2x larger font */
       fill: #fff;
       font-weight: 500;
     }
     .node-text-sub {
       font-family: var(--mono-font);
-      font-size: 8.5px;
+      font-size: 10px;
       fill: var(--text-light);
     }
     .node-text-badge {
       font-family: var(--mono-font);
-      font-size: 7.5px;
+      font-size: 9px;
       fill: var(--primary-color);
       font-weight: 600;
     }
     .node-icon-emoji {
-      font-size: 20px;
+      font-size: 26px; /* Larger emoticon */
       alignment-baseline: middle;
     }
 
@@ -709,70 +709,93 @@
               </div>
             </div>
             
-            <!-- Animated SVG Flowchart placed at the bottom, taking full width -->
+            <!-- Animated SVG Flowchart placed at the bottom, taking full width (2x Bigger Boxes & Clean abstract specs) -->
             <div class="diagram-interactive">
-              <svg viewBox="0 0 800 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 920 320" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Background glow links -->
-                <path d="M125 120 H255" class="animated-flow-line" />
-                <path d="M375 120 H505" class="animated-flow-line" />
-                <path d="M625 120 H705" class="animated-flow-line" />
-                <path d="M315 160 V200 H565 V160" class="static-flow-line" />
+                <path d="M180 140 H275" class="animated-flow-line" />
+                <path d="M440 140 H545" class="animated-flow-line" />
+                <path d="M720 140 H810" class="animated-flow-line" />
+                <path d="M357.5 200 V247.5 H410" class="static-flow-line" />
+                <path d="M632.5 200 V247.5 H580" class="static-flow-line" />
 
-                <!-- Node 1: Edge Sensing -->
+                <!-- Node 1: Edge Sensing (Large box, abstract label) -->
                 <g class="node-group">
-                  <rect x="15" y="70" width="110" height="100" rx="4" class="node-bg" />
-                  <text x="70" y="93" class="node-icon-emoji" text-anchor="middle">📸</text>
-                  <text x="70" y="120" class="node-text-title" text-anchor="middle">Edge Sensing</text>
-                  <text x="70" y="138" class="node-text-sub" text-anchor="middle">Basler / FLIR / Lenses</text>
-                  <text x="70" y="152" class="node-text-badge" text-anchor="middle">acA &amp; Telecentric</text>
+                  <rect x="15" y="80" width="165" height="120" rx="4" class="node-bg" />
+                  <text x="97.5" y="108" class="node-icon-emoji" text-anchor="middle">📸</text>
+                  <text x="97.5" y="138" class="node-text-title" text-anchor="middle">Optical Edge Sensing</text>
+                  <text x="97.5" y="160" class="node-text-sub" text-anchor="middle">Industrial Cameras</text>
+                  <text x="97.5" y="176" class="node-text-badge" text-anchor="middle">Geometrical Lenses</text>
                 </g>
 
-                <!-- Node 2: SBC Ingestion -->
+                <!-- Node 2: SBC Ingestion (Large box, abstract label) -->
                 <g class="node-group">
-                  <rect x="255" y="70" width="120" height="100" rx="4" class="node-bg" />
-                  <text x="315" y="93" class="node-icon-emoji" text-anchor="middle">💻</text>
-                  <text x="315" y="120" class="node-text-title" text-anchor="middle">Ingestion Hub</text>
-                  <text x="315" y="138" class="node-text-sub" text-anchor="middle">Jetson Orin &amp; RPi5</text>
-                  <text x="315" y="152" class="node-text-badge" text-anchor="middle">Hailo-8 / USB LAN</text>
+                  <rect x="275" y="80" width="165" height="120" rx="4" class="node-bg" />
+                  <text x="357.5" y="108" class="node-icon-emoji" text-anchor="middle">💻</text>
+                  <text x="357.5" y="138" class="node-text-title" text-anchor="middle">Data Edge Hub</text>
+                  <text x="357.5" y="160" class="node-text-sub" text-anchor="middle">Real-time SBC Processing</text>
+                  <text x="357.5" y="176" class="node-text-badge" text-anchor="middle">High-Speed Wired Link</text>
                 </g>
 
-                <!-- Node 3: AI Station -->
+                <!-- Node 3: AI Station (Large box, abstract label) -->
                 <g class="node-group">
-                  <rect x="505" y="70" width="120" height="100" rx="4" class="node-bg" />
-                  <text x="565" y="93" class="node-icon-emoji" text-anchor="middle">🧠</text>
-                  <text x="565" y="120" class="node-text-title" text-anchor="middle">optinex-station</text>
-                  <text x="565" y="138" class="node-text-sub" text-anchor="middle">Ryzen 7950X &amp; 5070Ti</text>
-                  <text x="565" y="152" class="node-text-badge" text-anchor="middle">PyTorch &amp; ChromaDB</text>
+                  <rect x="545" y="80" width="175" height="120" rx="4" class="node-bg" />
+                  <text x="632.5" y="108" class="node-icon-emoji" text-anchor="middle">🧠</text>
+                  <text x="632.5" y="138" class="node-text-title" text-anchor="middle">AI Compute Station</text>
+                  <text x="632.5" y="160" class="node-text-sub" text-anchor="middle">Parallel GPU Architecture</text>
+                  <text x="632.5" y="176" class="node-text-badge" text-anchor="middle">RAG Knowledge Search</text>
                 </g>
 
                 <!-- Node 4: HIPAA Cloud Vault -->
                 <g class="node-group">
-                  <rect x="360" y="180" width="110" height="48" rx="4" class="node-bg" />
-                  <text x="382" y="209" class="node-icon-emoji">🔒</text>
-                  <text x="445" y="203" class="node-text-title" text-anchor="middle">HIPAA DB</text>
-                  <text x="445" y="215" class="node-text-sub" text-anchor="middle">Encrypted Storage</text>
+                  <rect x="410" y="220" width="170" height="55" rx="4" class="node-bg" />
+                  <text x="435" y="253" class="node-icon-emoji">🔒</text>
+                  <text x="505" y="244" class="node-text-title" text-anchor="middle">Secure Ingestion</text>
+                  <text x="505" y="258" class="node-text-sub" text-anchor="middle">HIPAA Cloud Vault</text>
                 </g>
 
                 <!-- Node 5: Productized Portal -->
                 <g class="node-group">
-                  <rect x="705" y="80" width="80" height="80" rx="4" class="node-bg" />
-                  <text x="745" y="105" class="node-icon-emoji" text-anchor="middle">🏥</text>
-                  <text x="745" y="130" class="node-text-title" text-anchor="middle">Clinician</text>
-                  <text x="745" y="145" class="node-text-badge" text-anchor="middle">B2B PORTAL</text>
+                  <rect x="810" y="90" width="95" height="100" rx="4" class="node-bg" />
+                  <text x="857.5" y="117" class="node-icon-emoji" text-anchor="middle">🏥</text>
+                  <text x="857.5" y="146" class="node-text-title" text-anchor="middle">Clinician Portal</text>
+                  <text x="857.5" y="163" class="node-text-badge" text-anchor="middle">WEB DASHBOARD</text>
                 </g>
               </svg>
-              <div style="margin-top: 15px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
-                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
-                  <strong>📸 Sensing Node</strong>: High-speed Basler and FLIR sensor arrays capture micro-oscillations, passed through custom telecentric optical lenses to prevent optical aberration.
+
+              <!-- Description refactored into neat Bulleted Lists -->
+              <div style="margin-top: 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div style="font-size: 13.5px; color: var(--text-light); line-height: 1.6; padding: 12px; border-left: 2px solid var(--primary-color); background: rgba(169, 214, 238, 0.015);">
+                  <strong style="color: #fff;">📸 Sensing Node</strong>
+                  <ul style="margin: 8px 0 0; padding-left: 15px; list-style-type: square; font-size: 12.5px; color: var(--text-light);">
+                    <li>Uses high-resolution industrial cameras to capture dynamic pupil reactions.</li>
+                    <li>Projects precise infrared light patterns without background interference.</li>
+                    <li>Avoids optical aberration using a calibrated telecentric geometrical lens.</li>
+                  </ul>
                 </div>
-                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
-                  <strong>💻 Processing Hub</strong>: Jetson Orin Nano Super and Raspberry Pi 5 + Hailo-8 run real-time noise reduction, streaming packets via wired 1Gbps USB LAN interfaces.
+                <div style="font-size: 13.5px; color: var(--text-light); line-height: 1.6; padding: 12px; border-left: 2px solid var(--primary-color); background: rgba(169, 214, 238, 0.015);">
+                  <strong style="color: #fff;">💻 Processing Hub</strong>
+                  <ul style="margin: 8px 0 0; padding-left: 15px; list-style-type: square; font-size: 12.5px; color: var(--text-light);">
+                    <li>Filters high-frequency video frame noise on edge SBC boards.</li>
+                    <li>Deploys hardware accelerators (Hailo-8) for local contour preprocessing.</li>
+                    <li>Streams synced data packets via low-latency, wired USB LAN connections.</li>
+                  </ul>
                 </div>
-                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
-                  <strong>🧠 Compute Node</strong>: The Ryzen 7950X + RTX 5070 Ti compute server indexes active paper trends in ChromaDB, updating PyTorch model weights via self-evolving agent.
+                <div style="font-size: 13.5px; color: var(--text-light); line-height: 1.6; padding: 12px; border-left: 2px solid var(--primary-color); background: rgba(169, 214, 238, 0.015);">
+                  <strong style="color: #fff;">🧠 Compute Node</strong>
+                  <ul style="margin: 8px 0 0; padding-left: 15px; list-style-type: square; font-size: 12.5px; color: var(--text-light);">
+                    <li>Executes intensive PyTorch neural network R&amp;D on workstation GPUs.</li>
+                    <li>Performs automatic vector RAG indexing via ChromaDB database.</li>
+                    <li>Updates deep learning model weights through closed-loop training agents.</li>
+                  </ul>
                 </div>
-                <div style="font-size: 13px; color: var(--text-light); line-height: 1.5; padding: 10px; border-left: 2px solid var(--primary-color)">
-                  <strong>🏥 B2B Ingestion</strong>: Diagnostic results are secured in HIPAA-compliant database vaults, rendering real-time mesh topologies directly to remote Clinician Web Portals.
+                <div style="font-size: 13.5px; color: var(--text-light); line-height: 1.6; padding: 12px; border-left: 2px solid var(--primary-color); background: rgba(169, 214, 238, 0.015);">
+                  <strong style="color: #fff;">🏥 B2B Ingestion</strong>
+                  <ul style="margin: 8px 0 0; padding-left: 15px; list-style-type: square; font-size: 12.5px; color: var(--text-light);">
+                    <li>Secures patient biometric measurements in HIPAA-compliant database vaults.</li>
+                    <li>Renders 3D corneal surface topography with sub-micron fitting values.</li>
+                    <li>Deploys direct analytics endpoints to clinician web portals for remote diagnostic support.</li>
+                  </ul>
                 </div>
               </div>
             </div>
