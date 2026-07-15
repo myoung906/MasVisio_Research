@@ -145,12 +145,12 @@ a:hover {
 
 .sidebar-logo h1 {
   font-family: var(--logo-font);
-  font-size: 2.1rem;
+  font-size: 2.35rem;
   line-height: 1.2;
   margin-bottom: 0.5rem;
   color: var(--text-color);
   letter-spacing: 0.04em;
-  font-weight: 600;
+  font-weight: 700;
   font-kerning: normal;
   font-stretch: normal;
   text-rendering: geometricPrecision;

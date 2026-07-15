@@ -149,8 +149,8 @@
   .mobile-header .mobile-logo h1 {
     font-family: var(--logo-font);
     font-weight: 800;
-    font-size: 2.2rem;
-    color: #003366;
+    font-size: 2.4rem;
+    color: var(--text-color);
     line-height: 1.1;
     letter-spacing: 0;
     font-kerning: normal;
@@ -284,7 +284,7 @@
   }
 
   .sidebar .sidebar-logo h1 {
-    font-size: 2.2rem;
+    font-size: 2.45rem;
   }
 
   .main-content .intro-section h2 {
@@ -363,7 +363,7 @@
   }
 
   .sidebar-logo h1 {
-    font-size: 1.75rem;
+    font-size: 1.95rem;
   }
 
   /* Single column cards */
