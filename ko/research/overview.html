@@ -489,13 +489,10 @@
               <div style="margin-bottom: 2rem; display: flex; gap: 4rem; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
                 <figure class="phase1-figure-centered">
                   <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">공간 주파수 (Spatial Frequency)</div>
-                  <div style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden; margin-bottom: 8px;">
-                    <picture>
-                      <source srcset="../../assets/images/gabor_spatial_frequency.webp" type="image/webp">
-                      <img src="../../assets/images/gabor_spatial_frequency.gif" alt="Gabor Patch 공간 주파수 자극 애니메이션" class="photo-img" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block;" loading="lazy" />
-                    </picture>
+                  <div data-spatial-gabor="canvas" data-freq-start="1" data-freq-end="30" data-duration="3000" style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden; margin-bottom: 8px;">
+                    <canvas class="spatial-gabor-canvas" style="width: 100%; height: 100%; display: block"></canvas>
                   </div>
-                  <figcaption class="overview-figcaption" data-gabor-caption="true" data-caption-start="1" data-caption-end="30" data-caption-frames="30" data-caption-duration="3000">
+                  <figcaption class="overview-figcaption">
                     <span class="gabor-caption-label challenge-caption-fixed">공간 주파수:</span>
                     <span class="challenge-caption-dynamic"><span class="gabor-caption-value" style="display: inline-block; min-width: 2ch; text-align: right;">1</span> <span class="gabor-caption-unit">cpd</span></span>
                   </figcaption>

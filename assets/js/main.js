@@ -104,220 +104,150 @@ function getErrorMessage(error, lang) {
   return m.default;
 }
 
-function initGaborCaptionAnimations() {
-  const captions = Array.from(
-    document.querySelectorAll('[data-gabor-caption="true"]'),
-  );
-  if (captions.length === 0) return;
-
-  const configs = captions
-    .map((caption) => {
-      const valueEl = caption.querySelector(".gabor-caption-value");
-      if (!valueEl) return null;
-
-      const start = Number(caption.dataset.captionStart);
-      const end = Number(caption.dataset.captionEnd);
-      const frames = Number(caption.dataset.captionFrames);
-      const duration = Number(caption.dataset.captionDuration);
-
-      if (
-        !Number.isFinite(start) ||
-        !Number.isFinite(end) ||
-        !Number.isFinite(frames) ||
-        !Number.isFinite(duration)
-      ) {
-        return null;
-      }
-
-      return {
-        valueEl,
-        start,
-        end,
-        frames: Math.max(1, Math.floor(frames)),
-        duration: Math.max(1, duration),
-        startTime: performance.now(),
-        lastValue: null,
+function initVisualSummationStimuli() {
+  const spatialTarget = document.querySelector('[data-spatial-gabor="canvas"]');
+  const temporalTarget = document.querySelector('[data-temporal-flicker="canvas"]');
+  
+  if (!spatialTarget && !temporalTarget) return;
+  
+  let spatialConfig = null;
+  if (spatialTarget) {
+    const canvas = spatialTarget.querySelector(".spatial-gabor-canvas");
+    const captionValue = spatialTarget.closest("figure")?.querySelector(".gabor-caption-value");
+    const ctx = canvas ? canvas.getContext("2d") : null;
+    if (canvas && ctx) {
+      spatialConfig = {
+        canvas, ctx, captionValue,
+        start: Number(spatialTarget.dataset.freqStart || 1),
+        end: Number(spatialTarget.dataset.freqEnd || 30),
+        duration: Number(spatialTarget.dataset.duration || 3000)
       };
-    })
-    .filter(Boolean);
-
-  if (configs.length === 0) return;
-
-  const update = (now) => {
-    if (!document.hidden) {
-      configs.forEach((config) => {
-        const elapsed = (now - config.startTime) % config.duration;
-        const frameIndex = Math.floor(
-          (elapsed / config.duration) * config.frames,
-        );
-        const ratio = config.frames > 1 ? frameIndex / (config.frames - 1) : 0;
-        const value = Math.round(
-          config.start + (config.end - config.start) * ratio,
-        );
-
-        if (value !== config.lastValue) {
-          config.valueEl.textContent = String(value);
-          config.lastValue = value;
-        }
-      });
     }
-
-    requestAnimationFrame(update);
-  };
-
-  requestAnimationFrame(update);
-}
-
-function initTemporalFlicker() {
-  const targets = Array.from(
-    document.querySelectorAll('[data-temporal-flicker="canvas"]'),
-  );
-  if (targets.length === 0) return;
-
-  const configs = targets
-    .map((target) => {
-      const canvas = target.querySelector(".temporal-flicker-canvas");
-      if (!canvas) return null;
-
-      const start = Number(target.dataset.freqStart);
-      const end = Number(target.dataset.freqEnd);
-      const duration = Number(target.dataset.rampDuration);
-      const stepDuration = Number(target.dataset.stepDuration || 1000);
-      const speedMultiplier = Number(target.dataset.speedMultiplier || 2.5);
-      const onSrc = target.dataset.onSrc;
-      const offSrc = target.dataset.offSrc;
-      if (
-        !Number.isFinite(start) ||
-        !Number.isFinite(end) ||
-        !Number.isFinite(duration) ||
-        !Number.isFinite(stepDuration) ||
-        !Number.isFinite(speedMultiplier) ||
-        !onSrc ||
-        !offSrc
-      ) {
-        return null;
-      }
-
-      const captionValue =
-        target.closest("figure")?.querySelector(".temporal-caption-value") ||
-        null;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return null;
-
+  }
+  
+  let temporalConfig = null;
+  if (temporalTarget) {
+    const canvas = temporalTarget.querySelector(".temporal-flicker-canvas");
+    const captionValue = temporalTarget.closest("figure")?.querySelector(".temporal-caption-value");
+    const ctx = canvas ? canvas.getContext("2d") : null;
+    if (canvas && ctx) {
       const onImg = new Image();
       const offImg = new Image();
-      onImg.src = onSrc;
-      offImg.src = offSrc;
-
-      return {
-        canvas,
-        ctx,
-        onImg,
-        offImg,
-        captionValue,
-        start,
-        end,
-        duration: Math.max(1, duration),
-        stepDuration: Math.max(100, stepDuration),
-        speedMultiplier: Math.max(0.1, speedMultiplier),
-        startTime: performance.now(),
-        lastCaption: null,
-        lastTime: performance.now(),
-        lastElapsed: 0,
-        stepIndex: -1,
+      onImg.src = temporalTarget.dataset.onSrc;
+      offImg.src = temporalTarget.dataset.offSrc;
+      
+      temporalConfig = {
+        canvas, ctx, captionValue, onImg, offImg,
+        start: Number(temporalTarget.dataset.freqStart || 1),
+        end: Number(temporalTarget.dataset.freqEnd || 30),
+        duration: Number(temporalTarget.dataset.rampDuration || 3000),
         accumulator: 0,
         state: 1,
+        lastTime: performance.now()
       };
-    })
-    .filter(Boolean);
-
-  if (configs.length === 0) return;
-
-  const resizeCanvas = (config) => {
-    const { canvas } = config;
-    const rect = canvas.getBoundingClientRect();
+    }
+  }
+  
+  const resize = (config) => {
+    if (!config) return;
+    const rect = config.canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
-    canvas.width = Math.max(1, Math.round(rect.width * dpr));
-    canvas.height = Math.max(1, Math.round(rect.height * dpr));
+    config.canvas.width = Math.max(1, Math.round(rect.width * dpr));
+    config.canvas.height = Math.max(1, Math.round(rect.height * dpr));
   };
-
-  configs.forEach(resizeCanvas);
-  window.addEventListener("resize", () => configs.forEach(resizeCanvas));
-
+  
+  resize(spatialConfig);
+  resize(temporalConfig);
+  window.addEventListener("resize", () => {
+    resize(spatialConfig);
+    resize(temporalConfig);
+  });
+  
+  const startTime = performance.now();
+  
+  const drawGabor = (config, freq) => {
+    const { ctx, canvas } = config;
+    const width = canvas.width;
+    const height = canvas.height;
+    
+    const imgData = ctx.createImageData(width, height);
+    const data = imgData.data;
+    const sigma = width * 0.23;
+    const xc = width / 2;
+    const yc = height / 2;
+    const cycles = freq * 0.35;
+    
+    for (let y = 0; y < height; y++) {
+      const dy = y - yc;
+      const dy2 = dy * dy;
+      const rowOffset = y * width;
+      for (let x = 0; x < width; x++) {
+        const dx = x - xc;
+        const dx2 = dx * dx;
+        const gauss = Math.exp(-(dx2 + dy2) / (2 * sigma * sigma));
+        const val = Math.cos(2 * Math.PI * cycles * (dx / width));
+        const color = Math.round(128 + 120 * gauss * val);
+        const idx = (rowOffset + x) * 4;
+        data[idx] = color;
+        data[idx+1] = color;
+        data[idx+2] = color;
+        data[idx+3] = 255;
+      }
+    }
+    ctx.putImageData(imgData, 0, 0);
+  };
+  
   const update = (now) => {
     if (!document.hidden) {
-      const nowSeconds = now / 1000;
-      configs.forEach((config) => {
-        const { ctx, canvas } = config;
-        const elapsed = (now - config.startTime) % config.duration;
-        const totalSteps = Math.max(
-          1,
-          Math.floor(config.end - config.start + 1),
-        );
-        const effectiveStep = config.stepDuration / config.speedMultiplier;
-        const loopDuration = effectiveStep * totalSteps;
-        const loopElapsed = loopDuration > 0 ? elapsed % loopDuration : 0;
-        const stepIndex = Math.floor(loopElapsed / effectiveStep) % totalSteps;
-        const freq = config.start + stepIndex;
-        if (stepIndex !== config.stepIndex) {
-          config.stepIndex = stepIndex;
-          config.accumulator = 0;
-          config.state = 1;
+      const elapsed = (now - startTime) % 3000;
+      const ratio = elapsed / 3000;
+      const freq = Math.min(30, Math.max(1, Math.round(1 + (30 - 1) * ratio)));
+      
+      if (spatialConfig) {
+        drawGabor(spatialConfig, freq);
+        if (spatialConfig.captionValue) {
+          spatialConfig.captionValue.textContent = String(freq);
         }
-        const stepElapsed = loopElapsed - stepIndex * effectiveStep;
-
-        const dt = Math.max(0.001, (now - config.lastTime) / 1000);
-        config.lastTime = now;
-        if (
-          elapsed < config.lastElapsed ||
-          stepElapsed < config.lastElapsed % effectiveStep
-        ) {
-          config.accumulator = 0;
-          config.state = 1;
-        }
-        config.lastElapsed = elapsed;
+      }
+      
+      if (temporalConfig) {
+        const dt = Math.max(0.001, (now - temporalConfig.lastTime) / 1000);
+        temporalConfig.lastTime = now;
+        
         const halfPeriod = 0.5 / freq;
-        config.accumulator += dt;
-        while (config.accumulator >= halfPeriod) {
-          config.state = config.state ? 0 : 1;
-          config.accumulator -= halfPeriod;
+        temporalConfig.accumulator += dt;
+        while (temporalConfig.accumulator >= halfPeriod) {
+          temporalConfig.state = temporalConfig.state ? 0 : 1;
+          temporalConfig.accumulator -= halfPeriod;
         }
-        const alpha = config.state;
-
-        if (config.offImg.complete && config.onImg.complete && config.offImg.naturalWidth > 0) {
+        
+        const alpha = temporalConfig.state;
+        const { ctx, canvas } = temporalConfig;
+        
+        if (temporalConfig.offImg.complete && temporalConfig.onImg.complete && temporalConfig.offImg.naturalWidth > 0) {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.globalAlpha = 1;
-          ctx.drawImage(config.offImg, 0, 0, canvas.width, canvas.height);
+          ctx.drawImage(temporalConfig.offImg, 0, 0, canvas.width, canvas.height);
           ctx.globalAlpha = alpha;
-          ctx.drawImage(config.onImg, 0, 0, canvas.width, canvas.height);
+          ctx.drawImage(temporalConfig.onImg, 0, 0, canvas.width, canvas.height);
           ctx.globalAlpha = 1;
         } else {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.fillStyle = alpha ? "rgba(169, 214, 238, 0.9)" : "rgba(8, 12, 17, 0.9)";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
-          
-          ctx.strokeStyle = "rgba(169, 214, 238, 0.25)";
-          ctx.lineWidth = 8;
-          ctx.beginPath();
-          for (let i = 0; i < canvas.width; i += 20) {
-            ctx.moveTo(i, 0);
-            ctx.lineTo(i, canvas.height);
-          }
-          ctx.stroke();
         }
-
-        if (config.captionValue) {
-          if (freq !== config.lastCaption) {
-            config.captionValue.textContent = String(freq);
-            config.lastCaption = freq;
-          }
+        
+        if (temporalConfig.captionValue) {
+          temporalConfig.captionValue.textContent = String(freq);
         }
-      });
+      }
+    } else {
+      if (temporalConfig) {
+        temporalConfig.lastTime = now;
+      }
     }
-
     requestAnimationFrame(update);
   };
-
   requestAnimationFrame(update);
 }
 
@@ -335,8 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize Mobile Navigation
   initMobileNav();
-  initGaborCaptionAnimations();
-  initTemporalFlicker();
+  initVisualSummationStimuli();
   initAccessibilityControls();
 
 
