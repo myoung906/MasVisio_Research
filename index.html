@@ -264,19 +264,33 @@
       color: #fff !important;
       margin-bottom: 0;
     }
-    .feature-card img {
+
+    /* Dedicated thumbnail wrapper to prevent invert filter from affecting background color */
+    .thumbnail-wrapper {
       width: 100%;
       height: 180px;
-      object-fit: contain;
-      background: #05080b !important;
+      background: #05080b !important; /* Perfect pitch black */
       border: 1px solid var(--line);
       border-radius: 2px;
       padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .thumbnail-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
       filter: saturate(0.85);
     }
-    .feature-card img.dark-invert {
+    .thumbnail-wrapper img.dark-invert {
       filter: invert(0.9) hue-rotate(180deg) brightness(0.85) contrast(1.1) saturate(0.9) !important;
     }
+
     .feature-card p {
       color: var(--text-light);
       font-size: 14px;
@@ -382,7 +396,7 @@
               <text x="22" y="416" class="readout">ROI 120 fps</text>
               <text x="342" y="428" class="readout">PUPIL Ø 4.12 mm</text>
             </svg>
-            <div class="reticle-core"><img src="assets/images/retinoscope_refraction_eye_v1.png" alt="Ocular topography core visual" /></div>
+            <div class="reticle-core"><img src="assets/images/retinoscope_refraction_eye_v1.png?v=4.1" alt="Ocular topography core visual" /></div>
           </div>
         </div>
 
@@ -427,21 +441,27 @@
         <div class="features-grid">
           <div class="feature-card">
             <h3>Myopia Control Modeling</h3>
-            <img src="assets/images/research/phase2/optical_simulation.png" alt="Optical Simulation" width="800" height="600" loading="lazy" />
+            <div class="thumbnail-wrapper">
+              <img src="assets/images/research/phase2/optical_simulation.png" alt="Optical Simulation" width="800" height="600" loading="lazy" />
+            </div>
             <p>
               Researching 4D peripheral optical pathways using ultra-precision ray tracing models that simulate refraction boundaries across 6 ocular surfaces.
             </p>
           </div>
           <div class="feature-card">
             <h3>AI-Driven Ocular Screening</h3>
-            <img src="assets/images/research/phase4_study2_correlation_matrix.jpg" alt="Correlation Matrix" width="800" height="600" loading="lazy" class="dark-invert" />
+            <div class="thumbnail-wrapper">
+              <img src="assets/images/research/phase4_study2_correlation_matrix.jpg" alt="Correlation Matrix" width="800" height="600" loading="lazy" class="dark-invert" />
+            </div>
             <p>
               Developing non-invasive AI screening networks that detect early autonomic abnormalities by evaluating pupil dynamics and high-dimensional biometric indices.
             </p>
           </div>
           <div class="feature-card">
             <h3>Corneo-Scleral 3D Topology</h3>
-            <img src="assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="Corneo-Scleral Analysis UI" width="800" height="600" loading="lazy" />
+            <div class="thumbnail-wrapper">
+              <img src="assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="Corneo-Scleral Analysis UI" width="800" height="600" loading="lazy" />
+            </div>
             <p>
               Building custom scleral fitting profiles by mapping deformed structured light concentric ring vectors to reconstruct 3D topologies in real-time.
             </p>
