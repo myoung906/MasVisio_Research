@@ -58,9 +58,88 @@
         line-height: 1.7;
         margin-bottom: 0;
       }
+
+      /* ASCII Pipeline Tree Container styles */
+      .ascii-tree-container {
+        margin-top: 4rem;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 40px;
+        border-radius: 4px;
+      }
+      .ascii-tree-container h3 {
+        font-family: var(--heading-font);
+        font-weight: 500;
+        font-size: 22px;
+        color: var(--text-color);
+        margin-bottom: 12px;
+      }
+      .ascii-tree-container p {
+        color: var(--text-light);
+        font-size: 14.5px;
+        line-height: 1.7;
+        margin-bottom: 25px;
+      }
+      .ascii-tree {
+        font-family: var(--mono-font);
+        font-size: 12.5px;
+        line-height: 1.55;
+        color: var(--primary-color);
+        background: var(--panel2);
+        border: 1px solid var(--line);
+        padding: 24px;
+        border-radius: 4px;
+        overflow-x: auto;
+        margin: 0 0 30px;
+      }
+
+      /* Detailed B2B Workflow styling */
+      .b2b-workflow-detail {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .b2b-workflow-step {
+        position: relative;
+        padding-left: 24px;
+        border-left: 1px solid var(--line-strong);
+        margin-left: 10px;
+        padding-bottom: 15px;
+      }
+      .b2b-workflow-step:last-child {
+        border-left: none;
+        padding-bottom: 0;
+      }
+      .b2b-workflow-step::before {
+        content: "";
+        position: absolute;
+        left: -5px;
+        top: 4px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        box-shadow: 0 0 6px var(--primary-color);
+      }
+      .b2b-workflow-step h4 {
+        font-family: var(--heading-font);
+        font-size: 16px;
+        color: var(--text-color);
+        margin-bottom: 6px;
+        font-weight: 500;
+      }
+      .b2b-workflow-step p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--text-light);
+      }
+
       @media (max-width: 820px) {
         .features-grid {
           grid-template-columns: 1fr;
+        }
+        .ascii-tree-container {
+          padding: 20px;
         }
       }
     </style>
@@ -75,7 +154,7 @@
       <a href="../index.html" class="mobile-logo">
         <h1>Optinex<br />Research</h1>
         <span class="logo-subtitle"
-          >Vision Intelligence &<br />Biomedical Engineering</span
+          >Vision Intelligence &amp;<br />Biomedical Engineering</span
         >
       </a>
     </header>
@@ -85,7 +164,7 @@
         <a href="../index.html" class="sidebar-logo">
           <h1>Optinex<br />Research</h1>
           <span class="sidebar-subtitle"
-            >Vision Intelligence &<br />Biomedical Engineering</span
+            >Vision Intelligence &amp;<br />Biomedical Engineering</span
           >
         </a>
       </div>
@@ -151,6 +230,82 @@
               </p>
             </div>
           </div>
+
+          <!-- New ASCII Tree and detailed Workflow section -->
+          <div class="ascii-tree-container">
+            <h3>B2B 연구개발(R&amp;D) 파이프라인 아키텍처</h3>
+            <p>
+              우리는 초고속 광학 엣지 하드웨어, 로컬 전처리 노드, 고성능 GPU 기반의 학습 서버(optinex-station), 그리고 규격을 준수하는 SaaS 솔루션 서비스 제공에 이르기까지 완벽하게 통합된 전주기 파이프라인을 지원합니다.
+            </p>
+
+            <pre class="ascii-tree">
+D:\Optinex_연구개발_파이프라인
+├── Hardware_Stack (엣지 센싱 장비)
+│    ├── Cameras (고속 영상 캡처 카메라군)
+│    │    ├── acA 1300-60gm NIR (18W 적외선 흑백 카메라)
+│    │    ├── acA 1300-60gc (18W 컬러 카메라)
+│    │    ├── a2A 1920-160um BAS (36W 고해상도 카메라)
+│    │    ├── Flir BFS-U3-13Y3M-C (18W 편광 광학 카메라)
+│    │    └── 소형 카메라 모듈 (라즈베리 파이 및 Jetson Orin 개발자 키트용)
+│    ├── Lenses (초점 거리별 광학 렌즈)
+│    │    └── 8mm, 12mm, 16mm, 24mm 기하 광학 렌즈군
+│    └── Controllers (광원 및 부저 자극 장치)
+│         ├── LED 및 버저 동기화 스케줄러 (LED &amp; Buzzer Scheduler)
+│         └── 적외선 검사 광원 (Infrared Light Source)
+├── Edge_Computing_Node (엣지 단 전처리)
+│    ├── SBC Testbeds (현장 실시간 연산 및 실증 장비)
+│    │    ├── J4012 개발자 보드
+│    │    ├── Jetson Orin Nano Super
+│    │    └── Raspberry Pi 5
+│    └── Ingestion (클라우드 전송 데이터 허브)
+│         └── RPi 5 + WD 1TB 스토리지 및 USB LAN 포트 조합 (1Gbps 유선 전송)
+├── Cloud_AI_Station (연구소 핵심 AI 워크스테이션)
+│    ├── 워크스테이션 사양 (optinex-station)
+│    │    ├── AMD Ryzen 9 7950X CPU
+│    │    ├── Palit GeForce RTX 5070 Ti D7 16GB
+│    │    ├── G.Skill DDR5-6000 CL30 Flare X5 64GB RAM
+│    │    ├── Arctic Liquid Freezer III Pro 360 수랭 쿨러
+│    │    ├── Samsung 990 2TB SSD (듀얼), WD 2TB &amp; WD 1TB 보조 스토리지
+│    │    ├── Seasonic Focus GX-1000 Gold 전원공급장치
+│    │    └── Fractal Design Meshify 2 케이스
+│    └── Database (RAG 지식 검색 데이터베이스)
+│         └── ChromaDB 벡터 스토어 (매일 09:00 - 22:00 논문/특허 자동 수집 및 인덱싱)
+├── Self_Evolving_Agent (소프트웨어 자율성장 R&amp;D 루프)
+│    ├── PyTorch 폐루프 기계학습 노드 (임상 피드백 반영 모델 가중치 자동 갱신)
+│    └── Telegram Admin Gateway (자율 R&amp;D 성과 보고 및 소장 결재 승인 통로)
+└── B2B_Medical_Service_Delivery (상용 제품화 모델)
+     ├── HIPAA 보안 표준 암호화 저장소 (안전한 임상 데이터 격리 보존)
+     └── Clinician Web Portal (실시간 3D 각공막 분석 및 동공 진단 웹 대시보드)</pre>
+
+            <h3 style="margin-top: 3rem;">문제 발굴부터 최종 제품 상용화까지의 단계</h3>
+            <p style="margin-bottom: 2rem;">
+              B2B 파트너십을 맺은 기업들은 본 연구소의 파이프라인 인프라를 활용하여 아래와 같은 체계적인 실증개발 및 제품화 단계를 거치게 됩니다.
+            </p>
+
+            <div class="b2b-workflow-detail">
+              <div class="b2b-workflow-step">
+                <h4>1. 광학 문제 발굴 및 정의 (Optical Problem Discovery)</h4>
+                <p>주변부 망막 탈초점 제어 렌즈, 각공막 형상 피팅, 동공 자율신경 지표 등 임상 및 시장에서 요구되는 미해결 문제들을 정교하게 발굴하고 공동 R&amp;D 로드맵을 정의합니다.</p>
+              </div>
+              <div class="b2b-workflow-step">
+                <h4>2. 광학 도메인 지식 및 기술 매핑 (Optics &amp; Tech Integration)</h4>
+                <p>연구소의 광학 도메인 지식을 토대로 8mm에서 24mm 렌즈 광학계를 설계하고, LED &amp; 버저 스케줄러 및 적외선 광원을 환자 자극 디바이스에 통합 설정합니다.</p>
+              </div>
+              <div class="b2b-workflow-step">
+                <h4>3. 고정밀 안구 데이터 수집 및 증강 (Data Ingestion &amp; Augmentation)</h4>
+                <p>Basler 및 FLIR 카메라 시스템을 통해 환자의 안구 비디오 프레임을 120fps ROI 초고속 캡처합니다. 수집된 데이터를 RPi5 및 JetsonOrin 등 SBC 기반 엣지 단에서 로컬 전처리한 후 클라우드로 실시간 전송합니다.</p>
+              </div>
+              <div class="b2b-workflow-step">
+                <h4>4. 인공지능 모델 개발 및 임상 Pilot Study</h4>
+                <p>optinex-station의 RTX 5070 Ti 인프라를 활용해 3D 각공막 메쉬 복원 및 동공 수축 샘플 엔트로피 분석 AI 모델을 학습시킵니다. 이후, 통제된 IRB 파라미터 하에 소규모 임상 파일럿 실증 연구를 수행합니다.</p>
+              </div>
+              <div class="b2b-workflow-step">
+                <h4>5. 상용 B2B 의료 서비스 배포 및 상용화 (B2B Service Delivery)</h4>
+                <p>검증된 AI 엔진을 HIPAA 규격의 보안 DB 클라우드에 탑재하고, 최종 사용자인 안과의사 및 렌즈 피팅 전문가가 직관적으로 진단할 수 있도록 임상의용 대시보드 웹 포털 형태로 상용 제품화를 완료합니다.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
     </main>
