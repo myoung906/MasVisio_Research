@@ -30,8 +30,8 @@
         margin-top: 3rem;
       }
       .feature-card {
-        background: var(--panel);
-        border: 1px solid var(--line);
+        background: #0c1219 !important; /* Explicitly forced dark carbon background to eliminate residual white */
+        border: 1px solid var(--line) !important;
         padding: 30px;
         border-radius: 4px;
         display: flex;
@@ -40,8 +40,8 @@
         transition: background 0.25s, border-color 0.25s;
       }
       .feature-card:hover {
-        background: var(--panel2);
-        border-color: var(--primary-color);
+        background: #121a24 !important; /* Slightly lighter on hover */
+        border-color: var(--primary-color) !important;
         transform: none;
         box-shadow: none;
       }
@@ -49,7 +49,7 @@
         font-family: var(--heading-font);
         font-weight: 500;
         font-size: 19px;
-        color: #c5d4df !important; /* Toned down from pure white */
+        color: #c5d4df !important; /* Toned down slate white */
         margin-bottom: 0;
         display: flex;
         align-items: center;
@@ -65,8 +65,8 @@
       /* ASCII Pipeline Tree Container styles */
       .ascii-tree-container {
         margin-top: 4rem;
-        background: var(--panel);
-        border: 1px solid var(--line);
+        background: #0c1219 !important; /* Explicitly forced dark carbon background */
+        border: 1px solid var(--line) !important;
         padding: 40px;
         border-radius: 4px;
       }
