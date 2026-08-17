@@ -178,7 +178,12 @@ const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).
 function fit(cv){
   const r = window.devicePixelRatio || 1;
   const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'),10);
-  cv.width = w*r; cv.height = h*r;
+  // Re-stamping width/height on an unchanged canvas still clears its backing
+  // store and can trigger a layout pass — harmless once, but auto-rotate calls
+  // this every animation frame, and at 60fps that reflow reads as the whole
+  // page jittering. Only touch the attributes when the size actually moved.
+  const targetW = Math.round(w*r), targetH = Math.round(h*r);
+  if (cv.width !== targetW || cv.height !== targetH) { cv.width = targetW; cv.height = targetH; }
   const g = cv.getContext('2d'); g.setTransform(r,0,0,r,0,0);
   return {g,w,h};
 }
