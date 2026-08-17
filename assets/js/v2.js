@@ -521,38 +521,14 @@ function animate3DEyeball() {
 
   // 테마별 실시간 특화 애니메이션 제어
   if (currentTheme === "metrology") {
-    // 1. Zernike 수차 판넬 곡면 파동 애니메이션
-    if (wavefrontMesh && wavefrontMesh.visible) {
-      const time = Date.now() * 0.0015;
-      const pos = wavefrontMesh.geometry.attributes.position;
-      for (let i = 0; i < pos.count; i++) {
-        const x = pos.getX(i);
-        const y = pos.getY(i);
-        // Zernike 파면 수차 성분 수치 모사 (wobble)
-        const z = 0.22 * Math.sin(x * 2.2 + time) * Math.cos(y * 2.2 + time) +
-                  0.1 * Math.sin(x * 1.5 - time * 0.6);
-        pos.setZ(i, z);
-      }
-      pos.needsUpdate = true;
-
-      // 2. 격자선 곡면 겉감 싱크 맞춤
-      if (wavefrontGridMesh && wavefrontGridMesh.visible) {
-        const gridPos = wavefrontGridMesh.geometry.attributes.position;
-        for (let i = 0; i < gridPos.count; i++) {
-          gridPos.setZ(i, pos.getZ(i));
-        }
-        gridPos.needsUpdate = true;
-      }
-
-      // 3. 적색 레이저 스캐너 바 가로 왕복 스캔
-      if (laserScannerLine && laserScannerLine.visible) {
-        laserScannerLine.position.x = Math.sin(time * 1.5) * 1.4;
-      }
-
-      // 저속 자전 효과
-      wavefrontMesh.rotation.z = time * 0.04;
-      wavefrontGridMesh.rotation.z = time * 0.04;
+    // 3D 각막 지형 맵(Corneal Topography)의 다이내믹 회전 효과
+    if (corneaShell && corneaShell.visible) {
+      corneaShell.rotation.y += 0.002;
     }
+    if (corneaGrid && corneaGrid.visible) {
+      corneaGrid.rotation.y += 0.002;
+    }
+  }
 
   } else if (currentTheme === "biomarker") {
     // 1. 동공 크기 수축/이완 맥박 애니메이션 (수축 4배 가속)
@@ -678,6 +654,69 @@ function createIrisTexture(colorTheme) {
 /**
  * 4. 테마 선택에 따른 3D 안구 상태 업데이트
  */
+/**
+ * 2D Canvas를 이용하여 난시(Astigmatism)의 전형적인 '리본 넥타이(Bow-Tie)' 각막 지형도(Corneal Topography) 텍스처 생성
+ */
+function createTopographyTexture() {
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext("2d");
+  
+  // 1. 배경 베이스: 평평한 곡률을 뜻하는 파란색/청록색 방사형 그라데이션
+  const baseGrad = ctx.createRadialGradient(256, 256, 20, 256, 256, 250);
+  baseGrad.addColorStop(0, "#0284c7");   // 중심부 평평한 푸른빛 (sky-blue)
+  baseGrad.addColorStop(0.5, "#0369a1");  // 주변부 깊은 푸른빛 (deep-blue)
+  baseGrad.addColorStop(1.0, "#090d16");  // 외곽 가장자리 어두운 배경
+  ctx.fillStyle = baseGrad;
+  ctx.beginPath();
+  ctx.arc(256, 256, 250, 0, Math.PI * 2);
+  ctx.fill();
+
+  // 2. 난시의 급격한 경사(Steep Axis)를 뜻하는 리본 넥타이(Bow-Tie) 모양 그리기
+  // 상/하 세로 방향으로 길게 뻗은 적색/황색 타원 로브들을 합성하여 자연스러운 열지도 묘사
+  ctx.save();
+  ctx.globalCompositeOperation = "screen"; // 부드러운 색상 혼합
+
+  // 상단 적색/황색 로브
+  const topGrad = ctx.createRadialGradient(256, 120, 10, 256, 170, 160);
+  topGrad.addColorStop(0, "rgba(239, 68, 68, 0.95)");  // 핵심부 가파른 곡률 (Red)
+  topGrad.addColorStop(0.3, "rgba(245, 158, 11, 0.75)"); // 이행부 (Orange/Yellow)
+  topGrad.addColorStop(0.7, "rgba(16, 185, 129, 0.4)");  // 완만한 경사 (Green)
+  topGrad.addColorStop(1.0, "rgba(2, 132, 199, 0)");
+  ctx.fillStyle = topGrad;
+  ctx.beginPath();
+  ctx.ellipse(256, 150, 90, 140, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // 하단 적색/황색 로브
+  const bottomGrad = ctx.createRadialGradient(256, 392, 10, 256, 342, 160);
+  bottomGrad.addColorStop(0, "rgba(239, 68, 68, 0.95)");
+  bottomGrad.addColorStop(0.3, "rgba(245, 158, 11, 0.75)");
+  bottomGrad.addColorStop(0.7, "rgba(16, 185, 129, 0.4)");
+  bottomGrad.addColorStop(1.0, "rgba(2, 132, 199, 0)");
+  ctx.fillStyle = bottomGrad;
+  ctx.beginPath();
+  ctx.ellipse(256, 362, 90, 140, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+
+  // 3. 플라시도 링(Placido Rings) 무늬 투영선 오버레이
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+  ctx.lineWidth = 2.0;
+  for (let r = 40; r < 240; r += 40) {
+    ctx.beginPath();
+    ctx.arc(256, 256, r, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  return new THREE.CanvasTexture(canvas);
+}
+
+/**
+ * 4. 테마 선택에 따른 3D 안구 상태 업데이트
+ */
 function update3DModelByTheme(themeId) {
   currentTheme = themeId;
   const readoutStatus = document.getElementById("readout-status-val");
@@ -711,6 +750,8 @@ function update3DModelByTheme(themeId) {
     corneaShell.material.color.setHex(0x38bdf8);
     corneaShell.material.opacity = 0.25;
     corneaShell.material.wireframe = false;
+    corneaShell.material.map = null; // 각막 지형 텍스처 리셋
+    corneaShell.material.needsUpdate = true;
   }
   if (irisMesh) {
     irisMesh.visible = true;
@@ -738,26 +779,36 @@ function update3DModelByTheme(themeId) {
   if (pupilGraphCanvas) pupilGraphCanvas.style.display = "none";
 
   if (themeId === "metrology") {
-    // 테마 1: Wavefront Aberration 스캔 맵으로 전면 교체! (Zernike aberration surface)
-    if (eyeballMesh) eyeballMesh.visible = false;
-    if (corneaShell) corneaShell.visible = false;
+    // 테마 1: 3D 각막 지형도 스캔 뷰 (Corneal Topography - Bow-Tie 난시 맵)
+    if (eyeballMesh) {
+      eyeballMesh.visible = true;
+      eyeballMesh.material.opacity = 0.03; // 공막은 극도로 은은하게 배경 컨텍스트로만 노출
+    }
+    if (corneaShell) {
+      corneaShell.visible = true;
+      corneaShell.material.map = createTopographyTexture(); // 난시 리본타이 열지도 텍스처 입힘
+      corneaShell.material.color.setHex(0xffffff); // 틴트 초기화
+      corneaShell.material.opacity = 0.9;
+      corneaShell.material.needsUpdate = true;
+    }
+    if (corneaGrid) {
+      corneaGrid.visible = true; // 그 위에 붉은색 레이저 계측 격자선 투사
+      corneaGrid.material.color.setHex(0xef4444);
+    }
+    
+    // 내부 시각 장기들은 가려 표면 곡률에 집중
     if (irisMesh) irisMesh.visible = false;
     if (pupilMesh) pupilMesh.visible = false;
     if (nerveMesh) nerveMesh.visible = false;
 
-    // Zernike 파면 및 적색 계측 스캐너 라인 노출
-    if (wavefrontMesh) wavefrontMesh.visible = true;
-    if (wavefrontGridMesh) wavefrontGridMesh.visible = true;
-    if (laserScannerLine) laserScannerLine.visible = true;
-
-    // 시점 조정: Zernike 파면을 입체적으로 관측하는 앵글
-    camera.position.set(0, 1.4, 3.8);
+    // 시점 조정: 각막 돔의 입체 지형을 살피는 사선 구도
+    camera.position.set(0.8, 0.4, 4.4);
     camera.lookAt(0, 0, 0);
     
     // 리드아웃 텍스트 업데이트
-    if (readoutStatus) readoutStatus.textContent = "WAVEFRONT ABERRATION";
-    if (readoutMode) readoutMode.textContent = "LASER INTERFEROMETRY";
-    if (readoutIndex) readoutIndex.textContent = "RMS ERROR: 0.18 ± 0.03 µm";
+    if (readoutStatus) readoutStatus.textContent = "CORNEAL TOPOGRAPHY";
+    if (readoutMode) readoutMode.textContent = "PLACIDO SCANNERS";
+    if (readoutIndex) readoutIndex.textContent = "ROC: 7.82 ± 0.02 mm (Astigmatism)";
 
   } else if (themeId === "biomarker") {
     // 테마 2: 동공 바이오마커 (동공 크기 수축/이완 스캔)
@@ -916,37 +967,66 @@ function drawPupilSizeGraph() {
   ctx.fillStyle = "#0c111e";
   ctx.fillRect(0, 0, w, h);
   
-  // Grid Lines
-  ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
+  // 좌측 Y축 눈금 영역을 확보하기 위한 여백 (Margin) 설정
+  const marginX = 40;
+  const graphW = w - marginX - 15;
+  
+  // 1. x, y 좌표축 그리기
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
   ctx.lineWidth = 1;
   ctx.beginPath();
-  for (let y = 10; y < h; y += 18) {
-    ctx.moveTo(0, y);
-    ctx.lineTo(w, y);
-  }
+  // Y축
+  ctx.moveTo(marginX, 8);
+  ctx.lineTo(marginX, h - 10);
+  // X축
+  ctx.moveTo(marginX, h - 10);
+  ctx.lineTo(w - 10, h - 10);
   ctx.stroke();
+  
+  // 2. Y축 눈금 및 가이드선 그리기
+  ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+  ctx.font = "9px monospace";
+  ctx.textAlign = "right";
+  ctx.textBaseline = "middle";
+  
+  const yTicks = [7.5, 5.5, 3.5];
+  const yCoords = [12, (h - 18)/2 + 6, h - 18]; // 각 수치의 y좌표 매핑
+  
+  yTicks.forEach((tick, idx) => {
+    const y = yCoords[idx];
+    ctx.fillText(`${tick.toFixed(1)}`, marginX - 6, y);
+    
+    // 점선 보조 가이드라인
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";
+    ctx.beginPath();
+    ctx.moveTo(marginX, y);
+    ctx.lineTo(w - 10, y);
+    ctx.stroke();
+  });
   
   if (pupilHistory.length < 2) return;
   
-  // Draw graph line (Purple glow)
+  // 3. 실시간 동공 수치 선 그래프 그리기 (보라색 네온 라인)
   ctx.strokeStyle = "#a78bfa";
-  ctx.lineWidth = 2.5;
+  ctx.lineWidth = 2.2;
   ctx.beginPath();
   
-  const step = w / 80;
+  const step = graphW / 80;
   pupilHistory.forEach((val, i) => {
-    const y = h - 12 - ((val - 3.0) / (7.5 - 3.0)) * (h - 24);
-    const x = i * step;
+    // 수치 3.5mm(바닥) ~ 7.5mm(천장)를 y좌표로 매핑
+    const y = (h - 18) - ((val - 3.5) / (7.5 - 3.5)) * ((h - 18) - 12);
+    const x = marginX + i * step;
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
   });
   ctx.stroke();
   
-  // Draw current value text
+  // 4. 현재 동공 지름 수치 오버레이 출력
   const curVal = pupilHistory[pupilHistory.length - 1];
   ctx.fillStyle = "#a78bfa";
-  ctx.font = "bold 11px monospace";
-  ctx.fillText(`PUPIL SIZE: ${curVal.toFixed(1)} mm`, 10, 20);
+  ctx.font = "bold 10px monospace";
+  ctx.textAlign = "left";
+  ctx.fillText(`DIA: ${curVal.toFixed(2)} mm`, marginX + 12, 18);
 }
 
 /**
@@ -1141,13 +1221,15 @@ function drawMyopia2DSketch() {
   ctx.lineTo(retinaHitX, retinaHitY);
   ctx.stroke();
   
-  // 텍스트 정보 오버레이
+  // 텍스트 정보 오버레이 (둥근 테두리 클리핑 방지를 위해 중앙 정렬 배치)
   ctx.fillStyle = "#ffffff";
   ctx.font = "bold 12px Inter, 'Noto Sans KR', sans-serif";
-  ctx.fillText(`입사각 (Field Angle): ${angle}°`, 15, h - 35);
+  ctx.textAlign = "center";
+  ctx.fillText(`입사각 (Field Angle): ${angle}°`, w / 2, h - 38);
   ctx.fillStyle = "#38bdf8";
   ctx.font = "11px Inter, 'Noto Sans KR', sans-serif";
-  ctx.fillText(`초점-망막 갭 (Shell Gap): ${gapVal.toFixed(2)} mm (${defocusVal.toFixed(2)} D)`, 15, h - 18);
+  ctx.fillText(`초점-망막 갭 (Shell Gap): ${gapVal.toFixed(2)} mm (${defocusVal.toFixed(2)} D)`, w / 2, h - 20);
+  ctx.textAlign = "left"; // 다른 그리기 작업 영향 방지용 리셋
   
   ctx.fillStyle = "#ef4444";
   ctx.font = "bold 9px Inter, 'Noto Sans KR', sans-serif";
