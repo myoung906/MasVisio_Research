@@ -978,19 +978,42 @@ async function loadTeamMembers() {
       container.innerHTML = teamMembers
         .map(
           (member) => {
-            const initial = member.name ? member.name.trim().charAt(0) : "P";
             return `
-                <div class="team-card">
-                    <div class="team-avatar-wrap">
-                      <div class="team-avatar-inner">
-                        <div class="avatar-symbol">${initial}</div>
+                <div class="member-row">
+                    <div class="member-scan-target">
+                      <svg viewBox="0 0 100 100" class="scan-svg">
+                        <defs>
+                          <pattern id="gridPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(169, 214, 238, 0.08)" stroke-width="0.5"/>
+                          </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#gridPattern)" />
+                        <circle cx="50" cy="50" r="38" stroke="rgba(169, 214, 238, 0.12)" stroke-width="0.8" stroke-dasharray="2 2"/>
+                        <circle cx="50" cy="50" r="26" stroke="rgba(169, 214, 238, 0.2)" stroke-width="0.8"/>
+                        <circle cx="50" cy="50" r="14" stroke="var(--primary-color)" stroke-width="1.2" opacity="0.5"/>
+                        <line x1="50" y1="5" x2="50" y2="95" stroke="rgba(169, 214, 238, 0.15)" stroke-width="0.8"/>
+                        <line x1="5" y1="50" x2="95" y2="50" stroke="rgba(169, 214, 238, 0.15)" stroke-width="0.8"/>
+                        <path d="M 8 18 L 8 8 L 18 8" fill="none" stroke="var(--primary-color)" stroke-width="0.8" opacity="0.6"/>
+                        <path d="M 92 18 L 92 8 L 82 8" fill="none" stroke="var(--primary-color)" stroke-width="0.8" opacity="0.6"/>
+                        <path d="M 8 82 L 8 92 L 18 92" fill="none" stroke="var(--primary-color)" stroke-width="0.8" opacity="0.6"/>
+                        <path d="M 92 82 L 92 92 L 82 92" fill="none" stroke="var(--primary-color)" stroke-width="0.8" opacity="0.6"/>
+                        <circle cx="50" cy="50" r="2.5" fill="var(--primary-color)"/>
+                      </svg>
+                    </div>
+                    <div class="member-identity">
+                      <div class="member-meta">
+                        <span class="member-role">${member.role}</span>
+                        ${member.affiliation ? `<span class="member-dept">// ${member.affiliation}</span>` : ""}
+                      </div>
+                      <h3 class="member-name">${member.name}</h3>
+                      <p class="member-bio">${member.bio}</p>
+                    </div>
+                    <div class="member-specs">
+                      <div class="spec-label">CORE FOCUS</div>
+                      <div class="spec-tags">
+                        ${member.expertise.split(',').map(tag => `<span class="spec-tag">${tag.trim()}</span>`).join('')}
                       </div>
                     </div>
-                    <h3>${member.name}</h3>
-                    ${member.affiliation ? `<p class="affiliation">${member.affiliation}</p>` : ""}
-                    <p class="role">${member.role}</p>
-                    <p class="bio">${member.bio}</p>
-                    <p class="expertise"><small>${member.expertise}</small></p>
                 </div>
             `;
           }
