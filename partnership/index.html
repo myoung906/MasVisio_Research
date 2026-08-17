@@ -167,6 +167,106 @@
           padding: 20px;
         }
       }
+
+      /* B2B Condensed Capabilities and Showcase Styles */
+      .capabilities-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin: 2rem 0 2.5rem;
+      }
+      .cap-card {
+        background: var(--panel2) !important;
+        border: 1px solid var(--line) !important;
+        padding: 25px;
+        border-radius: 4px;
+        text-align: left;
+      }
+      .cap-card h4 {
+        color: var(--primary-color) !important;
+        font-family: var(--heading-font);
+        margin-bottom: 12px;
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .cap-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: #9eb1c0 !important;
+        font-size: 14px;
+        line-height: 1.8;
+      }
+      .cap-card li {
+        margin-bottom: 6px;
+      }
+      
+      .showcase-box {
+        background: rgba(169, 214, 238, 0.03) !important;
+        border: 1px dashed rgba(169, 214, 238, 0.3) !important;
+        padding: 30px;
+        border-radius: 4px;
+        margin: 2.5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        text-align: left;
+      }
+      .showcase-info {
+        flex: 1;
+      }
+      .showcase-tag {
+        font-family: var(--mono-font);
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--primary-color) !important;
+        letter-spacing: 0.15em;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .showcase-box h4 {
+        color: #fff !important;
+        font-family: var(--heading-font);
+        font-size: 19px;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      .showcase-box p {
+        color: #9eb1c0 !important;
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 0;
+      }
+      .showcase-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--mono-font);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        color: var(--ink) !important;
+        background: var(--primary-color) !important;
+        padding: 12px 24px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 700;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+      }
+      .showcase-btn:hover {
+        opacity: 0.9;
+        color: var(--ink) !important;
+      }
+      @media (max-width: 820px) {
+        .capabilities-grid {
+          grid-template-columns: 1fr;
+        }
+        .showcase-box {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
     </style>
     <link rel="stylesheet" href="../assets/css/main.css?v=4.0" />
     <link rel="stylesheet" href="../assets/css/responsive.css?v=4.0" />
@@ -256,77 +356,57 @@
             </div>
           </div>
 
-          <!-- New ASCII Tree and detailed Workflow section -->
+          <!-- B2B R&D Infrastructure and Capabilities -->
           <div class="ascii-tree-container">
-            <h3>B2B R&amp;D Pipeline Architecture</h3>
+            <h3>B2B Joint Research &amp; Infrastructure</h3>
             <p>
-              We provide a complete, integrated cyber-physical pipeline spanning high-speed optical hardware, local edge ingestion nodes, high-performance GPU AI training servers (optinex-station), and remote B2B service portals.
+              We provide an integrated lifecycle R&amp;D pipeline spanning verified sensor hardware, local edge node processing, and AI software cloud deployment.
             </p>
 
-            <pre class="ascii-tree">
-Optinex Research_R&amp;D_Pipeline
-├── Hardware_Stack (Edge Sensing Unit)
-│    ├── Cameras (Industrial Image &amp; Video Capture)
-│    │    ├── acA 1300-60gm NIR (Infrared Mono Camera)
-│    │    ├── acA 1300-60gc (Color Camera)
-│    │    ├── a2A 1920-160um BAS (High-resolution Camera)
-│    │    ├── Flir BFS-U3-13Y3M-C (Polarization Optical Camera)
-│    │    └── small camera modules (Raspberry Pi &amp; Jetson Developer Kits)
-│    ├── Lenses (Core Focal Range)
-│    │    └── 8mm, 12mm, 16mm, 24mm, telecentric Geometrical Optics Lenses
-│    └── Controllers (Stimulation &amp; Lighting)
-│         ├── LED &amp; Buzzer Scheduler
-│         └── Infrared Light Source
-├── Edge_Computing_Node (Real-time Processing)
-│    ├── SBC Testbeds (On-field Evaluation)
-│    │    ├── J4012 Developer Kit
-│    │    ├── Jetson Orin Nano Super
-│    │    └── Raspberry Pi 5 + hailo 8
-│    └── Ingestion (Network Transfer)
-│         └── RPi 5 + WD 1TB via USB LAN interface (1Gbps Wired Connection)
-├── Cloud_AI_Station (optinex-station Compute)
-│    ├── Compute Hardware
-│    │    ├── AMD Ryzen 9 7950X CPU
-│    │    ├── Palit GeForce RTX 5070 Ti D7 16GB
-│    │    └── G.Skill DDR5-6000 CL30 Flare X5 64GB RAM
-│    └── Building Vector Database (RAG Knowledge Search DB)
-│         └── ChromaDB Vector Store (Crawling &amp; indexing papers daily 09:00 - 22:00)
-├── Self_Evolving_Agent (Software AI Architecture)
-│    ├── PyTorch closed-loop learning node (Autonomous neural weight updates)
-│    └── Telegram Admin Gateway (Self-reporting &amp; clinical decision control loops)
-└── B2B_Medical_Service_Delivery (Productized Output)
-     ├── HIPAA database encryption vaults (Secure patient storage)
-     └── Clinician Web Portal (Real-time corneo-scleral fitting &amp; pupil diagnostics)</pre>
-
-            <h3 style="margin-top: 3rem;">From Identification to Productization</h3>
-            <p style="margin-bottom: 2rem;">
-              Our collaborative services guide B2B partners through a structured, end-to-end engineering journey:
-            </p>
-
-            <div class="b2b-workflow-detail">
-              <div class="b2b-workflow-step">
-                <h4>1. Optical Problem Discovery 🎯</h4>
-                <p>Collaboratively identify clinical gaps and visual correction needs (e.g., peripheral defocus, low-contrast summation issues, scleral profile mismatches) to formalize a rigorous project roadmap.</p>
+            <div class="capabilities-grid">
+              <div class="cap-card">
+                <h4>⚙️ Core Technology</h4>
+                <ul>
+                  <li>• High-speed pupil tracking &amp; reaction dynamics</li>
+                  <li>• 3D corneo-scleral topology reconstruction</li>
+                  <li>• Autonomic response AI screening algorithms</li>
+                </ul>
               </div>
-              <div class="b2b-workflow-step">
-                <h4>2. Optics &amp; Domain Expertise Integration 🔬</h4>
-                <p>Formulate optometric sensor parameters, match correct focal lenses (8mm to 24mm, or Telecentric setups), and configure the LED &amp; buzzer scheduler triggers designed for capturing precise eye reactions.</p>
+              <div class="cap-card">
+                <h4>🔬 R&amp;D Capabilities</h4>
+                <ul>
+                  <li>• Custom 4D optical design &amp; aberration analysis</li>
+                  <li>• Clinical study protocol design &amp; validation</li>
+                  <li>• Medical diagnostic web API &amp; pipeline integration</li>
+                </ul>
               </div>
-              <div class="b2b-workflow-step">
-                <h4>3. Standardized Ocular Data Acquisition &amp; Augmentation 📸</h4>
-                <p>Deploy Basler or FLIR camera sensor modules and gather high-speed raw video frames. Locally pre-processed frames are augmented and synced to our server for RAG indexing and model dataset curation.</p>
-              </div>
-              <div class="b2b-workflow-step">
-                <h4>4. Custom AI Modeling &amp; Clinical Pilot Studies 🧠</h4>
-                <p>Develop customized deep learning architectures (such as corneo-scleral mesh fitting or pupil Sample Entropy tracking) using optinex-station's GPU stack. Run localized clinical pilot validation trials under controlled IRB parameters.</p>
-              </div>
-              <div class="b2b-workflow-step">
-                <h4>5. B2B Medical Service Delivery 🏥</h4>
-                <p>Establish secure HIPAA cloud storage pipelines and integrate analytics endpoints. Deliver the finalized, certified Clinician Web Portal dashboard service ready for real-world diagnostic assistance.</p>
+              <div class="cap-card">
+                <h4>🔌 Key Equipment</h4>
+                <ul>
+                  <li>• High-speed NIR infrared / polarization cameras</li>
+                  <li>• Micro-controlled illumination &amp; stimulator units</li>
+                  <li>• High-performance GPU-based AI workstations</li>
+                </ul>
               </div>
             </div>
 
-            <!-- Toned Down Services Pipeline Diagram (Updated to dark mode version) -->
+            <!-- B2B Prototype Showcase Card -->
+            <div class="showcase-box">
+              <div class="showcase-info">
+                <span class="showcase-tag">R&amp;D Showcase</span>
+                <h4>Real-Time Pupil Dynamics &amp; Refraction Analyzer V3</h4>
+                <p>
+                  A functional prototype demonstrating our core software integration capabilities. Visit the V3 dashboard repository to review source codes and explore our real-time eye-tracking and optical analysis layout.
+                </p>
+              </div>
+              <div>
+                <a href="https://github.com/myoung906/ret_prof" target="_blank" rel="noopener noreferrer" class="showcase-btn">
+                  Explore V3 Dashboard →
+                </a>
+              </div>
+            </div>
+
+            <!-- Toned Down Services Pipeline Diagram -->
             <div class="services-diagram-wrap">
               <img src="../assets/images/research/services_pipeline_en_dark.png" alt="B2B Visual Intelligence Service Pipeline Diagram" loading="lazy" />
             </div>

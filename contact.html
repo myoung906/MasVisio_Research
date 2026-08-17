@@ -28,6 +28,12 @@
     <link rel="stylesheet" href="assets/css/main.css?v=4.0" />
     <link rel="stylesheet" href="assets/css/responsive.css?v=4.0" />
     <link rel="stylesheet" href="assets/css/components.css?v=4.0" />
+    <style>
+      .partner-card:hover {
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 4px 15px rgba(169, 214, 238, 0.05);
+      }
+    </style>
   </head>
 
   <body class="sidebar-layout">
@@ -79,14 +85,52 @@
       <section class="section page-section">
         <div class="container">
           <header class="page-header">
-            <h2 class="page-title">Contact Us</h2>
-            <p class="page-subtitle">
-              Get in touch with our team for inquiries and collaboration opportunities.
+            <h2 class="page-title">Research &amp; Academic Partners</h2>
+            <p class="page-subtitle" style="color: #9eb1c0 !important;">
+              Optinex Research collaborates with leading global institutions to drive clinical innovation and academic exchange in vision science.
             </p>
           </header>
 
-          <div>
-            <p>Content coming soon...</p>
+          <!-- Partners Grid -->
+          <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 4rem;">
+            <div class="partner-card" style="background: var(--panel2); border: 1px solid var(--line); padding: 30px; border-radius: 8px; transition: border-color 0.3s; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="color: #fff; font-family: var(--heading-font); font-size: 20px; margin-bottom: 12px; font-weight: 600;">JenVis Research</h3>
+                <p style="color: #9eb1c0; font-size: 14.5px; line-height: 1.7; margin-bottom: 20px;">
+                  A leading German institution in optometry, tear film analysis, and contact lens research, collaborating on advanced ocular surface topography and clinical validation.
+                </p>
+              </div>
+              <div>
+                <a href="https://jenvis-research.com/en/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono-font); font-size: 12px; color: var(--primary-color); text-decoration: none; font-weight: 500;">
+                  Visit Official Website ↗
+                </a>
+              </div>
+            </div>
+
+            <div class="partner-card" style="background: var(--panel2); border: 1px solid var(--line); padding: 30px; border-radius: 8px; transition: border-color 0.3s; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="color: #fff; font-family: var(--heading-font); font-size: 20px; margin-bottom: 12px; font-weight: 600;">EAH Jena</h3>
+                <p style="color: #9eb1c0; font-size: 14.5px; line-height: 1.7; margin-bottom: 20px;">
+                  The Department of Optometry at Ernst Abbe University of Applied Sciences Jena (Ernst-Abbe-Hochschule Jena), Germany. Collaborating on high-precision geometric ocular metrology and global academic exchanges.
+                </p>
+              </div>
+              <div>
+                <a href="https://www.eah-jena.de/optometrie/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono-font); font-size: 12px; color: var(--primary-color); text-decoration: none; font-weight: 500;">
+                  Visit Official Website ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact / Inquiry card -->
+          <div class="contact-box" style="background: rgba(169, 214, 238, 0.03); border: 1px solid var(--line-strong); padding: 40px; border-radius: 8px; text-align: center;">
+            <h3 style="color: #fff; font-family: var(--heading-font); font-size: 22px; margin-bottom: 12px;">💡 Inquiry &amp; Collaboration</h3>
+            <p style="color: #9eb1c0; font-size: 15px; line-height: 1.7; max-width: 600px; margin: 0 auto 24px;">
+              We welcome global R&amp;D partnership inquiries, optical prototype validation projects, and AI diagnostic API integrations.
+            </p>
+            <a href="mailto:info@optinex.org" style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono-font); font-size: 13px; letter-spacing: 0.08em; color: var(--ink); background: var(--primary-color); padding: 13px 28px; border-radius: 4px; text-decoration: none; font-weight: 700;">
+              📧 Send Partnership Proposal (Email)
+            </a>
           </div>
         </div>
       </section>

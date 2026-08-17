@@ -975,15 +975,23 @@ async function loadTeamMembers() {
 
       container.innerHTML = teamMembers
         .map(
-          (member) => `
+          (member) => {
+            const initial = member.name ? member.name.trim().charAt(0) : "P";
+            return `
                 <div class="team-card">
+                    <div class="team-avatar-wrap">
+                      <div class="team-avatar-inner">
+                        <div class="avatar-symbol">${initial}</div>
+                      </div>
+                    </div>
                     <h3>${member.name}</h3>
                     ${member.affiliation ? `<p class="affiliation">${member.affiliation}</p>` : ""}
                     <p class="role">${member.role}</p>
                     <p class="bio">${member.bio}</p>
                     <p class="expertise"><small>${member.expertise}</small></p>
                 </div>
-            `,
+            `;
+          }
         )
         .join("");
     } else {

@@ -28,6 +28,12 @@
     <link rel="stylesheet" href="../assets/css/main.css?v=4.0" />
     <link rel="stylesheet" href="../assets/css/responsive.css?v=4.0" />
     <link rel="stylesheet" href="../assets/css/components.css?v=4.0" />
+    <style>
+      .partner-card:hover {
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 4px 15px rgba(169, 214, 238, 0.05);
+      }
+    </style>
   </head>
 
   <body class="sidebar-layout">
@@ -79,14 +85,52 @@
       <section class="section page-section">
         <div class="container">
           <header class="page-header">
-            <h2 class="page-title">파트너십 문의</h2>
-            <p class="page-subtitle">
-              협력 및 문의사항이 있으시면 언제든지 연락주세요.
+            <h2 class="page-title">공동 연구 및 학술 파트너</h2>
+            <p class="page-subtitle" style="color: #9eb1c0 !important;">
+              Optinex Research는 글로벌 선도 기관들과 함께 시과학 분야의 혁신적인 실증 연구와 기술 교류를 수행하고 있습니다.
             </p>
           </header>
 
-          <div>
-            <p>준비 중입니다.</p>
+          <!-- Partners Grid -->
+          <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 4rem;">
+            <div class="partner-card" style="background: var(--panel2); border: 1px solid var(--line); padding: 30px; border-radius: 8px; transition: border-color 0.3s; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="color: #fff; font-family: var(--heading-font); font-size: 20px; margin-bottom: 12px; font-weight: 600;">JenVis Research</h3>
+                <p style="color: #9eb1c0; font-size: 14.5px; line-height: 1.7; margin-bottom: 20px;">
+                  독일의 대표적인 시광학, 눈물막 분석 및 콘택트렌즈 연구 분야 선도 기관으로, 안구 표면 분석 기법 고도화 및 임상 실증 협력을 추진합니다.
+                </p>
+              </div>
+              <div>
+                <a href="https://jenvis-research.com/en/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono-font); font-size: 12px; color: var(--primary-color); text-decoration: none; font-weight: 500;">
+                  공식 홈페이지 방문 ↗
+                </a>
+              </div>
+            </div>
+
+            <div class="partner-card" style="background: var(--panel2); border: 1px solid var(--line); padding: 30px; border-radius: 8px; transition: border-color 0.3s; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="color: #fff; font-family: var(--heading-font); font-size: 20px; margin-bottom: 12px; font-weight: 600;">EAH Jena</h3>
+                <p style="color: #9eb1c0; font-size: 14.5px; line-height: 1.7; margin-bottom: 20px;">
+                  독일 예나 응용과학대학교(Ernst-Abbe-Hochschule Jena) 시광학과로, 고정밀 기하 안구 계측 및 차세대 글로벌 시과학 인재 양성을 위한 학술 교류 및 공동 연구 파트너입니다.
+                </p>
+              </div>
+              <div>
+                <a href="https://www.eah-jena.de/optometrie/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono-font); font-size: 12px; color: var(--primary-color); text-decoration: none; font-weight: 500;">
+                  공식 홈페이지 방문 ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact / Inquiry card -->
+          <div class="contact-box" style="background: rgba(169, 214, 238, 0.03); border: 1px solid var(--line-strong); padding: 40px; border-radius: 8px; text-align: center;">
+            <h3 style="color: #fff; font-family: var(--heading-font); font-size: 22px; margin-bottom: 12px;">💡 파트너십 및 협력 문의</h3>
+            <p style="color: #9eb1c0; font-size: 15px; line-height: 1.7; max-width: 600px; margin: 0 auto 24px;">
+              Optinex Research는 기업 공동 R&amp;D 기획, 광학 시제품 실증, AI 진단 API 연동 등 다양한 형태의 협력을 환영합니다.
+            </p>
+            <a href="mailto:info@optinex.org" style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono-font); font-size: 13px; letter-spacing: 0.08em; color: var(--ink); background: var(--primary-color); padding: 13px 28px; border-radius: 4px; text-decoration: none; font-weight: 700;">
+              📧 협력 제안 문의하기 (이메일)
+            </a>
           </div>
         </div>
       </section>

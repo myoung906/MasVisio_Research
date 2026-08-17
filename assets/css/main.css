@@ -1,7 +1,7 @@
 /* =========================================
    Reset and Base Styles
    ========================================= */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 :root {
   --ink: #080c11;
@@ -23,7 +23,7 @@
 
   --heading-font: "Space Grotesk", "Inter", sans-serif;
   --body-font: "Inter", sans-serif;
-  --logo-font: "Space Grotesk", sans-serif;
+  --logo-font: "Orbitron", sans-serif;
   --mono-font: "IBM Plex Mono", monospace;
   
   --border-radius: 4px;
@@ -145,14 +145,16 @@ a:hover {
 
 .sidebar-logo h1 {
   font-family: var(--logo-font);
-  font-size: 2.35rem;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-  color: var(--text-color);
-  letter-spacing: 0.04em;
-  font-weight: 700;
+  font-size: 1.85rem;
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
+  background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.06em;
+  font-weight: 900;
+  text-transform: uppercase;
   font-kerning: normal;
-  font-stretch: normal;
   text-rendering: geometricPrecision;
 }
 
