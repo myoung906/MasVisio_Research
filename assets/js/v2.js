@@ -332,7 +332,8 @@ function init3DEyeballVisualization() {
     transparent: true,
     opacity: 0.15,
     shininess: 80,
-    wireframe: true
+    wireframe: true,
+    depthWrite: false // 투명 오버랩 렌더링을 위해 깊이 버퍼 쓰기 비활성화
   });
   eyeballMesh = new THREE.Mesh(scleraGeo, scleraMat);
   eyeballMesh.rotation.x = Math.PI / 2; // 정면을 향하도록 설정
@@ -345,7 +346,8 @@ function init3DEyeballVisualization() {
     side: THREE.DoubleSide,
     opacity: 0.45,
     transparent: true,
-    flatShading: true
+    flatShading: true,
+    depthWrite: false // 뒤쪽의 홍채/동공/광선이 차단되지 않고 비치도록 설정
   });
   corneaShell = new THREE.Mesh(corneaGeo, corneaMat);
   corneaShell.rotation.x = Math.PI / 2;
@@ -384,11 +386,11 @@ function init3DEyeballVisualization() {
   scene.add(nerveMesh);
 
   // 6. Lights
-  const dirLight = new THREE.DirectionalLight(0xffffff, 1.3);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
   dirLight.position.set(5, 5, 5);
   scene.add(dirLight);
   
-  const ambLight = new THREE.AmbientLight(0x111922);
+  const ambLight = new THREE.AmbientLight(0x1a2e3a);
   scene.add(ambLight);
 
   // 창 크기 조정 처리
@@ -411,11 +413,12 @@ function init3DEyeballVisualization() {
 function animate3DEyeball() {
   animationFrameId = requestAnimationFrame(animate3DEyeball);
 
-  // 안구 공통 회전 모션
-  if (eyeballMesh) eyeballMesh.rotation.y += 0.003;
-  if (corneaShell) corneaShell.rotation.y += 0.003;
-  if (irisMesh) irisMesh.rotation.z += 0.003;
-  if (pupilMesh) pupilMesh.rotation.z += 0.003;
+  // 안구 공통 회전 모션 (테마 3은 구조 관찰을 위해 더 천천히 회전)
+  const rotateSpeed = currentTheme === "myopia-rehab" ? 0.001 : 0.003;
+  if (eyeballMesh && eyeballMesh.visible) eyeballMesh.rotation.y += rotateSpeed;
+  if (corneaShell && corneaShell.visible) corneaShell.rotation.y += rotateSpeed;
+  if (irisMesh && irisMesh.visible) irisMesh.rotation.z += rotateSpeed;
+  if (pupilMesh && pupilMesh.visible) pupilMesh.rotation.z += rotateSpeed;
 
   // 테마별 실시간 특화 애니메이션 제어
   if (currentTheme === "biomarker") {
@@ -433,14 +436,14 @@ function animate3DEyeball() {
     // 2. 시신경 전달 펄스 파티클 흐름 시각화
     if (pulseParticles.length === 0) {
       // 펄스 파티클 생성 (12개 소구체)
-      const pulseMat = new THREE.MeshBasicMaterial({ color: 0xa78bfa, transparent: true, opacity: 0.8 });
+      const pulseMat = new THREE.MeshBasicMaterial({ color: 0xa78bfa, transparent: true, opacity: 0.9, depthWrite: false });
       for (let i = 0; i < 12; i++) {
-        const pGeo = new THREE.SphereGeometry(0.035, 8, 8);
+        const pGeo = new THREE.SphereGeometry(0.045, 8, 8); // 파티클 크기를 키워 더 알아보기 쉽게 조정
         const pMesh = new THREE.Mesh(pGeo, pulseMat);
         // 안구 전방에서 시작
         pMesh.position.set(
-          (Math.random() - 0.5) * 0.2, 
-          (Math.random() - 0.5) * 0.2, 
+          (Math.random() - 0.5) * 0.15, 
+          (Math.random() - 0.5) * 0.15, 
           0.4 - (i * 0.2)
         );
         scene.add(pMesh);
@@ -500,27 +503,42 @@ function update3DModelByTheme(themeId) {
   pulseParticles.forEach(p => scene.remove(p));
   pulseParticles = [];
 
-  // 기본 스케일 리셋
-  if (corneaShell) corneaShell.scale.set(1.0, 1.0, 1.0);
-  if (pupilMesh) pupilMesh.scale.set(1.0, 1.0, 1.0);
+  // 기본 스케일 및 가시성 초기화
+  if (eyeballMesh) eyeballMesh.visible = true;
+  if (corneaShell) {
+    corneaShell.visible = true;
+    corneaShell.scale.set(1.0, 1.0, 1.0);
+    corneaShell.material.wireframe = false;
+  }
+  if (irisMesh) irisMesh.visible = true;
+  if (pupilMesh) pupilMesh.visible = true;
+  if (nerveMesh) nerveMesh.visible = true;
 
   if (themeId === "metrology") {
-    // 테마 1: 각막 토포그래피 강조 (하늘색 테마)
-    if (eyeballMesh) { eyeballMesh.material.color.setHex(0x38bdf8); eyeballMesh.material.opacity = 0.15; }
-    if (corneaShell) { corneaShell.material.color.setHex(0x38bdf8); corneaShell.material.opacity = 0.55; }
-    if (irisMesh) { irisMesh.material.color.setHex(0x111922); }
+    // 테마 1: 각막 토포그래피 강조 (하늘색 테마 - 각막 격자스캔 강조)
+    if (eyeballMesh) { eyeballMesh.material.color.setHex(0x38bdf8); eyeballMesh.material.opacity = 0.1; }
+    if (corneaShell) { 
+      corneaShell.material.color.setHex(0x38bdf8); 
+      corneaShell.material.opacity = 0.4; 
+      corneaShell.material.wireframe = true; // 각막을 디지털 메시 격자 형태로 노출하여 계측 느낌 구현
+    }
+    
+    // 내부 홍채/동공/시신경은 가리고 표면 계측에 집중
+    if (irisMesh) irisMesh.visible = false;
+    if (pupilMesh) pupilMesh.visible = false;
+    if (nerveMesh) nerveMesh.visible = false;
     
     // 시점 조정: 3D 기하학 깊이를 입체적으로 보여주는 사선 구도
     camera.position.set(0.6, 0.4, 4.8);
     camera.lookAt(0, 0, 0);
 
-    // 각막 표면에 플라시도 동심 투사 링(Placido Rings) 3개 생성
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.65 });
+    // 각막 표면에 플라시도 동심 투사 링(Placido Rings) 3개 생성 (두껍고 확실하게 노출)
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.9, depthWrite: false });
     for (let i = 1; i <= 3; i++) {
-      const ringGeo = new THREE.RingGeometry(0.35 * i, 0.35 * i + 0.02, 32);
+      const ringGeo = new THREE.RingGeometry(0.3 * i, 0.3 * i + 0.03, 32);
       const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-      // 각막 돔의 곡률 면을 따라 z축 돌출 배치
-      ringMesh.position.z = 0.5 + (4 - i) * 0.18;
+      // 각막 돔 앞에 떠있는 프로젝션 링 시각화
+      ringMesh.position.z = 0.5 + (4 - i) * 0.25;
       scene.add(ringMesh);
       metrologyDecorations.push(ringMesh);
     }
@@ -531,17 +549,26 @@ function update3DModelByTheme(themeId) {
     if (readoutIndex) readoutIndex.textContent = "ROC 7.82 ± 0.02 mm";
 
   } else if (themeId === "biomarker") {
-    // 테마 2: 동공 바이오마커 (보라색 테마)
-    if (eyeballMesh) { eyeballMesh.material.color.setHex(0xa78bfa); eyeballMesh.material.opacity = 0.12; }
-    if (corneaShell) { corneaShell.material.color.setHex(0xa78bfa); corneaShell.material.opacity = 0.6; }
-    if (irisMesh) { irisMesh.material.color.setHex(0x2e1065); }
+    // 테마 2: 동공 바이오마커 (보라색 테마 - 동공 수축 집중)
+    if (eyeballMesh) { eyeballMesh.material.color.setHex(0xa78bfa); eyeballMesh.material.opacity = 0.05; }
+    if (corneaShell) { corneaShell.visible = false; } // 각막 돔을 숨겨 홍채와 동공 수축이 정면에서 바로 보이게 처리
+    if (irisMesh) { 
+      irisMesh.visible = true;
+      irisMesh.material.color.setHex(0x2e1065); 
+    }
+    if (pupilMesh) pupilMesh.visible = true;
+    if (nerveMesh) { 
+      nerveMesh.visible = true; 
+      nerveMesh.material.color.setHex(0xa78bfa); 
+      nerveMesh.material.opacity = 0.25;
+    }
     
     // 시점 조정: 동공 수축의 정면 확인을 위한 정면 구도
     camera.position.set(0, 0, 4.6);
     camera.lookAt(0, 0, 0);
 
     pupilScale = 1.0;
-    pupilPulseDirection = -0.015; // 광반사 수축 시작
+    pupilPulseDirection = -0.015; // 즉시 광반사 수축
 
     // 리드아웃 텍스트 업데이트
     if (readoutStatus) readoutStatus.textContent = "PUPIL LIGHT REFLEX";
@@ -549,49 +576,55 @@ function update3DModelByTheme(themeId) {
     if (readoutIndex) readoutIndex.textContent = "LATENCY 240 ± 15 ms";
 
   } else if (themeId === "myopia-rehab") {
-    // 테마 3: 근시 제어 및 시각 재활 (에메랄드 그린/시안 테마)
-    if (eyeballMesh) { eyeballMesh.material.color.setHex(0x10b981); eyeballMesh.material.opacity = 0.08; }
-    if (corneaShell) { corneaShell.material.color.setHex(0x10b981); corneaShell.material.opacity = 0.40; }
-    if (irisMesh) { irisMesh.material.color.setHex(0x064e3b); }
+    // 테마 3: 근시 제어 및 시각 재활 (에메랄드 그린/시안 테마 - 광선 추적 집중)
+    if (eyeballMesh) { eyeballMesh.material.color.setHex(0x10b981); eyeballMesh.material.opacity = 0.02; } // 공막을 거의 투명화
+    if (corneaShell) { corneaShell.visible = false; } // 각막 돔을 숨겨 광선과 초평면 셸을 한눈에 노출
+    if (irisMesh) { 
+      irisMesh.visible = true;
+      irisMesh.material.color.setHex(0x064e3b); 
+      irisMesh.material.opacity = 0.5; // 홍채도 투명도를 주어 조리개 역할만 표시
+    }
+    if (pupilMesh) pupilMesh.visible = true;
+    if (nerveMesh) nerveMesh.visible = false; // 불필요한 시신경 실린더 노출 제거
     
-    // 시점 조정: 안구 뒤쪽의 망막 셸과 초평면 셸 사이의 갭(Gap)을 시각적으로 보여주는 극단적인 사선 구도
+    // 시점 조정: 망막 후벽 스크린과 그 앞쪽의 T/S 초평면 셸 간의 물리적 거리(Defocus Gap)가 잘 보이는 사선 시점
     camera.position.set(2.4, 0.9, 4.0);
     camera.lookAt(-0.3, 0, -0.5);
 
-    // 1. 망막 스크린 셸(Retinal Screen Shell) 생성 - 공막 안쪽 후벽에 정합
+    // 1. 망막 스크린 셸(Retinal Screen Shell) - 불투명도를 주어 확실한 스크린으로 노출
     const retinaGeo = new THREE.SphereGeometry(1.58, 32, 32, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
-    const retinaMat = new THREE.MeshPhongMaterial({ color: 0x1e293b, transparent: true, opacity: 0.6, side: THREE.DoubleSide });
+    const retinaMat = new THREE.MeshPhongMaterial({ color: 0x1e293b, transparent: true, opacity: 0.55, side: THREE.DoubleSide, depthWrite: false });
     retinaShell = new THREE.Mesh(retinaGeo, retinaMat);
     retinaShell.rotation.x = Math.PI / 2;
     scene.add(retinaShell);
     myopiaDecorations.push(retinaShell);
 
-    // 2. Tangential 상면 셸(shellT) - 망막 전방에 원형 배치 (근시성 초점 이탈 시각화 - 청록색)
-    const shellTGeo = new THREE.SphereGeometry(1.35, 16, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
-    const shellTMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, wireframe: true, transparent: true, opacity: 0.4 });
+    // 2. Tangential 상면 셸(shellT) - 망막보다 확연히 앞쪽에 위치 (청록색 밝은 와이어프레임)
+    const shellTGeo = new THREE.SphereGeometry(1.32, 16, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
+    const shellTMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, wireframe: true, transparent: true, opacity: 0.8, depthWrite: false });
     shellT = new THREE.Mesh(shellTGeo, shellTMat);
     shellT.rotation.x = Math.PI / 2;
     scene.add(shellT);
     myopiaDecorations.push(shellT);
 
-    // 3. Sagittal 상면 셸(shellS) - shellT보다 더 전방에 원형 배치 (보라색)
-    const shellSGeo = new THREE.SphereGeometry(1.15, 16, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
-    const shellSMat = new THREE.MeshBasicMaterial({ color: 0xa78bfa, wireframe: true, transparent: true, opacity: 0.4 });
+    // 3. Sagittal 상면 셸(shellS) - shellT보다 더 앞에 위치 (연보라색 밝은 와이어프레임)
+    const shellSGeo = new THREE.SphereGeometry(1.12, 16, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
+    const shellSMat = new THREE.MeshBasicMaterial({ color: 0xa78bfa, wireframe: true, transparent: true, opacity: 0.8, depthWrite: false });
     shellS = new THREE.Mesh(shellSGeo, shellSMat);
     shellS.rotation.x = Math.PI / 2;
     scene.add(shellS);
     myopiaDecorations.push(shellS);
 
-    // 4. 입사 광선 다발 추적(Ray-Tracing Beams) 생성
-    const lineMat = new THREE.LineBasicMaterial({ color: 0x10b981, transparent: true, opacity: 0.75 });
+    // 4. 입사 광선 다발 추적(Ray-Tracing Beams) 생성 (두껍고 뚜렷하게)
+    const lineMat = new THREE.LineBasicMaterial({ color: 0x10b981, transparent: true, opacity: 0.9, depthWrite: false });
     const rayAngles = [0, Math.PI / 2, Math.PI, Math.PI * 1.5];
     rayAngles.forEach(angle => {
       const points = [];
-      const startX = Math.cos(angle) * 1.2;
-      const startY = Math.sin(angle) * 1.2;
+      const startX = Math.cos(angle) * 1.1;
+      const startY = Math.sin(angle) * 1.1;
       // 입사 -> 각막 굴절 -> 동공을 지나 망막 전벽의 초평면 셸에 수렴했다가 다시 망막에 도달
       points.push(new THREE.Vector3(startX, startY, 2.5));
-      points.push(new THREE.Vector3(startX * 0.3, startY * 0.3, 0.45)); // 동공 입구
+      points.push(new THREE.Vector3(startX * 0.3, startY * 0.3, 0.45)); // 동공
       points.push(new THREE.Vector3(startX * 0.05, startY * 0.05, -0.65)); // 1차 수렴 (S-상면)
       points.push(new THREE.Vector3(0, 0, -1.05)); // 2차 수렴 초점 (T-상면 / Myopic Defocus)
       points.push(new THREE.Vector3(-startX * 0.15, -startY * 0.15, -1.58)); // 망막 도달
@@ -601,6 +634,14 @@ function update3DModelByTheme(themeId) {
       scene.add(line);
       myopiaDecorations.push(line);
     });
+
+    // 5. 초평면 셸 중심에 밝게 빛나는 3D 초점(Focus Spot) 구체 추가
+    const focusGeo = new THREE.SphereGeometry(0.08, 16, 16);
+    const focusMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.95 });
+    const focusMesh = new THREE.Mesh(focusGeo, focusMat);
+    focusMesh.position.set(0, 0, -1.05); // T-상면 중심부 초점
+    scene.add(focusMesh);
+    myopiaDecorations.push(focusMesh);
 
     // 리드아웃 텍스트 업데이트
     if (readoutStatus) readoutStatus.textContent = "MYOPIC DEFOCUS ON";
