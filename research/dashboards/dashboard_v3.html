@@ -301,21 +301,35 @@ function draw3d(){
 
   // retinal shell: quads, shaded (circular eye shape mesh)
   if(show.R){
+    // The mesh has no depth buffer, so quads must be painted back-to-front by
+    // hand. Drawing them in mesh-index order instead meant whichever quad came
+    // later in the loop won regardless of which was actually nearer the
+    // camera — as the shape rotated, far-side faces would randomly paint over
+    // near-side ones, which read as the whole shell flickering/shaking rather
+    // than smoothly turning. Project every quad first, sort back-to-front by
+    // its own depth (project()'s z2: larger = nearer, per its scale term),
+    // then paint in that order.
+    const quads = [];
     for(let m=0;m<circularShell.length;m++){
       const A = circularShell[m], B = circularShell[(m+1)%circularShell.length];
       for(let i=0;i<A.points.length-1;i++){
         const q3d = [A.points[i].p, A.points[i+1].p, B.points[i+1].p, B.points[i].p];
         const q = q3d.map(p=>project(p,w,h));
-        
-        const shade = computeShading(q3d);
-        
-        g.beginPath(); g.moveTo(q[0][0],q[0][1]);
-        for(let k=1;k<4;k++) g.lineTo(q[k][0],q[k][1]);
-        g.closePath();
-        g.fillStyle = rpreColour((A.points[i+1].rpre + B.points[i+1].rpre)/2, shade);
-        g.fill();
-        g.strokeStyle = css('--line'); g.lineWidth = 0.3; g.stroke();
+        const depth = (q[0][2]+q[1][2]+q[2][2]+q[3][2])/4;
+        quads.push({ q, depth,
+          shade: computeShading(q3d),
+          rpre: (A.points[i+1].rpre + B.points[i+1].rpre)/2 });
       }
+    }
+    quads.sort((a,b)=>a.depth-b.depth);
+    for(const quad of quads){
+      const q = quad.q;
+      g.beginPath(); g.moveTo(q[0][0],q[0][1]);
+      for(let k=1;k<4;k++) g.lineTo(q[k][0],q[k][1]);
+      g.closePath();
+      g.fillStyle = rpreColour(quad.rpre, quad.shade);
+      g.fill();
+      g.strokeStyle = css('--line'); g.lineWidth = 0.3; g.stroke();
     }
 
     // Draw 4 main meridians on the retina shell
