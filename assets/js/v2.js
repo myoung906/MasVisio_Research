@@ -25,6 +25,7 @@ let animationFrameId;
 let currentTheme = "metrology";
 let pupilPulseDirection = -1;
 let pupilScale = 1.0;
+let pupilTime = 0; // 동공 바이오마커 사인파 애니메이션 시간 축
 let pupilHistory = []; // 테마 2 실시간 동공 그래프 기록용
 let myopiaAngleIndex = 0; // 테마 3 2D 스케일 순환용 (0, 15, 30도)
 let myopiaIntervalId = null; // 테마 3 루프 타이머 ID
@@ -403,8 +404,8 @@ function init3DEyeballVisualization() {
   corneaGrid.visible = false;
   scene.add(corneaGrid);
 
-  // 3. Iris Ring (홍채 판넬)
-  const irisGeo = new THREE.RingGeometry(0.5, 1.48, 32);
+  // 3. Iris Ring (홍채 판넬 - 내경을 0.05로 좁혀 공막 비침 방지 및 갈색 면적 두껍게 확장)
+  const irisGeo = new THREE.RingGeometry(0.05, 1.48, 32);
   const irisMat = new THREE.MeshBasicMaterial({
     color: 0x111922,
     side: THREE.DoubleSide,
@@ -536,18 +537,13 @@ function animate3DEyeball() {
       scanPlaneMeshGlobal.position.z = 0.3 + Math.sin(time) * 0.45;
     }
   } else if (currentTheme === "biomarker") {
-    // 1. 동공 크기 수축/이완 맥박 애니메이션 (지연 없이 즉각 왕복하도록 2.2배 고속화: 0.015)
-    const pulseSpeed = 0.015; 
-    pupilScale += pupilPulseDirection * pulseSpeed;
-
-    // 0.4(완전 수축) ~ 1.2(완전 이완) 가변 범위 보정
-    if (pupilScale <= 0.4) {
-      pupilScale = 0.4;
-      pupilPulseDirection = 1.0; // 이완 팽창으로 전환
-    } else if (pupilScale >= 1.2) {
-      pupilScale = 1.2;
-      pupilPulseDirection = -1.0; // 수축으로 전환
-    }
+    // 1. 동공 크기 수축/이완 맥박 애니메이션 (사인파를 이용하여 지연 없는 매끄러운 곡선 및 즉각 방향 전환 구현)
+    // pupilTime을 매 프레임 증가시켜 -1 ↔ 1 범위를 왕복하는 Math.sin 함수를 적용합니다.
+    pupilTime += 0.08; // 매끄럽고 역동적인 주기 속도 설정
+    
+    // Math.sin(pupilTime)의 범위 [-1, 1]을 [0.4, 1.2] 스케일 범위로 매핑
+    // 중간값 0.8, 진폭 0.4
+    pupilScale = 0.8 + Math.sin(pupilTime) * 0.4;
     
     if (pupilMesh) {
       pupilMesh.scale.set(pupilScale, pupilScale, 1.0);
@@ -877,8 +873,8 @@ function update3DModelByTheme(themeId) {
     camera.position.set(0, 0, 4.6);
     camera.lookAt(0, 0, 0);
 
-    pupilScale = 1.2; // 최대 크기에서 수축 시작
-    pupilPulseDirection = -1.0; 
+    pupilScale = 1.2; // 최대 크기에서 시작
+    pupilTime = Math.PI / 2; // 사인파의 최대 피크(sin = 1.0)에서 즉시 수축 시작하도록 설정
 
     // 동공 크기 실시간 선 그래프용 Canvas 동적 마운트
     const readoutPanel = document.querySelector(".threejs-readout-panel");
@@ -1058,19 +1054,41 @@ function drawPupilSizeGraph() {
   
   if (pupilHistory.length < 2) return;
   
-  // 3. 실시간 동공 수치 선 그래프 그리기 (보라색 네온 라인)
+  // 3. 실시간 동공 수치 곡선 그래프 그리기 (보라색 네온 라인 - 이차 베지어 곡선 보간법 적용)
   ctx.strokeStyle = "#a78bfa";
   ctx.lineWidth = 2.2;
   ctx.beginPath();
   
   const step = graphW / 80;
-  pupilHistory.forEach((val, i) => {
-    // 수치 3.5mm(바닥) ~ 7.5mm(천장)를 y좌표로 매핑
-    const y = (h - 18) - ((val - 3.5) / (7.5 - 3.5)) * ((h - 18) - 12);
-    const x = marginX + i * step;
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
-  });
+  
+  // 첫 번째 시작 포인트 계산 후 이동
+  const startY = (h - 18) - ((pupilHistory[0] - 3.5) / (7.5 - 3.5)) * ((h - 18) - 12);
+  ctx.moveTo(marginX, startY);
+  
+  let i;
+  for (i = 0; i < pupilHistory.length - 1; i++) {
+    const valCur = pupilHistory[i];
+    const valNext = pupilHistory[i + 1];
+    
+    const yCur = (h - 18) - ((valCur - 3.5) / (7.5 - 3.5)) * ((h - 18) - 12);
+    const yNext = (h - 18) - ((valNext - 3.5) / (7.5 - 3.5)) * ((h - 18) - 12);
+    
+    const xCur = marginX + i * step;
+    const xNext = marginX + (i + 1) * step;
+    
+    // 현재 포인트와 다음 포인트의 가로/세로 중간값 계산 (제어점)
+    const xc = (xCur + xNext) / 2;
+    const yc = (yCur + yNext) / 2;
+    
+    // 중간 제어점 방향으로 곡선을 그리며 연결
+    ctx.quadraticCurveTo(xCur, yCur, xc, yc);
+  }
+  
+  // 마지막 포인트까지 연결 마무리
+  const lastIdx = pupilHistory.length - 1;
+  const lastY = (h - 18) - ((pupilHistory[lastIdx] - 3.5) / (7.5 - 3.5)) * ((h - 18) - 12);
+  ctx.lineTo(marginX + lastIdx * step, lastY);
+  
   ctx.stroke();
   
   // 4. 현재 동공 지름 수치 오버레이 출력
