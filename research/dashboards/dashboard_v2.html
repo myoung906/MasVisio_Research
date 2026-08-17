@@ -628,7 +628,7 @@ function initLiterature() {
     }
     
     detail.style.display = 'block';
-    detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (e.isTrusted) detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
   
   // Select first paper by default
