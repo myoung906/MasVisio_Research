@@ -271,7 +271,7 @@
       /* B2B Service Orbit Interactive Visual Styles */
       .service-orbit-container {
         display: grid;
-        grid-template-columns: 360px 1fr;
+        grid-template-columns: 380px 1fr;
         gap: 40px;
         align-items: center;
         margin: 3.5rem 0;
@@ -282,8 +282,8 @@
       }
       .service-orbit-visual {
         position: relative;
-        width: 320px;
-        height: 320px;
+        width: 340px;
+        height: 340px;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -321,8 +321,8 @@
       }
       .orbit-node {
         position: absolute;
-        width: 76px;
-        height: 76px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
         background: #080c11;
         border: 1px solid var(--line);
@@ -333,42 +333,43 @@
         cursor: pointer;
         z-index: 12;
         transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        padding: 5px;
+        box-sizing: border-box;
       }
       .orbit-node:hover, .orbit-node.active {
         border-color: var(--primary-color);
         background: var(--panel);
-        transform: scale(1.1);
-        box-shadow: 0 0 15px rgba(169, 214, 238, 0.2);
+        box-shadow: 0 0 18px rgba(169, 214, 238, 0.22);
       }
       .node-icon {
-        font-size: 20px;
-        margin-bottom: 2px;
+        font-size: 22px;
+        margin-bottom: 4px;
       }
       .node-label {
-        font-size: 8.5px;
+        font-size: 10px;
         font-weight: 600;
         color: var(--text-light);
         text-align: center;
-        max-width: 68px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        max-width: 90px;
+        white-space: normal;
+        line-height: 1.25;
+        word-break: normal;
       }
       .orbit-node.active .node-label {
         color: var(--primary-color);
       }
       
       /* Position orbiting nodes */
-      .node-1 { top: 10px; left: 50%; transform: translateX(-50%); }
-      .node-2 { top: 50%; right: 10px; transform: translateY(-50%); }
-      .node-3 { bottom: 10px; left: 50%; transform: translateX(-50%); }
-      .node-4 { top: 50%; left: 10px; transform: translateY(-50%); }
+      .node-1 { top: 0px; left: 50%; transform: translateX(-50%); }
+      .node-2 { top: 50%; right: 0px; transform: translateY(-50%); }
+      .node-3 { bottom: 0px; left: 50%; transform: translateX(-50%); }
+      .node-4 { top: 50%; left: 0px; transform: translateY(-50%); }
       
       /* Active transforms to maintain layout */
-      .node-1:hover, .node-1.active { transform: translateX(-50%) scale(1.12); }
-      .node-2:hover, .node-2.active { transform: translateY(-50%) scale(1.12); }
-      .node-3:hover, .node-3.active { transform: translateX(-50%) scale(1.12); }
-      .node-4:hover, .node-4.active { transform: translateY(-50%) scale(1.12); }
+      .node-1:hover, .node-1.active { transform: translateX(-50%) scale(1.08); }
+      .node-2:hover, .node-2.active { transform: translateY(-50%) scale(1.08); }
+      .node-3:hover, .node-3.active { transform: translateX(-50%) scale(1.08); }
+      .node-4:hover, .node-4.active { transform: translateY(-50%) scale(1.08); }
 
       .orbit-svg-lines {
         position: absolute;
@@ -496,27 +497,27 @@
               <!-- 4 Orbiting Nodes -->
               <div class="orbit-node node-1 active" data-service="1">
                 <div class="node-icon">🔬</div>
-                <div class="node-label">Clinical Studies</div>
+                <div class="node-label">Clinical<br>Studies</div>
               </div>
               <div class="orbit-node node-2" data-service="2">
                 <div class="node-icon">⚙️</div>
-                <div class="node-label">Hardware Prototype</div>
+                <div class="node-label">Hardware<br>Prototype</div>
               </div>
               <div class="orbit-node node-3" data-service="3">
                 <div class="node-icon">💻</div>
-                <div class="node-label">AI Software API</div>
+                <div class="node-label">AI Software<br>API</div>
               </div>
               <div class="orbit-node node-4" data-service="4">
                 <div class="node-icon">🎓</div>
-                <div class="node-label">Seminars &amp; Consult</div>
+                <div class="node-label">Seminars &amp;<br>Consulting</div>
               </div>
               
               <!-- SVG Radial Connector Lines -->
-              <svg class="orbit-svg-lines" viewBox="0 0 320 320">
-                <line x1="160" y1="160" x2="160" y2="46" class="line-1" style="stroke: var(--primary-color); stroke-width: 2.5;" />
-                <line x1="160" y1="160" x2="274" y2="160" class="line-2" />
-                <line x1="160" y1="160" x2="160" y2="274" class="line-3" />
-                <line x1="160" y1="160" x2="46" y2="160" class="line-4" />
+              <svg class="orbit-svg-lines" viewBox="0 0 340 340">
+                <line x1="170" y1="170" x2="170" y2="50" class="line-1" style="stroke: var(--primary-color); stroke-width: 2.5;" />
+                <line x1="170" y1="170" x2="290" y2="170" class="line-2" />
+                <line x1="170" y1="170" x2="170" y2="290" class="line-3" />
+                <line x1="170" y1="170" x2="50" y2="170" class="line-4" />
               </svg>
             </div>
             

@@ -271,7 +271,7 @@
       /* B2B Service Orbit Interactive Visual Styles */
       .service-orbit-container {
         display: grid;
-        grid-template-columns: 360px 1fr;
+        grid-template-columns: 380px 1fr;
         gap: 40px;
         align-items: center;
         margin: 3.5rem 0;
@@ -282,8 +282,8 @@
       }
       .service-orbit-visual {
         position: relative;
-        width: 320px;
-        height: 320px;
+        width: 340px;
+        height: 340px;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -321,8 +321,8 @@
       }
       .orbit-node {
         position: absolute;
-        width: 76px;
-        height: 76px;
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
         background: #080c11;
         border: 1px solid var(--line);
@@ -333,42 +333,43 @@
         cursor: pointer;
         z-index: 12;
         transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        padding: 5px;
+        box-sizing: border-box;
       }
       .orbit-node:hover, .orbit-node.active {
         border-color: var(--primary-color);
         background: var(--panel);
-        transform: scale(1.1);
-        box-shadow: 0 0 15px rgba(169, 214, 238, 0.2);
+        box-shadow: 0 0 18px rgba(169, 214, 238, 0.22);
       }
       .node-icon {
-        font-size: 20px;
-        margin-bottom: 2px;
+        font-size: 22px;
+        margin-bottom: 4px;
       }
       .node-label {
-        font-size: 8.5px;
+        font-size: 10px;
         font-weight: 600;
         color: var(--text-light);
         text-align: center;
-        max-width: 68px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        max-width: 90px;
+        white-space: normal;
+        line-height: 1.25;
+        word-break: keep-all;
       }
       .orbit-node.active .node-label {
         color: var(--primary-color);
       }
       
       /* Position orbiting nodes */
-      .node-1 { top: 10px; left: 50%; transform: translateX(-50%); }
-      .node-2 { top: 50%; right: 10px; transform: translateY(-50%); }
-      .node-3 { bottom: 10px; left: 50%; transform: translateX(-50%); }
-      .node-4 { top: 50%; left: 10px; transform: translateY(-50%); }
+      .node-1 { top: 0px; left: 50%; transform: translateX(-50%); }
+      .node-2 { top: 50%; right: 0px; transform: translateY(-50%); }
+      .node-3 { bottom: 0px; left: 50%; transform: translateX(-50%); }
+      .node-4 { top: 50%; left: 0px; transform: translateY(-50%); }
       
       /* Active transforms to maintain layout */
-      .node-1:hover, .node-1.active { transform: translateX(-50%) scale(1.12); }
-      .node-2:hover, .node-2.active { transform: translateY(-50%) scale(1.12); }
-      .node-3:hover, .node-3.active { transform: translateX(-50%) scale(1.12); }
-      .node-4:hover, .node-4.active { transform: translateY(-50%) scale(1.12); }
+      .node-1:hover, .node-1.active { transform: translateX(-50%) scale(1.08); }
+      .node-2:hover, .node-2.active { transform: translateY(-50%) scale(1.08); }
+      .node-3:hover, .node-3.active { transform: translateX(-50%) scale(1.08); }
+      .node-4:hover, .node-4.active { transform: translateY(-50%) scale(1.08); }
 
       .orbit-svg-lines {
         position: absolute;
@@ -484,30 +485,60 @@
             </p>
           </header>
 
-          <div class="features-grid">
-            <div class="feature-card">
-              <h3>🔬 임상 연구 및 시제품 실증 (Clinical Studies)</h3>
-              <p>
-                맞춤형 특수 콘택트렌즈 및 주변부 근시 제어 장치의 유효성을 평가하는 독립 임상 연구를 수행합니다. 체계적인 임상 설계를 바탕으로 광학 매개변수를 교정하고, 신뢰도 높은 검증 보고서를 도출합니다.
-              </p>
+          <!-- Interactive Service Orbit Hub -->
+          <div class="service-orbit-container">
+            <div class="service-orbit-visual">
+              <!-- Center Hub -->
+              <div class="orbit-center">
+                <div class="center-glow"></div>
+                <div class="center-text">OPTINEX<br>R&amp;D HUB</div>
+              </div>
+              
+              <!-- 4 Orbiting Nodes -->
+              <div class="orbit-node node-1 active" data-service="1">
+                <div class="node-icon">🔬</div>
+                <div class="node-label">임상 연구<br>&amp; 실증</div>
+              </div>
+              <div class="orbit-node node-2" data-service="2">
+                <div class="node-icon">⚙️</div>
+                <div class="node-label">하드웨어<br>시제품</div>
+              </div>
+              <div class="orbit-node node-3" data-service="3">
+                <div class="node-icon">💻</div>
+                <div class="node-label">AI 소프트웨어<br>API</div>
+              </div>
+              <div class="orbit-node node-4" data-service="4">
+                <div class="node-icon">🎓</div>
+                <div class="node-label">세미나 및<br>컨설팅</div>
+              </div>
+              
+              <!-- SVG Radial Connector Lines -->
+              <svg class="orbit-svg-lines" viewBox="0 0 340 340">
+                <line x1="170" y1="170" x2="170" y2="50" class="line-1" style="stroke: var(--primary-color); stroke-width: 2.5;" />
+                <line x1="170" y1="170" x2="290" y2="170" class="line-2" />
+                <line x1="170" y1="170" x2="170" y2="290" class="line-3" />
+                <line x1="170" y1="170" x2="50" y2="170" class="line-4" />
+              </svg>
             </div>
-            <div class="feature-card">
-              <h3>⚙️ 하드웨어 시제품 개발 및 광학 교정</h3>
-              <p>
-                카메라와 특수 광학 렌즈(Telecentric 등)를 결합한 이미징 하드웨어 시제품 설계를 지원합니다. 동공 추적 및 형상 복원에 적합하도록 자극 장치 동기화 스케줄러와 하드웨어 통합 튜닝을 제공합니다.
-              </p>
-            </div>
-            <div class="feature-card">
-              <h3>💻 소프트웨어 통합 및 AI API 개발</h3>
-              <p>
-                안구 각공막 3D 복원 알고리즘 및 미세 동공 반응 분석 소프트웨어를 파트너사의 의료 시스템에 API 형태로 연결합니다. PyTorch 가중치 모델 연산 및 WebSocket 데이터 스트림 파이프라인 개발을 지원합니다.
-              </p>
-            </div>
-            <div class="feature-card">
-              <h3>🎓 전문가 교육 세미나 및 컨설팅</h3>
-              <p>
-                비침습 생체 정보 스크리닝 및 기하 광학 계측 분야의 최신 연구 성과를 바탕으로 기업 기술 워크숍 및 학술 세미나를 기획합니다. 원천 특허 확보를 위한 도메인 지식 전수 컨설팅을 수행합니다.
-              </p>
+            
+            <!-- Dynamic Detail Panel -->
+            <div class="service-detail-panel">
+              <div class="service-detail-content active" id="detail-1">
+                <h3>🔬 임상 연구 및 시제품 실증 (Clinical Studies)</h3>
+                <p>맞춤형 특수 콘택트렌즈 및 주변부 근시 제어 장치의 유효성을 평가하는 독립 임상 연구를 수행합니다. 체계적인 임상 설계를 바탕으로 광학 매개변수를 교정하고, 신뢰도 높은 검증 보고서를 도출합니다.</p>
+              </div>
+              <div class="service-detail-content" id="detail-2">
+                <h3>⚙️ 하드웨어 시제품 개발 및 광학 교정 (Hardware Prototyping)</h3>
+                <p>카메라와 특수 광학 렌즈(Telecentric 등)를 결합한 이미징 하드웨어 시제품 설계를 지원합니다. 동공 추적 및 형상 복원에 적합하도록 자극 장치 동기화 스케줄러와 하드웨어 통합 튜닝을 제공합니다.</p>
+              </div>
+              <div class="service-detail-content" id="detail-3">
+                <h3>💻 소프트웨어 통합 및 AI API 개발 (Software &amp; AI Integration)</h3>
+                <p>안구 각공막 3D 복원 알고리즘 및 미세 동공 반응 분석 소프트웨어를 파트너사의 의료 시스템에 API 형태로 연결합니다. PyTorch 가중치 모델 연산 및 WebSocket 데이터 스트림 파이프라인 개발을 지원합니다.</p>
+              </div>
+              <div class="service-detail-content" id="detail-4">
+                <h3>🎓 전문가 교육 세미나 및 컨설팅 (Consulting &amp; Seminars)</h3>
+                <p>비침습 생체 정보 스크리닝 및 기하 광학 계측 분야의 최신 연구 성과를 바탕으로 기업 기술 워크숍 및 학술 세미나를 기획합니다. 원천 특허 확보를 위한 도메인 지식 전수 컨설팅을 수행합니다.</p>
+              </div>
             </div>
           </div>
 
@@ -555,17 +586,41 @@
                 </p>
               </div>
               <div>
-                <a href="../../research/dashboards/dashboard_v3.html" target="_blank" rel="noopener noreferrer" class="showcase-btn">
+                <a href="https://myoung906.github.io/MasVisio_Research/research/dashboards/dashboard_v3.html" target="_blank" rel="noopener noreferrer" class="showcase-btn">
                   대시보드 V3 데모 확인 →
                 </a>
               </div>
             </div>
-
-            <!-- Toned Down Services Pipeline Diagram -->
-            <div class="services-diagram-wrap">
-              <img src="../../assets/images/research/services_pipeline_en_dark.png" alt="B2B Visual Intelligence Service Pipeline Diagram" loading="lazy" />
-            </div>
           </div>
+
+          <script>
+            // B2B Service Orbit Interactive logic
+            document.querySelectorAll('.orbit-node').forEach(node => {
+              node.addEventListener('mouseenter', () => {
+                // Remove active class from all nodes and contents
+                document.querySelectorAll('.orbit-node').forEach(n => n.classList.remove('active'));
+                document.querySelectorAll('.service-detail-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to hovered node and corresponding content
+                node.classList.add('active');
+                const serviceId = node.getAttribute('data-service');
+                const content = document.getElementById(`detail-${serviceId}`);
+                if (content) content.classList.add('active');
+      
+                // Reset line highlights
+                document.querySelectorAll('.orbit-svg-lines line').forEach(l => {
+                  l.style.stroke = 'rgba(169, 214, 238, 0.15)';
+                  l.style.strokeWidth = '1.5';
+                });
+                // Highlight corresponding line
+                const activeLine = document.querySelector(`.line-${serviceId}`);
+                if (activeLine) {
+                  activeLine.style.stroke = 'var(--primary-color)';
+                  activeLine.style.strokeWidth = '2.5';
+                }
+              });
+            });
+          </script>
 
         </div>
       </section>
