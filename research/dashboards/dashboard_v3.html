@@ -689,6 +689,9 @@ function initLiterature() {
     }
     
     detail.style.display = 'block';
+    // initLiterature() synthesises a click on the first card to select it by
+    // default; without this guard that synthetic click scrolled the page
+    // straight to the literature panel on every load.
     if (e.isTrusted) detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
   
