@@ -419,7 +419,7 @@ function initPublicationsSubmenuToggle() {
   if (!rootLink) return;
 
   const isKo = window.location.pathname.includes("/ko/");
-  const isPublicationsPage = /\/(?:ko\/)?publications\/index\.html$/.test(
+  const isPublicationsPage = /\/(?:ko\/)?publications\/(?:index\.html)?\/?$/.test(
     window.location.pathname,
   );
   const basePath = getBasePath();
@@ -429,14 +429,16 @@ function initPublicationsSubmenuToggle() {
 
   const submenuItems = isKo
     ? [
-        { label: "연구논문", hash: "#reviewed-papers" },
-        { label: "학술발표", hash: "#conference" },
-        { label: "특허", hash: "#patent" },
+        { label: "시광학 및 정밀 계측", hash: "#theme-metrology" },
+        { label: "AI 안구 바이오마커", hash: "#theme-biomarker" },
+        { label: "근시 제어 및 시각 재활", hash: "#theme-myopia-rehab" },
+        { label: "기타 연구 아카이브", hash: "#theme-archive" }
       ]
     : [
-        { label: "Reviewed Papers", hash: "#reviewed-papers" },
-        { label: "Conference", hash: "#conference" },
-        { label: "Patent", hash: "#patent" },
+        { label: "Metrology & Ray-Tracing", hash: "#theme-metrology" },
+        { label: "AI Ocular Biomarkers", hash: "#theme-biomarker" },
+        { label: "Myopia & Visual Rehab", hash: "#theme-myopia-rehab" },
+        { label: "Research Archive", hash: "#theme-archive" }
       ];
   const submenuHashSet = new Set(submenuItems.map((item) => item.hash));
   const hasSubmenuHash = submenuHashSet.has(window.location.hash);

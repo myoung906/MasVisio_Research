@@ -267,6 +267,161 @@
           align-items: flex-start;
         }
       }
+
+      /* B2B Service Orbit Interactive Visual Styles */
+      .service-orbit-container {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 40px;
+        align-items: center;
+        margin: 3.5rem 0;
+        background: var(--panel2);
+        border: 1px solid var(--line);
+        padding: 40px;
+        border-radius: 8px;
+      }
+      .service-orbit-visual {
+        position: relative;
+        width: 320px;
+        height: 320px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .orbit-center {
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(169, 214, 238, 0.15) 0%, rgba(8, 12, 17, 0.98) 100%);
+        border: 2px solid var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        box-shadow: 0 0 25px rgba(169, 214, 238, 0.25);
+      }
+      .center-glow {
+        position: absolute;
+        inset: -8px;
+        border-radius: 50%;
+        border: 1px solid rgba(169, 214, 238, 0.15);
+        animation: spin 30s linear infinite;
+      }
+      .center-text {
+        font-family: var(--logo-font);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-align: center;
+        line-height: 1.4;
+        color: #fff;
+        text-transform: uppercase;
+      }
+      .orbit-node {
+        position: absolute;
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        background: #080c11;
+        border: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 12;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+      .orbit-node:hover, .orbit-node.active {
+        border-color: var(--primary-color);
+        background: var(--panel);
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(169, 214, 238, 0.2);
+      }
+      .node-icon {
+        font-size: 20px;
+        margin-bottom: 2px;
+      }
+      .node-label {
+        font-size: 8.5px;
+        font-weight: 600;
+        color: var(--text-light);
+        text-align: center;
+        max-width: 68px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .orbit-node.active .node-label {
+        color: var(--primary-color);
+      }
+      
+      /* Position orbiting nodes */
+      .node-1 { top: 10px; left: 50%; transform: translateX(-50%); }
+      .node-2 { top: 50%; right: 10px; transform: translateY(-50%); }
+      .node-3 { bottom: 10px; left: 50%; transform: translateX(-50%); }
+      .node-4 { top: 50%; left: 10px; transform: translateY(-50%); }
+      
+      /* Active transforms to maintain layout */
+      .node-1:hover, .node-1.active { transform: translateX(-50%) scale(1.12); }
+      .node-2:hover, .node-2.active { transform: translateY(-50%) scale(1.12); }
+      .node-3:hover, .node-3.active { transform: translateX(-50%) scale(1.12); }
+      .node-4:hover, .node-4.active { transform: translateY(-50%) scale(1.12); }
+
+      .orbit-svg-lines {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        pointer-events: none;
+      }
+      .orbit-svg-lines line {
+        stroke: rgba(169, 214, 238, 0.15);
+        stroke-width: 1.5;
+        stroke-dasharray: 4 4;
+        transition: stroke 0.3s ease, stroke-width 0.3s ease;
+      }
+      
+      .service-detail-panel {
+        background: #080c11;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 30px;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+      }
+      .service-detail-content {
+        display: none;
+        animation: fadeIn 0.4s ease-out forwards;
+      }
+      .service-detail-content.active {
+        display: block;
+      }
+      .service-detail-content h3 {
+        color: var(--primary-color) !important;
+        font-family: var(--heading-font);
+        font-size: 20px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+      .service-detail-content p {
+        color: #9eb1c0 !important;
+        font-size: 15px;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      @media (max-width: 900px) {
+        .service-orbit-container {
+          grid-template-columns: 1fr;
+          padding: 30px 20px;
+          gap: 30px;
+        }
+      }
     </style>
     <link rel="stylesheet" href="../assets/css/main.css?v=4.0" />
     <link rel="stylesheet" href="../assets/css/responsive.css?v=4.0" />
@@ -329,30 +484,60 @@
             </p>
           </header>
 
-          <div class="features-grid">
-            <div class="feature-card">
-              <h3>🔬 Clinical Studies &amp; Validation</h3>
-              <p>
-                We conduct custom validation studies for specialty lenses and peripheral myopia control devices. Under strict clinical methodologies, we verify optical parameters and compile structured diagnostic validation reports.
-              </p>
+          <!-- Interactive Service Orbit Hub -->
+          <div class="service-orbit-container">
+            <div class="service-orbit-visual">
+              <!-- Center Hub -->
+              <div class="orbit-center">
+                <div class="center-glow"></div>
+                <div class="center-text">OPTINEX<br>R&amp;D HUB</div>
+              </div>
+              
+              <!-- 4 Orbiting Nodes -->
+              <div class="orbit-node node-1 active" data-service="1">
+                <div class="node-icon">🔬</div>
+                <div class="node-label">Clinical Studies</div>
+              </div>
+              <div class="orbit-node node-2" data-service="2">
+                <div class="node-icon">⚙️</div>
+                <div class="node-label">Hardware Prototype</div>
+              </div>
+              <div class="orbit-node node-3" data-service="3">
+                <div class="node-icon">💻</div>
+                <div class="node-label">AI Software API</div>
+              </div>
+              <div class="orbit-node node-4" data-service="4">
+                <div class="node-icon">🎓</div>
+                <div class="node-label">Seminars &amp; Consult</div>
+              </div>
+              
+              <!-- SVG Radial Connector Lines -->
+              <svg class="orbit-svg-lines" viewBox="0 0 320 320">
+                <line x1="160" y1="160" x2="160" y2="46" class="line-1" style="stroke: var(--primary-color); stroke-width: 2.5;" />
+                <line x1="160" y1="160" x2="274" y2="160" class="line-2" />
+                <line x1="160" y1="160" x2="160" y2="274" class="line-3" />
+                <line x1="160" y1="160" x2="46" y2="160" class="line-4" />
+              </svg>
             </div>
-            <div class="feature-card">
-              <h3>⚙️ Custom Hardware Prototyping</h3>
-              <p>
-                Engineering support for building optoelectronic setups. We integrate Basler/FLIR cameras, telecentric lenses, LED stimulators, and custom SBC nodes (Jetson/RPi) designed for eye tracking.
-              </p>
-            </div>
-            <div class="feature-card">
-              <h3>💻 Software &amp; AI Integration</h3>
-              <p>
-                Integrate pupil tracking and corneo-scleral mesh calculation algorithms into your legacy clinical devices. We deliver high-fidelity PyTorch model checkpoints and robust WebSocket APIs.
-              </p>
-            </div>
-            <div class="feature-card">
-              <h3>🎓 Expert Seminars &amp; Semiotics</h3>
-              <p>
-                We provide technology training seminars and design consultations in visual science, optical calibration, and non-invasive biometric diagnostics for corporate research and clinical departments.
-              </p>
+            
+            <!-- Dynamic Detail Panel -->
+            <div class="service-detail-panel">
+              <div class="service-detail-content active" id="detail-1">
+                <h3>🔬 Clinical Studies &amp; Validation</h3>
+                <p>We conduct custom validation studies for specialty lenses and peripheral myopia control devices. Under strict clinical methodologies, we verify optical parameters and compile structured diagnostic validation reports.</p>
+              </div>
+              <div class="service-detail-content" id="detail-2">
+                <h3>⚙️ Custom Hardware Prototyping</h3>
+                <p>Engineering support for building optoelectronic setups. We integrate Basler/FLIR cameras, telecentric lenses, LED stimulators, and custom SBC nodes (Jetson/RPi) designed for eye tracking.</p>
+              </div>
+              <div class="service-detail-content" id="detail-3">
+                <h3>💻 Software &amp; AI Integration</h3>
+                <p>Integrate pupil tracking and corneo-scleral mesh calculation algorithms into your legacy clinical devices. We deliver high-fidelity PyTorch model checkpoints and robust WebSocket APIs.</p>
+              </div>
+              <div class="service-detail-content" id="detail-4">
+                <h3>🎓 Expert Seminars &amp; Semiotics</h3>
+                <p>We provide technology training seminars and design consultations in visual science, optical calibration, and non-invasive biometric diagnostics for corporate research and clinical departments.</p>
+              </div>
             </div>
           </div>
 
@@ -405,12 +590,36 @@
                 </a>
               </div>
             </div>
-
-            <!-- Toned Down Services Pipeline Diagram -->
-            <div class="services-diagram-wrap">
-              <img src="../assets/images/research/services_pipeline_en_dark.png" alt="B2B Visual Intelligence Service Pipeline Diagram" loading="lazy" />
-            </div>
           </div>
+
+          <script>
+            // B2B Service Orbit Interactive logic
+            document.querySelectorAll('.orbit-node').forEach(node => {
+              node.addEventListener('mouseenter', () => {
+                // Remove active class from all nodes and contents
+                document.querySelectorAll('.orbit-node').forEach(n => n.classList.remove('active'));
+                document.querySelectorAll('.service-detail-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to hovered node and corresponding content
+                node.classList.add('active');
+                const serviceId = node.getAttribute('data-service');
+                const content = document.getElementById(`detail-${serviceId}`);
+                if (content) content.classList.add('active');
+      
+                // Reset line highlights
+                document.querySelectorAll('.orbit-svg-lines line').forEach(l => {
+                  l.style.stroke = 'rgba(169, 214, 238, 0.15)';
+                  l.style.strokeWidth = '1.5';
+                });
+                // Highlight corresponding line
+                const activeLine = document.querySelector(`.line-${serviceId}`);
+                if (activeLine) {
+                  activeLine.style.stroke = 'var(--primary-color)';
+                  activeLine.style.strokeWidth = '2.5';
+                }
+              });
+            });
+          </script>
 
         </div>
       </section>
