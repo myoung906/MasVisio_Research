@@ -9,11 +9,11 @@
       localStorage.setItem("mv_lang_preference", "en");
     } else if (langParam === "ko") {
       localStorage.setItem("mv_lang_preference", "ko");
-      window.location.replace("ko/index.html");
+      window.location.replace("ko/index.html?v=5.0");
     } else {
       const pref = localStorage.getItem("mv_lang_preference");
       if (pref !== "en") {
-        window.location.replace("ko/index.html");
+        window.location.replace("ko/index.html?v=5.0");
       }
     }
   </script>

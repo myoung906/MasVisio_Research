@@ -675,7 +675,7 @@ function handleScrollAnimations() {
 
 async function loadResearchProjects() {
   const lang = document.documentElement.lang || "en";
-  const dataPath = getBasePath() + "assets/data/content.json";
+  const dataPath = getBasePath() + "assets/data/content.json?v=5.0";
   const container = document.getElementById("research-projects-container");
 
   if (!container) return;
@@ -715,7 +715,7 @@ async function loadResearchProjects() {
 
 async function loadPublications() {
   const lang = document.documentElement.lang || "en";
-  const dataPath = getBasePath() + "assets/data/content.json";
+  const dataPath = getBasePath() + "assets/data/content.json?v=5.0";
   const container = document.getElementById("publications-container");
 
   if (!container) return;
@@ -889,7 +889,7 @@ async function loadProjectDetails() {
   if (!projectId) return;
 
   const lang = document.documentElement.lang || "en";
-  const dataPath = getBasePath() + "assets/data/content.json";
+  const dataPath = getBasePath() + "assets/data/content.json?v=5.0";
   const container = document.getElementById("project-detail-container");
 
   if (!container) return;
@@ -958,7 +958,7 @@ async function loadProjectDetails() {
 
 async function loadTeamMembers() {
   const lang = document.documentElement.lang || "en";
-  const dataPath = getBasePath() + "assets/data/content.json";
+  const dataPath = getBasePath() + "assets/data/content.json?v=5.0";
   const container = document.getElementById("team-container");
 
   if (!container) return;
@@ -977,17 +977,26 @@ async function loadTeamMembers() {
 
       container.innerHTML = teamMembers
         .map(
-          (member) => {
+          (member, idx) => {
+            const bio = member.bio || "";
+            const role = member.role || "";
+            const name = member.name || "";
+            const affiliation = member.affiliation || "";
+            const expertise = member.expertise || "";
+            const tags = expertise 
+              ? expertise.split(',').map(tag => `<span class="spec-tag">${tag.trim()}</span>`).join('') 
+              : "";
+              
             return `
                 <div class="member-row">
                     <div class="member-scan-target">
                       <svg viewBox="0 0 100 100" class="scan-svg">
                         <defs>
-                          <pattern id="gridPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+                          <pattern id="gridPattern-${idx}" width="10" height="10" patternUnits="userSpaceOnUse">
                             <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(169, 214, 238, 0.08)" stroke-width="0.5"/>
                           </pattern>
                         </defs>
-                        <rect width="100%" height="100%" fill="url(#gridPattern)" />
+                        <rect width="100%" height="100%" fill="url(#gridPattern-${idx})" />
                         <circle cx="50" cy="50" r="38" stroke="rgba(169, 214, 238, 0.12)" stroke-width="0.8" stroke-dasharray="2 2"/>
                         <circle cx="50" cy="50" r="26" stroke="rgba(169, 214, 238, 0.2)" stroke-width="0.8"/>
                         <circle cx="50" cy="50" r="14" stroke="var(--primary-color)" stroke-width="1.2" opacity="0.5"/>
@@ -1002,16 +1011,16 @@ async function loadTeamMembers() {
                     </div>
                     <div class="member-identity">
                       <div class="member-meta">
-                        <span class="member-role">${member.role}</span>
-                        ${member.affiliation ? `<span class="member-dept">// ${member.affiliation}</span>` : ""}
+                        <span class="member-role">${role}</span>
+                        ${affiliation ? `<span class="member-dept">// ${affiliation}</span>` : ""}
                       </div>
-                      <h3 class="member-name">${member.name}</h3>
-                      <p class="member-bio">${member.bio}</p>
+                      <h3 class="member-name">${name}</h3>
+                      <p class="member-bio">${bio}</p>
                     </div>
                     <div class="member-specs">
                       <div class="spec-label">CORE FOCUS</div>
                       <div class="spec-tags">
-                        ${member.expertise.split(',').map(tag => `<span class="spec-tag">${tag.trim()}</span>`).join('')}
+                        ${tags}
                       </div>
                     </div>
                 </div>
@@ -1033,7 +1042,7 @@ async function loadTeamMembers() {
 
 async function loadDiagnostics() {
   const lang = document.documentElement.lang || "en";
-  const dataPath = getBasePath() + "assets/data/content.json";
+  const dataPath = getBasePath() + "assets/data/content.json?v=5.0";
   const container = document.getElementById("diagnostics-container");
 
   if (!container) return;
