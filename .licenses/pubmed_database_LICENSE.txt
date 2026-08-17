@@ -1,0 +1,2 @@
+Notification: Users must check the PubMed terms of service at https://pubmed.ncbi.nlm.nih.gov/disclaimer/ and NCBI policies at https://www.ncbi.nlm.nih.gov/home/about/policies/, and verify individual paper licenses for usage restrictions.
+Timestamp: 2026-08-17T17:41:00+09:00
