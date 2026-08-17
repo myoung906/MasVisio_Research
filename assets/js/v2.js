@@ -554,8 +554,12 @@ function animate3DEyeball() {
       pupilMesh.scale.set(pupilScale, pupilScale, 1.0);
     }
 
-    // 2. 실시간 동공 직경 값 그래프 기록 (mm단위 변환: 3.5mm ~ 7.5mm 완벽한 스케일 비례 동기화)
-    const currentPupilSizeMM = 3.5 + ((pupilScale - 0.4) / (1.2 - 0.4)) * 4.0;
+    // 2. 실시간 동공 직경 값 그래프 기록 (3D 동공은 선형으로 즉시 튕기되, 그래프는 부드러운 사인 파형으로 변환해 적재)
+    const normalized = (pupilScale - 0.4) / (1.2 - 0.4); // 0 ~ 1
+    // 0 ~ 1 범위를 -PI/2 ~ PI/2 로 변환하여 sin 값을 취함 (부드러운 곡선화)
+    const angle = normalized * Math.PI - Math.PI / 2;
+    const currentPupilSizeMM = 5.5 + Math.sin(angle) * 2.0; // 3.5mm ~ 7.5mm
+    
     pupilHistory.push(currentPupilSizeMM);
     if (pupilHistory.length > 80) pupilHistory.shift();
 
