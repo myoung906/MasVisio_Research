@@ -10,9 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// 전역 변수 (3D Eyeball 관련)
+// 전역 변수 (3D Eyeball 관련 및 2D 스케일 연동)
 let scene, camera, renderer;
 let eyeballMesh, corneaShell, irisMesh, pupilMesh, nerveMesh;
+let corneaGrid, scleraGrid; // 테마 1 전용 격자 메시
 let retinaShell, shellT, shellS;
 let rayLines = [];
 let metrologyDecorations = [];
@@ -22,6 +23,9 @@ let animationFrameId;
 let currentTheme = "metrology";
 let pupilPulseDirection = -1;
 let pupilScale = 1.0;
+let pupilHistory = []; // 테마 2 실시간 동공 그래프 기록용
+let myopiaAngleIndex = 0; // 테마 3 2D 스케일 순환용 (0, 15, 30도)
+let myopiaIntervalId = null; // 테마 3 루프 타이머 ID
 
 /**
  * Publications V2 초기화
@@ -325,33 +329,77 @@ function init3DEyeballVisualization() {
   container.innerHTML = "";
   container.appendChild(renderer.domElement);
 
-  // 1. Sclera Mesh (안구 뒤쪽 공막 반구 - 와이어프레임)
+  // Create 2D canvas for Myopia Ray Trace Sketch (Theme 3)
+  const canvas2d = document.createElement("canvas");
+  canvas2d.id = "myopia-2d-canvas";
+  // Set dimensions directly to prevent blurriness
+  const r = window.devicePixelRatio || 1;
+  canvas2d.width = width * r;
+  canvas2d.height = height * r;
+  canvas2d.style.position = "absolute";
+  canvas2d.style.top = "0";
+  canvas2d.style.left = "0";
+  canvas2d.style.width = "100%";
+  canvas2d.style.height = "100%";
+  canvas2d.style.display = "none";
+  canvas2d.style.pointerEvents = "none";
+  container.appendChild(canvas2d);
+  container.style.position = "relative";
+
+  // 1. Sclera Mesh (안구 뒤쪽 공막 반구 - 실감나는 흰색 눈알 렌더링)
   const scleraGeo = new THREE.SphereGeometry(1.6, 32, 32, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
   const scleraMat = new THREE.MeshPhongMaterial({
-    color: 0x38bdf8,
+    color: 0xf6f8fa,
     transparent: true,
-    opacity: 0.15,
-    shininess: 80,
-    wireframe: true,
-    depthWrite: false // 투명 오버랩 렌더링을 위해 깊이 버퍼 쓰기 비활성화
+    opacity: 0.9,
+    shininess: 30,
+    depthWrite: false
   });
   eyeballMesh = new THREE.Mesh(scleraGeo, scleraMat);
   eyeballMesh.rotation.x = Math.PI / 2; // 정면을 향하도록 설정
   scene.add(eyeballMesh);
+
+  // 1-2. Sclera Red Grid Overlay (공막 적색 격자선 - 테마 1용)
+  const scleraGridGeo = new THREE.SphereGeometry(1.605, 32, 32, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
+  const scleraGridMat = new THREE.MeshBasicMaterial({
+    color: 0xef4444,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.25,
+    depthWrite: false
+  });
+  scleraGrid = new THREE.Mesh(scleraGridGeo, scleraGridMat);
+  scleraGrid.rotation.x = Math.PI / 2;
+  scleraGrid.visible = false;
+  scene.add(scleraGrid);
 
   // 2. Cornea Dome (각막 전면 돔 - 투명 셸)
   const corneaGeo = new THREE.SphereGeometry(1.5, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2.5);
   const corneaMat = new THREE.MeshPhongMaterial({
     color: 0x38bdf8,
     side: THREE.DoubleSide,
-    opacity: 0.45,
+    opacity: 0.25,
     transparent: true,
     flatShading: true,
-    depthWrite: false // 뒤쪽의 홍채/동공/광선이 차단되지 않고 비치도록 설정
+    depthWrite: false
   });
   corneaShell = new THREE.Mesh(corneaGeo, corneaMat);
   corneaShell.rotation.x = Math.PI / 2;
   scene.add(corneaShell);
+
+  // 2-2. Cornea Red Grid Overlay (각막 적색 격자선 - 테마 1용)
+  const corneaGridGeo = new THREE.SphereGeometry(1.505, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2.5);
+  const corneaGridMat = new THREE.MeshBasicMaterial({
+    color: 0xef4444,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.5,
+    depthWrite: false
+  });
+  corneaGrid = new THREE.Mesh(corneaGridGeo, corneaGridMat);
+  corneaGrid.rotation.x = Math.PI / 2;
+  corneaGrid.visible = false;
+  scene.add(corneaGrid);
 
   // 3. Iris Ring (홍채 판넬)
   const irisGeo = new THREE.RingGeometry(0.5, 1.48, 32);
@@ -401,6 +449,11 @@ function init3DEyeballVisualization() {
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
+    if (canvas2d) {
+      const r = window.devicePixelRatio || 1;
+      canvas2d.width = w * r;
+      canvas2d.height = h * r;
+    }
   });
 
   // 애니메이션 루프 실행
@@ -413,10 +466,12 @@ function init3DEyeballVisualization() {
 function animate3DEyeball() {
   animationFrameId = requestAnimationFrame(animate3DEyeball);
 
-  // 안구 공통 회전 모션 (테마 3은 구조 관찰을 위해 더 천천히 회전)
+  // 안구 공통 회전 모션 (공막/각막 적색 격자선도 함께 회전)
   const rotateSpeed = currentTheme === "myopia-rehab" ? 0.001 : 0.003;
   if (eyeballMesh && eyeballMesh.visible) eyeballMesh.rotation.y += rotateSpeed;
+  if (scleraGrid && scleraGrid.visible) scleraGrid.rotation.y += rotateSpeed;
   if (corneaShell && corneaShell.visible) corneaShell.rotation.y += rotateSpeed;
+  if (corneaGrid && corneaGrid.visible) corneaGrid.rotation.y += rotateSpeed;
   if (irisMesh && irisMesh.visible) irisMesh.rotation.z += rotateSpeed;
   if (pupilMesh && pupilMesh.visible) pupilMesh.rotation.z += rotateSpeed;
 
@@ -433,7 +488,15 @@ function animate3DEyeball() {
       pupilMesh.scale.set(pupilScale, pupilScale, 1.0);
     }
 
-    // 2. 시신경 전달 펄스 파티클 흐름 시각화
+    // 2. 실시간 동공 직경 값 그래프 기록 (mm단위 변환: 3.0mm ~ 7.5mm)
+    const currentPupilSizeMM = 3.0 + (pupilScale - 0.4) * 7.5;
+    pupilHistory.push(currentPupilSizeMM);
+    if (pupilHistory.length > 80) pupilHistory.shift();
+
+    // 3. 실시간 동공 크기 2D 그래프 그리기 호출
+    drawPupilSizeGraph();
+
+    // 4. 시신경 전달 펄스 파티클 흐름 시각화
     if (pulseParticles.length === 0) {
       // 펄스 파티클 생성 (12개 소구체)
       const pulseMat = new THREE.MeshBasicMaterial({ color: 0xa78bfa, transparent: true, opacity: 0.9, depthWrite: false });
@@ -474,13 +537,9 @@ function animate3DEyeball() {
     });
 
   } else if (currentTheme === "myopia-rehab") {
-    // 근시 억제 및 시각 재활 테마 모션
+    // 근시 억제 및 시각 재활 테마 모션 (세부 2D 스케치 루프는 drawMyopia2DSketch에서 병행)
     pupilScale = 0.7; // 고정된 동공 긴장 상태 표현
     if (pupilMesh) pupilMesh.scale.set(pupilScale, pupilScale, 1.0);
-    
-    // 망막 초평면 셸 가변 곡률 진동 (Wavefront Dynamic)
-    if (shellT) shellT.scale.set(1.0, 1.0, 1.0 + Math.sin(Date.now() * 0.004) * 0.02);
-    if (shellS) shellS.scale.set(1.0, 1.0, 1.0 + Math.cos(Date.now() * 0.004) * 0.02);
   }
 
   renderer.render(scene, camera);
@@ -503,37 +562,53 @@ function update3DModelByTheme(themeId) {
   pulseParticles.forEach(p => scene.remove(p));
   pulseParticles = [];
 
+  // 테마 3용 인터벌 타이머 해제
+  if (myopiaIntervalId) {
+    clearInterval(myopiaIntervalId);
+    myopiaIntervalId = null;
+  }
+
   // 기본 스케일 및 가시성 초기화
-  if (eyeballMesh) eyeballMesh.visible = true;
+  if (eyeballMesh) {
+    eyeballMesh.visible = true;
+    eyeballMesh.material.color.setHex(0xf6f8fa);
+    eyeballMesh.material.opacity = 0.95;
+    eyeballMesh.material.wireframe = false;
+  }
   if (corneaShell) {
     corneaShell.visible = true;
     corneaShell.scale.set(1.0, 1.0, 1.0);
+    corneaShell.material.color.setHex(0x38bdf8);
+    corneaShell.material.opacity = 0.25;
     corneaShell.material.wireframe = false;
   }
   if (irisMesh) irisMesh.visible = true;
   if (pupilMesh) pupilMesh.visible = true;
   if (nerveMesh) nerveMesh.visible = true;
+  if (scleraGrid) scleraGrid.visible = false;
+  if (corneaGrid) corneaGrid.visible = false;
+
+  // 디폴트로 3D WebGL은 보이게, 2D 캔버스는 감춤
+  const canvas2d = document.getElementById("myopia-2d-canvas");
+  if (canvas2d) canvas2d.style.display = "none";
+  if (renderer) renderer.domElement.style.display = "block";
+
+  // 동공 크기 그래프 감춤 (기본)
+  const pupilGraphCanvas = document.getElementById("pupil-graph-canvas");
+  if (pupilGraphCanvas) pupilGraphCanvas.style.display = "none";
 
   if (themeId === "metrology") {
-    // 테마 1: 각막 토포그래피 강조 (하늘색 테마 - 각막 격자스캔 강조)
-    if (eyeballMesh) { eyeballMesh.material.color.setHex(0x38bdf8); eyeballMesh.material.opacity = 0.1; }
-    if (corneaShell) { 
-      corneaShell.material.color.setHex(0x38bdf8); 
-      corneaShell.material.opacity = 0.4; 
-      corneaShell.material.wireframe = true; // 각막을 디지털 메시 격자 형태로 노출하여 계측 느낌 구현
-    }
-    
-    // 내부 홍채/동공/시신경은 가리고 표면 계측에 집중
-    if (irisMesh) irisMesh.visible = false;
-    if (pupilMesh) pupilMesh.visible = false;
-    if (nerveMesh) nerveMesh.visible = false;
+    // 테마 1: 각막 토포그래피 강조 (실제 눈알 전체 렌더링 + 표면 적색 격자선 부각)
+    if (scleraGrid) scleraGrid.visible = true;
+    if (corneaGrid) corneaGrid.visible = true;
+    if (corneaShell) corneaShell.material.opacity = 0.15; // 각막은 연하게 비침
     
     // 시점 조정: 3D 기하학 깊이를 입체적으로 보여주는 사선 구도
     camera.position.set(0.6, 0.4, 4.8);
     camera.lookAt(0, 0, 0);
 
-    // 각막 표면에 플라시도 동심 투사 링(Placido Rings) 3개 생성 (두껍고 확실하게 노출)
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.9, depthWrite: false });
+    // 각막 표면에 플라시도 동심 투사 링(Placido Rings) 생성 - 격자 컬러와 동일하게 적색(red)으로 적용
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0xef4444, side: THREE.DoubleSide, transparent: true, opacity: 0.9, depthWrite: false });
     for (let i = 1; i <= 3; i++) {
       const ringGeo = new THREE.RingGeometry(0.3 * i, 0.3 * i + 0.03, 32);
       const ringMesh = new THREE.Mesh(ringGeo, ringMat);
@@ -545,23 +620,12 @@ function update3DModelByTheme(themeId) {
     
     // 리드아웃 텍스트 업데이트
     if (readoutStatus) readoutStatus.textContent = "CURVATURE MAPPING";
-    if (readoutMode) readoutMode.textContent = "IR TOPOGRAPHY";
+    if (readoutMode) readoutMode.textContent = "RED GRID SCANNERS";
     if (readoutIndex) readoutIndex.textContent = "ROC 7.82 ± 0.02 mm";
 
   } else if (themeId === "biomarker") {
-    // 테마 2: 동공 바이오마커 (보라색 테마 - 동공 수축 집중)
-    if (eyeballMesh) { eyeballMesh.material.color.setHex(0xa78bfa); eyeballMesh.material.opacity = 0.05; }
-    if (corneaShell) { corneaShell.visible = false; } // 각막 돔을 숨겨 홍채와 동공 수축이 정면에서 바로 보이게 처리
-    if (irisMesh) { 
-      irisMesh.visible = true;
-      irisMesh.material.color.setHex(0x2e1065); 
-    }
-    if (pupilMesh) pupilMesh.visible = true;
-    if (nerveMesh) { 
-      nerveMesh.visible = true; 
-      nerveMesh.material.color.setHex(0xa78bfa); 
-      nerveMesh.material.opacity = 0.25;
-    }
+    // 테마 2: 동공 바이오마커 (동공 크기 수축/이완 스캔)
+    if (corneaShell) corneaShell.material.opacity = 0.12; // 각막을 연하게 비춰 동공이 잘 보이도록
     
     // 시점 조정: 동공 수축의 정면 확인을 위한 정면 구도
     camera.position.set(0, 0, 4.6);
@@ -570,83 +634,58 @@ function update3DModelByTheme(themeId) {
     pupilScale = 1.0;
     pupilPulseDirection = -0.015; // 즉시 광반사 수축
 
+    // 동공 크기 실시간 선 그래프용 Canvas 동적 마운트
+    const readoutPanel = document.querySelector(".threejs-readout-panel");
+    let pupilCanvas = document.getElementById("pupil-graph-canvas");
+    if (!pupilCanvas && readoutPanel) {
+      pupilCanvas = document.createElement("canvas");
+      pupilCanvas.id = "pupil-graph-canvas";
+      pupilCanvas.height = 65;
+      pupilCanvas.style.width = "100%";
+      pupilCanvas.style.marginTop = "12px";
+      pupilCanvas.style.borderRadius = "6px";
+      pupilCanvas.style.background = "#0c111e";
+      pupilCanvas.style.border = "1px solid rgba(255,255,255,0.08)";
+      
+      // 내 해상도 선명하게 보정
+      pupilCanvas.width = readoutPanel.clientWidth || 320;
+      pupilCanvas.height = 65;
+      
+      readoutPanel.appendChild(pupilCanvas);
+    }
+    if (pupilCanvas) pupilCanvas.style.display = "block";
+
     // 리드아웃 텍스트 업데이트
     if (readoutStatus) readoutStatus.textContent = "PUPIL LIGHT REFLEX";
     if (readoutMode) readoutMode.textContent = "66 fps NIR SCANNERS";
     if (readoutIndex) readoutIndex.textContent = "LATENCY 240 ± 15 ms";
 
   } else if (themeId === "myopia-rehab") {
-    // 테마 3: 근시 제어 및 시각 재활 (에메랄드 그린/시안 테마 - 광선 추적 집중)
-    if (eyeballMesh) { eyeballMesh.material.color.setHex(0x10b981); eyeballMesh.material.opacity = 0.02; } // 공막을 거의 투명화
-    if (corneaShell) { corneaShell.visible = false; } // 각막 돔을 숨겨 광선과 초평면 셸을 한눈에 노출
-    if (irisMesh) { 
-      irisMesh.visible = true;
-      irisMesh.material.color.setHex(0x064e3b); 
-      irisMesh.material.opacity = 0.5; // 홍채도 투명도를 주어 조리개 역할만 표시
+    // 2D 캔버스 활성화 및 크기 맞춤
+    if (canvas2d) {
+      canvas2d.style.display = "block";
+      const container = document.getElementById("threejs-visual-panel");
+      if (container) {
+        const r = window.devicePixelRatio || 1;
+        canvas2d.width = container.clientWidth * r;
+        canvas2d.height = container.clientHeight * r;
+      }
     }
-    if (pupilMesh) pupilMesh.visible = true;
-    if (nerveMesh) nerveMesh.visible = false; // 불필요한 시신경 실린더 노출 제거
-    
-    // 시점 조정: 망막 후벽 스크린과 그 앞쪽의 T/S 초평면 셸 간의 물리적 거리(Defocus Gap)가 잘 보이는 사선 시점
-    camera.position.set(2.4, 0.9, 4.0);
-    camera.lookAt(-0.3, 0, -0.5);
+    if (renderer) renderer.domElement.style.display = "none";
 
-    // 1. 망막 스크린 셸(Retinal Screen Shell) - 불투명도를 주어 확실한 스크린으로 노출
-    const retinaGeo = new THREE.SphereGeometry(1.58, 32, 32, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
-    const retinaMat = new THREE.MeshPhongMaterial({ color: 0x1e293b, transparent: true, opacity: 0.55, side: THREE.DoubleSide, depthWrite: false });
-    retinaShell = new THREE.Mesh(retinaGeo, retinaMat);
-    retinaShell.rotation.x = Math.PI / 2;
-    scene.add(retinaShell);
-    myopiaDecorations.push(retinaShell);
+    myopiaAngleIndex = 0;
+    drawMyopia2DSketch(); // 최초 렌더링
 
-    // 2. Tangential 상면 셸(shellT) - 망막보다 확연히 앞쪽에 위치 (청록색 밝은 와이어프레임)
-    const shellTGeo = new THREE.SphereGeometry(1.32, 16, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
-    const shellTMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, wireframe: true, transparent: true, opacity: 0.8, depthWrite: false });
-    shellT = new THREE.Mesh(shellTGeo, shellTMat);
-    shellT.rotation.x = Math.PI / 2;
-    scene.add(shellT);
-    myopiaDecorations.push(shellT);
-
-    // 3. Sagittal 상면 셸(shellS) - shellT보다 더 앞에 위치 (연보라색 밝은 와이어프레임)
-    const shellSGeo = new THREE.SphereGeometry(1.12, 16, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
-    const shellSMat = new THREE.MeshBasicMaterial({ color: 0xa78bfa, wireframe: true, transparent: true, opacity: 0.8, depthWrite: false });
-    shellS = new THREE.Mesh(shellSGeo, shellSMat);
-    shellS.rotation.x = Math.PI / 2;
-    scene.add(shellS);
-    myopiaDecorations.push(shellS);
-
-    // 4. 입사 광선 다발 추적(Ray-Tracing Beams) 생성 (두껍고 뚜렷하게)
-    const lineMat = new THREE.LineBasicMaterial({ color: 0x10b981, transparent: true, opacity: 0.9, depthWrite: false });
-    const rayAngles = [0, Math.PI / 2, Math.PI, Math.PI * 1.5];
-    rayAngles.forEach(angle => {
-      const points = [];
-      const startX = Math.cos(angle) * 1.1;
-      const startY = Math.sin(angle) * 1.1;
-      // 입사 -> 각막 굴절 -> 동공을 지나 망막 전벽의 초평면 셸에 수렴했다가 다시 망막에 도달
-      points.push(new THREE.Vector3(startX, startY, 2.5));
-      points.push(new THREE.Vector3(startX * 0.3, startY * 0.3, 0.45)); // 동공
-      points.push(new THREE.Vector3(startX * 0.05, startY * 0.05, -0.65)); // 1차 수렴 (S-상면)
-      points.push(new THREE.Vector3(0, 0, -1.05)); // 2차 수렴 초점 (T-상면 / Myopic Defocus)
-      points.push(new THREE.Vector3(-startX * 0.15, -startY * 0.15, -1.58)); // 망막 도달
-
-      const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
-      const line = new THREE.Line(lineGeo, lineMat);
-      scene.add(line);
-      myopiaDecorations.push(line);
-    });
-
-    // 5. 초평면 셸 중심에 밝게 빛나는 3D 초점(Focus Spot) 구체 추가
-    const focusGeo = new THREE.SphereGeometry(0.08, 16, 16);
-    const focusMat = new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.95 });
-    const focusMesh = new THREE.Mesh(focusGeo, focusMat);
-    focusMesh.position.set(0, 0, -1.05); // T-상면 중심부 초점
-    scene.add(focusMesh);
-    myopiaDecorations.push(focusMesh);
+    // 0도 -> 15도 -> 30도 순환 루프 타이머 작동
+    myopiaIntervalId = setInterval(() => {
+      myopiaAngleIndex = (myopiaAngleIndex + 1) % 3;
+      drawMyopia2DSketch();
+    }, 1600);
 
     // 리드아웃 텍스트 업데이트
-    if (readoutStatus) readoutStatus.textContent = "MYOPIC DEFOCUS ON";
-    if (readoutMode) readoutMode.textContent = "RAY-TRACING SOLVER";
-    if (readoutIndex) readoutIndex.textContent = "FS' DEFOCUS -0.75 D";
+    if (readoutStatus) readoutStatus.textContent = "RAY-TRACING SKETCH";
+    if (readoutMode) readoutMode.textContent = "DYNAMIC ECCENTRICITY";
+    if (readoutIndex) readoutIndex.textContent = "CYCLE 0° -> 15° -> 30°";
   }
 }
 
@@ -716,4 +755,259 @@ function initPublicationsNavigationV2() {
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
+}
+
+/**
+ * 테마 2: 실시간 동공 크기 변화 그래프 그리기 (2D Canvas)
+ */
+function drawPupilSizeGraph() {
+  const canvas = document.getElementById("pupil-graph-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width;
+  const h = canvas.height;
+  
+  ctx.clearRect(0, 0, w, h);
+  
+  // Background
+  ctx.fillStyle = "#0c111e";
+  ctx.fillRect(0, 0, w, h);
+  
+  // Grid Lines
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let y = 10; y < h; y += 18) {
+    ctx.moveTo(0, y);
+    ctx.lineTo(w, y);
+  }
+  ctx.stroke();
+  
+  if (pupilHistory.length < 2) return;
+  
+  // Draw graph line (Purple glow)
+  ctx.strokeStyle = "#a78bfa";
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  
+  const step = w / 80;
+  pupilHistory.forEach((val, i) => {
+    const y = h - 12 - ((val - 3.0) / (7.5 - 3.0)) * (h - 24);
+    const x = i * step;
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+  
+  // Draw current value text
+  const curVal = pupilHistory[pupilHistory.length - 1];
+  ctx.fillStyle = "#a78bfa";
+  ctx.font = "bold 11px monospace";
+  ctx.fillText(`PUPIL SIZE: ${curVal.toFixed(1)} mm`, 10, 20);
+}
+
+/**
+ * 테마 3: 자오면 광선 스케치 그리기 (2D Canvas)
+ * D.sketches와 동일하게 0도, 15도, 30도의 편심 광선 추적 단면을 자동 순환 루프로 렌더링
+ */
+function drawMyopia2DSketch() {
+  const canvas = document.getElementById("myopia-2d-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  
+  // 디바이스 픽셀 비율에 따른 보정
+  const r = window.devicePixelRatio || 1;
+  const w = canvas.width / r;
+  const h = canvas.height / r;
+  
+  ctx.setTransform(r, 0, 0, r, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  
+  // Background
+  ctx.fillStyle = "#090d16";
+  ctx.fillRect(0, 0, w, h);
+  
+  // Draw Optical Axis (광축)
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.lineWidth = 1;
+  ctx.setLineDash([5, 5]);
+  ctx.beginPath();
+  ctx.moveTo(10, h / 2);
+  ctx.lineTo(w - 10, h / 2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  
+  // 안구 기하학 기준점
+  const cx = w * 0.45;
+  const cy = h / 2;
+  
+  // 1. Sclera (공막 외곽선)
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(cx, cy, 95, -Math.PI / 1.6, Math.PI / 1.6);
+  ctx.stroke();
+
+  // 2. Cornea (각막 전벽 - 하늘색)
+  ctx.strokeStyle = "#38bdf8";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(cx - 70, cy, 55, -Math.PI / 3, Math.PI / 3, true);
+  ctx.stroke();
+  
+  // 3. Iris (홍채 - 어두운 세로 벽)
+  ctx.strokeStyle = "#1e293b";
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.moveTo(cx - 42, cy - 45);
+  ctx.lineTo(cx - 42, cy - 15);
+  ctx.moveTo(cx - 42, cy + 15);
+  ctx.lineTo(cx - 42, cy + 45);
+  ctx.stroke();
+  
+  // 4. Pupil (동공 - 붉은 조리개 가이드)
+  ctx.strokeStyle = "#ef4444";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(cx - 42, cy - 15);
+  ctx.lineTo(cx - 42, cy - 8);
+  ctx.moveTo(cx - 42, cy + 8);
+  ctx.lineTo(cx - 42, cy + 15);
+  ctx.stroke();
+  
+  // 5. Crystalline Lens (수정체 - 초록색 볼록 렌즈)
+  ctx.strokeStyle = "#10b981";
+  ctx.lineWidth = 2;
+  ctx.fillStyle = "rgba(16, 185, 129, 0.12)";
+  ctx.beginPath();
+  ctx.moveTo(cx - 32, cy - 30);
+  ctx.quadraticCurveTo(cx - 18, cy, cx - 32, cy + 30);
+  ctx.quadraticCurveTo(cx - 46, cy, cx - 32, cy - 30);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  
+  // 6. Retina (망막 곡선 - 스크린 역할)
+  ctx.strokeStyle = "#64748b";
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.arc(cx + 8, cy, 95, -Math.PI / 2.2, Math.PI / 2.2);
+  ctx.stroke();
+  
+  // 기본 부위 명칭 라벨링
+  ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+  ctx.font = "10px Inter, sans-serif";
+  ctx.fillText("각막 (Cornea)", cx - 110, cy - 60);
+  ctx.fillText("수정체 (Lens)", cx - 20, cy - 38);
+  ctx.fillText("망막 (Retina)", cx + 70, cy - 85);
+  ctx.fillText("동공", cx - 62, cy - 20);
+  
+  // 현재 각도 선택
+  const angles = [0, 15, 30];
+  const angle = angles[myopiaAngleIndex];
+  
+  // 광선 투사 변수 설정
+  let startX = 15;
+  let focusX, focusY;
+  let retinaHitX, retinaHitY;
+  let gapVal, defocusVal;
+  
+  if (angle === 0) {
+    focusX = cx + 65; // 망막보다 앞에 초점
+    focusY = cy;
+    retinaHitX = cx + 103; // 망막 닿는 곳
+    retinaHitY = cy;
+    gapVal = -1.25;
+    defocusVal = -0.75;
+  } else if (angle === 15) {
+    focusX = cx + 60;
+    focusY = cy + 24;
+    retinaHitX = cx + 96;
+    retinaHitY = cy + 38;
+    gapVal = -1.18;
+    defocusVal = -0.71;
+  } else { // 30
+    focusX = cx + 48;
+    focusY = cy + 48;
+    retinaHitX = cx + 76;
+    retinaHitY = cy + 65;
+    gapVal = -0.95;
+    defocusVal = -0.58;
+  }
+  
+  // 광선 다발 그리기
+  const colors = ["#38bdf8", "#10b981", "#a78bfa", "#f59e0b"];
+  const rayOffsets = [-25, 0, 25];
+  
+  rayOffsets.forEach((offset, idx) => {
+    ctx.strokeStyle = colors[idx % colors.length];
+    ctx.lineWidth = 1.8;
+    ctx.beginPath();
+    
+    let rayStartX = startX;
+    let rayStartY = cy + offset;
+    
+    if (angle > 0) {
+      const rad = (angle * Math.PI) / 180;
+      rayStartX = startX + offset * Math.sin(rad);
+      rayStartY = cy + offset * Math.cos(rad) - 35 * Math.sin(rad);
+    }
+    
+    // 입사광
+    ctx.moveTo(rayStartX, rayStartY);
+    
+    // 각막 굴절
+    const corneaX = cx - 50;
+    const corneaY = cy + (offset * 0.75) - (angle * 0.8);
+    ctx.lineTo(corneaX, corneaY);
+    
+    // 수정체 굴절
+    const lensX = cx - 32;
+    const lensY = cy + (offset * 0.25) - (angle * 1.4);
+    ctx.lineTo(lensX, lensY);
+    
+    // 수렴 초점 (망막 앞)
+    ctx.lineTo(focusX, focusY);
+    
+    // 망막 도달
+    ctx.lineTo(retinaHitX, retinaHitY);
+    
+    ctx.stroke();
+  });
+  
+  // 초점 스팟 그리기 (Orange glowing focus spot)
+  ctx.fillStyle = "#f97316";
+  ctx.shadowColor = "#f97316";
+  ctx.shadowBlur = 10;
+  ctx.beginPath();
+  ctx.arc(focusX, focusY, 5.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowBlur = 0; // 그림자 초기화
+  
+  // 망막 닿는점 그리기 (White ring)
+  ctx.strokeStyle = "#ffffff";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(retinaHitX, retinaHitY, 4, 0, Math.PI * 2);
+  ctx.stroke();
+  
+  // 초점과 망막 사이 갭 표시 (Defocus Gap)
+  ctx.strokeStyle = "#ef4444";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(focusX, focusY);
+  ctx.lineTo(retinaHitX, retinaHitY);
+  ctx.stroke();
+  
+  // 텍스트 정보 오버레이
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 12px Inter, 'Noto Sans KR', sans-serif";
+  ctx.fillText(`입사각 (Field Angle): ${angle}°`, 15, h - 35);
+  ctx.fillStyle = "#38bdf8";
+  ctx.font = "11px Inter, 'Noto Sans KR', sans-serif";
+  ctx.fillText(`초점-망막 갭 (Shell Gap): ${gapVal.toFixed(2)} mm (${defocusVal.toFixed(2)} D)`, 15, h - 18);
+  
+  ctx.fillStyle = "#ef4444";
+  ctx.font = "bold 9px Inter, 'Noto Sans KR', sans-serif";
+  ctx.fillText("Myopic Defocus (망막 전방 초점 형성)", focusX - 75, focusY - 12);
 }
