@@ -343,24 +343,17 @@
 
 .member-row {
   display: grid;
-  grid-template-columns: 80px 1fr 280px;
+  grid-template-columns: 1fr 280px;
   gap: 2rem;
-  align-items: center;
-  padding: 1.8rem 2rem;
-  background: var(--panel2) !important;
-  border: 1px solid var(--line-strong) !important;
-  border-left: 3px solid rgba(169, 214, 238, 0.2) !important;
-  border-radius: 4px;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  align-items: flex-start;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--line-strong) !important;
+  transition: all 0.3s ease;
   position: relative;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .member-row:hover {
-  border-color: var(--primary-color) !important;
-  border-left-color: var(--primary-color) !important;
   transform: translateX(4px);
-  box-shadow: 0 4px 20px rgba(169, 214, 238, 0.08);
 }
 
 .member-scan-target {

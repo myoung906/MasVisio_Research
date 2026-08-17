@@ -108,7 +108,7 @@ function initPublicationsSubmenuToggleV2() {
  */
 async function loadPublicationsV2() {
   const lang = document.documentElement.lang || "en";
-  const dataPath = getBasePath() + "assets/data/content.json";
+  const dataPath = getBasePath() + "assets/data/content_v5.json?v=5.0";
   const container = document.getElementById("publications-container-v2");
 
   if (!container) return;
@@ -948,6 +948,22 @@ function initPublicationsNavigationV2() {
   if (!sidebarSubmenu) return;
 
   const submenuLinks = Array.from(sidebarSubmenu.querySelectorAll(".nav-item"));
+
+  // If no hash is present on load, scroll immediately to the metrology section
+  if (!window.location.hash) {
+    setTimeout(() => {
+      const metrologySection = document.getElementById("theme-metrology");
+      if (metrologySection) {
+        metrologySection.scrollIntoView({ behavior: "auto", block: "start" });
+        update3DModelByTheme("metrology");
+        const metrologyLink = submenuLinks.find(link => link.getAttribute("href") === "#theme-metrology");
+        if (metrologyLink) {
+          submenuLinks.forEach(l => l.classList.remove("active"));
+          metrologyLink.classList.add("active");
+        }
+      }
+    }, 100);
+  }
   
   // 사이드바 서브메뉴 항목 클릭 시 스무스 스크롤 및 3D 업데이트 연동
   submenuLinks.forEach((link) => {
