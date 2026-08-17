@@ -10,7 +10,7 @@
 ## 🌐 라이브 웹사이트
 
 **👉 [Optinex Research 웹사이트 방문](https://myoung906.github.io/MasVisio_Research/)**
-**🧿 [망막 프로파일 리뷰 대시보드 V3](https://myoung906.github.io/MasVisio_Research/research/dashboards/dashboard_v3.html)** — 주변부 굴절(RPRE) 진단 대시보드 데모(합성 데이터)
+**🧿 [망막 프로파일 리뷰 대시보드 V3](https://myoung906.github.io/MasVisio_Research/research/dashboards/dashboard_v3.html?v=4.1)** — 주변부 굴절(RPRE) 진단 대시보드 데모(합성 데이터)
 
 ### 🌍 다국어 지원
 - **🇰🇷 한국어**: [Korean Version](https://myoung906.github.io/MasVisio_Research/ko/)
