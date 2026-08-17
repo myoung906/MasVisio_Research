@@ -537,13 +537,18 @@ function animate3DEyeball() {
       scanPlaneMeshGlobal.position.z = 0.3 + Math.sin(time) * 0.45;
     }
   } else if (currentTheme === "biomarker") {
-    // 1. 동공 크기 수축/이완 맥박 애니메이션 (사인파를 이용하여 지연 없는 매끄러운 곡선 및 즉각 방향 전환 구현)
-    // pupilTime을 매 프레임 증가시켜 -1 ↔ 1 범위를 왕복하는 Math.sin 함수를 적용합니다.
-    pupilTime += 0.08; // 매끄럽고 역동적인 주기 속도 설정
-    
-    // Math.sin(pupilTime)의 범위 [-1, 1]을 [0.4, 1.2] 스케일 범위로 매핑
-    // 중간값 0.8, 진폭 0.4
-    pupilScale = 0.8 + Math.sin(pupilTime) * 0.4;
+    // 1. 동공 크기 수축/이완 맥박 애니메이션 (선형 등속도 0.016 방식을 적용하여 감속/대기시간 없이 상하한 도달 시 즉시 방향 전환)
+    const pulseSpeed = 0.016; 
+    pupilScale += pupilPulseDirection * pulseSpeed;
+
+    // 0.4(최소 축동) ~ 1.2(최대 산동) 경계 도달 시 딜레이 없이 즉시 반사
+    if (pupilScale <= 0.4) {
+      pupilScale = 0.4;
+      pupilPulseDirection = 1.0; // 최소 지점 도달 시 즉시 팽창 시작
+    } else if (pupilScale >= 1.2) {
+      pupilScale = 1.2;
+      pupilPulseDirection = -1.0; // 최대 지점 도달 시 즉시 수축 시작
+    }
     
     if (pupilMesh) {
       pupilMesh.scale.set(pupilScale, pupilScale, 1.0);
@@ -874,7 +879,7 @@ function update3DModelByTheme(themeId) {
     camera.lookAt(0, 0, 0);
 
     pupilScale = 1.2; // 최대 크기에서 시작
-    pupilTime = Math.PI / 2; // 사인파의 최대 피크(sin = 1.0)에서 즉시 수축 시작하도록 설정
+    pupilPulseDirection = -1.0; // 즉시 수축 시작하도록 설정
 
     // 동공 크기 실시간 선 그래프용 Canvas 동적 마운트
     const readoutPanel = document.querySelector(".threejs-readout-panel");
