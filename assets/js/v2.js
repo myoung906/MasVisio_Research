@@ -528,8 +528,6 @@ function animate3DEyeball() {
     if (corneaGrid && corneaGrid.visible) {
       corneaGrid.rotation.y += 0.002;
     }
-  }
-
   } else if (currentTheme === "biomarker") {
     // 1. 동공 크기 수축/이완 맥박 애니메이션 (수축 4배 가속)
     const constrictSpeed = 0.012 * 4; // 수축 시 속도 4배 적용
