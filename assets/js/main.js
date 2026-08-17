@@ -489,6 +489,10 @@ function initPublicationsSubmenuToggle() {
   rootLink.setAttribute("aria-expanded", defaultOpen ? "true" : "false");
 
   rootLink.addEventListener("click", (event) => {
+    if (!isPublicationsPage) {
+      // 다른 페이지에서는 정상적으로 해당 페이지로 화면 전환 이동하도록 이벤트 차단을 취소합니다.
+      return;
+    }
     event.preventDefault();
     const isOpen = submenu.classList.toggle("open");
     rootLink.setAttribute("aria-expanded", isOpen ? "true" : "false");

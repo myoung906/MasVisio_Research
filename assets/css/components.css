@@ -342,10 +342,10 @@
 }
 
 .member-row {
-  display: grid;
-  grid-template-columns: 1fr 280px;
+  display: flex;
+  justify-content: space-between;
   gap: 2rem;
-  align-items: flex-start;
+  align-items: stretch;
   padding: 1.8rem 0;
   border-bottom: 1px solid var(--line-strong) !important;
   transition: all 0.3s ease;
@@ -375,6 +375,8 @@
 }
 
 .member-identity {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -416,12 +418,13 @@
 }
 
 .member-specs {
+  width: 280px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   border-left: 1px solid var(--line-strong);
   padding-left: 1.5rem;
-  height: 100%;
   justify-content: center;
 }
 
