@@ -3,36 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>연구성과 - Optinex Research</title>
+    <title>연구성과 (v2) - Optinex Research</title>
     <meta
       name="description"
-      content="Optinex Research의 시각 과학, 근시 제어, AI 진단 분야 논문을 살펴보세요."
+      content="Optinex Research의 시시각각 변화하는 정밀 광학, AI 바이오마커, 근시 제어 분야의 테마별 연구 성과를 확인하세요."
     />
-    <meta property="og:title" content="논문 - Optinex Research" />
+    <meta property="og:title" content="연구성과 (v2) - Optinex Research" />
     <meta
       property="og:description"
-      content="Optinex Research의 시각 과학, 근시 제어, AI 진단 분야 논문을 살펴보세요."
+      content="Optinex Research의 시시각각 변화하는 정밀 광학, AI 바이오마커, 근시 제어 분야의 테마별 연구 성과를 확인하세요."
     />
     <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://myoung906.github.io/MasVisio_Research/assets/images/vision_engineering_concept.png" />
-  <meta property="og:url" content="https://myoung906.github.io/MasVisio_Research/ko/publications/index.html" />
-  <link rel="canonical" href="https://myoung906.github.io/MasVisio_Research/ko/publications/index.html" />
-  <link rel="alternate" hreflang="ko" href="https://myoung906.github.io/MasVisio_Research/ko/publications/index.html" />
-  <link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/publications/index.html" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta property="og:image" content="https://myoung906.github.io/MasVisio_Research/assets/images/vision_engineering_concept.png" />
+    <meta property="og:url" content="https://myoung906.github.io/MasVisio_Research/ko/publications/index.html" />
+    <link rel="canonical" href="https://myoung906.github.io/MasVisio_Research/ko/publications/index.html" />
+    <link rel="alternate" hreflang="ko" href="https://myoung906.github.io/MasVisio_Research/ko/publications/index.html" />
+    <link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/publications/index.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../assets/css/main.css?v=4.0" />
-    <link rel="stylesheet" href="../../assets/css/responsive.css?v=4.0" />
-    <link rel="stylesheet" href="../../assets/css/components.css?v=4.0" />
+    <link rel="stylesheet" href="../../assets/css/main.css?v=4.5" />
+    <link rel="stylesheet" href="../../assets/css/responsive.css?v=4.5" />
+    <link rel="stylesheet" href="../../assets/css/components.css?v=4.5" />
+    <link rel="stylesheet" href="../../assets/css/v2.css?v=4.5" />
+    <!-- Three.js Library for 3D Eyeball Animation -->
+    <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
   </head>
 
   <body class="sidebar-layout">
-  <a href="#main-content" class="skip-link">본문으로 건너뛰기</a>
-    <aside class="sidebar">
+    <a href="#main-content" class="skip-link">본문으로 건너뛰기</a>
+    
+    <aside class="sidebar" role="navigation" aria-label="메인 네비게이션">
       <div class="sidebar-header">
         <a href="../index.html" class="sidebar-logo">
           <h1>Optinex<br />Research</h1>
@@ -52,10 +56,12 @@
         <a href="../team/index.html" class="nav-item">구성원</a>
         <a href="../research/overview.html" class="nav-item">도전과제</a>
         <a href="index.html" class="nav-item active" aria-current="page">연구성과</a>
-        <div class="sidebar-submenu">
-          <a href="#reviewed-papers" class="nav-item">연구논문</a>
-          <a href="#conference" class="nav-item">학술발표</a>
-          <a href="#patent" class="nav-item">특허</a>
+        <div class="sidebar-submenu open">
+          <!-- V2 전용 테마 서브메뉴: v2.js에서 동적 매핑 제어 및 하이라이트 -->
+          <a href="#theme-metrology" class="nav-item active">시광학 및 정밀 계측</a>
+          <a href="#theme-biomarker" class="nav-item">AI 안구 바이오마커</a>
+          <a href="#theme-myopia-rehab" class="nav-item">근시 제어 및 시각 재활</a>
+          <a href="#theme-archive" class="nav-item">기타 연구 아카이브</a>
         </div>
         <a href="../gallery/index.html" class="nav-item">갤러리</a>
         <a href="../partnership/index.html" class="nav-item">제공서비스</a>
@@ -76,20 +82,50 @@
       <section class="section page-section">
         <div class="container">
           <header class="publications-header page-header">
-            <h2 class="page-title">연구 성과</h2>
+            <h2 class="page-title">연구 성과 (v2)</h2>
             <p class="page-subtitle">
-              최신 연구 결과와 학술적 기여를 소개합니다.
+              시광학 및 시각 증강 분야의 3대 핵심 연구 주제별 학술 성과와 이론적 기틀을 소개합니다.
             </p>
           </header>
 
-          <div id="publications-container">
-            <!-- Dynamic content will be loaded here -->
-            <p>연구 성과를 불러오는 중...</p>
+          <!-- 2-Column Desktop Grid Layout -->
+          <div class="publications-layout">
+            
+            <!-- Left Column: Thematic Publications lists (dynamic render) -->
+            <div id="publications-container-v2" class="publications-content-col">
+              <p>연구 성과를 분류하고 불러오는 중...</p>
+            </div>
+            
+            <!-- Right Column: Interactive 3D Eyeball Panel -->
+            <div class="sticky-visual-sidebar" aria-hidden="true">
+              <div class="threejs-canvas-wrap" id="threejs-visual-panel">
+                <!-- Three.js Canvas will load here -->
+              </div>
+              
+              <!-- Dynamic Realtime Instrument Readout Panel -->
+              <div class="threejs-readout-panel">
+                <div class="readout-row">
+                  <span class="readout-label">MEASURE STATUS:</span>
+                  <span class="readout-value" id="readout-status-val">READY</span>
+                </div>
+                <div class="readout-row">
+                  <span class="readout-label">SCAN MODE:</span>
+                  <span class="readout-value" id="readout-mode-val">STANDBY</span>
+                </div>
+                <div class="readout-row">
+                  <span class="readout-label">CLINICAL INDEX:</span>
+                  <span class="readout-value" id="readout-index-val">--</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
     </main>
 
-    <script src="../../assets/js/main.js?v=4.0" defer></script>
+    <!-- scripts -->
+    <script src="../../assets/js/main.js?v=4.5" defer></script>
+    <script src="../../assets/js/v2.js?v=4.5" defer></script>
   </body>
 </html>

@@ -56,11 +56,11 @@ function initPublicationsSubmenuToggleV2() {
   const nav = document.querySelector(".sidebar-nav");
   if (!nav) return;
 
-  // 연구성과(Publications) 루트 링크 탐색
+  // 연구성과(Publications) 루트 링크 탐색 (v2.html 및 메인 index.html 모두 대응)
   const topLevelLinks = Array.from(nav.querySelectorAll(":scope > .nav-item"));
   const rootLink = topLevelLinks.find((link) => {
     const href = link.getAttribute("href") || "";
-    return href.includes("v2.html") || link.classList.contains("active");
+    return href.includes("publications/") || href.includes("v2.html") || link.classList.contains("active");
   });
   if (!rootLink) return;
 
