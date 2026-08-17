@@ -18,6 +18,7 @@ let wavefrontMesh, wavefrontGridMesh, laserScannerLine; // 테마 1 전용 Zerni
 let retinaShell, shellT, shellS;
 let rayLines = [];
 let metrologyDecorations = [];
+let scanPlaneMeshGlobal; // 테마 1 전용 레이저 스캔 슬라이싱 평면
 let pulseParticles = [];
 let myopiaDecorations = [];
 let animationFrameId;
@@ -528,9 +529,15 @@ function animate3DEyeball() {
     if (corneaGrid && corneaGrid.visible) {
       corneaGrid.rotation.y += 0.002;
     }
+    // 녹색 레이저 스캔 평면 슬라이싱 애니메이션 (눈 계측 행위 표현)
+    if (scanPlaneMeshGlobal) {
+      const time = Date.now() * 0.0018;
+      // Z축을 따라 각막 앞뒤를 관통 왕복하며 단면 계측 모사 (-0.15 ~ 0.75)
+      scanPlaneMeshGlobal.position.z = 0.3 + Math.sin(time) * 0.45;
+    }
   } else if (currentTheme === "biomarker") {
-    // 1. 동공 크기 수축/이완 맥박 애니메이션 (수축/이완 속도 동일화: 0.007)
-    const pulseSpeed = 0.007; 
+    // 1. 동공 크기 수축/이완 맥박 애니메이션 (지연 없이 즉각 왕복하도록 2.2배 고속화: 0.015)
+    const pulseSpeed = 0.015; 
     pupilScale += pupilPulseDirection * pulseSpeed;
 
     // 0.4(완전 수축) ~ 1.2(완전 이완) 가변 범위 보정
@@ -715,6 +722,8 @@ function update3DModelByTheme(themeId) {
   const readoutMode = document.getElementById("readout-mode-val");
   const readoutIndex = document.getElementById("readout-index-val");
 
+  scanPlaneMeshGlobal = null; // 레이저 단면 스캔 전역 참조 초기화
+
   // 기존 테마 데코레이션(링, 파티클, 셸 등) 일체 정리
   metrologyDecorations.forEach(d => scene.remove(d));
   metrologyDecorations = [];
@@ -771,29 +780,80 @@ function update3DModelByTheme(themeId) {
   if (pupilGraphCanvas) pupilGraphCanvas.style.display = "none";
 
   if (themeId === "metrology") {
-    // 테마 1: 3D 각막 지형도 스캔 뷰 (Corneal Topography - Bow-Tie 난시 맵)
+    // 테마 1: 3D 각막 지형도 + 정밀 광학 스캐닝 슬라이스 결합 (눈알과 계측의 융합 시각화)
     if (eyeballMesh) {
       eyeballMesh.visible = true;
-      eyeballMesh.material.opacity = 0.03; // 공막은 극도로 은은하게 배경 컨텍스트로만 노출
+      eyeballMesh.material.opacity = 0.85; // 공막 외형이 명확히 보이도록 설정
+      eyeballMesh.material.color.setHex(0xf6f8fa);
     }
     if (corneaShell) {
       corneaShell.visible = true;
       corneaShell.material.map = createTopographyTexture(); // 난시 리본타이 열지도 텍스처 입힘
       corneaShell.material.color.setHex(0xffffff); // 틴트 초기화
-      corneaShell.material.opacity = 0.9;
+      corneaShell.material.opacity = 0.85; // 지형도가 입체 각막 위에 매핑됨
       corneaShell.material.needsUpdate = true;
     }
     if (corneaGrid) {
       corneaGrid.visible = true; // 그 위에 붉은색 레이저 계측 격자선 투사
       corneaGrid.material.color.setHex(0xef4444);
     }
-    
-    // 내부 시각 장기들은 가려 표면 곡률에 집중
-    if (irisMesh) irisMesh.visible = false;
-    if (pupilMesh) pupilMesh.visible = false;
-    if (nerveMesh) nerveMesh.visible = false;
+    if (irisMesh) {
+      irisMesh.visible = true;
+      irisMesh.material.map = createIrisTexture("brown"); // 갈색 홍채를 노출하여 안구의 사실성 부각
+      irisMesh.material.color.setHex(0xffffff);
+      irisMesh.material.needsUpdate = true;
+    }
+    if (pupilMesh) {
+      pupilMesh.visible = true;
+      pupilMesh.scale.set(0.7, 0.7, 1.0); // 고정된 크기의 안정적인 동공
+    }
+    if (nerveMesh) {
+      nerveMesh.visible = true;
+    }
 
-    // 시점 조정: 각막 돔의 입체 지형을 살피는 사선 구도
+    // 1. 단면을 뚫고 지나가는 녹색 레이저 스캔 평면 (OCT/Scheimpflug 단면 스캔 표현)
+    const scanPlaneGeo = new THREE.PlaneGeometry(2.4, 2.4);
+    const scanPlaneMat = new THREE.MeshBasicMaterial({
+      color: 0x10b981,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.22,
+      depthWrite: false
+    });
+    const scanPlane = new THREE.Mesh(scanPlaneGeo, scanPlaneMat);
+    scanPlane.position.set(0, 0, 0.4);
+    
+    // 테두리 와이어 선 추가로 하이테크 느낌 강조
+    const scanPlaneEdges = new THREE.EdgesGeometry(scanPlaneGeo);
+    const scanPlaneLineMat = new THREE.LineBasicMaterial({ color: 0x10b981, linewidth: 2 });
+    const scanPlaneWire = new THREE.LineSegments(scanPlaneEdges, scanPlaneLineMat);
+    scanPlane.add(scanPlaneWire);
+    
+    scene.add(scanPlane);
+    metrologyDecorations.push(scanPlane);
+    scanPlaneMeshGlobal = scanPlane; // 실시간 애니메이션 루프 연동용 전역 변수 할당
+
+    // 2. 안구 전방에 뜨는 홀로그램 HUD 조준선 (Target HUD / Reticle)
+    const hudRingGeo = new THREE.RingGeometry(0.9, 0.93, 40);
+    const hudRingMat = new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.6 });
+    const hudRing = new THREE.Mesh(hudRingGeo, hudRingMat);
+    hudRing.position.set(0, 0, 1.1);
+    
+    // HUD 조준선 십자 크로스헤어
+    const crossMat = new THREE.LineBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.4 });
+    const crossPoints = [];
+    crossPoints.push(new THREE.Vector3(-0.6, 0, 0));
+    crossPoints.push(new THREE.Vector3(0.6, 0, 0));
+    crossPoints.push(new THREE.Vector3(0, -0.6, 0));
+    crossPoints.push(new THREE.Vector3(0, 0.6, 0));
+    const crossGeo = new THREE.BufferGeometry().setFromPoints(crossPoints);
+    const crossLine = new THREE.LineSegments(crossGeo, crossMat);
+    hudRing.add(crossLine);
+
+    scene.add(hudRing);
+    metrologyDecorations.push(hudRing);
+
+    // 시점 조정: 각막 돔의 입체 지형과 스캐너 평면을 한눈에 살피는 사선 구도
     camera.position.set(0.8, 0.4, 4.4);
     camera.lookAt(0, 0, 0);
     

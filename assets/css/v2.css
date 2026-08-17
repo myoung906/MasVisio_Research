@@ -40,18 +40,18 @@
   }
 }
 
-/* 3D Eyeball Canvas Container */
 .threejs-canvas-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 1/1;
   max-width: 360px;
   background: radial-gradient(circle, rgba(14, 20, 27, 0.4) 0%, rgba(8, 12, 17, 0) 70%);
-  border-radius: 50%;
+  border-radius: 12px; /* 사각형 형태로 변경하여 하단 텍스트 잘림 현상 방지 */
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08); /* 세련된 테두리 오버레이 추가 */
 }
 
 .threejs-readout-panel {
