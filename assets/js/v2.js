@@ -529,15 +529,9 @@ function animate3DEyeball() {
       corneaGrid.rotation.y += 0.002;
     }
   } else if (currentTheme === "biomarker") {
-    // 1. 동공 크기 수축/이완 맥박 애니메이션 (수축 4배 가속)
-    const constrictSpeed = 0.012 * 4; // 수축 시 속도 4배 적용
-    const dilateSpeed = 0.006;        // 이완 시 속도
-    
-    if (pupilPulseDirection < 0) {
-      pupilScale += pupilPulseDirection * constrictSpeed;
-    } else {
-      pupilScale += pupilPulseDirection * dilateSpeed;
-    }
+    // 1. 동공 크기 수축/이완 맥박 애니메이션 (수축/이완 속도 동일화: 0.007)
+    const pulseSpeed = 0.007; 
+    pupilScale += pupilPulseDirection * pulseSpeed;
 
     // 0.4(완전 수축) ~ 1.2(완전 이완) 가변 범위 보정
     if (pupilScale <= 0.4) {
@@ -545,15 +539,15 @@ function animate3DEyeball() {
       pupilPulseDirection = 1.0; // 이완 팽창으로 전환
     } else if (pupilScale >= 1.2) {
       pupilScale = 1.2;
-      pupilPulseDirection = -1.0; // 빠른 수축으로 전환
+      pupilPulseDirection = -1.0; // 수축으로 전환
     }
     
     if (pupilMesh) {
       pupilMesh.scale.set(pupilScale, pupilScale, 1.0);
     }
 
-    // 2. 실시간 동공 직경 값 그래프 기록 (mm단위 변환: 3.0mm ~ 7.5mm 완벽한 스케일 비례 동기화)
-    const currentPupilSizeMM = 3.0 + ((pupilScale - 0.4) / (1.2 - 0.4)) * 4.5;
+    // 2. 실시간 동공 직경 값 그래프 기록 (mm단위 변환: 3.5mm ~ 7.5mm 완벽한 스케일 비례 동기화)
+    const currentPupilSizeMM = 3.5 + ((pupilScale - 0.4) / (1.2 - 0.4)) * 4.0;
     pupilHistory.push(currentPupilSizeMM);
     if (pupilHistory.length > 80) pupilHistory.shift();
 
