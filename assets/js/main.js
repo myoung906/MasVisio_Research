@@ -259,6 +259,16 @@ function initCopyrightYear() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Cache-busting: relative menu links to ensure browser fetches fresh HTML
+  document.querySelectorAll(".nav-item, .sidebar-nav a, .mobile-header a, .sidebar-logo, .mobile-logo").forEach((el) => {
+    let href = el.getAttribute("href");
+    if (href && !href.startsWith("http") && !href.startsWith("#") && !href.startsWith("mailto:")) {
+      if (href.indexOf("?v=") === -1) {
+        el.setAttribute("href", href + (href.indexOf("?") === -1 ? "?v=5.0" : "&v=5.0"));
+      }
+    }
+  });
+
   initCopyrightYear();
   loadAdvancedPhases();
   initPublicationsSubmenuToggle();
