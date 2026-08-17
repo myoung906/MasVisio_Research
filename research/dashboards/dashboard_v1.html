@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shell Gap</title>
+<style>
+:root{
+  /* ground: slate with a cool bias, chosen to sit under a diverging data scale */
+  --bg:#f4f6f8; --panel:#ffffff; --ink:#111a24; --muted:#5c6b7f; --line:#dde3ea;
+  /* UI accent — deliberately not blue, because blue means "myopic" in the data */
+  --accent:#2d7d78;
+  /* categorical: the two image shells */
+  --tan:#7c3aed; --sag:#0e7490;
+  /* diverging semantic: sign of the dioptric error */
+  --hyper:#c2410c; --myo:#1d4ed8;
+  --ok:#2d7d78; --alert:#b45309;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d131c; --panel:#161e2b; --ink:#e6ecf4; --muted:#93a3b8; --line:#27313f;
+    --accent:#5eb8b0; --tan:#a78bfa; --sag:#38bdf8;
+    --hyper:#fb923c; --myo:#7aa2ff; --ok:#5eb8b0; --alert:#f0b357;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d131c; --panel:#161e2b; --ink:#e6ecf4; --muted:#93a3b8; --line:#27313f;
+  --accent:#5eb8b0; --tan:#a78bfa; --sag:#38bdf8;
+  --hyper:#fb923c; --myo:#7aa2ff; --ok:#5eb8b0; --alert:#f0b357;
+}
+*{box-sizing:border-box}
+:root{--mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+  line-height:1.5}
+.wrap{max-width:1280px;margin:0 auto;padding:20px}
+h1{font-size:20px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:980px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.card h2{font-size:14px;margin:0 0 10px;letter-spacing:.01em}
+canvas{width:100%;display:block;border-radius:6px;touch-action:none}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+button,select{background:var(--bg);color:var(--ink);border:1px solid var(--line);
+  border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;font-family:inherit}
+button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:12px;
+  font-variant-numeric:tabular-nums;font-family:var(--mono)}
+th,td{padding:5px 6px;border-bottom:1px solid var(--line);text-align:right}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--muted);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.kpi{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+.kpi .l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.kpi .v{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums;font-family:var(--mono);letter-spacing:-.01em}
+.note{font-size:12px;color:var(--muted);margin-top:10px}
+.flag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;
+  border:1px solid var(--line);color:var(--alert);margin-right:6px}
+.scroll{overflow-x:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>망막 프로파일 리뷰 — <span id="label"></span></h1>
+  <div class="sub" id="sub"></div>
+
+  <div class="card" style="margin-bottom:16px">
+    <div class="kpis" id="kpis"></div>
+    <div class="note" id="limits"></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>3D 구조 — 망막면과 상면</h2>
+      <div class="row">
+        <button id="bT" class="on">접선 상면</button>
+        <button id="bS" class="on">시상 상면</button>
+        <button id="bR" class="on">망막면</button>
+        <button id="bSpin">자동회전</button>
+        <button id="bReset">시점 초기화</button>
+      </div>
+      <canvas id="c3d" height="420"></canvas>
+      <div class="note">드래그=회전 · 휠=확대. 망막면 색은 RPRE(<span style="color:var(--hyper)">따뜻함=원시성(+)</span> / <span style="color:var(--myo)">차가움=근시성(−)</span>).</div>
+    </div>
+
+    <div class="card">
+      <h2>RPRE · 난시 프로파일</h2>
+      <canvas id="cprof" height="420"></canvas>
+      <div class="note">RPRE = M(θ) − M(0). J0는 접선−시상 반차(자오면 규약).</div>
+    </div>
+
+    <div class="card">
+      <h2>자오면 광선 스케치</h2>
+      <div class="row" id="skbtns"></div>
+      <canvas id="csk" height="330"></canvas>
+      <div class="note" id="sknote"></div>
+    </div>
+
+    <div class="card">
+      <h2>수치</h2>
+      <div class="scroll"><table id="tbl"></table></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const D = {"label": "합성 데모 — 실 환자 데이터 아님", "notes": "", "biometry": {"axial_length_mm": 24.0, "cornea_r_ant_mm": 7.77, "cornea_q_ant": -0.26, "cornea_thickness_mm": 0.55, "cornea_r_post_mm": 6.4, "cornea_q_post": -0.2, "acd_mm": 3.6, "lens_thickness_mm": 4.0, "lens_r_ant_mm": 11.0, "lens_q_ant": -3.1, "lens_r_post_mm": -5.9, "lens_q_post": -0.5, "retina_r_mm": -12.0, "retina_q": 0.0, "pupil_radius_mm": 1.5, "n_cornea": 1.376, "n_aqueous": 1.3374, "n_vitreous": 1.336}, "paraxial": {"power_d": 59.72628004425171, "principal_plane_z_mm": 1.9058475065845926, "d_per_mm": 2.736854841932721}, "profile": [{"ecc": 0.0, "tangential": 0.6939066514226522, "sagittal": 0.6939066514226522, "m": 0.6939066514226522, "j0": 0.0, "rpre": 0.0}, {"ecc": 5.0, "tangential": 0.6768367064571704, "sagittal": 0.7350430513350454, "m": 0.705939878896108, "j0": -0.029103172438937508, "rpre": 0.01203322747345581}, {"ecc": 10.0, "tangential": 0.6248280399765317, "sagittal": 0.8584625379141045, "m": 0.7416452889453181, "j0": -0.11681724896878642, "rpre": 0.04773863752266594}, {"ecc": 15.0, "tangential": 0.535462945725552, "sagittal": 1.064150002685383, "m": 0.7998064742054675, "j0": -0.2643435284799155, "rpre": 0.10589982278281529}, {"ecc": 20.0, "tangential": 0.40462651919119735, "sagittal": 1.3519200163544478, "m": 0.8782732677728226, "j0": -0.47364674858162525, "rpre": 0.18436661635017038}, {"ecc": 25.0, "tangential": 0.22632390382034773, "sagittal": 1.7211514344125756, "m": 0.9737376691164616, "j0": -0.7474137652961139, "rpre": 0.27983101769380947}, {"ecc": 30.0, "tangential": -0.007697317301037799, "sagittal": 2.170364223571361, "m": 1.0813334531351617, "j0": -1.0890307704361994, "rpre": 0.38742680171250954}], "shell": [{"meridian": "T", "azimuth_deg": 0.0, "points": [{"ecc": 0.0, "p": [0.0, 0.0, 24.0], "rpre": 0.0, "j0": 0.0}, {"ecc": 5.0, "p": [1.7732430299984958, 0.0, 23.868260578389812], "rpre": 0.01203322747345581, "j0": -0.029103172438937508}, {"ecc": 10.0, "p": [3.504811214578123, 0.0, 23.476772122429175], "rpre": 0.04773863752266594, "j0": -0.11681724896878642}, {"ecc": 15.0, "p": [5.1544307445144995, 0.0, 22.83659742262319], "rpre": 0.10589982278281529, "j0": -0.2643435284799155}, {"ecc": 20.0, "p": [6.684588275278722, 0.0, 21.965755344679412], "rpre": 0.18436661635017038, "j0": -0.47364674858162525}, {"ecc": 25.0, "p": [8.06180777195832, 0.0, 20.888602558782363], "rpre": 0.27983101769380947, "j0": -0.7474137652961139}, {"ecc": 30.0, "p": [9.2578048944532, 0.0, 19.634988443752775], "rpre": 0.38742680171250954, "j0": -1.0890307704361994}]}, {"meridian": "S", "azimuth_deg": 90.0, "points": [{"ecc": 0.0, "p": [0.0, 0.0, 24.0], "rpre": 0.0, "j0": 0.0}, {"ecc": 5.0, "p": [1.085798200399006e-16, 1.7732430299984958, 23.868260578389812], "rpre": 0.01203322747345581, "j0": -0.029103172438937508}, {"ecc": 10.0, "p": [2.146077917774423e-16, 3.504811214578123, 23.476772122429175], "rpre": 0.04773863752266594, "j0": -0.11681724896878642}, {"ecc": 15.0, "p": [3.156178556348195e-16, 5.1544307445144995, 22.83659742262319], "rpre": 0.10589982278281529, "j0": -0.2643435284799155}, {"ecc": 20.0, "p": [4.0931298174690067e-16, 6.684588275278722, 21.965755344679412], "rpre": 0.18436661635017038, "j0": -0.47364674858162525}, {"ecc": 25.0, "p": [4.936433541635005e-16, 8.06180777195832, 20.888602558782363], "rpre": 0.27983101769380947, "j0": -0.7474137652961139}, {"ecc": 30.0, "p": [5.668770565561405e-16, 9.2578048944532, 19.634988443752775], "rpre": 0.38742680171250954, "j0": -1.0890307704361994}]}, {"meridian": "N", "azimuth_deg": 180.0, "points": [{"ecc": 0.0, "p": [-0.0, 0.0, 24.0], "rpre": 0.0, "j0": 0.0}, {"ecc": 5.0, "p": [-1.7732430299984958, 2.171596400798012e-16, 23.868260578389812], "rpre": 0.01203322747345581, "j0": -0.029103172438937508}, {"ecc": 10.0, "p": [-3.504811214578123, 4.292155835548846e-16, 23.476772122429175], "rpre": 0.04773863752266594, "j0": -0.11681724896878642}, {"ecc": 15.0, "p": [-5.1544307445144995, 6.31235711269639e-16, 22.83659742262319], "rpre": 0.10589982278281529, "j0": -0.2643435284799155}, {"ecc": 20.0, "p": [-6.684588275278722, 8.186259634938013e-16, 21.965755344679412], "rpre": 0.18436661635017038, "j0": -0.47364674858162525}, {"ecc": 25.0, "p": [-8.06180777195832, 9.87286708327001e-16, 20.888602558782363], "rpre": 0.27983101769380947, "j0": -0.7474137652961139}, {"ecc": 30.0, "p": [-9.2578048944532, 1.133754113112281e-15, 19.634988443752775], "rpre": 0.38742680171250954, "j0": -1.0890307704361994}]}, {"meridian": "I", "azimuth_deg": 270.0, "points": [{"ecc": 0.0, "p": [-0.0, -0.0, 24.0], "rpre": 0.0, "j0": 0.0}, {"ecc": 5.0, "p": [-3.2573946011970175e-16, -1.7732430299984958, 23.868260578389812], "rpre": 0.01203322747345581, "j0": -0.029103172438937508}, {"ecc": 10.0, "p": [-6.438233753323267e-16, -3.504811214578123, 23.476772122429175], "rpre": 0.04773863752266594, "j0": -0.11681724896878642}, {"ecc": 15.0, "p": [-9.468535669044585e-16, -5.1544307445144995, 22.83659742262319], "rpre": 0.10589982278281529, "j0": -0.2643435284799155}, {"ecc": 20.0, "p": [-1.227938945240702e-15, -6.684588275278722, 21.965755344679412], "rpre": 0.18436661635017038, "j0": -0.47364674858162525}, {"ecc": 25.0, "p": [-1.4809300624905015e-15, -8.06180777195832, 20.888602558782363], "rpre": 0.27983101769380947, "j0": -0.7474137652961139}, {"ecc": 30.0, "p": [-1.7006311696684216e-15, -9.2578048944532, 19.634988443752775], "rpre": 0.38742680171250954, "j0": -1.0890307704361994}]}], "surfaces": [{"name": "cornea_anterior", "vertex_z": 0.0, "radius": 7.77, "conic": -0.26, "n_after": 1.376}, {"name": "cornea_posterior", "vertex_z": 0.55, "radius": 6.4, "conic": -0.2, "n_after": 1.3374}, {"name": "lens_anterior", "vertex_z": 3.6, "radius": 11.0, "conic": -3.1, "n_after": 1.42}, {"name": "lens_posterior", "vertex_z": 7.6, "radius": -5.9, "conic": -0.5, "n_after": 1.336}], "retina_contour": [[21.066506, -7.833838], [21.333582, -7.51353], [21.590307, -7.18289], [21.836147, -6.842281], [22.070625, -6.492108], [22.293327, -6.132816], [22.503818, -5.764856], [22.701674, -5.388695], [22.886485, -5.004824], [23.058004, -4.613785], [23.215777, -4.216079], [23.359624, -3.812282], [23.489283, -3.402955], [23.604537, -2.988676], [23.705223, -2.570033], [23.791228, -2.147621], [23.862487, -1.722042], [23.918976, -1.293896], [23.960705, -0.863781], [23.987702, -0.432287], [24.0, 0.0], [23.997559, 0.432496], [23.98043, 0.864621], [23.948559, 1.295788], [23.90184, 1.7254], [23.840116, 2.152842], [23.763194, 2.577473], [23.670859, 2.998625], [23.562948, 3.41561], [23.439314, 3.82772], [23.299941, 4.234243], [23.144936, 4.634484], [22.974518, 5.027766], [22.788987, 5.413433], [22.588887, 5.790912], [22.374812, 6.159669], [22.147407, 6.519218], [21.907391, 6.869135], [21.655544, 7.20906], [21.392581, 7.538647], [21.119254, 7.857612]], "sketches": {"0": {"rays": [[[-12.0, -0.5089473709604048], [0.01668168291703509, -0.5089473709604048], [0.5694801553692169, -0.49904148881972676], [3.6091903998779875, -0.4498512760463641], [7.587771363028468, -0.37976722670996765], [23.999833650635466, -0.005847346539872678]], [[-12.0, 6.938893903907228e-18], [-1.7763568394002505e-15, 6.938893903907228e-18], [0.5499999999999998, 6.804678819491914e-18], [3.6, 6.132508856152583e-18], [7.6, 5.172535374924166e-18], [24.0, 8.517850163742471e-20]], [[-12.0, 0.5089473709298653], [0.01668168291503136, 0.5089473709298653], [0.5694801553668762, 0.49904148878978916], [3.6091903998768853, 0.44985127601936464], [7.587771363029939, 0.37976722668713425], [23.999967014825565, 0.005844308071819737]]], "focus": [24.256484930017997, 1.64977031483832e-14], "retina_hit": [24.0, 8.517850163742471e-20], "gap_mm": -0.2564849300179972, "defocus_d": 0.7019620226025308}, "15": {"rays": [[[-12.0, -4.5380274020348645], [0.10824683097377097, -1.2936324419187422], [0.6561933864914653, -1.1620041819301405], [3.6091067431524575, -0.4477973963443942], [7.58170239870951, 0.46448282435553423], [23.301725239660442, 4.229038731888656]], [[-12.0, -4.025606084232679], [0.04118056325051889, -0.7991814763923717], [0.5860364204851483, -0.6784005331135784], [3.6000000000000005, -5.662137425588298e-15], [7.541035688595098, 0.8330909191487463], [23.299940980840375, 4.234243049472379]], [[-12.0, -3.5112469175653125], [0.005577355255249827, -0.2943621605552944], [0.5526307386802203, -0.1834881971082003], [3.6092753819020116, 0.4519281696620011], [7.4778466493806945, 1.1974760192897569], [23.299875313337374, 4.234412610628913]]], "focus": [23.421692847126753, 4.258694576447041], "retina_hit": [23.299875313337374, 4.234412610628913], "gap_mm": -0.12421088681358443, "defocus_d": 0.3399471669965157}, "30": {"rays": [[[-12.0, -9.172780440719583], [0.2825883273418981, -2.0814247635833842], [0.8139338849227425, -1.8228068604552654], [3.60901594392284, -0.4455574817199224], [7.450017001911883, 1.3261040410096137], [21.122017746626625, 7.854386784625155]], [[-12.0, -8.646382491266776], [0.17023791172424652, -1.6198923568309942], [0.6988252647485375, -1.3737700758275735], [3.6, -1.712607833326274e-11], [7.364664766300217, 1.658090595096408]], [[-12.0, -8.115506438898514], [0.0838051540664857, -1.1389182803632423], [0.6140633346883747, -0.9037297136478789], [3.609370782770061, 0.4542484179804559], [7.261713156131766, 1.983573987346574], [21.123334937476393, 7.852849659572025]]], "focus": [21.081229727029996, 7.836802836984675], "retina_hit": [21.123334937476393, 7.852849659572025], "gap_mm": 0.04502952958222316, "defocus_d": -0.12323928606706014}}, "limits": {"rotationally_symmetric": true, "fan_distortion_corrected": false, "retina_source": "measured contour"}};
+
+/* ---------- helpers ---------- */
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function fit(cv){
+  const r = window.devicePixelRatio || 1;
+  const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'),10);
+  cv.width = w*r; cv.height = h*r;
+  const g = cv.getContext('2d'); g.setTransform(r,0,0,r,0,0);
+  return {g,w,h};
+}
+const fmt = (v,n=3) => (v>=0?'+':'') + v.toFixed(n);
+
+/* ---------- header ---------- */
+document.getElementById('label').textContent = D.label;
+document.getElementById('sub').textContent =
+  `AL ${D.biometry.axial_length_mm.toFixed(2)} mm · 각막 R ${D.biometry.cornea_r_ant_mm.toFixed(2)} mm / Q ${D.biometry.cornea_q_ant.toFixed(2)}`
+  + ` · ACD ${D.biometry.acd_mm.toFixed(2)} mm · LT ${D.biometry.lens_thickness_mm.toFixed(2)} mm`
+  + ` · 동공 ⌀${(D.biometry.pupil_radius_mm*2).toFixed(1)} mm` + (D.notes ? ' · ' + D.notes : '');
+
+const outer = D.profile[D.profile.length-1];
+const kpi = [
+  ['등가굴절력', D.paraxial.power_d.toFixed(2)+' D'],
+  ['축상 굴절 M(0)', fmt(D.profile[0].m,2)+' D'],
+  ['RPRE @'+outer.ecc+'°', fmt(outer.rpre,2)+' D'],
+  ['J0 @'+outer.ecc+'°', fmt(outer.j0,2)+' D'],
+  ['dD/dz', D.paraxial.d_per_mm.toFixed(2)+' D/mm'],
+];
+document.getElementById('kpis').innerHTML = kpi.map(k =>
+  `<div class="kpi"><div class="l">${k[0]}</div><div class="v">${k[1]}</div></div>`).join('');
+
+const L = D.limits;
+document.getElementById('limits').innerHTML =
+  (L.rotationally_symmetric ? '<span class="flag">회전대칭 모델 — 경선차는 망막 형상에서만</span>' : '')
+  + (L.fan_distortion_corrected ? '' : '<span class="flag">fan distortion 미보정</span>')
+  + `<span class="flag">망막: ${L.retina_source}</span>`;
+
+/* ---------- 3D ---------- */
+const c3 = document.getElementById('c3d');
+let rot = {x:-0.35, y:0.65}, zoom = 1, spin = false;
+const show = {T:true, S:true, R:true};
+
+function imageShellPoint(ring, i, which){
+  // Focus position along the chief ray: retina point displaced by the dioptric
+  // error converted back to millimetres. Sign matches "negative = myopic".
+  const p = ring.points[i].p;
+  const row = D.profile[i];
+  const d = which==='T' ? row.tangential : row.sagittal;
+  const gap = -d / D.paraxial.d_per_mm;           // mm, +ve = focus before retina
+  const n = Math.hypot(p[0],p[1],p[2]-0) || 1;
+  const dir = [p[0]/n, p[1]/n, p[2]/n];
+  return [p[0]-dir[0]*gap, p[1]-dir[1]*gap, p[2]-dir[2]*gap];
+}
+
+function project(pt, w, h){
+  const cx=Math.cos(rot.x), sx=Math.sin(rot.x), cy=Math.cos(rot.y), sy=Math.sin(rot.y);
+  let [x,y,z] = pt; z -= 14;                       // centre the eye
+  let x1 = x*cy + z*sy,  z1 = -x*sy + z*cy;
+  let y1 = y*cx - z1*sx, z2 =  y*sx + z1*cx;
+  const s = 13 * zoom * (1 + z2/900);
+  return [w/2 + x1*s, h/2 - y1*s, z2];
+}
+
+function rpreColour(v){
+  const t = Math.max(-1, Math.min(1, v/1.5));
+  // Diverging on the sign of the error: warm = hyperopic, cool = myopic.
+  return t >= 0
+    ? `rgba(194,65,12,${0.22+0.58*t})`
+    : `rgba(29,78,216,${0.22+0.58*(-t)})`;
+}
+
+function draw3d(){
+  const {g,w,h} = fit(c3);
+  g.clearRect(0,0,w,h);
+  g.fillStyle = css('--bg'); g.fillRect(0,0,w,h);
+
+  // optical axis
+  const a0 = project([0,0,0],w,h), a1 = project([0,0,D.biometry.axial_length_mm],w,h);
+  g.strokeStyle = css('--line'); g.lineWidth = 1; g.setLineDash([5,4]);
+  g.beginPath(); g.moveTo(a0[0],a0[1]); g.lineTo(a1[0],a1[1]); g.stroke(); g.setLineDash([]);
+
+  // retinal shell: quads between adjacent meridians, coloured by RPRE
+  if(show.R){
+    for(let m=0;m<D.shell.length;m++){
+      const A = D.shell[m], B = D.shell[(m+1)%D.shell.length];
+      for(let i=0;i<A.points.length-1;i++){
+        const q = [A.points[i].p, A.points[i+1].p, B.points[i+1].p, B.points[i].p]
+          .map(p=>project(p,w,h));
+        g.beginPath(); g.moveTo(q[0][0],q[0][1]);
+        for(let k=1;k<4;k++) g.lineTo(q[k][0],q[k][1]);
+        g.closePath();
+        g.fillStyle = rpreColour((A.points[i+1].rpre + B.points[i+1].rpre)/2);
+        g.fill();
+        g.strokeStyle = css('--line'); g.lineWidth = .5; g.stroke();
+      }
+    }
+  }
+
+  // image shells as rings
+  for(const which of ['T','S']){
+    if(!show[which]) continue;
+    g.strokeStyle = which==='T' ? css('--tan') : css('--sag');
+    g.lineWidth = 1.6;
+    for(let i=1;i<D.profile.length;i++){
+      g.beginPath();
+      for(let m=0;m<=D.shell.length;m++){
+        const ring = D.shell[m % D.shell.length];
+        const p = project(imageShellPoint(ring,i,which),w,h);
+        m===0 ? g.moveTo(p[0],p[1]) : g.lineTo(p[0],p[1]);
+      }
+      g.closePath(); g.stroke();
+    }
+  }
+
+  g.font='12px ui-sans-serif,system-ui,sans-serif';
+  const legend = [['망막면 — 색 = RPRE', css('--muted')],
+                  ['접선 상면 (T)', css('--tan')], ['시상 상면 (S)', css('--sag')]];
+  legend.forEach((l,i)=>{ g.fillStyle=l[1]; g.fillText(l[0], 12, 18+i*16); });
+}
+
+(function bind3d(){
+  let drag=false, lx=0, ly=0;
+  c3.addEventListener('pointerdown', e=>{drag=true;lx=e.clientX;ly=e.clientY;c3.setPointerCapture(e.pointerId);});
+  c3.addEventListener('pointermove', e=>{
+    if(!drag) return;
+    rot.y += (e.clientX-lx)*0.01; rot.x += (e.clientY-ly)*0.01;
+    rot.x = Math.max(-1.5, Math.min(1.5, rot.x));
+    lx=e.clientX; ly=e.clientY; draw3d();
+  });
+  c3.addEventListener('pointerup', e=>{drag=false;});
+  c3.addEventListener('wheel', e=>{e.preventDefault(); zoom *= e.deltaY>0?0.92:1.08;
+    zoom=Math.max(.4,Math.min(4,zoom)); draw3d();}, {passive:false});
+  const tog=(id,key)=>document.getElementById(id).addEventListener('click',ev=>{
+    show[key]=!show[key]; ev.target.classList.toggle('on',show[key]); draw3d();});
+  tog('bT','T'); tog('bS','S'); tog('bR','R');
+  document.getElementById('bSpin').addEventListener('click',ev=>{
+    spin=!spin; ev.target.classList.toggle('on',spin); if(spin) tick();});
+  document.getElementById('bReset').addEventListener('click',()=>{
+    rot={x:-0.35,y:0.65}; zoom=1; draw3d();});
+  function tick(){ if(!spin) return; rot.y += 0.006; draw3d(); requestAnimationFrame(tick); }
+})();
+
+/* ---------- profile chart ---------- */
+function drawProfile(){
+  const {g,w,h} = fit(document.getElementById('cprof'));
+  g.clearRect(0,0,w,h); g.fillStyle=css('--bg'); g.fillRect(0,0,w,h);
+  const pad={l:46,r:14,t:14,b:34};
+  const xs = D.profile.map(p=>p.ecc);
+  const series = [['rpre','RPRE (M−M0)',css('--accent')],
+                  ['j0','J0',css('--tan')],
+                  ['m','M',css('--muted')]];
+  let lo=0, hi=0;
+  series.forEach(s=>D.profile.forEach(p=>{lo=Math.min(lo,p[s[0]]);hi=Math.max(hi,p[s[0]]);}));
+  const span = Math.max(0.6, hi-lo); lo-=span*0.12; hi+=span*0.12;
+  const X = v => pad.l + (v-xs[0])/(xs[xs.length-1]-xs[0]) * (w-pad.l-pad.r);
+  const Y = v => h-pad.b - (v-lo)/(hi-lo) * (h-pad.t-pad.b);
+
+  g.strokeStyle=css('--line'); g.lineWidth=1;
+  g.beginPath(); g.moveTo(pad.l,Y(0)); g.lineTo(w-pad.r,Y(0)); g.stroke();
+  g.fillStyle=css('--muted'); g.font='11px ui-sans-serif,system-ui,sans-serif';
+  xs.forEach(v=>{ g.fillText(v+'°', X(v)-8, h-pad.b+16); });
+  for(let k=0;k<=4;k++){ const v=lo+(hi-lo)*k/4;
+    g.fillText(fmt(v,1), 6, Y(v)+4);
+    g.strokeStyle=css('--line'); g.beginPath(); g.moveTo(pad.l,Y(v)); g.lineTo(w-pad.r,Y(v)); g.stroke(); }
+
+  series.forEach((s,si)=>{
+    g.strokeStyle=s[2]; g.lineWidth=si===0?2.4:1.6; g.beginPath();
+    D.profile.forEach((p,i)=>{ const x=X(p.ecc), y=Y(p[s[0]]); i?g.lineTo(x,y):g.moveTo(x,y); });
+    g.stroke();
+    D.profile.forEach(p=>{ g.fillStyle=s[2]; g.beginPath(); g.arc(X(p.ecc),Y(p[s[0]]),2.6,0,7); g.fill(); });
+    g.fillStyle=s[2]; g.fillText(s[1], w-pad.r-96, pad.t+12+si*15);
+  });
+}
+
+/* ---------- meridional sketch ---------- */
+const skKeys = Object.keys(D.sketches);
+let skSel = skKeys[skKeys.length-1];
+document.getElementById('skbtns').innerHTML = skKeys.map(k=>
+  `<button data-k="${k}" class="${k===skSel?'on':''}">${k}°</button>`).join('');
+document.getElementById('skbtns').addEventListener('click',e=>{
+  if(!e.target.dataset.k) return;
+  skSel = e.target.dataset.k;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on', b.dataset.k===skSel));
+  drawSketch();
+});
+
+function drawSketch(){
+  const S = D.sketches[skSel];
+  const {g,w,h} = fit(document.getElementById('csk'));
+  g.clearRect(0,0,w,h); g.fillStyle=css('--bg'); g.fillRect(0,0,w,h);
+  let zmin=1e9,zmax=-1e9,xmin=1e9,xmax=-1e9;
+  S.rays.forEach(r=>r.forEach(p=>{zmin=Math.min(zmin,p[0]);zmax=Math.max(zmax,p[0]);
+    xmin=Math.min(xmin,p[1]);xmax=Math.max(xmax,p[1]);}));
+  const pad=16, sc=Math.min((w-2*pad)/(zmax-zmin),(h-2*pad)/Math.max(xmax-xmin,1));
+  const P=(z,x)=>[pad+(z-zmin)*sc, h/2-(x-(xmin+xmax)/2)*sc];
+  const cols=['#0b6fb8','#1a8a5a','#b8560b','#8a2ea0','#b81b3c'];
+  S.rays.forEach((r,i)=>{
+    g.strokeStyle=cols[i%cols.length]; g.lineWidth=1.3; g.beginPath();
+    r.forEach((p,k)=>{const q=P(p[0],p[1]); k?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]);}); g.stroke();
+  });
+  const f=P(S.focus[0],S.focus[1]), rr=P(S.retina_hit[0],S.retina_hit[1]);
+  g.strokeStyle=css('--hyper'); g.lineWidth=2;
+  g.beginPath(); g.moveTo(f[0],f[1]); g.lineTo(rr[0],rr[1]); g.stroke();
+  g.fillStyle=css('--hyper'); g.beginPath(); g.arc(f[0],f[1],4,0,7); g.fill();
+  g.strokeStyle=css('--ink'); g.lineWidth=2;
+  g.beginPath(); g.arc(rr[0],rr[1],4,0,7); g.stroke();
+  document.getElementById('sknote').textContent =
+    `입사 ${skSel}° · 초점→망막 ${fmt(S.gap_mm,3)} mm = ${fmt(S.defocus_d,3)} D`;
+}
+
+/* ---------- table ---------- */
+document.getElementById('tbl').innerHTML =
+  '<thead><tr><th>편심</th><th>접선 T</th><th>시상 S</th><th>M</th><th>J0</th><th>RPRE</th></tr></thead><tbody>'
+  + D.profile.map(p=>`<tr><td>${p.ecc}°</td><td>${fmt(p.tangential)}</td><td>${fmt(p.sagittal)}</td>`
+    + `<td>${fmt(p.m)}</td><td>${fmt(p.j0)}</td><td><b>${fmt(p.rpre)}</b></td></tr>`).join('')
+  + '</tbody>';
+
+function redraw(){ draw3d(); drawProfile(); drawSketch(); }
+window.addEventListener('resize', redraw);
+redraw();
+</script>
+</body>
+</html>
