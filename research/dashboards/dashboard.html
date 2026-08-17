@@ -124,10 +124,30 @@ const D = {"label": "합성 데모 — 실 환자 데이터 아님", "notes": ""
 
 /* ---------- helpers ---------- */
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+// The canvas's declared height="..." is read back every fit() call, but this
+// same code overwrites that attribute with the DPI-scaled backing-store size.
+// On any devicePixelRatio != 1 (Chrome under Windows display scaling or a
+// non-100% zoom, any retina display) each call re-multiplies an already
+// multiplied value: 420 -> 630 -> 945 -> ... -> 24000px within ten frames.
+// Auto-rotate calls this every animation frame, so the canvas — and the page
+// height around it — visibly explodes in a fraction of a second. Cache the
+// pristine CSS height per canvas the first time it's seen, before this
+// function ever touches the attribute, and read from that cache afterward.
+// Each <canvas> also carries an explicit inline style="height:...px" as a
+// second, independent guard: it pins the on-screen box size from CSS, so even
+// if some future change reintroduces a self-referencing height read, the
+// layout can no longer be dragged along with it. Keep both.
+const _cssHeights = new WeakMap();
 function fit(cv){
   const r = window.devicePixelRatio || 1;
-  const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'),10);
-  cv.width = w*r; cv.height = h*r;
+  if (!_cssHeights.has(cv)) _cssHeights.set(cv, parseInt(cv.getAttribute('height'),10));
+  const w = cv.clientWidth, h = _cssHeights.get(cv);
+  // Re-stamping width/height on an unchanged canvas still clears its backing
+  // store and can trigger a layout pass — harmless once, but auto-rotate calls
+  // this every animation frame, and at 60fps that reflow reads as the whole
+  // page jittering. Only touch the attributes when the size actually moved.
+  const targetW = Math.round(w*r), targetH = Math.round(h*r);
+  if (cv.width !== targetW || cv.height !== targetH) { cv.width = targetW; cv.height = targetH; }
   const g = cv.getContext('2d'); g.setTransform(r,0,0,r,0,0);
   return {g,w,h};
 }

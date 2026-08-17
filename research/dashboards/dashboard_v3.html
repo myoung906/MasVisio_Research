@@ -184,6 +184,10 @@ const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).
 // height around it — visibly explodes in a fraction of a second. Cache the
 // pristine CSS height per canvas the first time it's seen, before this
 // function ever touches the attribute, and read from that cache afterward.
+// Each <canvas> also carries an explicit inline style="height:...px" as a
+// second, independent guard: it pins the on-screen box size from CSS, so even
+// if some future change reintroduces a self-referencing height read, the
+// layout can no longer be dragged along with it. Keep both.
 const _cssHeights = new WeakMap();
 function fit(cv){
   const r = window.devicePixelRatio || 1;
