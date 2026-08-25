@@ -335,6 +335,14 @@
         transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         padding: 5px;
         box-sizing: border-box;
+        font: inherit;
+        color: inherit;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+      .orbit-node:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 3px;
       }
       .orbit-node:hover, .orbit-node.active {
         border-color: var(--primary-color);
@@ -424,9 +432,9 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="../assets/css/main.css?v=4.0" />
-    <link rel="stylesheet" href="../assets/css/responsive.css?v=4.0" />
-    <link rel="stylesheet" href="../assets/css/components.css?v=5.0" />
+    <link rel="stylesheet" href="../assets/css/main.css?v=6.0" />
+    <link rel="stylesheet" href="../assets/css/responsive.css?v=6.0" />
+    <link rel="stylesheet" href="../assets/css/components.css?v=6.0" />
   </head>
 
   <body class="sidebar-layout">
@@ -495,22 +503,22 @@
               </div>
               
               <!-- 4 Orbiting Nodes -->
-              <div class="orbit-node node-1 active" data-service="1">
-                <div class="node-icon">🔬</div>
+              <button type="button" class="orbit-node node-1 active" data-service="1" aria-controls="detail-1" aria-expanded="true">
+                <div class="node-icon" aria-hidden="true">🔬</div>
                 <div class="node-label">Clinical<br>Studies</div>
-              </div>
-              <div class="orbit-node node-2" data-service="2">
-                <div class="node-icon">⚙️</div>
+              </button>
+              <button type="button" class="orbit-node node-2" data-service="2" aria-controls="detail-2" aria-expanded="false">
+                <div class="node-icon" aria-hidden="true">⚙️</div>
                 <div class="node-label">Hardware<br>Prototype</div>
-              </div>
-              <div class="orbit-node node-3" data-service="3">
-                <div class="node-icon">💻</div>
+              </button>
+              <button type="button" class="orbit-node node-3" data-service="3" aria-controls="detail-3" aria-expanded="false">
+                <div class="node-icon" aria-hidden="true">💻</div>
                 <div class="node-label">AI Software<br>API</div>
-              </div>
-              <div class="orbit-node node-4" data-service="4">
-                <div class="node-icon">🎓</div>
+              </button>
+              <button type="button" class="orbit-node node-4" data-service="4" aria-controls="detail-4" aria-expanded="false">
+                <div class="node-icon" aria-hidden="true">🎓</div>
                 <div class="node-label">Seminars &amp;<br>Consulting</div>
-              </div>
+              </button>
               
               <!-- SVG Radial Connector Lines -->
               <svg class="orbit-svg-lines" viewBox="0 0 340 340">
@@ -594,31 +602,40 @@
           </div>
 
           <script>
-            // B2B Service Orbit Interactive logic
-            document.querySelectorAll('.orbit-node').forEach(node => {
-              node.addEventListener('mouseenter', () => {
-                // Remove active class from all nodes and contents
-                document.querySelectorAll('.orbit-node').forEach(n => n.classList.remove('active'));
-                document.querySelectorAll('.service-detail-content').forEach(c => c.classList.remove('active'));
-                
-                // Add active class to hovered node and corresponding content
-                node.classList.add('active');
-                const serviceId = node.getAttribute('data-service');
-                const content = document.getElementById(`detail-${serviceId}`);
-                if (content) content.classList.add('active');
-      
-                // Reset line highlights
-                document.querySelectorAll('.orbit-svg-lines line').forEach(l => {
-                  l.style.stroke = 'rgba(169, 214, 238, 0.15)';
-                  l.style.strokeWidth = '1.5';
-                });
-                // Highlight corresponding line
-                const activeLine = document.querySelector(`.line-${serviceId}`);
-                if (activeLine) {
-                  activeLine.style.stroke = 'var(--primary-color)';
-                  activeLine.style.strokeWidth = '2.5';
-                }
+            // B2B Service Orbit Interactive logic (mouse, touch, keyboard)
+            function activateOrbitNode(node) {
+              // Remove active class from all nodes and contents
+              document.querySelectorAll('.orbit-node').forEach(n => {
+                n.classList.remove('active');
+                n.setAttribute('aria-expanded', 'false');
               });
+              document.querySelectorAll('.service-detail-content').forEach(c => c.classList.remove('active'));
+
+              // Add active class to hovered/focused/clicked node and corresponding content
+              node.classList.add('active');
+              node.setAttribute('aria-expanded', 'true');
+              const serviceId = node.getAttribute('data-service');
+              const content = document.getElementById(`detail-${serviceId}`);
+              if (content) content.classList.add('active');
+
+              // Reset line highlights
+              document.querySelectorAll('.orbit-svg-lines line').forEach(l => {
+                l.style.stroke = 'rgba(169, 214, 238, 0.15)';
+                l.style.strokeWidth = '1.5';
+              });
+              // Highlight corresponding line
+              const activeLine = document.querySelector(`.line-${serviceId}`);
+              if (activeLine) {
+                activeLine.style.stroke = 'var(--primary-color)';
+                activeLine.style.strokeWidth = '2.5';
+              }
+            }
+
+            document.querySelectorAll('.orbit-node').forEach(node => {
+              node.addEventListener('mouseenter', () => activateOrbitNode(node));
+              node.addEventListener('focus', () => activateOrbitNode(node));
+              node.addEventListener('click', () => activateOrbitNode(node));
+              node.addEventListener('touchstart', () => activateOrbitNode(node), { passive: true });
             });
           </script>
 
@@ -626,6 +643,6 @@
       </section>
     </main>
 
-    <script src="../assets/js/main.js?v=5.0" defer></script>
+    <script src="../assets/js/main.js?v=7.0" defer></script>
   </body>
 </html>

@@ -25,9 +25,90 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/main.css?v=4.0" />
-    <link rel="stylesheet" href="../assets/css/responsive.css?v=4.0" />
-    <link rel="stylesheet" href="../assets/css/components.css?v=4.0" />
+    <link rel="stylesheet" href="../assets/css/main.css?v=6.0" />
+    <link rel="stylesheet" href="../assets/css/responsive.css?v=6.0" />
+    <link rel="stylesheet" href="../assets/css/components.css?v=6.0" />
+    <style>
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+      }
+      .gallery-item {
+        margin: 0;
+        background: var(--panel2);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 12px;
+        cursor: zoom-in;
+        transition: border-color 0.25s;
+      }
+      .gallery-item:hover,
+      .gallery-item:focus-visible {
+        border-color: var(--primary-color);
+        outline: none;
+      }
+      .gallery-thumb {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        display: block;
+        border-radius: 2px;
+        background: #000;
+        filter: saturate(0.85);
+      }
+      .gallery-item figcaption {
+        margin-top: 10px;
+        font-family: var(--mono-font);
+        font-size: 11.5px;
+        color: var(--text-light);
+        line-height: 1.5;
+      }
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 16px;
+        padding: 40px;
+        background: rgba(2, 5, 8, 0.92);
+      }
+      .lightbox.open {
+        display: flex;
+      }
+      .lightbox img {
+        max-width: min(1100px, 90vw);
+        max-height: 78vh;
+        object-fit: contain;
+        border: 1px solid var(--line-strong);
+        border-radius: 4px;
+      }
+      .lightbox-caption {
+        font-family: var(--mono-font);
+        font-size: 13px;
+        color: var(--primary-color);
+        letter-spacing: 0.06em;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 18px;
+        right: 24px;
+        background: none;
+        border: 1px solid var(--line-strong);
+        color: var(--text-color);
+        font-family: var(--mono-font);
+        font-size: 14px;
+        padding: 8px 14px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .lightbox-close:hover {
+        border-color: var(--primary-color);
+      }
+    </style>
   </head>
 
   <body class="sidebar-layout">
@@ -86,12 +167,82 @@
           </header>
 
           <div id="gallery-container">
-            <p>Coming Soon...</p>
+            <div class="gallery-grid" role="list">
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../assets/images/research/phase3/ping_pong_laser_grid.png" data-caption="Structured light projection (laser grid calibration)">
+                <img class="gallery-thumb" src="../assets/images/research/phase3/ping_pong_laser_grid.png" alt="Red laser grid pattern projected on a sphere" loading="lazy" />
+                <figcaption>Structured Light Projection · Laser Grid Calibration</figcaption>
+              </figure>
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../assets/images/research/phase3/corneo_scleral_analysis_ui.png" data-caption="Real-time corneo-scleral 3D analysis interface">
+                <img class="gallery-thumb" src="../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="Corneo-scleral 3D reconstruction software UI" loading="lazy" />
+                <figcaption>Real-time Corneo-Scleral 3D Analysis UI</figcaption>
+              </figure>
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../assets/images/research/phase2/oct_analysis.png" data-caption="OCT-based retinal curvature measurement">
+                <img class="gallery-thumb" src="../assets/images/research/phase2/oct_analysis.png" alt="OCT retinal curvature scan" loading="lazy" />
+                <figcaption>OCT Retinal Curvature Measurement</figcaption>
+              </figure>
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../assets/images/research/phase2/optical_simulation.png" data-caption="Six-surface eye ray-tracing optical simulation">
+                <img class="gallery-thumb" src="../assets/images/research/phase2/optical_simulation.png" alt="Six-surface ray tracing simulation result" loading="lazy" />
+                <figcaption>Six-Surface Ray-Tracing Simulation</figcaption>
+              </figure>
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../assets/images/research/phase4_eye_tracking_monitor.jpg" data-caption="High-speed real-time pupil contour detection">
+                <img class="gallery-thumb" src="../assets/images/research/phase4_eye_tracking_monitor.jpg" alt="Real-time pupil tracking monitor view" loading="lazy" />
+                <figcaption>Real-time Pupil Contour Detection</figcaption>
+              </figure>
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../assets/images/research/phase4_pupil_graph.jpg" data-caption="Pupil light reflex (PLR) autonomic response analysis">
+                <img class="gallery-thumb" src="../assets/images/research/phase4_pupil_graph.jpg" alt="Pupil stimulus response signal curves" loading="lazy" />
+                <figcaption>Pupil Light Reflex (PLR) Signal Analysis</figcaption>
+              </figure>
+            </div>
+
+            <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image enlarged view">
+              <button class="lightbox-close" type="button" aria-label="Close">✕ CLOSE</button>
+              <img id="lightbox-img" src="" alt="" />
+              <p class="lightbox-caption" id="lightbox-caption"></p>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <script src="../assets/js/main.js?v=4.0" defer></script>
+    <script src="../assets/js/main.js?v=7.0" defer></script>
+    <script>
+      (function () {
+        const lightbox = document.getElementById("lightbox");
+        const lbImg = document.getElementById("lightbox-img");
+        const lbCaption = document.getElementById("lightbox-caption");
+        let lastFocused = null;
+
+        function openLightbox(item) {
+          lastFocused = item;
+          lbImg.src = item.dataset.full;
+          lbImg.alt = item.querySelector("img").alt;
+          lbCaption.textContent = item.dataset.caption || "";
+          lightbox.classList.add("open");
+          lightbox.setAttribute("aria-hidden", "false");
+          lightbox.querySelector(".lightbox-close").focus();
+        }
+        function closeLightbox() {
+          lightbox.classList.remove("open");
+          lightbox.setAttribute("aria-hidden", "true");
+          if (lastFocused) lastFocused.focus();
+        }
+
+        document.querySelectorAll(".gallery-item").forEach((item) => {
+          item.addEventListener("click", () => openLightbox(item));
+          item.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openLightbox(item);
+            }
+          });
+        });
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox || e.target.classList.contains("lightbox-close")) closeLightbox();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+        });
+      })();
+    </script>
   </body>
 </html>

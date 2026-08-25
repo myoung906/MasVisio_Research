@@ -156,19 +156,12 @@
       text-align: center !important;
     }
     .split-img {
-      width: 80% !important;
+      width: 100% !important;
       height: auto !important;
-      max-height: 130px !important;
+      max-height: 170px !important;
       object-fit: contain !important;
-      transform-origin: center;
       display: block;
       margin: 0 auto !important;
-    }
-    .split-img-top {
-      transform: scale(1.3) translateX(14px) !important;
-    }
-    .split-img-bottom {
-      transform: scale(1.3) translateX(-14px) !important;
     }
 
     /* Phase 4 Custom Image Grid (Large graph on top, 2 photos below) */
@@ -408,9 +401,9 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="../../assets/css/main.css?v=4.0" />
-  <link rel="stylesheet" href="../../assets/css/responsive.css?v=4.0" />
-  <link rel="stylesheet" href="../../assets/css/components.css?v=4.0" />
+  <link rel="stylesheet" href="../../assets/css/main.css?v=6.0" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css?v=6.0" />
+  <link rel="stylesheet" href="../../assets/css/components.css?v=6.0" />
 </head>
 
 <body class="sidebar-layout">
@@ -472,7 +465,7 @@
           <!-- PHASE 1 -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 1: Visual Neuroscience</span>
-            <h2 class="challenge-title">시각 신경과학: <strong>시각 신경과학</strong></h2>
+            <h2 class="challenge-title">대뇌 시각 피질의 <strong>신경 코드 해독</strong></h2>
             <p class="challenge-desc">
               효과적인 시각 재활을 설계하기 위해서는 뇌가 빛과 형태를 처리하는 신경학적 방식을 이해해야 합니다. Optinex의 기초 연구는 대뇌 시각 피질이 대비 감도와 운동 신호를 해석하는 패턴을 분석하여, 단순 안구 굴절 결함과 뇌의 정보 처리 이상을 정밀 구분하는 데서 출발합니다.
             </p>
@@ -527,7 +520,7 @@
           <!-- PHASE 2 (Fixed LaTeX Equations to plain text equations) -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 2: Optometric Metrology</span>
-            <h2 class="challenge-title">시광학 계측: <strong>시광학 계측</strong></h2>
+            <h2 class="challenge-title">안구 6경계면의 미스터리: <strong>굴절 계측</strong></h2>
             <p class="challenge-desc">
               성장기 근시 진행은 주변부 망막의 광학적 탈초점과 긴밀한 상관관계를 보입니다. 정밀한 안구 6경계면 기하광학 모델링과 색수차 원리를 기반으로 주변부 굴절이상 상태를 정량 평가합니다.
             </p>
@@ -587,7 +580,7 @@
           <!-- PHASE 3 (Vertically stacked, centered split images with 1.3x scale) -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 3: Prototype Development</span>
-            <h2 class="challenge-title">시제품 개발: <strong>시제품 개발</strong></h2>
+            <h2 class="challenge-title">정밀 각공막 <strong>3D 형상 복원</strong></h2>
             <p class="challenge-desc">
               커스텀 콘택트렌즈 설계 및 수술 계획을 위해서는 각막뿐만 아니라 흰자위에 해당하는 공막까지 아우르는 정밀한 형상 복원이 필수적입니다. 적외선 구조화광 패턴 투사 기술을 적용한 실시간 3D 안구 측정 장비 시제품을 개발합니다.
             </p>
@@ -608,8 +601,8 @@
                 </figure>
                 <figure class="phase3-vertical-split">
                   <div class="split-images-wrap">
-                    <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_left.png" alt="3차원 복원 알고리즘 기하모델" class="photo-img split-img split-img-top">
-                    <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_right.png" alt="3차원 복원 알고리즘 인공신경망" class="photo-img split-img split-img-bottom">
+                    <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_left.png" alt="3차원 복원 알고리즘 기하모델" class="photo-img split-img">
+                    <img loading="lazy" src="../../assets/images/research/phase3/3d_reconstruction_right.png" alt="3차원 복원 알고리즘 인공신경망" class="photo-img split-img">
                   </div>
                   <figcaption class="overview-figcaption">3D Reconstruction Method</figcaption>
                 </figure>
@@ -626,7 +619,7 @@
           <!-- PHASE 4 -->
           <div class="challenge-section">
             <span class="challenge-phase-label">Phase 4: AI &amp; Software Integration</span>
-            <h2 class="challenge-title">AI &amp; 소프트웨어 통합: <strong>AI &amp; 소프트웨어 통합</strong></h2>
+            <h2 class="challenge-title">AI 기반 자율신경 <strong>바이오마커 스크리닝</strong></h2>
             <p class="challenge-desc">
               눈은 뇌로 통하는 창입니다. 본 연구진은 통제된 적외선 광 자극 하에서 발생하는 미세 동공 반응(Pupil Light Reflex)을 초고속 카메라로 추적하고, 동적 알고리즘을 통해 자율신경계 및 조기 퇴행성 질환 지표를 비침습적으로 분석합니다.
             </p>
@@ -674,12 +667,17 @@
             <!-- Animated SVG Flowchart placed at the bottom, taking full width (2x Bigger Boxes & Clean abstract specs) -->
             <div class="diagram-interactive">
               <svg viewBox="0 0 920 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M0 0 L10 5 L0 10 z" fill="var(--primary-color, #a9d6ee)" />
+                  </marker>
+                </defs>
                 <!-- Background glow links -->
-                <path d="M180 140 H275" class="animated-flow-line" />
-                <path d="M440 140 H545" class="animated-flow-line" />
-                <path d="M720 140 H810" class="animated-flow-line" />
-                <path d="M357.5 200 V247.5 H410" class="static-flow-line" />
-                <path d="M632.5 200 V247.5 H580" class="static-flow-line" />
+                <path d="M180 140 H275" class="animated-flow-line" marker-end="url(#flow-arrow)" />
+                <path d="M440 140 H545" class="animated-flow-line" marker-end="url(#flow-arrow)" />
+                <path d="M720 140 H810" class="animated-flow-line" marker-end="url(#flow-arrow)" />
+                <path d="M357.5 200 V247.5 H410" class="animated-flow-line" marker-end="url(#flow-arrow)" />
+                <path d="M632.5 200 V247.5 H580" class="animated-flow-line" marker-end="url(#flow-arrow)" />
 
                 <!-- Node 1: Edge Sensing (Large box, abstract label) -->
                 <g class="node-group">
@@ -768,7 +766,7 @@
     </section>
   </main>
 
-  <script src="../../assets/js/main.js?v=4.0" defer></script>
+  <script src="../../assets/js/main.js?v=7.0" defer></script>
 </body>
 
 </html>

@@ -25,9 +25,90 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../assets/css/main.css?v=4.0" />
-    <link rel="stylesheet" href="../../assets/css/responsive.css?v=4.0" />
-    <link rel="stylesheet" href="../../assets/css/components.css?v=4.0" />
+    <link rel="stylesheet" href="../../assets/css/main.css?v=6.0" />
+    <link rel="stylesheet" href="../../assets/css/responsive.css?v=6.0" />
+    <link rel="stylesheet" href="../../assets/css/components.css?v=6.0" />
+    <style>
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+      }
+      .gallery-item {
+        margin: 0;
+        background: var(--panel2);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 12px;
+        cursor: zoom-in;
+        transition: border-color 0.25s;
+      }
+      .gallery-item:hover,
+      .gallery-item:focus-visible {
+        border-color: var(--primary-color);
+        outline: none;
+      }
+      .gallery-thumb {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        display: block;
+        border-radius: 2px;
+        background: #000;
+        filter: saturate(0.85);
+      }
+      .gallery-item figcaption {
+        margin-top: 10px;
+        font-family: var(--mono-font);
+        font-size: 11.5px;
+        color: var(--text-light);
+        line-height: 1.5;
+      }
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 16px;
+        padding: 40px;
+        background: rgba(2, 5, 8, 0.92);
+      }
+      .lightbox.open {
+        display: flex;
+      }
+      .lightbox img {
+        max-width: min(1100px, 90vw);
+        max-height: 78vh;
+        object-fit: contain;
+        border: 1px solid var(--line-strong);
+        border-radius: 4px;
+      }
+      .lightbox-caption {
+        font-family: var(--mono-font);
+        font-size: 13px;
+        color: var(--primary-color);
+        letter-spacing: 0.06em;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 18px;
+        right: 24px;
+        background: none;
+        border: 1px solid var(--line-strong);
+        color: var(--text-color);
+        font-family: var(--mono-font);
+        font-size: 14px;
+        padding: 8px 14px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .lightbox-close:hover {
+        border-color: var(--primary-color);
+      }
+    </style>
   </head>
 
   <body class="sidebar-layout">
@@ -86,12 +167,82 @@
           </header>
 
           <div id="gallery-container">
-            <p>준비 중입니다...</p>
+            <div class="gallery-grid" role="list">
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../../assets/images/research/phase3/ping_pong_laser_grid.png" data-caption="적외선 구조화광 패턴 투사 (레이저 격자 캘리브레이션)">
+                <img class="gallery-thumb" src="../../assets/images/research/phase3/ping_pong_laser_grid.png" alt="구 형상에 투사된 적색 레이저 격자 패턴" loading="lazy" />
+                <figcaption>구조화광 패턴 투사 · 레이저 격자 캘리브레이션</figcaption>
+              </figure>
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../../assets/images/research/phase3/corneo_scleral_analysis_ui.png" data-caption="실시간 각공막 3D 분석 인터페이스">
+                <img class="gallery-thumb" src="../../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="각공막 3D 복원 분석 소프트웨어 화면" loading="lazy" />
+                <figcaption>실시간 각공막 3D 분석 인터페이스</figcaption>
+              </figure>
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../../assets/images/research/phase2/oct_analysis.png" data-caption="OCT 기반 망막 곡률 계측 분석">
+                <img class="gallery-thumb" src="../../assets/images/research/phase2/oct_analysis.png" alt="OCT 망막 곡률 측정 영상" loading="lazy" />
+                <figcaption>OCT 망막 곡률 계측</figcaption>
+              </figure>
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../../assets/images/research/phase2/optical_simulation.png" data-caption="안구 6경계면 레이트레이싱 광학 시뮬레이션">
+                <img class="gallery-thumb" src="../../assets/images/research/phase2/optical_simulation.png" alt="6면 광선 추적 시뮬레이션 결과" loading="lazy" />
+                <figcaption>6경계면 레이트레이싱 시뮬레이션</figcaption>
+              </figure>
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../../assets/images/research/phase4_eye_tracking_monitor.jpg" data-caption="고속 카메라 기반 실시간 동공 윤곽 검출">
+                <img class="gallery-thumb" src="../../assets/images/research/phase4_eye_tracking_monitor.jpg" alt="동공 실시간 추적 모니터 화면" loading="lazy" />
+                <figcaption>실시간 동공 윤곽 검출</figcaption>
+              </figure>
+              <figure class="gallery-item" role="listitem" tabindex="0" data-full="../../assets/images/research/phase4_pupil_graph.jpg" data-caption="동공 광반사(PLR) 자율신경계 반응 분석 그래프">
+                <img class="gallery-thumb" src="../../assets/images/research/phase4_pupil_graph.jpg" alt="동공 자극 반응 신호 곡선 그래프" loading="lazy" />
+                <figcaption>동공 광반응(PLR) 신호 분석</figcaption>
+              </figure>
+            </div>
+
+            <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="이미지 확대 보기">
+              <button class="lightbox-close" type="button" aria-label="닫기">✕ CLOSE</button>
+              <img id="lightbox-img" src="" alt="" />
+              <p class="lightbox-caption" id="lightbox-caption"></p>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <script src="../../assets/js/main.js?v=4.0" defer></script>
+    <script src="../../assets/js/main.js?v=7.0" defer></script>
+    <script>
+      (function () {
+        const lightbox = document.getElementById("lightbox");
+        const lbImg = document.getElementById("lightbox-img");
+        const lbCaption = document.getElementById("lightbox-caption");
+        let lastFocused = null;
+
+        function openLightbox(item) {
+          lastFocused = item;
+          lbImg.src = item.dataset.full;
+          lbImg.alt = item.querySelector("img").alt;
+          lbCaption.textContent = item.dataset.caption || "";
+          lightbox.classList.add("open");
+          lightbox.setAttribute("aria-hidden", "false");
+          lightbox.querySelector(".lightbox-close").focus();
+        }
+        function closeLightbox() {
+          lightbox.classList.remove("open");
+          lightbox.setAttribute("aria-hidden", "true");
+          if (lastFocused) lastFocused.focus();
+        }
+
+        document.querySelectorAll(".gallery-item").forEach((item) => {
+          item.addEventListener("click", () => openLightbox(item));
+          item.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openLightbox(item);
+            }
+          });
+        });
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox || e.target.classList.contains("lightbox-close")) closeLightbox();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+        });
+      })();
+    </script>
   </body>
 </html>
