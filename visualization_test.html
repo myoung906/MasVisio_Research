@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Optinex Adaptive Optics Interactive Simulator</title>
+    <meta name="description" content="Optinex Research의 5대 시각화 모델을 시뮬레이션하는 인터랙티브 테스트 페이지입니다." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --background: #090d16;
+        --surface-0: rgba(15, 23, 42, 0.6);
+        --primary-color: #8ed5ff;
+        --secondary-color: #cebdff;
+        --myopic-defocus: #3b82f6;
+        --hyperopic-defocus: #f97316;
+        --text-light: #9eb1c0;
+        --line: rgba(255, 255, 255, 0.08);
+        --line-strong: rgba(255, 255, 255, 0.15);
+        --mono-font: 'JetBrains Mono', monospace;
+        --heading-font: 'Outfit', sans-serif;
+        --body-font: 'Inter', 'Noto Sans KR', sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--background);
+        color: #fff;
+        font-family: var(--body-font);
+        line-height: 1.6;
+        overflow-x: hidden;
+        padding: 2rem;
+      }
+
+      /* Skip Link for Accessibility */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--primary-color);
+        color: #000;
+        padding: 8px;
+        z-index: 100;
+        transition: top 0.2s;
+        font-weight: bold;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+
+      header {
+        max-width: 1200px;
+        margin: 0 auto 2rem auto;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 1.5rem;
+      }
+
+      .logo h1 {
+        font-family: var(--heading-font);
+        font-weight: 800;
+        font-size: 2.2rem;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #fff 30%, var(--primary-color) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .logo span {
+        font-family: var(--mono-font);
+        color: var(--primary-color);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 2rem;
+      }
+
+      @media (max-width: 900px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Panels with Glassmorphism */
+      .panel {
+        background: var(--surface-0);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 1.8rem;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      .panel:hover {
+        border-color: var(--line-strong);
+        box-shadow: 0 8px 32px rgba(142, 213, 255, 0.03);
+      }
+
+      .panel-title {
+        font-family: var(--heading-font);
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        border-left: 3px solid var(--primary-color);
+        padding-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* Control elements */
+      .control-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .control-label {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .control-value {
+        font-family: var(--mono-font);
+        color: var(--primary-color);
+        font-size: 0.85rem;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        outline: none;
+        -webkit-appearance: none;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+        box-shadow: 0 0 10px var(--primary-color);
+        transition: transform 0.1s;
+      }
+
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.2);
+      }
+
+      /* Button toggles */
+      .btn-toggle {
+        display: block;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--line);
+        color: #fff;
+        padding: 0.8rem;
+        border-radius: 6px;
+        font-family: var(--heading-font);
+        font-size: 0.9rem;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-bottom: 0.8rem;
+        position: relative;
+      }
+
+      .btn-toggle:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--primary-color);
+      }
+
+      .btn-toggle.active {
+        background: rgba(142, 213, 255, 0.1);
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      .btn-toggle.active::after {
+        content: '●';
+        position: absolute;
+        right: 1.2rem;
+        color: var(--primary-color);
+        font-size: 0.8rem;
+      }
+
+      /* Visualization Display Area */
+      .visualization-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .vis-canvas-wrapper {
+        position: relative;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      svg.vis-svg {
+        width: 100%;
+        height: 100%;
+        min-height: 380px;
+      }
+
+      .vis-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .metric-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .metric-label {
+        font-size: 0.75rem;
+        color: var(--text-light);
+        margin-bottom: 0.3rem;
+      }
+
+      .metric-val {
+        font-family: var(--mono-font);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary-color);
+      }
+
+      /* Photosensitive Seizure Safety Section (P0 Compliance) */
+      .warning-box {
+        background: rgba(239, 68, 68, 0.05);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        border-radius: 8px;
+        padding: 1.2rem;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .warning-icon {
+        font-size: 1.5rem;
+        color: #ef4444;
+        line-height: 1;
+      }
+
+      .warning-text h4 {
+        color: #ef4444;
+        font-family: var(--heading-font);
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .warning-text p {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        line-height: 1.5;
+      }
+
+      /* Test Flicker Controller Container */
+      .flicker-demo-box {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        position: relative;
+      }
+
+      .flicker-light {
+        width: 100%;
+        height: 60px;
+        background: #22c55e;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        opacity: 1;
+        transition: background-color 0.1s;
+      }
+
+      .flicker-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(9, 13, 22, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        z-index: 10;
+        cursor: pointer;
+        transition: opacity 0.3s;
+      }
+
+      .flicker-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .flicker-overlay span {
+        font-family: var(--heading-font);
+        background: var(--primary-color);
+        color: #000;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .flicker-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .btn-flicker {
+        background: #ef4444;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: var(--heading-font);
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+
+      /* Footer */
+      footer {
+        max-width: 1200px;
+        margin: 4rem auto 0 auto;
+        border-top: 1px solid var(--line);
+        padding-top: 2rem;
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--text-light);
+      }
+
+      .footer-links {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      .footer-links a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+
+      /* Prefers-reduced-motion (P0 accessibility compliance) */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-delay: 0s !important;
+          animation-duration: 0s !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0s !important;
+          scroll-behavior: auto !important;
+        }
+        .animated-flow-line {
+          stroke-dasharray: none !important;
+          animation: none !important;
+        }
+        .flicker-light {
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="#main-content" class="skip-link">본문으로 건너뛰기</a>
+
+    <header>
+      <div class="logo">
+        <h1>Optinex Research</h1>
+        <span>Adaptive Vision Simulation Platform</span>
+      </div>
+    </header>
+
+    <!-- P0-2: Photosensitive Seizure Safety Warning -->
+    <div class="warning-box" role="alert">
+      <div class="warning-icon">⚠️</div>
+      <div class="warning-text">
+        <h4>광과민성 반응 및 발작 경고 (Photosensitive Seizure Warning)</h4>
+        <p>
+          일부 사용자는 웹페이지상에서 특정 빈도(1~30 Hz)로 깜빡이는 광원이나 패턴에 노출될 경우 시각적 피로, 어지러움, 또는 광과민성 발작을 겪을 수 있습니다. 당사 웹사이트는 기본적으로 자동 깜빡임 자극을 차단하고 있으며, 테스트 진행 시 주의를 당부드립니다.
+        </p>
+      </div>
+    </div>
+
+    <main id="main-content">
+      <!-- Left Control Panel -->
+      <section class="panel" aria-label="제어 변수 설정">
+        <h3 class="panel-title">
+          <span>Simulation Controls</span>
+          <span style="font-size: 0.75rem; font-weight: normal; color: var(--text-light);">V1.0</span>
+        </h3>
+
+        <!-- Gaze Distance -->
+        <div class="control-group">
+          <div class="control-label">
+            <span>Gaze Distance (주시거리)</span>
+            <span class="control-value" id="val-distance">Far (무한대)</span>
+          </div>
+          <input type="range" id="input-distance" min="0" max="100" value="100" aria-label="Gaze Distance" />
+        </div>
+
+        <!-- Gaze Angle -->
+        <div class="control-group">
+          <div class="control-label">
+            <span>Gaze Angle (시선 편심도)</span>
+            <span class="control-value" id="val-angle">0°</span>
+          </div>
+          <input type="range" id="input-angle" min="-40" max="40" value="0" aria-label="Gaze Angle" />
+        </div>
+
+        <!-- Pupil Diameter -->
+        <div class="control-group">
+          <div class="control-label">
+            <span>Pupil Size (동공 크기)</span>
+            <span class="control-value" id="val-pupil">4.0 mm</span>
+          </div>
+          <input type="range" id="input-pupil" min="20" max="80" value="40" aria-label="Pupil Size" />
+        </div>
+
+        <!-- Light Wavelength -->
+        <div class="control-group">
+          <div class="control-label">
+            <span>Light Wavelength (자극 파장)</span>
+            <span class="control-value" id="val-wavelength">555 nm</span>
+          </div>
+          <input type="range" id="input-wavelength" min="400" max="700" value="555" aria-label="Light Wavelength" />
+        </div>
+
+        <h3 class="panel-title" style="margin-top: 2rem;">Correction Profile</h3>
+        <button class="btn-toggle active" id="btn-mode-1">Conventional (중심만 교정)</button>
+        <button class="btn-toggle" id="btn-mode-2">Personalized (주변부 정밀 보정)</button>
+        <button class="btn-toggle" id="btn-mode-3">Adaptive (실시간 가변 적응)</button>
+      </section>
+
+      <!-- Right Visual Display Panels -->
+      <div class="visualization-container">
+        <!-- Module 1 & 2 Combined: Ray Tracing SVG View -->
+        <section class="panel" aria-label="실시간 광선 추적 시뮬레이터">
+          <h3 class="panel-title">Spatiotemporal Ray Tracing Simulator</h3>
+          
+          <div class="vis-canvas-wrapper">
+            <svg class="vis-svg" viewBox="0 0 700 380" id="ray-tracing-svg" xmlns="http://www.w3.org/2000/svg">
+              <!-- Grid lines background -->
+              <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.02)" stroke-width="1" />
+                </pattern>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+
+              <!-- Eye Structure Outer Shell -->
+              <!-- Translucent structures -->
+              <path d="M 500,60 C 580,60 620,110 620,190 C 620,270 580,320 500,320 C 430,320 400,280 400,190 C 400,100 430,60 500,60 Z" fill="rgba(142, 213, 255, 0.02)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" />
+              <!-- Cornea -->
+              <path id="cornea-path" d="M 390,120 C 370,140 370,240 390,260" fill="none" stroke="rgba(142, 213, 255, 0.6)" stroke-width="2.5" />
+              <!-- Crystalline Lens -->
+              <path id="lens-path" d="M 425,120 C 418,140 418,240 425,260 C 432,240 432,140 425,120" fill="rgba(142, 213, 255, 0.1)" stroke="rgba(142, 213, 255, 0.4)" stroke-width="1.5" />
+              <!-- Retina Back Surface -->
+              <path d="M 580,95 C 610,130 610,250 580,285" fill="none" stroke="#fff" stroke-dasharray="3,3" stroke-width="1" opacity="0.3" />
+              <!-- Fovea (Center of Retina) -->
+              <circle cx="615" cy="190" r="3" fill="#ef4444" opacity="0.8" />
+              <text x="630" y="194" fill="#ef4444" font-size="9" font-family="var(--mono-font)">FOVEA</text>
+
+              <!-- Variable Lens (Adaptive Optinex Glasses) -->
+              <path id="glasses-lens" d="M 230,80 C 228,120 228,260 230,300" fill="none" stroke="var(--primary-color)" stroke-width="3.5" filter="url(#glow)" />
+              <text x="230" y="70" fill="var(--primary-color)" font-size="10" font-family="var(--mono-font)" text-anchor="middle">OPTINEX GLASSES</text>
+
+              <!-- Dynamic Optical Rays Group -->
+              <g id="rays-group"></g>
+              
+              <!-- Target Point Source -->
+              <circle id="source-point" cx="50" cy="190" r="4" fill="var(--primary-color)" filter="url(#glow)" />
+            </svg>
+          </div>
+
+          <div class="vis-metrics">
+            <div class="metric-card">
+              <div class="metric-label">망막 수차 오차 (RMS)</div>
+              <div class="metric-val" id="metric-rms">0.12 μm</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">망막 초점 편차</div>
+              <div class="metric-val" id="metric-focus">Myopic Defocus</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">주변부 시각 이득</div>
+              <div class="metric-val" id="metric-gain">+32%</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Module 3 & 4 Combined: Ocular Pupillometry & Aberration Map -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+          <section class="panel" aria-label="동공 광반사 동역학">
+            <h3 class="panel-title">Ocular Pupillometry Dynamics</h3>
+            <div class="vis-canvas-wrapper" style="min-height: 240px; background: #07090f; flex-direction: column;">
+              <!-- 2D Pupil Aperture Rig Representation -->
+              <svg width="160" height="160" viewBox="0 0 160 160">
+                <!-- Iris -->
+                <circle cx="80" cy="80" r="70" fill="#1b2a47" stroke="rgba(255,255,255,0.1)" stroke-width="2" />
+                <path d="M 80,10 L 80,150 M 10,80 L 150,80 M 30,30 L 130,130 M 30,130 L 130,30" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+                <!-- Pupil -->
+                <circle id="pupil-rig" cx="80" cy="80" r="30" fill="#000" stroke="var(--primary-color)" stroke-width="2" filter="url(#glow)" style="transition: r 0.2s ease-out;" />
+              </svg>
+              <div style="font-family: var(--mono-font); font-size: 0.8rem; color: var(--primary-color); margin-top: 10px;" id="pupil-dynamic-text">Diameter: 4.0mm</div>
+            </div>
+          </section>
+
+          <section class="panel" aria-label="파면 수차 맵">
+            <h3 class="panel-title">Wavefront Aberration Map</h3>
+            <div class="vis-canvas-wrapper" style="min-height: 240px; background: #07090f;">
+              <canvas id="aberration-canvas" width="200" height="200" style="border-radius: 50%; max-width: 160px; max-height: 160px; border: 1px solid var(--line-strong);"></canvas>
+            </div>
+          </section>
+        </div>
+
+        <!-- P0 Compliance: Controlled Flicker Test Module (Only runs when clicked) -->
+        <section class="panel" aria-label="플리커 자극 테스트 및 광과민성 예방 모듈">
+          <h3 class="panel-title">Temporal Frequency Flicker Test (수동 자극 시험)</h3>
+          <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem;">
+            ※ 아래 자극판은 광과민성 발작 안전 기준에 따라 <strong>자동 실행이 정지</strong>되어 있습니다. 사용자가 직접 버튼을 클릭하여 활성화한 경우에만 주파수 자극(1~30 Hz)이 구동됩니다.
+          </p>
+
+          <div class="flicker-demo-box">
+            <div class="flicker-overlay" id="flicker-play-overlay">
+              <span>⚠️ 데모 자극 구동하기</span>
+            </div>
+            <!-- Test light target -->
+            <div class="flicker-light" id="flicker-source"></div>
+
+            <div class="flicker-controls">
+              <div>
+                <span style="font-size: 0.85rem; color: var(--text-light);">현재 테스트 주파수: </span>
+                <span style="font-family: var(--mono-font); color: var(--primary-color); font-weight: bold;" id="flicker-freq-text">12 Hz</span>
+              </div>
+              <button class="btn-flicker" id="btn-flicker-stop">테스트 정지 (Pause)</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Optinex Research. All Rights Reserved.</p>
+      <div class="footer-links">
+        <a href="privacy.html">개인정보처리방침 (PIPA 준수)</a>
+        <span>|</span>
+        <a href="privacy.html#email-refusal">이메일무단수집거부</a>
+        <span>|</span>
+        <a href="contact.html">연구협력문의</a>
+      </div>
+      <p style="font-size: 0.7rem; color: rgba(255, 255, 255, 0.2); margin-top: 1rem;">
+        본 시뮬레이션 환경은 연구개발 프로토타입 단계로, 의료적 진단 또는 상용 제품 규격과 상이할 수 있습니다.
+      </p>
+    </footer>
+
+    <!-- Interactive Logic scripts -->
+    <script>
+      // Simulation Parameters
+      let distance = 100; // 0 (near) to 100 (far)
+      let angle = 0; // -40 to 40
+      let pupil = 40; // 2mm to 8mm (mapping: 20 to 80)
+      let wavelength = 555; // 400nm to 700nm
+      let mode = 1; // 1: Conventional, 2: Personalized, 3: Adaptive
+
+      // Dom Elements
+      const inputDistance = document.getElementById('input-distance');
+      const inputAngle = document.getElementById('input-angle');
+      const inputPupil = document.getElementById('input-pupil');
+      const inputWavelength = document.getElementById('input-wavelength');
+
+      const valDistance = document.getElementById('val-distance');
+      const valAngle = document.getElementById('val-angle');
+      const valPupil = document.getElementById('val-pupil');
+      const valWavelength = document.getElementById('val-wavelength');
+
+      const btnMode1 = document.getElementById('btn-mode-1');
+      const btnMode2 = document.getElementById('btn-mode-2');
+      const btnMode3 = document.getElementById('btn-mode-3');
+
+      // Metric elements
+      const metricRms = document.getElementById('metric-rms');
+      const metricFocus = document.getElementById('metric-focus');
+      const metricGain = document.getElementById('metric-gain');
+
+      // Event Listeners for controls
+      inputDistance.addEventListener('input', (e) => {
+        distance = parseFloat(e.target.value);
+        valDistance.textContent = distance === 100 ? 'Far (무한대)' : distance === 0 ? 'Near (30cm)' : `${(0.3 + (distance / 100) * 10).toFixed(1)} m`;
+        updateSimulation();
+      });
+
+      inputAngle.addEventListener('input', (e) => {
+        angle = parseFloat(e.target.value);
+        valAngle.textContent = `${angle}°`;
+        updateSimulation();
+      });
+
+      inputPupil.addEventListener('input', (e) => {
+        pupil = parseFloat(e.target.value);
+        const mm = (pupil / 10).toFixed(1);
+        valPupil.textContent = `${mm} mm`;
+        document.getElementById('pupil-rig').setAttribute('r', (15 + (pupil / 10) * 6).toString());
+        document.getElementById('pupil-dynamic-text').textContent = `Diameter: ${mm}mm`;
+        updateSimulation();
+      });
+
+      inputWavelength.addEventListener('input', (e) => {
+        wavelength = parseInt(e.target.value);
+        valWavelength.textContent = `${wavelength} nm`;
+        updateSimulation();
+      });
+
+      // Mode toggles
+      btnMode1.addEventListener('click', () => setMode(1));
+      btnMode2.addEventListener('click', () => setMode(2));
+      btnMode3.addEventListener('click', () => setMode(3));
+
+      function setMode(newMode) {
+        mode = newMode;
+        [btnMode1, btnMode2, btnMode3].forEach((btn, idx) => {
+          if (idx + 1 === mode) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+        updateSimulation();
+      }
+
+      // Ray Tracing Simulator Render
+      const raysGroup = document.getElementById('rays-group');
+      const sourcePoint = document.getElementById('source-point');
+      const glassesLens = document.getElementById('glasses-lens');
+      const lensPath = document.getElementById('lens-path');
+
+      function updateSimulation() {
+        // Clear old rays
+        raysGroup.innerHTML = '';
+
+        // Dynamic visual attributes based on inputs
+        const targetY = 190 + (angle * 2.2);
+        
+        // Glasses lens distortion / curvature calculation
+        let glassesCurvature = 230; 
+        if (mode === 2) {
+          glassesCurvature = 228; // Optimized shape
+        } else if (mode === 3) {
+          // Gaze-adaptive shift
+          glassesCurvature = 230 - (angle / 12);
+        }
+
+        // Apply visual updates to glass lens SVG Path
+        glassesLens.setAttribute('d', `M 230,80 C ${glassesCurvature},120 ${glassesCurvature},260 230,300`);
+
+        // Modify source point position according to angle
+        sourcePoint.setAttribute('cy', targetY.toString());
+
+        // Light color by wavelength
+        const rayColor = getWavelengthColor(wavelength);
+
+        // Ray tracing calculations
+        const rayCount = 7;
+        const apertureHeight = 15 + (pupil / 10) * 8; // dynamic aperture based on pupil input
+
+        for (let i = 0; i < rayCount; i++) {
+          const progress = (i / (rayCount - 1)) - 0.5; // -0.5 to 0.5
+          const glassesIntersectY = 190 + (progress * apertureHeight * 1.5);
+          const eyeCorneaIntersectY = 190 + (progress * apertureHeight);
+
+          // Focus points and defocus logic
+          let focusX = 615; // Retina default position
+          
+          if (mode === 1) {
+            // Conventional lens: defocus in peripheral field
+            if (Math.abs(angle) > 10) {
+              // Focus behind retina (hyperopic defocus offset) or in front (myopic defocus offset)
+              focusX = 615 + (angle * progress * 0.8) - 15; 
+            }
+          } else if (mode === 2) {
+            // Personalized: Flat peripheral field profile
+            focusX = 615 + (angle * progress * 0.1);
+          } else if (mode === 3) {
+            // Adaptive: dynamic adaptation
+            focusX = 615;
+          }
+
+          // Build SVG Ray paths
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', `M 50,${targetY} Q 230,${glassesIntersectY} 380,${eyeCorneaIntersectY} Q 425,${190 + progress * apertureHeight} ${focusX},190`);
+          path.setAttribute('stroke', rayColor);
+          path.setAttribute('stroke-width', '1.2');
+          path.setAttribute('fill', 'none');
+          path.setAttribute('opacity', '0.65');
+          raysGroup.appendChild(path);
+        }
+
+        // Metrics output logic
+        let rms = 0.12;
+        let focusType = "Focal Plane In-Focus";
+        let gain = "+0%";
+
+        if (mode === 1) {
+          rms = 0.12 + (Math.abs(angle) * 0.01) + ((80 - pupil) * 0.002);
+          focusType = Math.abs(angle) > 10 ? "Hyperopic Defocus (원시성 디포커스)" : "Focus Secure";
+          gain = "+0%";
+          metricFocus.style.color = Math.abs(angle) > 10 ? 'var(--hyperopic-defocus)' : '#fff';
+        } else if (mode === 2) {
+          rms = 0.04 + (Math.abs(angle) * 0.002);
+          focusType = "Myopic Defocus (근시성 제어 유도)";
+          gain = "+24%";
+          metricFocus.style.color = 'var(--myopic-defocus)';
+        } else if (mode === 3) {
+          rms = 0.02;
+          focusType = "Adaptive Focal Align";
+          gain = "+45%";
+          metricFocus.style.color = 'var(--primary-color)';
+        }
+
+        metricRms.textContent = `${rms.toFixed(2)} μm`;
+        metricFocus.textContent = focusType;
+        metricGain.textContent = gain;
+
+        // Render Aberration Map
+        drawAberrationMap(rms);
+      }
+
+      function getWavelengthColor(wavelength) {
+        if (wavelength >= 380 && wavelength < 440) return '#7e00ff';
+        if (wavelength >= 440 && wavelength < 490) return '#0026ff';
+        if (wavelength >= 490 && wavelength < 510) return '#00ffc4';
+        if (wavelength >= 510 && wavelength < 580) return '#00ff00';
+        if (wavelength >= 580 && wavelength < 645) return '#ffaa00';
+        if (wavelength >= 645 && wavelength <= 780) return '#ff0000';
+        return '#ffffff';
+      }
+
+      // Wavefront Aberration Map Canvas renderer (Zernike Simulation)
+      const abCanvas = document.getElementById('aberration-canvas');
+      const abCtx = abCanvas.getContext('2d');
+
+      function drawAberrationMap(rmsVal) {
+        const w = abCanvas.width;
+        const h = abCanvas.height;
+        abCtx.clearRect(0, 0, w, h);
+
+        const imgData = abCtx.createImageData(w, h);
+        const data = imgData.data;
+
+        // Generate Zernike coma/defocus wave simulation
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            const dx = (x - w/2) / (w/2);
+            const dy = (y - h/2) / (h/2);
+            const r2 = dx*dx + dy*dy;
+            
+            if (r2 <= 1.0) {
+              // Zernike wave function simulation: Spherical + Astigmatism * rmsVal
+              const waveVal = Math.sin((r2 * 6.0 - dx * 4.0 * rmsVal) * Math.PI);
+              const colorIntensity = Math.floor((waveVal + 1.0) * 127);
+              
+              const pixelIndex = (y * w + x) * 4;
+              data[pixelIndex] = colorIntensity; // Red channel
+              data[pixelIndex + 1] = Math.floor(colorIntensity * 0.7); // Green channel
+              data[pixelIndex + 2] = 255 - colorIntensity; // Blue channel
+              data[pixelIndex + 3] = 255; // Alpha
+            }
+          }
+        }
+        abCtx.putImageData(imgData, 0, 0);
+      }
+
+      // Initial Execution
+      updateSimulation();
+
+      // P0-2: Interactive Flicker Controls (Flicker rate manual trigger)
+      const playOverlay = document.getElementById('flicker-play-overlay');
+      const btnStop = document.getElementById('btn-flicker-stop');
+      const flickerSource = document.getElementById('flicker-source');
+      const freqText = document.getElementById('flicker-freq-text');
+      
+      let flickerInterval = null;
+      let isFlickering = false;
+      let targetFreq = 12; // 12Hz
+
+      playOverlay.addEventListener('click', () => {
+        playOverlay.classList.add('hidden');
+        startFlicker(targetFreq);
+      });
+
+      btnStop.addEventListener('click', () => {
+        stopFlicker();
+      });
+
+      function startFlicker(freq) {
+        if (flickerInterval) clearInterval(flickerInterval);
+        isFlickering = true;
+        let visible = true;
+        const intervalMs = 1000 / (freq * 2); // half period for toggle
+        
+        flickerInterval = setInterval(() => {
+          if (visible) {
+            flickerSource.style.backgroundColor = 'transparent';
+          } else {
+            flickerSource.style.backgroundColor = '#22c55e'; // Green pulse
+          }
+          visible = !visible;
+        }, intervalMs);
+        freqText.textContent = `${freq} Hz (ACTIVE)`;
+      }
+
+      function stopFlicker() {
+        if (flickerInterval) {
+          clearInterval(flickerInterval);
+          flickerInterval = null;
+        }
+        isFlickering = false;
+        flickerSource.style.backgroundColor = '#22c55e';
+        playOverlay.classList.remove('hidden');
+        freqText.textContent = `${targetFreq} Hz (PAUSED)`;
+      }
+    </script>
+  </body>
+</html>
