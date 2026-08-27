@@ -104,8 +104,247 @@ function initPublicationsSubmenuToggleV2() {
 }
 
 /**
- * 2. V2 전용 데이터 로드 및 테마별 다이내믹 분류
+ * 2. V2 전용 데이터 로드 및 테마별 다이내믹 분류 (Evidence Library 필터링 최적화)
  */
+
+// 글로벌 데이터 저장소
+let allEnrichedPublications = [];
+
+// 마스터 블루프린트 8.4 규격 맞춤형 메타데이터 사전
+const publicationRegistry = [
+  {
+    key: "경남 차상위계층",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Learn",
+    status: "Completed",
+    materials: ["paper"],
+    key_finding: {
+      ko: "노인 차상위계층의 노안 가입도가 높고 원시도가 높을수록 일상생활과 관련된 시각적 삶의 질(QoVL)이 복합적으로 감소함을 정량 분석.",
+      en: "Quantitative proof that higher presbyopic add power and hyperopia degrade visual quality of life in low-income elderly populations."
+    }
+  },
+  {
+    key: "전자상거래 현황",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Learn",
+    status: "Completed",
+    materials: ["paper"],
+    key_finding: {
+      ko: "유럽 선진국 대비 한국의 시기능 및 시재활 인프라의 취약성을 지적하고 정책 개선안 제시.",
+      en: "Comparative analysis highlighting the vulnerability of vision rehabilitation infrastructure and proposing policy improvements."
+    }
+  },
+  {
+    key: "온라인 판매를 위한 계획서",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Learn",
+    status: "Completed",
+    materials: ["paper"],
+    key_finding: {
+      ko: "온라인 안경 판매 시 품질 및 조제 오차로 인한 사용자 안보건 위해 요인을 정량적으로 규명.",
+      en: "Quantitative identification of ocular health risk factors caused by dispensing errors in online spectacles sales."
+    }
+  },
+  {
+    key: "안경사 교육",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Learn",
+    status: "Completed",
+    materials: ["paper"],
+    key_finding: {
+      ko: "해외 검안사 교육 체계 분석을 바탕으로 한국 안경사의 전문 임상 역량 강화 로드맵 제안.",
+      en: "A strategic roadmap to enhance clinical competency of optometrists based on international curricula."
+    }
+  },
+  {
+    key: "습윤제",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Augment",
+    status: "Completed",
+    materials: ["paper", "figure"],
+    key_finding: {
+      ko: "습윤제 PVP K90 코팅 렌즈가 장시간 착용 시 공간주파수 3 cpd 영역에서 대비감도를 유의미하게 개선함.",
+      en: "PVP K90 coating on lenses significantly improves contrast sensitivity in the 3 cpd spatial frequency range over extended wear."
+    }
+  },
+  {
+    key: "버전스 기능",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Measure",
+    status: "Completed",
+    materials: ["paper", "figure"],
+    key_finding: {
+      ko: "사위 종류에 따라 눈-손 협응 시간 및 정확도가 버전스 기능 상태와 밀접하게 비례함을 입증.",
+      en: "Demonstrates that hand-eye coordination speed and accuracy are proportional to binocular vergence function parameters."
+    }
+  },
+  {
+    key: "입체시각의 시간적",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Model",
+    status: "Completed",
+    materials: ["paper", "figure"],
+    key_finding: {
+      ko: "외안근의 긴장을 이완하는 훈련을 통해 양안의 원치감 반응 시간이 평균 78.3ms 이상 단축됨을 발견.",
+      en: "Discovered that ocular relaxation training reduces binocular stereo-response latency by over 78.3ms."
+    }
+  },
+  {
+    key: "주시시차",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Measure",
+    status: "Completed",
+    materials: ["paper"],
+    key_finding: {
+      ko: "독일식 MKH와 영미식 검사법 간의 주시시차 측정 오차 범위를 정량적으로 비교 분석함.",
+      en: "Quantitative comparison of fixation disparity tolerances between German MKH and Anglo-American clinical methods."
+    }
+  },
+  {
+    key: "광학적 시보조기구",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Augment",
+    status: "Completed",
+    materials: ["paper"],
+    key_finding: {
+      ko: "저시력 환자 대상의 실제 임상 처방 배율이 단순 수학적 계산배율보다 약 1.17배 높게 처방됨을 분석.",
+      en: "Analyzed that empirical magnifying prescriptions for low vision are 1.17x higher than mathematical models predict."
+    }
+  },
+  {
+    key: "칼라필터",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Augment",
+    status: "Completed",
+    materials: ["paper", "figure"],
+    key_finding: {
+      ko: "특정 공간주파수 영역에서 황색 필터 렌즈가 순간적인 대비감도를 유의하게 향상시킵니다.",
+      en: "Confirms that yellow color-filter lenses significantly enhance short-term contrast sensitivity in specific spatial frequencies."
+    }
+  },
+  {
+    key: "반맹시",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Augment",
+    status: "Completed",
+    materials: ["paper", "demo", "figure"],
+    key_finding: {
+      ko: "셔터 안경 기반의 시분할 재활 장치 적용 시 반맹 환자의 공간 분할 인지 오차가 절반 이하로 감소함.",
+      en: "Time-division shutter spectacles reduce hemianopia spatial cognitive error from 18.14° to 8.91°."
+    }
+  },
+  {
+    key: "아이트래커",
+    type: "peer-reviewed",
+    program: "AI Biomarkers",
+    contribution: "Measure",
+    status: "Completed",
+    materials: ["paper", "figure"],
+    key_finding: {
+      ko: "흑백 조합의 텍스트가 다른 색상 대비 독서 속도 및 평균 주시 시간(Fixation)에서 가장 최적의 가독 효율을 보임.",
+      en: "High-contrast monochrome combinations yield the highest readability efficiency in eye-tracking fixation metrics."
+    }
+  },
+  {
+    key: "망막 외망상층",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Model",
+    status: "Completed",
+    materials: ["paper", "figure"],
+    key_finding: {
+      ko: "황반변성 환자 대상의 21일 중심외주시 훈련을 통해 손상된 망막 주변 신경계의 기능적 재조직화 가능성을 입증.",
+      en: "Demonstrated outer plexiform layer neural plasticity in AMD patients after 21 days of eccentric viewing training."
+    }
+  },
+  {
+    key: "주변시야에서의 대비감도",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Model",
+    status: "Completed",
+    materials: ["paper", "figure"],
+    key_finding: {
+      ko: "중심외주시 훈련 후 주변 망막의 저주파 및 고주파 대비감도가 통계적으로 유의미하게 증가함을 규명.",
+      en: "Proves statistically significant increases in peripheral retina contrast sensitivity after eccentric viewing training."
+    }
+  },
+  {
+    key: "생리적 가중에",
+    type: "peer-reviewed",
+    program: "Visual Neuroscience",
+    contribution: "Model",
+    status: "Completed",
+    materials: ["paper"],
+    key_finding: {
+      ko: "황반부 외측 20도 지점의 망막 주변부가 시각 자극에 대한 생리적 가중 속도가 중심부보다 빠름을 규명.",
+      en: "Identified that temporal summation and physiological weighting are accelerated at 20° eccentricity."
+    }
+  },
+  {
+    key: "비침습적 동공",
+    type: "peer-reviewed",
+    program: "AI Biomarkers",
+    contribution: "Model",
+    status: "Active",
+    materials: ["paper", "code", "data", "figure"],
+    key_finding: {
+      ko: "동공 동역학 47종 변수와 대비감도를 머신러닝으로 융합하여 당뇨망막병증 및 경도인지장애(MCI)를 90% 이상의 정확도로 스크리닝함.",
+      en: "Machine learning integration of 47 pupil dynamic parameters predicts diabetic retinopathy and MCI with >90% accuracy."
+    }
+  },
+  {
+    key: "망막 초평면",
+    type: "peer-reviewed",
+    program: "Peripheral Metrology",
+    contribution: "Model",
+    status: "Active",
+    materials: ["paper", "code", "figure"],
+    key_finding: {
+      ko: "Navarro 광학안 모형을 기반으로 사광선 추적(Oblique Ray-tracing)을 수행하여 망막 주변부의 굴절 오차를 정밀 맵핑함.",
+      en: "Utilizes Navarro schematic eye model to map peripheral refraction errors using non-paraxial oblique ray-tracing."
+    }
+  },
+  {
+    key: "공막 프로파일",
+    type: "peer-reviewed",
+    program: "Scleral 3D Prototypes",
+    contribution: "Measure",
+    status: "Completed",
+    materials: ["paper", "figure"],
+    key_finding: {
+      ko: "3D 공막 지형 스캐너 설계를 위해 concentric structured light 형태의 투영 무늬를 노이즈 없이 정렬하는 전처리 알고리즘 개발.",
+      en: "Pre-processing algorithm aligning concentric structured light projections for micrometer-scale 3D scleral topography scanners."
+    }
+  },
+  {
+    key: "경선별 변화",
+    type: "peer-reviewed",
+    program: "Peripheral Metrology",
+    contribution: "Model",
+    status: "Completed",
+    materials: ["paper"],
+    key_finding: {
+      ko: "근시가 깊어짐에 따라 코쪽(nasal) 망막 경선이 귀쪽(temporal) 대비 더 가파르게 변하여 주변부 원시성 초점 이탈이 유발됨을 규명.",
+      en: "Nasal retinal meridians steepen faster than temporal ones in high myopia, inducing asymmetrical peripheral hyperopia."
+    }
+  }
+];
+
+// 현재 활성화된 오픈 사이언스 머티리얼 필터
+let selectedMaterialsFilter = [];
+
 async function loadPublicationsV2() {
   const lang = document.documentElement.lang || "en";
   const dataPath = getBasePath() + "assets/data/content_v5.json?v=5.0";
@@ -115,184 +354,43 @@ async function loadPublicationsV2() {
 
   try {
     const data = await DataCache.get(dataPath);
-    const publications = data[lang]?.publications || [];
+    const rawPublications = data[lang]?.publications || [];
 
-    if (publications.length > 0) {
-      // 테마별 그룹 버킷
-      const metrologyGroup = [];
-      const biomarkerGroup = [];
-      const myopiaRehabGroup = [];
-      const archiveGroup = [];
-
-      publications.forEach((pub) => {
-        const title = pub.title || "";
-        const field = pub.field || "";
-        const journal = pub.journal || "";
-
-        // 분류 키워드 체크
-        const metrologyKeywords = ["망막", "초평면", "곡률", "광선추적", "굴절", "공막", "3D scanner", "안구 버전스", "안위", "주시시차", "칼라필터", "난시", "cornea", "sclera", "optics", "ray-tracing", "refraction"];
-        const biomarkerKeywords = ["동공반응", "동공 반응", "바이오마커", "신경학적 질환", "스크리닝", "아이트래커", "가독성", "홍채 순응", "성적 지향성", "휘도", "pupil", "biomarker"];
-        const myopiaRehabKeywords = ["근시억제", "근시 억제", "시생활", "시각적 삶", "대비감도", "대비감도함수", "입체시", "입체시각", "시보조기구", "반맹시", "재활", "중심외주시", "주변시야", "생리적 가중", "시기능", "스포츠비젼", "myopia", "eccentric viewing", "hemianopia", "rehabilitation"];
-        const archiveKeywords = ["전자상거래", "온라인 판매", "안경사 교육", "안경사제도", "양성기관", "교과목", "마이스터"];
-
-        const matches = (text, keywords) => keywords.some(kw => text.includes(kw));
-
-        // 1순위: 무관한 아카이브 분류
-        if (matches(title, archiveKeywords) || field === "정책" && matches(title, ["온라인", "교육", "제도"])) {
-          archiveGroup.push(pub);
-        }
-        // 2순위: 각 핵심 테마 매핑
-        else if (matches(title, metrologyKeywords) || matches(journal, ["3D scanner", "주시시차", "안굴절계"])) {
-          metrologyGroup.push(pub);
-        }
-        else if (matches(title, biomarkerKeywords) || matches(journal, ["동공반응", "아이트래커"])) {
-          biomarkerGroup.push(pub);
-        }
-        else if (matches(title, myopiaRehabKeywords) || matches(journal, ["대비감도", "시보조기구", "재활치료"])) {
-          myopiaRehabGroup.push(pub);
-        }
-        // 3순위: 디폴트 처리
-        else {
-          if (field === "임상") {
-            myopiaRehabGroup.push(pub);
-          } else {
-            archiveGroup.push(pub);
-          }
-        }
-      });
-
-      // 렌더링에 사용될 테마 데이터 구조
-      const themes = [
-        {
-          id: "theme-metrology",
-          title: lang === "ko" ? "시광학 및 정밀 광학 계측" : "Ophthalmic Metrology & Ray-Tracing",
-          foundations: lang === "ko" 
-            ? "각공막의 3D 표면 위상과 미세 안구 운동을 마이크로미터 단위로 포착하는 광학 계측 기술을 다룹니다. 이는 안구의 수학적 광학 모델(Navarro Eyeball Model) 및 고차 파면 수차(Wavefront Aberrations) 분석을 바탕으로, 비침습적으로 안구 전면부 및 후면부의 기하학적 형태를 복원하는 원천 기술에 기반합니다."
-            : "Focuses on optical measurement technologies capturing 3D corneo-scleral topography and micro-ocular movements at the micrometer scale. This is grounded in mathematical eye models (Navarro Eyeball Model) and wavefront aberrations analysis, providing non-invasive anatomical reconstruction.",
-          citations: [
-            "Navarro, R., et al. (1985). Accommodation-dependent model of the human eye with aspheric surfaces. JOSA A.",
-            "Thibos, L. N., et al. (2002). Standards for reporting the optical aberrations of eyes. Journal of Vision."
-          ],
-          items: metrologyGroup
-        },
-        {
-          id: "theme-biomarker",
-          title: lang === "ko" ? "AI 동공 바이오마커 및 생체 스크리닝" : "AI Pupil Dynamics & Biomarker Screening",
-          foundations: lang === "ko" 
-            ? "동공 광반사(Pupillary Light Reflex, PLR)의 반응 대기시간(Latency), 수축 속도(Constriction Velocity), 적응적 복잡성 신호는 자율신경계 및 중추신경계의 변성을 조기에 스크리닝할 수 있는 디지털 바이오마커로 기능합니다. Optinex는 Basler 고속 카메라 기반 계측을 통해 기존 문헌에서 제시된 치매 및 신경퇴행성 질환의 미세 동공 반응 특이성을 고도화하고 있습니다."
-            : "Analyzes Pupil Light Reflex (PLR) dynamics—including latency, constriction velocity, and complexity metrics—as digital biomarkers for autonomic and central nervous system degeneration. Optinex enhances screening specificity for neurodegenerative anomalies using high-speed imaging.",
-          citations: [
-            "Fotiou, D. F., et al. (2000). Evaluation of the pupillary light reflex in Alzheimer's disease: a review. Journal of Neurology.",
-            "Chougule, P. S., et al. (2019). Pupillometry in Alzheimer's Disease: A Systematic Review. Frontiers in Neurology."
-          ],
-          items: biomarkerGroup
-        },
-        {
-          id: "theme-myopia-rehab",
-          title: lang === "ko" ? "개인맞춤형 시각 재활 및 근시 제어" : "Myopia Control & Visual Rehabilitation",
-          foundations: lang === "ko" 
-            ? "주변부 망막에 맺히는 상의 초점 이탈(Peripheral Hyperopic Defocus)은 안구의 후방 축성 성장(Axial Elongation)을 자극하여 근시 진행을 유도하는 핵심 기전입니다. Optinex는 주변부 상점의 위치를 인위적으로 망막 전방(Myopic Defocus)에 위치시키는 광학 패턴 알고리즘 및 황반변성 저시력 환자를 위한 중심외주시(Eccentric Viewing) 재활 기법을 통합적으로 고안합니다."
-            : "Peripheral hyperopic defocus triggers axial elongation, accelerating myopia progression. Optinex develops optical algorithms to shift peripheral foci anterior to the retina (myopic defocus) and designs eccentric viewing (EV) training strategies using Preferred Retinal Loci (PRL) for macular degeneration patients.",
-          citations: [
-            "Smith III, E. L., et al. (2005). Peripheral vision can influence eye growth and refractive development in infant monkeys. IOVS.",
-            "Smith III, E. L. (2011). Prentice Award Lecture 2010: A Case for Peripheral Optical Treatment Strategies for Myopia. Optom Vis Sci.",
-            "Crossland, M. D., et al. (2005). Reading with a preferred retinal locus in macular disease. Ophthalmic & Physiological Optics."
-          ],
-          items: myopiaRehabGroup
-        }
-      ];
-
-      let htmlContent = "";
-
-      // 1. 핵심 테마 렌더링
-      themes.forEach((theme) => {
-        htmlContent += `
-          <div id="${theme.id}" class="publication-section" style="margin-bottom: 60px; scroll-margin-top: 60px;">
-            <h3 class="publication-section-title" style="border-bottom: 2px solid var(--line-strong); padding-bottom: 12px; margin-bottom: 20px;">
-              ${theme.title}
-            </h3>
-            
-            <!-- Academic Foundation Card (DeepMind Science Core) -->
-            <div class="academic-foundation-card">
-              <h4>
-                <span style="color: var(--primary-color);">💡</span> 
-                ${lang === "ko" ? "학술적 이론 배경" : "Scientific Foundations"}
-              </h4>
-              <p>${theme.foundations}</p>
-              
-              <div class="academic-references">
-                <div class="academic-references-title">${lang === "ko" ? "핵심 관련 학계 문헌" : "Key Supporting Literature"}</div>
-                ${theme.citations.map(cit => `<div class="ref-item">${cit}</div>`).join("")}
-              </div>
-            </div>
-            
-            <!-- Publications List -->
-            <div class="publication-list-iso">
-        `;
-
-        if (theme.items.length > 0) {
-          // 연도 내림차순 정렬
-          theme.items.sort((a, b) => parseInt(b.year) - parseInt(a.year));
-          theme.items.forEach((pub, index) => {
-            const isJournal = !["학술발표", "Conference", "conference"].includes(pub.field);
-            const tag = isJournal 
-              ? (lang === "ko" ? "[학술지 논문]" : "[Journal Paper]")
-              : (lang === "ko" ? "[학술대회 발표]" : "[Conference Abstract]");
-            const tagClass = isJournal ? "color: var(--primary-color);" : "color: var(--text-light);";
-
-            htmlContent += `
-              <div class="iso-item" style="margin-bottom: 16px;">
-                <span class="iso-item-number" style="font-family: var(--mono-font); font-size: 12px; color: var(--text-light); margin-right: 8px;">${index + 1}.</span>
-                <span style="font-family: var(--mono-font); font-size: 10px; margin-right: 8px; ${tagClass}">${tag}</span>
-                <span class="authors">${pub.authors}.</span>
-                <a href="${pub.doi || "#"}" target="_blank" class="iso-item-title-link" style="font-weight: 500; pointer-events: ${pub.doi ? "auto" : "none"}; text-decoration: ${pub.doi ? "underline" : "none"};">
-                  "${pub.title}"
-                </a>.
-                <span class="iso-item-journal" style="font-style: italic; color: var(--text-light);">${pub.journal}</span> (${pub.year}).
-              </div>
-            `;
-          });
-        } else {
-          htmlContent += `<p style="color: var(--text-light);">${lang === "ko" ? "준비된 연구 성과가 없습니다." : "No publications listed yet."}</p>`;
-        }
-
-        htmlContent += `</div></div>`;
-      });
-
-      // 2. 과거 정책 아카이브 아코디언 렌더링
-      if (archiveGroup.length > 0) {
-        archiveGroup.sort((a, b) => parseInt(b.year) - parseInt(a.year));
-        const archiveTitle = lang === "ko" ? "기타 안보건 정책 및 검안 교육 아카이브" : "Archived Optometry Policy & Educational Studies";
-        
-        htmlContent += `
-          <div id="theme-archive" class="archive-accordion" style="scroll-margin-top: 60px;">
-            <button class="archive-header" onclick="toggleArchiveAccordion()">
-              <h3>📦 ${archiveTitle} (${archiveGroup.length})</h3>
-              <span class="archive-icon">▼</span>
-            </button>
-            <div class="archive-content">
-              <div class="publication-list-iso">
-        `;
-
-        archiveGroup.forEach((pub, index) => {
-          htmlContent += `
-            <div class="iso-item" style="margin-bottom: 16px; border-bottom: 1px solid rgba(168, 200, 224, 0.05); padding-bottom: 12px;">
-              <span class="iso-item-number" style="font-family: var(--mono-font);">${index + 1}.</span>
-              <span class="authors">${pub.authors}.</span>
-              <a href="${pub.doi || "#"}" target="_blank" class="iso-item-title-link" style="pointer-events: ${pub.doi ? "auto" : "none"};">
-                "${pub.title}"
-              </a>.
-              <span class="iso-item-journal">${pub.journal}</span> (${pub.year}).
-              ${pub.abstract ? `<p style="font-size: 12.5px; color: var(--text-light); margin-top: 6px; line-height: 1.5; text-align: justify;">${pub.abstract}</p>` : ""}
-            </div>
-          `;
-        });
-
-        htmlContent += `</div></div></div>`;
+    // 메타데이터 매핑 및 데이터 인리치(Enrichment)
+    allEnrichedPublications = rawPublications.map((pub) => {
+      const match = publicationRegistry.find((reg) => pub.title.includes(reg.key));
+      if (match) {
+        return {
+          ...pub,
+          type: match.type,
+          program: match.program,
+          contribution: match.contribution,
+          status: match.status,
+          materials: match.materials,
+          key_finding: match.key_finding[lang] || match.key_finding.en
+        };
+      } else {
+        // 백업/기본값 설정
+        return {
+          ...pub,
+          type: "peer-reviewed",
+          program: "Visual Neuroscience",
+          contribution: "Learn",
+          status: "Completed",
+          materials: ["paper"],
+          key_finding: lang === "ko" 
+            ? "시각 인지 안정성 확보 및 시력 제어 기전에 대한 학술적 실증."
+            : "Academic validation of visual cognitive stability and ocular control mechanisms."
+        };
       }
+    });
 
-      container.innerHTML = htmlContent;
-    }
+    // 필터링 이벤트 등록
+    bindFilterEvents();
+
+    // 초기 필터링 적용 및 첫 렌더링
+    applyFiltersAndRender();
+
   } catch (error) {
     console.error("Could not load publications V2:", error);
     container.innerHTML = `<p class="error-text">오류가 발생했습니다: ${error.message}</p>`;
@@ -300,13 +398,221 @@ async function loadPublicationsV2() {
 }
 
 /**
- * 아카이브 아코디언 토글 함수
+ * 필터 변경 감지 이벤트 바인딩
  */
-function toggleArchiveAccordion() {
-  const accordion = document.getElementById("theme-archive");
-  if (!accordion) return;
-  accordion.classList.toggle("open");
+function bindFilterEvents() {
+  const searchBox = document.getElementById("search-box");
+  const selectProgram = document.getElementById("select-program");
+  const selectType = document.getElementById("select-type");
+  const selectContribution = document.getElementById("select-contribution");
+  const materialBtns = document.querySelectorAll(".material-tag-btn");
+
+  if (searchBox) {
+    searchBox.addEventListener("input", applyFiltersAndRender);
+  }
+  if (selectProgram) {
+    selectProgram.addEventListener("change", applyFiltersAndRender);
+  }
+  if (selectType) {
+    selectType.addEventListener("change", applyFiltersAndRender);
+  }
+  if (selectContribution) {
+    selectContribution.addEventListener("change", applyFiltersAndRender);
+  }
+
+  materialBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const mat = btn.getAttribute("data-material");
+      btn.classList.toggle("active");
+      
+      if (selectedMaterialsFilter.includes(mat)) {
+        selectedMaterialsFilter = selectedMaterialsFilter.filter(item => item !== mat);
+      } else {
+        selectedMaterialsFilter.push(mat);
+      }
+      
+      applyFiltersAndRender();
+    });
+  });
 }
+
+/**
+ * 활성화된 필터 조건을 추출해 데이터를 필터링하고 렌더링을 지시함
+ */
+function applyFiltersAndRender() {
+  const lang = document.documentElement.lang || "en";
+  const searchBox = document.getElementById("search-box");
+  const selectProgram = document.getElementById("select-program");
+  const selectType = document.getElementById("select-type");
+  const selectContribution = document.getElementById("select-contribution");
+
+  const query = searchBox ? searchBox.value.trim().toLowerCase() : "";
+  const programFilter = selectProgram ? selectProgram.value : "all";
+  const typeFilter = selectType ? selectType.value : "all";
+  const contributionFilter = selectContribution ? selectContribution.value : "all";
+
+  // 필터 통과 로직
+  const filtered = allEnrichedPublications.filter((pub) => {
+    // 1. 텍스트 검색 필터 (제목, 저자, 저널명)
+    if (query) {
+      const matchesTitle = pub.title.toLowerCase().includes(query);
+      const matchesAuthors = pub.authors.toLowerCase().includes(query);
+      const matchesJournal = pub.journal.toLowerCase().includes(query);
+      if (!matchesTitle && !matchesAuthors && !matchesJournal) {
+        return false;
+      }
+    }
+
+    // 2. 프로그램 필터
+    if (programFilter !== "all" && pub.program !== programFilter) {
+      return false;
+    }
+
+    // 3. 성과 유형 필터
+    if (typeFilter !== "all" && pub.type !== typeFilter) {
+      return false;
+    }
+
+    // 4. 루프 기여 단계 필터
+    if (contributionFilter !== "all" && pub.contribution !== contributionFilter) {
+      return false;
+    }
+
+    // 5. 오픈 사이언스 머티리얼 필터 (교집합 검사)
+    if (selectedMaterialsFilter.length > 0) {
+      const hasAllSelected = selectedMaterialsFilter.every(mat => pub.materials.includes(mat));
+      if (!hasAllSelected) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+
+  // 연도순 내림차순 정렬
+  filtered.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+
+  // 결과 화면 그리기
+  renderFilteredList(filtered);
+}
+
+/**
+ * 최종 필터링된 배열을 Evidence Library 카드 UI로 출력함
+ */
+function renderFilteredList(items) {
+  const lang = document.documentElement.lang || "en";
+  const container = document.getElementById("publications-container-v2");
+  if (!container) return;
+
+  if (items.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 3rem; border: 1px dashed var(--line); border-radius: 8px;">
+        <p style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 0;">
+          ${lang === "ko" ? "일치하는 연구 근거가 데이터베이스에 없습니다." : "No matching evidence found in the database."}
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  let html = "";
+  items.forEach((pub) => {
+    const isJournal = pub.type === "peer-reviewed";
+    const typeLabel = lang === "ko" 
+      ? (isJournal ? "저널 논문" : "학술대회 발표")
+      : (isJournal ? "Journal" : "Conference");
+    
+    // Contribution 활성화 표시용 매핑
+    const steps = ["Measure", "Model", "Augment", "Learn"];
+    
+    // 오픈 사이언스 머티리얼 아이콘 맵
+    const materialIcons = [
+      { key: "paper", icon: "📄", label: lang === "ko" ? "원문" : "Paper" },
+      { key: "figure", icon: "📊", label: lang === "ko" ? "차트" : "Figures" },
+      { key: "code", icon: "💻", label: lang === "ko" ? "코드" : "Code" },
+      { key: "data", icon: "🗄️", label: lang === "ko" ? "데이터셋" : "Data" },
+      { key: "demo", icon: "🧪", label: lang === "ko" ? "데모" : "Demo" }
+    ];
+
+    const hasMaterials = pub.materials && pub.materials.length > 0;
+
+    html += `
+      <div class="pub-card" data-program="${pub.program}">
+        <div class="pub-card-header">
+          <div class="pub-badge-group">
+            <span class="pub-badge badge-type">${typeLabel}</span>
+            <span class="pub-badge badge-status ${pub.status === "Active" ? "active" : ""}">${pub.status}</span>
+          </div>
+          <span class="pub-year">${pub.year}</span>
+        </div>
+        
+        <a href="${pub.doi || "#"}" target="_blank" class="pub-title-link" style="pointer-events: ${pub.doi ? "auto" : "none"}; text-decoration: ${pub.doi ? "none" : "none"};">
+          "${pub.title}"
+        </a>
+        
+        <div class="pub-authors">${pub.authors}</div>
+        <div class="pub-journal">${pub.journal}</div>
+        
+        <div class="pub-key-finding">
+          <span class="key-finding-label">Key Finding</span>
+          <span class="key-finding-val">${pub.key_finding}</span>
+        </div>
+        
+        <div class="pub-alignment-row">
+          <!-- Loop Flow Steps -->
+          <div class="loop-flow" title="${lang === "ko" ? "회사 R&D 루프 단계" : "Company R&D Loop Step"}">
+            ${steps.map(step => `
+              <span class="loop-step ${pub.contribution === step ? "active" : ""}">
+                ${step}
+              </span>
+            `).join("")}
+          </div>
+          
+          <!-- Open Materials Badges -->
+          <div class="open-materials-list" title="${lang === "ko" ? "공개 과학 자료 제공 여부" : "Available Open Science Materials"}">
+            ${materialIcons.map(item => {
+              const active = pub.materials.includes(item.key);
+              return `
+                <span class="material-icon ${active ? "active" : ""}" title="${item.label} ${active ? "Available" : "Not Provided"}">
+                  ${item.icon}
+                </span>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+
+  // 카드 호버 시 3D eyeball 연동 이벤트 바인딩
+  bindCardHoverToEyeball();
+}
+
+/**
+ * 리스트 카드의 program 정보에 맞게 3D Eyeball 뷰를 실시간 연동
+ */
+function bindCardHoverToEyeball() {
+  const cards = document.querySelectorAll(".pub-card");
+  cards.forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      const prog = card.getAttribute("data-program");
+      let themeKey = "metrology"; // 기본값
+      
+      if (prog === "Visual Neuroscience") {
+        themeKey = "myopia-rehab";
+      } else if (prog === "Peripheral Metrology" || prog === "Scleral 3D Prototypes") {
+        themeKey = "metrology";
+      } else if (prog === "AI Biomarkers") {
+        themeKey = "biomarker";
+      }
+      
+      update3DModelByTheme(themeKey);
+    });
+  });
+}
+
 
 /**
  * 3. Three.js 3D 안구 시각화 초기화 및 실시간 제어
