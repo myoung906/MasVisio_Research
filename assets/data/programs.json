@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0",
+  "programs": [
+    {
+      "id": "wide-field-eye-modeling",
+      "order": 1,
+      "name": {
+        "ko": "Wide-field Eye Modeling",
+        "en": "Wide-field Eye Modeling"
+      },
+      "representative_question": {
+        "ko": "중심시가 아니라 시야 전체의 망막·광학 상태를 어떻게 모델링할 것인가?",
+        "en": "How should the retinal and optical state of the whole visual field be modeled, not only central vision?"
+      },
+      "short_description": {
+        "ko": "주변부 망막 형상, 사광선, OCT 왜곡 보정, 광선추적을 연결하는 프로그램입니다.",
+        "en": "A program connecting peripheral retinal shape, oblique rays, OCT distortion correction, and ray tracing."
+      },
+      "current_assets": [],
+      "missing_capability": {
+        "ko": "외부 검증 데이터와 공개 가능한 모델 버전 관리가 필요합니다.",
+        "en": "External validation data and versioned public model exports are still required."
+      },
+      "next_falsification_test": {
+        "ko": "동일 입력에서 독립 장비 또는 독립 연구자가 유사한 주변부 모델 출력을 재현하는지 확인합니다.",
+        "en": "Test whether an independent device or investigator can reproduce similar peripheral model outputs from the same inputs."
+      },
+      "collaboration_request": {
+        "ko": "광학 설계, OCT, 안구 생체계측 검증 파트너",
+        "en": "Partners in optical design, OCT, and ocular biometry validation"
+      }
+    },
+    {
+      "id": "visual-neuroperformance",
+      "order": 2,
+      "name": {
+        "ko": "Visual Neuroperformance",
+        "en": "Visual Neuroperformance"
+      },
+      "representative_question": {
+        "ko": "대비감도, 동공 반응, 양안 기능은 실제 시각 수행을 어떻게 설명하는가?",
+        "en": "How do contrast sensitivity, pupil response, and binocular function explain real visual performance?"
+      },
+      "short_description": {
+        "ko": "시각 기능과 신경·행동 수행 지표를 연결하는 프로그램입니다.",
+        "en": "A program linking visual function with neural and behavioral performance metrics."
+      },
+      "current_assets": [],
+      "missing_capability": {
+        "ko": "표본, 자극 조건, 분석 파이프라인의 공개 가능한 정리가 필요합니다.",
+        "en": "Publicly reviewable sample, stimulus, and analysis-pipeline documentation is needed."
+      },
+      "next_falsification_test": {
+        "ko": "동일 프로토콜의 반복 측정에서 효과 방향과 불확실성이 유지되는지 확인합니다.",
+        "en": "Test whether effect direction and uncertainty remain stable in repeated measurements under the same protocol."
+      },
+      "collaboration_request": {
+        "ko": "시기능 측정, 신경시각, 스포츠비전 검증 파트너",
+        "en": "Partners in visual-function measurement, neurovision, and sports-vision validation"
+      }
+    },
+    {
+      "id": "adaptive-optical-systems",
+      "order": 3,
+      "name": {
+        "ko": "Adaptive Optical Systems",
+        "en": "Adaptive Optical Systems"
+      },
+      "representative_question": {
+        "ko": "측정된 시야장 모델을 어떤 광학계나 시제품으로 구현할 수 있는가?",
+        "en": "What optical systems or prototypes can realize the measured field model?"
+      },
+      "short_description": {
+        "ko": "렌즈, 필터, 셔터, 시제품 장치와 적응형 광학 구현을 다루는 프로그램입니다.",
+        "en": "A program for lenses, filters, shutters, prototype devices, and adaptive optical implementation."
+      },
+      "current_assets": [],
+      "missing_capability": {
+        "ko": "공개 가능한 시제품 사양과 안전성 검토 범위가 필요합니다.",
+        "en": "Public prototype specifications and safety-review scope are required."
+      },
+      "next_falsification_test": {
+        "ko": "시제품 적용 전후의 성능 변화가 장치 효과인지 학습·피로 효과인지 분리합니다.",
+        "en": "Separate device effects from learning or fatigue effects in pre/post prototype testing."
+      },
+      "collaboration_request": {
+        "ko": "렌즈 제조, 광학 시제품, 사용성 검증 파트너",
+        "en": "Partners in lens manufacturing, optical prototyping, and usability validation"
+      }
+    },
+    {
+      "id": "longitudinal-eye-intelligence",
+      "order": 4,
+      "name": {
+        "ko": "Longitudinal Eye Intelligence",
+        "en": "Longitudinal Eye Intelligence"
+      },
+      "representative_question": {
+        "ko": "시간에 따라 변하는 눈과 시각 기능을 어떻게 추적하고 예측할 것인가?",
+        "en": "How should changing ocular and visual function be tracked and predicted over time?"
+      },
+      "short_description": {
+        "ko": "장기 추적, 위험도 변화, 개인별 모델 업데이트를 다루는 프로그램입니다.",
+        "en": "A program for longitudinal tracking, risk-state changes, and personal model updates."
+      },
+      "current_assets": [],
+      "missing_capability": {
+        "ko": "장기 추적 데이터와 외부 검증 cohort가 필요합니다.",
+        "en": "Longitudinal data and external validation cohorts are required."
+      },
+      "next_falsification_test": {
+        "ko": "초기 측정값이 후속 변화량을 사전 정의된 오차 범위 안에서 예측하는지 검증합니다.",
+        "en": "Test whether baseline measurements predict follow-up changes within a predefined error range."
+      },
+      "collaboration_request": {
+        "ko": "종단 연구, 데이터 거버넌스, 임상 검증 파트너",
+        "en": "Partners in longitudinal studies, data governance, and clinical validation"
+      }
+    }
+  ]
+}

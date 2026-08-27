@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-08-27T13:58:52.408Z",
+  "input": "assets/data/content_v5.json",
+  "legacy_artifact_records": 59,
+  "sensitive_artifacts_excluded": 1,
+  "public_artifact_records": 58,
+  "migrated_public_study_groups": 57,
+  "same_study_grouping": {
+    "study_id": "STUDY-GYEONGNAM-VISUAL-LIFE-2022",
+    "legacy_record_ids": [
+      "LEGACY-001",
+      "LEGACY-036"
+    ]
+  },
+  "mapped": 58,
+  "missing_translation": 0,
+  "missing_link": 37,
+  "pending_classification": 58
+}

@@ -6,7 +6,9 @@
   "scripts": {
     "test": "playwright test",
     "dev": "python3 -m http.server 8080",
-    "start": "python3 -m http.server 8080"
+    "start": "python3 -m http.server 8080",
+    "migrate:evidence": "node scripts/site/migrate-content-v5.mjs",
+    "validate:content": "node scripts/site/validate-content.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0"

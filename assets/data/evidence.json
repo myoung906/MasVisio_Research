@@ -1,0 +1,4807 @@
+{
+  "schema_version": "1.0",
+  "generated_from": "assets/data/content_v5.json",
+  "generated_at": "2026-08-27T13:58:52.408Z",
+  "counts": {
+    "legacy_artifact_records": 59,
+    "sensitive_artifacts_excluded": 1,
+    "public_artifact_records": 58,
+    "migrated_public_study_groups": 57,
+    "engineering_evidence": 0,
+    "total_evidence_cards": 57
+  },
+  "studies": [
+    {
+      "study_id": "STUDY-LEGACY-023",
+      "legacy_record_ids": [
+        "LEGACY-023"
+      ],
+      "slug": "comparative-study-of-motion-contrast-sensitivity-in-left-and-right-visual-pathways",
+      "title": {
+        "ko": "좌우 시각경로에서 모션 대비감도의 비교 연구",
+        "en": "Comparative Study of Motion Contrast Sensitivity in Left and Right Visual Pathways"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2025,
+      "authors": [
+        {
+          "display_name": "강민정",
+          "order": 1
+        },
+        {
+          "display_name": "이정후",
+          "order": 2
+        },
+        {
+          "display_name": "서아정",
+          "order": 3
+        },
+        {
+          "display_name": "강다현",
+          "order": 4
+        },
+        {
+          "display_name": "서재명",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-023",
+          "legacy_record_id": "LEGACY-023",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2025 대한시과학회 동계학술대회, 2025",
+            "en": "The Korean Society of Vision Science Winter Conference, 2025"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-025",
+      "legacy_record_ids": [
+        "LEGACY-025"
+      ],
+      "slug": "development-of-early-screening-algorithm-for-multiple-neurological-diseases-using-non-invasive-pupil-biomarkers",
+      "title": {
+        "ko": "비침습적 동공 바이오마커를 활용한 다중 신경학적 질환 조기 스크리팅 알고리즘 개발",
+        "en": "Development of Early Screening Algorithm for Multiple Neurological Diseases Using Non-invasive Pupil Biomarkers"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2025,
+      "authors": [
+        {
+          "display_name": "유상혁",
+          "order": 1
+        },
+        {
+          "display_name": "유명학",
+          "order": 2
+        },
+        {
+          "display_name": "강민정",
+          "order": 3
+        },
+        {
+          "display_name": "서아정",
+          "order": 4
+        },
+        {
+          "display_name": "서재명",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-025",
+          "legacy_record_id": "LEGACY-025",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2025 대한시과학회한국안광학회 공동학술대회, 2025",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2025"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-026",
+      "legacy_record_ids": [
+        "LEGACY-026"
+      ],
+      "slug": "meridional-changes-in-peripheral-retina-according-to-refractive-error",
+      "title": {
+        "ko": "굴절이상에 따른 주변부  망막의 경선별 변화",
+        "en": "Meridional Changes in Peripheral Retina According to Refractive Error"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2025,
+      "authors": [
+        {
+          "display_name": "허민영",
+          "order": 1
+        },
+        {
+          "display_name": "박근호",
+          "order": 2
+        },
+        {
+          "display_name": "여현주",
+          "order": 3
+        },
+        {
+          "display_name": "서재명",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-026",
+          "legacy_record_id": "LEGACY-026",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2025 대한시과학회한국안광학회 공동학술대회, 2025",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2025"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-027",
+      "legacy_record_ids": [
+        "LEGACY-027"
+      ],
+      "slug": "study-on-correlation-between-spherical-refractive-power-and-corneal-curvature-radius-for-meridional-peripheral-retina-correction",
+      "title": {
+        "ko": "경선별 주변부 망막 교정을 위한 구면굴절력과 각막곡률반경의 상관관계 연구",
+        "en": "Study on Correlation between Spherical Refractive Power and Corneal Curvature Radius for Meridional Peripheral Retina Correction"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2024,
+      "authors": [
+        {
+          "display_name": "유명학",
+          "order": 1
+        },
+        {
+          "display_name": "여현주",
+          "order": 2
+        },
+        {
+          "display_name": "조희진",
+          "order": 3
+        },
+        {
+          "display_name": "이정후",
+          "order": 4
+        },
+        {
+          "display_name": "서재명",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-027",
+          "legacy_record_id": "LEGACY-027",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2024 한국안광학회대한시과학회 공동학술대회, 2024",
+            "en": "The Joint Academic Conference of The Korean Ophthalmic Optics Society and The Korean Society of Vision Science, 2024"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-028",
+      "legacy_record_ids": [
+        "LEGACY-028"
+      ],
+      "slug": "study-on-optical-ray-tracing-for-retinal-hyperplane-profile-algorithm-design",
+      "title": {
+        "ko": "망막 초평면 profile 알고리즘 설계를 위한 안광학계 광선추적에 관한 연구",
+        "en": "Study on Optical Ray Tracing for Retinal Hyperplane Profile Algorithm Design"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2024,
+      "authors": [
+        {
+          "display_name": "허민영",
+          "order": 1
+        },
+        {
+          "display_name": "박근호",
+          "order": 2
+        },
+        {
+          "display_name": "여현주",
+          "order": 3
+        },
+        {
+          "display_name": "서재명",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-028",
+          "legacy_record_id": "LEGACY-028",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2024 한국안광학회대한시과학회 공동학술대회, 2024",
+            "en": "The Joint Academic Conference of The Korean Ophthalmic Optics Society and The Korean Society of Vision Science, 2024"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-029",
+      "legacy_record_ids": [
+        "LEGACY-029"
+      ],
+      "slug": "review-of-methods-for-peripheral-retina-correction-for-myopia-control",
+      "title": {
+        "ko": "근시억제용 망막 주변부 교정을 위한 방법 고찰",
+        "en": "Review of Methods for Peripheral Retina Correction for Myopia Control"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2024,
+      "authors": [
+        {
+          "display_name": "여현주",
+          "order": 1
+        },
+        {
+          "display_name": "조희진",
+          "order": 2
+        },
+        {
+          "display_name": "유명학",
+          "order": 3
+        },
+        {
+          "display_name": "이정후",
+          "order": 4
+        },
+        {
+          "display_name": "서재명",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-029",
+          "legacy_record_id": "LEGACY-029",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2024 한국안광학회대한시과학회 공동학술대회, 2024",
+            "en": "The Joint Academic Conference of The Korean Ophthalmic Optics Society and The Korean Society of Vision Science, 2024"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-030",
+      "legacy_record_ids": [
+        "LEGACY-030"
+      ],
+      "slug": "validity-verification-of-spherical-refractive-power-measurement-estimated-by-probability-distribution-of-machine-learning",
+      "title": {
+        "ko": "기계학습의 확률분포로 추정하는 구면굴절력 측정값의 타당성 검증",
+        "en": "Validity Verification of Spherical Refractive Power Measurement Estimated by Probability Distribution of Machine Learning"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2023,
+      "authors": [
+        {
+          "display_name": "한경선",
+          "order": 1
+        },
+        {
+          "display_name": "여현주",
+          "order": 2
+        },
+        {
+          "display_name": "표수환",
+          "order": 3
+        },
+        {
+          "display_name": "박지석",
+          "order": 4
+        },
+        {
+          "display_name": "서재명",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-030",
+          "legacy_record_id": "LEGACY-030",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2023 대한시과학회한국안광학회 공동학술대회, 2023",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2023"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-031",
+      "legacy_record_ids": [
+        "LEGACY-031"
+      ],
+      "slug": "study-on-design-of-spherical-auto-refractometer-based-on-retinoscopy",
+      "title": {
+        "ko": "검영법을 기반으로 한 구면 자동안굴절계 설계에 관한 연구",
+        "en": "Study on Design of Spherical Auto-Refractometer Based on Retinoscopy"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2023,
+      "authors": [
+        {
+          "display_name": "조희진",
+          "order": 1
+        },
+        {
+          "display_name": "여현주",
+          "order": 2
+        },
+        {
+          "display_name": "이수민",
+          "order": 3
+        },
+        {
+          "display_name": "정민규",
+          "order": 4
+        },
+        {
+          "display_name": "서재명",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-031",
+          "legacy_record_id": "LEGACY-031",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2023 대한시과학회한국안광학회 공동학술대회, 2023",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2023"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-032",
+      "legacy_record_ids": [
+        "LEGACY-032"
+      ],
+      "slug": "study-on-real-time-auto-refractometer-design-based-on-machine-learning",
+      "title": {
+        "ko": "기계학습 기반의 실시간 자동안굴절계 설계 연구",
+        "en": "Study on Real-time Auto-Refractometer Design Based on Machine Learning"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2023,
+      "authors": [
+        {
+          "display_name": "여현주",
+          "order": 1
+        },
+        {
+          "display_name": "조희진",
+          "order": 2
+        },
+        {
+          "display_name": "한경선",
+          "order": 3
+        },
+        {
+          "display_name": "서재명",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-032",
+          "legacy_record_id": "LEGACY-032",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2023 대한시과학회한국안광학회 공동학술대회, 2023",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2023"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-033",
+      "legacy_record_ids": [
+        "LEGACY-033"
+      ],
+      "slug": "pilot-study-on-retinal-hyperplane-for-total-retinal-correction",
+      "title": {
+        "ko": "전체망막 완전교정을 위한 망막 초평면에 관한 pilot연구",
+        "en": "Pilot Study on Retinal Hyperplane for Total Retinal Correction"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2023,
+      "authors": [
+        {
+          "display_name": "허민영",
+          "order": 1
+        },
+        {
+          "display_name": "박근호",
+          "order": 2
+        },
+        {
+          "display_name": "여현주",
+          "order": 3
+        },
+        {
+          "display_name": "서재명",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-033",
+          "legacy_record_id": "LEGACY-033",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2023 대한시과학회한국안광학회 공동학술대회, 2023",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2023"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-034",
+      "legacy_record_ids": [
+        "LEGACY-034"
+      ],
+      "slug": "study-on-total-retinal-shape-calculation-for-customized-addition-design-of-myopia-control-soft-contact-lenses",
+      "title": {
+        "ko": "근시억제용 소프트콘택트렌즈의 맞춤형 가입도 디자인 설계를 위한 전체망막 형상 계산에 관한 연구",
+        "en": "Study on Total Retinal Shape Calculation for Customized Addition Design of Myopia Control Soft Contact Lenses"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2023,
+      "authors": [
+        {
+          "display_name": "박근호",
+          "order": 1
+        },
+        {
+          "display_name": "허민영",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-034",
+          "legacy_record_id": "LEGACY-034",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2023 한국안광학회 하계학술대회, 2023",
+            "en": "The Korean Ophthalmic Optics Society Summer Conference, 2023"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-035",
+      "legacy_record_ids": [
+        "LEGACY-035"
+      ],
+      "slug": "effect-of-interpupillary-distance-and-refractive-error-on-stereopsis",
+      "title": {
+        "ko": "동공간거리와 굴절이상이 입체시에 미치는 영향",
+        "en": "Effect of Interpupillary Distance and Refractive Error on Stereopsis"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2023,
+      "authors": [
+        {
+          "display_name": "여현주",
+          "order": 1
+        },
+        {
+          "display_name": "박근호",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-035",
+          "legacy_record_id": "LEGACY-035",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2023 한국안광학회 하계학술대회, 2023",
+            "en": "The Korean Ophthalmic Optics Society Summer Conference, 2023"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-GYEONGNAM-VISUAL-LIFE-2022",
+      "legacy_record_ids": [
+        "LEGACY-001",
+        "LEGACY-036"
+      ],
+      "slug": "gyeongnam-visual-life-status",
+      "title": {
+        "ko": "경남 차상위계층의 시각적 삶의 실태 연구",
+        "en": "A Study on the Visual Life Status of the Near-Poverty Class in Gyeongnam"
+      },
+      "summary": {
+        "ko": "65세 이상 차상위계층의 시생활 실태와 시각적 삶의 질을 파악하여 지역사회 정책 개발에 활용하는 기초 연구. 가입도(노안 교정 렌즈 도수)가 증가할수록 원거리 활동과 근거리 활동 모두에서 유의미한 음의 상관관계를 보였으며, 구면등가굴절력의 원시도가 증가할수록 시각적 삶의 질이 저하되었다.",
+        "en": "A basic study utilizing the status of visual life and quality of life of the near-poverty class aged 65 and over for community policy development. As the addition (presbyopia correction lens power) increased, a significant negative correlation was found in both distance and near activities, and visual quality of life decreased as the hyperopia of the spherical equivalent refraction increased.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2022,
+      "authors": [
+        {
+          "display_name": "김정숙",
+          "order": 1
+        },
+        {
+          "display_name": "배현주",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-001",
+          "legacy_record_id": "LEGACY-001",
+          "kind": null,
+          "legacy_field": {
+            "ko": "정책",
+            "en": "Policy"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2022, 제 27 권 제 4 호, pp. 335-340",
+            "en": "J Korean Ophthalmic Opt Soc., 2022, Vol. 27, No. 4, pp. 335-340"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002912370"
+        },
+        {
+          "artifact_id": "ART-LEGACY-036",
+          "legacy_record_id": "LEGACY-036",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2022한국안광학회동계학술대회, 2022",
+            "en": "The Korean Ophthalmic Optics Society Winter Conference, 2022"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-002",
+      "legacy_record_ids": [
+        "LEGACY-002"
+      ],
+      "slug": "a-review-of-the-current-status-of-e-commerce-for-vision-correction-devices-and-policy-directions-for-korea-1-focusing-on-the-eu-and-uk",
+      "title": {
+        "ko": "해외 시교정 보정용구 전자상거래 현황과 한국의 정책적 방향성 고찰 (1) - 유럽연합과 영국을 중심으로",
+        "en": "A Review of the Current Status of E-commerce for Vision Correction Devices and Policy Directions for Korea (1) - Focusing on the EU and UK"
+      },
+      "summary": {
+        "ko": "시교정 보정용구와 안구 굴절검사의 온라인 서비스에 대한 유럽 선진국 사례를 분석하여 한국의 정책적 방향성을 모색. 한국의 시기능 및 시재활 전문 서비스가 유럽 5개국 대비 매우 열악함을 확인하고, 시교정 보정용구 전자상거래의 한계를 제시했다.",
+        "en": "Exploring policy directions for Korea by analyzing cases of advanced European countries regarding online services for vision correction devices and eye refraction examinations. Confirmed that Korea's professional vision function and rehabilitation services are very poor compared to 5 European countries, and presented the limitations of e-commerce for vision correction devices.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2022,
+      "authors": [
+        {
+          "display_name": "김현선",
+          "order": 1
+        },
+        {
+          "display_name": "서재명",
+          "order": 2
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-002",
+          "legacy_record_id": "LEGACY-002",
+          "kind": null,
+          "legacy_field": {
+            "ko": "정책",
+            "en": "Policy"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2022, 제 27 권 제 3 호, pp. 201-208",
+            "en": "J Korean Ophthalmic Opt Soc., 2022, Vol. 27, No. 3, pp. 201-208"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002882289"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-037",
+      "legacy_record_ids": [
+        "LEGACY-037"
+      ],
+      "slug": "dynamic-visual-response-of-temporal-and-nasal-retina-to-yellow-filter",
+      "title": {
+        "ko": "황색필터에 대한 이측과 비측 망막의 동체시각 반응",
+        "en": "Dynamic Visual Response of Temporal and Nasal Retina to Yellow Filter"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2022,
+      "authors": [
+        {
+          "display_name": "이윤지",
+          "order": 1
+        },
+        {
+          "display_name": "이태남",
+          "order": 2
+        },
+        {
+          "display_name": "박지석",
+          "order": 3
+        },
+        {
+          "display_name": "서재명",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-037",
+          "legacy_record_id": "LEGACY-037",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2022한국안광학회동계학술대회, 2022",
+            "en": "The Korean Ophthalmic Optics Society Winter Conference, 2022"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-038",
+      "legacy_record_ids": [
+        "LEGACY-038"
+      ],
+      "slug": "effect-of-dominant-eye-on-visual-function-of-left-and-right-visual-pathways",
+      "title": {
+        "ko": "우세안이 좌우 시각졍로의 시기능에 미치는 영향",
+        "en": "Effect of Dominant Eye on Visual Function of Left and Right Visual Pathways"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2022,
+      "authors": [
+        {
+          "display_name": "이윤지",
+          "order": 1
+        },
+        {
+          "display_name": "이태남",
+          "order": 2
+        },
+        {
+          "display_name": "박지석",
+          "order": 3
+        },
+        {
+          "display_name": "서재명",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-038",
+          "legacy_record_id": "LEGACY-038",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2022한국안광학회동계학술대회, 2022",
+            "en": "The Korean Ophthalmic Optics Society Winter Conference, 2022"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-039",
+      "legacy_record_ids": [
+        "LEGACY-039"
+      ],
+      "slug": "pilot-study-on-pattern-vep-changes-in-axial-myopia",
+      "title": {
+        "ko": "축성근시의 Pattern VEP 변화에 대한 pilot 연구",
+        "en": "Pilot Study on Pattern VEP Changes in Axial Myopia"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2022,
+      "authors": [
+        {
+          "display_name": "박다은",
+          "order": 1
+        },
+        {
+          "display_name": "박근호",
+          "order": 2
+        },
+        {
+          "display_name": "허민영",
+          "order": 3
+        },
+        {
+          "display_name": "서재명",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-039",
+          "legacy_record_id": "LEGACY-039",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2022한국안광학회동계학술대회, 2022",
+            "en": "The Korean Ophthalmic Optics Society Winter Conference, 2022"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-040",
+      "legacy_record_ids": [
+        "LEGACY-040"
+      ],
+      "slug": "pilot-study-on-correlation-between-refractive-error-and-peripheral-retinal-curvature-in-axial-myopia",
+      "title": {
+        "ko": "축성근시에서 굴절이상과 주변부 망막만곡도의 상관관계에 대한 pilot연구",
+        "en": "Pilot Study on Correlation between Refractive Error and Peripheral Retinal Curvature in Axial Myopia"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2022,
+      "authors": [
+        {
+          "display_name": "허민영",
+          "order": 1
+        },
+        {
+          "display_name": "박근호",
+          "order": 2
+        },
+        {
+          "display_name": "박다은",
+          "order": 3
+        },
+        {
+          "display_name": "서재명",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-040",
+          "legacy_record_id": "LEGACY-040",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2022한국안광학회대한시과학회공동학술대회, 2022",
+            "en": "The Joint Academic Conference of The Korean Ophthalmic Optics Society and The Korean Society of Vision Science, 2022"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-041",
+      "legacy_record_ids": [
+        "LEGACY-041"
+      ],
+      "slug": "effect-of-luminance-of-electronic-media-viewed-at-night-and-refractive-error-on-iris-adaptation-time",
+      "title": {
+        "ko": "야간에 주시하는 전자매체의 휘도와 굴절이상이 홍채 순응시간에 미치는 영향",
+        "en": "Effect of Luminance of Electronic Media Viewed at Night and Refractive Error on Iris Adaptation Time"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2022,
+      "authors": [
+        {
+          "display_name": "이다현",
+          "order": 1
+        },
+        {
+          "display_name": "이윤지",
+          "order": 2
+        },
+        {
+          "display_name": "이민주",
+          "order": 3
+        },
+        {
+          "display_name": "박지석",
+          "order": 4
+        },
+        {
+          "display_name": "서재명",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-041",
+          "legacy_record_id": "LEGACY-041",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2022한국안광학회대한시과학회공동학술대회, 2022",
+            "en": "The Joint Academic Conference of The Korean Ophthalmic Optics Society and The Korean Society of Vision Science, 2022"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-042",
+      "legacy_record_ids": [
+        "LEGACY-042"
+      ],
+      "slug": "image-processing-technique-before-fabrication-of-real-time-3d-scanner-for-scleral-profile-analysis",
+      "title": {
+        "ko": "공막 프로파일 분석을 위한 실시간 3D scanner 제작 전 영상처리 기법",
+        "en": "Image Processing Technique Before Fabrication of Real-time 3D Scanner for Scleral Profile Analysis"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2022,
+      "authors": [
+        {
+          "display_name": "이태남",
+          "order": 1
+        },
+        {
+          "display_name": "권소민",
+          "order": 2
+        },
+        {
+          "display_name": "윤한성",
+          "order": 3
+        },
+        {
+          "display_name": "심원석",
+          "order": 4
+        },
+        {
+          "display_name": "백수원",
+          "order": 5
+        },
+        {
+          "display_name": "노태민",
+          "order": 6
+        },
+        {
+          "display_name": "서재명",
+          "order": 7
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-042",
+          "legacy_record_id": "LEGACY-042",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2022한국안광학회대한시과학회공동학술대회, 2022",
+            "en": "The Joint Academic Conference of The Korean Ophthalmic Optics Society and The Korean Society of Vision Science, 2022"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-003",
+      "legacy_record_ids": [
+        "LEGACY-003"
+      ],
+      "slug": "a-study-on-the-problems-of-plans-for-online-sales-of-vision-correction-glasses",
+      "title": {
+        "ko": "시력보정용안경의 온라인 판매를 위한 계획서의 문제점들에 대한 연구",
+        "en": "A Study on the Problems of Plans for Online Sales of Vision Correction Glasses"
+      },
+      "summary": {
+        "ko": "온라인 시력 보정용 안경 판매 계획서의 문제점을 분석. 업체 계획서가 현실과 맞지 않고 현행 법률을 위반하며, 해외 사례에서도 안경 품질, 조제 문제 등 다양한 문제점이 확인됨을 지적했다. 더 나은 안보건 서비스 제공을 위한 정책 개선 방안을 제시했다.",
+        "en": "Analyzed problems with plans for online sales of vision correction glasses. Pointed out that company plans do not match reality and violate current laws, and various problems such as glasses quality and dispensing issues were confirmed in overseas cases. Suggested policy improvement measures for providing better eye health services.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2021,
+      "authors": [
+        {
+          "display_name": "심현석",
+          "order": 1
+        },
+        {
+          "display_name": "서재명",
+          "order": 2
+        },
+        {
+          "display_name": "김상현",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-003",
+          "legacy_record_id": "LEGACY-003",
+          "kind": null,
+          "legacy_field": {
+            "ko": "정책",
+            "en": "Policy"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2021, 제 26 권 제 3 호, pp. 214-222",
+            "en": "J Korean Ophthalmic Opt Soc., 2021, Vol. 26, No. 3, pp. 214-222"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002759886"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-043",
+      "legacy_record_ids": [
+        "LEGACY-043"
+      ],
+      "slug": "overseas-online-sales-of-vision-correction-devices",
+      "title": {
+        "ko": "시기능 보정용구에 대한 해외의 온라인 판매",
+        "en": "Overseas Online Sales of Vision Correction Devices"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2021,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-043",
+          "legacy_record_id": "LEGACY-043",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "2021년대한시과학회추계학술대회, 2021",
+            "en": "The Korean Society of Vision Science Autumn Conference, 2021"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-044",
+      "legacy_record_ids": [
+        "LEGACY-044"
+      ],
+      "slug": "correlation-among-age-spherical-refractive-error-and-retinal-curvature-radius",
+      "title": {
+        "ko": "나이, 구면굴절도와 망막곡률반경의 상관관계",
+        "en": "Correlation among Age, Spherical Refractive Error, and Retinal Curvature Radius"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2021,
+      "authors": [
+        {
+          "display_name": "정유은",
+          "order": 1
+        },
+        {
+          "display_name": "허민영",
+          "order": 2
+        },
+        {
+          "display_name": "이다현",
+          "order": 3
+        },
+        {
+          "display_name": "서재명",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-044",
+          "legacy_record_id": "LEGACY-044",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "대학시과학회한국안광학회 공동학술대회, 2021",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2021"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-045",
+      "legacy_record_ids": [
+        "LEGACY-045"
+      ],
+      "slug": "study-on-qualitative-function-of-left-and-right-visual-pathways-in-sports-vision",
+      "title": {
+        "ko": "스포츠비젼에서 좌우 시각전달로의 질적 기능 연구",
+        "en": "Study on Qualitative Function of Left and Right Visual Pathways in Sports Vision"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2021,
+      "authors": [
+        {
+          "display_name": "박근호",
+          "order": 1
+        },
+        {
+          "display_name": "이윤지",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-045",
+          "legacy_record_id": "LEGACY-045",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "대학시과학회한국안광학회 공동학술대회, 2021",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2021"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-046",
+      "legacy_record_ids": [
+        "LEGACY-046"
+      ],
+      "slug": "effect-of-luminance-and-viewing-distance-on-pupil-response",
+      "title": {
+        "ko": "휘도와 주시거리가 동공반응에 미치는 영향",
+        "en": "Effect of Luminance and Viewing Distance on Pupil Response"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2021,
+      "authors": [
+        {
+          "display_name": "정유은",
+          "order": 1
+        },
+        {
+          "display_name": "이예슬",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-046",
+          "legacy_record_id": "LEGACY-046",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "대학시과학회한국안광학회 공동학술대회, 2021",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2021"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-047",
+      "legacy_record_ids": [
+        "LEGACY-047"
+      ],
+      "slug": "effect-of-luminance-and-viewing-distance-on-accommodative-lag",
+      "title": {
+        "ko": "휘도와 주시거리가 조절랙에 미치는 영향",
+        "en": "Effect of Luminance and Viewing Distance on Accommodative Lag"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2021,
+      "authors": [
+        {
+          "display_name": "박채은",
+          "order": 1
+        },
+        {
+          "display_name": "이윤지",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-047",
+          "legacy_record_id": "LEGACY-047",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "대학시과학회한국안광학회 공동학술대회, 2021",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2021"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-048",
+      "legacy_record_ids": [
+        "LEGACY-048"
+      ],
+      "slug": "comparison-of-visual-perception-for-moving-and-stationary-objects",
+      "title": {
+        "ko": "움직이는 사물과 정지된 사물에 대한 시각적 인지 비교",
+        "en": "Comparison of Visual Perception for Moving and Stationary Objects"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2021,
+      "authors": [
+        {
+          "display_name": "박준혁",
+          "order": 1
+        },
+        {
+          "display_name": "임성훈",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-048",
+          "legacy_record_id": "LEGACY-048",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "대학시과학회한국안광학회 공동학술대회, 2021",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2021"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-049",
+      "legacy_record_ids": [
+        "LEGACY-049"
+      ],
+      "slug": "correlation-between-refractive-astigmatism-and-foveal-astigmatism",
+      "title": {
+        "ko": "굴절성난시와 중심와난시의 상관관계",
+        "en": "Correlation between Refractive Astigmatism and Foveal Astigmatism"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2021,
+      "authors": [
+        {
+          "display_name": "이민주",
+          "order": 1
+        },
+        {
+          "display_name": "이주희",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-049",
+          "legacy_record_id": "LEGACY-049",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "대학시과학회한국안광학회 공동학술대회, 2021",
+            "en": "The Joint Academic Conference of The Korean Society of Vision Science and The Korean Ophthalmic Optics Society, 2021"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-004",
+      "legacy_record_ids": [
+        "LEGACY-004"
+      ],
+      "slug": "policy-proposals-for-the-education-and-training-of-excellent-opticians",
+      "title": {
+        "ko": "우수한 안경사 교육과 양성을 위한 정책 제안",
+        "en": "Policy Proposals for the Education and Training of Excellent Opticians"
+      },
+      "summary": {
+        "ko": "미국, 영국, 독일의 검안사 교육과정과 국내 안경광학과 교육과정을 비교 분석하여 정책 방향을 제시. 교육 기간 통일화, 표준화된 교육과정, 현장 실습 강화 등을 통한 우수한 안경사 배출 방안을 제안했다.",
+        "en": "Presented policy directions by comparing and analyzing optometrist curriculums in the US, UK, and Germany with the Department of Optometry curriculum in Korea. Proposed measures to produce excellent opticians through unification of education periods, standardized curriculums, and reinforcement of field training.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2020,
+      "authors": [
+        {
+          "display_name": "김상현",
+          "order": 1
+        },
+        {
+          "display_name": "심현석",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-004",
+          "legacy_record_id": "LEGACY-004",
+          "kind": null,
+          "legacy_field": {
+            "ko": "정책",
+            "en": "Policy"
+          },
+          "citation": {
+            "ko": "대한시과학회지 (Korean J. Vis. Sci.), 2020, Vol. 22, No. 1, pp. 63-73",
+            "en": "Korean J. Vis. Sci., 2020, Vol. 22, No. 1, pp. 63-73"
+          },
+          "verification": "verified_doi",
+          "doi": "https://doi.org/10.17337/JMBI.2020.22.1.63",
+          "url": "https://doi.org/10.17337/JMBI.2020.22.1.63"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-005",
+      "legacy_record_ids": [
+        "LEGACY-005"
+      ],
+      "slug": "a-study-on-the-future-of-the-korean-optical-industry-with-scientific-and-technological-development-ii-a-preliminary-study-on-the-development-direction-of-optometry-subjects-in-the-4th-industrial-revolution-era",
+      "title": {
+        "ko": "과학기술 발달에 따른 한국 안경계 미래에 관한 고찰 II: 4차 산업혁명 시대의 안경광학과 교과목의 발전 방향에 대한 예비 연구",
+        "en": "A Study on the Future of the Korean Optical Industry with Scientific and Technological Development II: A Preliminary Study on the Development Direction of Optometry Subjects in the 4th Industrial Revolution Era"
+      },
+      "summary": {
+        "ko": "4차 산업혁명 시대에 요구되는 안경광학과 교과목 개발 방향을 탐색. 전국 안경사 152명을 대상으로 조사한 결과, 굴절검사와 시기능 이상 교과목이 가장 중요한 교과목으로 인식되었으며, 이러한 분야의 전문성 강화 필요성을 제시했다.",
+        "en": "Explored the development direction of optometry subjects required in the 4th Industrial Revolution era. A survey of 152 opticians nationwide revealed that refraction and visual function abnormalities were perceived as the most important subjects, suggesting the need to strengthen expertise in these fields.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2020,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        },
+        {
+          "display_name": "김대종",
+          "order": 2
+        },
+        {
+          "display_name": "김형수",
+          "order": 3
+        },
+        {
+          "display_name": "이기석",
+          "order": 4
+        },
+        {
+          "display_name": "예기훈",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-005",
+          "legacy_record_id": "LEGACY-005",
+          "kind": null,
+          "legacy_field": {
+            "ko": "정책",
+            "en": "Policy"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2020, 제 25 권 제 2 호, pp. 103-111",
+            "en": "J Korean Ophthalmic Opt Soc., 2020, Vol. 25, No. 2, pp. 103-111"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002599899"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-050",
+      "legacy_record_ids": [
+        "LEGACY-050"
+      ],
+      "slug": "analysis-of-pupil-center-shift-according-to-age-and-corneal-refractive-power",
+      "title": {
+        "ko": "나이와 각막굴절력에 따른 동공중심의 이동량 분석",
+        "en": "Analysis of Pupil Center Shift According to Age and Corneal Refractive Power"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2020,
+      "authors": [
+        {
+          "display_name": "허민영",
+          "order": 1
+        },
+        {
+          "display_name": "엄정희",
+          "order": 2
+        },
+        {
+          "display_name": "배현주",
+          "order": 3
+        },
+        {
+          "display_name": "김정숙",
+          "order": 4
+        },
+        {
+          "display_name": "서재명",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-050",
+          "legacy_record_id": "LEGACY-050",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "한국안광학회동계학술대회, 2020",
+            "en": "The Korean Ophthalmic Optics Society Winter Conference, 2020"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-051",
+      "legacy_record_ids": [
+        "LEGACY-051"
+      ],
+      "slug": "analysis-of-correlation-between-gender-and-pupil-center",
+      "title": {
+        "ko": "성별과 동공중심의 상관관계 분석",
+        "en": "Analysis of Correlation between Gender and Pupil Center"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2020,
+      "authors": [
+        {
+          "display_name": "허민영",
+          "order": 1
+        },
+        {
+          "display_name": "엄정희",
+          "order": 2
+        },
+        {
+          "display_name": "배현주",
+          "order": 3
+        },
+        {
+          "display_name": "김정숙",
+          "order": 4
+        },
+        {
+          "display_name": "서재명",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-051",
+          "legacy_record_id": "LEGACY-051",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "한국안광학회동계학술대회, 2020",
+            "en": "The Korean Ophthalmic Optics Society Winter Conference, 2020"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-052",
+      "legacy_record_ids": [
+        "LEGACY-052"
+      ],
+      "slug": "changes-in-anterior-corneal-shape-according-to-age",
+      "title": {
+        "ko": "나이에 따른 각막 전면 형상 변화도",
+        "en": "Changes in Anterior Corneal Shape According to Age"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2020,
+      "authors": [
+        {
+          "display_name": "허민영",
+          "order": 1
+        },
+        {
+          "display_name": "엄정희",
+          "order": 2
+        },
+        {
+          "display_name": "배현주",
+          "order": 3
+        },
+        {
+          "display_name": "김정숙",
+          "order": 4
+        },
+        {
+          "display_name": "서재명",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-052",
+          "legacy_record_id": "LEGACY-052",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "대한시과학회추계학술대회, 2020",
+            "en": "The Korean Society of Vision Science Autumn Conference, 2020"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-053",
+      "legacy_record_ids": [
+        "LEGACY-053"
+      ],
+      "slug": "pilot-study-on-radius-of-curvature-by-principal-meridian-of-retina",
+      "title": {
+        "ko": "망막의 주경선별 곡률반경에 관한 pilot 연구",
+        "en": "Pilot Study on Radius of Curvature by Principal Meridian of Retina"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2020,
+      "authors": [
+        {
+          "display_name": "허민영",
+          "order": 1
+        },
+        {
+          "display_name": "박근호",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-053",
+          "legacy_record_id": "LEGACY-053",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "한국안광학회대한시과학회 공동학술대회, 2020",
+            "en": "The Joint Academic Conference of The Korean Ophthalmic Optics Society and The Korean Society of Vision Science, 2020"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-006",
+      "legacy_record_ids": [
+        "LEGACY-006"
+      ],
+      "slug": "a-study-on-the-meister-and-optometrist-education-system-in-germany-i",
+      "title": {
+        "ko": "독일의 마이스터와 검안사 교육시스템에 관한 연구 I",
+        "en": "A Study on the Meister and Optometrist Education System in Germany I"
+      },
+      "summary": {
+        "ko": "독일의 검안 관련 교육시스템 분석. 독일은 다양한 교육과정을 통해 검안 전문가를 양성하며, 유럽연합 출범으로 공통된 검안사 교육과정 도입을 추진하고 있다. 안경사(AO)와 안경원 마이스터(AM) 대상 계속교육을 통한 전문가 양성 시스템의 우수성을 확인했다.",
+        "en": "Analysis of the optometry-related education system in Germany. Germany trains optometry experts through various curriculums and is promoting the introduction of a common optometrist curriculum with the launch of the EU. Confirmed the excellence of the expert training system through continuing education for Opticians (AO) and Master Opticians (AM).",
+        "review_state": "pending_source_review"
+      },
+      "year": 2019,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        },
+        {
+          "display_name": "김현선",
+          "order": 2
+        },
+        {
+          "display_name": "Wolfgang Sickenberger",
+          "order": 3
+        },
+        {
+          "display_name": "김상현",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-006",
+          "legacy_record_id": "LEGACY-006",
+          "kind": null,
+          "legacy_field": {
+            "ko": "정책",
+            "en": "Policy"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J. Korean Oph. Opt. Soc.), 24(3):205-214, 2019",
+            "en": "J. Korean Oph. Opt. Soc., 24(3):205-214, 2019"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002507567"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-007",
+      "legacy_record_ids": [
+        "LEGACY-007"
+      ],
+      "slug": "effect-of-wetting-agent-adsorbed-contact-lenses-on-contrast-sensitivity-function",
+      "title": {
+        "ko": "습윤제가 흡착된 콘택트렌즈가 대비감도함수에 영향을 주는 효과",
+        "en": "Effect of Wetting Agent-Adsorbed Contact Lenses on Contrast Sensitivity Function"
+      },
+      "summary": {
+        "ko": "습윤제(PVP K90 0.3%) 처리 하이드로겔 콘택트렌즈의 대비감도 개선 효과를 분석. 공간주파수 3 cpd에서 습윤 처리된 렌즈가 착용 12시간 후 통계적으로 유의미한 대비감도 개선을 보였으며, 전반적으로 안경렌즈와 비슷하거나 더 개선되는 경향을 확인했다.",
+        "en": "Analyzed the effect of wetting agent (PVP K90 0.3%) treated hydrogel contact lenses on improving contrast sensitivity. At a spatial frequency of 3 cpd, the wetting-treated lens showed statistically significant improvement in contrast sensitivity after 12 hours of wear, and generally confirmed a tendency to be similar to or better than spectacle lenses.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2019,
+      "authors": [
+        {
+          "display_name": "윤경희",
+          "order": 1
+        },
+        {
+          "display_name": "이재철",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-007",
+          "legacy_record_id": "LEGACY-007",
+          "kind": null,
+          "legacy_field": {
+            "ko": "임상",
+            "en": "Clinical"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2019, 제 24 권 제 2 호, pp. 109-115",
+            "en": "J Korean Ophthalmic Opt Soc., 2019, Vol. 24, No. 2, pp. 109-115"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002476720"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-008",
+      "legacy_record_ids": [
+        "LEGACY-008"
+      ],
+      "slug": "the-effect-of-vergence-function-on-eye-hand-coordination",
+      "title": {
+        "ko": "안구의 버전스 기능이 눈과 손 협응에 미치는 영향",
+        "en": "The Effect of Vergence Function on Eye-Hand Coordination"
+      },
+      "summary": {
+        "ko": "버전스 기능이 눈과 손 협응 능력에 미치는 영향을 분석. 근거리 내사위군에서는 조절성폭주비(AC/A)와, 외사위군에서는 원거리 폭주여력과 유의미한 상관관계를 보였다. 개인의 시각 작업 형태에 적합한 재활 훈련 설계의 중요성을 제시했다.",
+        "en": "Analyzed the effect of vergence function on eye-hand coordination ability. Significant correlations were found with the AC/A ratio in the near esophoria group and with distance vergence facility in the exophoria group. Suggested the importance of designing rehabilitation training suitable for individual visual task types.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2018,
+      "authors": [
+        {
+          "display_name": "황정하",
+          "order": 1
+        },
+        {
+          "display_name": "서재명",
+          "order": 2
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-008",
+          "legacy_record_id": "LEGACY-008",
+          "kind": null,
+          "legacy_field": {
+            "ko": "임상",
+            "en": "Clinical"
+          },
+          "citation": {
+            "ko": "대한시과학회지, 2018, Vol. 20, No. 3, pp. 289-295",
+            "en": "Korean J. Vis. Sci., 2018, Vol. 20, No. 3, pp. 289-295"
+          },
+          "verification": "verified_doi",
+          "doi": "https://doi.org/10.17337/JMBI.2018.20.3.289",
+          "url": "https://doi.org/10.17337/JMBI.2018.20.3.289"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-009",
+      "legacy_record_ids": [
+        "LEGACY-009"
+      ],
+      "slug": "temporal-characteristics-of-stereopsis",
+      "title": {
+        "ko": "입체시각의 시간적 특징",
+        "en": "Temporal Characteristics of Stereopsis"
+      },
+      "summary": {
+        "ko": "수평 안위 방향에 따른 입체시 인식의 시간적 특성을 분석. 내사위군에서 외안근의 긴장을 이완시킨 후 원치감 반응 시간이 78.3±96.1 ms 감소했으며, 신경상 긴장까지 이완시켰을 때 107.2±80.3 ms 감소하여 프리즘 교정만으로도 입체시각 개선이 가능함을 확인했다.",
+        "en": "Analyzed the temporal characteristics of stereopsis perception according to horizontal phoria direction. In the esophoria group, after relaxing the tension of extraocular muscles, the stereo-reaction time decreased by 78.3±96.1 ms, and when neural tension was also relaxed, it decreased by 107.2±80.3 ms, confirming that stereopsis can be improved with prism correction alone.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2018,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-009",
+          "legacy_record_id": "LEGACY-009",
+          "kind": null,
+          "legacy_field": {
+            "ko": "임상",
+            "en": "Clinical"
+          },
+          "citation": {
+            "ko": "대한시과학회지, 2018, Vol. 20, No. 3, pp. 297-303",
+            "en": "Korean J. Vis. Sci., 2018, Vol. 20, No. 3, pp. 297-303"
+          },
+          "verification": "verified_doi",
+          "doi": "https://doi.org/10.17337/JMBI.2018.20.3.297",
+          "url": "https://doi.org/10.17337/JMBI.2018.20.3.297"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-010",
+      "legacy_record_ids": [
+        "LEGACY-010"
+      ],
+      "slug": "methodological-analysis-of-german-and-anglo-american-fixation-disparity",
+      "title": {
+        "ko": "독일식과 영미식 주시시차에 대한 방법론적 분석",
+        "en": "Methodological Analysis of German and Anglo-American Fixation Disparity"
+      },
+      "summary": {
+        "ko": "독일식 양안시 검사법(MKH)과 영미식 검사법의 주시시차 측정 비교. 독일식 검사법에 의한 주시시차는 15.7±12.4', 영미식은 65.4±52.8'로 분명한 차이를 보였으며, 조도 변화가 30세 이하 연령대의 안위에 영향을 주는 경향을 확인했다.",
+        "en": "Comparison of fixation disparity measurement between the German binocular vision test (MKH) and the Anglo-American method. Fixation disparity by the German method was 15.7±12.4', while the Anglo-American method was 65.4±52.8', showing a clear difference. Confirmed a tendency for illuminance changes to affect phoria in the age group under 30.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2018,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        },
+        {
+          "display_name": "윤정호",
+          "order": 2
+        },
+        {
+          "display_name": "한상복",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-010",
+          "legacy_record_id": "LEGACY-010",
+          "kind": null,
+          "legacy_field": {
+            "ko": "임상",
+            "en": "Clinical"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2018, 제 23 권 제 4 호, pp. 395-400",
+            "en": "J Korean Ophthalmic Opt Soc., 2018, Vol. 23, No. 4, pp. 395-400"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002415810"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-054",
+      "legacy_record_ids": [
+        "LEGACY-054"
+      ],
+      "slug": "einfluss-unterschiedlicher-kopfhaltung-auf-die-stabilisierung-weicher-torischen-kontaktlinsen-bei-kaukasischen-und-asiatischen-augen",
+      "title": {
+        "ko": "Einfluss unterschiedlicher Kopfhaltung auf die Stabilisierung weicher torischen Kontaktlinsen bei kaukasischen und asiatischen Augen",
+        "en": "Einfluss unterschiedlicher Kopfhaltung auf die Stabilisierung weicher torischen Kontaktlinsen bei kaukasischen und asiatischen Augen"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2018,
+      "authors": [
+        {
+          "display_name": "HS Kim",
+          "order": 1
+        },
+        {
+          "display_name": "JM Seo",
+          "order": 2
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-054",
+          "legacy_record_id": "LEGACY-054",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "Vereinigung Deutscher Contactlinsen-Spezialisten und Optometristen, Vereinigung Deutscher Contactlinsen-Spezialisten und Optometristen (VDCO), 2018",
+            "en": "Vereinigung Deutscher Contactlinsen-Spezialisten und Optometristen, Vereinigung Deutscher Contactlinsen-Spezialisten und Optometristen (VDCO), 2018"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-011",
+      "legacy_record_ids": [
+        "LEGACY-011"
+      ],
+      "slug": "a-study-on-the-curriculum-of-optician-training-institutions-in-korea",
+      "title": {
+        "ko": "한국 안경사 양성기관의 교육과정에 관한 연구",
+        "en": "A Study on the Curriculum of Optician Training Institutions in Korea"
+      },
+      "summary": {
+        "ko": "전국 안경광학과 교육과정과 현장실습 실태를 분석. 교과목 중요도 지수는 시광학이론 4.1, 시광학응용/실무 7.1로 1:1.7 비율을 보였으며, 대부분 대학에서 평균 270시간의 임상실습이 이루어지고 있음을 확인했다. 현장 중심 교육 확대의 필요성을 제시했다.",
+        "en": "Analyzed the curriculum and field practice status of Departments of Optometry nationwide. The subject importance index showed a ratio of 1:1.7 for Visual Optics Theory (4.1) to Visual Optics Application/Practice (7.1), and it was confirmed that an average of 270 hours of clinical practice is being conducted at most universities. Suggested the need to expand field-centered education.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2017,
+      "authors": [
+        {
+          "display_name": "박미정",
+          "order": 1
+        },
+        {
+          "display_name": "서재명",
+          "order": 2
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-011",
+          "legacy_record_id": "LEGACY-011",
+          "kind": null,
+          "legacy_field": {
+            "ko": "정책",
+            "en": "Policy"
+          },
+          "citation": {
+            "ko": "대한시과학회지 (Korean J. Vis. Sci.), 2017, 제 19 권 제 4 호, pp. 487-494",
+            "en": "Korean J. Vis. Sci., 2017, Vol. 19, No. 4, pp. 487-494"
+          },
+          "verification": "verified_doi",
+          "doi": "https://doi.org/10.17337/JMBI.2017.19.4.487",
+          "url": "https://doi.org/10.17337/JMBI.2017.19.4.487"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-012",
+      "legacy_record_ids": [
+        "LEGACY-012"
+      ],
+      "slug": "a-study-on-calculated-magnification-and-prescribed-magnification-of-optical-low-vision-aids",
+      "title": {
+        "ko": "저시력 환자용 광학적 시보조기구의 계산배율과 처방배율에 관한 연구",
+        "en": "A Study on Calculated Magnification and Prescribed Magnification of Optical Low Vision Aids"
+      },
+      "summary": {
+        "ko": "저시력 환자용 광학 보조기구의 계산배율과 실제 처방배율을 비교 분석. 실제 처방 배율이 계산 배율보다 1.17배 높았으나 통계적 의미는 없었으며, 상호 상관관계는 높게 나타났다(r=0.92). 제조사 배율을 참고하여 작업 환경에 적합하게 조정 처방하는 것이 바람직함을 제시했다.",
+        "en": "Comparative analysis of calculated magnification and actual prescribed magnification of optical aids for low vision patients. The actual prescribed magnification was 1.17 times higher than the calculated magnification, but it was not statistically significant, and the cross-correlation was high (r=0.92). Suggested that it is desirable to adjust and prescribe suitable for the working environment by referring to the manufacturer's magnification.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2017,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        },
+        {
+          "display_name": "Daniela Quedenfeld",
+          "order": 2
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-012",
+          "legacy_record_id": "LEGACY-012",
+          "kind": null,
+          "legacy_field": {
+            "ko": "임상",
+            "en": "Clinical"
+          },
+          "citation": {
+            "ko": "대한시과학회지, 2017, Vol. 19, No. 4, pp. 503-508",
+            "en": "Korean J. Vis. Sci., 2017, Vol. 19, No. 4, pp. 503-508"
+          },
+          "verification": "verified_doi",
+          "doi": "https://doi.org/10.17337/JMBI.2017.19.4.503",
+          "url": "https://doi.org/10.17337/JMBI.2017.19.4.503"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-055",
+      "legacy_record_ids": [
+        "LEGACY-055"
+      ],
+      "slug": "a-pilot-study-of-alternating-field-device-for-homonymous-hemianopia",
+      "title": {
+        "ko": "A pilot study of alternating field device for homonymous hemianopia",
+        "en": "A pilot study of alternating field device for homonymous hemianopia"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2017,
+      "authors": [
+        {
+          "display_name": "JM Seo",
+          "order": 1
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-055",
+          "legacy_record_id": "LEGACY-055",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "Vision 2017 Conference, International Society for Low Vision Research and Rehabilitation(ISLRR), 2017",
+            "en": "Vision 2017 Conference, International Society for Low Vision Research and Rehabilitation(ISLRR), 2017"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-013",
+      "legacy_record_ids": [
+        "LEGACY-013"
+      ],
+      "slug": "changes-in-contrast-sensitivity-according-to-color-filter-lenses",
+      "title": {
+        "ko": "칼라필터 렌즈에 따른 대비감도의 변화",
+        "en": "Changes in Contrast Sensitivity According to Color Filter Lenses"
+      },
+      "summary": {
+        "ko": "황색, 오렌지색, 녹색 칼라 필터렌즈의 대비감도 변화를 분석. 순간 노출(33 ms)에서 2 cpd 황색 필터가 가장 높은 대비감도를 보였고, 233 ms에서는 8 cpd에서 필터 미삽입 시 가장 예민했으나 황색, 오렌지색 간 차이는 통계적 의미가 없었다. 필터렌즈 처방 시 cut off 파장 고려의 중요성을 강조했다.",
+        "en": "Analyzed changes in contrast sensitivity for yellow, orange, and green color filter lenses. At instantaneous exposure (33 ms), the 2 cpd yellow filter showed the highest contrast sensitivity. At 233 ms, 8 cpd was most sensitive without a filter, but there was no statistical difference between yellow and orange. Emphasized the importance of considering cut-off wavelength when prescribing filter lenses.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2016,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-013",
+          "legacy_record_id": "LEGACY-013",
+          "kind": null,
+          "legacy_field": {
+            "ko": "임상",
+            "en": "Clinical"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2016, 제 21 권 제 1 호, pp. 47-51",
+            "en": "J Korean Ophthalmic Opt Soc., 2016, Vol. 21, No. 1, pp. 47-51"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002093381"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-056",
+      "legacy_record_ids": [
+        "LEGACY-056"
+      ],
+      "slug": "neural-re-organisation-of-peripheral-retina-after-eccentric-viewing-training",
+      "title": {
+        "ko": "Neural re-organisation of peripheral retina after eccentric viewing training",
+        "en": "Neural re-organisation of peripheral retina after eccentric viewing training"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2016,
+      "authors": [
+        {
+          "display_name": "JM Seo",
+          "order": 1
+        },
+        {
+          "display_name": "HS Kim",
+          "order": 2
+        },
+        {
+          "display_name": "JH Lee",
+          "order": 3
+        },
+        {
+          "display_name": "YC Kim",
+          "order": 4
+        },
+        {
+          "display_name": "MY Heo",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-056",
+          "legacy_record_id": "LEGACY-056",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "European Academy of Optometry and Optics Proceeding, Beuth Hochschule fuer Technik Berlin(EAOO), 2016",
+            "en": "European Academy of Optometry and Optics Proceeding, Beuth Hochschule fuer Technik Berlin(EAOO), 2016"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-014",
+      "legacy_record_ids": [
+        "LEGACY-014"
+      ],
+      "slug": "a-study-on-the-future-of-the-korean-optical-industry-with-scientific-and-technological-development-i-prediction-of-the-optical-industry-and-policy-proposals",
+      "title": {
+        "ko": "과학기술 발달에 따른 한국 안경계 미래에 관한 고찰 I: 안경 산업의 예측과 정책 제안",
+        "en": "A Study on the Future of the Korean Optical Industry with Scientific and Technological Development I: Prediction of the Optical Industry and Policy Proposals"
+      },
+      "summary": {
+        "ko": "과학기술 발달에 따른 안경업계 미래를 예측하고 대응책을 제시. 안경 산업의 생산성은 증가하지만 고용 인력은 감소하고 있으며, 전자동 안경 조제 장비 개발과 안굴절력계의 일반인 사용 가능성을 확인했다. 안경사가 굴절검사를 넘어 시기능 영역으로 확장해야 함을 제안했다.",
+        "en": "Predicted the future of the optical industry according to scientific and technological development and presented countermeasures. Productivity in the optical industry is increasing, but employment is decreasing. Confirmed the development of fully automatic glasses dispensing equipment and the possibility of general public use of refractometers. Proposed that opticians should expand beyond refraction into the field of visual function.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2015,
+      "authors": [
+        {
+          "display_name": "심현석",
+          "order": 1
+        },
+        {
+          "display_name": "김상현",
+          "order": 2
+        },
+        {
+          "display_name": "서재명",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-014",
+          "legacy_record_id": "LEGACY-014",
+          "kind": null,
+          "legacy_field": {
+            "ko": "정책",
+            "en": "Policy"
+          },
+          "citation": {
+            "ko": "대한시과학회지 (Korean J. Vis. Sci.), 2015, 제 17 권 제 4 호, pp. 377-384",
+            "en": "Korean J. Vis. Sci., 2015, Vol. 17, No. 4, pp. 377-384"
+          },
+          "verification": "verified_doi",
+          "doi": "https://doi.org/10.17337/JMBI.2015.17.4.377",
+          "url": "https://doi.org/10.17337/JMBI.2015.17.4.377"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-015",
+      "legacy_record_ids": [
+        "LEGACY-015"
+      ],
+      "slug": "on-the-necessity-of-changing-the-optician-system",
+      "title": {
+        "ko": "안경사제도의 변화 필요성에 대하여",
+        "en": "On the Necessity of Changing the Optician System"
+      },
+      "summary": {
+        "ko": "한국 안경사 제도의 문제점과 개선 방안을 분석. 시력 보정용구 착용자가 증가하고 굴절검사의 67%가 안경원에서 이루어지고 있지만, 현행 법률이 안경사의 업무 특성을 적절히 반영하지 못하고 있음을 지적했다. 안경사들의 능력과 교육 제도가 충분히 준비되어 있으므로 현실에 맞는 법 개정이 필요함을 주장했다.",
+        "en": "Analyzed problems and improvement measures for the Korean optician system. Although the number of vision correction device wearers is increasing and 67% of refraction exams are performed in optical shops, it was pointed out that current laws do not properly reflect the characteristics of opticians' work. Argued that legal revision suitable for reality is needed as opticians' capabilities and education systems are sufficiently prepared.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2015,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        },
+        {
+          "display_name": "김재도",
+          "order": 2
+        },
+        {
+          "display_name": "김흥수",
+          "order": 3
+        },
+        {
+          "display_name": "심현석",
+          "order": 4
+        },
+        {
+          "display_name": "김상현",
+          "order": 5
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-015",
+          "legacy_record_id": "LEGACY-015",
+          "kind": null,
+          "legacy_field": {
+            "ko": "정책",
+            "en": "Policy"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2015, 제 20 권 제 4 호, pp. 527-536",
+            "en": "J Korean Ophthalmic Opt Soc., 2015, Vol. 20, No. 4, pp. 527-536"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002065421"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-057",
+      "legacy_record_ids": [
+        "LEGACY-057"
+      ],
+      "slug": "use-of-shutter-glasses-as-the-rehabilitation-for-homonymous-hemianopia",
+      "title": {
+        "ko": "Use of shutter glasses as the rehabilitation for homonymous hemianopia",
+        "en": "Use of shutter glasses as the rehabilitation for homonymous hemianopia"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2015,
+      "authors": [
+        {
+          "display_name": "JM Seo",
+          "order": 1
+        },
+        {
+          "display_name": "MY Heo",
+          "order": 2
+        },
+        {
+          "display_name": "ST Lim",
+          "order": 3
+        },
+        {
+          "display_name": "JS Kim",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-057",
+          "legacy_record_id": "LEGACY-057",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "European Society for Low Vision Research and Rehabilitation Proceeding, UCL Instistute of Ophthalmology Department of Visual Neuroscience(EAOO), 2015",
+            "en": "European Society for Low Vision Research and Rehabilitation Proceeding, UCL Instistute of Ophthalmology Department of Visual Neuroscience(EAOO), 2015"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-016",
+      "legacy_record_ids": [
+        "LEGACY-016"
+      ],
+      "slug": "a-study-on-the-development-of-a-vision-splitting-device-for-rehabilitation-of-patients-with-homonymous-hemianopsia",
+      "title": {
+        "ko": "동측성 반맹시 환자의 재활치료용 시분할 장치 개발에 관한 연구",
+        "en": "A Study on the Development of a Vision Splitting Device for Rehabilitation of Patients with Homonymous Hemianopsia"
+      },
+      "summary": {
+        "ko": "동측성 반맹시 환자의 재활치료용 시분할 장치 개발. 장치 사용 후 공간의 이등분할 실험에서 방향각이 +18.14°에서 +8.91°로 개선되었으며, 4x4 시표에서 9%P, 6x6 시표에서 15%P의 문자 인식 정답률 증가를 보였다. 복시로 인해 시야 확보가 어려운 환자에게 재활 치료로서 효과적임을 확인했다.",
+        "en": "Development of a vision splitting device for rehabilitation of patients with homonymous hemianopsia. In a space bisection experiment after using the device, the directional angle improved from +18.14° to +8.91°, and character recognition accuracy increased by 9%P for 4x4 charts and 15%P for 6x6 charts. Confirmed effectiveness as rehabilitation therapy for patients with difficulty securing visual field due to diplopia.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2014,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        },
+        {
+          "display_name": "박근호",
+          "order": 2
+        },
+        {
+          "display_name": "허민영",
+          "order": 3
+        },
+        {
+          "display_name": "정주현",
+          "order": 4
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-016",
+          "legacy_record_id": "LEGACY-016",
+          "kind": null,
+          "legacy_field": {
+            "ko": "시제품",
+            "en": "Prototype"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2014, 제 19 권 제 3 호, pp. 407-412",
+            "en": "J Korean Ophthalmic Opt Soc., 2014, Vol. 19, No. 3, pp. 407-412"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001917037"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-017",
+      "legacy_record_ids": [
+        "LEGACY-017"
+      ],
+      "slug": "a-study-on-readability-according-to-monitor-text-color-using-an-eye-tracker",
+      "title": {
+        "ko": "아이트래커를 이용한 모니터 글자 색상에 따른 가독성에 대한 연구",
+        "en": "A Study on Readability According to Monitor Text Color Using an Eye Tracker"
+      },
+      "summary": {
+        "ko": "아이트래커를 이용한 모니터 글자 색상별 가독성 연구. Black, Blue, Red, Yellow 순으로 가독성이 감소하는 경향을 보였으며, Black 글자 색상이 평균 가독 시간, 독서 오류, 평균 고정 시간 모든 측면에서 가장 우수한 가독성을 제공함을 확인했다.",
+        "en": "Study on readability by monitor text color using an eye tracker. Readability tended to decrease in the order of Black, Blue, Red, and Yellow. Confirmed that Black text color provides the best readability in all aspects of average reading time, reading errors, and average fixation time.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2014,
+      "authors": [
+        {
+          "display_name": "김하림",
+          "order": 1
+        },
+        {
+          "display_name": "김수현",
+          "order": 2
+        },
+        {
+          "display_name": "신동민",
+          "order": 3
+        },
+        {
+          "display_name": "정희영",
+          "order": 4
+        },
+        {
+          "display_name": "김용길",
+          "order": 5
+        },
+        {
+          "display_name": "김태홍",
+          "order": 6
+        },
+        {
+          "display_name": "서재명",
+          "order": 7
+        },
+        {
+          "display_name": "정주현",
+          "order": 8
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-017",
+          "legacy_record_id": "LEGACY-017",
+          "kind": null,
+          "legacy_field": {
+            "ko": "시제품",
+            "en": "Prototype"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2014, 제 19 권 제 2 호, pp. 279-284",
+            "en": "J Korean Ophthalmic Opt Soc., 2014, Vol. 19, No. 3, pp. 407-412"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001890684"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-018",
+      "legacy_record_ids": [
+        "LEGACY-018"
+      ],
+      "slug": "neural-reorganization-in-the-outer-plexiform-layer-of-the-retina-after-eccentric-viewing-training",
+      "title": {
+        "ko": "중심외주시 훈련 후 망막 외망상층에서의 신경 재조직화",
+        "en": "Neural Reorganization in the Outer Plexiform Layer of the Retina After Eccentric Viewing Training"
+      },
+      "summary": {
+        "ko": "중심외주시 훈련 후 망막 외망상층의 신경 재조직화를 분석. 21일간의 훈련 후 광지각도 검사(p<0.047)와 다국소망막전위도 검사(p<0.028) 모두에서 유의한 기능 개선을 보였다. 시각 말초신경계는 재생 불가능하지만 단기간 훈련으로도 신경 재조직화가 발생함을 확인했다.",
+        "en": "Analyzed neural reorganization of the retinal outer plexiform layer after eccentric viewing training. After 21 days of training, significant functional improvement was shown in both photopic sensitivity test (p<0.047) and multifocal electroretinogram (p<0.028). Confirmed that although the peripheral visual nervous system cannot regenerate, neural reorganization occurs even with short-term training.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2014,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-018",
+          "legacy_record_id": "LEGACY-018",
+          "kind": null,
+          "legacy_field": {
+            "ko": "임상",
+            "en": "Clinical"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2014, 제 19 권 제 2 호, pp. 247-252",
+            "en": "J Korean Ophthalmic Opt Soc., 2014, Vol. 19, No. 2, pp. 247-252"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001890672"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-019",
+      "legacy_record_ids": [
+        "LEGACY-019"
+      ],
+      "slug": "changes-in-contrast-sensitivity-in-peripheral-vision-after-eccentric-viewing-training",
+      "title": {
+        "ko": "중심외주시 훈련 후 주변시야에서의 대비감도 변화",
+        "en": "Changes in Contrast Sensitivity in Peripheral Vision After Eccentric Viewing Training"
+      },
+      "summary": {
+        "ko": "중심외주시 훈련 후 주변시야의 대비감도 변화를 분석. 21일간 훈련 후 0.7 cpd 및 3.0 cpd 모두에서 임계점과 대비감이 유의하게 증가했다(p<0.05). 선명하고 작은 글씨체로 짧은 시간 동안 자주 반복 훈련하는 것이 효과적임을 제시했다.",
+        "en": "Analyzed changes in contrast sensitivity of peripheral vision after eccentric viewing training. After 21 days of training, threshold and contrast sensitivity significantly increased at both 0.7 cpd and 3.0 cpd (p<0.05). Suggested that frequent repetitive training for a short time with clear and small fonts is effective.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2014,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        },
+        {
+          "display_name": "이기영",
+          "order": 2
+        },
+        {
+          "display_name": "임용무",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-019",
+          "legacy_record_id": "LEGACY-019",
+          "kind": null,
+          "legacy_field": {
+            "ko": "임상",
+            "en": "Clinical"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Ophthalmic Opt Soc.), 2014, 제 19 권 제 1 호, pp. 99-104",
+            "en": "J Korean Ophthalmic Opt Soc., 2014, Vol. 19, No. 1, pp. 99-104"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001864644"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-020",
+      "legacy_record_ids": [
+        "LEGACY-020"
+      ],
+      "slug": "a-study-on-physiological-weighting-of-peripheral-retina-for-eccentric-viewing-training",
+      "title": {
+        "ko": "중심외주시 훈련용 주변부 망막의 생리적 가중에 관한 연구",
+        "en": "A Study on Physiological Weighting of Peripheral Retina for Eccentric Viewing Training"
+      },
+      "summary": {
+        "ko": "황반변성 저시력 환자의 중심외주시 훈련을 위한 망막 주변부 특성을 조사. 30명을 대상으로 중심와에서 20° 이측 망막 주변부의 생리적 가중을 측정한 결과, 주변시가 중심시보다 더 빨리 임계점에 도달했다. 저주파 대역 대상으로 짧은 시간 동안 자주 훈련하는 것이 효과적임을 확인했다.",
+        "en": "Investigated peripheral retinal characteristics for eccentric viewing training in low vision patients with macular degeneration. Measuring physiological weighting of the peripheral retina 20° temporal from the fovea in 30 subjects revealed that peripheral vision reached the threshold faster than central vision. Confirmed that frequent training for a short time targeting low-frequency bands is effective.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2013,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        },
+        {
+          "display_name": "이기영",
+          "order": 2
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-020",
+          "legacy_record_id": "LEGACY-020",
+          "kind": null,
+          "legacy_field": {
+            "ko": "임상",
+            "en": "Clinical"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J Korean Oph Opt Soc.), 2013, 제 18 권 제 4 호, pp. 489-493",
+            "en": "J Korean Oph Opt Soc., 2013, Vol. 18, No. 4, pp. 489-493"
+          },
+          "verification": "verified_kci",
+          "doi": null,
+          "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001830319"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-058",
+      "legacy_record_ids": [
+        "LEGACY-058"
+      ],
+      "slug": "spatial-and-temporal-summation-in-peripheral-retina",
+      "title": {
+        "ko": "Spatial and temporal summation in peripheral retina",
+        "en": "Spatial and temporal summation in peripheral retina"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2013,
+      "authors": [
+        {
+          "display_name": "Geun-Ho Park",
+          "order": 1
+        },
+        {
+          "display_name": "MY Heo",
+          "order": 2
+        },
+        {
+          "display_name": "JM Seo",
+          "order": 3
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-058",
+          "legacy_record_id": "LEGACY-058",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "19th Asia Pacific Optometric Conference, Asia Pacific Optometric Conference Proceeding, Asia Pacific Optometric Congress(APOC), 2013",
+            "en": "19th Asia Pacific Optometric Conference, Asia Pacific Optometric Conference Proceeding, Asia Pacific Optometric Congress(APOC), 2013"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-059",
+      "legacy_record_ids": [
+        "LEGACY-059"
+      ],
+      "slug": "the-association-between-visual-function-and-perceived-disability-for-near-and-distance-tasks",
+      "title": {
+        "ko": "The association between visual function and perceived disability for near and distance tasks",
+        "en": "The association between visual function and perceived disability for near and distance tasks"
+      },
+      "summary": {
+        "ko": null,
+        "en": null,
+        "review_state": "pending_source_review"
+      },
+      "year": 2011,
+      "authors": [
+        {
+          "display_name": "JM Seo",
+          "order": 1
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-059",
+          "legacy_record_id": "LEGACY-059",
+          "kind": null,
+          "legacy_field": {
+            "ko": "학술발표",
+            "en": "Conference"
+          },
+          "citation": {
+            "ko": "10th internation conference on low vision, internation conference on low vision(ISLRR), 2011",
+            "en": "10th internation conference on low vision, internation conference on low vision(ISLRR), 2011"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-021",
+      "legacy_record_ids": [
+        "LEGACY-021"
+      ],
+      "slug": "visual-function-analysis-of-low-vision-patients-and-normal-subjects-in-canada-using-contrast-sensitivity",
+      "title": {
+        "ko": "대비감도를 사용한 캐나다 내 저시력 환자와 정상인의 시기능 분석",
+        "en": "Visual Function Analysis of Low Vision Patients and Normal Subjects in Canada Using Contrast Sensitivity"
+      },
+      "summary": {
+        "ko": "저시력 환자와 정상인의 대비감도를 비교 분석. 20명씩의 저시력 환자군과 정상 대조군을 대상으로 두 공간주파수(0.7 c/d, 3.0 c/d)로 측정한 결과, 저시력 환자의 대비감도가 전반적으로 낮았으나 물체 크기와 노출 시간에 따른 차이는 없었다. 저역대 공간주파수 사용의 효율성을 확인했다.",
+        "en": "Comparative analysis of contrast sensitivity between low vision patients and normal subjects. Measuring 20 low vision patients and 20 normal controls at two spatial frequencies (0.7 c/d, 3.0 c/d) showed that contrast sensitivity of low vision patients was generally lower, but there was no difference according to object size and exposure time. Confirmed the efficiency of using low spatial frequencies.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2009,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-021",
+          "legacy_record_id": "LEGACY-021",
+          "kind": null,
+          "legacy_field": {
+            "ko": "임상",
+            "en": "Clinical"
+          },
+          "citation": {
+            "ko": "한국안광학회지 (J. Korean Oph. Opt. Soc.), 2009, 제 14 권 제 3 호, pp. 83-88",
+            "en": "Journal of the Korean Ophthalmic Optics Society, 2009, Vol. 14, No. 3, pp. 83-88"
+          },
+          "verification": "source_on_file_not_public",
+          "doi": null,
+          "url": null
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    },
+    {
+      "study_id": "STUDY-LEGACY-022",
+      "legacy_record_ids": [
+        "LEGACY-022"
+      ],
+      "slug": "a-study-on-pathogenesis-affecting-quality-of-life-and-daily-life-of-low-vision-patients",
+      "title": {
+        "ko": "저시력 환자의 삶의 질과 일상에 영향을 주는 병인에 관한 연구",
+        "en": "A Study on Pathogenesis Affecting Quality of Life and Daily Life of Low Vision Patients"
+      },
+      "summary": {
+        "ko": "저시력 환자와 정상인의 삶의 질을 비교하고 영향 요인을 분석. 저시력 환자의 주관적 삶의 만족도가 정상 대조군 대비 모든 항목에서 낮았으며(평균 차이 36.07±14.82), 나이가 근거리 활동성(r=-0.584), 원거리 활동성(r=-0.678) 등과 높은 상관관계를 보였다. 특히 안구진탕이 일상생활에 큰 어려움을 주는 것으로 확인했다.",
+        "en": "Compared quality of life between low vision patients and normal subjects and analyzed influencing factors. Subjective life satisfaction of low vision patients was lower in all items compared to the normal control group (mean difference 36.07±14.82), and age showed a high correlation with near activity (r=-0.584) and distance activity (r=-0.678). Confirmed that nystagmus, in particular, causes great difficulty in daily life.",
+        "review_state": "pending_source_review"
+      },
+      "year": 2009,
+      "authors": [
+        {
+          "display_name": "서재명",
+          "order": 1
+        }
+      ],
+      "programs": [],
+      "contributions": [],
+      "status": null,
+      "publicability": "public",
+      "question": {
+        "ko": null,
+        "en": null
+      },
+      "sample": {
+        "n": null,
+        "population": {
+          "ko": null,
+          "en": null
+        }
+      },
+      "method": {
+        "ko": null,
+        "en": null
+      },
+      "result": {
+        "ko": null,
+        "en": null,
+        "effect_size": null,
+        "uncertainty": null
+      },
+      "limitations": {
+        "ko": null,
+        "en": null
+      },
+      "artifacts": [
+        {
+          "artifact_id": "ART-LEGACY-022",
+          "legacy_record_id": "LEGACY-022",
+          "kind": null,
+          "legacy_field": {
+            "ko": "임상",
+            "en": "Clinical"
+          },
+          "citation": {
+            "ko": "한국산학기술학회논문지, 2009, 제 10 권 제 11 호, pp. 3412-3417",
+            "en": "Journal of the Korea Academia-Industrial cooperation Society, 2009, Vol. 10, No. 11, pp. 3412-3417"
+          },
+          "verification": "verified_doi",
+          "doi": "https://doi.org/10.5762/kais.2009.10.11.3412",
+          "url": "https://doi.org/10.5762/kais.2009.10.11.3412"
+        }
+      ],
+      "materials": [],
+      "asset_ids": [],
+      "claim_ids": [],
+      "last_reviewed": null
+    }
+  ],
+  "engineering_evidence": []
+}

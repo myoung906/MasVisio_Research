@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "claims": [
+    {
+      "claim_id": "CLM-COUNT-001",
+      "statement": {
+        "ko": "민감정보 레코드 1건을 제외한 58개 공개 연구성과 원기록은 57개 공개 연구 단위로 이관된다.",
+        "en": "After excluding one sensitive record, 58 public research artifact records migrate into 57 public study groups."
+      },
+      "status": "approved_with_context",
+      "source_study_ids": [],
+      "allowed_routes": [
+        "publications"
+      ],
+      "required_context": [
+        "legacy_artifact_records=59",
+        "sensitive_artifacts_excluded=1",
+        "public_artifact_records=58",
+        "migrated_public_study_groups=57",
+        "duplicate_grouping=LEGACY-001+LEGACY-036"
+      ],
+      "last_reviewed": "2026-08-27"
+    }
+  ]
+}
