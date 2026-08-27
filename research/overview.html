@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Research Challenges - Optinex Research</title>
+  <title>Research Programs - Optinex Research</title>
   <meta name="description"
-    content="Detailed overview of Optinex Research programs including 4D myopia control, AI diagnostics, and biometric measurement." />
-  <meta property="og:title" content="Research Challenges - Optinex Research" />
+    content="Detailed overview of Optinex Research's 4 core programs (Visual Neuroscience, Peripheral Metrology, Scleral 3D Prototypes, and AI Biomarkers) including hypotheses and roadmap." />
+  <meta property="og:title" content="Research Programs - Optinex Research" />
   <meta property="og:description"
-    content="Detailed overview of Optinex Research programs including 4D myopia control, AI diagnostics, and biometric measurement." />
+    content="Detailed overview of Optinex Research's 4 core programs (Visual Neuroscience, Peripheral Metrology, Scleral 3D Prototypes, and AI Biomarkers) including hypotheses and roadmap." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://myoung906.github.io/MasVisio_Research/assets/images/vision_engineering_concept.png" />
   <meta property="og:url" content="https://myoung906.github.io/MasVisio_Research/research/overview.html" />
@@ -18,7 +18,8 @@
   <link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/research/overview.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  
   <style>
     /* Page specific overrides for dark scientific theme */
     .hero-challenge {
@@ -46,10 +47,10 @@
     }
     .hero-challenge h1 {
       font-family: var(--heading-font);
-      font-weight: 500;
-      font-size: clamp(32px, 4vw, 46px);
+      font-weight: 700;
+      font-size: clamp(30px, 3.8vw, 46px);
       line-height: 1.15;
-      letter-spacing: -.015em;
+      letter-spacing: -.02em;
       margin-bottom: 20px;
     }
     .hero-challenge h1 em {
@@ -63,52 +64,136 @@
       line-height: 1.6;
     }
 
-    /* Challenge Titles Readability Boost */
-    .challenge-phase-label {
+    /* Program specific grid styling */
+    .program-card {
+      background: rgba(15, 23, 42, 0.3);
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      padding: 2.5rem;
+      margin-bottom: 3.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .program-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1rem;
+    }
+
+    .program-label {
       font-family: var(--mono-font);
       font-size: 11px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
       color: var(--primary-color) !important;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       font-weight: 600;
-      margin-bottom: 12px;
-      display: block;
     }
-    .challenge-title {
+
+    .program-readiness {
+      font-family: var(--mono-font);
+      font-size: 10px;
+      background: rgba(142, 213, 255, 0.08);
+      color: var(--primary-color);
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(142, 213, 255, 0.2);
+    }
+
+    .program-readiness.clinical {
+      background: rgba(34, 197, 94, 0.08);
+      color: #22c55e;
+      border-color: rgba(34, 197, 94, 0.2);
+    }
+
+    .program-readiness.prototype {
+      background: rgba(249, 115, 22, 0.08);
+      color: #f97316;
+      border-color: rgba(249, 115, 22, 0.2);
+    }
+
+    .program-title {
       font-family: var(--heading-font);
-      font-weight: 500;
-      font-size: 28px;
-      margin-bottom: 18px;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
       color: #fff !important;
     }
-    .challenge-title strong {
-      color: var(--primary-color) !important;
-      font-weight: 600;
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+    }
+
+    .program-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .detail-section {
+      border-left: 2px solid var(--line);
+      padding-left: 15px;
+    }
+
+    .detail-section.question {
+      border-left-color: var(--primary-color);
+      background: rgba(142, 213, 255, 0.03);
+      padding: 10px 15px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .detail-section.hypothesis {
+      border-left-color: #3b82f6;
+    }
+
+    .detail-label {
+      font-family: var(--mono-font);
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .detail-val {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .program-visual {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 15px;
     }
 
     /* Challenge Visual Cards Alignment & Chart Dark-mode adaptation */
     .challenge-visual-container {
-      margin-top: 1.5rem;
       border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.4);
       border: 1px solid var(--line);
       background: var(--panel) !important;
-      padding: 1.5rem !important;
+      padding: 1rem !important;
     }
     .challenge-visual-grid,
     .challenge-figure-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 1rem;
     }
     .challenge-visual-grid figure,
     .challenge-figure-row figure {
       background: var(--panel2) !important;
       border: 1px solid var(--line) !important;
       border-radius: 4px !important;
-      padding: 12px !important;
+      padding: 10px !important;
       margin: 0;
       display: flex;
       flex-direction: column;
@@ -120,7 +205,7 @@
     .challenge-visual-grid img,
     .challenge-figure-row img {
       width: 100%;
-      height: 160px;
+      height: 120px;
       object-fit: contain;
       border-radius: 2px;
       background: transparent;
@@ -142,50 +227,42 @@
       flex-direction: column !important;
       justify-content: center !important;
       align-items: center !important;
-      padding: 20px 12px !important;
+      padding: 10px !important;
       text-align: center !important;
     }
     .split-images-wrap {
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 12px;
       align-items: center;
       justify-content: center;
-      margin: 15px 0 25px;
+      margin: 5px 0;
       width: 100%;
-      text-align: center !important;
     }
     .split-img {
-      width: 80% !important;
+      width: 85% !important;
       height: auto !important;
-      max-height: 130px !important;
+      max-height: 80px !important;
       object-fit: contain !important;
-      transform-origin: center;
       display: block;
       margin: 0 auto !important;
-    }
-    .split-img-top {
-      transform: scale(1.3) translateX(14px) !important;
-    }
-    .split-img-bottom {
-      transform: scale(1.3) translateX(-14px) !important;
     }
 
     /* Phase 4 Custom Image Grid (Large graph on top, 2 photos below) */
     .phase4-layout-top {
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     .phase4-layout-top figure {
       background: var(--panel2) !important;
       border: 1px solid var(--line) !important;
       border-radius: 4px !important;
-      padding: 16px !important;
+      padding: 10px !important;
       margin: 0;
     }
     .phase4-layout-top img {
       width: 100%;
-      height: 380px;
+      height: 160px;
       object-fit: contain;
       border-radius: 2px;
       display: block;
@@ -193,13 +270,13 @@
     .phase4-layout-bottom {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 10px;
     }
     .phase4-layout-bottom figure {
       background: var(--panel2) !important;
       border: 1px solid var(--line) !important;
       border-radius: 4px !important;
-      padding: 12px !important;
+      padding: 8px !important;
       margin: 0;
       display: flex;
       flex-direction: column;
@@ -208,7 +285,7 @@
     }
     .phase4-layout-bottom img {
       width: 100%;
-      height: 240px;
+      height: 100px;
       object-fit: contain;
       border-radius: 2px;
       display: block;
@@ -226,12 +303,12 @@
       background: #000 !important;
     }
     .overview-figcaption {
-      margin-top: 8px;
+      margin-top: 6px;
       font-family: var(--mono-font);
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-light);
       text-align: center;
-      line-height: 1.4;
+      line-height: 1.3;
     }
 
     /* Cloud Infrastructure & Vertical Flow Tree Pipeline */
@@ -285,54 +362,7 @@
       box-shadow: 0 0 8px var(--primary-color);
     }
     
-    /* Tree Pipeline Description styling (No asterisks) */
-    .pipeline-summary {
-      margin-top: 1.5rem;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-    }
-    @media (max-width: 768px) {
-      .pipeline-summary {
-        grid-template-columns: 1fr;
-      }
-    }
-    .pipeline-section-title {
-      font-family: var(--mono-font);
-      font-size: 12px;
-      color: var(--primary-color);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 6px;
-    }
-    .pipeline-list {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 1.5rem;
-    }
-    .pipeline-list li {
-      position: relative;
-      padding-left: 18px;
-      font-size: 14.5px;
-      color: var(--text-light);
-      line-height: 1.6;
-      margin-bottom: 6px;
-    }
-    .pipeline-list li::before {
-      content: "▪";
-      position: absolute;
-      left: 0;
-      color: var(--primary-color);
-      font-size: 10px;
-      top: 1px;
-    }
-
-    /* Interactive SVG Animation Data flow styles (2x Larger Boxes) */
+    /* Interactive SVG Animation Data flow styles */
     .diagram-interactive {
       border: 1px solid var(--line);
       background: #05080b;
@@ -373,7 +403,7 @@
     }
     .node-text-title {
       font-family: var(--heading-font);
-      font-size: 14.5px; /* ~2x larger font */
+      font-size: 14.5px;
       fill: #fff;
       font-weight: 500;
     }
@@ -389,14 +419,64 @@
       font-weight: 600;
     }
     .node-icon-emoji {
-      font-size: 26px; /* Larger emoticon */
+      font-size: 26px;
       alignment-baseline: middle;
     }
 
-    /* Responsive modifications */
+    /* Flicker Warning Overlays */
+    .flicker-test-box {
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+      background: rgba(15, 23, 42, 0.4);
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .flicker-cover {
+      position: absolute;
+      inset: 0;
+      background: rgba(9, 13, 22, 0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 6px;
+      z-index: 10;
+      transition: opacity 0.3s ease;
+    }
+
+    .flicker-cover.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .btn-trigger-flicker {
+      background: #ef4444;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-family: var(--heading-font);
+      font-weight: 600;
+      font-size: 11px;
+      cursor: pointer;
+      margin-top: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-trigger-flicker:hover {
+      background: #dc2626;
+    }
+
     @media (max-width: 1024px) {
       .hero-challenge h1 {
         font-size: 28px;
+      }
+      .program-grid {
+        grid-template-columns: 1fr;
       }
       .challenge-visual-grid,
       .challenge-figure-row,
@@ -407,18 +487,31 @@
         height: 220px;
       }
     }
+
+    /* Prefers reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+      .animated-flow-line {
+        animation: none !important;
+        stroke-dasharray: none;
+      }
+    }
   </style>
-  <link rel="stylesheet" href="../assets/css/main.css?v=4.0" />
-  <link rel="stylesheet" href="../assets/css/responsive.css?v=4.0" />
-  <link rel="stylesheet" href="../assets/css/components.css?v=4.0" />
+  <link rel="stylesheet" href="../assets/css/main.css?v=5.0" />
+  <link rel="stylesheet" href="../assets/css/responsive.css?v=5.0" />
+  <link rel="stylesheet" href="../assets/css/components.css?v=5.0" />
 </head>
 
 <body class="sidebar-layout">
   <a href="#main-content" class="skip-link">Skip to main content</a>
+  
   <header class="mobile-header">
     <a href="../index.html" class="mobile-logo">
       <h1>Optinex<br />Research</h1>
-      <span class="logo-subtitle">Vision Intelligence &amp; Biomedical Engineering</span>
+      <span class="logo-subtitle">Adaptive Vision Platform</span>
     </a>
   </header>
 
@@ -426,7 +519,7 @@
     <div class="sidebar-header">
       <a href="../index.html" class="sidebar-logo">
         <h1>Optinex<br />Research</h1>
-        <span class="sidebar-subtitle">Vision Intelligence &amp; Biomedical Engineering</span>
+        <span class="sidebar-subtitle">Adaptive Vision Platform</span>
       </a>
     </div>
 
@@ -436,19 +529,19 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a href="../index.html" class="nav-item">Home</a>
-      <a href="../team/index.html" class="nav-item">Team</a>
-      <a href="overview.html" class="nav-item active" aria-current="page">Challenges</a>
-      <a href="../publications/index.html" class="nav-item">Publications</a>
-      <a href="../gallery/index.html" class="nav-item">Gallery</a>
-      <a href="../partnership/index.html" class="nav-item">Services</a>
-      <a href="../contact.html" class="nav-item">Partners</a>
+      <a href="../index.html?v=5.0" class="nav-item">Home</a>
+      <a href="../team/index.html?v=5.0" class="nav-item">Team</a>
+      <a href="overview.html?v=5.0" class="nav-item active" aria-current="page">Research Programs</a>
+      <a href="../publications/index.html?v=5.0" class="nav-item">Evidence Library</a>
+      <a href="../gallery/index.html?v=5.0" class="nav-item">Gallery Archive</a>
+      <a href="../partnership/index.html?v=5.0" class="nav-item">Services</a>
+      <a href="../contact.html?v=5.0" class="nav-item">Partners</a>
     </nav>
 
     <div class="sidebar-footer">
       <p class="copyright">&copy; 2025 Optinex Research</p>
       <div class="sidebar-footer-meta">
-        <a href="../privacy.html" class="sidebar-footer-link">Privacy Policy</a>
+        <a href="../privacy.html" class="sidebar-footer-link">Privacy Policy (PIPA)</a>
         |
         <a href="../contact.html" class="sidebar-footer-link">Contact</a>
       </div>
@@ -461,201 +554,291 @@
         
         <!-- Clean Hero area for overview -->
         <div class="hero-challenge">
-          <p class="eyebrow">Vision Intelligence &amp; Biomedical Engineering</p>
-          <h1>Optinex Research <em>Challenges &amp; Phases</em></h1>
-          <p class="hero-challenge-desc">We follow a structured R&amp;D path to study ocular properties and develop non-invasive biometric algorithms. Explore each phase below to see our core models, formulas, and visual outcomes.</p>
+          <p class="eyebrow">Visual Field Modeling &amp; Adaptation Loop</p>
+          <h1>Optinex <em>Research Programs</em></h1>
+          <p class="hero-challenge-desc">We follow a structured R&amp;D loop based on our 4 core research programs to study ocular properties and develop non-invasive biometric algorithms. Explore each program below.</p>
         </div>
 
-        <!-- Dynamic Challenge Sections -->
         <div class="challenge-list" style="margin-top: 4rem;">
           
-          <!-- PHASE 1 -->
-          <div class="challenge-section">
-            <span class="challenge-phase-label">Phase 1: Visual Neuroscience</span>
-            <h2 class="challenge-title">Decoding the <strong>Neural Code</strong></h2>
-            <p class="challenge-desc">
-              Before we can correct vision, we must understand how the brain processes it. Our research begins at the foundational level: analyzing how visual pathways interpret motion and contrast to distinguish between optical deficits and neurological processing issues.
-            </p>
-
-            <div class="challenge-visual-container">
-              <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--text-color);">
-                Motion Contrast Sensitivity
-              </h3>
-              <p style="font-size: 0.95rem; color: var(--text-light); margin-bottom: 2rem; line-height: 1.6; text-align: justify;">
-                Contrast sensitivity measures the visual system's ability to distinguish objects from their background, a critical indicator of functional vision beyond standard acuity. We utilize <strong>Gabor patches</strong>—sinusoidal gratings modulated by a Gaussian envelope—to precisely probe spatial and temporal summation mechanisms. By varying the size and duration of these stimuli, we can map the receptive field properties of visual neurons and isolate deficits in specific neural channels.
-              </p>
-
-              <!-- Spatial/Temporal Gabor elements aligned centered (No offset) -->
-              <div style="margin-bottom: 2rem; display: flex; gap: 4rem; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
-                <figure class="phase1-figure-centered">
-                  <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">Spatial Frequency</div>
-                  <div data-spatial-gabor="canvas" data-freq-start="1" data-freq-end="30" data-duration="3000" style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden; margin-bottom: 8px;">
-                    <canvas class="spatial-gabor-canvas" style="width: 100%; height: 100%; display: block"></canvas>
-                  </div>
-                  <figcaption class="overview-figcaption">
-                    <span class="gabor-caption-label challenge-caption-fixed">spatial frequency:</span>
-                    <span class="challenge-caption-dynamic"><span class="gabor-caption-value" style="display: inline-block; min-width: 2ch; text-align: right;">1</span> <span class="gabor-caption-unit">cpd</span></span>
-                  </figcaption>
-                </figure>
-                <figure class="phase1-figure-centered">
-                  <div style="margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); text-align: center;">Temporal Frequency</div>
-                  <div data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="3000" data-step-duration="100" data-speed-multiplier="1.0" data-on-src="../assets/images/temporal_frequency_on.png" data-off-src="../assets/images/temporal_frequency_off.png" style="position: relative; width: 152px; height: 152px; border: 1px solid var(--line); background: #000; overflow: hidden; margin-bottom: 8px;">
-                    <canvas class="temporal-flicker-canvas" style="width: 100%; height: 100%; display: block"></canvas>
-                  </div>
-                  <figcaption class="overview-figcaption" data-temporal-caption="true">
-                    <span class="gabor-caption-label challenge-caption-fixed">temporal frequency:</span>
-                    <span class="challenge-caption-dynamic"><span class="temporal-caption-value" style="display: inline-block; min-width: 2ch; text-align: right;">1</span> <span class="gabor-caption-unit">Hz</span></span>
-                  </figcaption>
-                </figure>
+          <!-- PROGRAM 1 -->
+          <div class="program-card">
+            <div class="program-meta">
+              <span class="program-label">Program 01</span>
+              <span class="program-readiness">Readiness: Exploration</span>
+            </div>
+            <h2 class="program-title">Visual Neuroscience &amp; Low Vision Research</h2>
+            
+            <div class="program-grid">
+              <div class="program-details">
+                <div class="detail-section question">
+                  <span class="detail-label">Representative Question</span>
+                  <p class="detail-val">How can we isolate optical refraction deficits from cerebral visual cortex processing limitations?</p>
+                </div>
+                <div class="detail-section hypothesis">
+                  <span class="detail-label">Core Hypothesis</span>
+                  <p class="detail-val">Spatio-temporal modulation of Gabor patch stimuli maps neural receptive field summation limits, reflecting neural pathway integrity and residual contrast sensitivity in low-vision profiles.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Conducted Research</span>
+                  <p class="detail-val">Gabor patch-based spatial summation model validation, contrast sensitivity variance studies on ~50 subjects.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Current Devices &amp; Data</span>
+                  <p class="detail-val">Gabor stimulation control suite, dominant/non-dominant eye sensitivity dataset.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Open Challenges</span>
+                  <p class="detail-val">Controlling longitudinal subject-to-subject baseline variability and stimulus adaptation effects.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">12-24 Month Roadmap</span>
+                  <p class="detail-val"><strong>2026.Q3-Q4</strong>: Normative cohort dataset collection. <strong>2027.Q1-Q2</strong>: Behavior analysis library and low-vision rehabilitation module upgrades.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Request for Collaboration</span>
+                  <p class="detail-val">Partnerships with clinical neurology departments and low-vision rehabilitation clinics.</p>
+                </div>
               </div>
 
-              <div class="challenge-visual-grid">
-                <figure>
-                  <img loading="lazy" src="../assets/images/contrast_sensitivity_plot.png" alt="Contrast Sensitivity Plot" class="chart-img" />
-                  <figcaption class="overview-figcaption">Effects of Dominant Hand and Visual Pathway</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" src="../assets/images/contrast_sensitivity_boxplot.png" alt="Contrast Sensitivity Boxplot" class="chart-img" />
-                  <figcaption class="overview-figcaption">Population Analytics and Demographics</figcaption>
-                </figure>
+              <div class="program-visual">
+                <!-- P0 Compliance: Safe Manual Flicker Box -->
+                <div class="flicker-test-box">
+                  <div class="flicker-cover" id="p1-warning-cover">
+                    <span style="color:#ef4444; font-size:16px; font-weight:bold; margin-bottom:8px;">⚠️ Photosensitivity Warning</span>
+                    <p style="font-size:9px; color:rgba(255,255,255,0.7); max-width:200px; line-height:1.4;">This demo contains 1-30 Hz flicker stimuli. Click the button below to start.</p>
+                    <button class="btn-trigger-flicker" id="btn-play-p1">Trigger Stimulation Demo</button>
+                  </div>
+                  
+                  <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                    <figure class="phase1-figure-centered">
+                      <span class="detail-label">Spatial Frequency</span>
+                      <div data-spatial-gabor="canvas" data-freq-start="1" data-freq-end="30" data-duration="3000" style="position: relative; width: 120px; height: 120px; border: 1px solid var(--line); background: #000; overflow: hidden; margin-bottom: 8px;">
+                        <canvas class="spatial-gabor-canvas" style="width: 100%; height: 100%; display: block"></canvas>
+                      </div>
+                    </figure>
+                    <figure class="phase1-figure-centered">
+                      <span class="detail-label">Temporal Frequency (Flicker)</span>
+                      <div id="p1-flicker-container" data-temporal-flicker="canvas" data-freq-start="1" data-freq-end="30" data-ramp-duration="3000" data-step-duration="100" data-speed-multiplier="1.0" data-on-src="../assets/images/temporal_frequency_on.png" data-off-src="../assets/images/temporal_frequency_off.png" style="position: relative; width: 120px; height: 120px; border: 1px solid var(--line); background: #000; overflow: hidden; margin-bottom: 8px;">
+                        <canvas class="temporal-flicker-canvas" style="width: 100%; height: 100%; display: block"></canvas>
+                      </div>
+                    </figure>
+                  </div>
+                </div>
+
+                <div class="challenge-visual-container">
+                  <div class="challenge-visual-grid">
+                    <figure>
+                      <img loading="lazy" src="../assets/images/contrast_sensitivity_plot.png" alt="Contrast Sensitivity Plot" class="chart-img" />
+                      <figcaption class="overview-figcaption">Sensitivity by Dominant Eye</figcaption>
+                    </figure>
+                    <figure>
+                      <img loading="lazy" src="../assets/images/contrast_sensitivity_boxplot.png" alt="Contrast Sensitivity Boxplot" class="chart-img" />
+                      <figcaption class="overview-figcaption">Normative Cohort Deviation</figcaption>
+                    </figure>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
-
-          <!-- PHASE 2 (Fixed LaTeX Equations to plain text equations) -->
-          <div class="challenge-section">
-            <span class="challenge-phase-label">Phase 2: Optometric Metrology</span>
-            <h2 class="challenge-title">Mysteries of the Eye's 6 Interfaces: <strong>Refraction</strong></h2>
-            <p class="challenge-desc">
-              Myopia progression is closely related to morphological changes in the peripheral retina. We use precise geometric optical modeling and chromatic aberration principles to quantitatively determine the impact of myopia on retinal geometry.
-            </p>
-
-            <div class="challenge-visual-container">
-              <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-color);">
-                Study 1: Precise Geometrical Optics Modeling &amp; Simulation
-              </h3>
-              <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                Since 2014, we have applied a calculation algorithm to precisely compute all angles of incidence and refraction at 6 refractive surfaces: anterior/posterior cornea, anterior/posterior lens cortex, and anterior/posterior lens nucleus.
-                We map curvature radii (R) and refractive indices (ni, nt) to calculate refraction vectors. According to Snell's Law (ni * sin(theta_i) = nt * sin(theta_t)), by computing the optical path differences (OPD) at each boundary using dynamic ray-tracing, we accurately trace how peripheral retinal shape correlates with systemic myopia development.
-              </p>
-              
-              <div class="challenge-visual-grid">
-                <figure>
-                  <img loading="lazy" src="../assets/images/research/phase2/oct_analysis.png" alt="Retinal OCT Curvature Measurement" class="photo-img">
-                  <figcaption class="overview-figcaption">OCT Retinal Curvature</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" src="../assets/images/research/phase2/optical_simulation.png" alt="6-Surface Ray-tracing Simulation" class="photo-img">
-                  <figcaption class="overview-figcaption">6-Surface Ray-tracing</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" src="../assets/images/research/phase2/curvature_graph.png" alt="Retinal Shape Graph" class="chart-img">
-                  <figcaption class="overview-figcaption">Shape by Refractive Error</figcaption>
-                </figure>
-              </div>
-
-              <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-color); border-top: 1px solid var(--line); padding-top: 2rem;">
-                Study 2: Chromatic Aberration-based Peripheral Refraction Measurement
-              </h3>
-              <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                To accurately measure the refractive state of the peripheral retina, we utilize the principle of Longitudinal Chromatic Aberration between Red and Green wavelengths. By projecting concentric flicker stimuli at 8°, 16°, and 32° and measuring subjective focus disparity, we map focal plane curvature deviations without standard subjective autorefractors.
-              </p>
-              
-              <div class="challenge-figure-row">
-                <figure>
-                  <img loading="lazy" src="../assets/images/research/phase2/peripheral_setup_schematic.png" alt="Setup Schematic" class="chart-img">
-                  <figcaption class="overview-figcaption">Peripheral correction Setup</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" src="../assets/images/research/phase2/led_flicker.gif" alt="LED Circuit animation" class="photo-img">
-                  <figcaption class="overview-figcaption">LED Control Circuitry</figcaption>
-                </figure>
-                <figure>
-                  <picture>
-                    <source srcset="../assets/images/research/phase2/peripheral_prototype.webp" type="image/webp">
-                    <img loading="lazy" src="../assets/images/research/phase2/peripheral_prototype.gif" alt="Prototype simulation" class="photo-img">
-                  </picture>
-                  <figcaption class="overview-figcaption">Peripheral Refraction Prototype</figcaption>
-                </figure>
-              </div>
+          <!-- PROGRAM 2 -->
+          <div class="program-card">
+            <div class="program-meta">
+              <span class="program-label">Program 02</span>
+              <span class="program-readiness">Readiness: Exploration</span>
             </div>
-          </div>
+            <h2 class="program-title">Peripheral Visual Field Metrology</h2>
+            
+            <div class="program-grid">
+              <div class="program-details">
+                <div class="detail-section question">
+                  <span class="detail-label">Representative Question</span>
+                  <p class="detail-val">How can we measure peripheral retinal defocus without complex clinical wavefront autorefractors?</p>
+                </div>
+                <div class="detail-section hypothesis">
+                  <span class="detail-label">Core Hypothesis</span>
+                  <p class="detail-val">Inducing longitudinal chromatic aberration (LCA) using multi-point red-green flicker stimuli allows mathematical reconstruction of retinal curvature eccentricity.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Conducted Research</span>
+                  <p class="detail-val">6-surface eye geometry ray-tracing simulations, LCA-based peripheral refraction clinical trials.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Current Devices &amp; Data</span>
+                  <p class="detail-val">Multi-point chromatic aberration refraction prototype, ray-tracing modeling source code.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Open Challenges</span>
+                  <p class="detail-val">Compensating for high-order aberrations at high eccentricity (>32 degrees).</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">12-24 Month Roadmap</span>
+                  <p class="detail-val"><strong>2026.Q4~</strong>: Integration with dynamic variable lens accommodating model. <strong>2027.Q3</strong>: Release of B2B wavefront calibration toolkit.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Request for Collaboration</span>
+                  <p class="detail-val">Joint feasibility studies with wide-field biometric hardware manufacturers and varifocal lens suppliers.</p>
+                </div>
+              </div>
 
-          <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
-
-          <!-- PHASE 3 (Vertically stacked, centered split images with 1.3x scale) -->
-          <div class="challenge-section">
-            <span class="challenge-phase-label">Phase 3: Prototype Development</span>
-            <h2 class="challenge-title">Precision Corneo-Scleral <strong>3D Reconstruction</strong></h2>
-            <p class="challenge-desc">
-              To fit specialty contact lenses and plan corneal surgeries, mapping the cornea is insufficient—we must capture the entire corneo-scleral topography. We develop high-speed prototype devices to reconstruct this geometry in 3D using Infrared Structured Light.
-            </p>
-
-            <div class="challenge-visual-container">
-              <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-color);">
-                3D Reconstruction via Structured Light Deformation
-              </h3>
-              <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                By projecting concentric infrared ring patterns onto the ocular surface, we capture pattern deformations with high-speed cameras. Using principles of differential geometry, we calculate height deviations Z(r) at each radius r through the linear proportion Z(r) = delta_d * tan(theta), where delta_d is the local pattern displacement on the camera sensor, and theta is the projection angle. An optimized mesh-fitting algorithm reconstructs the complete 3D corneo-scleral topography in real-time with sub-micron precision, providing automated fitting parameters for clinical partners.
-              </p>
-              
-              <!-- Corrected actual paths for Phase 3 (Middle figure vertically stacked and centered alignment fixed) -->
-              <div class="challenge-visual-grid">
-                <figure>
-                  <img loading="lazy" src="../assets/images/research/phase3/ping_pong_laser_grid.png" alt="Projected Red Grid Laser Pattern" class="photo-img">
-                  <figcaption class="overview-figcaption">Laser Grid Projection</figcaption>
-                </figure>
-                <figure class="phase3-vertical-split">
-                  <div class="split-images-wrap">
-                    <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_left.png" alt="3D Reconstruction Left Method" class="photo-img split-img split-img-top">
-                    <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_right.png" alt="3D Reconstruction Right Method" class="photo-img split-img split-img-bottom">
+              <div class="program-visual">
+                <div class="challenge-visual-container">
+                  <div class="challenge-visual-grid">
+                    <figure>
+                      <img loading="lazy" src="../assets/images/research/phase2/oct_analysis.png" alt="Retinal OCT Curvature" class="photo-img">
+                      <figcaption class="overview-figcaption">OCT Retinal Curvature</figcaption>
+                    </figure>
+                    <figure>
+                      <img loading="lazy" src="../assets/images/research/phase2/optical_simulation.png" alt="Ray-tracing Simulation" class="photo-img">
+                      <figcaption class="overview-figcaption">6-Surface Ray-tracing</figcaption>
+                    </figure>
                   </div>
-                  <figcaption class="overview-figcaption">3D Reconstruction Method</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" src="../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="Corneo-Scleral Analysis UI" class="photo-img">
-                  <figcaption class="overview-figcaption">Real-time Topography Interface</figcaption>
-                </figure>
+                  
+                  <div class="challenge-figure-row" style="margin-top: 15px;">
+                    <figure>
+                      <img loading="lazy" src="../assets/images/research/phase2/peripheral_setup_schematic.png" alt="Setup Schematic" class="chart-img">
+                      <figcaption class="overview-figcaption">Chromatic Aberration Schematic</figcaption>
+                    </figure>
+                    <figure>
+                      <picture>
+                        <source srcset="../assets/images/research/phase2/peripheral_prototype.webp" type="image/webp">
+                        <img loading="lazy" src="../assets/images/research/phase2/peripheral_prototype.gif" alt="Prototype simulation" class="photo-img">
+                      </picture>
+                      <figcaption class="overview-figcaption">Peripheral Refraction Prototype</figcaption>
+                    </figure>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div style="height: 2px; background: var(--line); margin: 4rem 0;"></div>
-
-          <!-- PHASE 4 -->
-          <div class="challenge-section">
-            <span class="challenge-phase-label">Phase 4: AI &amp; Software Integration</span>
-            <h2 class="challenge-title">AI-Driven Autonomic <strong>Biomarker Screening</strong></h2>
-            <p class="challenge-desc">
-              The eye is a window to the brain. We capture and analyze dynamic pupil reactions under structured light stimulation, utilizing deep learning algorithms to isolate autonomic biomarker indices for early-stage neurodegenerative diseases.
-            </p>
-
-            <div class="challenge-visual-container">
-              <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-color);">
-                High-Speed Pupil Tracking &amp; Biomarker Analysis
-              </h3>
-              <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; text-align: justify;">
-                Using high-frame-rate cameras (up to 120 fps) under infrared illumination, we track pupil contours and capture sub-millimeter oscillations. Our pipeline extracts 10 key autonomic parameters (such as constriction latency and dilation velocity) and 47 high-dimensional biomarkers. We evaluate signal complexity through Sample Entropy metrics to track focal path variations. A reduction in pupil oscillation complexity serves as a non-invasive digital biomarker for early autonomic dysfunction.
-              </p>
-              
-              <!-- Realigned visual layout (Bottom images scaled up by 2 steps to 240px height) -->
-              <div class="phase4-layout-top">
-                <figure>
-                  <img loading="lazy" src="../assets/images/research/phase4_pupil_graph.jpg" alt="Pupil Reflex Response Curve" class="chart-img">
-                  <figcaption class="overview-figcaption">Autonomic Response Waveform (Large Analysis Scale)</figcaption>
-                </figure>
+          <!-- PROGRAM 3 -->
+          <div class="program-card">
+            <div class="program-meta">
+              <span class="program-label">Program 03</span>
+              <span class="program-readiness prototype">Readiness: Prototyping</span>
+            </div>
+            <h2 class="program-title">Wide-Field Corneo-Scleral 3D Aberration Prototypes</h2>
+            
+            <div class="program-grid">
+              <div class="program-details">
+                <div class="detail-section question">
+                  <span class="detail-label">Representative Question</span>
+                  <p class="detail-val">How do we reconstruct the combined corneal and scleral surface topology simultaneously at sub-micron precision?</p>
+                </div>
+                <div class="detail-section hypothesis">
+                  <span class="detail-label">Core Hypothesis</span>
+                  <p class="detail-val">Analyzing geometric deformations in projected concentric infrared structured light patterns using differential geometry yielding sub-micron continuous mesh topography.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Conducted Research</span>
+                  <p class="detail-val">Concentric ring pattern deformation equations, 3D anterior surface mesh reconstruction validation.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Current Devices &amp; Data</span>
+                  <p class="detail-val">Infrared Structured Light projector prototypes, real-time topography analysis UI.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Open Challenges</span>
+                  <p class="detail-val">Filtering out noise caused by scleral vascular patterns and tear-film reflection variations.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">12-24 Month Roadmap</span>
+                  <p class="detail-val"><strong>2026.Q4</strong>: Deep learning vascular noise masking. <strong>2027.Q2</strong>: Target clinical fitting error margin below 0.03mm.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Request for Collaboration</span>
+                  <p class="detail-val">Integration partnerships with specialty scleral lens manufacturers and refractive surgery suites.</p>
+                </div>
               </div>
-              <div class="phase4-layout-bottom">
-                <figure>
-                  <img loading="lazy" src="../assets/images/research/phase4_eye_tracking_monitor.jpg" alt="High-Speed Eye Tracking Monitor" class="photo-img">
-                  <figcaption class="overview-figcaption">Real-time Contour Tracking</figcaption>
-                </figure>
-                <figure>
-                  <img loading="lazy" src="../assets/images/research/phase4_study2_correlation_matrix.jpg" alt="Biomarker Cluster Matrix" class="chart-img">
-                  <figcaption class="overview-figcaption">47-Biomarker Cluster Matrix</figcaption>
-                </figure>
+
+              <div class="program-visual">
+                <div class="challenge-visual-container">
+                  <div class="challenge-visual-grid">
+                    <figure>
+                      <img loading="lazy" src="../assets/images/research/phase3/ping_pong_laser_grid.png" alt="Laser Grid Projection" class="photo-img">
+                      <figcaption class="overview-figcaption">Infrared Laser Grid Projection</figcaption>
+                    </figure>
+                    <figure class="phase3-vertical-split">
+                      <div class="split-images-wrap">
+                        <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_left.png" alt="3D Reconstruction Left" class="photo-img split-img">
+                        <img loading="lazy" src="../assets/images/research/phase3/3d_reconstruction_right.png" alt="3D Reconstruction Right" class="photo-img split-img">
+                      </div>
+                      <figcaption class="overview-figcaption">3D Topography Mesh Reconstruction</figcaption>
+                    </figure>
+                  </div>
+                  
+                  <div style="margin-top: 15px; width: 100%;">
+                    <figure style="margin: 0; width: 100%; box-sizing: border-box;">
+                      <img loading="lazy" src="../assets/images/research/phase3/corneo_scleral_analysis_ui.png" alt="Scleral Fit UI" class="photo-img" style="height: 140px;">
+                      <figcaption class="overview-figcaption">Real-time Scleral Topography Interface</figcaption>
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROGRAM 4 -->
+          <div class="program-card">
+            <div class="program-meta">
+              <span class="program-label">Program 04</span>
+              <span class="program-readiness clinical">Readiness: Clinical Validation</span>
+            </div>
+            <h2 class="program-title">AI-Driven Ocular Biomarker Software</h2>
+            
+            <div class="program-grid">
+              <div class="program-details">
+                <div class="detail-section question">
+                  <span class="detail-label">Representative Question</span>
+                  <p class="detail-val">Can non-linear complexity reduction in Pupil Light Reflex (PLR) waveforms serve as a digital biomarker for early autonomic neurodegeneration?</p>
+                </div>
+                <div class="detail-section hypothesis">
+                  <span class="detail-label">Core Hypothesis</span>
+                  <p class="detail-val">Sample entropy metrics extracted from 120fps infrared pupillometry streams across 47 dimensions correlate strongly with central nervous system fatigue and autonomic decay.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Conducted Research</span>
+                  <p class="detail-val">47-biomarker feature extraction pipeline, anomaly detection classifier validation.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Current Devices &amp; Data</span>
+                  <p class="detail-val">120fps pupillometry tracking python engine, autonomic light response raw dataset.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Open Challenges</span>
+                  <p class="detail-val">Normalizing baseline biological variance caused by subject fatigue, circadian rhythm, and medication.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">12-24 Month Roadmap</span>
+                  <p class="detail-val"><strong>2026.Q3-2027.Q1</strong>: Multi-site clinical dataset collection. <strong>2027.Q4</strong>: Pre-regulatory filing validation for AI classifier.</p>
+                </div>
+                <div class="detail-section">
+                  <span class="detail-label">Request for Collaboration</span>
+                  <p class="detail-val">Clinical trials with neurology research hospitals and sleep disorder clinics.</p>
+                </div>
+              </div>
+
+              <div class="program-visual">
+                <div class="challenge-visual-container">
+                  <div class="phase4-layout-top">
+                    <figure>
+                      <img loading="lazy" src="../assets/images/research/phase4_pupil_graph.jpg" alt="Pupil Response Curve" class="chart-img">
+                      <figcaption class="overview-figcaption">Autonomic Pupil Light Reflex Waveform</figcaption>
+                    </figure>
+                  </div>
+                  <div class="phase4-layout-bottom">
+                    <figure>
+                      <img loading="lazy" src="../assets/images/research/phase4_eye_tracking_monitor.jpg" alt="Real-time Tracking" class="photo-img">
+                      <figcaption class="overview-figcaption">High-Speed Pupil Contour Tracking</figcaption>
+                    </figure>
+                    <figure>
+                      <img loading="lazy" src="../assets/images/research/phase4_study2_correlation_matrix.jpg" alt="Correlation Matrix" class="chart-img">
+                      <figcaption class="overview-figcaption">47-Biomarker Cluster Matrix</figcaption>
+                    </figure>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -668,11 +851,10 @@
             <div class="infra-text">
               <span class="sec-label">Data Pipeline Architecture</span>
               <h2>Real-time Edge Ingestion Pipeline</h2>
-              <div class="infra-badge"><span class="dot"></span>ACTIVE · HIPAA SECURE</div>
+              <div class="infra-badge"><span class="dot"></span>ACTIVE · PIPA COMPLIANT</div>
               <p>Optinex Research operates an integrated B2B productization workflow connecting hardware edge sensors, autonomous software agents, and remote medical services in a structured tree architecture.</p>
             </div>
             
-            <!-- Animated SVG Flowchart placed at the bottom, taking full width (2x Bigger Boxes & Clean abstract specs) -->
             <div class="diagram-interactive">
               <svg viewBox="0 0 920 320" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Background glow links -->
@@ -682,7 +864,7 @@
                 <path d="M357.5 200 V247.5 H410" class="static-flow-line" />
                 <path d="M632.5 200 V247.5 H580" class="static-flow-line" />
 
-                <!-- Node 1: Edge Sensing (Large box, abstract label) -->
+                <!-- Node 1: Edge Sensing -->
                 <g class="node-group">
                   <rect x="15" y="80" width="165" height="120" rx="4" class="node-bg" />
                   <text x="97.5" y="108" class="node-icon-emoji" text-anchor="middle">📸</text>
@@ -691,7 +873,7 @@
                   <text x="97.5" y="176" class="node-text-badge" text-anchor="middle">Geometrical Lenses</text>
                 </g>
 
-                <!-- Node 2: SBC Ingestion (Large box, abstract label) -->
+                <!-- Node 2: SBC Ingestion -->
                 <g class="node-group">
                   <rect x="275" y="80" width="165" height="120" rx="4" class="node-bg" />
                   <text x="357.5" y="108" class="node-icon-emoji" text-anchor="middle">💻</text>
@@ -700,7 +882,7 @@
                   <text x="357.5" y="176" class="node-text-badge" text-anchor="middle">High-Speed Wired Link</text>
                 </g>
 
-                <!-- Node 3: AI Station (Large box, abstract label) -->
+                <!-- Node 3: AI Station -->
                 <g class="node-group">
                   <rect x="545" y="80" width="175" height="120" rx="4" class="node-bg" />
                   <text x="632.5" y="108" class="node-icon-emoji" text-anchor="middle">🧠</text>
@@ -709,12 +891,12 @@
                   <text x="632.5" y="176" class="node-text-badge" text-anchor="middle">RAG Knowledge Search</text>
                 </g>
 
-                <!-- Node 4: HIPAA Cloud Vault -->
+                <!-- Node 4: PIPA Cloud Vault -->
                 <g class="node-group">
                   <rect x="410" y="220" width="170" height="55" rx="4" class="node-bg" />
                   <text x="435" y="253" class="node-icon-emoji">🔒</text>
                   <text x="505" y="244" class="node-text-title" text-anchor="middle">Secure Ingestion</text>
-                  <text x="505" y="258" class="node-text-sub" text-anchor="middle">HIPAA Cloud Vault</text>
+                  <text x="505" y="258" class="node-text-sub" text-anchor="middle">PIPA Cloud Vault</text>
                 </g>
 
                 <!-- Node 5: Productized Portal -->
@@ -755,7 +937,7 @@
                 <div style="font-size: 13.5px; color: var(--text-light); line-height: 1.6; padding: 12px; border-left: 2px solid var(--primary-color); background: rgba(169, 214, 238, 0.015);">
                   <strong style="color: #fff;">🏥 B2B Ingestion</strong>
                   <ul style="margin: 8px 0 0; padding-left: 15px; list-style-type: square; font-size: 12.5px; color: var(--text-light);">
-                    <li>Secured patient biometric database hosting in HIPAA-compliant cloud vaults</li>
+                    <li>Secured patient biometric database hosting in PIPA-compliant cloud vaults</li>
                     <li>Sub-micron level 3D corneo-scleral topography height deviation mapping</li>
                     <li>Direct diagnostic data delivery to clinician portal dashboards</li>
                   </ul>
@@ -769,7 +951,17 @@
     </section>
   </main>
 
-  <script src="../assets/js/main.js?v=4.0" defer></script>
+  <script src="../assets/js/main.js?v=5.0" defer></script>
+  
+  <script>
+    // P0 Compliance: manual trigger only execution for flicker stimulation
+    const p1Cover = document.getElementById('p1-warning-cover');
+    const btnPlayP1 = document.getElementById('btn-play-p1');
+
+    btnPlayP1.addEventListener('click', () => {
+      p1Cover.classList.add('hidden');
+    });
+  </script>
 </body>
 
 </html>
