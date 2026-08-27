@@ -35,7 +35,7 @@ let myopiaIntervalId = null; // 테마 3 루프 타이머 ID
  */
 async function initPublicationsV2() {
   const lang = document.documentElement.lang || "en";
-  
+
   // 1. 사이드바 메뉴 V2 형태로 재구성
   initPublicationsSubmenuToggleV2();
 
@@ -378,7 +378,7 @@ async function loadPublicationsV2() {
           contribution: "Learn",
           status: "Completed",
           materials: ["paper"],
-          key_finding: lang === "ko" 
+          key_finding: lang === "ko"
             ? "시각 인지 안정성 확보 및 시력 제어 기전에 대한 학술적 실증."
             : "Academic validation of visual cognitive stability and ocular control mechanisms."
         };
@@ -424,13 +424,13 @@ function bindFilterEvents() {
     btn.addEventListener("click", () => {
       const mat = btn.getAttribute("data-material");
       btn.classList.toggle("active");
-      
+
       if (selectedMaterialsFilter.includes(mat)) {
         selectedMaterialsFilter = selectedMaterialsFilter.filter(item => item !== mat);
       } else {
         selectedMaterialsFilter.push(mat);
       }
-      
+
       applyFiltersAndRender();
     });
   });
@@ -518,13 +518,13 @@ function renderFilteredList(items) {
   let html = "";
   items.forEach((pub) => {
     const isJournal = pub.type === "peer-reviewed";
-    const typeLabel = lang === "ko" 
+    const typeLabel = lang === "ko"
       ? (isJournal ? "저널 논문" : "학술대회 발표")
       : (isJournal ? "Journal" : "Conference");
-    
+
     // Contribution 활성화 표시용 매핑
     const steps = ["Measure", "Model", "Augment", "Learn"];
-    
+
     // 오픈 사이언스 머티리얼 아이콘 맵
     const materialIcons = [
       { key: "paper", icon: "📄", label: lang === "ko" ? "원문" : "Paper" },
@@ -545,19 +545,19 @@ function renderFilteredList(items) {
           </div>
           <span class="pub-year">${pub.year}</span>
         </div>
-        
+
         <a href="${pub.doi || "#"}" target="_blank" class="pub-title-link" style="pointer-events: ${pub.doi ? "auto" : "none"}; text-decoration: ${pub.doi ? "none" : "none"};">
           "${pub.title}"
         </a>
-        
+
         <div class="pub-authors">${pub.authors}</div>
         <div class="pub-journal">${pub.journal}</div>
-        
+
         <div class="pub-key-finding">
           <span class="key-finding-label">Key Finding</span>
           <span class="key-finding-val">${pub.key_finding}</span>
         </div>
-        
+
         <div class="pub-alignment-row">
           <!-- Loop Flow Steps -->
           <div class="loop-flow" title="${lang === "ko" ? "회사 R&D 루프 단계" : "Company R&D Loop Step"}">
@@ -567,7 +567,7 @@ function renderFilteredList(items) {
               </span>
             `).join("")}
           </div>
-          
+
           <!-- Open Materials Badges -->
           <div class="open-materials-list" title="${lang === "ko" ? "공개 과학 자료 제공 여부" : "Available Open Science Materials"}">
             ${materialIcons.map(item => {
@@ -599,7 +599,7 @@ function bindCardHoverToEyeball() {
     card.addEventListener("mouseenter", () => {
       const prog = card.getAttribute("data-program");
       let themeKey = "metrology"; // 기본값
-      
+
       if (prog === "Visual Neuroscience") {
         themeKey = "myopia-rehab";
       } else if (prog === "Peripheral Metrology" || prog === "Scleral 3D Prototypes") {
@@ -607,7 +607,7 @@ function bindCardHoverToEyeball() {
       } else if (prog === "AI Biomarkers") {
         themeKey = "biomarker";
       }
-      
+
       update3DModelByTheme(themeKey);
     });
   });
@@ -620,6 +620,10 @@ function bindCardHoverToEyeball() {
 function init3DEyeballVisualization() {
   const container = document.getElementById("threejs-visual-panel");
   if (!container) return;
+  if (typeof THREE === "undefined") {
+    container.setAttribute("data-visualization-state", "disabled");
+    return;
+  }
 
   const width = container.clientWidth;
   const height = container.clientHeight;
@@ -789,7 +793,7 @@ function init3DEyeballVisualization() {
   const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
   dirLight.position.set(5, 5, 5);
   scene.add(dirLight);
-  
+
   const ambLight = new THREE.AmbientLight(0x1a2e3a);
   scene.add(ambLight);
 
@@ -844,7 +848,7 @@ function animate3DEyeball() {
     }
   } else if (currentTheme === "biomarker") {
     // 1. 동공 크기 수축/이완 맥박 애니메이션 (선형 등속도 0.016 방식을 적용하여 감속/대기시간 없이 상하한 도달 시 즉시 방향 전환)
-    const pulseSpeed = 0.016; 
+    const pulseSpeed = 0.016;
     pupilScale += pupilPulseDirection * pulseSpeed;
 
     // 0.4(최소 축동) ~ 1.2(최대 산동) 경계 도달 시 딜레이 없이 즉시 반사
@@ -855,7 +859,7 @@ function animate3DEyeball() {
       pupilScale = 1.2;
       pupilPulseDirection = -1.0; // 최대 지점 도달 시 즉시 수축 시작
     }
-    
+
     if (pupilMesh) {
       pupilMesh.scale.set(pupilScale, pupilScale, 1.0);
     }
@@ -865,7 +869,7 @@ function animate3DEyeball() {
     // 0 ~ 1 범위를 -PI/2 ~ PI/2 로 변환하여 sin 값을 취함 (부드러운 곡선화)
     const angle = normalized * Math.PI - Math.PI / 2;
     const currentPupilSizeMM = 5.5 + Math.sin(angle) * 2.0; // 3.5mm ~ 7.5mm
-    
+
     pupilHistory.push(currentPupilSizeMM);
     if (pupilHistory.length > 80) pupilHistory.shift();
 
@@ -879,8 +883,8 @@ function animate3DEyeball() {
         const pGeo = new THREE.SphereGeometry(0.045, 8, 8);
         const pMesh = new THREE.Mesh(pGeo, pulseMat);
         pMesh.position.set(
-          (Math.random() - 0.5) * 0.15, 
-          (Math.random() - 0.5) * 0.15, 
+          (Math.random() - 0.5) * 0.15,
+          (Math.random() - 0.5) * 0.15,
           0.4 - (i * 0.2)
         );
         scene.add(pMesh);
@@ -917,7 +921,7 @@ function createIrisTexture(colorTheme) {
   canvas.width = 512;
   canvas.height = 512;
   const ctx = canvas.getContext("2d");
-  
+
   // 1. 기본 홍채 색상 방사형 그라데이션
   const grad = ctx.createRadialGradient(256, 256, 40, 256, 256, 256);
   if (colorTheme === "brown") {
@@ -941,13 +945,13 @@ function createIrisTexture(colorTheme) {
     const angle = (i * Math.PI) / 180;
     const startRadius = 50 + Math.random() * 10;
     const endRadius = 220 + Math.random() * 20;
-    
+
     ctx.beginPath();
     ctx.moveTo(256 + Math.cos(angle) * startRadius, 256 + Math.sin(angle) * startRadius);
     ctx.lineTo(256 + Math.cos(angle) * endRadius, 256 + Math.sin(angle) * endRadius);
     ctx.stroke();
   }
-  
+
   // 3. 미세 홍채 동심원 주름 추가
   ctx.strokeStyle = "rgba(0, 0, 0, 0.2)";
   ctx.lineWidth = 2.5;
@@ -972,7 +976,7 @@ function createTopographyTexture() {
   canvas.width = 512;
   canvas.height = 512;
   const ctx = canvas.getContext("2d");
-  
+
   // 1. 배경 베이스: 평평한 곡률을 뜻하는 파란색/청록색 방사형 그라데이션
   const baseGrad = ctx.createRadialGradient(256, 256, 20, 256, 256, 250);
   baseGrad.addColorStop(0, "#0284c7");   // 중심부 평평한 푸른빛 (sky-blue)
@@ -1133,13 +1137,13 @@ function update3DModelByTheme(themeId) {
     });
     const scanPlane = new THREE.Mesh(scanPlaneGeo, scanPlaneMat);
     scanPlane.position.set(0, 0, 0.4);
-    
+
     // 테두리 와이어 선 추가로 하이테크 느낌 강조
     const scanPlaneEdges = new THREE.EdgesGeometry(scanPlaneGeo);
     const scanPlaneLineMat = new THREE.LineBasicMaterial({ color: 0x10b981, linewidth: 2 });
     const scanPlaneWire = new THREE.LineSegments(scanPlaneEdges, scanPlaneLineMat);
     scanPlane.add(scanPlaneWire);
-    
+
     scene.add(scanPlane);
     metrologyDecorations.push(scanPlane);
     scanPlaneMeshGlobal = scanPlane; // 실시간 애니메이션 루프 연동용 전역 변수 할당
@@ -1149,7 +1153,7 @@ function update3DModelByTheme(themeId) {
     const hudRingMat = new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.6 });
     const hudRing = new THREE.Mesh(hudRingGeo, hudRingMat);
     hudRing.position.set(0, 0, 1.1);
-    
+
     // HUD 조준선 십자 크로스헤어
     const crossMat = new THREE.LineBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.4 });
     const crossPoints = [];
@@ -1167,7 +1171,7 @@ function update3DModelByTheme(themeId) {
     // 시점 조정: 각막 돔의 입체 지형과 스캐너 평면을 한눈에 살피는 사선 구도
     camera.position.set(0.8, 0.4, 4.4);
     camera.lookAt(0, 0, 0);
-    
+
     // 리드아웃 텍스트 업데이트
     if (readoutStatus) readoutStatus.textContent = "CORNEAL TOPOGRAPHY";
     if (readoutMode) readoutMode.textContent = "PLACIDO SCANNERS";
@@ -1176,14 +1180,14 @@ function update3DModelByTheme(themeId) {
   } else if (themeId === "biomarker") {
     // 테마 2: 동공 바이오마커 (동공 크기 수축/이완 스캔)
     if (corneaShell) corneaShell.material.opacity = 0.08; // 각막을 극도로 투명화
-    
+
     // 갈색 홍채 질감 텍스처 동적 바인딩 (실감나는 눈알 묘사)
     if (irisMesh) {
       irisMesh.material.map = createIrisTexture("brown");
       irisMesh.material.color.setHex(0xffffff); // 틴트 초기화하여 텍스처 본연의 색상 노출
       irisMesh.material.needsUpdate = true;
     }
-    
+
     // 시점 조정: 동공 수축의 정면 확인을 위한 정면 구도
     camera.position.set(0, 0, 4.6);
     camera.lookAt(0, 0, 0);
@@ -1203,11 +1207,11 @@ function update3DModelByTheme(themeId) {
       pupilCanvas.style.borderRadius = "6px";
       pupilCanvas.style.background = "#0c111e";
       pupilCanvas.style.border = "1px solid rgba(255,255,255,0.08)";
-      
+
       // 내 해상도 선명하게 보정
       pupilCanvas.width = readoutPanel.clientWidth || 320;
       pupilCanvas.height = 65;
-      
+
       readoutPanel.appendChild(pupilCanvas);
     }
     if (pupilCanvas) pupilCanvas.style.display = "block";
@@ -1270,22 +1274,22 @@ function initPublicationsNavigationV2() {
       }
     }, 100);
   }
-  
+
   // 사이드바 서브메뉴 항목 클릭 시 스무스 스크롤 및 3D 업데이트 연동
   submenuLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
       const targetId = link.getAttribute("href").substring(1);
       const targetSection = document.getElementById(targetId);
-      
+
       if (targetSection) {
         // 1. 해당 섹션으로 부드러운 스크롤 이동
         targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        
+
         // 2. 수동 선택 시 3D 렌더링 즉시 변경
         const themeKey = targetId.replace("theme-", "");
         update3DModelByTheme(themeKey);
-        
+
         // 3. 서브메뉴 활성화 클래스 조절
         submenuLinks.forEach(l => l.classList.remove("active"));
         link.classList.add("active");
@@ -1305,7 +1309,7 @@ function initPublicationsNavigationV2() {
       if (entry.isIntersecting) {
         const sectionId = entry.target.id;
         const themeKey = sectionId.replace("theme-", "");
-        
+
         // 3D 뷰 및 리드아웃 수치 업데이트
         update3DModelByTheme(themeKey);
 
@@ -1339,17 +1343,17 @@ function drawPupilSizeGraph() {
   const ctx = canvas.getContext("2d");
   const w = canvas.width;
   const h = canvas.height;
-  
+
   ctx.clearRect(0, 0, w, h);
-  
+
   // Background
   ctx.fillStyle = "#0c111e";
   ctx.fillRect(0, 0, w, h);
-  
+
   // 좌측 Y축 눈금 영역을 확보하기 위한 여백 (Margin) 설정
   const marginX = 40;
   const graphW = w - marginX - 15;
-  
+
   // 1. x, y 좌표축 그리기
   ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
   ctx.lineWidth = 1;
@@ -1361,20 +1365,20 @@ function drawPupilSizeGraph() {
   ctx.moveTo(marginX, h - 10);
   ctx.lineTo(w - 10, h - 10);
   ctx.stroke();
-  
+
   // 2. Y축 눈금 및 가이드선 그리기
   ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
   ctx.font = "9px monospace";
   ctx.textAlign = "right";
   ctx.textBaseline = "middle";
-  
+
   const yTicks = [7.5, 5.5, 3.5];
   const yCoords = [12, (h - 18)/2 + 6, h - 18]; // 각 수치의 y좌표 매핑
-  
+
   yTicks.forEach((tick, idx) => {
     const y = yCoords[idx];
     ctx.fillText(`${tick.toFixed(1)}`, marginX - 6, y);
-    
+
     // 점선 보조 가이드라인
     ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";
     ctx.beginPath();
@@ -1382,46 +1386,46 @@ function drawPupilSizeGraph() {
     ctx.lineTo(w - 10, y);
     ctx.stroke();
   });
-  
+
   if (pupilHistory.length < 2) return;
-  
+
   // 3. 실시간 동공 수치 곡선 그래프 그리기 (보라색 네온 라인 - 이차 베지어 곡선 보간법 적용)
   ctx.strokeStyle = "#a78bfa";
   ctx.lineWidth = 2.2;
   ctx.beginPath();
-  
+
   const step = graphW / 80;
-  
+
   // 첫 번째 시작 포인트 계산 후 이동
   const startY = (h - 18) - ((pupilHistory[0] - 3.5) / (7.5 - 3.5)) * ((h - 18) - 12);
   ctx.moveTo(marginX, startY);
-  
+
   let i;
   for (i = 0; i < pupilHistory.length - 1; i++) {
     const valCur = pupilHistory[i];
     const valNext = pupilHistory[i + 1];
-    
+
     const yCur = (h - 18) - ((valCur - 3.5) / (7.5 - 3.5)) * ((h - 18) - 12);
     const yNext = (h - 18) - ((valNext - 3.5) / (7.5 - 3.5)) * ((h - 18) - 12);
-    
+
     const xCur = marginX + i * step;
     const xNext = marginX + (i + 1) * step;
-    
+
     // 현재 포인트와 다음 포인트의 가로/세로 중간값 계산 (제어점)
     const xc = (xCur + xNext) / 2;
     const yc = (yCur + yNext) / 2;
-    
+
     // 중간 제어점 방향으로 곡선을 그리며 연결
     ctx.quadraticCurveTo(xCur, yCur, xc, yc);
   }
-  
+
   // 마지막 포인트까지 연결 마무리
   const lastIdx = pupilHistory.length - 1;
   const lastY = (h - 18) - ((pupilHistory[lastIdx] - 3.5) / (7.5 - 3.5)) * ((h - 18) - 12);
   ctx.lineTo(marginX + lastIdx * step, lastY);
-  
+
   ctx.stroke();
-  
+
   // 4. 현재 동공 지름 수치 오버레이 출력
   const curVal = pupilHistory[pupilHistory.length - 1];
   ctx.fillStyle = "#a78bfa";
@@ -1438,19 +1442,19 @@ function drawMyopia2DSketch() {
   const canvas = document.getElementById("myopia-2d-canvas");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
-  
+
   // 디바이스 픽셀 비율에 따른 보정
   const r = window.devicePixelRatio || 1;
   const w = canvas.width / r;
   const h = canvas.height / r;
-  
+
   ctx.setTransform(r, 0, 0, r, 0, 0);
   ctx.clearRect(0, 0, w, h);
-  
+
   // Background
   ctx.fillStyle = "#090d16";
   ctx.fillRect(0, 0, w, h);
-  
+
   // Draw Optical Axis (광축)
   ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
   ctx.lineWidth = 1;
@@ -1460,11 +1464,11 @@ function drawMyopia2DSketch() {
   ctx.lineTo(w - 10, h / 2);
   ctx.stroke();
   ctx.setLineDash([]);
-  
+
   // 안구 기하학 기준점
   const cx = w * 0.45;
   const cy = h / 2;
-  
+
   // 1. Sclera (공막 외곽선)
   ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
   ctx.lineWidth = 1.5;
@@ -1478,7 +1482,7 @@ function drawMyopia2DSketch() {
   ctx.beginPath();
   ctx.arc(cx - 70, cy, 55, -Math.PI / 3, Math.PI / 3, true);
   ctx.stroke();
-  
+
   // 3. Iris (홍채 - 어두운 세로 벽)
   ctx.strokeStyle = "#1e293b";
   ctx.lineWidth = 4;
@@ -1488,7 +1492,7 @@ function drawMyopia2DSketch() {
   ctx.moveTo(cx - 42, cy + 15);
   ctx.lineTo(cx - 42, cy + 45);
   ctx.stroke();
-  
+
   // 4. Pupil (동공 - 붉은 조리개 가이드)
   ctx.strokeStyle = "#ef4444";
   ctx.lineWidth = 3;
@@ -1498,7 +1502,7 @@ function drawMyopia2DSketch() {
   ctx.moveTo(cx - 42, cy + 8);
   ctx.lineTo(cx - 42, cy + 15);
   ctx.stroke();
-  
+
   // 5. Crystalline Lens (수정체 - 초록색 볼록 렌즈)
   ctx.strokeStyle = "#10b981";
   ctx.lineWidth = 2;
@@ -1510,14 +1514,14 @@ function drawMyopia2DSketch() {
   ctx.closePath();
   ctx.fill();
   ctx.stroke();
-  
+
   // 6. Retina (망막 곡선 - 스크린 역할)
   ctx.strokeStyle = "#64748b";
   ctx.lineWidth = 2.5;
   ctx.beginPath();
   ctx.arc(cx + 8, cy, 95, -Math.PI / 2.2, Math.PI / 2.2);
   ctx.stroke();
-  
+
   // 기본 부위 명칭 라벨링
   ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
   ctx.font = "10px Inter, sans-serif";
@@ -1525,17 +1529,17 @@ function drawMyopia2DSketch() {
   ctx.fillText("수정체 (Lens)", cx - 20, cy - 38);
   ctx.fillText("망막 (Retina)", cx + 70, cy - 85);
   ctx.fillText("동공", cx - 62, cy - 20);
-  
+
   // 현재 각도 선택
   const angles = [0, 15, 30];
   const angle = angles[myopiaAngleIndex];
-  
+
   // 광선 투사 변수 설정
   let startX = 15;
   let focusX, focusY;
   let retinaHitX, retinaHitY;
   let gapVal, defocusVal;
-  
+
   if (angle === 0) {
     focusX = cx + 65; // 망막보다 앞에 초점
     focusY = cy;
@@ -1558,46 +1562,46 @@ function drawMyopia2DSketch() {
     gapVal = -0.95;
     defocusVal = -0.58;
   }
-  
+
   // 광선 다발 그리기
   const colors = ["#ef4444", "#10b981", "#a78bfa", "#f59e0b"]; // 맨위 파란색 선을 빨간색으로 변경
   const rayOffsets = [-25, 0, 25];
-  
+
   rayOffsets.forEach((offset, idx) => {
     ctx.strokeStyle = colors[idx % colors.length];
     ctx.lineWidth = 1.8;
     ctx.beginPath();
-    
+
     // 각막 교점 계산 (각막 곡률에 따른 x 편차 추가)
     const corneaX_ray = cx - 70 + (Math.abs(offset) * Math.abs(offset) * 0.005);
     const corneaY_ray = cy + offset;
-    
+
     // 입사각 rad 계산
     const rad = (angle * Math.PI) / 180;
-    
+
     // 각막 외부에서의 입사 광선 (눈 기준 평행하지 않고 각도 angle만큼 기울어진 Oblique Ray)
     const rayStartX = startX;
     const rayStartY = corneaY_ray - (corneaX_ray - startX) * Math.tan(rad);
-    
+
     // 1. 입사광 (각막 외부에서 각막 표면까지)
     ctx.moveTo(rayStartX, rayStartY);
     ctx.lineTo(corneaX_ray, corneaY_ray);
-    
+
     // 2. 각막 내부 굴절 (각막 표면에서 수정체 표면까지)
     const lensX_ray = cx - 32;
     // 입사각에 따른 수정체 도달 높이 계산 (굴절률 반영하여 각도가 약간 꺾임)
     const lensY_ray = cy + (offset * 0.4) - (angle * 0.35);
     ctx.lineTo(lensX_ray, lensY_ray);
-    
+
     // 3. 수정체 굴절 및 수렴 (수정체에서 초점까지)
     ctx.lineTo(focusX, focusY);
-    
+
     // 4. 초점 이후 망막 도달 (초점에서 망막 표면까지)
     ctx.lineTo(retinaHitX, retinaHitY);
-    
+
     ctx.stroke();
   });
-  
+
   // 초점 스팟 그리기 (Orange glowing focus spot)
   ctx.fillStyle = "#f97316";
   ctx.shadowColor = "#f97316";
@@ -1606,14 +1610,14 @@ function drawMyopia2DSketch() {
   ctx.arc(focusX, focusY, 5.5, 0, Math.PI * 2);
   ctx.fill();
   ctx.shadowBlur = 0; // 그림자 초기화
-  
+
   // 망막 닿는점 그리기 (White ring)
   ctx.strokeStyle = "#ffffff";
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.arc(retinaHitX, retinaHitY, 4, 0, Math.PI * 2);
   ctx.stroke();
-  
+
   // 초점과 망막 사이 갭 표시 (Defocus Gap)
   ctx.strokeStyle = "#ef4444";
   ctx.lineWidth = 2;
@@ -1621,7 +1625,7 @@ function drawMyopia2DSketch() {
   ctx.moveTo(focusX, focusY);
   ctx.lineTo(retinaHitX, retinaHitY);
   ctx.stroke();
-  
+
   // 텍스트 정보 오버레이 (둥근 테두리 클리핑 방지를 위해 중앙 정렬 배치)
   ctx.fillStyle = "#ffffff";
   ctx.font = "bold 12px Inter, 'Noto Sans KR', sans-serif";
@@ -1631,7 +1635,7 @@ function drawMyopia2DSketch() {
   ctx.font = "11px Inter, 'Noto Sans KR', sans-serif";
   ctx.fillText(`초점-망막 갭 (Shell Gap): ${gapVal.toFixed(2)} mm (${defocusVal.toFixed(2)} D)`, w / 2, h - 20);
   ctx.textAlign = "left"; // 다른 그리기 작업 영향 방지용 리셋
-  
+
   ctx.fillStyle = "#ef4444";
   ctx.font = "bold 9px Inter, 'Noto Sans KR', sans-serif";
   ctx.fillText("Myopic Defocus (망막 전방 초점 형성)", focusX - 75, focusY - 12);

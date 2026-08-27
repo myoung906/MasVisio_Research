@@ -107,9 +107,9 @@ function getErrorMessage(error, lang) {
 function initVisualSummationStimuli() {
   const spatialTarget = document.querySelector('[data-spatial-gabor="canvas"]');
   const temporalTarget = document.querySelector('[data-temporal-flicker="canvas"]');
-  
+
   if (!spatialTarget && !temporalTarget) return;
-  
+
   let spatialConfig = null;
   if (spatialTarget) {
     const canvas = spatialTarget.querySelector(".spatial-gabor-canvas");
@@ -124,7 +124,7 @@ function initVisualSummationStimuli() {
       };
     }
   }
-  
+
   let temporalConfig = null;
   if (temporalTarget) {
     const canvas = temporalTarget.querySelector(".temporal-flicker-canvas");
@@ -135,7 +135,7 @@ function initVisualSummationStimuli() {
       const offImg = new Image();
       onImg.src = temporalTarget.dataset.onSrc;
       offImg.src = temporalTarget.dataset.offSrc;
-      
+
       temporalConfig = {
         canvas, ctx, captionValue, onImg, offImg,
         start: Number(temporalTarget.dataset.freqStart || 1),
@@ -143,11 +143,63 @@ function initVisualSummationStimuli() {
         duration: Number(temporalTarget.dataset.rampDuration || 3000),
         accumulator: 0,
         state: 1,
-        lastTime: performance.now()
+        lastTime: performance.now(),
+        paused: true
       };
+
+      // Create play overlay
+      const overlay = document.createElement("div");
+      overlay.className = "temporal-flicker-overlay";
+      overlay.style.position = "absolute";
+      overlay.style.top = "0";
+      overlay.style.left = "0";
+      overlay.style.width = "100%";
+      overlay.style.height = "100%";
+      overlay.style.background = "rgba(8, 12, 17, 0.8)";
+      overlay.style.display = "flex";
+      overlay.style.flexDirection = "column";
+      overlay.style.alignItems = "center";
+      overlay.style.justifyContent = "center";
+      overlay.style.cursor = "pointer";
+      overlay.style.transition = "all 0.3s ease";
+      overlay.style.zIndex = "10";
+
+      const isKo = window.location.pathname.includes("/ko/");
+      const playText = isKo ? "클릭하여 재생" : "Click to Play";
+
+      overlay.innerHTML = `
+        <div style="font-size: 28px; color: var(--primary-color); margin-bottom: 6px; transform: scale(1); transition: transform 0.2s;">▶</div>
+        <div style="font-size: 10px; color: #fff; font-family: var(--mono-font); letter-spacing: 0.1em; text-transform: uppercase;">${playText}</div>
+      `;
+
+      temporalTarget.appendChild(overlay);
+
+      overlay.addEventListener("mouseenter", () => {
+        overlay.style.background = "rgba(8, 12, 17, 0.65)";
+        overlay.querySelector("div").style.transform = "scale(1.2)";
+      });
+      overlay.addEventListener("mouseleave", () => {
+        overlay.style.background = "rgba(8, 12, 17, 0.8)";
+        overlay.querySelector("div").style.transform = "scale(1)";
+      });
+
+      overlay.addEventListener("click", (e) => {
+        e.stopPropagation();
+        temporalConfig.paused = false;
+        overlay.style.opacity = "0";
+        overlay.style.pointerEvents = "none";
+        temporalConfig.lastTime = performance.now();
+      });
+
+      canvas.style.cursor = "pointer";
+      canvas.addEventListener("click", () => {
+        temporalConfig.paused = true;
+        overlay.style.opacity = "1";
+        overlay.style.pointerEvents = "auto";
+      });
     }
   }
-  
+
   const resize = (config) => {
     if (!config) return;
     const rect = config.canvas.getBoundingClientRect();
@@ -155,28 +207,28 @@ function initVisualSummationStimuli() {
     config.canvas.width = Math.max(1, Math.round(rect.width * dpr));
     config.canvas.height = Math.max(1, Math.round(rect.height * dpr));
   };
-  
+
   resize(spatialConfig);
   resize(temporalConfig);
   window.addEventListener("resize", () => {
     resize(spatialConfig);
     resize(temporalConfig);
   });
-  
+
   const startTime = performance.now();
-  
+
   const drawGabor = (config, freq) => {
     const { ctx, canvas } = config;
     const width = canvas.width;
     const height = canvas.height;
-    
+
     const imgData = ctx.createImageData(width, height);
     const data = imgData.data;
     const sigma = width * 0.23;
     const xc = width / 2;
     const yc = height / 2;
     const cycles = freq * 0.35;
-    
+
     for (let y = 0; y < height; y++) {
       const dy = y - yc;
       const dy2 = dy * dy;
@@ -196,49 +248,65 @@ function initVisualSummationStimuli() {
     }
     ctx.putImageData(imgData, 0, 0);
   };
-  
+
   const update = (now) => {
     if (!document.hidden) {
       const elapsed = (now - startTime) % 3000;
       const ratio = elapsed / 3000;
       const freq = Math.min(30, Math.max(1, Math.round(1 + (30 - 1) * ratio)));
-      
+
       if (spatialConfig) {
         drawGabor(spatialConfig, freq);
         if (spatialConfig.captionValue) {
           spatialConfig.captionValue.textContent = String(freq);
         }
       }
-      
+
       if (temporalConfig) {
-        const dt = Math.max(0.001, (now - temporalConfig.lastTime) / 1000);
-        temporalConfig.lastTime = now;
-        
-        const halfPeriod = 0.5 / freq;
-        temporalConfig.accumulator += dt;
-        while (temporalConfig.accumulator >= halfPeriod) {
-          temporalConfig.state = temporalConfig.state ? 0 : 1;
-          temporalConfig.accumulator -= halfPeriod;
-        }
-        
-        const alpha = temporalConfig.state;
-        const { ctx, canvas } = temporalConfig;
-        
-        if (temporalConfig.offImg.complete && temporalConfig.onImg.complete && temporalConfig.offImg.naturalWidth > 0) {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.globalAlpha = 1;
-          ctx.drawImage(temporalConfig.offImg, 0, 0, canvas.width, canvas.height);
-          ctx.globalAlpha = alpha;
-          ctx.drawImage(temporalConfig.onImg, 0, 0, canvas.width, canvas.height);
-          ctx.globalAlpha = 1;
+        if (!temporalConfig.paused) {
+          const dt = Math.max(0.001, (now - temporalConfig.lastTime) / 1000);
+          temporalConfig.lastTime = now;
+
+          const halfPeriod = 0.5 / freq;
+          temporalConfig.accumulator += dt;
+          while (temporalConfig.accumulator >= halfPeriod) {
+            temporalConfig.state = temporalConfig.state ? 0 : 1;
+            temporalConfig.accumulator -= halfPeriod;
+          }
+
+          const alpha = temporalConfig.state;
+          const { ctx, canvas } = temporalConfig;
+
+          if (temporalConfig.offImg.complete && temporalConfig.onImg.complete && temporalConfig.offImg.naturalWidth > 0) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.globalAlpha = 1;
+            ctx.drawImage(temporalConfig.offImg, 0, 0, canvas.width, canvas.height);
+            ctx.globalAlpha = alpha;
+            ctx.drawImage(temporalConfig.onImg, 0, 0, canvas.width, canvas.height);
+            ctx.globalAlpha = 1;
+          } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = alpha ? "rgba(169, 214, 238, 0.9)" : "rgba(8, 12, 17, 0.9)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+          }
+
+          if (temporalConfig.captionValue) {
+            temporalConfig.captionValue.textContent = String(freq);
+          }
         } else {
+          // Draw static OFF state
+          const { ctx, canvas } = temporalConfig;
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.fillStyle = alpha ? "rgba(169, 214, 238, 0.9)" : "rgba(8, 12, 17, 0.9)";
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-        
-        if (temporalConfig.captionValue) {
-          temporalConfig.captionValue.textContent = String(freq);
+          if (temporalConfig.offImg.complete && temporalConfig.offImg.naturalWidth > 0) {
+            ctx.drawImage(temporalConfig.offImg, 0, 0, canvas.width, canvas.height);
+          } else {
+            ctx.fillStyle = "rgba(8, 12, 17, 0.9)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+          }
+          temporalConfig.lastTime = now;
+          if (temporalConfig.captionValue) {
+            temporalConfig.captionValue.textContent = "1";
+          }
         }
       }
     } else {
@@ -550,6 +618,8 @@ async function loadAdvancedPhases() {
 }
 
 function initMobileNav() {
+  if (document.body.classList.contains("site-layout")) return;
+
   // 1. Check if elements exist, if not inject them
   if (!document.querySelector(".mobile-nav-toggle")) {
     const toggleBtn = document.createElement("button");
@@ -997,10 +1067,10 @@ async function loadTeamMembers() {
             const name = member.name || "";
             const affiliation = member.affiliation || "";
             const expertise = member.expertise || "";
-            const tags = expertise 
-              ? expertise.split(',').map(tag => `<span class="spec-tag">${tag.trim()}</span>`).join('') 
+            const tags = expertise
+              ? expertise.split(',').map(tag => `<span class="spec-tag">${tag.trim()}</span>`).join('')
               : "";
-              
+
             const displayRole = (role === "대표" || role === "CEO" || role === "Hwan-Hee Lee" || name === "이환희" || name === "Hwan-Hee Lee") ? role : "";
 
             return `
@@ -1052,7 +1122,7 @@ async function loadDiagnostics() {
             <h2 class="section-title">${diagnostics.title}</h2>
             <p class="section-subtitle">${diagnostics.description}</p>
         </div>
-        
+
         <div class="diagnostic-grid">
       `;
 
@@ -1136,6 +1206,8 @@ let largeTextActive = false;
 let highContrastActive = false;
 
 function initAccessibilityControls() {
+  if (document.body.classList.contains("site-layout")) return;
+
   // Load saved settings
   try {
     voiceGuideActive = localStorage.getItem("mv_voice_guide") === "1";
@@ -1169,8 +1241,8 @@ function initAccessibilityControls() {
   // Welcome message if voice guide is active
   if (voiceGuideActive) {
     const isKo = document.documentElement.lang === "ko";
-    const welcome = isKo 
-      ? "시각재활 연구 웹사이트에 오신 것을 환영합니다. 마우스를 올리거나 탭 키로 이동하면 안내 음성이 나옵니다." 
+    const welcome = isKo
+      ? "시각재활 연구 웹사이트에 오신 것을 환영합니다. 마우스를 올리거나 탭 키로 이동하면 안내 음성이 나옵니다."
       : "Welcome to Optinex Research. Hover or tab to hear descriptions.";
     setTimeout(() => speakText(welcome), 1000);
   }
@@ -1228,9 +1300,9 @@ function injectAccessibilityStyles() {
     body.large-text .section-title {
       font-size: 2.8rem !important;
     }
-    body.large-text p, 
-    body.large-text a, 
-    body.large-text span, 
+    body.large-text p,
+    body.large-text a,
+    body.large-text span,
     body.large-text li {
       font-size: 1.15rem !important;
     }
@@ -1272,9 +1344,9 @@ function toggleLargeText() {
   try {
     localStorage.setItem("mv_large_text", largeTextActive ? "1" : "0");
   } catch (e) {}
-  
+
   const isKo = document.documentElement.lang === "ko";
-  const msg = largeTextActive 
+  const msg = largeTextActive
     ? (isKo ? "큰 글씨 모드가 켜졌습니다." : "Large text mode enabled.")
     : (isKo ? "큰 글씨 모드가 꺼졌습니다." : "Large text mode disabled.");
   speakText(msg);
@@ -1289,7 +1361,7 @@ function toggleHighContrast() {
   } catch (e) {}
 
   const isKo = document.documentElement.lang === "ko";
-  const msg = highContrastActive 
+  const msg = highContrastActive
     ? (isKo ? "고대비 모드가 켜졌습니다." : "High contrast mode enabled.")
     : (isKo ? "고대비 모드가 꺼졌습니다." : "High contrast mode disabled.");
   speakText(msg);
@@ -1359,7 +1431,7 @@ function bindAccessibilityEvents() {
         const originalAriaHidden = el.getAttribute("aria-hidden");
         el.setAttribute("aria-hidden", "true");
         speakText(textToSpeak);
-        
+
         // 낭독이 끝나거나 일정 시간 후 원상복구
         setTimeout(() => {
           if (originalAriaHidden === null) {
@@ -1375,4 +1447,3 @@ function bindAccessibilityEvents() {
     el.addEventListener("focus", handleEvent);
   });
 }
-

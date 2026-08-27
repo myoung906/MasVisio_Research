@@ -1,15 +1,13 @@
 /* =========================================
    Reset and Base Styles
    ========================================= */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap');
-
 :root {
   --ink: #080c11;
   --panel: #0e141b;
   --panel2: #111922;
   --line: rgba(168, 200, 224, 0.14);
   --line-strong: rgba(168, 200, 224, 0.28);
-  
+
   --primary-color: #a9d6ee; /* ice */
   --secondary-color: #0e141b; /* panel */
   --accent-color: #a9d6ee; /* ice */
@@ -25,13 +23,18 @@
   --body-font: "Inter", sans-serif;
   --logo-font: "Orbitron", sans-serif;
   --mono-font: "IBM Plex Mono", monospace;
-  
+
   --border-radius: 4px;
   --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   --transition: all 0.3s ease;
   --container-width: 1200px;
   --sidebar-width: 280px;
   --mobile-header-height: 120px;
+  --header-height: 64px;
+  --surface-0: #080c11;
+  --surface-1: #0e141b;
+  --surface-2: #111922;
+  --muted-text: #7e8d9c;
 }
 
 * {
@@ -50,6 +53,12 @@ body {
   line-height: 1.7;
   display: flex;
   min-height: 100vh;
+}
+
+body.site-layout {
+  display: block;
+  min-width: 0;
+  overflow-x: clip;
 }
 
 h1,
@@ -114,6 +123,121 @@ a:hover {
   outline: 2px solid var(--primary-color);
   outline-offset: 3px;
   border-radius: 3px;
+}
+
+/* =========================================
+   Global Top Shell
+   ========================================= */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  min-height: var(--header-height);
+  background: rgba(8, 12, 17, 0.97);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header-inner {
+  width: min(1180px, calc(100% - 32px));
+  min-height: var(--header-height);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-brand {
+  flex: 0 0 auto;
+  color: var(--text-color);
+  font-family: var(--logo-font);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.site-brand:hover {
+  color: var(--primary-color);
+}
+
+.site-nav {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.site-nav a,
+.site-language a,
+.site-language span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 0.72rem;
+  border-radius: 4px;
+  color: var(--muted-text);
+  font-family: var(--mono-font);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.site-nav a:hover,
+.site-language a:hover {
+  color: var(--text-color);
+  background: rgba(169, 214, 238, 0.08);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--primary-color);
+  background: rgba(169, 214, 238, 0.1);
+}
+
+.site-language {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.site-language span {
+  color: var(--text-color);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.site-layout .main-content {
+  display: block;
+  width: 100%;
+  margin-left: 0;
+  padding-top: var(--header-height);
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: var(--surface-0);
+}
+
+.site-footer-inner {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted-text);
+  font-size: 0.82rem;
+}
+
+.site-footer a {
+  color: var(--primary-color);
 }
 
 /* =========================================
@@ -398,4 +522,27 @@ a:hover {
   font-weight: 500;
   text-align: center;
   padding: 2rem;
+}
+
+/* =========================================
+   Reduced Motion Preferences
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable specific high-motion components */
+  .strip-inner {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .animated-flow-line {
+    animation: none !important;
+    stroke-dasharray: none !important;
+  }
 }

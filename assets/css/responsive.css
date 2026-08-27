@@ -430,8 +430,112 @@
     margin: 0 !important;
   }
 
-  .phase3-tuning-image {
+.phase3-tuning-image {
     max-width: 100% !important;
   }
 }
 
+/* =========================================
+   Global Top Shell Overrides
+   ========================================= */
+.site-layout .mobile-header,
+.site-layout .mobile-nav-toggle,
+.site-layout .mobile-nav-overlay {
+  display: none !important;
+}
+
+.site-layout .main-content {
+  width: 100%;
+  margin-left: 0;
+  padding-top: var(--header-height);
+}
+
+.site-layout .sticky-visual-sidebar,
+.site-layout .threejs-readout-panel,
+.site-layout #threejs-visual-panel {
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  html,
+  body.site-layout {
+    overflow-x: clip;
+  }
+
+  :root {
+    --header-height: 60px;
+  }
+
+  .site-header-inner {
+    width: min(100% - 24px, 1180px);
+    gap: 0.65rem;
+  }
+
+  .site-brand {
+    font-size: 0.78rem;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-nav a,
+  .site-language a,
+  .site-language span {
+    min-height: 32px;
+    padding: 0 0.55rem;
+    font-size: 0.68rem;
+  }
+
+  .site-layout .container,
+  .site-layout .page-section,
+  .site-layout .overview-section,
+  .site-layout .publications-v2-layout,
+  .site-layout .publications-content-col,
+  .site-layout .evidence-filters,
+  .site-layout .filter-row,
+  .site-layout .partners-grid,
+  .site-layout .team-grid {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .site-layout .partners-grid,
+  .site-layout .filter-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --header-height: 56px;
+  }
+
+  .site-header-inner {
+    width: min(100% - 20px, 1180px);
+    gap: 0.45rem;
+  }
+
+  .site-brand {
+    font-size: 0.68rem;
+    max-width: 6.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .site-language a,
+  .site-language span {
+    padding: 0 0.45rem;
+  }
+
+  .site-footer-inner {
+    flex-direction: column;
+    padding: 1.5rem 0;
+  }
+}
