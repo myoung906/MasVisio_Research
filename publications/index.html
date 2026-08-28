@@ -1,403 +1,400 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Evidence Library - Optinex Research</title>
-    <meta
-      name="description"
-      content="Search and filter academic publications, clinical data, codebases, and simulations from Optinex Research's four core programs."
-    />
-    <meta property="og:title" content="Evidence Library - Optinex Research" />
-    <meta
-      property="og:description"
-      content="Search and filter academic publications, clinical data, codebases, and simulations from Optinex Research's four core programs."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://myoung906.github.io/MasVisio_Research/assets/images/vision_engineering_concept.png" />
-    <meta property="og:url" content="https://myoung906.github.io/MasVisio_Research/publications/index.html" />
-    <link rel="canonical" href="https://myoung906.github.io/MasVisio_Research/publications/index.html" />
-    <link rel="alternate" hreflang="ko" href="https://myoung906.github.io/MasVisio_Research/ko/publications/index.html" />
-    <link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/publications/index.html" />
-    <link rel="stylesheet" href="../assets/css/main.css?v=5.0" />
-    <link rel="stylesheet" href="../assets/css/components.css?v=6.1" />
-  <link rel="stylesheet" href="../assets/css/responsive.css?v=6.1" />
-    
-    <style>
-      /* Evidence Library Specific Styling */
-      .evidence-filters {
-        background: rgba(15, 23, 42, 0.35);
-        border: 1px solid var(--line-strong);
-        border-radius: 8px;
-        padding: 1.8rem;
-        margin-bottom: 2.5rem;
-        backdrop-filter: blur(8px);
-      }
-      .filter-row {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-        margin-bottom: 1.5rem;
-      }
-      .filter-group {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .filter-label {
-        font-family: var(--mono-font);
-        font-size: 10px;
-        color: var(--primary-color);
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        font-weight: 600;
-      }
-      .filter-select, .search-input {
-        background: #090d16;
-        border: 1px solid var(--line);
-        color: #fff;
-        padding: 10px 14px;
-        border-radius: 4px;
-        font-family: var(--body-font);
-        font-size: 0.9rem;
-        width: 100%;
-        box-sizing: border-box;
-        transition: border-color 0.3s;
-      }
-      .filter-select:focus, .search-input:focus {
-        border-color: var(--primary-color);
-        outline: none;
-      }
-      
-      /* Materials checkbox styling */
-      .materials-checkboxes {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 5px;
-      }
-      .material-tag-btn {
-        background: transparent;
-        border: 1px solid var(--line);
-        color: var(--text-light);
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-family: var(--mono-font);
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
-      .material-tag-btn:hover {
-        border-color: var(--primary-color);
-        color: #fff;
-      }
-      .material-tag-btn.active {
-        background: rgba(142, 213, 255, 0.1);
-        border-color: var(--primary-color);
-        color: var(--primary-color);
-      }
+<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Evidence Library — Optinex Research</title><meta name="description" content="Read public study groups and materials by source, status, and program. Items whose results have not been reviewed remain visibly marked." /><link rel="canonical" href="https://myoung906.github.io/MasVisio_Research/publications/index.html" /><link rel="alternate" hreflang="ko" href="https://myoung906.github.io/MasVisio_Research/ko/publications/index.html" /><link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/publications/index.html" /><link rel="stylesheet" href="../assets/css/main.css?v=5.0" /><link rel="stylesheet" href="../assets/css/components.css?v=6.1" /><link rel="stylesheet" href="../assets/css/responsive.css?v=6.1" /></head><body class="site-layout evidence-page"><a href="#main-content" class="skip-link">Skip to main content</a><header class="site-header"><div class="site-header-inner"><a class="site-brand" href="../index.html">Optinex Research</a><nav class="site-nav" aria-label="Global navigation"><a href="../index.html">Home</a><a href="../research/overview.html">Research</a><a href="index.html" aria-current="page">Evidence</a><a href="../team/index.html">Company</a><a href="../contact.html">Contact</a></nav><div class="site-language" aria-label="Language selection"><a href="../../ko/publications/index.html" lang="ko">KO</a><span aria-current="true">EN</span></div></div></header><main class="main-content" id="main-content"><div class="evidence-wrap"><section class="evidence-intro"><p class="evidence-kicker">Evidence Library</p><h1>Evidence Library</h1><p class="evidence-lead">Read public study groups and materials by source, status, and program. Items whose results have not been reviewed remain visibly marked.</p><p class="evidence-count">57 study groups · 58 artifacts</p></section><section class="evidence-program-summary" aria-label="Program summary"><div><strong>Wide-field Eye Modeling</strong><span>Program mapping pending review</span></div><div><strong>Visual Neuroperformance</strong><span>Program mapping pending review</span></div><div><strong>Adaptive Optical Systems</strong><span>Program mapping pending review</span></div><div><strong>Longitudinal Eye Intelligence</strong><span>Program mapping pending review</span></div></section><section class="evidence-controls" aria-label="Evidence filters"><label class="evidence-search"><span>Search title, author, journal/conference</span><input id="evidence-search" type="search" autocomplete="off" /></label><div class="evidence-filter-grid"><label class="evidence-filter"><span>Type</span><select id="evidence-type"><option value="">All</option><option value="peer_reviewed">peer_reviewed</option><option value="conference">conference</option><option value="investigator_study">investigator_study</option><option value="prototype">prototype</option><option value="simulation">simulation</option><option value="software_artifact">software_artifact</option></select></label><label class="evidence-filter"><span>Program</span><select id="evidence-program"><option value="">All</option><option value="wide-field-eye-modeling">Wide-field Eye Modeling</option><option value="visual-neuroperformance">Visual Neuroperformance</option><option value="adaptive-optical-systems">Adaptive Optical Systems</option><option value="longitudinal-eye-intelligence">Longitudinal Eye Intelligence</option></select></label><label class="evidence-filter"><span>Contribution</span><select id="evidence-contribution"><option value="">All</option><option value="measure">measure</option><option value="model">model</option><option value="augment">augment</option><option value="learn">learn</option></select></label><label class="evidence-filter"><span>Year</span><select id="evidence-year"><option value="">All</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2011">2011</option><option value="2009">2009</option></select></label><label class="evidence-filter"><span>Status</span><select id="evidence-status"><option value="">All</option><option value="verified">verified</option><option value="internally_validated">internally_validated</option><option value="exploratory">exploratory</option><option value="hypothesis">hypothesis</option><option value="archived">archived</option></select></label><label class="evidence-filter"><span>Material</span><select id="evidence-material"><option value="">All</option><option value="paper">paper</option><option value="figure">figure</option><option value="code">code</option><option value="data_dictionary">data_dictionary</option><option value="demo">demo</option></select></label></div><p id="evidence-result-count" class="evidence-result-count" aria-live="polite">57 items</p></section><section id="evidence-list" class="evidence-list" aria-label="Evidence records"><article class="evidence-card" data-year="2025" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2025</span><span>conference</span><span>status pending review</span></div>
+    <h3>Comparative Study of Motion Contrast Sensitivity in Left and Right Visual Pathways</h3><p class="evidence-authors">강민정, 이정후, 서아정, 강다현, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
 
-      /* Publication Card Design */
-      .pub-card {
-        background: rgba(15, 23, 42, 0.2);
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        padding: 1.8rem;
-        margin-bottom: 1.5rem;
-        transition: transform 0.25s ease, border-color 0.25s ease;
-      }
-      .pub-card:hover {
-        border-color: var(--primary-color);
-        transform: translateY(-2px);
-      }
-      .pub-card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 15px;
-        margin-bottom: 0.8rem;
-      }
-      .pub-badge-group {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-      .pub-badge {
-        font-family: var(--mono-font);
-        font-size: 9px;
-        padding: 3px 8px;
-        border-radius: 4px;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-      .badge-type {
-        background: rgba(142, 213, 255, 0.08);
-        color: var(--primary-color);
-        border: 1px solid rgba(142, 213, 255, 0.2);
-      }
-      .badge-status {
-        background: rgba(34, 197, 94, 0.08);
-        color: #22c55e;
-        border: 1px solid rgba(34, 197, 94, 0.2);
-      }
-      .badge-status.active {
-        background: rgba(59, 130, 246, 0.08);
-        color: #3b82f6;
-        border: 1px solid rgba(59, 130, 246, 0.2);
-      }
-      .pub-year {
-        font-family: var(--mono-font);
-        font-size: 12px;
-        color: var(--text-light);
-        background: var(--panel2);
-        padding: 2px 8px;
-        border-radius: 4px;
-      }
-      .pub-title-link {
-        color: #fff;
-        font-family: var(--heading-font);
-        font-size: 1.25rem;
-        font-weight: 600;
-        text-decoration: none;
-        line-height: 1.4;
-        display: block;
-        margin-bottom: 0.6rem;
-        transition: color 0.2s;
-      }
-      .pub-title-link:hover {
-        color: var(--primary-color);
-      }
-      .pub-authors {
-        font-size: 0.9rem;
-        color: var(--text-light);
-        margin-bottom: 0.4rem;
-      }
-      .pub-journal {
-        font-size: 0.85rem;
-        font-style: italic;
-        color: rgba(255,255,255,0.4);
-        margin-bottom: 1rem;
-      }
-      .pub-key-finding {
-        background: rgba(142, 213, 255, 0.03);
-        border-left: 2px solid var(--primary-color);
-        padding: 8px 12px;
-        margin-bottom: 1.2rem;
-        border-radius: 0 4px 4px 0;
-      }
-      .key-finding-label {
-        font-family: var(--mono-font);
-        font-size: 9px;
-        color: var(--primary-color);
-        display: block;
-        text-transform: uppercase;
-        margin-bottom: 2px;
-      }
-      .key-finding-val {
-        font-size: 0.9rem;
-        color: var(--text-light);
-        line-height: 1.5;
-      }
-      
-      /* Alignment Loops highlights */
-      .pub-alignment-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-top: 1px solid var(--line);
-        padding-top: 1rem;
-        margin-top: 1rem;
-      }
-      .loop-flow {
-        display: flex;
-        gap: 6px;
-        align-items: center;
-      }
-      .loop-step {
-        font-family: var(--mono-font);
-        font-size: 9px;
-        color: rgba(255,255,255,0.2);
-        border: 1px solid rgba(255,255,255,0.05);
-        padding: 2px 6px;
-        border-radius: 3px;
-      }
-      .loop-step.active {
-        color: var(--primary-color);
-        border-color: rgba(142, 213, 255, 0.3);
-        background: rgba(142, 213, 255, 0.05);
-        font-weight: 600;
-      }
-      .open-materials-list {
-        display: flex;
-        gap: 8px;
-      }
-      .material-icon {
-        font-size: 13px;
-        opacity: 0.15;
-        cursor: default;
-        filter: grayscale(1);
-        transition: opacity 0.2s;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        background: var(--panel2);
-        border: 1px solid rgba(255,255,255,0.05);
-      }
-      .material-icon.active {
-        opacity: 1;
-        filter: none;
-        border-color: rgba(142, 213, 255, 0.2);
-        color: var(--primary-color);
-      }
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2025" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2025</span><span>conference</span><span>status pending review</span></div>
+    <h3>Development of Early Screening Algorithm for Multiple Neurological Diseases Using Non-invasive Pupil Biomarkers</h3><p class="evidence-authors">유상혁, 유명학, 강민정, 서아정, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
 
-      /* Responsive modifications */
-      @media (max-width: 1024px) {
-        .publications-layout {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-    
-    <!-- Three.js Library for 3D Eyeball Animation -->
-  </head>
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2025" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2025</span><span>conference</span><span>status pending review</span></div>
+    <h3>Meridional Changes in Peripheral Retina According to Refractive Error</h3><p class="evidence-authors">허민영, 박근호, 여현주, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
 
-  <body class="site-layout">
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a class="site-brand" href="../index.html">Optinex Research</a>
-      <nav class="site-nav" aria-label="Global navigation">
-        <a href="../index.html">Home</a>
-        <a href="../research/overview.html">Research</a>
-        <a href="../publications/index.html" aria-current="page">Evidence</a>
-        <a href="../team/index.html">Company</a>
-        <a href="../contact.html">Contact</a>
-      </nav>
-      <div class="site-language" aria-label="Language selection">
-        <a href="../ko/publications/index.html" lang="ko">KO</a>
-        <span aria-current="true">EN</span>
-      </div>
-    </div>
-  </header>
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2024" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2024</span><span>conference</span><span>status pending review</span></div>
+    <h3>Study on Correlation between Spherical Refractive Power and Corneal Curvature Radius for Meridional Peripheral Retina Correction</h3><p class="evidence-authors">유명학, 여현주, 조희진, 이정후, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
 
-<main class="main-content" id="main-content">
-      <section class="section page-section">
-        <div class="container">
-          <header class="publications-header page-header">
-            <h2 class="page-title">Evidence Library</h2>
-            <p class="page-subtitle">
-              Browse our peer-reviewed literature, clinical trials, code repositories, and mathematical simulations.
-            </p>
-          </header>
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2024" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2024</span><span>conference</span><span>status pending review</span></div>
+    <h3>Study on Optical Ray Tracing for Retinal Hyperplane Profile Algorithm Design</h3><p class="evidence-authors">허민영, 박근호, 여현주, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
 
-          <!-- 2-Column Desktop Grid Layout -->
-          <div class="publications-layout">
-            
-            <!-- Left Column: Evidence Filters + Publications Lists -->
-            <div class="publications-content-col">
-              
-              <!-- Evidence Filters Control Panel -->
-              <div class="evidence-filters">
-                <div class="filter-row">
-                  <div class="filter-group">
-                    <label class="filter-label" for="search-box">Search Author / Title</label>
-                    <input type="text" id="search-box" class="search-input" placeholder="Enter keywords..." />
-                  </div>
-                  
-                  <div class="filter-group">
-                    <label class="filter-label" for="select-program">Research Program</label>
-                    <select id="select-program" class="filter-select">
-                      <option value="all">All Programs</option>
-                      <option value="Visual Neuroscience">Visual Neuroscience &amp; Low Vision</option>
-                      <option value="Peripheral Metrology">Peripheral Visual Field Metrology</option>
-                      <option value="Scleral 3D Prototypes">Corneo-Scleral 3D Prototypes</option>
-                      <option value="AI Biomarkers">AI-Driven Ocular Biomarkers</option>
-                    </select>
-                  </div>
-                </div>
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2024" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2024</span><span>conference</span><span>status pending review</span></div>
+    <h3>Review of Methods for Peripheral Retina Correction for Myopia Control</h3><p class="evidence-authors">여현주, 조희진, 유명학, 이정후, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
 
-                <div class="filter-row">
-                  <div class="filter-group">
-                    <label class="filter-label" for="select-type">Outcome Type</label>
-                    <select id="select-type" class="filter-select">
-                      <option value="all">All Types</option>
-                      <option value="peer-reviewed">Peer-Reviewed Journal</option>
-                      <option value="conference">Conference Abstract</option>
-                      <option value="investigator study">Investigator Study</option>
-                      <option value="prototype">Hardware Prototype</option>
-                      <option value="simulation">Optical Simulation</option>
-                    </select>
-                  </div>
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2023" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2023</span><span>conference</span><span>status pending review</span></div>
+    <h3>Validity Verification of Spherical Refractive Power Measurement Estimated by Probability Distribution of Machine Learning</h3><p class="evidence-authors">한경선, 여현주, 표수환, 박지석, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
 
-                  <div class="filter-group">
-                    <label class="filter-label" for="select-contribution">Loop Contribution</label>
-                    <select id="select-contribution" class="filter-select">
-                      <option value="all">All Contributions</option>
-                      <option value="Measure">Measure (Data Acquisition)</option>
-                      <option value="Model">Model (Pathology Projection)</option>
-                      <option value="Augment">Augment (Visual Compensation)</option>
-                      <option value="Learn">Learn (Normative Analytics)</option>
-                    </select>
-                  </div>
-                </div>
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2023" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2023</span><span>conference</span><span>status pending review</span></div>
+    <h3>Study on Design of Spherical Auto-Refractometer Based on Retinoscopy</h3><p class="evidence-authors">조희진, 여현주, 이수민, 정민규, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
 
-                <div class="filter-group">
-                  <label class="filter-label">Open Science Materials</label>
-                  <div class="materials-checkboxes">
-                    <button class="material-tag-btn" data-material="paper">Paper 📄</button>
-                    <button class="material-tag-btn" data-material="figure">Figures 📊</button>
-                    <button class="material-tag-btn" data-material="code">Code 💻</button>
-                    <button class="material-tag-btn" data-material="data">Dataset 🗄️</button>
-                    <button class="material-tag-btn" data-material="demo">Live Demo 🧪</button>
-                  </div>
-                </div>
-              </div>
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2023" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2023</span><span>conference</span><span>status pending review</span></div>
+    <h3>Study on Real-time Auto-Refractometer Design Based on Machine Learning</h3><p class="evidence-authors">여현주, 조희진, 한경선, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
 
-              <!-- Filtered Results Container -->
-              <div id="publications-container-v2" class="publications-list-container">
-                <p>Loading Evidence Database...</p>
-              </div>
-            </div>
-            
-            <!-- Right Column: Interactive 3D Eyeball Panel -->
-            <div class="sticky-visual-sidebar" aria-hidden="true">
-              <div class="threejs-canvas-wrap" id="threejs-visual-panel">
-                <!-- Three.js Canvas will load here -->
-              </div>
-              
-              <!-- Dynamic Realtime Instrument Readout Panel -->
-              <div class="threejs-readout-panel">
-                <div class="readout-row">
-                  <span class="readout-label">MEASURE STATUS:</span>
-                  <span class="readout-value" id="readout-status-val">READY</span>
-                </div>
-                <div class="readout-row">
-                  <span class="readout-label">SCAN MODE:</span>
-                  <span class="readout-value" id="readout-mode-val">STANDBY</span>
-                </div>
-                <div class="readout-row">
-                  <span class="readout-label">CLINICAL INDEX:</span>
-                  <span class="readout-value" id="readout-index-val">--</span>
-                </div>
-              </div>
-            </div>
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2023" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2023</span><span>conference</span><span>status pending review</span></div>
+    <h3>Pilot Study on Retinal Hyperplane for Total Retinal Correction</h3><p class="evidence-authors">허민영, 박근호, 여현주, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
 
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer class="site-footer">
-      <div class="site-footer-inner">
-        <p>Research-stage platform. No commercial medical product is currently available.</p>
-        <p><a href="../privacy.html">Privacy Policy</a> · <a href="../contact.html">Contact</a></p>
-      </div>
-    </footer>
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2023" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2023</span><span>conference</span><span>status pending review</span></div>
+    <h3>Study on Total Retinal Shape Calculation for Customized Addition Design of Myopia Control Soft Contact Lenses</h3><p class="evidence-authors">박근호, 허민영, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
 
-    <!-- scripts -->
-    <script src="../assets/js/main.js?v=7.0" defer></script>
-    <script src="../assets/js/v2.js?v=7.0" defer></script>
-  </body>
-</html>
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2023" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2023</span><span>conference</span><span>status pending review</span></div>
+    <h3>Effect of Interpupillary Distance and Refractive Error on Stereopsis</h3><p class="evidence-authors">여현주, 박근호, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2022" data-type="unclassified,conference" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2022</span><span>unclassified · conference</span><span>status pending review</span></div>
+    <h3>A Study on the Visual Life Status of the Near-Poverty Class in Gyeongnam</h3><p class="evidence-authors">김정숙, 배현주, 서재명</p>
+    <p class="evidence-result">A basic study utilizing the status of visual life and quality of life of the near-poverty class aged 65 and over for community policy development. As the addition (presbyopia correction lens power) increased, a significant negative correlation was found in both distance and near activities, and visual quality of life decreased as the hyperopia of the spherical equivalent refraction increased.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002912370" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2022" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2022</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>A Review of the Current Status of E-commerce for Vision Correction Devices and Policy Directions for Korea (1) - Focusing on the EU and UK</h3><p class="evidence-authors">김현선, 서재명</p>
+    <p class="evidence-result">Exploring policy directions for Korea by analyzing cases of advanced European countries regarding online services for vision correction devices and eye refraction examinations. Confirmed that Korea&#39;s professional vision function and rehabilitation services are very poor compared to 5 European countries, and presented the limitations of e-commerce for vision correction devices.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002882289" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2022" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2022</span><span>conference</span><span>status pending review</span></div>
+    <h3>Dynamic Visual Response of Temporal and Nasal Retina to Yellow Filter</h3><p class="evidence-authors">이윤지, 이태남, 박지석, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2022" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2022</span><span>conference</span><span>status pending review</span></div>
+    <h3>Effect of Dominant Eye on Visual Function of Left and Right Visual Pathways</h3><p class="evidence-authors">이윤지, 이태남, 박지석, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2022" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2022</span><span>conference</span><span>status pending review</span></div>
+    <h3>Pilot Study on Pattern VEP Changes in Axial Myopia</h3><p class="evidence-authors">박다은, 박근호, 허민영, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2022" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2022</span><span>conference</span><span>status pending review</span></div>
+    <h3>Pilot Study on Correlation between Refractive Error and Peripheral Retinal Curvature in Axial Myopia</h3><p class="evidence-authors">허민영, 박근호, 박다은, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2022" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2022</span><span>conference</span><span>status pending review</span></div>
+    <h3>Effect of Luminance of Electronic Media Viewed at Night and Refractive Error on Iris Adaptation Time</h3><p class="evidence-authors">이다현, 이윤지, 이민주, 박지석, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2022" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2022</span><span>conference</span><span>status pending review</span></div>
+    <h3>Image Processing Technique Before Fabrication of Real-time 3D Scanner for Scleral Profile Analysis</h3><p class="evidence-authors">이태남, 권소민, 윤한성, 심원석, 백수원, 노태민, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2021" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2021</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>A Study on the Problems of Plans for Online Sales of Vision Correction Glasses</h3><p class="evidence-authors">심현석, 서재명, 김상현</p>
+    <p class="evidence-result">Analyzed problems with plans for online sales of vision correction glasses. Pointed out that company plans do not match reality and violate current laws, and various problems such as glasses quality and dispensing issues were confirmed in overseas cases. Suggested policy improvement measures for providing better eye health services.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002759886" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2021" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2021</span><span>conference</span><span>status pending review</span></div>
+    <h3>Overseas Online Sales of Vision Correction Devices</h3><p class="evidence-authors">서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2021" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2021</span><span>conference</span><span>status pending review</span></div>
+    <h3>Correlation among Age, Spherical Refractive Error, and Retinal Curvature Radius</h3><p class="evidence-authors">정유은, 허민영, 이다현, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2021" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2021</span><span>conference</span><span>status pending review</span></div>
+    <h3>Study on Qualitative Function of Left and Right Visual Pathways in Sports Vision</h3><p class="evidence-authors">박근호, 이윤지, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2021" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2021</span><span>conference</span><span>status pending review</span></div>
+    <h3>Effect of Luminance and Viewing Distance on Pupil Response</h3><p class="evidence-authors">정유은, 이예슬, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2021" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2021</span><span>conference</span><span>status pending review</span></div>
+    <h3>Effect of Luminance and Viewing Distance on Accommodative Lag</h3><p class="evidence-authors">박채은, 이윤지, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2021" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2021</span><span>conference</span><span>status pending review</span></div>
+    <h3>Comparison of Visual Perception for Moving and Stationary Objects</h3><p class="evidence-authors">박준혁, 임성훈, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2021" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2021</span><span>conference</span><span>status pending review</span></div>
+    <h3>Correlation between Refractive Astigmatism and Foveal Astigmatism</h3><p class="evidence-authors">이민주, 이주희, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2020" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2020</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>Policy Proposals for the Education and Training of Excellent Opticians</h3><p class="evidence-authors">김상현, 심현석, 서재명</p>
+    <p class="evidence-result">Presented policy directions by comparing and analyzing optometrist curriculums in the US, UK, and Germany with the Department of Optometry curriculum in Korea. Proposed measures to produce excellent opticians through unification of education periods, standardized curriculums, and reinforcement of field training.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://doi.org/10.17337/JMBI.2020.22.1.63" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2020" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2020</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>A Study on the Future of the Korean Optical Industry with Scientific and Technological Development II: A Preliminary Study on the Development Direction of Optometry Subjects in the 4th Industrial Revolution Era</h3><p class="evidence-authors">서재명, 김대종, 김형수, 이기석, 예기훈</p>
+    <p class="evidence-result">Explored the development direction of optometry subjects required in the 4th Industrial Revolution era. A survey of 152 opticians nationwide revealed that refraction and visual function abnormalities were perceived as the most important subjects, suggesting the need to strengthen expertise in these fields.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002599899" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2020" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2020</span><span>conference</span><span>status pending review</span></div>
+    <h3>Analysis of Pupil Center Shift According to Age and Corneal Refractive Power</h3><p class="evidence-authors">허민영, 엄정희, 배현주, 김정숙, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2020" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2020</span><span>conference</span><span>status pending review</span></div>
+    <h3>Analysis of Correlation between Gender and Pupil Center</h3><p class="evidence-authors">허민영, 엄정희, 배현주, 김정숙, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2020" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2020</span><span>conference</span><span>status pending review</span></div>
+    <h3>Changes in Anterior Corneal Shape According to Age</h3><p class="evidence-authors">허민영, 엄정희, 배현주, 김정숙, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2020" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2020</span><span>conference</span><span>status pending review</span></div>
+    <h3>Pilot Study on Radius of Curvature by Principal Meridian of Retina</h3><p class="evidence-authors">허민영, 박근호, 서재명</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2019" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2019</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>A Study on the Meister and Optometrist Education System in Germany I</h3><p class="evidence-authors">서재명, 김현선, Wolfgang Sickenberger, 김상현</p>
+    <p class="evidence-result">Analysis of the optometry-related education system in Germany. Germany trains optometry experts through various curriculums and is promoting the introduction of a common optometrist curriculum with the launch of the EU. Confirmed the excellence of the expert training system through continuing education for Opticians (AO) and Master Opticians (AM).</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002507567" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2019" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2019</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>Effect of Wetting Agent-Adsorbed Contact Lenses on Contrast Sensitivity Function</h3><p class="evidence-authors">윤경희, 이재철, 서재명</p>
+    <p class="evidence-result">Analyzed the effect of wetting agent (PVP K90 0.3%) treated hydrogel contact lenses on improving contrast sensitivity. At a spatial frequency of 3 cpd, the wetting-treated lens showed statistically significant improvement in contrast sensitivity after 12 hours of wear, and generally confirmed a tendency to be similar to or better than spectacle lenses.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002476720" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2018" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2018</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>The Effect of Vergence Function on Eye-Hand Coordination</h3><p class="evidence-authors">황정하, 서재명</p>
+    <p class="evidence-result">Analyzed the effect of vergence function on eye-hand coordination ability. Significant correlations were found with the AC/A ratio in the near esophoria group and with distance vergence facility in the exophoria group. Suggested the importance of designing rehabilitation training suitable for individual visual task types.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://doi.org/10.17337/JMBI.2018.20.3.289" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2018" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2018</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>Temporal Characteristics of Stereopsis</h3><p class="evidence-authors">서재명</p>
+    <p class="evidence-result">Analyzed the temporal characteristics of stereopsis perception according to horizontal phoria direction. In the esophoria group, after relaxing the tension of extraocular muscles, the stereo-reaction time decreased by 78.3±96.1 ms, and when neural tension was also relaxed, it decreased by 107.2±80.3 ms, confirming that stereopsis can be improved with prism correction alone.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://doi.org/10.17337/JMBI.2018.20.3.297" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2018" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2018</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>Methodological Analysis of German and Anglo-American Fixation Disparity</h3><p class="evidence-authors">서재명, 윤정호, 한상복</p>
+    <p class="evidence-result">Comparison of fixation disparity measurement between the German binocular vision test (MKH) and the Anglo-American method. Fixation disparity by the German method was 15.7±12.4&#39;, while the Anglo-American method was 65.4±52.8&#39;, showing a clear difference. Confirmed a tendency for illuminance changes to affect phoria in the age group under 30.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002415810" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2018" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2018</span><span>conference</span><span>status pending review</span></div>
+    <h3>Einfluss unterschiedlicher Kopfhaltung auf die Stabilisierung weicher torischen Kontaktlinsen bei kaukasischen und asiatischen Augen</h3><p class="evidence-authors">HS Kim, JM Seo</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2017" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2017</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>A Study on the Curriculum of Optician Training Institutions in Korea</h3><p class="evidence-authors">박미정, 서재명</p>
+    <p class="evidence-result">Analyzed the curriculum and field practice status of Departments of Optometry nationwide. The subject importance index showed a ratio of 1:1.7 for Visual Optics Theory (4.1) to Visual Optics Application/Practice (7.1), and it was confirmed that an average of 270 hours of clinical practice is being conducted at most universities. Suggested the need to expand field-centered education.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://doi.org/10.17337/JMBI.2017.19.4.487" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2017" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2017</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>A Study on Calculated Magnification and Prescribed Magnification of Optical Low Vision Aids</h3><p class="evidence-authors">서재명, Daniela Quedenfeld</p>
+    <p class="evidence-result">Comparative analysis of calculated magnification and actual prescribed magnification of optical aids for low vision patients. The actual prescribed magnification was 1.17 times higher than the calculated magnification, but it was not statistically significant, and the cross-correlation was high (r=0.92). Suggested that it is desirable to adjust and prescribe suitable for the working environment by referring to the manufacturer&#39;s magnification.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://doi.org/10.17337/JMBI.2017.19.4.503" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2017" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2017</span><span>conference</span><span>status pending review</span></div>
+    <h3>A pilot study of alternating field device for homonymous hemianopia</h3><p class="evidence-authors">JM Seo</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2016" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2016</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>Changes in Contrast Sensitivity According to Color Filter Lenses</h3><p class="evidence-authors">서재명</p>
+    <p class="evidence-result">Analyzed changes in contrast sensitivity for yellow, orange, and green color filter lenses. At instantaneous exposure (33 ms), the 2 cpd yellow filter showed the highest contrast sensitivity. At 233 ms, 8 cpd was most sensitive without a filter, but there was no statistical difference between yellow and orange. Emphasized the importance of considering cut-off wavelength when prescribing filter lenses.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002093381" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2016" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2016</span><span>conference</span><span>status pending review</span></div>
+    <h3>Neural re-organisation of peripheral retina after eccentric viewing training</h3><p class="evidence-authors">JM Seo, HS Kim, JH Lee, YC Kim, MY Heo</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2015" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2015</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>A Study on the Future of the Korean Optical Industry with Scientific and Technological Development I: Prediction of the Optical Industry and Policy Proposals</h3><p class="evidence-authors">심현석, 김상현, 서재명</p>
+    <p class="evidence-result">Predicted the future of the optical industry according to scientific and technological development and presented countermeasures. Productivity in the optical industry is increasing, but employment is decreasing. Confirmed the development of fully automatic glasses dispensing equipment and the possibility of general public use of refractometers. Proposed that opticians should expand beyond refraction into the field of visual function.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://doi.org/10.17337/JMBI.2015.17.4.377" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2015" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2015</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>On the Necessity of Changing the Optician System</h3><p class="evidence-authors">서재명, 김재도, 김흥수, 심현석, 김상현</p>
+    <p class="evidence-result">Analyzed problems and improvement measures for the Korean optician system. Although the number of vision correction device wearers is increasing and 67% of refraction exams are performed in optical shops, it was pointed out that current laws do not properly reflect the characteristics of opticians&#39; work. Argued that legal revision suitable for reality is needed as opticians&#39; capabilities and education systems are sufficiently prepared.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002065421" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2015" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2015</span><span>conference</span><span>status pending review</span></div>
+    <h3>Use of shutter glasses as the rehabilitation for homonymous hemianopia</h3><p class="evidence-authors">JM Seo, MY Heo, ST Lim, JS Kim</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2014" data-type="prototype" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2014</span><span>prototype</span><span>status pending review</span></div>
+    <h3>A Study on the Development of a Vision Splitting Device for Rehabilitation of Patients with Homonymous Hemianopsia</h3><p class="evidence-authors">서재명, 박근호, 허민영, 정주현</p>
+    <p class="evidence-result">Development of a vision splitting device for rehabilitation of patients with homonymous hemianopsia. In a space bisection experiment after using the device, the directional angle improved from +18.14° to +8.91°, and character recognition accuracy increased by 9%P for 4x4 charts and 15%P for 6x6 charts. Confirmed effectiveness as rehabilitation therapy for patients with difficulty securing visual field due to diplopia.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001917037" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2014" data-type="prototype" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2014</span><span>prototype</span><span>status pending review</span></div>
+    <h3>A Study on Readability According to Monitor Text Color Using an Eye Tracker</h3><p class="evidence-authors">김하림, 김수현, 신동민, 정희영, 김용길, 김태홍, 서재명, 정주현</p>
+    <p class="evidence-result">Study on readability by monitor text color using an eye tracker. Readability tended to decrease in the order of Black, Blue, Red, and Yellow. Confirmed that Black text color provides the best readability in all aspects of average reading time, reading errors, and average fixation time.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001890684" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2014" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2014</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>Neural Reorganization in the Outer Plexiform Layer of the Retina After Eccentric Viewing Training</h3><p class="evidence-authors">서재명</p>
+    <p class="evidence-result">Analyzed neural reorganization of the retinal outer plexiform layer after eccentric viewing training. After 21 days of training, significant functional improvement was shown in both photopic sensitivity test (p&lt;0.047) and multifocal electroretinogram (p&lt;0.028). Confirmed that although the peripheral visual nervous system cannot regenerate, neural reorganization occurs even with short-term training.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001890672" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2014" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2014</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>Changes in Contrast Sensitivity in Peripheral Vision After Eccentric Viewing Training</h3><p class="evidence-authors">서재명, 이기영, 임용무</p>
+    <p class="evidence-result">Analyzed changes in contrast sensitivity of peripheral vision after eccentric viewing training. After 21 days of training, threshold and contrast sensitivity significantly increased at both 0.7 cpd and 3.0 cpd (p&lt;0.05). Suggested that frequent repetitive training for a short time with clear and small fonts is effective.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001864644" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2013" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2013</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>A Study on Physiological Weighting of Peripheral Retina for Eccentric Viewing Training</h3><p class="evidence-authors">서재명, 이기영</p>
+    <p class="evidence-result">Investigated peripheral retinal characteristics for eccentric viewing training in low vision patients with macular degeneration. Measuring physiological weighting of the peripheral retina 20° temporal from the fovea in 30 subjects revealed that peripheral vision reached the threshold faster than central vision. Confirmed that frequent training for a short time targeting low-frequency bands is effective.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001830319" rel="noreferrer">Material</a></div>
+  </article><article class="evidence-card" data-year="2013" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2013</span><span>conference</span><span>status pending review</span></div>
+    <h3>Spatial and temporal summation in peripheral retina</h3><p class="evidence-authors">Geun-Ho Park, MY Heo, JM Seo</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2011" data-type="conference" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2011</span><span>conference</span><span>status pending review</span></div>
+    <h3>The association between visual function and perceived disability for near and distance tasks</h3><p class="evidence-authors">JM Seo</p>
+    <p class="evidence-result">Result summary pending source review</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2009" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="">
+    <div class="evidence-card-meta"><span>2009</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>Visual Function Analysis of Low Vision Patients and Normal Subjects in Canada Using Contrast Sensitivity</h3><p class="evidence-authors">서재명</p>
+    <p class="evidence-result">Comparative analysis of contrast sensitivity between low vision patients and normal subjects. Measuring 20 low vision patients and 20 normal controls at two spatial frequencies (0.7 c/d, 3.0 c/d) showed that contrast sensitivity of low vision patients was generally lower, but there was no difference according to object size and exposure time. Confirmed the efficiency of using low spatial frequencies.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><span>Materials not publicly available</span></div>
+  </article><article class="evidence-card" data-year="2009" data-type="unclassified" data-program="" data-contribution="" data-status="" data-material="paper">
+    <div class="evidence-card-meta"><span>2009</span><span>unclassified</span><span>status pending review</span></div>
+    <h3>A Study on Pathogenesis Affecting Quality of Life and Daily Life of Low Vision Patients</h3><p class="evidence-authors">서재명</p>
+    <p class="evidence-result">Compared quality of life between low vision patients and normal subjects and analyzed influencing factors. Subjective life satisfaction of low vision patients was lower in all items compared to the normal control group (mean difference 36.07±14.82), and age showed a high correlation with near activity (r=-0.584) and distance activity (r=-0.678). Confirmed that nystagmus, in particular, causes great difficulty in daily life.</p>
+    <p class="evidence-mapping">Program: program mapping pending · Contribution: contribution mapping pending</p>
+
+    <div class="evidence-materials"><a href="https://doi.org/10.5762/kais.2009.10.11.3412" rel="noreferrer">Material</a></div>
+  </article></section><section class="evidence-legend"><h2>Verification status and material legend</h2><p>Review pending: source, classification, or result review is not complete. Materials without a verified public URL are shown as plain text.</p><a class="text-link" href="../contact.html">Report missing material or discuss collaboration →</a></section></div></main><footer class="site-footer"><div class="site-footer-inner"><p>Research-stage platform. No commercial medical product is currently available.</p><p><a href="../privacy.html">Privacy Policy</a> · <a href="../contact.html">Contact</a></p></div></footer><script src="../assets/js/evidence.js" defer></script></body></html>

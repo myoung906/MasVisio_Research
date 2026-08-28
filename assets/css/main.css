@@ -311,6 +311,41 @@ a:hover {
 .program-facts p { margin: .5rem 0 0; font-size: .88rem; }
 .research-cta { border-bottom: 0; }
 
+/* Evidence Library: 정적 목록이 기본, JS는 선택적 필터만 담당 */
+.evidence-wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+.evidence-intro { padding: clamp(4rem, 9vw, 7rem) 0 3rem; }
+.evidence-kicker, .evidence-count, .evidence-card-meta, .evidence-filter > span, .evidence-search > span { color: var(--primary-color); font: .7rem/1.4 var(--mono-font); letter-spacing: .08em; text-transform: uppercase; }
+.evidence-page h1 { font-size: clamp(2.4rem, 6vw, 5rem); line-height: 1.05; margin: 1rem 0 1.5rem; }
+.evidence-page h2 { font-size: clamp(1.8rem, 4vw, 3rem); }
+.evidence-lead { max-width: 52rem; color: var(--text-color); font-size: 1.05rem; line-height: 1.8; text-align: left; }
+.evidence-count { margin-top: 1.5rem; color: var(--muted-text); text-transform: none; letter-spacing: 0; }
+.evidence-program-summary { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.evidence-program-summary div { padding: 1rem; border-right: 1px solid var(--line); }
+.evidence-program-summary div:last-child { border-right: 0; }
+.evidence-program-summary strong, .evidence-program-summary span { display: block; }
+.evidence-program-summary strong { color: var(--text-color); font-size: .86rem; }
+.evidence-program-summary span { margin-top: .35rem; color: var(--muted-text); font-size: .72rem; }
+.evidence-controls { padding: 2rem 0; border-bottom: 1px solid var(--line); }
+.evidence-search, .evidence-filter { display: flex; flex-direction: column; gap: .5rem; }
+.evidence-search input, .evidence-filter select { width: 100%; min-height: 2.65rem; padding: .55rem .7rem; color: var(--text-color); background: var(--surface-1); border: 1px solid var(--line-strong); font: .85rem var(--body-font); }
+.evidence-search input:focus, .evidence-filter select:focus { border-color: var(--primary-color); outline: 2px solid rgba(169,214,238,.2); }
+.evidence-filter-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 1rem; }
+.evidence-filter-grid .evidence-filter:nth-child(2) { grid-column: span 2; }
+.evidence-result-count { color: var(--text-color); font: .8rem var(--mono-font); margin: 1.25rem 0 0; }
+.evidence-list { border-top: 1px solid var(--line); }
+.evidence-card { padding: 1.5rem 0 1.75rem; border-bottom: 1px solid var(--line); }
+.evidence-card[hidden] { display: none; }
+.evidence-card-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; color: var(--muted-text); text-transform: none; letter-spacing: 0; }
+.evidence-card h3 { margin: .75rem 0 .35rem; color: var(--text-color); font-size: 1.25rem; }
+.evidence-authors { margin: 0 0 .7rem; font-size: .8rem; }
+.evidence-result { color: var(--text-color); text-align: left; }
+.evidence-mapping, .evidence-scope { margin: .6rem 0 0; color: var(--muted-text); font-size: .78rem; text-align: left; }
+.evidence-materials { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1rem; font: .72rem var(--mono-font); }
+.evidence-materials a { color: var(--primary-color); }
+.evidence-materials span { color: var(--muted-text); }
+.evidence-legend { padding: 4rem 0; }
+.evidence-legend p { text-align: left; }
+
 /* =========================================
    Layout — Sidebar System
    ========================================= */
