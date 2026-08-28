@@ -283,6 +283,34 @@ a:hover {
 .text-link { display: inline-block; margin-top: 1rem; font: .78rem var(--mono-font); letter-spacing: .04em; }
 .home-collaborate { background: var(--surface-1); }
 
+/* Research overview: 카드보다 긴 설명과 검증 순서를 우선 */
+.research-wrap { width: min(980px, calc(100% - 32px)); margin: 0 auto; }
+.research-intro, .research-section { padding: clamp(4rem, 9vw, 7rem) 0; border-bottom: 1px solid var(--line); }
+.research-intro { padding-top: clamp(4rem, 9vw, 8rem); }
+.research-kicker, .research-status, .research-program-head span, .research-pipeline article > span { color: var(--primary-color); font: .7rem/1.4 var(--mono-font); letter-spacing: .1em; text-transform: uppercase; }
+.research-page h1 { font-size: clamp(2.4rem, 6vw, 5rem); line-height: 1.05; margin: 1rem 0 1.5rem; }
+.research-page h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); line-height: 1.15; margin: .75rem 0 2.25rem; }
+.research-page h3 { font-size: 1.1rem; margin-bottom: .6rem; }
+.research-lead { max-width: 50rem; color: var(--text-color); font-size: 1.08rem; line-height: 1.8; text-align: left; }
+.research-status { color: var(--muted-text); letter-spacing: 0; text-transform: none; margin-top: 2rem; }
+.research-split { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.research-split > div { background: var(--surface-1); padding: 1.5rem; }
+.research-split p, .research-program p, .research-cta p { text-align: left; }
+.research-pipeline { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+.research-pipeline article { padding: 1.4rem 1rem; border-right: 1px solid var(--line); }
+.research-pipeline article:last-child { border-right: 0; }
+.research-pipeline b { display: block; margin-top: 1.25rem; color: var(--text-color); font-size: .78rem; font-weight: 500; }
+.research-program { padding: 2rem 0; border-top: 1px solid var(--line); }
+.research-program-head { display: flex; align-items: baseline; gap: 1.25rem; margin-bottom: 1rem; }
+.research-program-head strong { color: var(--text-color); font: 1.35rem var(--heading-font); }
+.program-question { color: var(--text-color); font-size: 1.05rem; }
+.program-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+.program-facts > div { padding: 1rem; border-left: 2px solid var(--line-strong); background: rgba(255,255,255,.015); }
+.program-facts > div:nth-child(2) { border-left-color: var(--primary-color); }
+.program-facts b { color: var(--primary-color); font: .7rem var(--mono-font); letter-spacing: .08em; text-transform: uppercase; }
+.program-facts p { margin: .5rem 0 0; font-size: .88rem; }
+.research-cta { border-bottom: 0; }
+
 /* =========================================
    Layout — Sidebar System
    ========================================= */
