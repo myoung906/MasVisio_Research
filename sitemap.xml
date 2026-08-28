@@ -162,26 +162,6 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/contact.html"/>
     </url>
 
-    <!-- 영어 갤러리 -->
-    <url>
-        <loc>https://myoung906.github.io/MasVisio_Research/gallery/index.html</loc>
-        <lastmod>2026-02-04</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/gallery/index.html"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://myoung906.github.io/MasVisio_Research/ko/gallery/index.html"/>
-    </url>
-
-    <!-- 한국어 갤러리 -->
-    <url>
-        <loc>https://myoung906.github.io/MasVisio_Research/ko/gallery/index.html</loc>
-        <lastmod>2026-02-04</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://myoung906.github.io/MasVisio_Research/ko/gallery/index.html"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://myoung906.github.io/MasVisio_Research/gallery/index.html"/>
-    </url>
-
     <!-- 영어 개인정보처리방침 -->
     <url>
         <loc>https://myoung906.github.io/MasVisio_Research/privacy.html</loc>

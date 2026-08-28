@@ -526,6 +526,7 @@
   .evidence-program-summary div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   .evidence-filter-grid { grid-template-columns: repeat(2, 1fr); }
   .evidence-filter-grid .evidence-filter:nth-child(2) { grid-column: span 1; }
+  .company-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
@@ -572,4 +573,5 @@
   .evidence-program-summary, .evidence-filter-grid { grid-template-columns: 1fr; }
   .evidence-program-summary div, .evidence-program-summary div:nth-child(2) { border-right: 0; border-bottom: 1px solid var(--line); }
   .evidence-program-summary div:last-child { border-bottom: 0; }
+  .company-wrap, .contact-wrap, .privacy-wrap { width: min(100% - 24px, 900px); }
 }

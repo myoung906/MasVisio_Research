@@ -346,6 +346,25 @@ a:hover {
 .evidence-legend { padding: 4rem 0; }
 .evidence-legend p { text-align: left; }
 
+/* Company, contact, privacy: 문서형 공개 페이지 */
+.company-wrap, .contact-wrap, .privacy-wrap { width: min(900px, calc(100% - 32px)); margin: 0 auto; }
+.company-intro, .contact-intro, .privacy-intro { padding: clamp(4rem, 9vw, 7rem) 0 3rem; }
+.company-kicker, .contact-kicker, .privacy-kicker { color: var(--primary-color); font: .7rem var(--mono-font); letter-spacing: .1em; text-transform: uppercase; }
+.company-page h1, .contact-page h1, .privacy-page h1 { font-size: clamp(2.4rem, 6vw, 4.8rem); line-height: 1.06; margin: 1rem 0 1.5rem; }
+.company-page h2, .contact-page h2, .privacy-page h2 { font-size: clamp(1.55rem, 3vw, 2.5rem); margin: 0 0 1.25rem; }
+.company-lead, .contact-lead, .privacy-lead { color: var(--text-color); font-size: 1.05rem; line-height: 1.8; text-align: left; }
+.company-section, .contact-section, .privacy-section { padding: 3rem 0; border-top: 1px solid var(--line); }
+.company-section p, .contact-section p, .privacy-section p { text-align: left; }
+.company-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+.company-grid > div { padding: 1.25rem; background: var(--surface-1); }
+.company-grid strong { color: var(--primary-color); font: .75rem var(--mono-font); }
+.company-grid p { margin: .5rem 0 0; font-size: .88rem; }
+.contact-section ul { margin: 0 0 2rem 1.2rem; color: var(--text-light); line-height: 2; text-align: left; }
+.contact-warning, .privacy-warning { color: #f0b8b8 !important; }
+.contact-note { margin-top: 1.25rem; font-size: .75rem; }
+.privacy-section h2 { margin-top: 2.25rem; }
+.privacy-section h2:first-child { margin-top: 0; }
+
 /* =========================================
    Layout — Sidebar System
    ========================================= */
