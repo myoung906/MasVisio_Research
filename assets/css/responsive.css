@@ -435,3 +435,15 @@
   }
 }
 
+
+/* 고정 헤더의 실제 높이를 본문 여백에 반영합니다. */
+@media (max-width: 1024px) {
+  body .mobile-header { background-color: var(--panel); border-bottom: 1px solid var(--line); }
+  body .main-content { padding-top: calc(var(--mobile-header-height, 180px) + 24px); }
+  .main-content [id] { scroll-margin-top: calc(var(--mobile-header-height, 180px) + 24px); }
+  .mobile-header .mobile-logo { max-width: calc(100% - 120px); }
+}
+@media (max-width: 600px) {
+  .collaboration-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .contact-inquiry { padding: 20px; }
+}

@@ -3,16 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact - Optinex Research</title>
-    <meta
-      name="description"
-      content="Contact Optinex Research for collaboration, partnership, or inquiries about our vision rehabilitation research."
-    />
-    <meta property="og:title" content="Contact - Optinex Research" />
-    <meta
-      property="og:description"
-      content="Contact Optinex Research for collaboration, partnership, or inquiries about our vision rehabilitation research."
-    />
+    <title>Collaboration — Optinex Research</title>
+    <meta name="description" content="Contact Optinex Research about technology transfer, licensing, and joint validation of optical measurements, prototypes, and visual function." />
+    <meta property="og:title" content="Collaboration — Optinex Research" />
+    <meta property="og:description" content="Contact Optinex Research about technology transfer, licensing, and joint validation of optical measurements, prototypes, and visual function." />
     <meta property="og:type" content="website" />
   <meta property="og:image" content="https://myoung906.github.io/MasVisio_Research/assets/images/vision_engineering_concept.png" />
   <meta property="og:url" content="https://myoung906.github.io/MasVisio_Research/contact.html" />
@@ -25,8 +19,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/main.css?v=5.0" />
-    <link rel="stylesheet" href="assets/css/responsive.css?v=5.0" />
+    <link rel="stylesheet" href="assets/css/main.css?v=8.0" />
+    <link rel="stylesheet" href="assets/css/responsive.css?v=8.0" />
     <link rel="stylesheet" href="assets/css/components.css?v=5.0" />
     <style>
       .partner-card:hover {
@@ -58,17 +52,17 @@
       </div>
 
       <div class="lang-switch">
-        <a href="ko/contact.html">🇰🇷</a> <span class="active">🇬🇧</span>
+        <a href="ko/contact.html" aria-label="한국어" lang="ko">🇰🇷</a> <span class="active">🇬🇧</span>
       </div>
 
       <nav class="sidebar-nav">
         <a href="index.html" class="nav-item">Home</a>
-        <a href="team/index.html" class="nav-item">Team</a>
+        <a href="team/index.html" class="nav-item">Company</a>
         <a href="research/overview.html" class="nav-item">Challenges</a>
         <a href="publications/index.html" class="nav-item">Publications</a>
         <a href="gallery/index.html" class="nav-item">Gallery</a>
         <a href="partnership/index.html" class="nav-item">Services</a>
-        <a href="contact.html" class="nav-item active" aria-current="page">Partners</a>
+        <a href="contact.html" class="nav-item active" aria-current="page">Contact</a>
       </nav>
 
       <div class="sidebar-footer">
@@ -81,18 +75,22 @@
       </div>
     </aside>
 
-    <main class="main-content" id="main-content">
+    <main class="main-content" id="main-content" tabindex="-1">
       <section class="section page-section">
         <div class="container">
           <header class="page-header">
-            <h2 class="page-title">Research &amp; Academic Partners</h2>
-            <p class="page-subtitle" style="color: #9eb1c0 !important;">
-              Optinex Research collaborates with leading global institutions to drive clinical innovation and academic exchange in vision science.
-            </p>
+            <h1 class="section-title">Collaboration</h1><p class="page-subtitle">We welcome companies, manufacturers, researchers, and clinical partners interested in advancing research toward vision augmentation across the visual field.</p>
+            <p class="research-stage">Currently in research and development.</p>
           </header>
+          <div class="collaboration-grid contact-options">
+            <section id="technology-transfer"><h2>Technology transfer &amp; licensing</h2><p>We welcome discussions with companies and manufacturers about applications and transfer scope for optical measurement, modeling, and control technologies.</p></section>
+            <section id="joint-validation"><h2>Joint validation</h2><p>We work with researchers and clinical partners to discuss measurement reproducibility, prototype evaluation, and validation of changes in visual function.</p></section>
+          </div>
+          <div class="contact-inquiry"><p>Please share your affiliation, technology of interest, intended application, or a question to validate. Research stage and collaboration scope are discussed individually.</p><a class="inquiry-link" href="mailto:info@optinex.org">Email us about collaboration → info@optinex.org</a></div>
+          <h2>Research &amp; academic partners</h2>
 
           <!-- Partners Grid -->
-          <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 4rem;">
+          <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 24px; margin-bottom: 4rem;">
             <div class="partner-card" style="background: var(--panel2); border: 1px solid var(--line); padding: 30px; border-radius: 8px; transition: border-color 0.3s; display: flex; flex-direction: column; justify-content: space-between;">
               <div>
                 <!-- Partner Logo Wrapper -->
@@ -129,21 +127,10 @@
               </div>
             </div>
           </div>
-
-          <!-- Contact / Inquiry card -->
-          <div class="contact-box" style="background: rgba(169, 214, 238, 0.03); border: 1px solid var(--line-strong); padding: 40px; border-radius: 8px; text-align: center;">
-            <h3 style="color: #fff; font-family: var(--heading-font); font-size: 22px; margin-bottom: 12px;">💡 Inquiry &amp; Collaboration</h3>
-            <p style="color: #9eb1c0; font-size: 15px; line-height: 1.7; max-width: 600px; margin: 0 auto 24px;">
-              We welcome global R&amp;D partnership inquiries, optical prototype validation projects, and AI diagnostic API integrations.
-            </p>
-            <a href="mailto:info@optinex.org" style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono-font); font-size: 13px; letter-spacing: 0.08em; color: var(--ink); background: var(--primary-color); padding: 13px 28px; border-radius: 4px; text-decoration: none; font-weight: 700;">
-              📧 Send Partnership Proposal (Email)
-            </a>
-          </div>
         </div>
       </section>
     </main>
 
-    <script src="assets/js/main.js?v=5.0" defer></script>
+    <script src="assets/js/main.js?v=8.0" defer></script>
   </body>
 </html>
