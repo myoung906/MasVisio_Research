@@ -109,6 +109,8 @@ function initVisualSummationStimuli() {
   const temporalTarget = document.querySelector('[data-temporal-flicker="canvas"]');
   
   if (!spatialTarget && !temporalTarget) return;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let animationFrame = 0;
   
   let spatialConfig = null;
   if (spatialTarget) {
@@ -198,10 +200,11 @@ function initVisualSummationStimuli() {
   };
   
   const update = (now) => {
+    cancelAnimationFrame(animationFrame);
     if (!document.hidden) {
       const elapsed = (now - startTime) % 3000;
       const ratio = elapsed / 3000;
-      const freq = Math.min(30, Math.max(1, Math.round(1 + (30 - 1) * ratio)));
+      const freq = reducedMotion.matches ? 1 : Math.min(30, Math.max(1, Math.round(1 + (30 - 1) * ratio)));
       
       if (spatialConfig) {
         drawGabor(spatialConfig, freq);
@@ -211,7 +214,7 @@ function initVisualSummationStimuli() {
       }
       
       if (temporalConfig) {
-        const dt = Math.max(0.001, (now - temporalConfig.lastTime) / 1000);
+        const dt = reducedMotion.matches ? 0 : Math.max(0.001, (now - temporalConfig.lastTime) / 1000);
         temporalConfig.lastTime = now;
         
         const halfPeriod = 0.5 / freq;
@@ -221,7 +224,7 @@ function initVisualSummationStimuli() {
           temporalConfig.accumulator -= halfPeriod;
         }
         
-        const alpha = temporalConfig.state;
+        const alpha = reducedMotion.matches ? 0 : temporalConfig.state;
         const { ctx, canvas } = temporalConfig;
         
         if (temporalConfig.offImg.complete && temporalConfig.onImg.complete && temporalConfig.offImg.naturalWidth > 0) {
@@ -246,9 +249,15 @@ function initVisualSummationStimuli() {
         temporalConfig.lastTime = now;
       }
     }
-    requestAnimationFrame(update);
+    if (!reducedMotion.matches) animationFrame = requestAnimationFrame(update);
   };
-  requestAnimationFrame(update);
+  reducedMotion.addEventListener("change", () => {
+    if (temporalConfig) temporalConfig.lastTime = performance.now();
+    update(performance.now());
+  });
+  window.addEventListener("resize", () => update(performance.now()));
+  if (temporalConfig) temporalConfig.offImg.addEventListener("load", () => update(performance.now()));
+  animationFrame = requestAnimationFrame(update);
 }
 
 function initCopyrightYear() {
@@ -554,7 +563,7 @@ function initMobileNav() {
   if (!document.querySelector(".mobile-nav-toggle")) {
     const toggleBtn = document.createElement("button");
     toggleBtn.className = "mobile-nav-toggle";
-    toggleBtn.setAttribute("aria-label", "Toggle Navigation");
+    toggleBtn.setAttribute("aria-label", document.documentElement.lang === "ko" ? "메뉴 열기" : "Open menu");
     toggleBtn.setAttribute("aria-expanded", "false");
     toggleBtn.innerHTML = `
             <div class="hamburger-icon">
@@ -590,6 +599,39 @@ function initMobileNav() {
   }
 
   ensureMobileHeader();
+  if (sidebar) {
+    sidebar.id ||= "site-sidebar";
+    document.querySelector(".mobile-nav-toggle").setAttribute("aria-controls", sidebar.id);
+    const mobile = window.matchMedia("(max-width: 1024px)");
+    const syncViewport = () => {
+      if (!mobile.matches && sidebar.classList.contains("active")) toggleMobileNav();
+      sidebar.inert = mobile.matches && !sidebar.classList.contains("active");
+    };
+    mobile.addEventListener("change", syncViewport);
+    syncViewport();
+    // 열린 메뉴에서는 숨겨진 본문으로 키보드 초점이 빠져나가지 않게 합니다.
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab" || !mobile.matches || !sidebar.classList.contains("active")) return;
+      const toggle = document.querySelector(".mobile-nav-toggle");
+      const focusable = [...sidebar.querySelectorAll('a[href], button, [tabindex="0"]')]
+        .filter((element) => element.getClientRects().length > 0);
+      focusable.push(toggle);
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+  }
+  // 글꼴 로딩과 화면 회전 후에도 고정 헤더가 본문을 가리지 않게 합니다.
+  const header = document.querySelector(".mobile-header");
+  if (header) new ResizeObserver(() => {
+    if (header.offsetHeight) document.documentElement.style.setProperty("--mobile-header-height", `${header.offsetHeight}px`);
+  }).observe(header);
 }
 
 function toggleMobileNav() {
@@ -603,7 +645,15 @@ function toggleMobileNav() {
     toggleBtn.classList.toggle("active");
     const isOpen = sidebar.classList.contains("active");
     toggleBtn.setAttribute("aria-expanded", String(isOpen));
+    const isKo = document.documentElement.lang === "ko";
+    toggleBtn.setAttribute("aria-label", isOpen ? (isKo ? "메뉴 닫기" : "Close menu") : (isKo ? "메뉴 열기" : "Open menu"));
     document.body.style.overflow = isOpen ? "hidden" : "";
+    sidebar.inert = window.innerWidth <= 1024 && !isOpen;
+    document.querySelectorAll("main, .mobile-header, .accessibility-controls").forEach((element) => {
+      element.inert = isOpen;
+    });
+    if (isOpen) sidebar.querySelector("a[href]")?.focus();
+    else toggleBtn.focus();
   }
 }
 
@@ -1375,4 +1425,3 @@ function bindAccessibilityEvents() {
     el.addEventListener("focus", handleEvent);
   });
 }
-

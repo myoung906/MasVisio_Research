@@ -447,3 +447,8 @@
   .collaboration-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .contact-inquiry { padding: 20px; }
 }
+
+@media (max-width: 1024px) {
+  .sidebar-header { padding-top: 48px; }
+  .mobile-nav-toggle { background-color: var(--panel2); border: 1px solid var(--line-strong); }
+}
