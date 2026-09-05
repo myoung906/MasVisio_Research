@@ -286,6 +286,29 @@
 .home-page .study-status { color: var(--primary-color); font-family: var(--mono-font); font-size: 12px; }
 .home-page .study-link { margin-top: auto; font-size: 14px; }
 .home-page .features-grid { margin-top: 0; margin-bottom: 4rem; }
+.paradigm-section { border-top: 1px solid var(--line); padding-top: 42px; margin-bottom: 64px; }
+.paradigm-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.paradigm-card { min-height: 300px; padding: 28px; border: 1px solid var(--line-strong); background: var(--panel2); }
+.paradigm-card h3 { font-size: 24px; margin: 14px 0 18px; }
+.paradigm-card p { max-width: 42em; text-align: start; }
+.paradigm-tag, .equation-label { color: var(--primary-color); font: 11px var(--mono-font); letter-spacing: .12em; text-transform: uppercase; }
+.static-card { border-color: rgba(168, 200, 224, .18); }
+.adaptive-card { border-color: var(--primary-color); }
+.prescription { color: var(--text-color); font: 600 clamp(25px, 3vw, 38px) var(--mono-font); letter-spacing: .06em; margin: 32px 0; }
+.prescription b { color: var(--primary-color); font-weight: 400; }
+.field-visual { height: 125px; margin: 10px 0 20px; }
+.field-visual svg { width: 100%; height: 100%; fill: none; stroke: var(--line-strong); stroke-width: 1; }
+.field-visual circle:first-child { stroke: var(--primary-color); stroke-width: 1.5; }
+.field-visual circle:nth-of-type(2) { stroke: var(--primary-color); }
+.field-visual path { stroke: var(--line-strong); }
+.field-dot { fill: var(--primary-color); stroke: none; }
+.equation-box { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; border-left: 2px solid var(--primary-color); padding: 18px 22px; margin: 22px 0; background: rgba(169,214,238,.04); }
+.equation-box code { color: var(--text-color); font: 20px var(--mono-font); }
+.equation-note { color: var(--text-light); font-size: 13px; }
+.paradigm-table { border-top: 1px solid var(--line); }
+.paradigm-row { display: grid; grid-template-columns: minmax(150px, .75fr) minmax(0, 1.25fr); gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--line); color: var(--text-light); font-size: 14px; }
+.paradigm-row strong { color: var(--text-color); font-weight: 500; }
+.paradigm-header { color: var(--primary-color); font: 11px var(--mono-font); letter-spacing: .08em; text-transform: uppercase; }
 .ring-anim { transform-origin: 230px 230px; animation: spin 90s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .loop-diagram { border-bottom: 1px solid var(--line); padding: 0 0 24px; margin: -8px 0 34px; overflow: hidden; }
@@ -311,4 +334,9 @@
   .home-page .sec-label { width: 100%; }
   .home-page .pillar { grid-template-columns: 32px minmax(0, 1fr); }
   .home-page .loop-diagram svg { min-width: 620px; transform: translateX(-24px); }
+  .paradigm-grid { grid-template-columns: minmax(0, 1fr); }
+  .paradigm-card { min-height: 0; padding: 22px; }
+  .paradigm-row { grid-template-columns: 1fr; gap: 5px; }
+  .paradigm-header { grid-template-columns: 1fr 1fr; }
+  .equation-box code { font-size: 15px; }
 }
